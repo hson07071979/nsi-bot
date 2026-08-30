@@ -1,0 +1,172 @@
+{
+ "pinned": [
+  "MSN",
+  "HAG",
+  "ACB",
+  "HDB",
+  "STB",
+  "BAF",
+  "GMD",
+  "IDC",
+  "POW",
+  "KBC",
+  "SAB"
+ ],
+ "members": {
+  "GMD": {
+   "added": "2026-08-28",
+   "score": 84.0,
+   "status": "đạt",
+   "note": ""
+  },
+  "HCM": {
+   "added": "2026-08-28",
+   "score": 79.4,
+   "status": "đạt",
+   "note": ""
+  },
+  "HDB": {
+   "added": "2026-08-28",
+   "score": 79.3,
+   "status": "đạt",
+   "note": ""
+  },
+  "VNM": {
+   "added": "2026-08-28",
+   "score": 69.4,
+   "status": "đạt",
+   "note": ""
+  },
+  "MBB": {
+   "added": "2026-08-28",
+   "score": 69.0,
+   "status": "đạt",
+   "note": ""
+  },
+  "MSN": {
+   "added": "2026-08-28",
+   "score": 67.4,
+   "status": "đạt",
+   "note": ""
+  },
+  "VCB": {
+   "added": "2026-08-28",
+   "score": 57.8,
+   "status": "đạt",
+   "note": ""
+  },
+  "POW": {
+   "added": "2026-08-28",
+   "score": 57.6,
+   "status": "đạt",
+   "note": ""
+  },
+  "MBS": {
+   "added": "2026-08-28",
+   "score": 57.3,
+   "status": "đạt",
+   "note": ""
+  },
+  "IDC": {
+   "added": "2026-08-28",
+   "score": 55.9,
+   "status": "đạt",
+   "note": ""
+  },
+  "PVD": {
+   "added": "2026-08-28",
+   "score": 53.9,
+   "status": "đạt",
+   "note": ""
+  },
+  "HPG": {
+   "added": "2026-08-28",
+   "score": 51.8,
+   "status": "đạt",
+   "note": ""
+  },
+  "SAB": {
+   "added": "2026-08-28",
+   "score": 48.7,
+   "status": "đạt",
+   "note": ""
+  },
+  "VND": {
+   "added": "2026-08-28",
+   "score": 47.1,
+   "status": "đạt",
+   "note": ""
+  },
+  "HAG": {
+   "added": "2026-08-28",
+   "score": 46.7,
+   "status": "ghim",
+   "note": "ICR 1.28 < 1.5"
+  },
+  "ACB": {
+   "added": "2026-08-28",
+   "score": 23.6,
+   "status": "ghim",
+   "note": "điểm 24 < 45"
+  },
+  "STB": {
+   "added": "2026-08-28",
+   "score": 59.3,
+   "status": "ghim",
+   "note": "NPL 7.54% > 3%"
+  },
+  "BAF": {
+   "added": "2026-08-28",
+   "score": 54.6,
+   "status": "ghim",
+   "note": "CFO < 0"
+  },
+  "KBC": {
+   "added": "2026-08-28",
+   "score": 11.9,
+   "status": "ghim",
+   "note": "CFO < 0"
+  }
+ },
+ "log": [
+  {
+   "date": "2026-08-28",
+   "added": [],
+   "removed": [],
+   "size": 19
+  },
+  {
+   "date": "2026-08-28",
+   "added": [],
+   "removed": [],
+   "size": 19
+  },
+  {
+   "date": "2026-08-28",
+   "added": [],
+   "removed": [],
+   "size": 19
+  },
+  {
+   "date": "2026-08-28",
+   "added": [
+    "GMD",
+    "HCM",
+    "HDB",
+    "VNM",
+    "MBB",
+    "MSN",
+    "VCB",
+    "POW",
+    "MBS",
+    "IDC",
+    "PVD",
+    "HPG",
+    "SAB",
+    "VND"
+   ],
+   "removed": [],
+   "size": 19
+  }
+ ]
+}

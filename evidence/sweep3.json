@@ -1,0 +1,243 @@
+{
+ "ordimb + tran cung": {
+  "trades": 218,
+  "per_year": 28.6,
+  "total_return": 0.7569,
+  "cagr": 0.0768,
+  "maxdd": 0.0705,
+  "winrate": 0.445,
+  "avg_win": 14.25,
+  "avg_loss": -3.47,
+  "rr": 4.1,
+  "pf": 3.36,
+  "expectancy": 4.41,
+  "sharpe": 1.24,
+  "final_nav": 1756948992,
+  "yearly": {
+   "2019": -0.003,
+   "2020": 0.201,
+   "2021": 0.225,
+   "2022": 0.011,
+   "2023": -0.002,
+   "2024": 0.043,
+   "2025": 0.033,
+   "2026": 0.102
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "hard_ceiling": true
+  }
+ },
+ "ordimb + 12 vi the": {
+  "trades": 328,
+  "per_year": 43.1,
+  "total_return": 0.9009,
+  "cagr": 0.088,
+  "maxdd": 0.1013,
+  "winrate": 0.3963,
+  "avg_win": 14.39,
+  "avg_loss": -3.65,
+  "rr": 3.94,
+  "pf": 2.51,
+  "expectancy": 3.5,
+  "sharpe": 1.16,
+  "final_nav": 1900910080,
+  "yearly": {
+   "2019": 0.011,
+   "2020": 0.235,
+   "2021": 0.378,
+   "2022": 0.004,
+   "2023": -0.012,
+   "2024": 0.008,
+   "2025": 0.013,
+   "2026": 0.091
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "max_pos_n": 12,
+   "max_total": 0.9
+  }
+ },
+ "ordimb + tran cung + 12 vi the": {
+  "trades": 228,
+  "per_year": 30.0,
+  "total_return": 0.7098,
+  "cagr": 0.073,
+  "maxdd": 0.0814,
+  "winrate": 0.4342,
+  "avg_win": 14.06,
+  "avg_loss": -3.48,
+  "rr": 4.04,
+  "pf": 2.9,
+  "expectancy": 4.13,
+  "sharpe": 1.12,
+  "final_nav": 1709774592,
+  "yearly": {
+   "2019": -0.003,
+   "2020": 0.199,
+   "2021": 0.221,
+   "2022": 0.01,
+   "2023": -0.002,
+   "2024": 0.04,
+   "2025": 0.037,
+   "2026": 0.078
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "hard_ceiling": true,
+   "max_pos_n": 12,
+   "max_total": 0.9
+  }
+ },
+ "ordimb + khoi ngoai mua rong": {
+  "trades": 233,
+  "per_year": 30.6,
+  "total_return": 0.6902,
+  "cagr": 0.0714,
+  "maxdd": 0.1002,
+  "winrate": 0.3777,
+  "avg_win": 14.77,
+  "avg_loss": -3.68,
+  "rr": 4.01,
+  "pf": 2.95,
+  "expectancy": 3.29,
+  "sharpe": 1.12,
+  "final_nav": 1690211968,
+  "yearly": {
+   "2019": -0.003,
+   "2020": 0.173,
+   "2021": 0.333,
+   "2022": -0.007,
+   "2023": -0.013,
+   "2024": -0.006,
+   "2025": 0.003,
+   "2026": 0.11
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "use_fnet": true
+  }
+ },
+ "ordimb + RS>=60": {
+  "trades": 276,
+  "per_year": 36.3,
+  "total_return": 0.7916,
+  "cagr": 0.0796,
+  "maxdd": 0.0634,
+  "winrate": 0.413,
+  "avg_win": 14.3,
+  "avg_loss": -3.8,
+  "rr": 3.77,
+  "pf": 2.62,
+  "expectancy": 3.68,
+  "sharpe": 1.28,
+  "final_nav": 1791584768,
+  "yearly": {
+   "2019": 0.015,
+   "2020": 0.228,
+   "2021": 0.363,
+   "2022": 0.011,
+   "2023": 0.0,
+   "2024": 0.016,
+   "2025": 0.041,
+   "2026": -0.014
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "rs_min": 60
+  }
+ },
+ "ordimb + RS>=80": {
+  "trades": 185,
+  "per_year": 24.3,
+  "total_return": 0.2409,
+  "cagr": 0.0288,
+  "maxdd": 0.0656,
+  "winrate": 0.3784,
+  "avg_win": 13.55,
+  "avg_loss": -3.77,
+  "rr": 3.59,
+  "pf": 1.95,
+  "expectancy": 2.78,
+  "sharpe": 0.66,
+  "final_nav": 1240857088,
+  "yearly": {
+   "2019": 0.019,
+   "2020": 0.064,
+   "2021": 0.104,
+   "2022": 0.003,
+   "2023": -0.0,
+   "2024": 0.018,
+   "2025": 0.045,
+   "2026": -0.028
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "rs_min": 80
+  }
+ },
+ "ordimb + 12vt + size 15%": {
+  "trades": 322,
+  "per_year": 42.3,
+  "total_return": 1.5566,
+  "cagr": 0.1312,
+  "maxdd": 0.1304,
+  "winrate": 0.3913,
+  "avg_win": 14.75,
+  "avg_loss": -3.68,
+  "rr": 4.01,
+  "pf": 2.59,
+  "expectancy": 3.53,
+  "sharpe": 1.29,
+  "final_nav": 2556562688,
+  "yearly": {
+   "2019": 0.017,
+   "2020": 0.356,
+   "2021": 0.576,
+   "2022": 0.003,
+   "2023": -0.017,
+   "2024": 0.016,
+   "2025": 0.032,
+   "2026": 0.138
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "max_pos_n": 12,
+   "max_total": 0.9,
+   "base_size": 0.15,
+   "max_pos": 0.25
+  }
+ },
+ "ordimb + 12vt + size 20%": {
+  "trades": 317,
+  "per_year": 41.6,
+  "total_return": 1.7295,
+  "cagr": 0.141,
+  "maxdd": 0.1456,
+  "winrate": 0.3912,
+  "avg_win": 15.14,
+  "avg_loss": -3.69,
+  "rr": 4.11,
+  "pf": 2.27,
+  "expectancy": 3.68,
+  "sharpe": 1.23,
+  "final_nav": 2729485312,
+  "yearly": {
+   "2019": 0.022,
+   "2020": 0.389,
+   "2021": 0.662,
+   "2022": 0.004,
+   "2023": -0.023,
+   "2024": 0.032,
+   "2025": 0.007,
+   "2026": 0.134
+  },
+  "cfg": {
+   "use_ordimb": true,
+   "max_pos_n": 12,
+   "max_total": 1.0,
+   "base_size": 0.2,
+   "max_pos": 0.28
+  }
+ }
+}

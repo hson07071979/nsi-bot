@@ -1,0 +1,241 @@
+{
+ "baseline (hien tai)": {
+  "trades": 308,
+  "per_year": 40.5,
+  "total_return": 1.8101,
+  "cagr": 0.1454,
+  "maxdd": 0.1484,
+  "winrate": 0.3864,
+  "avg_win": 14.66,
+  "avg_loss": -3.66,
+  "rr": 4.01,
+  "pf": 2.19,
+  "expectancy": 3.42,
+  "sharpe": 1.23,
+  "final_nav": 2810051840,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.414,
+   "2021": 0.705,
+   "2022": 0.005,
+   "2023": -0.025,
+   "2024": 0.038,
+   "2025": -0.006,
+   "2026": 0.126
+  },
+  "cfg": {}
+ },
+ "ve bo: lai>=8% -> stop +1%": {
+  "trades": 308,
+  "per_year": 40.5,
+  "total_return": 1.8402,
+  "cagr": 0.147,
+  "maxdd": 0.147,
+  "winrate": 0.3961,
+  "avg_win": 14.3,
+  "avg_loss": -3.62,
+  "rr": 3.95,
+  "pf": 2.23,
+  "expectancy": 3.48,
+  "sharpe": 1.25,
+  "final_nav": 2840151552,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.414,
+   "2021": 0.711,
+   "2022": 0.011,
+   "2023": -0.026,
+   "2024": 0.035,
+   "2025": -0.002,
+   "2026": 0.127
+  },
+  "cfg": {
+   "use_be": true,
+   "be_trigger": 0.08,
+   "be_level": 0.01
+  }
+ },
+ "ve bo: lai>=6% -> stop +1%": {
+  "trades": 307,
+  "per_year": 40.3,
+  "total_return": 1.8052,
+  "cagr": 0.1451,
+  "maxdd": 0.1472,
+  "winrate": 0.3941,
+  "avg_win": 14.15,
+  "avg_loss": -3.52,
+  "rr": 4.02,
+  "pf": 2.24,
+  "expectancy": 3.44,
+  "sharpe": 1.24,
+  "final_nav": 2805198080,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.401,
+   "2021": 0.694,
+   "2022": 0.011,
+   "2023": -0.024,
+   "2024": 0.039,
+   "2025": -0.003,
+   "2026": 0.128
+  },
+  "cfg": {
+   "use_be": true,
+   "be_trigger": 0.06,
+   "be_level": 0.01
+  }
+ },
+ "ve bo: lai>=10% -> stop +3%": {
+  "trades": 307,
+  "per_year": 40.3,
+  "total_return": 1.7704,
+  "cagr": 0.1432,
+  "maxdd": 0.1478,
+  "winrate": 0.3974,
+  "avg_win": 13.67,
+  "avg_loss": -3.65,
+  "rr": 3.74,
+  "pf": 2.22,
+  "expectancy": 3.23,
+  "sharpe": 1.23,
+  "final_nav": 2770436864,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.414,
+   "2021": 0.672,
+   "2022": 0.012,
+   "2023": -0.026,
+   "2024": 0.035,
+   "2025": -0.004,
+   "2026": 0.125
+  },
+  "cfg": {
+   "use_be": true,
+   "be_trigger": 0.1,
+   "be_level": 0.03
+  }
+ },
+ "chot bao ve: giu 50% dinh": {
+  "trades": 310,
+  "per_year": 40.7,
+  "total_return": 1.4012,
+  "cagr": 0.122,
+  "maxdd": 0.1315,
+  "winrate": 0.4129,
+  "avg_win": 11.69,
+  "avg_loss": -3.76,
+  "rr": 3.11,
+  "pf": 2.08,
+  "expectancy": 2.62,
+  "sharpe": 1.12,
+  "final_nav": 2401188096,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.398,
+   "2021": 0.42,
+   "2022": 0.029,
+   "2023": -0.027,
+   "2024": 0.022,
+   "2025": 0.011,
+   "2026": 0.141
+  },
+  "cfg": {
+   "use_giveback": true,
+   "gb_trigger": 0.1,
+   "gb_keep": 0.5
+  }
+ },
+ "chot bao ve: giu 60% dinh": {
+  "trades": 312,
+  "per_year": 41.0,
+  "total_return": 1.3751,
+  "cagr": 0.1203,
+  "maxdd": 0.1129,
+  "winrate": 0.4071,
+  "avg_win": 11.09,
+  "avg_loss": -3.75,
+  "rr": 2.96,
+  "pf": 2.02,
+  "expectancy": 2.29,
+  "sharpe": 1.11,
+  "final_nav": 2375070720,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.337,
+   "2021": 0.473,
+   "2022": 0.041,
+   "2023": -0.027,
+   "2024": -0.001,
+   "2025": 0.019,
+   "2026": 0.142
+  },
+  "cfg": {
+   "use_giveback": true,
+   "gb_trigger": 0.1,
+   "gb_keep": 0.6
+  }
+ },
+ "chot bao ve: giu 65% dinh (tu 8%)": {
+  "trades": 312,
+  "per_year": 41.0,
+  "total_return": 1.477,
+  "cagr": 0.1265,
+  "maxdd": 0.1112,
+  "winrate": 0.4423,
+  "avg_win": 10.29,
+  "avg_loss": -3.77,
+  "rr": 2.73,
+  "pf": 2.11,
+  "expectancy": 2.45,
+  "sharpe": 1.22,
+  "final_nav": 2476991488,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.336,
+   "2021": 0.484,
+   "2022": 0.03,
+   "2023": -0.015,
+   "2024": 0.029,
+   "2025": 0.018,
+   "2026": 0.148
+  },
+  "cfg": {
+   "use_giveback": true,
+   "gb_trigger": 0.08,
+   "gb_keep": 0.65
+  }
+ },
+ "ve bo 8% + chot bao ve 60%": {
+  "trades": 312,
+  "per_year": 41.0,
+  "total_return": 1.6372,
+  "cagr": 0.1359,
+  "maxdd": 0.1209,
+  "winrate": 0.4006,
+  "avg_win": 13.38,
+  "avg_loss": -3.69,
+  "rr": 3.62,
+  "pf": 2.1,
+  "expectancy": 3.15,
+  "sharpe": 1.23,
+  "final_nav": 2637216512,
+  "yearly": {
+   "2019": 0.025,
+   "2020": 0.377,
+   "2021": 0.574,
+   "2022": 0.037,
+   "2023": -0.027,
+   "2024": 0.039,
+   "2025": -0.003,
+   "2026": 0.136
+  },
+  "cfg": {
+   "use_be": true,
+   "be_trigger": 0.08,
+   "be_level": 0.01,
+   "use_giveback": true,
+   "gb_trigger": 0.15,
+   "gb_keep": 0.6
+  }
+ }
+}

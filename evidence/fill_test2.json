@@ -1,0 +1,278 @@
+{
+ "LAC QUAN — khop gia dong cua phien tin hieu | cong TAT": {
+  "cfg": {
+   "use_market_gate": false,
+   "entry_mode": "close"
+  },
+  "metrics": {
+   "trades": 399,
+   "per_year": 52.4,
+   "total_return": 13.8531,
+   "cagr": 0.4254,
+   "maxdd": 0.1296,
+   "winrate": 0.4586,
+   "avg_win": 13.28,
+   "avg_loss": -2.53,
+   "rr": 5.26,
+   "pf": 2.73,
+   "expectancy": 4.72,
+   "sharpe": 1.96,
+   "final_nav": 14853091328
+  },
+  "deal": {
+   "deals": 270,
+   "winrate": 0.3593,
+   "avg_win": 14.93,
+   "avg_loss": -2.42,
+   "rr": 6.17,
+   "pf": 2.8,
+   "expectancy": 3.81
+  },
+  "yearly": {
+   "2019": 0.019,
+   "2020": 0.571,
+   "2021": 1.534,
+   "2022": 0.061,
+   "2023": 0.413,
+   "2024": 0.508,
+   "2025": 0.433,
+   "2026": 0.13
+  },
+  "slip": {
+   "total": 10.3254,
+   "dd": 0.1441,
+   "cagr": 0.3755,
+   "sharpe": 1.78
+  }
+ },
+ "TRUNG DUNG — khop gia binh quan phien sau | cong TAT": {
+  "cfg": {
+   "use_market_gate": false,
+   "entry_mode": "next_vwap"
+  },
+  "metrics": {
+   "trades": 388,
+   "per_year": 51.0,
+   "total_return": 2.0681,
+   "cagr": 0.1587,
+   "maxdd": 0.2081,
+   "winrate": 0.3351,
+   "avg_win": 13.65,
+   "avg_loss": -3.39,
+   "rr": 4.02,
+   "pf": 1.49,
+   "expectancy": 2.32,
+   "sharpe": 0.93,
+   "final_nav": 3068145408
+  },
+  "deal": {
+   "deals": 273,
+   "winrate": 0.2564,
+   "avg_win": 15.09,
+   "avg_loss": -3.39,
+   "rr": 4.45,
+   "pf": 1.5,
+   "expectancy": 1.35
+  },
+  "yearly": {
+   "2019": -0.066,
+   "2020": 0.333,
+   "2021": 0.84,
+   "2022": -0.048,
+   "2023": 0.21,
+   "2024": 0.111,
+   "2025": -0.003,
+   "2026": 0.049
+  },
+  "slip": {
+   "total": 1.0541,
+   "dd": 0.2885,
+   "cagr": 0.0992,
+   "sharpe": 0.63
+  }
+ },
+ "BI QUAN — khop gia mo cua phien sau | cong TAT": {
+  "cfg": {
+   "use_market_gate": false,
+   "entry_mode": "next_open"
+  },
+  "metrics": {
+   "trades": 384,
+   "per_year": 50.4,
+   "total_return": 2.1752,
+   "cagr": 0.1639,
+   "maxdd": 0.2059,
+   "winrate": 0.3177,
+   "avg_win": 14.81,
+   "avg_loss": -3.32,
+   "rr": 4.46,
+   "pf": 1.49,
+   "expectancy": 2.44,
+   "sharpe": 0.93,
+   "final_nav": 3175193600
+  },
+  "deal": {
+   "deals": 270,
+   "winrate": 0.263,
+   "avg_win": 15.22,
+   "avg_loss": -3.33,
+   "rr": 4.57,
+   "pf": 1.5,
+   "expectancy": 1.55
+  },
+  "yearly": {
+   "2019": -0.043,
+   "2020": 0.328,
+   "2021": 0.828,
+   "2022": -0.048,
+   "2023": 0.196,
+   "2024": 0.122,
+   "2025": 0.049,
+   "2026": 0.019
+  },
+  "slip": {
+   "total": 1.0136,
+   "dd": 0.2915,
+   "cagr": 0.0963,
+   "sharpe": 0.61
+  }
+ },
+ "LAC QUAN — khop gia dong cua phien tin hieu | cong BAT": {
+  "cfg": {
+   "use_market_gate": true,
+   "entry_mode": "close"
+  },
+  "metrics": {
+   "trades": 427,
+   "per_year": 56.1,
+   "total_return": 6.9839,
+   "cagr": 0.3138,
+   "maxdd": 0.1272,
+   "winrate": 0.459,
+   "avg_win": 12.58,
+   "avg_loss": -2.52,
+   "rr": 4.99,
+   "pf": 2.64,
+   "expectancy": 4.41,
+   "sharpe": 1.74,
+   "final_nav": 7983888896
+  },
+  "deal": {
+   "deals": 288,
+   "winrate": 0.3542,
+   "avg_win": 14.21,
+   "avg_loss": -2.42,
+   "rr": 5.88,
+   "pf": 2.7,
+   "expectancy": 3.47
+  },
+  "yearly": {
+   "2019": 0.031,
+   "2020": 0.569,
+   "2021": 1.222,
+   "2022": 0.044,
+   "2023": 0.1,
+   "2024": 0.329,
+   "2025": 0.227,
+   "2026": 0.187
+  },
+  "slip": {
+   "total": 5.3509,
+   "dd": 0.1292,
+   "cagr": 0.2749,
+   "sharpe": 1.57
+  }
+ },
+ "TRUNG DUNG — khop gia binh quan phien sau | cong BAT": {
+  "cfg": {
+   "use_market_gate": true,
+   "entry_mode": "next_vwap"
+  },
+  "metrics": {
+   "trades": 416,
+   "per_year": 54.7,
+   "total_return": 1.4002,
+   "cagr": 0.1219,
+   "maxdd": 0.174,
+   "winrate": 0.3293,
+   "avg_win": 13.28,
+   "avg_loss": -3.38,
+   "rr": 3.93,
+   "pf": 1.46,
+   "expectancy": 2.11,
+   "sharpe": 0.84,
+   "final_nav": 2400248320
+  },
+  "deal": {
+   "deals": 293,
+   "winrate": 0.2526,
+   "avg_win": 14.69,
+   "avg_loss": -3.38,
+   "rr": 4.35,
+   "pf": 1.48,
+   "expectancy": 1.18
+  },
+  "yearly": {
+   "2019": -0.048,
+   "2020": 0.355,
+   "2021": 0.781,
+   "2022": -0.05,
+   "2023": -0.023,
+   "2024": 0.069,
+   "2025": -0.059,
+   "2026": 0.118
+  },
+  "slip": {
+   "total": 0.6812,
+   "dd": 0.3644,
+   "cagr": 0.0706,
+   "sharpe": 0.53
+  }
+ },
+ "BI QUAN — khop gia mo cua phien sau | cong BAT": {
+  "cfg": {
+   "use_market_gate": true,
+   "entry_mode": "next_open"
+  },
+  "metrics": {
+   "trades": 413,
+   "per_year": 54.3,
+   "total_return": 1.532,
+   "cagr": 0.1298,
+   "maxdd": 0.192,
+   "winrate": 0.3148,
+   "avg_win": 14.26,
+   "avg_loss": -3.29,
+   "rr": 4.33,
+   "pf": 1.49,
+   "expectancy": 2.23,
+   "sharpe": 0.85,
+   "final_nav": 2531957504
+  },
+  "deal": {
+   "deals": 291,
+   "winrate": 0.2543,
+   "avg_win": 15.03,
+   "avg_loss": -3.28,
+   "rr": 4.58,
+   "pf": 1.5,
+   "expectancy": 1.37
+  },
+  "yearly": {
+   "2019": -0.027,
+   "2020": 0.342,
+   "2021": 0.751,
+   "2022": -0.039,
+   "2023": -0.031,
+   "2024": 0.103,
+   "2025": -0.019,
+   "2026": 0.098
+  },
+  "slip": {
+   "total": 0.8065,
+   "dd": 0.3123,
+   "cagr": 0.0808,
+   "sharpe": 0.58
+  }
+ }
+}

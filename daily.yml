@@ -1,0 +1,143 @@
+name: Cập nhật Nguyễn Sơn Invest
+
+on:
+  schedule:
+    # 12:30 UTC = 19:30 giờ Việt Nam, thứ Hai đến thứ Sáu.
+    # GitHub chạy theo UTC nên đừng sửa thành 30 19.
+    - cron: '30 12 * * 1-5'
+  workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
+
+concurrency:
+  group: capnhat
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Lấy mã nguồn
+        uses: actions/checkout@v4
+
+      - name: Cài Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cài thư viện
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Khởi tạo dữ liệu tĩnh
+        run: python bootstrap.py
+
+      - name: Cào giá và dòng tiền (FireAnt)
+        run: python fireant.py
+
+      - name: Nén dữ liệu giá
+        run: python fa_prep.py
+
+      - name: Cào báo cáo tài chính (Vietcap IQ)
+        run: python fetch_funda.py
+
+      # Kéo ba file sống từ trang public về, để nhúng ảnh chụp vào index.html.
+      # Nhờ vậy mở file bằng đường dẫn trên máy vẫn thấy danh mục, không trắng trang.
+      # Không tải được cũng không sao — trang tự lùi về đọc thẳng từ máy chủ.
+      - name: Lấy sổ lệnh và sổ tay từ trang web
+        continue-on-error: true
+        env:
+          CHU:  ${{ vars.PAGES_OWNER }}
+          REPO: ${{ vars.PAGES_REPO }}
+        run: |
+          mkdir -p data
+          for f in portfolio.json manual.json config.json; do
+            curl -fsSL -o "data/$f" \
+              "https://raw.githubusercontent.com/${CHU}/${REPO}/main/$f" || echo "chưa có $f"
+          done
+          ls -la data/*.json || true
+
+      - name: Chấm điểm toàn thị trường
+        run: python screener.py
+
+      - name: Cập nhật watchlist
+        run: python watchlist.py
+
+      - name: Chuông báo cuối phiên
+        run: python alerts2.py
+
+      - name: Chạy backtest
+        run: python produce2.py
+
+      # LOP KIEM DINH — chay lai backtest vai chuc lan voi tham so khac nhau.
+      # Khong lam hong day chuyen neu no truot: trang van dung duoc, chi la tab
+      # Kiem dinh se hien canh bao thay vi so lieu. Nhung neu no BAO TRUOT thi
+      # phai doc, dung bo qua — do la ly do bo kiem dinh ton tai.
+      - name: Kiểm định độ bền hệ thống
+        continue-on-error: true
+        run: python robustness.py
+
+      # CONG B — "backtest co trade duoc ngoai doi khong". Ba bai: thien lech khop
+      # gia dong cua, rui ro khong khop duoc lenh, suc chua von. Day la nhom cau hoi
+      # nang hon bo kiem dinh mo hinh, nen phai chay moi toi.
+      - name: Kiểm định khớp lệnh thực tế (Cổng B)
+        continue-on-error: true
+        run: python cong_b.py
+
+      - name: Chuỗi 12 quý cho trang Chi tiết mã
+        continue-on-error: true
+        run: python funda_series.py
+
+      - name: Dựng trang web
+        run: python build_site2.py
+
+      - name: Kiểm tra trước khi đăng
+        run: python verify_build.py
+
+      - name: Đóng gói bản đăng
+        run: python publish.py
+
+      - name: Lưu bản dựng để tải về
+        uses: actions/upload-artifact@v4
+        with:
+          name: NguyenSonInvest
+          path: |
+            site/index.html
+            data/robust.json
+          retention-days: 14
+
+      - name: Đăng lên trang web
+        env:
+          TOKEN: ${{ secrets.PAGES_TOKEN }}
+          CHU:   ${{ vars.PAGES_OWNER }}
+          REPO:  ${{ vars.PAGES_REPO }}
+        run: |
+          set -e
+          if [ -z "$TOKEN" ]; then
+            echo "::error::Thiếu secret PAGES_TOKEN — xem hướng dẫn trong README."
+            exit 1
+          fi
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/${CHU}/${REPO}.git" public
+          cp out/index.html      public/index.html
+          cp out/thresholds.json public/thresholds.json
+          # hai file thu cong di theo, de bo quet trong phien cung biet ma nao bi loai
+          cp out/loai.txt        public/loai.txt
+          cp out/ghim.txt        public/ghim.txt
+          touch public/.nojekyll
+          cd public
+          git config user.name  "Bot Nguyễn Sơn Invest"
+          git config user.email "bot@users.noreply.github.com"
+          git add index.html thresholds.json loai.txt ghim.txt .nojekyll
+          if git diff --cached --quiet; then
+            echo "Không có gì thay đổi, bỏ qua."
+          else
+            git commit -m "Cập nhật $(TZ=Asia/Ho_Chi_Minh date '+%d/%m/%Y %H:%M')"
+            git push
+            echo "Đã đăng lên https://${CHU}.github.io/${REPO}/"
+          fi
+
+      - name: Báo khi hỏng
+        if: failure()
+        run: |
+          echo "::error::Dây chuyền hỏng. Vào tab Actions bấm vào lần chạy này để xem bước nào đỏ."

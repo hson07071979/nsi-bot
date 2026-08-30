@@ -1,0 +1,218 @@
+{
+ "v3 dang chay | khop dong cua phien tin hieu": {
+  "metrics": {
+   "trades": 215,
+   "per_year": 28.2,
+   "total_return": 3.3626,
+   "cagr": 0.2135,
+   "maxdd": 0.1321,
+   "winrate": 0.4186,
+   "avg_win": 15.56,
+   "avg_loss": -3.55,
+   "rr": 4.39,
+   "pf": 2.59,
+   "expectancy": 4.45,
+   "sharpe": 1.42,
+   "final_nav": 4362556416
+  },
+  "deal": {
+   "deals": 146,
+   "winrate": 0.3562,
+   "avg_win": 17.25,
+   "avg_loss": -3.62,
+   "rr": 4.76,
+   "pf": 2.62,
+   "expectancy": 3.81
+  },
+  "yearly": {
+   "2019": -0.026,
+   "2020": 0.549,
+   "2021": 1.052,
+   "2022": 0.041,
+   "2023": -0.025,
+   "2024": 0.076,
+   "2025": 0.032,
+   "2026": 0.25
+  }
+ },
+ "v3 dang chay | khop binh quan phien sau": {
+  "metrics": {
+   "trades": 214,
+   "per_year": 28.1,
+   "total_return": 1.3322,
+   "cagr": 0.1177,
+   "maxdd": 0.1662,
+   "winrate": 0.3505,
+   "avg_win": 14.73,
+   "avg_loss": -4.17,
+   "rr": 3.53,
+   "pf": 1.74,
+   "expectancy": 2.45,
+   "sharpe": 0.89,
+   "final_nav": 2332188416
+  },
+  "deal": {
+   "deals": 148,
+   "winrate": 0.2703,
+   "avg_win": 17.62,
+   "avg_loss": -4.1,
+   "rr": 4.3,
+   "pf": 1.76,
+   "expectancy": 1.77
+  },
+  "yearly": {
+   "2019": -0.023,
+   "2020": 0.432,
+   "2021": 0.593,
+   "2022": -0.008,
+   "2023": -0.051,
+   "2024": -0.023,
+   "2025": -0.01,
+   "2026": 0.149
+  }
+ },
+ "v3 dang chay | khop mo cua phien sau": {
+  "metrics": {
+   "trades": 214,
+   "per_year": 28.1,
+   "total_return": 1.2761,
+   "cagr": 0.1141,
+   "maxdd": 0.2418,
+   "winrate": 0.3318,
+   "avg_win": 16.47,
+   "avg_loss": -4.17,
+   "rr": 3.95,
+   "pf": 1.64,
+   "expectancy": 2.68,
+   "sharpe": 0.84,
+   "final_nav": 2276093440
+  },
+  "deal": {
+   "deals": 149,
+   "winrate": 0.2685,
+   "avg_win": 18.43,
+   "avg_loss": -4.28,
+   "rr": 4.3,
+   "pf": 1.65,
+   "expectancy": 1.81
+  },
+  "yearly": {
+   "2019": -0.021,
+   "2020": 0.461,
+   "2021": 0.57,
+   "2022": 0.026,
+   "2023": -0.053,
+   "2024": -0.052,
+   "2025": -0.08,
+   "2026": 0.196
+  }
+ },
+ "ung vien moi | khop dong cua phien tin hieu": {
+  "metrics": {
+   "trades": 426,
+   "per_year": 56.0,
+   "total_return": 5.3509,
+   "cagr": 0.2749,
+   "maxdd": 0.1292,
+   "winrate": 0.4296,
+   "avg_win": 12.91,
+   "avg_loss": -2.74,
+   "rr": 4.72,
+   "pf": 2.26,
+   "expectancy": 3.98,
+   "sharpe": 1.57,
+   "final_nav": 6350949376
+  },
+  "deal": {
+   "deals": 288,
+   "winrate": 0.3368,
+   "avg_win": 14.38,
+   "avg_loss": -2.7,
+   "rr": 5.32,
+   "pf": 2.3,
+   "expectancy": 3.05
+  },
+  "yearly": {
+   "2019": 0.026,
+   "2020": 0.541,
+   "2021": 1.13,
+   "2022": 0.027,
+   "2023": 0.065,
+   "2024": 0.278,
+   "2025": 0.15,
+   "2026": 0.171
+  }
+ },
+ "ung vien moi | khop binh quan phien sau": {
+  "metrics": {
+   "trades": 416,
+   "per_year": 54.7,
+   "total_return": 0.6812,
+   "cagr": 0.0706,
+   "maxdd": 0.3644,
+   "winrate": 0.3125,
+   "avg_win": 13.31,
+   "avg_loss": -3.63,
+   "rr": 3.67,
+   "pf": 1.23,
+   "expectancy": 1.66,
+   "sharpe": 0.53,
+   "final_nav": 1681168896
+  },
+  "deal": {
+   "deals": 294,
+   "winrate": 0.2279,
+   "avg_win": 15.38,
+   "avg_loss": -3.59,
+   "rr": 4.28,
+   "pf": 1.23,
+   "expectancy": 0.73
+  },
+  "yearly": {
+   "2019": -0.058,
+   "2020": 0.333,
+   "2021": 0.722,
+   "2022": -0.064,
+   "2023": -0.053,
+   "2024": 0.028,
+   "2025": -0.226,
+   "2026": 0.102
+  }
+ },
+ "ung vien moi | khop mo cua phien sau": {
+  "metrics": {
+   "trades": 412,
+   "per_year": 54.1,
+   "total_return": 0.8065,
+   "cagr": 0.0808,
+   "maxdd": 0.3123,
+   "winrate": 0.2985,
+   "avg_win": 13.62,
+   "avg_loss": -3.6,
+   "rr": 3.78,
+   "pf": 1.27,
+   "expectancy": 1.54,
+   "sharpe": 0.58,
+   "final_nav": 1806459392
+  },
+  "deal": {
+   "deals": 292,
+   "winrate": 0.2363,
+   "avg_win": 14.7,
+   "avg_loss": -3.58,
+   "rr": 4.11,
+   "pf": 1.28,
+   "expectancy": 0.74
+  },
+  "yearly": {
+   "2019": -0.037,
+   "2020": 0.32,
+   "2021": 0.669,
+   "2022": -0.062,
+   "2023": -0.063,
+   "2024": -0.052,
+   "2025": -0.055,
+   "2026": 0.083
+  }
+ }
+}

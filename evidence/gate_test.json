@@ -1,0 +1,284 @@
+{
+ "BAT cong (1/.6/.35/.2)": {
+  "cfg": {},
+  "metrics": {
+   "trades": 427,
+   "per_year": 56.1,
+   "total_return": 6.9839,
+   "cagr": 0.3138,
+   "maxdd": 0.1272,
+   "winrate": 0.459,
+   "avg_win": 12.58,
+   "avg_loss": -2.52,
+   "rr": 4.99,
+   "pf": 2.64,
+   "expectancy": 4.41,
+   "sharpe": 1.74,
+   "final_nav": 7983888896
+  },
+  "deal": {
+   "deals": 288,
+   "winrate": 0.3542,
+   "avg_win": 14.21,
+   "avg_loss": -2.42,
+   "rr": 5.88,
+   "pf": 2.7,
+   "expectancy": 3.47
+  },
+  "yearly": {
+   "2019": 0.031,
+   "2020": 0.569,
+   "2021": 1.222,
+   "2022": 0.044,
+   "2023": 0.1,
+   "2024": 0.329,
+   "2025": 0.227,
+   "2026": 0.187
+  },
+  "slip": {
+   "total": 5.3509,
+   "dd": 0.1292,
+   "cagr": 0.2749,
+   "sharpe": 1.57
+  }
+ },
+ "nhe hon (1/.8/.6/.45)": {
+  "cfg": {
+   "size_map": {
+    "XANH": 1.0,
+    "VANG": 0.8,
+    "CAM": 0.6,
+    "DO": 0.45
+   }
+  },
+  "metrics": {
+   "trades": 408,
+   "per_year": 53.6,
+   "total_return": 11.237,
+   "cagr": 0.3896,
+   "maxdd": 0.1279,
+   "winrate": 0.4559,
+   "avg_win": 13.1,
+   "avg_loss": -2.53,
+   "rr": 5.18,
+   "pf": 2.71,
+   "expectancy": 4.6,
+   "sharpe": 1.88,
+   "final_nav": 12236988416
+  },
+  "deal": {
+   "deals": 277,
+   "winrate": 0.3574,
+   "avg_win": 14.64,
+   "avg_loss": -2.43,
+   "rr": 6.03,
+   "pf": 2.78,
+   "expectancy": 3.67
+  },
+  "yearly": {
+   "2019": 0.021,
+   "2020": 0.574,
+   "2021": 1.468,
+   "2022": 0.037,
+   "2023": 0.292,
+   "2024": 0.477,
+   "2025": 0.351,
+   "2026": 0.154
+  },
+  "slip": {
+   "total": 8.4097,
+   "dd": 0.1346,
+   "cagr": 0.3425,
+   "sharpe": 1.7
+  }
+ },
+ "chi chan DO (1/1/1/.3)": {
+  "cfg": {
+   "size_map": {
+    "XANH": 1.0,
+    "VANG": 1.0,
+    "CAM": 1.0,
+    "DO": 0.3
+   }
+  },
+  "metrics": {
+   "trades": 404,
+   "per_year": 53.1,
+   "total_return": 10.7244,
+   "cagr": 0.3818,
+   "maxdd": 0.1258,
+   "winrate": 0.4554,
+   "avg_win": 13.21,
+   "avg_loss": -2.53,
+   "rr": 5.23,
+   "pf": 2.69,
+   "expectancy": 4.64,
+   "sharpe": 1.85,
+   "final_nav": 11724406784
+  },
+  "deal": {
+   "deals": 274,
+   "winrate": 0.354,
+   "avg_win": 14.93,
+   "avg_loss": -2.42,
+   "rr": 6.17,
+   "pf": 2.76,
+   "expectancy": 3.72
+  },
+  "yearly": {
+   "2019": 0.019,
+   "2020": 0.571,
+   "2021": 1.534,
+   "2022": 0.028,
+   "2023": 0.253,
+   "2024": 0.508,
+   "2025": 0.281,
+   "2026": 0.161
+  },
+  "slip": {
+   "total": 8.0186,
+   "dd": 0.1371,
+   "cagr": 0.335,
+   "sharpe": 1.67
+  }
+ },
+ "TAT cong hoan toan": {
+  "cfg": {
+   "use_market_gate": false
+  },
+  "metrics": {
+   "trades": 399,
+   "per_year": 52.4,
+   "total_return": 13.8531,
+   "cagr": 0.4254,
+   "maxdd": 0.1296,
+   "winrate": 0.4586,
+   "avg_win": 13.28,
+   "avg_loss": -2.53,
+   "rr": 5.26,
+   "pf": 2.73,
+   "expectancy": 4.72,
+   "sharpe": 1.96,
+   "final_nav": 14853091328
+  },
+  "deal": {
+   "deals": 270,
+   "winrate": 0.3593,
+   "avg_win": 14.93,
+   "avg_loss": -2.42,
+   "rr": 6.17,
+   "pf": 2.8,
+   "expectancy": 3.81
+  },
+  "yearly": {
+   "2019": 0.019,
+   "2020": 0.571,
+   "2021": 1.534,
+   "2022": 0.061,
+   "2023": 0.413,
+   "2024": 0.508,
+   "2025": 0.433,
+   "2026": 0.13
+  },
+  "slip": {
+   "total": 10.3254,
+   "dd": 0.1441,
+   "cagr": 0.3755,
+   "sharpe": 1.78
+  }
+ },
+ "TAT cong + size 30%": {
+  "cfg": {
+   "use_market_gate": false,
+   "base_size": 0.3,
+   "max_pos": 0.38
+  },
+  "metrics": {
+   "trades": 402,
+   "per_year": 52.8,
+   "total_return": 11.1662,
+   "cagr": 0.3885,
+   "maxdd": 0.1277,
+   "winrate": 0.4577,
+   "avg_win": 13.44,
+   "avg_loss": -2.56,
+   "rr": 5.25,
+   "pf": 2.74,
+   "expectancy": 4.76,
+   "sharpe": 1.88,
+   "final_nav": 12166218752
+  },
+  "deal": {
+   "deals": 273,
+   "winrate": 0.359,
+   "avg_win": 15.22,
+   "avg_loss": -2.47,
+   "rr": 6.17,
+   "pf": 2.81,
+   "expectancy": 3.88
+  },
+  "yearly": {
+   "2019": 0.004,
+   "2020": 0.476,
+   "2021": 1.267,
+   "2022": 0.036,
+   "2023": 0.393,
+   "2024": 0.53,
+   "2025": 0.445,
+   "2026": 0.135
+  },
+  "slip": {
+   "total": 8.3225,
+   "dd": 0.1404,
+   "cagr": 0.3408,
+   "sharpe": 1.69
+  }
+ },
+ "TAT cong + size 22%": {
+  "cfg": {
+   "use_market_gate": false,
+   "base_size": 0.22,
+   "max_pos": 0.3
+  },
+  "metrics": {
+   "trades": 456,
+   "per_year": 59.9,
+   "total_return": 6.7217,
+   "cagr": 0.308,
+   "maxdd": 0.114,
+   "winrate": 0.4518,
+   "avg_win": 12.79,
+   "avg_loss": -2.58,
+   "rr": 4.96,
+   "pf": 2.75,
+   "expectancy": 4.36,
+   "sharpe": 1.78,
+   "final_nav": 7721741312
+  },
+  "deal": {
+   "deals": 316,
+   "winrate": 0.3513,
+   "avg_win": 14.42,
+   "avg_loss": -2.5,
+   "rr": 5.77,
+   "pf": 2.82,
+   "expectancy": 3.44
+  },
+  "yearly": {
+   "2019": -0.003,
+   "2020": 0.412,
+   "2021": 0.901,
+   "2022": 0.038,
+   "2023": 0.263,
+   "2024": 0.397,
+   "2025": 0.395,
+   "2026": 0.13
+  },
+  "slip": {
+   "total": 5.0821,
+   "dd": 0.1225,
+   "cagr": 0.2677,
+   "sharpe": 1.58
+  }
+ }
+}
