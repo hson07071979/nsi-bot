@@ -128,8 +128,13 @@ def build(d, I, tls, sect, cfg, topn):
         # DK5 — bo may bo qua truong hop loi nhuan rong chi tang 0-25%: khong du
         # manh de bung no, nhung du dep de danh lua bo cham diem. Truoc day o tra
         # cuu khong kiem dieu nay nen watchlist rong hon vu tru bot thuc su mua.
+        # NHAN PHAI IN MOT CHU SO THAP PHAN.
+        # Loi cu: in {x*100:.0f}% nen 24,96% hien ra "25%", ma dung 25% thi KHONG
+        # bi chan (luat la 0 <= x < 0,25). Doc nhan thay "tang 25% (0-25%)" trong
+        # nhu he tu mau thuan — thuc ra luat dung, chi co nhan lam tron len. Va ghi
+        # khoang bang dau bat dang thuc de khong ai tuong 25% nam trong vung bi loai.
         if npg_dk5 is not None and 0 <= npg_dk5 < 0.25:
-            miss.append(f'lợi nhuận ròng chỉ tăng {npg_dk5*100:.0f}% (0–25%)')
+            miss.append(f'lợi nhuận ròng chỉ tăng {npg_dk5*100:.1f}% (vùng yếu: 0% ≤ x < 25%)')
 
         # ---- BẢNG KIỂM CHI TIẾT (không đổi logic, chỉ phơi ra) ----
         chk = []
