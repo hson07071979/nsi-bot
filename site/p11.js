@@ -58,9 +58,9 @@ function _bkVal(a, u, code){
   if (a === undefined || a === null) return '—';
   if (u === 'có/không') return a >= 1 ? 'Có' : 'Không';
   if (u === 'đạt/chặn') return a >= 1 ? 'Không bị chặn' : 'Bị chặn';
-  if (u === '%')   return (a > 0 && BKDAU.has(code) ? '+' : '') + a + '%';
-  if (u === 'lần') return a + '×';
-  if (u === 'tỷ')  return a + ' tỷ';
+  if (u === '%')    return (a > 0 && BKDAU.has(code) ? '+' : '') + a + '%';
+  if (u === 'lần')  return a + '×';
+  if (u === 'tỷ')   return a + ' tỷ';
   if (u === 'đ/cp') return Math.round(a).toLocaleString('vi-VN') + ' đ/cp';
   return a + (u ? ' ' + u : '');
 }
@@ -76,11 +76,6 @@ function _bkBench(b, u, op){
   if (u === 'tỷ')  return s + ' ' + b + ' tỷ';
   return s + ' ' + b + (u ? ' ' + u : '');
 }
-// Ghi chú của cổng rủi ro có sẵn dấu < và > ("ICR 1.20 < 1.5"), thoát ra
-// cho chắc kẻo trình duyệt hiểu nhầm là thẻ.
-function _bkEsc(s){
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 function _bkGap(c, u){
   const [, a, b, tt] = c;
   if (tt !== 'no' || a === null || b === null) return '';
@@ -92,24 +87,19 @@ function _bkGap(c, u){
   return '';
 }
 
-
 /* ----- EPS quý gần nhất, tính từ dữ liệu đã có sẵn trong trang -----
-   Nguồn báo cáo tài chính hiện tại KHÔNG có trường EPS. Nhưng suy ra được
-   chính xác mà không phải đoán tên trường nào cả:
+   Nguồn báo cáo tài chính không có trường EPS. Nhưng suy ra được chính xác
+   mà không phải đoán tên trường nào:
 
        số cổ phiếu = vốn hoá ÷ giá
        EPS quý     = LNST quý ÷ số cổ phiếu = LNST quý × giá ÷ vốn hoá
 
-   `np` (LNST từng quý) và `mktcap` cùng đơn vị tỷ đồng nên đơn vị tự triệt
-   tiêu; `price` tính bằng nghìn đồng nên nhân 1000 để ra đồng/cp.
+   `np` và `mktcap` cùng đơn vị tỷ đồng nên đơn vị tự triệt tiêu; `price` tính
+   bằng nghìn đồng nên nhân 1000 để ra đồng/cp.
 
-   Đây là EPS theo SỐ CỔ PHIẾU HIỆN TẠI. Nếu doanh nghiệp vừa phát hành thêm
-   thì EPS các quý cũ sẽ thấp hơn con số họ công bố lúc đó — đúng bản chất
-   pha loãng, nhưng phải biết mà đọc.
-
-   Mức tăng trưởng EPS chính là dòng "C — LNST quý YoY" bên dưới, với điều
-   kiện số cổ phiếu không đổi. Không dựng thêm một dòng tăng trưởng nữa để
-   khỏi có hai con số nói cùng một chuyện. */
+   Đây là EPS theo SỐ CỔ PHIẾU HIỆN TẠI — mã vừa phát hành thêm sẽ thấy EPS quý
+   cũ thấp hơn con số công bố lúc đó. Đúng bản chất pha loãng, nhưng phải biết
+   mà đọc. Mức tăng trưởng EPS chính là dòng "C — LNST quý YoY". */
 function _epsQuy(x, F){
   if (!x || !F || !Array.isArray(F.np) || !F.np.length) return null;
   if (x.price == null || !x.mktcap) return null;
@@ -144,6 +134,7 @@ function bangKiem(x, F){
     const ic = {ok:'✓', no:'✗', na:'⚠', info:'·'}[tt] || '·';
     const pt = (diem === undefined || diem === null) ? ''
              : `<span class="bkpt">${diem} đ</span>`;
+    // Ghi chu cong rui ro co san dau < va > ("ICR 1.20 < 1.5") nen phai thoat.
     const note = ghiRieng || G[code] || (tt === 'no' ? BKCHU[code] : '') || '';
     return `<div class="bkrow ${tt}">
       <span class="bkic">${ic}</span>
@@ -151,7 +142,7 @@ function bangKiem(x, F){
       <span class="bkval">${_bkVal(a, u, code)}</span>
       <span class="bkbench">${_bkBench(b, u, op)}</span>
       <span class="bkgap">${tt === 'na' ? 'chưa có dữ liệu' : _bkGap(c, u)}</span>
-      ${note ? `<span class="bkghi">${_bkEsc(note)}</span>` : ''}
+      ${note ? `<span class="bkghi">${esc(note)}</span>` : ''}
     </div>`;
   };
 
@@ -161,10 +152,10 @@ function bangKiem(x, F){
         <ol>${thieu.map(c => {
           const [code, a, b] = c, [ten, u, op] = BK[code];
           const g = _bkGap(c, u);
-          // Điều kiện có/không thì không có "ngưỡng" để so — nói thẳng lý do.
+          // Dieu kien co/khong thi khong co "nguong" de so — noi thang ly do.
           if (u === 'có/không' || u === 'đạt/chặn')
             return `<li>${ten}: <b>${_bkVal(a, u, code)}</b>${
-              G[code] ? ` — ${_bkEsc(G[code])}` : ""}</li>`;
+              G[code] ? ` — ${esc(G[code])}` : ""}</li>`;
           return `<li>${ten}: <b>${_bkVal(a, u, code)}</b> / cần ${_bkBench(b, u, op)}` +
                  (g ? ` — ${g}` : '') + `</li>`;
         }).join('')}</ol></div>`
@@ -221,6 +212,40 @@ function keng(loai) {
 }
 
 /* ---------- thanh trạng thái trên đỉnh trang ---------- */
+/* ============================================================================
+   CẢNH BÁO SỐ LIỆU NỀN ĐÃ CŨ
+
+   Vì sao phải có. Trang này trộn HAI loại số:
+     · giá/khối lượng/nến  — tự lấy mới mỗi lần mở trang, không bao giờ cũ
+     · ngưỡng, điểm CANSLIM, watchlist, backtest — ảnh chụp, do dây chuyền
+       19h30 dựng lại mỗi tối
+
+   Nếu dây chuyền 19h30 chết (hết hạn token, GitHub đổi thứ gì đó, mạng lỗi),
+   trang VẪN mở bình thường và giá VẪN nhấp nháy real-time — nhìn y như đang
+   chạy tốt. Nhưng ngưỡng thì của tuần trước, và bot sẽ báo mua theo giá cũ.
+   Đó là kiểu hỏng nguy hiểm nhất: hỏng mà không ai biết là đang hỏng.
+
+   Nên trang phải tự tố cáo chính nó. Đếm số ngày làm việc từ phiên nền tới nay,
+   quá 3 phiên là kêu to.
+   ========================================================================== */
+function phienLamViecTu(iso) {
+  if (!iso) return 999;
+  const a = new Date(iso + 'T00:00:00'), b = new Date();
+  let n = 0;
+  for (let t = new Date(a); t < b; t.setDate(t.getDate() + 1)) {
+    const d = t.getDay();
+    if (d !== 0 && d !== 6) n++;
+  }
+  return n - 1;                       // chính phiên nền không tính là trễ
+}
+
+function bangSoLieuCu() {
+  const tre = phienLamViecTu(D.asof);
+  if (tre <= 3) return '';            // nghỉ lễ dài vẫn có thể trễ 2-3 phiên
+  const nang = tre > 7;
+  return ``;
+}
+
 function renderLiveBar() {
   const el2 = document.getElementById('liveBar');
   if (!el2) return;
@@ -246,12 +271,18 @@ function renderLiveBar() {
     return;
   }
 
+  // ĐỂ MẮT — băng vàng chỉ sáng TRONG ÍT PHÚT ngay sau khi chuông vừa reo, rồi
+  // tự dịu xuống. Trước đây nó bật suốt cả phiên chừng nào còn một mã ≥ 2,5%,
+  // nên nhìn lúc nào cũng như đang có báo động — thành ra không ai để ý nữa.
+  // Mã vẫn nằm nguyên trong trang Chuông báo, chỉ là thanh trên đỉnh thôi hét.
   const dm = L.hits.filter(h => h.level === 'DE_MAT');
-  if (dm.length) {
+  const vuaKeu = (typeof CHUONG !== 'undefined') &&
+                 (Date.now() - (CHUONG.lanCuoi || 0) < CHUONG.SANG_MS);
+  if (dm.length && vuaKeu) {
     el2.className = 'livebar heads';
     el2.innerHTML = `<span class="ldot"></span>
       <b>${dm.length} mã đang tăng mạnh</b>
-      <span>${dm.map(h => `${h.sym} ${h.pct >= 0 ? '+' : ''}${h.pct}%`).join(' · ')}</span>
+      <span>${dm.map(h => `${esc(h.sym)} ${h.pct >= 0 ? '+' : ''}${h.pct}%`).join(' · ')}</span>
       <span class="lmuted">chỉ để mắt, chưa phải lệnh · ${hhmm(L.asof)}</span>
       <button class="mini" onclick="go('chuong')">Xem</button>`;
     return;
@@ -268,7 +299,8 @@ function renderLiveBar() {
   el2.className = 'livebar ' + (L.open || L.realtime ? 'on' : 'off');
   el2.innerHTML = `<span class="ldot"></span><span>${trangthai}</span>
     <span class="lmuted">quét ${L.scanned}/${L.universe || '—'} mã lúc ${hhmm(L.asof)}${
-      sap.length ? ` · ${sap.length} mã sắp đủ` : ' · chưa có mã nào đủ điều kiện'}</span>${eod}`;
+      sap.length ? ` · ${sap.length} mã sắp đủ` : ' · chưa có mã nào đủ điều kiện'}${
+      dm.length ? ` · ${dm.length} mã đang tăng mạnh` : ''}</span>${eod}`;
 }
 
 /* ---------- băng nổi lên: đỏ = mua, vàng = để mắt ---------- */
@@ -282,7 +314,7 @@ function bangBao(list, loai) {
         ? `🔴 ${list.length} mã vừa đủ điểm mua`
         : `🟡 ${list.length} mã trong watchlist đang tăng mạnh`}</div>
       ${mua ? '' : '<div class="tsub">Chỉ để anh ngó chừng — chưa đủ điều kiện vào lệnh.</div>'}
-      ${list.map(h => `<div class="trow"><b>${h.sym}</b> ${h.price}
+      ${list.map(h => `<div class="trow"><b>${esc(h.sym)}</b> ${h.price}
         <span class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${h.pct}%</span>
         <span class="lmuted">vol ${h.volr}×${mua ? ` · GTGD ${h.gtgd} tỷ` : ''} · điểm ${h.score}${
           h.fa ? ' · chưa đạt cơ bản' : ''}</span></div>`).join('')}
@@ -292,8 +324,13 @@ function bangBao(list, loai) {
       </div>
     </div>`;
   box.classList.add('on');
+  // Băng vàng chỉ là nhắc nhở — tự đóng sau 15 giây để khỏi che màn hình.
+  // Băng đỏ (đủ điểm mua) thì đứng yên chờ bấm, vì nó là việc phải làm ngay.
+  clearTimeout(_toastTimer);
+  if (!mua) _toastTimer = setTimeout(dongToast, 15000);
   keng(loai);
 }
+let _toastTimer = null;
 function dongToast() {
   const b = document.getElementById('liveToast');
   if (b) b.classList.remove('on');
@@ -479,11 +516,11 @@ function tinhLaiTinHieu() {
 
   const cu = LIVE.server || LIVE.data || {};
   const mau = Object.values(R)[0] || {};
-  // LOI CU: cau noi Cloudflare chi tra GIA, khong tra ngay phien — nen `mau.d`
-  // luon undefined, roi xuong `cu.session` (do GitHub Actions ghi vao live.json)
-  // roi `D.asof` (ngay dung trang). Ket qua: gia nhay real-time ma ngay dung im
-  // o phien cu neu hom do Actions khong chay. `NSI.rtAt` da la gio that lay tu
-  // `j.at` cua cau noi, nen cat lay ngay o do moi la ngay phien that.
+  // LOI CU: cau noi chi tra GIA, khong tra ngay phien — nen `mau.d` luon
+  // undefined, roi xuong `cu.session` (do GitHub Actions ghi vao live.json) roi
+  // `D.asof` (ngay dung trang). Ket qua: gia nhay real-time ma ngay dung im o
+  // phien cu neu hom do Actions khong chay. `NSI.rtAt` da la gio that lay tu
+  // cau noi, nen cat lay ngay o do moi la ngay phien that.
   const ses = mau.d || (NSI.rtAt ? NSI.rtAt.slice(0, 10) : null) || cu.session || D.asof;
   const truoc = new Set((cu.hits || []).filter(h => h.level === 'MUA').map(h => h.sym));
   LIVE.data = Object.assign({}, cu, {
@@ -504,16 +541,17 @@ function batDauLive() {
     const c = await docJSON('config.json');
     if (c) NSI.cfg = c;
     await Promise.all([napLive(), napSo()]);
-    if (cfgData().proxy) {
-      napRealtime();
-      RT.timer = setInterval(napRealtime, 45000);
-    }
+    // Lớp real-time VPS không cần cầu nối nào cả — bật thẳng.
+    // Cầu nối Cloudflare (nếu anh Sơn có dựng) giờ chỉ còn dùng để lấy nến
+    // cho trang Chi tiết mã, không còn là điều kiện để có giá real-time.
+    if (typeof docCaiDat === 'function') docCaiDat();
+    if (typeof batRealtimeVPS === 'function') batRealtimeVPS();
   })();
   if (LIVE.timer) clearInterval(LIVE.timer);
   LIVE.timer = setInterval(() => { napLive(); napSo(); }, 120000);
   // quay lại tab thì nạp ngay, khỏi chờ hết chu kỳ
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) { napLive(); napSo(); napRealtime(); }
+    if (!document.hidden) { napLive(); napSo(); if (typeof napVPS === 'function') napVPS(); }
   });
 }
 
@@ -521,6 +559,14 @@ function batDauLive() {
    TRANG CHUÔNG BÁO — bản trực tiếp, vẽ từ live.json
    ========================================================================== */
 function pageLiveTrucTiep(root, L) {
+  // Chuan hoa TRUOC khi ve. live.json den tu may chu khac (repo public, workflow
+  // rieng) nen co the thieu truong — mot ban live.json cu hoac hong khong duoc
+  // phep lam trang trang. Da vap: `h.miss.length` no khi live.json thieu `miss`.
+  L = L || {};
+  L.hits = (L.hits || []).map(h => Object.assign({
+    sym: '?', name: '', level: 'THEO_DOI', price: null, pct: 0, volr: 0, gtgd: 0,
+    score: 0, miss: [], need_px: null, need_vol: null, ordimb: null, fa: false,
+  }, h || {}));
   const last = D.regime[D.regime.length - 1];
   const mua = L.hits.filter(h => h.level === 'MUA');
   const sap = L.hits.filter(h => h.level === 'SAP_DU');
@@ -530,7 +576,7 @@ function pageLiveTrucTiep(root, L) {
 
   const bang = (list, tieude, mota) => !list.length ? '' : `
     <h2>${tieude}</h2>
-    <p class="muted" style="margin-top:0">${mota}</p>
+    
     <div class="card tblwrap"><table><thead><tr>
       <th>Mã</th><th>Doanh nghiệp</th><th style="text-align:right">Giá</th>
       <th style="text-align:right">%</th><th style="text-align:right">Cần đạt</th>
@@ -538,7 +584,7 @@ function pageLiveTrucTiep(root, L) {
       <th style="text-align:right" title="Cỡ lệnh mua ÷ cỡ lệnh bán — trên 1,20 là tổ chức đang gom">Dòng tiền</th>
       <th style="text-align:right">Điểm</th><th>Còn thiếu</th></tr></thead><tbody>
       ${list.map(h => `<tr>
-        <td class="sym">${h.sym}</td>
+        <td class="sym">${esc(h.sym)}</td>
         <td class="muted" style="font-size:13px">${(h.name || '').slice(0, 34)}</td>
         <td style="text-align:right">${h.price}</td>
         <td style="text-align:right;font-weight:660" class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${h.pct}%</td>
@@ -554,10 +600,8 @@ function pageLiveTrucTiep(root, L) {
 
   root.innerHTML = `
   <h1>Hệ thống hôm nay</h1>
-  <p class="lead">${L.open
-      ? `Đang theo dõi phiên <b>${ddmm(L.session)}</b>, đã đi <b>${Math.round((L.frac || 0) * 100)}%</b>. Trang tự cập nhật, không cần tải lại.`
-      : `Phiên <b>${ddmm(L.session)}</b> đã đóng cửa. Số liệu dưới đây là kết quả cuối phiên.`}
-    Quét <b>${L.scanned}/${L.universe} mã</b> lúc <b>${hhmm(L.asof)}</b>.</p>
+  ${bangSoLieuCu()}
+  ${typeof bangDieuKhienChuong === 'function' ? bangDieuKhienChuong() : ''}
 
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
     <div><div class="muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:12px">Đèn thị trường</div>
@@ -579,11 +623,8 @@ function pageLiveTrucTiep(root, L) {
     </div>
   </div>
 
-  ${mua.length ? bang(mua, '🔴 Đủ điểm mua',
-      'Đã qua toàn bộ chín lớp và đủ cả bốn điều kiện của phiên. Nhớ nguyên tắc: chỉ vào lệnh trong chính phiên này, xác nhận sau 14h00.') : `
-    <div class="note" style="margin-top:18px"><b>Chưa có mã nào đủ điểm mua.</b>
-    Đây là chuyện bình thường — hệ chỉ sinh khoảng ${(D.prod.metrics.per_year || 22).toFixed(0)} tín hiệu mỗi năm,
-    tức trung bình một tín hiệu mỗi 11 phiên. Hệ thống được thiết kế để đứng yên phần lớn thời gian.</div>`}
+  ${mua.length ? bang(mua, '🔴 Đủ điểm mua', '')
+    : '<h2>🔴 Đủ điểm mua</h2><p class="muted" style="margin-top:0">Chưa có mã nào.</p>'}
 
   ${bang(sap, '🟠 Sắp đủ', L.open
       ? 'Còn thiếu một bước, hoặc dự phóng cho thấy sẽ đạt lúc đóng cửa. Cột Vol/TB20 hiện <b>giá trị hiện tại → dự phóng cuối phiên</b>.'
@@ -594,9 +635,5 @@ function pageLiveTrucTiep(root, L) {
 
   ${bang(theo, '🟡 Đang động đậy', 'Đã qua mọi cổng nhưng còn xa điểm mua. Để đây theo dõi.')}
 
-  <div class="note info" style="margin-top:20px"><b>Cách trang này cập nhật.</b>
-    Trong giờ giao dịch, máy chủ quét lại toàn bộ ${L.universe} mã khoảng 20 phút một lần và trang tự đọc lại mỗi phút —
-    không cần tải lại trang. Khối lượng và giá trị giao dịch cộng dồn theo thời gian, nên đầu phiên tỷ lệ Vol/TB20 luôn thấp.
-    Tài liệu đã nói rõ: <b>chỉ xác nhận tín hiệu sau 14h00</b>, trừ khi đã trần cứng dư mua lớn thì bắn ngay.
-    Bảng trên là ảnh chụp tại thời điểm quét, dùng để theo dõi chứ chưa phải lệnh.</div>`;
+  `;
 }

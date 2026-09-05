@@ -300,6 +300,122 @@ body.inpriv main.wrap::before{content:'Trang nội bộ — không hiển thị 
 }
 
 .kpi .val.warn{color:var(--warn)}
+
+/* ===== bieu do nen tuong tac ===== */
+.tvhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.cttools{display:flex;gap:6px;flex-wrap:wrap}
+.tvseg button{font-size:12px;padding:4px 9px}
+.ohlc{font-size:12.5px;color:var(--text-secondary);font-variant-numeric:tabular-nums;
+  display:flex;gap:5px;align-items:baseline;flex-wrap:wrap;min-height:19px}
+.ohlc .ohsym{color:var(--text-primary);font-size:14px;font-weight:700;margin-right:3px}
+.ohlc .ohk{color:var(--text-muted);font-size:11px}
+.ohlc .ohd{color:var(--text-muted);font-size:11.5px;margin-left:3px}
+.tvwrap{position:relative;width:100%;height:460px;border-radius:10px;overflow:hidden}
+.tvwrap #tvBox{width:100%;height:100%}
+.tvload{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;
+  color:var(--text-muted);font-size:13px;background:var(--surface-1)}
+.tvload b{color:var(--text-primary)}
+@media(max-width:760px){.tvwrap{height:340px}.ohlc{font-size:11.5px}}
+
+/* ===== bang dieu khien chuong real-time ===== */
+.rtbox{padding:6px 18px 16px}
+.rtrow{display:flex;justify-content:space-between;align-items:center;gap:16px;
+  padding:13px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.rtrow:last-of-type{border-bottom:0}
+.rtrow>div:first-child{min-width:0}
+.sw{position:relative;display:inline-block;width:46px;height:26px;flex:0 0 46px;cursor:pointer}
+.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:26px;transition:.18s}
+.sw span:before{content:"";position:absolute;height:18px;width:18px;left:3px;top:3px;
+  background:var(--text-muted);border-radius:50%;transition:.18s}
+.sw input:checked+span{background:color-mix(in srgb,var(--good) 30%,transparent);border-color:var(--good)}
+.sw input:checked+span:before{transform:translateX(20px);background:var(--good)}
+
+/* ===== trang Kiem dinh ===== */
+.kdok{color:var(--good);font-weight:700}
+.kdno{color:var(--critical);font-weight:700}
+.kdtang{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));margin-top:16px}
+.kdt{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--surface-2)}
+.kdt.ok{border-color:color-mix(in srgb,var(--good) 45%,transparent)}
+.kdt.no{border-color:color-mix(in srgb,var(--critical) 45%,transparent)}
+.kdtn{font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--text-muted)}
+.kdtt{font-weight:640;color:var(--text-primary);margin:3px 0 4px;font-size:14px}
+.kdbars{display:flex;align-items:flex-end;gap:8px;height:150px;margin-top:12px;overflow-x:auto;padding-bottom:2px}
+.kdb{flex:1 1 0;min-width:44px;display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:center;height:100%;gap:4px}
+.kdbc{width:100%;background:color-mix(in srgb,var(--s1) 42%,transparent);border-radius:5px 5px 0 0;
+  border:1px solid color-mix(in srgb,var(--s1) 55%,transparent);transition:.15s}
+.kdb.now .kdbc{background:var(--s1);border-color:var(--s1);box-shadow:0 0 0 2px color-mix(in srgb,var(--s1) 28%,transparent)}
+.kdb:hover .kdbc{background:color-mix(in srgb,var(--s1) 72%,transparent)}
+.kdbv{font-size:11.5px;font-weight:660;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.kdb.now .kdbv{color:var(--text-primary)}
+.kdbl{font-size:11.5px;color:var(--text-muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kdb.now .kdbl{color:var(--text-primary);font-weight:660}
+.kdchk{display:grid;gap:2px}
+.kdc{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
+  border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.kdc:last-child{border-bottom:0}
+.kdc>div:first-child{font-size:16px;font-weight:800;width:18px;flex:0 0 18px;line-height:1.4}
+.kdc.ok>div:first-child{color:var(--good)}
+.kdc.no>div:first-child{color:var(--critical)}
+
+/* ===== kien truc huong khach hang: den thi truong + the co hoi ===== */
+.denhero{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap;padding:24px 26px;border-radius:16px;
+  border:1px solid var(--line);background:var(--surface-1);margin-bottom:26px;border-left-width:6px}
+.denhero.XANH{border-left-color:var(--good)}   .denhero.VANG{border-left-color:var(--warn)}
+.denhero.CAM{border-left-color:var(--serious)} .denhero.DO{border-left-color:var(--critical)}
+.denlab{font-size:11.5px;letter-spacing:.08em;font-weight:700;color:var(--text-muted)}
+.denten{font-size:40px;font-weight:780;letter-spacing:-.03em;line-height:1.1;margin:2px 0 4px}
+.dennoi{font-size:15px;color:var(--text-secondary)}
+.dengiai{flex:1;min-width:260px;margin:0;font-size:14.5px;color:var(--text-secondary);
+  border-left:1px solid var(--line);padding-left:22px}
+@media(max-width:700px){.dengiai{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}}
+
+.cgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.ccard{display:block;background:var(--surface-1);border:1px solid var(--line);border-radius:13px;
+  padding:15px 17px;text-decoration:none;color:inherit;transition:.14s;border-left-width:4px}
+.ccard:hover{background:var(--surface-2);transform:translateY(-1px)}
+.ccard.mua{border-left-color:var(--good)}  .ccard.sap{border-left-color:var(--warn)}
+.ccard.vcl-thoat{border-left-color:var(--critical)} .ccard.vcl-ha{border-left-color:var(--serious)}
+.ccard.vcl-theo{border-left-color:var(--warn)}
+.cctop{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ccsym{font-size:17px;font-weight:720;color:var(--text-primary);letter-spacing:-.01em}
+.cctop .muted{font-size:12.5px}
+.ccbadge{font-size:11.5px;font-weight:700;white-space:nowrap;letter-spacing:.01em}
+.ccgia{font-size:24px;font-weight:730;margin:7px 0 5px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ccgia span{font-size:15px;font-weight:640;margin-left:5px}
+.cclydo{font-size:13px;color:var(--text-secondary);line-height:1.5}
+.ccact{margin-top:9px;padding-top:9px;border-top:1px solid color-mix(in srgb,var(--line) 60%,transparent);
+  font-size:12.5px;color:var(--text-secondary)}
+.ccthieu{margin-top:7px;font-size:12px;color:var(--text-muted)}
+
+.vclpill{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11.5px;font-weight:660;
+  border:1px solid var(--line);white-space:nowrap;cursor:help}
+
+.tthai{border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-left-width:4px;
+  background:color-mix(in srgb,var(--warn) 8%,transparent);border-radius:12px;padding:15px 18px;
+  font-size:14px;color:var(--text-secondary);line-height:1.6}
+.tthai b{color:var(--text-primary)}
+
+details.dt{border:1px solid var(--line);border-radius:12px;background:var(--surface-1);margin-bottom:10px}
+details.dt>summary{cursor:pointer;padding:15px 18px;font-size:15px;color:var(--text-secondary);
+  list-style:none;user-select:none}
+details.dt>summary::-webkit-details-marker{display:none}
+details.dt>summary:before{content:"▸ ";color:var(--text-muted);font-size:13px}
+details.dt[open]>summary:before{content:"▾ "}
+details.dt>summary b{color:var(--text-primary)}
+details.dt>summary:hover{background:var(--surface-2);border-radius:12px}
+.dtin{padding:2px 18px 18px}
+.dtol{margin:0 0 10px 18px;line-height:1.9;color:var(--text-secondary);font-size:14px}
+.dtol b{color:var(--text-primary)}
+
+.lktrong{display:grid;gap:9px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.lktrong a{display:block;padding:13px 16px;border:1px solid var(--line);border-radius:11px;
+  background:var(--surface-1);text-decoration:none;transition:.14s}
+.lktrong a:hover{background:var(--surface-2)}
+.lktrong a b{display:block;color:var(--text-primary);font-size:14px;font-weight:640}
+.lktrong a span{display:block;color:var(--text-muted);font-size:12.5px;margin-top:2px;line-height:1.45}
 </style>
 </head>
 <body>
@@ -335,4 +451,3 @@ body.inpriv main.wrap::before{content:'Trang nội bộ — không hiển thị 
   <span style="opacity:.45;font-size:12px">Nội bộ: <a href="#tongquan">tổng quan chi tiết</a> · <a href="#backtest">backtest</a> · <a href="#dongtien">dòng tiền lớn</a> · <a href="#hethong">hệ thống 9 lớp</a> · <a href="#bangchung">bằng chứng</a> · <a href="#sotay">sổ tay của tôi</a></span>
 </div></footer>
 <script id="DATA" type="application/json">__DATA__</script>
-<script>

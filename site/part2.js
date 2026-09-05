@@ -1,3 +1,29 @@
+/* ============================================================================
+   CHỐNG CHÈN MÃ ĐỘC (XSS) — bắt buộc cho MỌI chữ do người nhập.
+
+   Đường tấn công có thật, không phải giả định. Chuỗi ba bước:
+     1. `manual.json` nằm trong repo PUBLIC. Ai có quyền ghi repo — hoặc lỡ để lộ
+        mã truy cập GitHub — đều nhét được nội dung vào ô ghi chú.
+     2. Ô ghi chú trước đây được dán thẳng vào trang bằng `${w.note}`. Nhét vào đó
+        một thẻ <img onerror=...> là mã lạ chạy ngay trong trang.
+     3. Trang lưu MÃ TRUY CẬP GITHUB của anh Sơn trong localStorage. Mã lạ chạy
+        cùng nguồn thì đọc được nó, và đọc được là ghi được vào repo.
+
+   Tức là một dòng ghi chú có thể đổi thành quyền ghi cả repo. Bịt ở bước 2:
+   mọi chữ do người nhập phải đi qua hàm này trước khi vào HTML.
+
+   Nguyên tắc: dữ liệu KHÔNG BAO GIỜ được tự biến thành mã. Kể cả dữ liệu của
+   chính mình — vì hôm nay là của mình, ngày mai là của file bị sửa.
+   ========================================================================== */
+function esc(x) {
+  if (x == null) return '';
+  return String(x)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+/* dùng cho chữ nằm trong thuộc tính HTML (value=", title=") — nghiêm hơn một bậc */
+function escA(x) { return esc(x).replace(/`/g, '&#96;'); }
+
 const D = JSON.parse(document.getElementById('DATA').textContent);
 document.getElementById('asof').textContent = D.asof;
 
@@ -6,16 +32,16 @@ const LIENHE = {
   ten:      'Nguyễn Hoàng Sơn',
   sdt:      '0559 562 157',
   zalo:     '0559562157',
-  chuc:     '',
-  nhom:     '',              // link nhom — de TRONG thi nut tu an, khong can sua gi them
+  chuc:     '',              // de TRONG thi ca chu lan dau gach doc tu an
+  nhom:     '',              // link nhom — de TRONG thi nut tu an
   nhom_ten: 'Vào nhóm',
 };
 (function veLienHe(){
   const q = id => document.getElementById(id);
   const url = 'https://zalo.me/' + LIENHE.zalo;
-  q('cbNm').textContent   = LIENHE.ten;
-  // Bo chuc danh thi phai an CA dau gach doc dung truoc no, khong thi con
-  // mot vach dung tro tro giua so dien thoai va nut Zalo.
+  q('cbNm').textContent = LIENHE.ten;
+  // Bo chuc danh thi phai an CA dau gach doc dung truoc no, khong thi con mot
+  // vach dung tro tro giua so dien thoai va nut Zalo.
   const role = q('cbRole');
   role.textContent = LIENHE.chuc;
   role.style.display = LIENHE.chuc ? '' : 'none';

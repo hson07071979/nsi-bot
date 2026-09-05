@@ -30,7 +30,27 @@ const RTV = {
   thongbao: false,      // chỉ bật sau khi trình duyệt cho phép
   vnindex: null,
   keu: new Set(),       // đã kêu rồi thì thôi, không kêu lại cùng một mã trong phiên
+  demat_nghi: 8,        // ĐỂ MẮT: kêu xong thì nghỉ bấy nhiêu PHÚT mới kêu lại cùng mã
 };
+
+/* ---------- NHỊP CHUÔNG "ĐỂ MẮT" ------------------------------------------
+   Mã trong watchlist tăng ≥ 2,5% là chuyện có thể kéo dài cả phiên. Kêu mỗi
+   nhịp quét (15 giây) thì thành tiếng ồn, và tiếng ồn thì bị bỏ qua — đúng cái
+   anh Sơn phàn nàn. Nên: kêu MỘT lần, rồi im trong `RTV.demat_nghi` phút; còn
+   ≥ 2,5% thì nhắc lại, hết thì thôi. Mỗi mã có đồng hồ riêng.
+   `lanCuoi` để thanh trạng thái biết lúc nào nên sáng vàng, lúc nào nên dịu. */
+const CHUONG = {
+  lan: {},              // mã -> lúc kêu gần nhất (ms)
+  lanCuoi: 0,           // lần kêu gần nhất bất kể mã nào
+  SANG_MS: 90 * 1000,   // băng vàng trên đỉnh sáng bấy nhiêu lâu sau mỗi lần kêu
+};
+function _dungLucKeu(sym) {
+  const nghi = Math.max(1, +RTV.demat_nghi || 8) * 60000;
+  const gio = Date.now();
+  if (gio - (CHUONG.lan[sym] || 0) < nghi) return false;
+  CHUONG.lan[sym] = gio;
+  return true;
+}
 
 /* ---------- phiên có đang mở không (giờ Việt Nam, không phụ thuộc múi giờ máy) ---------- */
 function gioVN() {
@@ -231,6 +251,13 @@ function tinhLaiTinHieuVPS() {
   // false thành 0, nên điều kiện thật sự chạy là "tăng ≥ 0,8%" hoặc "tăng ≥ 0%" —
   // gần như mọi mã xanh đều lọt. Ngưỡng coi như không tồn tại. So sánh đúng phải
   // là với NGƯỠNG PHẦN TRĂM (5,8% HOSE · 8,8% HNX), không phải với một cờ nhị phân.
+  // ---- CHUÔNG ĐỂ MẮT: mã watchlist đang tăng ≥ 2,5% ----
+  // Không dùng `RTV.keu` như chuông đỏ (chuông đỏ kêu đúng một lần mỗi phiên vì
+  // đủ điểm mua là việc dứt khoát). Ở đây mã có thể lên xuống quanh ngưỡng cả
+  // phiên nên dùng đồng hồ nghỉ theo từng mã.
+  const dematMoi = hits.filter(h => h.level === 'DE_MAT' && _dungLucKeu(h.sym));
+  if (dematMoi.length && !LIVE.firstLoad && !moi.length) reoChuong(dematMoi, 'demat');
+
   const sapMoi = hits.filter(h => h.level === 'SAP_DU'
                                   && h.nguong_pct > 0
                                   && h.pct >= h.nguong_pct * 0.8
@@ -241,21 +268,31 @@ function tinhLaiTinHieuVPS() {
 /* ---------- chuông: âm thanh + thông báo trình duyệt + nhấp nháy tiêu đề ---------- */
 let _titleGoc = null, _titleTimer = null;
 function reoChuong(list, loai) {
+  const mua = loai === 'mua';
+  // Hai loại chuông, hai câu chữ. Trước đây mọi thông báo đều ghi "mã đủ điểm
+  // mua" kể cả khi chỉ là nhắc để mắt — đọc trên điện thoại là hiểu nhầm ngay.
+  const tieude = mua ? `🔴 ${list.length} mã đủ điểm mua`
+                     : `🟡 ${list.length} mã watchlist đang tăng mạnh`;
+  CHUONG.lanCuoi = Date.now();
   if (typeof bangBao === 'function') bangBao(list, loai);      // toast sẵn có
   if (RTV.amthanh && typeof keng === 'function') keng(loai);
 
   // Thông báo hệ điều hành — thứ DUY NHẤT kêu được khi anh Sơn đang ở tab khác.
   if (RTV.thongbao && 'Notification' in window && Notification.permission === 'granted') {
     try {
-      const n = new Notification(`🔴 ${list.length} mã đủ điểm mua`, {
-        body: list.map(h => `${esc(h.sym)} ${h.price} ${h.pct >= 0 ? '+' : ''}${h.pct}% · vol ${h.volr}× · điểm ${h.score}`).join('\n'),
-        tag: 'nsi-mua', renotify: true, requireInteraction: true,
+      const n = new Notification(tieude, {
+        body: list.map(h => `${esc(h.sym)} ${h.price} ${h.pct >= 0 ? '+' : ''}${h.pct}% · vol ${h.volr}× · điểm ${h.score}`).join('\n')
+              + (mua ? '' : '\nChỉ để ngó chừng — chưa đủ điều kiện vào lệnh.'),
+        tag: mua ? 'nsi-mua' : 'nsi-demat', renotify: true, requireInteraction: mua,
       });
       n.onclick = () => { window.focus(); if (typeof go === 'function') go('chuong'); n.close(); };
     } catch (e) { /* vài trình duyệt chặn, bỏ qua */ }
   }
 
   // Nhấp nháy tiêu đề tab — cách nhắc rẻ nhất khi thông báo bị từ chối.
+  // Chỉ chuông ĐỎ mới được nháy tiêu đề tab. Nhắc "để mắt" mà cũng nháy thì
+  // cả phiên tiêu đề chớp liên tục, chẳng còn ai phân biệt được cái nào gấp.
+  if (!mua) return;
   if (_titleGoc === null) _titleGoc = document.title;
   clearInterval(_titleTimer);
   let on = false, dem = 0;
@@ -286,6 +323,7 @@ function luuCaiDat() {
   try {
     localStorage.setItem('nsi_rt', JSON.stringify({
       bat: RTV.bat, amthanh: RTV.amthanh, thongbao: RTV.thongbao, nhip: RTV.nhip,
+      demat_nghi: RTV.demat_nghi,
     }));
   } catch (e) { /* chế độ riêng tư chặn, chạy bằng mặc định */ }
 }
@@ -294,6 +332,7 @@ function docCaiDat() {
     const s = JSON.parse(localStorage.getItem('nsi_rt') || '{}');
     if (typeof s.bat === 'boolean') RTV.bat = s.bat;
     if (typeof s.amthanh === 'boolean') RTV.amthanh = s.amthanh;
+    if (+s.demat_nghi >= 1) RTV.demat_nghi = +s.demat_nghi;
     if (typeof s.nhip === 'number') RTV.nhip = s.nhip;
     RTV.thongbao = ('Notification' in window) && Notification.permission === 'granted' && s.thongbao !== false;
   } catch (e) { /* đọc không được thì dùng mặc định */ }
@@ -320,7 +359,7 @@ function bangDieuKhienChuong() {
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Âm thanh</div>
-        <div class="muted" style="font-size:12.5px">Kêu một tiếng khi có mã vừa đủ điểm mua.</div></div>
+        <div class="muted" style="font-size:12.5px">Hai tiếng cao khi có mã đủ điểm mua, một tiếng trầm khi mã watchlist đang tăng mạnh.</div></div>
       <label class="sw"><input type="checkbox" ${RTV.amthanh ? 'checked' : ''}
         onchange="RTV.amthanh=this.checked;luuCaiDat()"><span></span></label>
     </div>
@@ -334,6 +373,15 @@ function bangDieuKhienChuong() {
         ? `<label class="sw"><input type="checkbox" ${RTV.thongbao ? 'checked' : ''}
              onchange="RTV.thongbao=this.checked;luuCaiDat()"><span></span></label>`
         : `<button class="btn" onclick="xinQuyenThongBao()" ${cho === 'denied' ? 'disabled' : ''}>Bật</button>`}
+    </div>
+    <div class="rtrow">
+      <div><div style="font-weight:660;color:var(--text-primary)">Nhắc lại chuông "để mắt"</div>
+        <div class="muted" style="font-size:12.5px">Mã watchlist tăng ≥ 2,5% thì kêu một lần, rồi im bấy nhiêu lâu
+          mới nhắc lại nếu nó vẫn còn tăng. Chuông đỏ (đủ điểm mua) không bị ảnh hưởng — vẫn kêu ngay.</div></div>
+      <select class="fin" style="width:120px" onchange="RTV.demat_nghi=+this.value;luuCaiDat()">
+        ${[[5, '5 phút'], [8, '8 phút'], [10, '10 phút'], [15, '15 phút']].map(
+          ([v, l]) => `<option value="${v}"${+RTV.demat_nghi === v ? ' selected' : ''}>${l}</option>`).join('')}
+      </select>
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Nhịp hỏi giá</div>

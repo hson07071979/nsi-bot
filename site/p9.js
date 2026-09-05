@@ -46,70 +46,6 @@ function monthHeatmap(host){
   host.innerHTML = h;
 }
 
-/* ---------- nến ---------- */
-function candleChart(host, sym){
-  const C = (D.candles || {})[sym];
-  if (!C){ host.innerHTML = '<p class="muted">Chưa có dữ liệu nến cho mã này.</p>'; return; }
-  const N = C.bars.length, W = 1000, H = 340, HV = 70, PL = 46, PR = 10, PT = 10, PB = 18;
-  const view = C.bars.slice(-140), off = N - view.length;
-  const n = view.length;
-  const hi = Math.max(...view.map(b => b[2])), lo = Math.min(...view.map(b => b[3]));
-  const pad = (hi - lo) * 0.06 || 1;
-  const y0 = lo - pad, y1 = hi + pad;
-  const X = i => PL + (i + 0.5) * (W - PL - PR) / n;
-  const Y = p => PT + (1 - (p - y0) / (y1 - y0)) * (H - PT - PB - HV - 8);
-  const vmax = Math.max(...view.map(b => b[5])) || 1;
-  const VY = v => H - PB - (v / vmax) * HV;
-  const bw = Math.max(1.4, (W - PL - PR) / n * 0.62);
-
-  let s = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" class="cndl">`;
-  // lưới giá
-  for (let k = 0; k <= 4; k++){
-    const p = y0 + (y1 - y0) * k / 4, yy = Y(p);
-    s += `<line x1="${PL}" x2="${W-PR}" y1="${yy}" y2="${yy}" stroke="var(--line)" stroke-width="1"/>`;
-    s += `<text x="${PL-6}" y="${yy+3.5}" text-anchor="end" font-size="10" fill="var(--text-muted)">${p.toFixed(1)}</text>`;
-  }
-  // khối lượng
-  view.forEach((b, i) => {
-    const up = b[4] >= b[1];
-    s += `<rect x="${X(i)-bw/2}" y="${VY(b[5])}" width="${bw}" height="${H-PB-VY(b[5])}"
-           fill="${up ? 'var(--s3)' : 'var(--s2)'}" opacity=".28"/>`;
-  });
-  // MA
-  ['ma20','ma50'].forEach((k, ix) => {
-    const src = C[k]; if (!src) return;
-    const seg = src.slice(off);
-    let d = '', started = false;
-    seg.forEach((v, i) => { if (v == null) return; d += (started ? 'L' : 'M') + X(i) + ' ' + Y(v); started = true; });
-    if (d) s += `<path d="${d}" fill="none" stroke="${ix ? 'var(--s4)' : 'var(--s1)'}" stroke-width="1.4" opacity=".85"/>`;
-  });
-  // nến
-  view.forEach((b, i) => {
-    const up = b[4] >= b[1], col = up ? 'var(--s3)' : 'var(--s2)';
-    const o = Y(b[1]), c = Y(b[4]), top = Math.min(o, c), hgt = Math.max(1.2, Math.abs(c - o));
-    s += `<line x1="${X(i)}" x2="${X(i)}" y1="${Y(b[2])}" y2="${Y(b[3])}" stroke="${col}" stroke-width="1.1"/>`;
-    s += `<rect x="${X(i)-bw/2}" y="${top}" width="${bw}" height="${hgt}" fill="${col}"><title>${b[0]}  M ${b[1]} · C ${b[2]} · T ${b[3]} · Đ ${b[4]}</title></rect>`;
-  });
-  // dấu mua / bán — gộp backtest + sổ lệnh thật + sổ tay anh Sơn
-  const idx = {}; view.forEach((b, i) => idx[b[0]] = i);
-  const MK = (C.marks || []).concat(typeof dauMuaBan === 'function' ? dauMuaBan(sym) : []);
-  const daVe = new Set();
-  MK.forEach(m => {
-    const dedup = m.t + m.d; if (daVe.has(dedup)) return; daVe.add(dedup);
-    const i = idx[m.d]; if (i === undefined) return;
-    const buy = m.t === 'B', yy = buy ? Y(view[i][3]) + 13 : Y(view[i][2]) - 13;
-    s += `<path d="M ${X(i)} ${buy ? yy-8 : yy+8} L ${X(i)-5.5} ${buy ? yy : yy} L ${X(i)+5.5} ${buy ? yy : yy} Z"
-           fill="${buy ? 'var(--s1)' : 'var(--s5)'}"><title>${buy ? 'MUA' : 'BÁN'} ${m.d}${m.px ? ' @ ' + m.px : ''}</title></path>`;
-    s += `<text x="${X(i)}" y="${buy ? yy + 13 : yy - 10}" text-anchor="middle" font-size="11" font-weight="700"
-           fill="${buy ? 'var(--s1)' : 'var(--s5)'}">${buy ? 'B' : 'S'}</text>`;
-  });
-  // trục thời gian
-  const ticks = [0, Math.floor(n/3), Math.floor(2*n/3), n-1];
-  ticks.forEach(i => { if (view[i]) s += `<text x="${X(i)}" y="${H-4}" text-anchor="middle" font-size="10" fill="var(--text-muted)">${view[i][0].slice(2,7)}</text>`; });
-  s += '</svg>';
-  host.innerHTML = s;
-}
-
 /* ============================ TRANG HIỆU SUẤT ============================ */
 function pageHome(root){
   const T6 = D.top6m || {deals:[]}, dl = T6.deals || [];
@@ -120,26 +56,26 @@ function pageHome(root){
   const vni6 = b6.length ? (b6[b6.length-1][1] / b6[0][1] - 1) : 0;
 
   root.innerHTML = `
+  ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
     <div class="badge">Cập nhật ${D.asof} · dữ liệu FireAnt · chỉ giao dịch TOP 110 mã thanh khoản nhất</div>
     <h1>Hiệu suất thật,<br>đo trên ${(dates.length/250).toFixed(1)} năm dữ liệu.</h1>
-    <p class="lead">Mỗi con số dưới đây đến từ backtest chạy lại từng phiên một từ 02/01/2019, đã trừ phí <b>0,15% mua · 0,25% bán</b>, và <b>không dùng bất kỳ thông tin nào của tương lai</b> — chỉ số cơ bản chỉ được dùng sau đúng ngày doanh nghiệp công bố báo cáo.</p>
+    
   </div>
   <div class="grid kpis" id="hkpi"></div>
 
   <h2>Đường vốn — Hệ thống so với VN-Index</h2>
-  <p class="muted" style="margin-top:0">Cùng xuất phát 1,00 vào 02/01/2019.</p>
+  
   <div class="card"><div class="legend">
     <span><i style="background:var(--s1)"></i>Hệ thống Nguyễn Sơn</span>
     <span><i style="background:var(--s2)"></i>VN-Index</span></div><div id="heq"></div></div>
 
   <h2>Lợi suất theo tháng</h2>
-  <p class="muted" style="margin-top:0">Đơn vị %. <b style="color:var(--text-primary)">Màu càng đậm, biên độ càng lớn</b> — xanh là tháng lãi, cam là tháng lỗ. <b style="color:var(--text-primary)">Ô mờ có dấu chấm</b> là tháng hệ thống đứng hoàn toàn ngoài thị trường, không cầm mã nào.</p>
+  
   <div class="card" id="hheat"></div>
-  <p class="muted" style="margin-top:10px">Hệ thống không cố kiếm tiền mọi tháng. Nó chờ đúng loại phiên nó được thiết kế để bắt — phần còn lại của thời gian nó giữ tiền mặt. Đó là lý do có nhiều ô mờ, và cũng là lý do sụt giảm tối đa chỉ <b class="neg">−${(M.maxdd*100).toFixed(1)}%</b>.</p>
 
   <h2>Top tín hiệu 6 tháng qua</h2>
-  <p class="muted" style="margin-top:0">Toàn bộ deal hệ thống đã vào từ ${T6.frm} đến ${T6.to}, sắp theo lợi suất giảm dần. <b style="color:var(--text-primary)">Không chọn lọc, không giấu deal lỗ.</b> Cùng kỳ VN-Index <b class="${cls(vni6)}">${sg(vni6)}</b> — đây là 6 tháng thị trường giảm, đèn hệ thống hầu như luôn ở mức Đỏ nên hệ thống chỉ vào lệnh thăm dò với cỡ nhỏ.</p>
+  
   <div class="grid kpis" id="h6kpi" style="margin-bottom:14px"></div>
   <div class="card tblwrap"><table><thead><tr><th>Mã</th><th>Ngày mua</th><th>Ngày bán</th>
     <th style="text-align:right">Giữ</th><th style="text-align:right">Lợi suất</th><th>Lý do thoát</th><th style="width:120px">Biểu đồ</th></tr></thead>
@@ -148,7 +84,7 @@ function pageHome(root){
   <h2>Danh mục hệ thống đang cầm</h2>
   <div class="card" id="hopen"></div>
 
-  <div class="note" style="margin-top:26px"><b>Cách đọc cho đúng.</b> Đây là kết quả mô phỏng trên dữ liệu lịch sử, không phải sao kê tài khoản thật. Backtest giả định lệnh được khớp tại giá đóng cửa của chính phiên bắn tín hiệu — nếu vào lệnh chậm sang phiên sau, hiệu quả giảm rõ rệt. Lợi nhuận quá khứ không đảm bảo cho tương lai.</div>`;
+  `;
 
   document.getElementById('hkpi').innerHTML =
       kpi('Tổng lợi nhuận', sg(M.total_return), `${(dates.length/250).toFixed(1)} năm · VN-Index ${sg(BM.total)}`, cls(M.total_return))
@@ -167,11 +103,11 @@ function pageHome(root){
     + kpi('Deal tốt nhất', dl.length ? (dl[0].sym + ' ' + sg(dl[0].pnl_pct/100)) : '—', dl.length ? dl[0].entry : '');
 
   document.getElementById('h6body').innerHTML = dl.length ? dl.map(d => `
-    <tr><td class="sym">${d.sym}</td><td>${d.entry}</td><td>${d.exit}</td>
+    <tr><td class="sym">${esc(d.sym)}</td><td>${d.entry}</td><td>${d.exit}</td>
       <td style="text-align:right">${d.held} phiên</td>
       <td style="text-align:right;font-weight:660" class="${cls(d.pnl_pct)}">${d.pnl_pct>=0?'+':''}${d.pnl_pct}%</td>
-      <td class="muted" style="font-size:13px">${d.reason}</td>
-      <td>${(D.candles||{})[d.sym] ? `<button class="mini" onclick="openChart('${d.sym}')">Xem nến</button>` : '—'}</td></tr>`).join('')
+      <td class="muted" style="font-size:13px">${esc(d.reason)}</td>
+      <td>${(D.candles||{})[d.sym] ? `<button class="mini" onclick="openChart('${esc(d.sym)}')">Xem nến</button>` : '—'}</td></tr>`).join('')
     : '<tr><td colspan="7" class="muted">Không có deal nào trong 6 tháng qua.</td></tr>';
 
   // Danh mục THẬT (sổ máy chủ + sổ tay anh Sơn), không phải danh mục của backtest.
@@ -217,8 +153,22 @@ function pageChart(root){
 
   <div class="ctgrid">
     <div class="card" style="padding:12px 14px;min-width:0">
-      <div id="ctHead" class="muted" style="font-size:12.5px;margin-bottom:6px"></div>
-      <div id="ctChart"></div>
+      <div class="tvhead">
+        <div id="ctHead" class="ohlc"></div>
+        <div class="cttools">
+          <div class="seg tvseg">
+            ${[['3M','3 tháng'],['1Y','1 năm'],['3Y','3 năm'],['5Y','5 năm'],['ALL','Tất cả']]
+              .map(([k,l])=>`<button data-range="${k}"${k==='1Y'?' class="on"':''} title="${l}">${k}</button>`).join('')}
+          </div>
+          <div class="seg tvseg">
+            <button data-ind="ma"  class="on" title="Đường trung bình 20/50/200 phiên">MA</button>
+            <button data-ind="vol" class="on" title="Khối lượng khớp lệnh">KL</button>
+            <button data-ind="bot" class="on" title="Phiên bot vào và thoát lệnh">Dấu bot</button>
+          </div>
+        </div>
+      </div>
+      <div id="tvWrap" class="tvwrap"><div id="tvBox"></div><div id="tvLoad" class="tvload">Đang lấy nến…</div></div>
+      <div id="tvNote" class="muted" style="font-size:12px;margin-top:8px"></div>
     </div>
     <div class="card" id="ctBen" style="min-width:0"></div>
   </div>
@@ -228,7 +178,7 @@ function pageChart(root){
     <div class="card"><h3 style="margin:0 0 4px">Tăng trưởng cùng kỳ</h3>
       <div class="legend" style="margin:0 0 4px"><span><i style="background:var(--s1)"></i>%YoY Doanh thu</span><span><i style="background:var(--s5)"></i>%YoY LNST</span></div>
       <div id="fc1"></div>
-      <p class="muted" style="margin:6px 0 0;font-size:12px">Cột mờ = vượt biên ±150%, thường do nền cùng kỳ gần bằng không. Số thật xem ở bảng dưới.</p>
+      
       <div id="fn1"></div></div>
     <div class="card"><h3 style="margin:0 0 4px">Quy mô</h3>
       <div class="legend" style="margin:0 0 4px"><span><i style="background:var(--s1)"></i>Doanh thu</span><span><i style="background:var(--s5)"></i>LNST</span></div>
@@ -240,24 +190,23 @@ function pageChart(root){
     <div class="card"><h3 style="margin:0 0 4px">Định giá</h3>
       <div class="legend" style="margin:0 0 4px"><span><i style="background:var(--s1)"></i>P/E</span><span><i style="background:var(--s5)"></i>P/B</span></div>
       <div id="fc4"></div>
-      <p class="muted" style="margin:6px 0 0;font-size:12px">P/E và P/B dùng chung một trục nên chỉ so được <b>hình dáng</b>, không so được độ lớn.</p></div>
+      </div>
   </div>
 
   <h2 style="margin-top:26px">Bảng số liệu quý</h2>
   <div id="ctBang"></div>
-  <p class="muted" style="margin-top:10px;font-size:12.5px">Nguồn báo cáo tài chính quý: Vietcap IQ. Giá và khối lượng: FireAnt.
-  Mọi nhận định trong trang này là <b>so mã với chính nó</b> qua 12 quý — không so với ngành, và không phải dự báo.</p>`;
+  `;
 
   const ve = sym => {
     _chartSym = sym;
     const x = L[sym], F = FS[sym];
     document.getElementById('ctTen').innerHTML = x
-      ? `<b style="font-size:20px">${sym}</b> <span class="muted">— ${x.name} · ${x.sector} · ${x.exch}</span>`
+      ? `<b style="font-size:20px">${sym}</b> <span class="muted">— ${esc(x.name)} · ${esc(x.sector)} · ${esc(x.exch)}</span>`
       : `<b style="font-size:20px">${sym}</b> <span class="muted">— ngoài vũ trụ theo dõi</span>`;
 
     // ---- băng trạng thái + đèn tím ----
     let bn = '';
-    if (x) bn += `<div class="ctstate ${x.state}"><b>${x.label}</b>` +
+    if (x) bn += `<div class="ctstate ${x.state}"><b>${esc(x.label)}</b>` +
       (x.state === 'cho' ? ` <span class="muted">— đóng cửa phiên tới ≥ <b style="color:var(--text-primary)">${x.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(1)} triệu cp</b></span>`
        : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
     if (F && F.tim && F.tim[F.tim.length - 1]) {
@@ -268,36 +217,12 @@ function pageChart(root){
     if (x) bn += bangKiem(x, F);
     document.getElementById('ctBanner').innerHTML = bn;
 
-    // ---- nến ----
-    const host = document.getElementById('ctChart');
-    const em = (D.candles || {})[sym];
-    const veBars = bars => {
-      veNen(host, bars, dauMuaBan(sym).concat((em && em.marks) || []));
-      const b = bars[bars.length - 1];
-      document.getElementById('ctHead').innerHTML =
-        `<b style="color:var(--text-primary)">${sym}</b> M ${b[1]} C ${b[2]} T ${b[3]}
-         Đ <b style="color:var(--text-primary)">${b[4]}</b> · KL ${(b[5]/1e6).toFixed(2)} triệu · ${b[0]}`;
-      document.getElementById('ctBen').innerHTML = benPhai(sym, bars);
-    };
-    if (em && em.bars) veBars(em.bars);
-    else {
-      host.innerHTML = '<p class="muted" style="margin:0">Đang lấy nến…</p>';
-      const px = cfgData().proxy;
-      // Không có nến thì CHỈ khung biểu đồ trống — phần tài chính bên dưới vẫn phải
-      // vẽ. Lỗi cũ: chỗ này `return` sớm nên bảng 12 quý giữ nguyên số của mã trước,
-      // nhìn như FPT mà số lại là của ORS.
-      document.getElementById('ctBen').innerHTML = benPhai(sym, null);
-      if (!px) {
-        host.innerHTML = `<p class="muted" style="margin:0">Chưa nhúng sẵn nến của ${sym} trong trang.
-          Bật cầu nối real-time trong <code>config.json</code> thì mã nào cũng xem được biểu đồ.</p>`;
-      } else {
-        fetch(px.replace(/\/+$/, '') + '/bars?sym=' + sym + '&n=400')
-          .then(r => r.json())
-          .then(j => j.bars && j.bars.length ? veBars(j.bars)
-            : host.innerHTML = '<p class="muted" style="margin:0">Không lấy được nến của mã này.</p>')
-          .catch(() => host.innerHTML = '<p class="muted" style="margin:0">Cầu nối không trả lời.</p>');
-      }
-    }
+    // ---- biểu đồ nến tương tác ----
+    // Zoom bằng con lăn, kéo ngang bằng chuột, chạm hai ngón trên điện thoại,
+    // rê tới đâu đọc số tới đó. Nến lấy thẳng từ máy chủ dữ liệu VPS nên mã nào
+    // cũng xem được, không phụ thuộc mã đó có nằm trong danh mục TradingView hay không.
+    document.getElementById('ctBen').innerHTML = benPhai(sym, null);
+    moBieuDo(sym);
 
     // ---- bốn biểu đồ cơ bản ----
     if (!F) {
@@ -328,18 +253,12 @@ function pageChart(root){
     const hangNy = nyCo.filter(v => v > nyC).length + 1;   // 1 = cao nhất chuỗi
     const dinh = Math.max(...F.rev.filter(v => v != null));
     document.getElementById('fn1').innerHTML = nyC == null ? '' :
-      `<div class="note" style="margin-top:10px"><b>${nyC >= 0 ? 'Lợi nhuận vẫn tăng so với cùng kỳ.' : 'Lợi nhuận giảm so với cùng kỳ.'}</b>
-       ${q[q.length-1]}: LNST ${nyC >= 0 ? '+' : ''}${nyC.toFixed(1)}% YoY — <b>mức tăng ${
-         hangNy === 1 ? 'cao nhất' : hangNy === nyCo.length ? 'thấp nhất' : 'thứ ' + hangNy}</b>
-       trong ${nyCo.length} quý gần nhất.</div>`;
+      ``;
     document.getElementById('fn2').innerHTML = revC == null ? '' :
-      `<div class="note" style="margin-top:10px"><b>${revC >= dinh * 0.999 ? 'Doanh thu đang ở đỉnh chuỗi.' :
-        `Doanh thu còn dưới đỉnh chuỗi ${((1 - revC/dinh)*100).toFixed(1)}%.`}</b>
-       ${q[q.length-1]}: ${num(revC,0)} tỷ · đỉnh 12 quý ${num(dinh,0)} tỷ.</div>`;
+      ``;
     const roeC = cuoi(F.roe), roeTb = roeCo.length ? roeCo.reduce((a,b)=>a+b,0)/roeCo.length : null;
     document.getElementById('fn3').innerHTML = (roeC == null || roeTb == null) ? '' :
-      `<div class="note" style="margin-top:10px"><b>ROE ${roeC >= roeTb ? 'trên' : 'dưới'} trung bình 12 quý.</b>
-       ${roeC.toFixed(1)}% so với trung bình ${roeTb.toFixed(1)}%.</div>`;
+      ``;
 
     // ---- bảng số liệu ----
     const xu = i => {
@@ -361,9 +280,7 @@ function pageChart(root){
       ${hang('P/B (lần)', F.pb, v => v.toFixed(2))}
       <tr><td>Xu hướng LN</td>${q.map((_,i) => `<td style="text-align:right">${xu(i)}</td>`).join('')}</tr>
       </tbody></table></div>
-      ${F.tim.some(t => t) ? `<p class="muted" style="margin-top:8px;font-size:12.5px">
-        <span style="color:var(--s7)">●</span> Quý có <b>đèn tím</b> — lãi đến từ hoạt động bất thường,
-        không phải từ bán hàng. ${F.q.filter((_,i)=>F.tim[i]).length}/12 quý.</p>` : ''}`;
+      ${F.tim.some(t => t) ? `` : ''}`;
   };
 
   const chips = () => document.getElementById('ctChips').innerHTML = nhanh.map(s2 => {
@@ -375,6 +292,20 @@ function pageChart(root){
   const noiChip = () => document.getElementById('ctChips').querySelectorAll('[data-s]')
     .forEach(b => b.onclick = () => { ve(b.dataset.s); chips(); noiChip(); });
   chips(); noiChip();
+
+  // khung thời gian
+  root.querySelectorAll('[data-range]').forEach(b => b.onclick = () => {
+    root.querySelectorAll('[data-range]').forEach(z => z.classList.toggle('on', z === b));
+    CT.range = b.dataset.range;
+    apKhungThoiGian();
+  });
+  // bật/tắt chỉ báo
+  root.querySelectorAll('[data-ind]').forEach(b => b.onclick = () => {
+    const k = b.dataset.ind;
+    CT.ind[k] = !CT.ind[k];
+    b.classList.toggle('on', CT.ind[k]);
+    apChiBao();
+  });
 
   const inp = document.getElementById('ctIn');
   inp.onkeydown = e => {
@@ -401,7 +332,11 @@ function benPhai(sym, bars) {
     ['ROE', F && cuoi(F.roe) != null ? cuoi(F.roe).toFixed(1) + '%' : '—'],
     ['RS (sức mạnh giá)', x && x.rs != null ? x.rs : '—'],
     ['RSI(14)', bars ? (rsi14(bars) ?? '—') : '—'],
-    ['Điểm CANSLIM', x ? `${x.score}/105` : '—'],
+    // Thang diem THAT la 100, khong phai 105. Cong lai: C1 15 + C2 15 + C3 5 +
+    // A1 10 + A2 10 + N 10 + S 5 + L 15 + I 10 = 95 co dinh, cong Mom toi da 5
+    // (Mom = round(5 x mom3) ma mom3 = pct_rank nam trong [0,1]). Truoc day ghi
+    // 105 vi tuong Mom toi da 10. Diem cao nhat thuc te trong 1.213 ma la 89,2.
+    ['Điểm CANSLIM', x ? `${x.score}/100` : '—'],
     ['Nền 30 phiên', x && x.base != null ? x.base + '%' : '—'],
     ['+/− Doanh thu (cùng kỳ)', F && cuoi(F.ry) != null ? `<span class="${cls(cuoi(F.ry))}">${cuoi(F.ry) >= 0 ? '+' : ''}${cuoi(F.ry).toFixed(1)}%</span>` : '—'],
     ['+/− LNST (cùng kỳ)', F && cuoi(F.ny) != null ? `<span class="${cls(cuoi(F.ny))}">${cuoi(F.ny) >= 0 ? '+' : ''}${cuoi(F.ny).toFixed(1)}%</span>` : '—'],
@@ -416,8 +351,7 @@ function benPhai(sym, bars) {
     <table style="width:100%">${d.map(([k, v]) =>
       `<tr><td class="muted" style="font-size:13px;padding:5px 0">${k}</td>
        <td style="text-align:right;font-weight:640;padding:5px 0">${v}</td></tr>`).join('')}</table>
-    <p class="muted" style="font-size:11.5px;margin-top:10px">RS = xếp hạng lợi nhuận 6 tháng trong ${D.universe_n} mã đang quét (0–99).
-    P/E, P/B, ROE lấy từ quý gần nhất đã công bố.</p>`;
+    `;
 }
 
 /* ============================================================================
@@ -632,8 +566,26 @@ function nenVe(cv) {
    thì một cột +3000% sẽ đè bẹp mười một cột còn lại thành đường kẻ. Cắt biên và
    nói rõ là cắt, rồi để số thật ở bảng bên dưới.
    ========================================================================== */
+/* ============================================================================
+   HAI BIỂU ĐỒ CỦA KHỐI "TÀI CHÍNH — 12 QUÝ GẦN NHẤT"
+
+   LỖI CŨ, đã sửa ở đây. Cả hai hàm dùng viewBox 1000×260 kèm
+   `preserveAspectRatio="none"`, rồi nhét vào ô rộng ~370px cao 210px. Trình duyệt
+   được lệnh KHÔNG giữ tỷ lệ, nên nó nén ngang 0,37 lần mà chỉ nén dọc 0,81 lần —
+   tức mọi chữ bị BÓP NGANG KÉO DỌC gấp hơn hai lần. Đó chính là thứ trông như
+   "lỗi font": không phải font sai, mà là chữ bị biến dạng.
+   Chữa: bỏ `preserveAspectRatio="none"`, để viewBox đúng tỷ lệ khung thật, và
+   dùng cỡ chữ bình thường (11–13) thay vì 23–28 phóng đại để bù méo.
+
+   LỖI THỨ HAI: nhãn giá trị cuối chuỗi đè lên nhau và đè lên nhãn "TB" —
+   ROE hiện "5.8" chồng "6.6", Định giá hiện "16.81" bị đường trung bình gạch ngang.
+   Chữa: đẩy nhãn tránh nhau theo chiều dọc, và cho mỗi nhãn một viền nền mỏng.
+   ========================================================================== */
+
+const FCW = 560, FCH = 260;          // khung thật của biểu đồ, giữ đúng tỷ lệ
+
 function cotKep(host, labels, series, opt = {}) {
-  const W = 1000, H = 260, PL = 92, PR = 14, PT = 18, PB = 44;
+  const W = FCW, H = FCH, PL = 54, PR = 10, PT = 14, PB = 34;
   const tran = opt.cap || null;
   const vals = series.flatMap(s => s.v).filter(v => v != null)
     .map(v => tran ? Math.max(-tran, Math.min(tran, v)) : v);
@@ -649,11 +601,11 @@ function cotKep(host, labels, series, opt = {}) {
   const Y = v => PT + (1 - (v - lo) / (hi - lo)) * (H - PT - PB);
   const bw = (W - PL - PR) / n * 0.66 / nS;
 
-  let s = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:${opt.h || 210}px;display:block">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">`;
   for (let k = 0; k <= 3; k++) {
     const v = lo + (hi - lo) * k / 3, y = Y(v);
     s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
-          <text x="${PL - 6}" y="${y + 3.5}" text-anchor="end" font-size="23" fill="var(--text-muted)">${(opt.fmt || (x => x.toFixed(0)))(v)}</text>`;
+          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(--text-muted)">${(opt.fmt || (x => x.toFixed(0)))(v)}</text>`;
   }
   if (lo < 0 && hi > 0) s += `<line x1="${PL}" x2="${W - PR}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--text-muted)" stroke-width="1.2" opacity=".55"/>`;
   series.forEach((se, k) => {
@@ -663,19 +615,22 @@ function cotKep(host, labels, series, opt = {}) {
       const v = cut ? Math.sign(v0) * tran : v0;
       const x = X(i) - (nS * bw) / 2 + k * bw;
       const y = Math.min(Y(v), Y(0)), h = Math.max(1.5, Math.abs(Y(v) - Y(0)));
-      s += `<rect x="${x}" y="${y}" width="${bw * 0.86}" height="${h}" fill="var(${se.color})"
-             opacity="${cut ? .38 : .92}"><title>${labels[i]} · ${se.name}: ${(opt.fmtV || opt.fmt || (x2 => x2.toFixed(1)))(v0)}</title></rect>`;
+      s += `<rect x="${x}" y="${y}" width="${bw * 0.86}" height="${h}" fill="var(${se.color})" rx="1"
+             opacity="${cut ? .38 : .92}"><title>${labels[i]} · ${esc(se.name)}: ${(opt.fmtV || opt.fmt || (x2 => x2.toFixed(1)))(v0)}</title></rect>`;
     });
   });
+  // Nhãn quý: 12 nhãn trong 560 đơn vị thì chật, nên xoay nghiêng cho dễ đọc
+  // thay vì để chúng dính vào nhau.
   labels.forEach((l, i) => {
-    s += `<text x="${X(i)}" y="${H - 12}" text-anchor="middle" font-size="23" fill="var(--text-muted)">${l}</text>`;
+    s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
+           transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
   });
   s += '</svg>';
   host.innerHTML = s;
 }
 
 function duongQuy(host, labels, series, opt = {}) {
-  const W = 1000, H = 260, PL = 92, PR = 14, PT = 24, PB = 44;
+  const W = FCW, H = FCH, PL = 54, PR = 14, PT = 18, PB = 34;
   const vals = series.flatMap(s => s.v).filter(v => v != null);
   if (!vals.length) { host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return; }
   let hi = Math.max(...vals), lo = Math.min(...vals);
@@ -687,30 +642,45 @@ function duongQuy(host, labels, series, opt = {}) {
   const Y = v => PT + (1 - (v - lo) / (hi - lo)) * (H - PT - PB);
   const f = opt.fmt || (x => x.toFixed(1));
 
-  let s = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:${opt.h || 210}px;display:block">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">`;
   for (let k = 0; k <= 3; k++) {
     const v = lo + (hi - lo) * k / 3, y = Y(v);
     s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
-          <text x="${PL - 6}" y="${y + 3.5}" text-anchor="end" font-size="23" fill="var(--text-muted)">${f(v)}</text>`;
+          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(--text-muted)">${f(v)}</text>`;
   }
+  // Gom mọi nhãn nổi vào một danh sách rồi mới đẩy tránh nhau — vẽ ngay tại chỗ
+  // là cách sinh ra cảnh "5.8" nằm đè lên "6.6".
+  const nhan = [];
   if (opt.tb != null) {
     s += `<line x1="${PL}" x2="${W - PR}" y1="${Y(opt.tb)}" y2="${Y(opt.tb)}" stroke="var(--text-muted)"
-           stroke-width="1.2" stroke-dasharray="5 4" opacity=".7"/>
-          <text x="${W - PR - 4}" y="${Y(opt.tb) - 5}" text-anchor="end" font-size="22" fill="var(--text-muted)">TB ${f(opt.tb)}</text>`;
+           stroke-width="1.1" stroke-dasharray="5 4" opacity=".65"/>`;
+    nhan.push({ y: Y(opt.tb) - 6, x: W - PR - 3, neo: 'end', chu: 'TB ' + f(opt.tb), mau: 'var(--text-muted)', dam: 600 });
   }
   series.forEach(se => {
     let d = '', bat = false;
     se.v.forEach((v, i) => { if (v == null) return; d += (bat ? 'L' : 'M') + X(i) + ' ' + Y(v); bat = true; });
-    if (d) s += `<path d="${d}" fill="none" stroke="var(${se.color})" stroke-width="3" stroke-linejoin="round"/>`;
-    se.v.forEach((v, i) => { if (v != null) s += `<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="var(${se.color})"><title>${labels[i]} · ${se.name}: ${f(v)}</title></circle>`; });
+    if (d) s += `<path d="${d}" fill="none" stroke="var(${se.color})" stroke-width="1.9" stroke-linejoin="round"/>`;
+    se.v.forEach((v, i) => { if (v != null) s += `<circle cx="${X(i)}" cy="${Y(v)}" r="2.6" fill="var(${se.color})"><title>${labels[i]} · ${esc(se.name)}: ${f(v)}</title></circle>`; });
     const cuoi = [...se.v].reverse().find(v => v != null);
     if (cuoi != null) {
       const i = se.v.lastIndexOf(cuoi);
-      s += `<text x="${X(i)}" y="${Y(cuoi) - 10}" text-anchor="end" font-size="28" font-weight="700" fill="var(${se.color})">${f(cuoi)}</text>`;
+      nhan.push({ y: Y(cuoi) - 8, x: Math.min(X(i) + 6, W - PR), neo: 'end', chu: f(cuoi), mau: `var(${se.color})`, dam: 700 });
     }
   });
+  // đẩy tránh nhau: nhãn nào cách nhãn trước dưới 13 đơn vị thì đùn xuống
+  nhan.sort((a, b) => a.y - b.y);
+  for (let k = 1; k < nhan.length; k++) {
+    if (nhan[k].y - nhan[k - 1].y < 13) nhan[k].y = nhan[k - 1].y + 13;
+  }
+  nhan.forEach(t => {
+    // viền nền cùng màu trang: chữ nằm trên đường kẻ vẫn đọc được
+    s += `<text x="${t.x}" y="${Math.min(t.y, H - PB - 2)}" text-anchor="${t.neo}" font-size="12" font-weight="${t.dam}"
+           fill="${t.mau}" stroke="var(--surface-1)" stroke-width="3.2" paint-order="stroke"
+           stroke-linejoin="round">${t.chu}</text>`;
+  });
   labels.forEach((l, i) => {
-    s += `<text x="${X(i)}" y="${H - 12}" text-anchor="middle" font-size="23" fill="var(--text-muted)">${l}</text>`;
+    s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
+           transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
   });
   s += '</svg>';
   host.innerHTML = s;
@@ -726,4 +696,244 @@ function rsi14(bars) {
   }
   if (up + dn === 0) return 50;
   return Math.round(100 * up / (up + dn));
+}
+
+/* ============================================================================
+   BIỂU ĐỒ NẾN TƯƠNG TÁC
+
+   Vì sao bỏ iframe TradingView. Hai lý do, cả hai đều là lỗi thật anh Sơn gặp:
+     1. TradingView KHÔNG có đủ mã sàn Việt Nam. HOSE:ORS báo "Mã giao dịch này
+        chỉ có trên TradingView" — tức là ô biểu đồ trống trơn. Một biểu đồ chỉ
+        chạy với mã lớn thì vô dụng với hệ thống này, vì hệ thống soi cả 110 mã.
+     2. Widget đó dựng chữ tiếng Việt hỏng ("Oợ Hợ Lợ Cợ ợ").
+
+   Thay bằng Lightweight Charts — cùng nhà TradingView làm ra, mã nguồn mở,
+   nhúng thẳng vào trang. Đổi lại: dữ liệu do TA cấp, nên mã nào cũng vẽ được.
+
+   ĐÂY LÀ BIỂU ĐỒ CHẠY THẬT, KHÔNG PHẢI ẢNH:
+     · con lăn chuột = phóng to thu nhỏ theo trục thời gian
+     · kéo chuột ngang = trượt qua lại lịch sử
+     · chạm hai ngón trên điện thoại = phóng to
+     · rê tới đâu, dòng OHLC trên đầu đọc số phiên đó
+     · bấm đúp = về khung mặc định
+     · kéo trục giá bên phải = giãn/nén theo chiều dọc
+
+   NGUỒN NẾN, theo thứ tự thử:
+     1. histdatafeed.vps.com.vn  — có nhãn CORS, ~6 năm, mọi mã
+     2. dchart-api.vndirect.com.vn — dự phòng, cũng có nhãn CORS
+     3. D.candles nhúng sẵn trong trang — dùng khi mất mạng
+   ========================================================================== */
+
+const CT = { chart: null, nen: null, kl: null, ma: {}, sym: null, bars: [],
+             range: '1Y', ind: { ma: true, vol: true, bot: true }, dem: {} };
+
+const CT_NGUON = [
+  { ten: 'VPS', url: (s, f, t) =>
+      `https://histdatafeed.vps.com.vn/tradingview/history?symbol=${s}&resolution=D&from=${f}&to=${t}`,
+    doc: j => (j && j.s === 'ok' && j.t) ? j : null },
+  { ten: 'VNDIRECT', url: (s, f, t) =>
+      `https://dchart-api.vndirect.com.vn/dchart/history?resolution=D&symbol=${s}&from=${f}&to=${t}`,
+    doc: j => (j && j.t && j.t.length) ? j : null },
+];
+
+/* đổi khuôn UDF (mảng song song) sang khuôn Lightweight Charts */
+function udfSangNen(j) {
+  const o = [];
+  for (let i = 0; i < j.t.length; i++) {
+    const c = +j.c[i];
+    if (!c) continue;
+    // Lightweight Charts nhận ngày dạng 'YYYY-MM-DD'. Mốc thời gian trả về là
+    // giờ quốc tế, nên phải cộng bù 7 tiếng trước khi cắt, không thì phiên nào
+    // cũng lùi một ngày.
+    o.push({ time: new Date((j.t[i] + 25200) * 1000).toISOString().slice(0, 10),
+             open: +j.o[i], high: +j.h[i], low: +j.l[i], close: c, value: +j.v[i] });
+  }
+  o.sort((a, b) => a.time < b.time ? -1 : 1);
+  return o;
+}
+
+async function layNen(sym) {
+  if (CT.dem[sym]) return CT.dem[sym];
+  const t = Math.floor(Date.now() / 1000), f = t - 86400 * 365 * 8;
+  for (const ng of CT_NGUON) {
+    try {
+      const r = await fetch(ng.url(sym, f, t), { cache: 'no-store' });
+      if (!r.ok) continue;
+      const j = ng.doc(await r.json());
+      if (!j) continue;
+      const bars = udfSangNen(j);
+      if (bars.length > 30) { CT.dem[sym] = bars; CT.nguon = ng.ten; return bars; }
+    } catch (e) { /* nguồn này hỏng thì thử nguồn sau */ }
+  }
+  // hết mạng: dùng nến nhúng sẵn trong trang, nếu mã đó có
+  const em = (D.candles || {})[sym];
+  if (em && em.bars && em.bars.length) {
+    CT.nguon = 'nhúng sẵn';
+    const bars = em.bars.map(b => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4], value: b[5] }));
+    CT.dem[sym] = bars;
+    return bars;
+  }
+  return null;
+}
+
+function ma(bars, n) {
+  const o = [];
+  let s = 0;
+  for (let i = 0; i < bars.length; i++) {
+    s += bars[i].close;
+    if (i >= n) s -= bars[i - n].close;
+    if (i >= n - 1) o.push({ time: bars[i].time, value: +(s / n).toFixed(3) });
+  }
+  return o;
+}
+
+function mauCT() {
+  const s = getComputedStyle(document.documentElement);
+  const g = k => s.getPropertyValue(k).trim();
+  const toi = document.documentElement.getAttribute('data-theme') !== 'light';
+  return { len: g('--s3') || '#199e70', giam: g('--s2') || '#d95926',
+           chu: g('--text-secondary') || '#c3c2b7', mo: g('--text-muted') || '#8b8a80',
+           duong: g('--line') || '#33322f', nen: 'transparent',
+           s1: g('--s1') || '#3987e5', s4: g('--s4') || '#c98500', s7: g('--s7') || '#9085e9',
+           toi };
+}
+
+async function moBieuDo(sym) {
+  const hop = document.getElementById('tvBox'), tai = document.getElementById('tvLoad');
+  if (!hop) return;
+  CT.sym = sym;
+  if (CT.chart) { try { CT.chart.remove(); } catch (e) {} CT.chart = null; }
+  hop.innerHTML = '';
+  if (tai) { tai.style.display = ''; tai.textContent = 'Đang lấy nến…'; }
+
+  if (typeof LightweightCharts === 'undefined') {
+    if (tai) tai.innerHTML = '<b>Không nạp được thư viện biểu đồ.</b> Tải lại trang.';
+    return;
+  }
+
+  const bars = await layNen(sym);
+  if (CT.sym !== sym) return;                  // anh Sơn đã đổi mã trong lúc chờ
+  if (!bars) {
+    if (tai) tai.innerHTML = `<b>Không lấy được nến của ${sym}.</b><br>
+      <span class="muted">Cả hai máy chủ dữ liệu đều không trả lời. Thử lại sau, hoặc kiểm tra mạng.</span>`;
+    return;
+  }
+  if (tai) tai.style.display = 'none';
+
+  const M = mauCT();
+  const c = LightweightCharts.createChart(hop, {
+    layout: { background: { type: 'solid', color: 'transparent' }, textColor: M.chu,
+              fontFamily: 'Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', fontSize: 11 },
+    grid: { vertLines: { color: M.duong }, horzLines: { color: M.duong } },
+    rightPriceScale: { borderColor: M.duong, scaleMargins: { top: 0.08, bottom: 0.26 } },
+    // rightOffset 12: chừa chỗ trống bên phải để nhãn "MUA 14.05" của phiên cuối
+    // không bị mép biểu đồ cắt cụt.
+    timeScale: { borderColor: M.duong, rightOffset: 12, minBarSpacing: 0.4 },
+    crosshair: {
+      mode: LightweightCharts.CrosshairMode.Normal,
+      vertLine: { color: M.mo, width: 1, style: 3, labelBackgroundColor: M.toi ? '#333' : '#555' },
+      horzLine: { color: M.mo, width: 1, style: 3, labelBackgroundColor: M.toi ? '#333' : '#555' },
+    },
+    localization: {
+      locale: 'vi-VN',
+      priceFormatter: p => p.toFixed(2),
+      timeFormatter: t => t,
+    },
+    handleScroll: { mouseWheel: true, pressedMouseMove: true, horzTouchDrag: true, vertTouchDrag: false },
+    handleScale:  { mouseWheel: true, pinch: true, axisPressedMouseMove: true, axisDoubleClickReset: true },
+    autoSize: true,
+  });
+  CT.chart = c;
+
+  CT.nen = c.addCandlestickSeries({
+    upColor: M.len, downColor: M.giam, borderUpColor: M.len, borderDownColor: M.giam,
+    wickUpColor: M.len, wickDownColor: M.giam,
+    priceFormat: { type: 'price', precision: 2, minMove: 0.01 },
+  });
+  CT.nen.setData(bars);
+
+  // Khối lượng, ép xuống 22% dưới cùng để không che nến.
+  // lastValueVisible: false — không thì trục giá bên phải hiện thêm một nhãn
+  // "2305900.00" nằm ngay dưới nhãn giá, nhìn như giá cổ phiếu là hai triệu.
+  CT.kl = c.addHistogramSeries({ priceFormat: { type: 'volume' }, priceScaleId: 'kl',
+                                 lastValueVisible: false, priceLineVisible: false });
+  c.priceScale('kl').applyOptions({ scaleMargins: { top: 0.78, bottom: 0 } });
+  CT.kl.setData(bars.map(b => ({ time: b.time, value: b.value,
+    color: (b.close >= b.open ? M.len : M.giam) + '55' })));
+
+  // ba đường trung bình
+  CT.ma = {};
+  [[20, M.s1], [50, M.s4], [200, M.s7]].forEach(([n, col]) => {
+    if (bars.length < n + 5) return;
+    const s = c.addLineSeries({ color: col, lineWidth: 1.5, priceLineVisible: false,
+                                lastValueVisible: false, crosshairMarkerVisible: false });
+    s.setData(ma(bars, n));
+    CT.ma['ma' + n] = s;
+  });
+
+  // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
+  CT.bars = bars;
+  const co = new Set(bars.map(b => b.time));
+  const MK = (typeof dauMuaBan === 'function' ? dauMuaBan(sym) : [])
+    .concat(((D.candles || {})[sym] || {}).marks || []);
+  const daVe = new Set();
+  CT.marks = MK.filter(m => co.has(m.d) && !daVe.has(m.t + m.d) && daVe.add(m.t + m.d))
+    .sort((a, b) => a.d < b.d ? -1 : 1)
+    .map(m => ({
+      time: m.d, position: m.t === 'B' ? 'belowBar' : 'aboveBar',
+      color: m.t === 'B' ? M.s1 : M.giam, shape: m.t === 'B' ? 'arrowUp' : 'arrowDown',
+      text: (m.t === 'B' ? 'MUA' : 'BÁN') + (m.px ? ' ' + m.px : ''),
+    }));
+
+  // dòng OHLC ở đầu khung, cập nhật theo con trỏ
+  const dau = document.getElementById('ctHead');
+  const veDau = b => {
+    if (!b || !dau) return;
+    const tr = bars.findIndex(x => x.time === b.time) - 1;
+    const p = tr >= 0 ? (b.close / bars[tr].close - 1) * 100 : null;
+    const m = b.close >= b.open ? 'var(--good)' : 'var(--critical)';
+    dau.innerHTML = `<b class="ohsym">${sym}</b>
+      <span class="ohk">M</span><span style="color:${m}">${b.open.toFixed(2)}</span>
+      <span class="ohk">C</span><span style="color:${m}">${b.high.toFixed(2)}</span>
+      <span class="ohk">T</span><span style="color:${m}">${b.low.toFixed(2)}</span>
+      <span class="ohk">Đ</span><b style="color:${m}">${b.close.toFixed(2)}</b>
+      ${p == null ? '' : `<span style="color:${m}">${p >= 0 ? '+' : ''}${p.toFixed(2)}%</span>`}
+      <span class="ohk">KL</span><span>${(b.value / 1e6).toFixed(2)} tr</span>
+      <span class="ohd">${b.time.split('-').reverse().join('/')}</span>`;
+  };
+  veDau(bars[bars.length - 1]);
+  c.subscribeCrosshairMove(p => {
+    if (!p || !p.time) { veDau(bars[bars.length - 1]); return; }
+    const b = p.seriesData.get(CT.nen);
+    if (b) veDau(Object.assign({ time: p.time, value: (p.seriesData.get(CT.kl) || {}).value || 0 }, b));
+  });
+
+  apChiBao();
+  apKhungThoiGian();
+
+  // Chi con mot dong nguon goc, khong huong dan. Nguoi dung tu lan chuot la biet.
+  document.getElementById('tvNote').innerHTML =
+    `<span class="muted">${bars.length} phiên · nguồn ${CT.nguon}${
+      CT.marks.length ? ` · ${CT.marks.length} dấu bot` : ''}</span>`;
+
+  // đổi nền sáng/tối thì vẽ lại cho khớp
+  if (!CT.theoDoiMau) {
+    CT.theoDoiMau = new MutationObserver(() => { if (CT.sym) moBieuDo(CT.sym); });
+    CT.theoDoiMau.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+}
+
+function apChiBao() {
+  if (!CT.chart) return;
+  Object.values(CT.ma).forEach(s => s.applyOptions({ visible: !!CT.ind.ma }));
+  if (CT.kl) CT.kl.applyOptions({ visible: !!CT.ind.vol });
+  if (CT.nen) CT.nen.setMarkers(CT.ind.bot ? (CT.marks || []) : []);
+}
+
+function apKhungThoiGian() {
+  if (!CT.chart || !CT.bars.length) return;
+  const n = { '3M': 66, '1Y': 250, '3Y': 750, '5Y': 1250, 'ALL': CT.bars.length }[CT.range] || 250;
+  const b = CT.bars;
+  const tu = b[Math.max(0, b.length - n)].time, den = b[b.length - 1].time;
+  CT.chart.timeScale().setVisibleRange({ from: tu, to: den });
 }
