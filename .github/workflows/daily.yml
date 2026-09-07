@@ -2,9 +2,16 @@ name: Cập nhật Nguyễn Sơn Invest
 
 on:
   schedule:
-    # 12:30 UTC = 19:30 giờ Việt Nam, thứ Hai đến thứ Sáu.
-    # GitHub chạy theo UTC nên đừng sửa thành 30 19.
-    - cron: '30 12 * * 1-5'
+    # GitHub chạy theo UTC — giờ Việt Nam = UTC + 7. Đừng sửa thành giờ VN.
+    # GitHub KHÔNG bảo đảm chạy đúng giờ: thực tế các lần chạy tự động bị đẩy
+    # trễ 4–6 tiếng, và có nhịp bị bỏ hẳn. Nên đặt BA nhịp rải trong tối.
+    # Nhịp nào chạy được thì trang lên; nhịp sau chạy lại với dữ liệu đầy hơn,
+    # vô hại vì chỉ ghi đè cùng một phiên. Cả ba đều nằm sau 19h giờ VN, là lúc
+    # FireAnt đã đổ đủ dữ liệu dòng tiền mua/bán — nên không nhịp nào trượt
+    # cổng kiểm tra vì cào sớm.
+    - cron: '23 12 * * 1-5'   # 19h23 giờ VN
+    - cron: '23 15 * * 1-5'   # 22h23 giờ VN
+    - cron: '23 18 * * 1-5'   # 01h23 giờ VN hôm sau
   workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
 
 concurrency:
