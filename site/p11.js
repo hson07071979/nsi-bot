@@ -253,8 +253,8 @@ function renderLiveBar() {
 
   if (!L) {
     el2.className = 'livebar off';
-    el2.innerHTML = `<span class="ldot"></span><span>Bản chụp phiên ${ddmm(D.asof)}</span>
-      <span class="lmuted">— trang đang mở từ file trên máy nên không có dữ liệu trong phiên</span>`;
+    el2.innerHTML = `<span class="ldot"></span><span>Chưa có dữ liệu real-time</span>
+      <span class="lmuted">— trang đang mở từ file trên máy nên không kết nối được bảng giá</span>`;
     return;
   }
 
@@ -266,7 +266,7 @@ function renderLiveBar() {
     el2.innerHTML = `<span class="ldot"></span>
       <b>${mua.length} mã đủ điểm mua</b>
       <span>${mua.map(h => h.sym).join(' · ')}</span>
-      <span class="lmuted">cập nhật ${hhmm(L.asof)}${L.realtime ? ' (real-time)' : ''} · phiên ${ddmm(L.session)}</span>
+      <span class="lmuted">cập nhật ${hhmm(L.asof)}${L.realtime ? ' (real-time)' : ''}</span>
       <button class="mini" onclick="go('chuong')">Xem chi tiết</button>`;
     return;
   }
@@ -290,12 +290,10 @@ function renderLiveBar() {
 
   const rt = L.realtime ? ' <b style="color:var(--good)">· real-time</b>' : '';
   const trangthai = (L.open || L.realtime)
-    ? `Đang theo dõi phiên ${ddmm(L.session)}${L.frac ? ` · đã đi ${Math.round(L.frac * 100)}%` : ''}${rt}`
-    : `Phiên ${ddmm(L.session)} đã đóng cửa${rt}`;
-  // Hai moc khac nhau, dung de lan: gia chay real-time, con nen du lieu
-  // (diem, nen gia, nguong tra cuu) chi moi den phien EOD gan nhat.
-  const eod = (D.asof && ddmm(D.asof) !== ddmm(L.session))
-    ? ` <span class="lmuted">· nền dữ liệu EOD: phiên ${ddmm(D.asof)}</span>` : '';
+    ? `Đang theo dõi thị trường${L.frac ? ` · phiên đã đi ${Math.round(L.frac * 100)}%` : ''}${rt}`
+    : `Thị trường đã đóng cửa${rt}`;
+  // Anh Son yeu cau bo het ngay thang khoi thanh live — chi noi real-time.
+  const eod = '';
   el2.className = 'livebar ' + (L.open || L.realtime ? 'on' : 'off');
   el2.innerHTML = `<span class="ldot"></span><span>${trangthai}</span>
     <span class="lmuted">quét ${L.scanned}/${L.universe || '—'} mã lúc ${hhmm(L.asof)}${

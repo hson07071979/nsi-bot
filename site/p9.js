@@ -58,7 +58,7 @@ function pageHome(root){
   root.innerHTML = `
   ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
-    <div class="badge">Cập nhật ${D.asof} · dữ liệu FireAnt · chỉ giao dịch TOP 110 mã thanh khoản nhất</div>
+    <div class="badge">Dữ liệu real-time · nguồn FireAnt · chỉ giao dịch TOP 110 mã thanh khoản nhất</div>
     <h1>Hiệu suất thật,<br>đo trên ${(dates.length/250).toFixed(1)} năm dữ liệu.</h1>
     
   </div>

@@ -25,7 +25,8 @@ function esc(x) {
 function escA(x) { return esc(x).replace(/`/g, '&#96;'); }
 
 const D = JSON.parse(document.getElementById('DATA').textContent);
-document.getElementById('asof').textContent = D.asof;
+const _asEl = document.getElementById('asof');
+if (_asEl) _asEl.textContent = D.asof;
 
 /* ---------- THANH LIEN HE — sua dung o day, khong sua cho nao khac ---------- */
 const LIENHE = {
