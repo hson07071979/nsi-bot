@@ -24,7 +24,7 @@ function pageKiemDinh(root) {
 
   root.innerHTML = `
   <div class="hero">
-    <div class="badge">Sinh tự động · ${V.n_phien} phiên · chốt ${V.asof} · chạy hết ${V.runtime_s}s</div>
+    <div class="badge">Sinh tự động · ${V.n_phien} phiên · chạy hết ${V.runtime_s}s</div>
     <h1>Nếu tôi cố tình phá hệ thống này,<br>nó còn kiếm được tiền không?</h1>
     <p class="lead">Backtest đẹp là chuyện dễ: vặn tham số cho vừa quá khứ thì đường vốn nào cũng dựng đứng.
     Trang này hỏi câu ngược lại. Tám bài dưới đây được viết ra để hệ thống <b>trượt</b> —

@@ -51,7 +51,7 @@ function kpi(lab,val,sub,klass){
 function pageOverview(root){
   root.innerHTML = `
   <div class="hero">
-    <div class="badge">Dữ liệu FireAnt · ${D.universe_n} mã HOSE + HNX · backtest 2019 → ${D.asof}</div>
+    <div class="badge">Dữ liệu FireAnt · ${D.universe_n} mã HOSE + HNX · backtest từ 2019 đến phiên gần nhất</div>
     <h1>Hệ thống không đoán thị trường.<br>Nó chỉ chờ đúng một loại phiên.</h1>
     <p class="lead">Hệ thống của Nguyễn Sơn mua cổ phiếu <b>đúng phiên tiền lớn nhảy vào</b> — giá cận trần, khối lượng gấp đôi, <b>cỡ lệnh mua to hơn cỡ lệnh bán 20%</b>, sau một nền giá yên tĩnh 30 phiên. Sai thì cắt trong 3–4%, đúng thì gồng tới cùng. Dưới đây là toàn bộ những gì đã thực sự xảy ra trong ${(dates.length/250).toFixed(1)} năm qua.</p>
   </div>

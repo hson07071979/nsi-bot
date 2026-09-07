@@ -232,7 +232,7 @@ function pageHieuQua(root) {
   root.innerHTML = `
   ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
-    <div class="badge">Kiểm nghiệm ${nam.toFixed(1)} năm · ${D.prod.curve.length} phiên · chốt ${D.asof}</div>
+    <div class="badge">Kiểm nghiệm ${nam.toFixed(1)} năm · ${D.prod.curve.length} phiên</div>
     <h1>Hệ thống này có đáng tin không?</h1>
     <p class="lead">Sáu con số dưới đây là toàn bộ câu trả lời ngắn. Chúng đến từ backtest
     chạy lại từng phiên một từ 02/01/2019, đã trừ phí <b>0,15% mua · 0,25% bán</b>,

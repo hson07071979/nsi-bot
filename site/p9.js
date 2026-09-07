@@ -345,8 +345,8 @@ function benPhai(sym, bars) {
       <b style="font-size:17px">${sym}</b><span class="muted" style="font-size:12px">${x ? x.exch : ''}</span></div>
     <div style="font-size:34px;font-weight:750;line-height:1.15;margin-top:6px">${gia != null ? (+gia).toFixed(2) : '—'}
       ${pc0 != null ? `<span style="font-size:17px" class="${pc0 >= 0 ? 'pos' : 'neg'}">${pc0 >= 0 ? '+' : ''}${pc0.toFixed(2)}%</span>` : ''}</div>
-    <div class="muted" style="font-size:12.5px;margin-bottom:12px">${bars ? bars[bars.length-1][0] : D.asof}${
-      (NSI.rt || {})[sym] ? ' · real-time' : ''}</div>
+    <div class="muted" style="font-size:12.5px;margin-bottom:12px">${
+      (NSI.rt || {})[sym] ? 'real-time' : 'giá đóng cửa gần nhất'}</div>
     <div class="muted" style="font-size:12px;letter-spacing:.06em;font-weight:700;margin-bottom:6px">CHỈ SỐ CƠ BẢN</div>
     <table style="width:100%">${d.map(([k, v]) =>
       `<tr><td class="muted" style="font-size:13px;padding:5px 0">${k}</td>

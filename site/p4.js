@@ -2,7 +2,7 @@
 function pageBacktest(root){
   root.innerHTML=`
   <h1>Backtest chi tiết</h1>
-  <p class="lead">Chạy tuần tự từng phiên từ 02/01/2019 đến ${D.asof} trên ${D.universe_n} mã. Dữ liệu cơ bản chỉ được dùng <b>sau ngày công bố báo cáo thật</b>. Vốn hoá lấy theo từng phiên từ FireAnt — không có lookahead ở bất kỳ đâu.</p>
+  <p class="lead">Chạy tuần tự từng phiên từ 02/01/2019 đến phiên gần nhất trên ${D.universe_n} mã. Dữ liệu cơ bản chỉ được dùng <b>sau ngày công bố báo cáo thật</b>. Vốn hoá lấy theo từng phiên từ FireAnt — không có lookahead ở bất kỳ đâu.</p>
 
   <h2>Năm cấu hình, cùng một bộ tín hiệu</h2>
   <div class="card"><table><thead><tr><th>Cấu hình</th><th style="text-align:right">Tổng LN</th><th style="text-align:right">CAGR</th>
