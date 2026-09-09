@@ -3,14 +3,22 @@ name: Cập nhật Nguyễn Sơn Invest
 on:
   schedule:
     # GitHub chạy theo UTC — giờ Việt Nam = UTC + 7. Đừng sửa thành giờ VN.
-    # GitHub KHÔNG bảo đảm chạy đúng giờ: thực tế các lần chạy tự động bị đẩy
-    # trễ 4–6 tiếng, và có nhịp bị bỏ hẳn. Nên đặt BA nhịp rải trong tối.
-    # Nhịp nào chạy được thì trang lên; nhịp sau chạy lại với dữ liệu đầy hơn,
-    # vô hại vì chỉ ghi đè cùng một phiên. Cả ba đều nằm sau 19h giờ VN, là lúc
-    # FireAnt đã đổ đủ dữ liệu dòng tiền mua/bán — nên không nhịp nào trượt
-    # cổng kiểm tra vì cào sớm.
+    #
+    # ĐO THỰC TẾ 07–09/09/2026, đừng đoán lại từ đầu:
+    #   cron 12:23 UTC -> chạy 16:43 UTC  (trễ 4h20)
+    #   cron 15:23 UTC -> chạy 21:15 UTC  (trễ 5h52)
+    #   cron 18:23 UTC -> chạy 18:49 UTC  (trễ 26 phút)
+    # Cả ba nhịp ĐỀU nổ, mỗi cái trễ ngẫu nhiên từ nửa tiếng tới gần sáu tiếng.
+    #
+    # BÀI HỌC: thêm cron KHÔNG kéo giờ chạy sớm lên được. GitHub trễ từng cron
+    # một cách độc lập, nên nhiều cron chỉ tăng khả năng "có ít nhất một cái
+    # chạy được", đổi lại là chắc chắn dựng trùng 2–3 lần mỗi ngày, mỗi lần
+    # 10–14 phút. Bản cũ đặt BA nhịp vì tưởng như vậy sẽ sớm hơn — sai.
+    #
+    # CÁCH ĐÚNG: giữ HAI nhịp (một tối, một khuya làm lưới an toàn — một nhịp
+    # duy nhất mà bị GitHub bỏ là mất trắng cả ngày), rồi làm cho lần chạy thừa
+    # trở nên RẺ bằng job `kiem` bên dưới. Đừng thêm cron thứ ba nữa.
     - cron: '23 12 * * 1-5'   # 19h23 giờ VN
-    - cron: '23 15 * * 1-5'   # 22h23 giờ VN
     - cron: '23 18 * * 1-5'   # 01h23 giờ VN hôm sau
   workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
 
@@ -19,7 +27,84 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # ─── BƯỚC CHẶN TRÙNG PHIÊN ──────────────────────────────────────────────
+  # Vì sao cần: GitHub trễ cron tuỳ hứng (xem ghi chú ở phần schedule), nên hai
+  # nhịp có thể cùng rơi vào sau giờ đóng cửa của CÙNG một phiên và dựng lại y
+  # hệt nhau — mỗi lần 10–14 phút, không thêm một con số nào.
+  #
+  # Job này hỏi FireAnt phiên giao dịch mới nhất là ngày nào, so với `asof` của
+  # thresholds.json đang đăng. Trùng, VÀ bản đang đăng có đủ dữ liệu dòng tiền,
+  # thì bỏ qua — lần chạy thừa còn ~30 giây thay vì 14 phút.
+  #
+  # Mọi trường hợp không chắc đều ngả về CHẠY: hỏi FireAnt hỏng, đọc
+  # thresholds.json hỏng, hay bản đang đăng cào sớm nên dòng tiền mỏng. Thà
+  # dựng thừa còn hơn bỏ mất một phiên.
+  kiem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      bo_qua: ${{ steps.g.outputs.bo_qua }}
+    steps:
+      - name: Trang đã dựng cho phiên mới nhất chưa?
+        id: g
+        env:
+          CHU:  ${{ vars.PAGES_OWNER }}
+          REPO: ${{ vars.PAGES_REPO }}
+        run: |
+          python3 - <<'PY'
+          import datetime as dt, json, os, urllib.request
+
+          def get(url, timeout=30):
+              req = urllib.request.Request(url, headers={
+                  'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json',
+                  'Referer': 'https://fireant.vn/'})
+              with urllib.request.urlopen(req, timeout=timeout) as r:
+                  return json.loads(r.read().decode('utf-8'))
+
+          # 1. Phien moi nhat hoi THANG FireAnt, khong suy tu lich — ngay le ma
+          #    doan bang lich la sai, va sai theo huong bo qua nham.
+          now = dt.datetime.utcnow() + dt.timedelta(hours=7)     # gio Viet Nam
+          to  = now.date().isoformat()
+          frm = (now.date() - dt.timedelta(days=12)).isoformat()
+          phien = ''
+          for sym in ('VCB', 'HPG', 'FPT'):
+              try:
+                  rows = get('https://www.fireant.vn/api/Data/Companies/HistoricalQuotes'
+                             f'?symbol={sym}&startDate={frm}&endDate={to}')
+                  if isinstance(rows, list) and rows:
+                      phien = max(str(r.get('Date', ''))[:10] for r in rows)
+                      break
+              except Exception as e:
+                  print(f'  hoi {sym} khong duoc: {e}')
+
+          # 2. Trang dang dang phien nao, va ban do co day du khong
+          asof, cover = '', None
+          try:
+              t = get('https://raw.githubusercontent.com/'
+                      f'{os.environ["CHU"]}/{os.environ["REPO"]}/main/thresholds.json')
+              asof, cover = str(t.get('asof') or ''), t.get('oi_cover')
+          except Exception as e:
+              print(f'  chua doc duoc thresholds.json: {e}')
+
+          # Ban dang dang thieu oi_cover (dung publish.py cu) => coi nhu chua du,
+          # va cu chay. Sau lan dung dau tien co truong do thi tu dong sach.
+          du_day = isinstance(cover, (int, float)) and cover >= 0.85
+          bo_qua = bool(phien) and asof == phien and du_day
+
+          print(f'phien moi nhat (FireAnt)  : {phien or "KHONG HOI DUOC"}')
+          print(f'trang dang dung phien     : {asof or "?"}')
+          print(f'do phu dong tien ban dang : {cover}')
+          print('=> ' + ('BO QUA — trang da moi roi' if bo_qua else 'CHAY day chuyen'))
+
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write('bo_qua=%s\n' % ('true' if bo_qua else 'false'))
+          PY
+
   build:
+    needs: kiem
+    # Bam chay tay o tab Actions thi LUON chay, ke ca khi trang da moi — de con
+    # ep dung lai khi vua sua code.
+    if: github.event_name == 'workflow_dispatch' || needs.kiem.outputs.bo_qua != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
 
