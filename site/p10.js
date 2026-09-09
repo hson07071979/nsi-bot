@@ -27,14 +27,15 @@ function laiSauPhi(buy, sell) {
 }
 
 function nsiLoad(){
-  const empty = {watch:[], trades:[], an:[]};
+  const empty = {watch:[], trades:[], an:[], loai:[]};
   try {
     const raw = window.localStorage.getItem(NSI_KEY);
     _storageOK = true;
     if (!raw) return empty;
     const o = JSON.parse(raw);
     // bản cũ dùng tên `syms`, đọc lại được để không mất dữ liệu anh đã nhập
-    return {watch: o.watch || o.syms || [], trades: o.trades || [], an: o.an || []};
+    return {watch: o.watch || o.syms || [], trades: o.trades || [],
+            an: o.an || [], loai: o.loai || []};
   } catch(e){
     _storageOK = false;
     return _mem || empty;
@@ -73,6 +74,10 @@ function soTayJSON(){
     // Mã anh Sơn ẩn khỏi Danh mục hệ thống. Phải đi cùng manual.json, không thì
     // ẩn xong chỉ mình máy anh thấy còn khách hàng vẫn thấy mã đó.
     an: d.an || [],
+    // Mã anh Sơn LOẠI. Khác hẳn `an`: `an` chỉ giấu khỏi bảng cho đỡ rối, còn
+    // `loai` chi phối chính bộ máy — manual.py đọc khoá này, mã trong đây không
+    // bao giờ vào watchlist và không bao giờ kêu chuông.
+    loai: d.loai || [],
   }, null, 1);
 }
 
@@ -145,6 +150,20 @@ function pageNotebook(root){
     <div id="symbox" style="margin-top:12px"></div>
   </div>
 
+  <h2>Mã tôi loại <span class="muted" style="font-size:15px;font-weight:400">→ không bao giờ vào watchlist, không bao giờ kêu chuông</span></h2>
+  <div class="card">
+    <div class="frm">
+      <input id="lIn" list="symlist" placeholder="Mã, ví dụ ROS" maxlength="8" class="fin" style="width:130px">
+      <input id="lNote" placeholder="Lý do (bán lại hoài, ban lãnh đạo…)" class="fin" style="flex:1;min-width:180px">
+      <button class="btn" id="lAdd">Loại mã</button>
+    </div>
+    <div id="loaibox" style="margin-top:12px"></div>
+    <div class="note" style="margin-top:12px"><b>Loại không làm hệ bán.</b> Mã đang cầm vẫn do
+    bộ thoát chín lớp quyết định lúc nào bán — loại chỉ nghĩa là "đừng mua thêm, đừng báo chuông nữa".
+    Khác với <b>ẩn</b> ở dưới: ẩn chỉ giấu mã khỏi bảng danh mục cho đỡ rối, còn loại thì chi phối
+    chính bộ máy. Có hiệu lực từ lượt quét trong phiên kế tiếp, chậm nhất là bản quét tối nay.</div>
+  </div>
+
   <h2>Lệnh của tôi <span class="muted" style="font-size:15px;font-weight:400">→ chảy vào Danh mục hệ thống</span></h2>
   <div class="card">
     <div class="frm">
@@ -210,9 +229,10 @@ function pageNotebook(root){
 
   <h2>Ghim và loại thủ công</h2>
   <div class="card">
-    <p style="margin-top:0">Hai danh sách này nằm trong <b>repo private</b> dưới dạng hai file văn bản, sửa thẳng
-    trên GitHub. Khác với sổ tay ở trên (chảy vào trang ngay khi anh đăng), hai file đó
-    <b>chi phối chính bộ máy</b>: chúng quyết định mã nào được vào watchlist tự động và mã nào được phép kêu chuông.</p>
+    <p style="margin-top:0">Đây là <b>bản đang có hiệu lực</b> của bộ máy — nó quyết định mã nào vào
+    watchlist tự động và mã nào được phép kêu chuông. Gộp từ <b>hai nguồn</b>: hai file văn bản
+    <code>ghim.txt</code> / <code>loai.txt</code> trong repo, <b>và</b> chính Sổ tay ở trên.
+    Sửa ở đâu cũng được — Sổ tay tiện hơn vì bấm "Đăng lên trang" là xong, khỏi mở GitHub.</p>
     <div class="two">
       <div>
         <h3 style="margin:0 0 6px"><code>ghim.txt</code> — ${(D.screener.seed || []).length} mã ghim</h3>
@@ -265,7 +285,25 @@ function pageNotebook(root){
         }).join('') + '</tbody></table></div>'
       : '<p class="muted" style="margin:0">Chưa có mã nào. Gõ mã vào ô trên rồi bấm "Thêm mã".</p>';
     sb.querySelectorAll('[data-del]').forEach(b => b.onclick = () => {
-      const x = nsiLoad(); x.watch.splice(+b.dataset.del,1); nsiSave(x); render();
+      const x = nsiLoad(); x.watch.splice(+b.dataset.del,1); nsiSave(x); render(); doiTrang();
+    });
+
+    // ----- mã đã loại -----
+    const lb = document.getElementById('loaibox');
+    const dsLoai = d.loai || [];
+    lb.innerHTML = dsLoai.length
+      ? '<div class="tblwrap"><table><thead><tr><th>Mã</th><th>Trạng thái hệ thống</th><th>Lý do</th><th>Ngày loại</th><th style="width:60px"></th></tr></thead><tbody>' +
+        dsLoai.map((s,i)=>{
+          const lk = (D.lookup||{})[s.sym];
+          return `<tr><td class="sym">${esc(s.sym)}</td>
+            <td>${lk ? `<span class="lkbadge ${lk.state}" style="font-size:11px">${esc(lk.label)}</span>` : '<span class="muted">ngoài vũ trụ</span>'}</td>
+            <td class="muted" style="font-size:13px">${esc(s.note) || ''}</td>
+            <td class="muted" style="font-size:13px">${esc(s.added) || ''}</td>
+            <td><button class="mini" data-ldel="${i}">Bỏ</button></td></tr>`;
+        }).join('') + '</tbody></table></div>'
+      : '<p class="muted" style="margin:0">Chưa loại mã nào.</p>';
+    lb.querySelectorAll('[data-ldel]').forEach(b => b.onclick = () => {
+      const x = nsiLoad(); (x.loai || []).splice(+b.dataset.ldel,1); nsiSave(x); render(); doiTrang();
     });
 
     // ----- lệnh -----
@@ -365,6 +403,19 @@ function pageNotebook(root){
     x.watch.unshift({sym, note:(document.getElementById('sNote').value||'').trim(), added: D.asof});
     nsiSave(x); el2.value=''; document.getElementById('sNote').value=''; render(); doiTrang();
   };
+  document.getElementById('lAdd').onclick = () => {
+    const el2 = document.getElementById('lIn');
+    const sym = (el2.value||'').trim().toUpperCase();
+    if (!sym) return;
+    const x = nsiLoad();
+    x.loai = x.loai || [];
+    if (x.loai.some(s => s.sym === sym)) { alert(sym + ' đã nằm trong danh sách loại rồi.'); return; }
+    // Vừa ghim vừa loại là mâu thuẫn. LOẠI THẮNG — gỡ luôn khỏi danh sách ghim,
+    // đúng như manual.py xử lý ở phía máy chủ, để hai bên không nói khác nhau.
+    x.watch = x.watch.filter(s => s.sym !== sym);
+    x.loai.unshift({sym, note:(document.getElementById('lNote').value||'').trim(), added: D.asof});
+    nsiSave(x); el2.value=''; document.getElementById('lNote').value=''; render(); doiTrang();
+  };
   document.getElementById('tAdd').onclick = () => {
     const sym = (document.getElementById('tSym').value||'').trim().toUpperCase();
     const bd  = document.getElementById('tBd').value;
@@ -410,14 +461,17 @@ function pageNotebook(root){
     rd.onload = () => {
       try {
         const o = JSON.parse(rd.result);
-        nsiSave({watch:o.watch||o.syms||[], trades:o.trades||[]});
+        // Giữ đủ bốn khoá. Bản cũ nuốt mất `an`, nạp lại file sao lưu là danh
+        // sách ẩn biến sạch mà không báo gì.
+        nsiSave({watch:o.watch||o.syms||[], trades:o.trades||[],
+                 an:o.an||[], loai:o.loai||[]});
         render(); doiTrang();
       } catch(err){ alert('File không đọc được.'); }
     };
     rd.readAsText(f);
   };
   document.getElementById('clrBtn').onclick = () => {
-    if (confirm('Xoá sạch toàn bộ mã theo dõi và lệnh trong sổ tay?')) { nsiSave({watch:[],trades:[],an:[]}); render(); doiTrang(); }
+    if (confirm('Xoá sạch toàn bộ mã theo dõi, mã đã loại và lệnh trong sổ tay?')) { nsiSave({watch:[],trades:[],an:[],loai:[]}); render(); doiTrang(); }
   };
 
   render();
