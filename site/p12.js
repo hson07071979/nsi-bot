@@ -35,13 +35,14 @@ function manualData() {
   // Bản ĐÃ ĐĂNG — thứ khách hàng đọc được. Nháp trong máy anh Sơn không tính ở đây.
   const pick = o => o && typeof o === 'object'
     ? { trades: o.trades || [], watch: o.watch || o.syms || [],
-        an: o.an || [], updated: o.updated || null }
+        an: o.an || [], loai: o.loai || [], updated: o.updated || null }
     : null;
-  return pick(NSI.manual) || pick(D.manual) || { trades: [], watch: [], an: [], updated: null };
+  return pick(NSI.manual) || pick(D.manual)
+      || { trades: [], watch: [], an: [], loai: [], updated: null };
 }
 function manualDraft() {
   // Bản NHÁP trong trình duyệt anh Sơn — hiện kèm nhãn "chưa đăng", chỉ mình anh thấy.
-  try { return nsiLoad(); } catch (e) { return { trades: [], watch: [], an: [] }; }
+  try { return nsiLoad(); } catch (e) { return { trades: [], watch: [], an: [], loai: [] }; }
 }
 /* gộp đã đăng + nháp, nháp nào chưa có trong bản đăng thì gắn cờ chuaDang */
 function manualGop() {
@@ -49,6 +50,7 @@ function manualGop() {
   const kT = t => t.sym + '|' + (t.buy_d || '');
   const kW = w => w.sym;
   const coT = new Set(pub.trades.map(kT)), coW = new Set(pub.watch.map(kW));
+  const coL = new Set((pub.loai || []).map(kW));
   return {
     updated: pub.updated,
     // Mã anh Sơn ẩn khỏi danh mục. Gộp bản đã đăng với bản nháp: ẩn một mã ở
@@ -58,6 +60,10 @@ function manualGop() {
       .concat(dr.trades.filter(t => !coT.has(kT(t))).map(t => ({ ...t, chuaDang: true }))),
     watch: pub.watch.map(w => ({ ...w, chuaDang: false }))
       .concat(dr.watch.filter(w => !coW.has(kW(w))).map(w => ({ ...w, chuaDang: true }))),
+    // Mã anh Sơn LOẠI — chi phối chính bộ máy (manual.py đọc khoá này), khác
+    // hẳn `an` ở trên vốn chỉ giấu khỏi bảng danh mục.
+    loai: (pub.loai || []).map(w => ({ ...w, chuaDang: false }))
+      .concat((dr.loai || []).filter(w => !coL.has(kW(w))).map(w => ({ ...w, chuaDang: true }))),
   };
 }
 function cfgData() {
@@ -197,9 +203,21 @@ function lichSuThat() {
 
 /* mã anh Sơn ghim tay ở Sổ tay — chảy vào Watchlist */
 function ghimThuCong() {
-  return manualGop().watch.map(w => ({
+  const G = manualGop();
+  // Loại thắng ghim: một mã vừa ghim vừa loại thì không được hiện ở mục ghim
+  // nữa, đúng như manual.py xử lý phía máy chủ.
+  const bo = new Set((G.loai || []).map(w => String(w.sym).toUpperCase()));
+  return G.watch.filter(w => !bo.has(String(w.sym).toUpperCase())).map(w => ({
     sym: w.sym, note: w.note || '', added: w.added || '', chuaDang: !!w.chuaDang,
     sector: nganhCua(w.sym), price: giaMoiNhat(w.sym),
+    look: (D.lookup || {})[w.sym] || null,
+  }));
+}
+
+/* mã anh Sơn loại tay ở Sổ tay — không bao giờ vào watchlist, không kêu chuông */
+function loaiThuCong() {
+  return (manualGop().loai || []).map(w => ({
+    sym: w.sym, note: w.note || '', added: w.added || '', chuaDang: !!w.chuaDang,
     look: (D.lookup || {})[w.sym] || null,
   }));
 }
