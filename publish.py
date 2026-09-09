@@ -54,6 +54,11 @@ def main():
 
     th = dict(
         asof=D['asof'],
+        # Do phu du lieu dong tien mua/ban cua phien cuoi. Buoc chan trung phien
+        # trong daily.yml doc con so nay de biet ban DA DANG co "day du" chua:
+        # cao som thi FireAnt chua do BuyCount/SellCount, trang van dang duoc
+        # nhung mong, va nhip sau nen chay lai chu khong duoc bo qua.
+        oi_cover=D.get('oi_cover'),
         fa_score_lo=40, score_floor=45,
         gtgd_min=15e9,
         vol_floor=2.0,
