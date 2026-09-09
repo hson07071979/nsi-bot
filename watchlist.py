@@ -51,10 +51,18 @@ def refresh(max_size=40):
         added.append({'sym':x['sym'],'score':x['score'],'sector':x['sector'],'base':x['base'],'rs':x['rs']})
     # ghim ma chua co
     for s in st['pinned']:
-        if s not in st['members'] and s in idx:
-            x=idx[s]
-            st['members'][s]={'added':today,'score':x['score'],'status':'ghim',
-                              'note': x['block'] if x['blocked'] else 'chưa đạt ngưỡng'}
+        if s in st['members']: continue
+        x=idx.get(s)
+        if x is None:
+            # Ngoai TOP N thanh khoan nen screener khong cham diem duoc. VAN phai
+            # hien, kem ly do — bien mat im lang la loi cu: anh Son ghim mot ma
+            # nho, khong thay gi, tuong he hong.
+            st['members'][s]={'added':today,'score':None,'status':'ghim',
+                              'note':'ngoài TOP %d thanh khoản — bot không giao dịch'
+                                     % WL['top_n']}
+            continue
+        st['members'][s]={'added':today,'score':x['score'],'status':'ghim',
+                          'note': x['block'] if x['blocked'] else 'chưa đạt ngưỡng'}
     st['log'].insert(0, {'date':today,'added':[a['sym'] for a in added],
                          'removed':[a['sym'] for a in removed],'size':len(st['members'])})
     st['log']=st['log'][:60]

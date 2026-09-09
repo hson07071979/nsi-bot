@@ -53,7 +53,12 @@ def screen(as_of_date=None):
     rows=[]
     for j,s in enumerate(S):
         if np.isnan(AC[i,j]) or I['nbars'][i,j]<250: continue
-        if WL.get('use_top_liquid', True) and not TOPN[j]: continue
+        in_uni = bool(TOPN[j])
+        # Ma GHIM van duoc cham diem du nam ngoai TOP N — de watchlist con biet no
+        # dang o dau, thay vi bien mat im lang (loi cu: ghim mot ma ngoai vu tru
+        # thi khong thay gi ca, khong mot dong bao). Nhung `in_uni` van la dieu
+        # kien BAT BUOC de vao danh sach mua — xem khac_ok ben duoi.
+        if WL.get('use_top_liquid', True) and not in_uni and s not in SEED: continue
         mc=float(MC[i,j]) if MC[i,j]==MC[i,j] else None
         tl=tls.get(s); f=as_of(tl,day) if tl else None
         if f is None:
@@ -78,7 +83,10 @@ def screen(as_of_date=None):
         # se noi khac watchlist (loi MWG cu, kieu khac).
         _npg = f.get('npat_yoy')
         dk5_ok = not (_npg is not None and 0 <= _npg < 0.25)
-        khac_ok = (not blk) and dk5_ok and (mc or 0)>=WL['min_mktcap'] \
+        # `in_uni` phai nam trong day: ma ghim ngoai TOP N duoc cham diem de hien
+        # ra, nhung TUYET DOI khong duoc vao danh sach mua — khong thi lech voi
+        # lookup.py va verify_build.py se bao truot, khong dang len web.
+        khac_ok = in_uni and (not blk) and dk5_ok and (mc or 0)>=WL['min_mktcap'] \
              and (gt or 0)>=WL['min_gtgd20'] and (br is not None and br<=WL['max_base_range']) \
              and volat>=WL['min_volat'] \
              and (rs or 0)>=WL['min_rs'] and (from_high is None or from_high>=WL['max_from_high'])
