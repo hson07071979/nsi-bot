@@ -2,24 +2,17 @@ name: Cập nhật Nguyễn Sơn Invest
 
 on:
   schedule:
-    # GitHub chạy theo UTC — giờ Việt Nam = UTC + 7. Đừng sửa thành giờ VN.
-    #
-    # ĐO THỰC TẾ 07–09/09/2026, đừng đoán lại từ đầu:
-    #   cron 12:23 UTC -> chạy 16:43 UTC  (trễ 4h20)
-    #   cron 15:23 UTC -> chạy 21:15 UTC  (trễ 5h52)
-    #   cron 18:23 UTC -> chạy 18:49 UTC  (trễ 26 phút)
-    # Cả ba nhịp ĐỀU nổ, mỗi cái trễ ngẫu nhiên từ nửa tiếng tới gần sáu tiếng.
-    #
-    # BÀI HỌC: thêm cron KHÔNG kéo giờ chạy sớm lên được. GitHub trễ từng cron
-    # một cách độc lập, nên nhiều cron chỉ tăng khả năng "có ít nhất một cái
-    # chạy được", đổi lại là chắc chắn dựng trùng 2–3 lần mỗi ngày, mỗi lần
-    # 10–14 phút. Bản cũ đặt BA nhịp vì tưởng như vậy sẽ sớm hơn — sai.
-    #
-    # CÁCH ĐÚNG: giữ HAI nhịp (một tối, một khuya làm lưới an toàn — một nhịp
-    # duy nhất mà bị GitHub bỏ là mất trắng cả ngày), rồi làm cho lần chạy thừa
-    # trở nên RẺ bằng job `kiem` bên dưới. Đừng thêm cron thứ ba nữa.
-    - cron: '23 12 * * 1-5'   # 19h23 giờ VN
-    - cron: '23 18 * * 1-5'   # 01h23 giờ VN hôm sau
+    # Do that 24 lan chay 01-15/09/2026 (API GitHub). Sau 09/09:
+    #   cron 12:23 UTC -> tre +4h08..+5h43 | cron 18:23 UTC -> tre +2h34..+2h40
+    # Do tre ON DINH theo khung gio, nen chua bang cach DAT SOM HON, khong phai
+    # them cron. GitHub chan tran ~3 lan chay/ngay/workflow (repo quet dat 27
+    # cron/ngay van chi no 3). Dung dat qua 3 cua.
+    # Chay ca 7 ngay: cuoi tuan `kiem` bo qua het (~30s) va lam luoi sua sai
+    # cho phien thu Sau. Ca hai repo PUBLIC => phut Actions mien phi khong gioi han.
+    # Giai thich day du: doc du an "kien truc va quyet dinh" §9.
+    - cron: '23 9  * * *'   # 16h23 gio VN - cua chinh, ky vong no ~20h VN
+    - cron: '23 12 * * *'   # 19h23 gio VN - luoi 1
+    - cron: '23 18 * * *'   # 01h23 gio VN hom sau - luoi 2
   workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
 
 concurrency:
@@ -88,7 +81,9 @@ jobs:
 
           # Ban dang dang thieu oi_cover (dung publish.py cu) => coi nhu chua du,
           # va cu chay. Sau lan dung dau tien co truong do thi tu dong sach.
-          du_day = isinstance(cover, (int, float)) and cover >= 0.85
+          # 0.70 vi ban day du do duoc ~0.77; de 0.85 thi khong bao gio dat
+          # => `kiem` khong bao gio bo qua => 3 cua deu dung lai, phi 33 phut/ngay.
+          du_day = isinstance(cover, (int, float)) and cover >= 0.70
           bo_qua = bool(phien) and asof == phien and du_day
 
           print(f'phien moi nhat (FireAnt)  : {phien or "KHONG HOI DUOC"}')
