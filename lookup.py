@@ -8,6 +8,7 @@ va cho biet ma dang o trang thai nao: da du diem mua, dang cho, chua vao nen,
 hay bi cong rui ro chan han.
 """
 import csv
+import json
 import datetime as dt
 import numpy as np
 from engine import risk_gate, canslim_score, as_of
@@ -64,6 +65,25 @@ def _pc(x, nd=1):
 
 def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
     """Tra ve dict {sym: {...}} cho o tra cuu tren trang web."""
+    # --- TAP MA DANG CAM ---
+    # Ma da mua roi thi KHONG con la "cho diem mua" nua. Neu van de nhan cu thi
+    # hai phien tran lien tiep se ra hai lenh mua cung mot ma — thanh 50% tai
+    # khoan vao mot cho, vo ly. Bo may von da chan (`if sym in pos: continue`)
+    # va so lenh that cung chan (`h['sym'] not in dang_cam`), nhung TRANG WEB va
+    # CHUONG BAO thi chua biet — nen van hien "CHO DIEM MUA" cho ma dang cam.
+    #
+    # Gop ca hai quyen so: so chay cua bo may (`vi_the`) va so ghi tien
+    # (`data/portfolio.json`, workflow da tai ve). Thieu file thi bo qua.
+    _cam = {str(p.get('sym', '')).upper() for p in (vi_the or []) if p.get('sym')}
+    for _p in ('data/portfolio.json', 'portfolio.json'):
+        try:
+            _P = json.load(open(_p, encoding='utf-8'))
+            _cam |= {str(x.get('sym', '')).upper() for x in (_P.get('open') or [])
+                     if x.get('sym') and (x.get('sh') or 0) > 0}
+            break
+        except Exception:
+            continue
+
     # Trang thai danh muc hien tai — de biet con bao nhieu cho cho lenh moi.
     # Khong truyen thi coi nhu danh muc rong, va phan giai thich NOI RO dieu do.
     _dm_n, _dm_tong, _dm_nganh, _dm_tien = tom_tat_danh_muc(vi_the, nav) \
@@ -231,7 +251,10 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
         elif blk:
             state, label = 'chan', 'CỔNG RỦI RO CHẶN'
         elif not miss:
-            state, label = 'cho', 'CHỜ ĐIỂM MUA'
+            # Giu state='cho' (verify_build.py va CSS dua vao no), chi doi NHAN.
+            # Doi ca state se lam watchlist lech voi o tra cuu -> verify bao truot.
+            state = 'cho'
+            label = 'ĐANG CẦM' if s in _cam else 'CHỜ ĐIỂM MUA'
         elif not miss_khac and fa_lo <= sc < cfg['score_floor']:
             state, label = 'fa', 'CHƯA ĐẠT VỀ CƠ BẢN'
         else:
@@ -254,6 +277,7 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
         # Dieu kien: qua HET moi dieu kien sang loc (miss rong) va thu DUY NHAT
         # chan no la cong CFO. Neu con thieu thu khac thi khong tinh — vi luc do
         # bo cong CFO di no cung chua du dieu kien.
+        dang_cam = s in _cam
         cfo_only = bool(blk and why == 'CFO < 0' and not miss and s not in LOAI)
         cfo_ty = None
         if fa is not None and fa.get('cfo_ttm') is not None:
@@ -282,5 +306,5 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
             size_vi_sao=(vt['vi_sao'] if vt else None),
             size_thuc=(vt['pct_thuc'] if vt else None),
             size_vao_duoc=(vt['vao_duoc'] if vt else None),
-            cfo_only=cfo_only, cfo_ty=cfo_ty)
+            cfo_only=cfo_only, cfo_ty=cfo_ty, dang_cam=dang_cam)
     return out

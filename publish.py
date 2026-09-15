@@ -50,6 +50,9 @@ def main():
             # index.html (tai mot lan), khong nhoi vao day vi lop truc tiep tai
             # lai file nay moi 45 giay.
             size_pct=v.get('size_pct'), size_tran=v.get('size_tran'),
+            # Ma dang cam: lop quet trong phien KHONG duoc keu MUA lan nua, va
+            # trang web phai hien "DANG CAM" thay vi "CHO DIEM MUA".
+            dang_cam=bool(v.get('dang_cam')),
             miss=v['miss'], block=v['block'],
         )
 
