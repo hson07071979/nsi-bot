@@ -161,6 +161,39 @@ function lydongan(h) {
 /* ---------------------------------------------------------------------------
    2. CƠ HỘI — một danh sách, ba bộ lọc. Gộp Watchlist + Bộ lọc lại.
 --------------------------------------------------------------------------- */
+/* CHỈ VƯỚNG CỔNG CFO — danh sách anh Sơn soi tay.
+   Luật KHÔNG đổi: những mã này vẫn bị chặn, vẫn không vào watchlist, bot vẫn
+   không mua. Đây chỉ là chỗ xem riêng, vì cổng CFO dễ bắt oan — một quý ôm hàng
+   hay một kỳ trả trước nhà cung cấp đều có thể làm dòng tiền âm mà doanh nghiệp
+   vẫn khoẻ. Đã đo: bỏ hẳn cổng này làm xấu đi cả tám chỉ số, nên không bỏ. */
+function soiCFO() {
+  const L = (typeof D !== 'undefined' && D.cfo_soi) ? D.cfo_soi : [];
+  if (!L.length) return '';
+  return `
+  <h2 style="margin-top:34px">Chỉ vướng cổng dòng tiền — soi tay
+    <span class="muted" style="font-weight:400;font-size:14px">${L.length} mã</span></h2>
+  <p class="lead" style="margin-top:-4px">Qua hết mọi điều kiện sàng lọc, chỉ bị
+  <b>một</b> cổng chặn: dòng tiền kinh doanh 12 tháng đang âm. Hệ thống
+  <b>vẫn không mua</b> những mã này — danh sách để anh tự rà lại, vì có trường hợp
+  dòng tiền âm là do ôm hàng hoặc trả trước chứ không phải doanh nghiệp yếu.</p>
+  <div class="card tblwrap"><table>
+    <thead><tr><th>Mã</th><th style="text-align:right">Điểm</th>
+      <th style="text-align:right">CFO 12T</th><th style="text-align:right">Nền</th>
+      <th style="text-align:right">GTGD</th><th style="text-align:right">Vốn hoá</th>
+      <th>Ngành</th></tr></thead>
+    <tbody>${L.map(x => `<tr>
+      <td><b>${esc(x.sym)}</b> <span class="muted">${esc((x.name || '').slice(0, 26))}</span>${
+        x.tim ? ` <span class="lkbadge tim" title="${escA(x.tim_vi)}">TÍM</span>` : ''}</td>
+      <td style="text-align:right">${x.score != null ? x.score : '—'}</td>
+      <td style="text-align:right;color:var(--neg)">${
+        x.cfo_ty != null ? String(x.cfo_ty).replace('.', ',') + ' tỷ' : '—'}</td>
+      <td style="text-align:right">${x.base != null ? x.base + '%' : '—'}</td>
+      <td style="text-align:right">${x.gtgd != null ? x.gtgd + ' tỷ' : '—'}</td>
+      <td style="text-align:right">${x.mktcap != null ? Math.round(x.mktcap).toLocaleString('vi-VN') + ' tỷ' : '—'}</td>
+      <td class="muted">${esc(x.sector)}</td></tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
 function pageCoHoi(root) {
   const L = (typeof LIVE !== 'undefined' && LIVE.data) ? LIVE.data : (D.live || { hits: [] });
   const Lk = D.lookup || {};
@@ -199,7 +232,8 @@ function pageCoHoi(root) {
     <button data-f="SAP_DU">🟠 Sắp đủ <span class="muted">${ds.filter(x => x.level === 'SAP_DU').length}</span></button>
     <button data-f="CHO">🟡 Chờ điểm mua <span class="muted">${ds.filter(x => x.level === 'CHO' || x.level === 'DE_MAT' || x.level === 'THEO_DOI').length}</span></button>
   </div>
-  <div id="chDs" class="cgrid"></div>`;
+  <div id="chDs" class="cgrid"></div>
+  ${soiCFO()}`;
 
   const ve = f => {
     const l = f === 'all' ? ds
