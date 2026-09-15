@@ -202,6 +202,9 @@ function pageCoHoi(root) {
   (L.hits || []).forEach(h => { m[h.sym] = { ...h }; });
   Object.entries(Lk).forEach(([s, x]) => {
     if (x.state !== 'cho' && x.state !== 'fa') return;
+    // Mã đã mua rồi thì theo dõi ở Danh mục, không còn là "cơ hội" nữa. Để lại
+    // đây thì hai phiên trần liên tiếp sẽ ra hai lệnh mua cùng một mã.
+    if (x.dang_cam) return;
     if (m[s]) return;
     m[s] = { sym: s, name: x.name, level: 'CHO', price: x.price, pct: 0, score: x.score,
              base: x.base, need_px: x.need_px, need_vol: x.need_vol, miss: x.miss || [],

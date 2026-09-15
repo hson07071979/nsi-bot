@@ -505,7 +505,8 @@ function pageNotebook(root){
     const tim = x.tim ? `<span class="lkbadge tim" title="${esc(x.tim_vi) || ''}">ĐÈN TÍM</span>` : '';
     const sub = (x.tim ? `<span class="lkmiss" style="color:var(--s7)">đèn tím: ${esc(x.tim_vi)} — lãi kiểu này không lặp lại quý sau</span><br>` : '')
       + ((x.state === 'cho')
-      ? `<span class="lkmiss">nền ${x.base}% · điểm ${x.score} · GTGD ${x.gtgd} tỷ — đã qua mọi cổng, chỉ chờ phiên bùng nổ</span>`
+      ? `<span class="lkmiss">nền ${x.base}% · điểm ${x.score} · GTGD ${x.gtgd} tỷ — ${
+          x.dang_cam ? 'hệ thống ĐANG CẦM mã này, không mua thêm' : 'đã qua mọi cổng, chỉ chờ phiên bùng nổ'}</span>`
       : (x.miss && x.miss.length ? `<span class="lkmiss">còn thiếu: ${x.miss.join(' · ')}</span>` : ''));
     // CỠ VỊ THẾ — "nếu lệnh này được vào thì vào bao nhiêu phần trăm NAV, vì sao".
     // Con số do vithe.py tính, dùng chung công thức với engine2.run() nên không

@@ -137,6 +137,11 @@ function danhMuc() {
       entry: p.entry, entry_px: von, last: px, sh: p.shares || null,
       pnl: laiSauPhi(von, px) * 100,
       tien: p.shares ? p.shares * px * 1000 : null,
+      // NAV của CHÍNH quyển sổ sinh ra dòng này. Sổ chạy của bộ máy xuất phát
+      // 1 tỷ từ 02/01/2019 và đã lãi lên vài tỷ; sổ ghi tiến mới mở, vẫn 1 tỷ.
+      // Chia chung một mẫu số thì cột "% tài khoản" vô nghĩa: BSR vào đúng 25%
+      // NAV của sổ ghi tiền nhưng hiện ra 4% vì bị chia cho NAV của bộ máy.
+      navGoc: ((D.prod || {}).metrics || {}).final_nav || null,
       held: null, peak: null, nguon: 'auto', bomay: true,
     });
   });
@@ -150,6 +155,7 @@ function danhMuc() {
       entry: p.entry, entry_px: p.entry_px / 1000, last: px, sh: p.sh || null,
       pnl: laiSauPhi(p.entry_px / 1000, px) * 100,
       tien: p.sh ? p.sh * px * 1000 : null,
+      navGoc: (F && F.nav) || null,      // NAV của sổ ghi tiến, không phải của bộ máy
       held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'auto',
     });
   });
@@ -162,7 +168,7 @@ function danhMuc() {
       entry: t.buy_d, entry_px: +t.buy_px, last: px, sh: t.sh || null,
       pnl: px ? laiSauPhi(t.buy_px, px) * 100 : null,
       tien: (t.sh && px) ? t.sh * px * 1000 : null,
-      held: null, peak: null, light: null,
+      held: null, peak: null, light: null, navGoc: null,   // lệnh tay: không có sổ riêng để so
       note: t.note || '', nguon: t.chuaDang ? 'nhap' : 'tay',
     });
   });
@@ -321,7 +327,9 @@ function pageSoLenh(root) {
           <td style="text-align:right">${p.last != null ? (+p.last).toFixed(2) : '—'}</td>
           <td style="text-align:right" class="muted">${p.sh ? num(p.sh) : '—'}</td>
           <td style="text-align:right;font-weight:640">${p.tien ? vnd(p.tien) : '—'}</td>
-          <td style="text-align:right" class="muted">${(p.tien && nav) ? Math.round(100 * p.tien / nav) + '%' : '—'}</td>
+          <td style="text-align:right" class="muted" title="${
+            p.navGoc ? escA('Tính trên NAV của sổ sinh ra vị thế này: ' + tyd(p.navGoc)) : ''}">${
+            (p.tien && p.navGoc) ? Math.round(100 * p.tien / p.navGoc) + '%' : '—'}</td>
           <td style="text-align:right;font-weight:660" class="${p.pnl == null ? '' : cls(p.pnl)}">${
             p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + p.pnl.toFixed(2) + '%'}</td>
           <td>${(() => { const v = vieccanlam(p);
