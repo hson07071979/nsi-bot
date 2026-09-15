@@ -86,6 +86,7 @@ if __name__=='__main__':
         'dd':int(R['dcount'][i0+k]),'light':R['light'][i0+k],
         'br50':round(float(R['above50'][i0+k]),3),'ftd':bool(R['ftd'][i0+k])} for k in range(n)]
     out['signals']=r['signals']
+    _rg_light = out['regime'][-1]['light'] if out.get('regime') else 'XANH'
     out['open_positions']=[{'sym':p.sym,'entry':str(cal[p.ei]),'entry_px':round(float(p.epx),2),
         'shares':int(p.sh),'sector':p.sector,'last':round(float(r['d']['AdjClose'][-1,p.j]),2),
         'pnl':round(float(r['d']['AdjClose'][-1,p.j])/float(p.epx)*100-100,2)} for p in r['pos'].values()]
@@ -168,7 +169,10 @@ if __name__=='__main__':
     from vn300 import build_topn as _tn
     _C = dict(E.CFG); _C.update(PROD)
     _dd,_II,_tls,_sect = E.load()
-    out['lookup'] = _lk(r['d'], r['I'], _tls, _sect, _C, _tn(r['I'], _C['top_n']))
+    # Truyen DEN THI TRUONG va DANH MUC DANG CAM vao, de o tra cuu noi duoc
+    # "neu vao lenh thi vao bao nhieu %% NAV" bang dung con so bo may se dat.
+    out['lookup'] = _lk(r['d'], r['I'], _tls, _sect, _C, _tn(r['I'], _C['top_n']),
+                        light=_rg_light, vi_the=out['open_positions'], nav=r['nav'])
     print('EXTRA lookup', len(out['lookup']), 'ma', flush=True)
     print('EXTRA monthly',len(out['monthly']),'top6m',len(out['top6m']['deals']),'candles',len(out['candles']),flush=True)
 

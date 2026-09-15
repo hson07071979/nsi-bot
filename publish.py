@@ -45,6 +45,11 @@ def main():
             sector=v.get('sector'),
             state=v['state'], label=v['label'],
             loai=bool(v.get('loai')),
+            # Neu lenh nay duoc vao thi vao bao nhieu % NAV, va cai gi quyet dinh
+            # con so do. CHI hai truong ngan — phan giai thich day du nam trong
+            # index.html (tai mot lan), khong nhoi vao day vi lop truc tiep tai
+            # lai file nay moi 45 giay.
+            size_pct=v.get('size_pct'), size_tran=v.get('size_tran'),
             miss=v['miss'], block=v['block'],
         )
 

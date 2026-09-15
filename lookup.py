@@ -12,6 +12,7 @@ import datetime as dt
 import numpy as np
 from engine import risk_gate, canslim_score, as_of
 from manual import loai as _loai
+from vithe import phan_bo, tom_tat_danh_muc
 
 
 def _names(path='data/by_exchange.csv'):
@@ -60,8 +61,12 @@ def _pc(x, nd=1):
     return None if (x is None or x != x) else round(float(x) * 100, nd)
 
 
-def build(d, I, tls, sect, cfg, topn):
+def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
     """Tra ve dict {sym: {...}} cho o tra cuu tren trang web."""
+    # Trang thai danh muc hien tai — de biet con bao nhieu cho cho lenh moi.
+    # Khong truyen thi coi nhu danh muc rong, va phan giai thich NOI RO dieu do.
+    _dm_n, _dm_tong, _dm_nganh, _dm_tien = tom_tat_danh_muc(vi_the, nav) \
+        if (vi_the is not None and nav) else (0, 0.0, {}, 1.0)
     S = [str(x) for x in d['sym']]
     cal = [str(x) for x in d['cal']]
     i = len(cal) - 1
@@ -93,10 +98,11 @@ def build(d, I, tls, sect, cfg, topn):
         fa = as_of(tl, today) if tl else None
         if fa is None:
             blk, why = True, 'Chưa có báo cáo tài chính'
+            rmul = 0.0
             sc = 0.0; fund = 0; npg_dk5 = None; tim, tim_vi = False, None
             _pts = {}; nh = None; vratio = None
         else:
-            b, w, _ = risk_gate(s, fa)
+            b, w, rmul = risk_gate(s, fa)
             blk, why = b, w
             npg_dk5 = fa.get('npat_yoy')
             tim, tim_vi = bool(fa.get('tim')), fa.get('tim_ly_do')
@@ -213,6 +219,17 @@ def build(d, I, tls, sect, cfg, topn):
         else:
             state, label = 'khongdat', 'CHƯA ĐỦ ĐIỀU KIỆN'
 
+        # --- NEU LENH NAY DUOC VAO THI VAO BAO NHIEU PHAN TRAM NAV ---
+        # Dung chung ham voi chuong bao va thresholds.json, va ham do tai hien
+        # dung cong thuc trong engine2.run() (da doi chung 119/119 lenh that).
+        if blk or s in LOAI:
+            vt = None
+        else:
+            vt = phan_bo(light, rmul=rmul, base_rng=br, cfg=cfg,
+                         so_ma_dang_cam=_dm_n, tong_dang_cam=_dm_tong,
+                         nganh_dang_cam=_dm_nganh.get(sect.get(s, 'Khác'), 0.0),
+                         tien_mat=_dm_tien)
+
         out[s] = dict(
             sym=s, name=nm, exch=ex, price=round(close / 1000, 2),
             need_px=round(need_px / 1000, 2), thr=round(thr * 100, 1),
@@ -226,5 +243,11 @@ def build(d, I, tls, sect, cfg, topn):
             chk=chk, chk_ghi=ghi,
             n_thieu=sum(1 for c in chk if c[3] == 'no' and c[0] in
                         ('UNI', 'MC', 'GT', 'NEN', 'VOLAT', 'DIEM', 'DK5', 'RUIRO')),
-            volat=round(volat * 100, 2))
+            volat=round(volat * 100, 2),
+            size_pct=(vt['pct'] if vt else None),
+            size_tran=(vt['tran'] if vt else None),
+            size_1dong=(vt['mot_dong'] if vt else None),
+            size_vi_sao=(vt['vi_sao'] if vt else None),
+            size_thuc=(vt['pct_thuc'] if vt else None),
+            size_vao_duoc=(vt['vao_duoc'] if vt else None))
     return out

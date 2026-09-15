@@ -32,9 +32,18 @@ NAME = {'MUA': 'ĐỦ ĐIỀU KIỆN NGAY BÂY GIỜ — đặt lệnh trước 
         'THEO_DOI': 'THEO DÕI — đang động đậy nhưng còn thiếu nhiều',
         'CHAN': 'CHẶN — bắt trần nhưng cổng rủi ro phủ quyết'}
 
-CFG_LIVE = dict(base_range=0.20, use_ordimb=True, ordimb_min=1.20, base_size=0.42,
+from vithe import phan_bo, tom_tat_danh_muc
+from produce2 import PROD as _PROD
+
+# Cac tham so CO VI THE lay THANG tu PROD cua produce2 — mot nguon su that duy
+# nhat. Truoc day chung duoc go lai bang tay o day va THIEU max_pos/max_total/
+# max_pos_n, nen chuong bao tinh co vi the bang cau hinh mac dinh (max_pos 20%)
+# trong khi bo may that chay 50%. Dung bao gio go lai bang tay nua.
+_CO = {k: _PROD[k] for k in ('base_size', 'max_pos', 'max_total', 'max_pos_n', 'size_map')}
+
+CFG_LIVE = dict(base_range=0.20, use_ordimb=True, ordimb_min=1.20,
                 score_floor=45, vol_floor=2.0, gtgd_min=15e9, volat_min=0.015,
-                size_map={'XANH': 1.0, 'VANG': 0.6, 'CAM': 0.35, 'DO': 0.2})
+                **_CO)
 
 
 # Đường cong khối lượng luỹ kế điển hình của một phiên HOSE/HNX (giờ Việt Nam).
@@ -42,6 +51,22 @@ CFG_LIVE = dict(base_range=0.20, use_ordimb=True, ordimb_min=1.20, base_size=0.4
 VOL_CURVE = [(9.25, 0.02), (9.50, 0.10), (10.00, 0.24), (10.50, 0.34), (11.00, 0.44),
              (11.50, 0.55), (13.00, 0.55), (13.50, 0.67), (14.00, 0.79), (14.25, 0.86),
              (14.50, 0.92), (14.75, 1.00)]
+
+
+def _danh_muc():
+    """Doc so lenh may chu (data/portfolio.json) de biet con bao nhieu cho trong.
+
+    Workflow tai file nay ve o buoc "Lay so lenh va so tay tu trang web".
+    Khong co file thi coi nhu danh muc rong — van dung cho ngay dau, va phan
+    giai thich se ghi ro la dang gia dinh.
+    """
+    for p in ('data/portfolio.json', 'portfolio.json'):
+        try:
+            P = json.load(open(p, encoding='utf-8'))
+            return P.get('open') or [], float(P.get('nav') or 0)
+        except Exception:
+            continue
+    return None, None
 
 
 def gio_vn():
@@ -89,6 +114,9 @@ def build(cfg=None):
     base_rng = (I['base_hi'] - I['base_lo']) / np.where(I['base_lo'] > 0, I['base_lo'], np.nan)
     R = build_regime(d, I, C)
     light = R['light'][i]; smul = C['size_map'][light]
+    _mo, _nav = _danh_muc()
+    _dm_n, _dm_tong, _dm_nganh, _dm_tien = tom_tat_danh_muc(_mo, _nav) \
+        if (_mo is not None and _nav) else (0, 0.0, {}, 1.0)
     # VU TRU: chi TOP 100 ma thanh khoan nhat — dong bo voi bot va bo loc.
     from vn300 import build_topn
     TOPN = build_topn(I, 110)[i]
@@ -190,6 +218,12 @@ def build(cfg=None):
         if not live_now[k_price]:
             need.append('cần giá ≥ %.2f (nay %.2f)' % (basic * (1 + thr) / 1000, price / 1000))
 
+        # Neu lenh nay duoc vao thi vao bao nhieu % NAV — va vi sao.
+        vt = phan_bo(light, rmul=rmul, base_rng=br, cfg=C,
+                     so_ma_dang_cam=_dm_n, tong_dang_cam=_dm_tong,
+                     nganh_dang_cam=_dm_nganh.get(sect.get(s, 'Khác'), 0.0),
+                     tien_mat=_dm_tien)
+
         rec = dict(sym=s, sector=sect.get(s, 'Khác'), price=round(price / 1000, 2),
                    pct=round(pct * 100, 2), volr=round(volr, 2), volr_proj=round(volr_proj, 2),
                    gtgd=round(val / 1e9, 1), gtgd_proj=round(gtgd_proj / 1e9, 1),
@@ -202,7 +236,9 @@ def build(cfg=None):
                    blocked=bool(blk), block=why if blk else '', watchlist=s in wl,
                    missing=miss, need=need,
                    locked=bool(pct >= thr and volr < 0.6),
-                   size_pct=round(C['base_size'] * smul * rmul * 100, 1))
+                   size_pct=vt['pct'], size_tran=vt['tran'],
+                   size_1dong=vt['mot_dong'], size_vi_sao=vt['vi_sao'],
+                   size_thuc=vt['pct_thuc'], size_vao_duoc=vt['vao_duoc'])
         if live_now[k_price] and blk:
             rec['level'] = 'CHAN'
         elif ok_now:
