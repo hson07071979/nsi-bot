@@ -172,7 +172,18 @@ function pageCoHoi(root) {
     if (m[s]) return;
     m[s] = { sym: s, name: x.name, level: 'CHO', price: x.price, pct: 0, score: x.score,
              base: x.base, need_px: x.need_px, need_vol: x.need_vol, miss: x.miss || [],
+             size_pct: x.size_pct, size_tran: x.size_tran, size_1dong: x.size_1dong,
+             size_vi_sao: x.size_vi_sao,
              fa: x.state === 'fa' };
+  });
+  // Mã có tín hiệu trong phiên (từ chuông báo) đã mang sẵn cỡ vị thế; mã chỉ nằm
+  // trong bảng tra cứu thì lấy từ Lk ở trên. Chỗ nào thiếu thì vá nốt từ Lk để
+  // thẻ nào cũng trả lời được câu "vào bao nhiêu phần trăm".
+  Object.values(m).forEach(h => {
+    if (h.size_pct == null && Lk[h.sym]) {
+      h.size_pct = Lk[h.sym].size_pct; h.size_tran = Lk[h.sym].size_tran;
+      h.size_1dong = Lk[h.sym].size_1dong; h.size_vi_sao = Lk[h.sym].size_vi_sao;
+    }
   });
   const ds = Object.values(m);
   const bac = { MUA: 0, SAP_DU: 1, DE_MAT: 2, THEO_DOI: 3, CHO: 4 };
@@ -211,6 +222,11 @@ function pageCoHoi(root) {
         ${h.fa ? '<div class="ccthieu"><b style="color:var(--warn)">Chưa đạt về cơ bản — hệ không mua</b></div>' : ''}
         ${h.need_px ? `<div class="ccact">Cần đóng cửa ≥ <b>${h.need_px}</b>${
           h.need_vol ? ` · KL ≥ <b>${(h.need_vol / 1e6).toFixed(1)} triệu</b>` : ''}</div>` : ''}
+        ${h.size_pct != null ? `<div class="ccact" title="${
+            escA((h.size_vi_sao || []).join('\n'))}">Nếu vào lệnh: <b>${
+            String(h.size_pct).replace('.', ',')}% NAV</b>${
+            h.size_tran && h.size_tran !== 'cỡ nền'
+              ? ` — bị ${esc(h.size_tran)} cắt` : ''}</div>` : ''}
         ${h.miss && h.miss.length ? `<div class="ccthieu">Còn thiếu: ${h.miss.slice(0, 3).map(esc).join(' · ')}</div>` : ''}
       </a>`).join('');
   };
