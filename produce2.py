@@ -174,6 +174,19 @@ if __name__=='__main__':
     out['lookup'] = _lk(r['d'], r['I'], _tls, _sect, _C, _tn(r['I'], _C['top_n']),
                         light=_rg_light, vi_the=out['open_positions'], nav=r['nav'])
     print('EXTRA lookup', len(out['lookup']), 'ma', flush=True)
+
+    # DANH SACH SOI TAY: qua het 7 cong, chi vuong dung cong CFO.
+    # Anh Son tu ra soat nhom nay — cong CFO de bat oan (mot quy om hang, mot ky
+    # tra truoc nha cung cap deu co the lam CFO am ma doanh nghiep van khoe).
+    # KHONG anh huong gi toi bo may: nhung ma nay van bi chan nhu cu.
+    out['cfo_soi'] = sorted(
+        [dict(sym=v['sym'], name=v['name'], sector=v['sector'], score=v['score'],
+              price=v['price'], need_px=v['need_px'], need_vol=v['need_vol'],
+              base=v['base'], gtgd=v['gtgd'], mktcap=v['mktcap'], fund=v['fund'],
+              cfo_ty=v.get('cfo_ty'), tim=v.get('tim'), tim_vi=v.get('tim_vi'))
+         for v in out['lookup'].values() if v.get('cfo_only')],
+        key=lambda x: -(x['score'] or 0))
+    print('EXTRA cfo_soi', len(out['cfo_soi']), 'ma chi vuong cong CFO', flush=True)
     print('EXTRA monthly',len(out['monthly']),'top6m',len(out['top6m']['deals']),'candles',len(out['candles']),flush=True)
 
     out['v1']= {'trades':171,'per_year':22.4,'total_return':0.605,'cagr':0.064,'maxdd':0.092,'pf':2.80,'sharpe':1.03,'universe':311}

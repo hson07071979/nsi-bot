@@ -230,6 +230,20 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
                          nganh_dang_cam=_dm_nganh.get(sect.get(s, 'Khác'), 0.0),
                          tien_mat=_dm_tien)
 
+        # --- NHOM "CHI VUONG CONG CFO" — de anh Son soi tay ---
+        # Luat KHONG doi mot chu: ma nay VAN bi chan, van khong vao watchlist,
+        # bot van khong mua. Day chi la mot cai nhan de trang web tach rieng ra.
+        # Dieu kien: qua HET moi dieu kien sang loc (miss rong) va thu DUY NHAT
+        # chan no la cong CFO. Neu con thieu thu khac thi khong tinh — vi luc do
+        # bo cong CFO di no cung chua du dieu kien.
+        cfo_only = bool(blk and why == 'CFO < 0' and not miss and s not in LOAI)
+        cfo_ty = None
+        if fa is not None and fa.get('cfo_ttm') is not None:
+            try:
+                cfo_ty = round(float(fa['cfo_ttm']) / 1e9, 1)
+            except (TypeError, ValueError):
+                cfo_ty = None
+
         out[s] = dict(
             sym=s, name=nm, exch=ex, price=round(close / 1000, 2),
             need_px=round(need_px / 1000, 2), thr=round(thr * 100, 1),
@@ -249,5 +263,6 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
             size_1dong=(vt['mot_dong'] if vt else None),
             size_vi_sao=(vt['vi_sao'] if vt else None),
             size_thuc=(vt['pct_thuc'] if vt else None),
-            size_vao_duoc=(vt['vao_duoc'] if vt else None))
+            size_vao_duoc=(vt['vao_duoc'] if vt else None),
+            cfo_only=cfo_only, cfo_ty=cfo_ty)
     return out
