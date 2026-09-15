@@ -96,7 +96,10 @@ function pageHomNay(root) {
       </div>
       <div class="ccgia">${h.price} <span class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${h.pct}%</span></div>
       <div class="cclydo">${lydongan(h)}</div>
-      ${h.level === 'MUA' ? `<div class="ccact">Cỡ đề xuất <b>${(42 * smul).toFixed(0)}% NAV</b> · vào lệnh trong chính phiên này</div>` : ''}
+      ${h.level === 'MUA' ? `<div class="ccact">Cỡ đề xuất <b>${
+          h.size_pct != null ? String(h.size_pct).replace('.', ',') : (42 * smul).toFixed(0)
+        }% NAV</b>${h.size_tran && h.size_tran !== 'cỡ nền' ? ` <span class="muted">— bị ${esc(h.size_tran)} cắt</span>` : ''
+        } · vào lệnh trong chính phiên này</div>` : ''}
       ${h.miss && h.miss.length ? `<div class="ccthieu">Còn thiếu: ${h.miss.map(esc).join(' · ')}</div>` : ''}
     </a>`;
 
@@ -107,7 +110,8 @@ function pageHomNay(root) {
     <div>
       <div class="denlab">THỊ TRƯỜNG HÔM NAY</div>
       <div class="denten">${{ XANH: '🟢 XANH', VANG: '🟡 VÀNG', CAM: '🟠 CAM', DO: '🔴 ĐỎ' }[den]}</div>
-      <div class="dennoi">${NOI[den]} · dùng tối đa <b>${(42 * smul).toFixed(0)}% NAV</b> mỗi lệnh</div>
+      <div class="dennoi">${NOI[den]} · cỡ nền sau đèn <b>${(42 * smul).toFixed(0)}% NAV</b>
+        <span class="muted">— cỡ thật của từng mã còn bị trần mã/ngành/tiền mặt cắt, xem trên thẻ</span></div>
     </div>
     <p class="dengiai">${GIAI[den]}</p>
   </div>
