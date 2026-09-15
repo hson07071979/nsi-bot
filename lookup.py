@@ -13,6 +13,7 @@ import numpy as np
 from engine import risk_gate, canslim_score, as_of
 from manual import loai as _loai
 from vithe import phan_bo, tom_tat_danh_muc
+from fa_ind import rmax as _rmax, rmin as _rmin
 
 
 def _names(path='data/by_exchange.csv'):
@@ -74,7 +75,24 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
     NM = _names()
     LOAI = _loai()          # ma anh Son loai thu cong trong loai.txt
     MC, TV, AC = d['MarketCap'], d['TotalValue'], d['AdjClose']
-    base_rng = (I['base_hi'] - I['base_lo']) / np.where(I['base_lo'] > 0, I['base_lo'], np.nan)
+    # ⚠️ NEN GIA PHAI TINH CHO PHIEN KE TIEP, KHONG PHAI PHIEN VUA CHOT.
+    # `I['base_hi']` = shift(rmax(AC,30),1) — tuc nen tai dong k la cua so 30 phien
+    # TRUOC dong k. Vay nen dung cho phien KE TIEP chinh la cua so ket thuc tai
+    # phien vua chot, tuc rmax/rmin KHONG dich, lay o dong i.
+    #
+    # LOI CU (phat hien 15/09/2026 qua ca BVH): cho ra `base_rng[i]` — la nen cua
+    # PHIEN VUA CHOT — nen `thresholds.json` mang mot con so TRE MOT PHIEN sang
+    # phien sau. BVH nen 21,0% suot toi 11/09 roi tut con 16,1% o phien 14/09 (mot
+    # dinh cu roi khoi cua so 30 phien). Co may cham dung 16,1% va MUA; lop quet
+    # trong phien doc thresholds thay 21,0% -> state 'khongdat' -> khong bao gio
+    # keu MUA -> so lenh that bo lo ca lenh. Do lai toan bo: 1/119 tin hieu bi bo
+    # sot vi dung loi nay.
+    #
+    # Cac truong khac cua thresholds.json (ref, need_px, need_vol) DEU da huong ve
+    # phien ke tiep roi; rieng nen thi khong. Day la sua cho khong nhat quan do.
+    _hi30 = _rmax(d['AdjClose'], 30)
+    _lo30 = _rmin(d['AdjClose'], 30)
+    base_rng = (_hi30 - _lo30) / np.where(_lo30 > 0, _lo30, np.nan)
 
     def f2(x, nd=2):
         return None if (x is None or x != x) else round(float(x), nd)
