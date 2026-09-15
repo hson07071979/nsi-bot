@@ -140,6 +140,7 @@ async function napVPS() {
     tinhLaiTinHieuVPS();
     renderLiveBar();
     veLaiTrang('danhmuc'); veLaiTrang('chuong'); veLaiTrang('bieudo');
+    veLaiTrang('hieusuat');   // bảng danh mục ở trang Hiệu suất cũng phải theo giá mới
     napChiSo();
   } catch (e) {
     RTV.loi++;

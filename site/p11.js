@@ -371,6 +371,10 @@ async function napSo() {
   if (mn) NSI.manual = mn;
   veLaiTrang('danhmuc');
   veLaiTrang('watchlist');
+  // Trang Hiệu suất cũng có bảng "Danh mục hệ thống đang cầm" với cột Hiện tại và
+  // Lãi/lỗ. Thiếu dòng này thì nó giữ nguyên giá của ảnh chụp tối qua trong khi
+  // trang Danh mục đã nhảy theo giá real-time — hai trang hiện hai con số khác nhau.
+  veLaiTrang('hieusuat');
 }
 
 /* ---------- nạp live.json ---------- */
@@ -451,6 +455,7 @@ async function napRealtime() {
     renderLiveBar();
     veLaiTrang('danhmuc');
     veLaiTrang('chuong');
+    veLaiTrang('hieusuat');     // bảng danh mục ở trang Hiệu suất cũng phải theo giá mới
   } catch (e) {
     RT.loi++;
     // Cầu nối hỏng bốn nhịp liên tiếp thì thôi, lùi về đọc live.json của máy chủ.
