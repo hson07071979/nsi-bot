@@ -209,6 +209,14 @@ function pageChart(root){
     if (x) bn += `<div class="ctstate ${x.state}"><b>${esc(x.label)}</b>` +
       (x.state === 'cho' ? ` <span class="muted">— đóng cửa phiên tới ≥ <b style="color:var(--text-primary)">${x.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(1)} triệu cp</b></span>`
        : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
+    // Ma da nam giu: noi thang ra, keo doc dong trang thai o tren thanh "he thong
+    // cham truot". Nguong o tren la cua PHIEN KE TIEP va danh cho mot lenh MUA MOI.
+    if (x && x.dang_cam) bn += `<div class="ctstate cho"><b>ĐANG NẮM GIỮ</b>
+      <span class="muted">— mã này đã nằm trong Danh mục hệ thống. Các ngưỡng phía trên
+      là điều kiện để mở <b style="color:var(--text-primary)">một lệnh mua mới ở phiên kế tiếp</b>,
+      không nói gì về vị thế đang mở. Chính cây bùng nổ hôm vào lệnh vừa lọt vào cửa sổ
+      30 phiên nên nền giá rộng ra — vì vậy dòng trạng thái có thể ghi “chưa tạo được
+      nền giá chặt”. Lãi/lỗ của vị thế xem ở trang Danh mục hệ thống.</span></div>`;
     if (F && F.tim && F.tim[F.tim.length - 1]) {
       bn += `<div class="ctstate tim"><b>ĐÈN TÍM — lãi đến từ hoạt động bất thường</b>
         <span class="muted">— ${F.vi[F.vi.length - 1]} (${F.q[F.q.length - 1]}).
