@@ -8,8 +8,19 @@ from screener import screen, SEED, LOAI, WL
 STATE='data/watchlist_state.json'
 
 def load_state():
+    # File nay di ve tu repo public moi lan chay (xem buoc "Lay so lenh va so tay"
+    # trong daily.yml). Tai hut giua chung thi curl de lai mot file rong — doc
+    # thang la vo day chuyen. Hong kieu gi cung lui ve trang thai rong, chay tiep.
     if os.path.exists(STATE):
-        return json.load(open(STATE))
+        try:
+            s = json.load(open(STATE, encoding='utf-8'))
+            if isinstance(s, dict) and isinstance(s.get('members'), dict):
+                s.setdefault('pinned', list(SEED))
+                s.setdefault('log', [])
+                return s
+            print('  watchlist_state.json sai dinh dang — bat dau lai tu rong')
+        except Exception as e:
+            print('  khong doc duoc watchlist_state.json (%s) — bat dau lai tu rong' % e)
     return {'pinned':SEED, 'members':{}, 'log':[]}
 
 def save_state(s): json.dump(s, open(STATE,'w'), ensure_ascii=False, indent=1)
@@ -63,10 +74,39 @@ def refresh(max_size=40):
             continue
         st['members'][s]={'added':today,'score':x['score'],'status':'ghim',
                           'note': x['block'] if x['blocked'] else 'chưa đạt ngưỡng'}
-    st['log'].insert(0, {'date':today,'added':[a['sym'] for a in added],
-                         'removed':[a['sym'] for a in removed],'size':len(st['members'])})
+    # MOT PHIEN = MOT DONG NHAT KY. Day chuyen chay 3 cu/ngay; khong gop thi cu 2
+    # va cu 3 de ra hai dong rong (vi cu 1 da them roi) va day dong that xuong
+    # duoi. Gop theo ma, giu ca chi tiet de trang web ve duoc bang.
+    def _ct(cu_ct, cu_sym, why_mac_dinh=None):
+        if cu_ct: return list(cu_ct)
+        out_ = []
+        for sym_ in (cu_sym or []):
+            x_ = idx.get(sym_) or {}
+            d_ = {'sym':sym_, 'score':x_.get('score'), 'sector':x_.get('sector'),
+                  'base':x_.get('base'), 'rs':x_.get('rs')}
+            if why_mac_dinh is not None: d_['why'] = why_mac_dinh
+            out_.append(d_)
+        return out_
+
+    def _gop(cu, moi):
+        ra = list(cu); co = {y['sym'] for y in ra}
+        return ra + [y for y in moi if y['sym'] not in co]
+
+    hnay = {'date':today, 'size':len(st['members']),
+            'added_ct':added, 'removed_ct':removed,
+            'added':[a['sym'] for a in added], 'removed':[a['sym'] for a in removed]}
+    if st['log'] and st['log'][0].get('date') == today:
+        cu = st['log'][0]
+        hnay['added_ct']   = _gop(_ct(cu.get('added_ct'),   cu.get('added')), added)
+        hnay['removed_ct'] = _gop(_ct(cu.get('removed_ct'), cu.get('removed'), '—'), removed)
+        hnay['added']   = [y['sym'] for y in hnay['added_ct']]
+        hnay['removed'] = [y['sym'] for y in hnay['removed_ct']]
+        st['log'][0] = hnay
+    else:
+        st['log'].insert(0, hnay)
     st['log']=st['log'][:60]
     save_state(st)
+    added, removed = hnay['added_ct'], hnay['removed_ct']
     detail=[]
     for sym,meta in st['members'].items():
         x=idx.get(sym,{})
@@ -75,7 +115,10 @@ def refresh(max_size=40):
                         'blocked','block','grade_score','grade_base','mktcap')}, **meta, 'sym':sym})
     detail.sort(key=lambda x:(x['status']!='đạt', -(x['score'] or -1)))
     out={'asof':today,'added':added,'removed':removed,'members':detail,
-         'universe':r['n'],'n_fit':len(r['watchlist']),'rules':WL,'pinned':st['pinned']}
+         'universe':r['n'],'n_fit':len(r['watchlist']),'rules':WL,'pinned':st['pinned'],
+         # 30 phien nhat ky gan nhat — truoc day chi dang duoc dong HOM NAY nen
+         # trang web khong bao gio co lich su de xem.
+         'log':st['log'][:30]}
     json.dump(out, open('data/watchlist.json','w'), ensure_ascii=False)
     return out
 
