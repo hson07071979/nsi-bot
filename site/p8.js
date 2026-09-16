@@ -31,6 +31,8 @@ function pageWatchlist(root){
 
   ${(D.screener.watchlist||[]).some(m=>m.tim) ? `` : ''}
 
+  ${typeof soiCFO === 'function' ? soiCFO() : ''}
+
   <h2>Chưa đạt về cơ bản — FA (${fa.length})</h2>
   
   <div class="card tblwrap">${fa.length? `<table><thead><tr><th>Mã</th><th>Ngành</th>
@@ -83,7 +85,9 @@ function pageWatchlist(root){
       ${W.removed.length? '<table><thead><tr><th>Mã</th><th>Lý do</th></tr></thead><tbody>'+
         W.removed.map(a=>`<tr><td class="sym">${esc(a.sym)}</td><td>${esc(a.why)}</td></tr>`).join('')+'</tbody></table>'
         : '<p style="margin:0">Không có mã nào bị loại.</p>'}</div>
-  </div>`;
+  </div>
+
+  ${nhatKyWatchlist(W)}`;
   let sk='score',sd=-1;
   function rend(){
     const rows=[...fit].sort((a,b)=>{const x=a[sk]??-1e9,y=b[sk]??-1e9;return (x>y?1:x<y?-1:0)*sd;});
@@ -238,4 +242,26 @@ function pageLive(root){
     ? '<table><thead><tr><th>Mã</th><th>Ngành</th><th>Ngày mua</th><th style="text-align:right">Giá vốn</th><th style="text-align:right">Hiện tại</th><th style="text-align:right">Lãi/lỗ</th></tr></thead><tbody>'+
       D.open_positions.map(p=>`<tr><td class="sym">${esc(p.sym)}</td><td>${esc(p.sector)}</td><td>${p.entry}</td><td style="text-align:right">${p.entry_px}</td><td style="text-align:right">${p.last}</td><td style="text-align:right" class="${cls(p.pnl)}">${p.pnl>=0?'+':''}${p.pnl}%</td></tr>`).join('')+'</tbody></table>'
     : `<p style="margin:0">Không có vị thế nào đang mở. Đèn thị trường đang <b style="color:var(${LIGHTVAR[last.light]})">${LIGHTNAME[last.light]}</b> — hệ thống giữ tiền mặt và chờ.</p>`;
+}
+
+/* Lich su watchlist theo ngay. Truoc day trang chi co hai o "hom nay" — ma
+   `data/watchlist_state.json` lai khong duoc commit nguoc ve repo, nen moi lan
+   chay lai so sanh voi anh chup dong bang tu 30/08 va "hom nay" khong bao gio
+   doi. Nay state di ve tu repo public moi lan chay va watchlist.py dang ca
+   `log`, nen cho no mot cai bang thuc su. */
+function nhatKyWatchlist(W){
+  const G=(W&&W.log)||[];
+  if(!G.length) return '';
+  const ten=s=>`<span class="sym">${esc(s)}</span>`;
+  return `
+  <h3 style="margin-top:26px">Lịch sử ${G.length} phiên gần nhất</h3>
+  <div class="card tblwrap"><table><thead><tr>
+    <th>Phiên</th><th>Thêm vào</th><th>Loại ra</th>
+    <th style="text-align:right">Quy mô</th></tr></thead><tbody>
+    ${G.map(g=>`<tr>
+      <td>${esc(g.date)}</td>
+      <td class="pos">${(g.added&&g.added.length)? g.added.map(ten).join(' · ') : '<span class="muted">—</span>'}</td>
+      <td class="neg">${(g.removed&&g.removed.length)? g.removed.map(ten).join(' · ') : '<span class="muted">—</span>'}</td>
+      <td style="text-align:right">${g.size??'—'}</td></tr>`).join('')}
+  </tbody></table></div>`;
 }
