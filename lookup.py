@@ -260,6 +260,17 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
         else:
             state, label = 'khongdat', 'CHƯA ĐỦ ĐIỀU KIỆN'
 
+        # MA DANG CAM PHAI NOI LA DANG CAM O MOI TRANG THAI, khong chi nhanh 'cho'.
+        # Vi sao: file nay mo ta PHIEN KE TIEP. Mot ma vua mua xong bang cay bung
+        # no hom qua thi cay do da nam trong cua so 30 phien => nen gia rong ra =>
+        # state tut ve 'khongdat' kem dong "chua tao duoc nen gia chat". Dung ve
+        # mot lenh MUA MOI, nhung doc nham thanh "he thong cham no truot" (BSR,
+        # 15/09/2026: da mua 8.200 cp luc 30,45 ma trang Chi tiet ma van ghi CHUA
+        # DU DIEU KIEN). Giu nguyen `state` vi verify_build.py va CSS dua vao no.
+        if s in _cam:
+            label = ('ĐANG CẦM' if state in ('cho', 'khongdat', 'fa')
+                     else 'ĐANG CẦM · ' + label)
+
         # --- NEU LENH NAY DUOC VAO THI VAO BAO NHIEU PHAN TRAM NAV ---
         # Dung chung ham voi chuong bao va thresholds.json, va ham do tai hien
         # dung cong thuc trong engine2.run() (da doi chung 119/119 lenh that).
