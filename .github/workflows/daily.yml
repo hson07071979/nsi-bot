@@ -129,19 +129,34 @@ jobs:
       - name: Cào báo cáo tài chính (Vietcap IQ)
         run: python fetch_funda.py
 
-      # Kéo ba file sống từ trang public về, để nhúng ảnh chụp vào index.html.
-      # Nhờ vậy mở file bằng đường dẫn trên máy vẫn thấy danh mục, không trắng trang.
-      # Không tải được cũng không sao — trang tự lùi về đọc thẳng từ máy chủ.
-      - name: Lấy sổ lệnh và sổ tay từ trang web
+      # Kéo các file SỐNG từ trang public về. Ba file đầu để nhúng ảnh chụp vào
+      # index.html — mở file bằng đường dẫn trên máy vẫn thấy danh mục, không
+      # trắng trang. Không tải được cũng không sao, trang tự lùi về đọc máy chủ.
+      #
+      # watchlist_state.json thì KHÁC: nó là TRÍ NHỚ của watchlist, không phải ảnh
+      # chụp. Máy chạy của GitHub bị xoá sạch sau mỗi lần, nên nếu không kéo về
+      # thì mỗi lần chạy lại so với ảnh chụp đông cứng trong repo (kẹt ở 30/08) —
+      # "Nhật ký thay đổi" vì thế không bao giờ nhúc nhích. Kéo về ở đây, ghi
+      # ngược lên ở bước "Đăng lên trang web" => vòng lặp khép kín.
+      #
+      # Tải vào file tạm rồi mới đổi tên: curl -f hỏng giữa chừng vẫn để lại một
+      # file rỗng, mà file rỗng thì watchlist.py đọc ra trí nhớ trắng.
+      - name: Lấy sổ lệnh, sổ tay và trí nhớ watchlist từ trang web
         continue-on-error: true
         env:
           CHU:  ${{ vars.PAGES_OWNER }}
           REPO: ${{ vars.PAGES_REPO }}
         run: |
           mkdir -p data
-          for f in portfolio.json manual.json config.json; do
-            curl -fsSL -o "data/$f" \
-              "https://raw.githubusercontent.com/${CHU}/${REPO}/main/$f" || echo "chưa có $f"
+          for f in portfolio.json manual.json config.json watchlist_state.json; do
+            if curl -fsSL -o "data/.tmp.$f" \
+                 "https://raw.githubusercontent.com/${CHU}/${REPO}/main/$f"; then
+              mv "data/.tmp.$f" "data/$f"
+              echo "đã lấy $f"
+            else
+              rm -f "data/.tmp.$f"
+              echo "chưa có $f trên trang — dùng bản trong repo nếu có"
+            fi
           done
           ls -la data/*.json || true
 
@@ -211,11 +226,15 @@ jobs:
           # hai file thu cong di theo, de bo quet trong phien cung biet ma nao bi loai
           cp out/loai.txt        public/loai.txt
           cp out/ghim.txt        public/ghim.txt
+          # Trí nhớ watchlist đi cùng bản đăng: lần chạy sau kéo lại file này ở
+          # bước "Lấy sổ lệnh…" nên nhật ký thêm/loại mới cộng dồn được qua ngày.
+          cp data/watchlist_state.json public/watchlist_state.json || \
+            echo "::warning::không có data/watchlist_state.json — nhật ký watchlist sẽ không cộng dồn"
           touch public/.nojekyll
           cd public
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"
-          git add index.html thresholds.json loai.txt ghim.txt .nojekyll
+          git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll
           if git diff --cached --quiet; then
             echo "Không có gì thay đổi, bỏ qua."
           else
