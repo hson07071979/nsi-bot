@@ -46,6 +46,10 @@ js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     'p7.js'])
 
 html = open('site/part1.html', encoding='utf-8').read()
+# CHAN NaN/Infinity: Python ghi ra duoc, JSON.parse cua trinh duyet thi KHONG
+# -> mot o NaN lam ca trang trang. Doi het thanh null truoc khi nhung vao trang.
+data = json.loads(json.dumps(data), parse_constant=lambda c: None)
+
 html = html.replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
 
 # Thu vien bieu do nen (Lightweight Charts cua TradingView, Apache 2.0) duoc NHUNG
