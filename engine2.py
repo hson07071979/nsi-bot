@@ -29,6 +29,9 @@ CFG = dict(
   use_giveback=False, gb_trigger=0.10, gb_keep=0.50, use_shelf=False, shelf_range=0.10,
   re_cfo_warn=False, icr_cfo_rescue=False, cfo_icr_min=3.0,   # True = BDS co CFO<0 chi bi co vang (size x0.5) thay vi chan han
   use_be=False, be_trigger=0.08, be_level=0.01,
+  # nan_tot_fix=False -> tai hien loi cu (tran tong von + tran nganh bi NaN lam
+  # ngung ap dung khi co ma bi treo). Chi de chay A/B, dung bat o PROD.
+  nan_tot_fix=True,
   start='2019-01-02', end=None,
   # --- LOP KIEM DINH: truot gia bat doi xung ---
   # Chieu MUA tran thuong truot it (khop duoc la may) nhung THIEU khoi luong.
@@ -190,8 +193,23 @@ def run(cfg=None, log=True):
             rows.sort(key=lambda x:-x[0])
             for sc,j,sym,rmul,bm,pts in rows:
                 secn=sect.get(sym,'Khác')
-                tot=sum(AC[i,q.j]*q.sh for q in pos.values())
-                sec=sum(AC[i,q.j]*q.sh for q in pos.values() if q.sector==secn)
+                # LOI `tot = NaN` (so 16/09, sua 18/09) -------------------------
+                # Ma bi treo / khong co du lieu phien nay thi AC = NaN. Mot NaN lam
+                # ca tong thanh NaN, va tu do HAI tran ngung ap dung AM THAM:
+                #   `tot/nav >= max_total` -> NaN so sanh gi cung False, `break`
+                #      khong bao gio no, he mo tiep vi the du da cham tran tong von;
+                #   `min(..., nav*max_total-tot, nav*0.30-sec, ...)` -> min() cua
+                #      Python bo qua NaN khi NaN khong dung dau, nen ca tran tong von
+                #      lan tran nganh 30% bi rot khoi phep tinh.
+                # Mot ma bi treo KHONG co nghia la no dang co gia 0. Dung dung quy uoc
+                # da co o dong 102 khi tinh NAV: thieu gia thi lay gia von.
+                _dg = lambda q: (AC[i,q.j] if not np.isnan(AC[i,q.j]) else q.epx)*q.sh
+                if C.get('nan_tot_fix', True):
+                    tot=sum(_dg(q) for q in pos.values())
+                    sec=sum(_dg(q) for q in pos.values() if q.sector==secn)
+                else:                                   # ban CU, giu lai de chay A/B
+                    tot=sum(AC[i,q.j]*q.sh for q in pos.values())
+                    sec=sum(AC[i,q.j]*q.sh for q in pos.values() if q.sector==secn)
                 if tot/nav>=C['max_total']: break
                 tgt=min(nav*C['base_size']*smul*rmul*bm, nav*C['max_pos'],
                         nav*C['max_total']-tot, nav*0.30-sec, cash)

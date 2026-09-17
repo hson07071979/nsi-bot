@@ -43,6 +43,9 @@ js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     'p13.js', 'p14.js',
     # p15 = kien truc thong tin huong khach hang (pageHomNay/pageCoHoi/pageHieuQua)
     'p15.js',
+    # p16 = trang So sanh trong nganh (pageNganh). Phai sau p9 vi dung `so` va
+    #       `_cpId` khai bao o do; truoc p7 vi p7 chay bo dieu huong ngay khi nap.
+    'p16.js',
     'p7.js'])
 
 html = open('site/part1.html', encoding='utf-8').read()

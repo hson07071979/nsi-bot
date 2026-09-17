@@ -508,23 +508,11 @@ function pageNotebook(root){
       ? `<span class="lkmiss">nền ${x.base}% · điểm ${x.score} · GTGD ${x.gtgd} tỷ — ${
           x.dang_cam ? 'hệ thống ĐANG CẦM mã này, không mua thêm' : 'đã qua mọi cổng, chỉ chờ phiên bùng nổ'}</span>`
       : (x.miss && x.miss.length ? `<span class="lkmiss">còn thiếu: ${x.miss.join(' · ')}</span>` : ''));
-    // CỠ VỊ THẾ — "nếu lệnh này được vào thì vào bao nhiêu phần trăm NAV, vì sao".
-    // Con số do vithe.py tính, dùng chung công thức với engine2.run() nên không
-    // thể lệch với cỗ máy. Mở ra mới thấy phần giải thích, để không rối ô tra cứu.
-    const cov = (x.size_pct == null) ? '' :
-      `<details class="lkvithe" style="flex-basis:100%;margin-top:2px">
-         <summary style="cursor:pointer;font-size:13px">Nếu vào lệnh:
-           <b style="color:var(--text-primary)">${String(x.size_pct).replace('.', ',')}% NAV</b>${
-             x.size_tran && x.size_tran !== 'cỡ nền'
-               ? ` <span class="lkmiss">— bị ${esc(x.size_tran)} cắt</span>` : ''}</summary>
-         <ul style="margin:4px 0 0 18px;padding:0;font-size:13px;line-height:1.55">${
-           (x.size_vi_sao || []).map(t => `<li>${esc(t)}</li>`).join('')}</ul>
-       </details>`;
+
     out.innerHTML =
       `<span class="nm">${esc(x.sym)}</span><span>— ${esc(x.name)} (${esc(x.exch)})</span>
        <span class="lkbadge ${x.state}">${esc(x.label)}</span> ${tim} ${need}
-       ${sub ? `<div style="flex-basis:100%;margin-top:-4px">${sub}</div>` : ''}
-       ${cov}`;
+       ${sub ? `<div style="flex-basis:100%;margin-top:-4px">${sub}</div>` : ''}`;
     try { localStorage.setItem('nsi_lk', sym); } catch(e){}
   }
 
