@@ -38,6 +38,12 @@ m = re.search(r'<script id="DATA"[^>]*>(.*?)</script>', html, re.S)
 if not check(m is not None, 'khong tim thay khoi du lieu trong trang'):
     print('\n'.join(FAIL)); sys.exit(1)
 
+# CHOT CHAN GOC: json.loads cua Python CHAP NHAN NaN/Infinity, con JSON.parse
+# cua trinh duyet thi NEM LOI -> ca trang trang. Nen phai tu chan tay, khong
+# duoc tin json.loads chay duoc la trinh duyet doc duoc. Loi ngay 17/09/2026.
+_xau = re.search(r'\b(NaN|Infinity)\b', m.group(1))
+if _xau: print('HONG: khoi du lieu co ' + _xau.group(0) + ' -> JSON.parse cua trinh duyet nem loi, ca trang se TRANG'); sys.exit(1)
+
 try:
     D = json.loads(m.group(1).replace('<\\/', '</'))
 except Exception as e:
