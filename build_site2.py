@@ -46,7 +46,12 @@ js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     # p16 = trang So sanh trong nganh (pageNganh). Phai sau p9 vi dung `so` va
     #       `_cpId` khai bao o do; truoc p7 vi p7 chay bo dieu huong ngay khi nap.
     'p16.js',
-    'p7.js'])
+    'p7.js',
+    # p17 = lop dien thoai + cai thanh app (service worker, thanh dieu huong duoi).
+    #       Day la file DUY NHAT duoc nam SAU p7.js: no DOC `secs` va `go` ma p7
+    #       khai bao, va chi them giao dien chu khong dinh nghia trang nao — nen
+    #       dat sau khong pha thu tu. Dung them file nao khac vao sau p7.
+    'p17.js'])
 
 html = open('site/part1.html', encoding='utf-8').read()
 # CHAN NaN/Infinity: Python ghi ra duoc, JSON.parse cua trinh duyet thi KHONG

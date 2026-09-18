@@ -63,6 +63,11 @@ function cotKep(host, labels, series, opt = {}) {
     // Chỉ nới mép dưới khi thật sự có giá trị âm. Không thì trục hiện "−2427 tỷ
     // doanh thu" — một con số không tồn tại, chỉ là khoảng đệm bị dán nhãn.
     lo = lo < 0 ? lo - pad : 0;
+    // Đã cắt ở ±cap thì TRỤC cũng không được in số vượt quá cap — chú thích ghi
+    // "chạm biên ±150%" mà trục hiện −186% là hai con số nói hai chuyện khác nhau.
+    // PHẢI kẹp SAU dòng nới mép dưới: kẹp trước thì dòng đó trừ thêm pad lần nữa
+    // và biên lại vọt ra ngoài. Đã vấp đúng thứ tự này một lần.
+    if (tran) { hi = Math.min(hi, tran); lo = Math.max(lo, -tran); }
     return { hi, lo };
   };
   const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
@@ -144,7 +149,7 @@ function cotKep(host, labels, series, opt = {}) {
 }
 
 function duongQuy(host, labels, series, opt = {}) {
-  const W = FCW, H = FCH, PL = 54, PR = 14, PT = 18, PB = 34;
+  const W = FCW, H = FCH, PL = 54, PT = 18, PB = 34;
   // `zero: true` nghĩa là "đại lượng này KHÔNG âm được về bản chất" — P/E, P/B.
   // P/E của quý LỖ thì âm, mà P/E −1740 không có nghĩa "rẻ gấp 1740 lần": càng lỗ
   // ít thì con số càng âm to. Đó là một đại lượng không tồn tại, và chính nó kéo
@@ -153,39 +158,85 @@ function duongQuy(host, labels, series, opt = {}) {
   let nBo = 0;
   const boQuy = new Array(labels.length).fill(false);
   if (opt.zero) {
-    series = series.map(s => ({ ...s, v: (s.v || []).map((v, i) => {
+    series = series.map(s2 => ({ ...s2, v: (s2.v || []).map((v, i) => {
       if (so(v) && v <= 0) { nBo++; boQuy[i] = true; return null; }
       return v;
     }) }));
   }
-  const vals = series.flatMap(s => (s.v || []).filter(so));
-  if (!vals.length) { host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return; }
-  let hi = Math.max(...vals), lo = Math.min(...vals);
-  const pad = (hi - lo) * 0.18 || Math.abs(hi) * 0.1 || 1;
-  hi += pad;
-  // `zero` chỉ được ép sàn 0 khi KHÔNG có giá trị âm nào. Bản cũ ép vô điều
-  // kiện, nên P/E âm vẫn vẽ nhưng nằm dưới đáy khung và chạy ra ngoài thẻ.
-  lo = (opt.zero && lo >= 0) ? 0 : lo - pad;
+  if (!series.flatMap(s2 => (s2.v || []).filter(so)).length) {
+    host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return;
+  }
+
+  // ---- P/E và P/B KHÔNG được dùng chung một trục -------------------------
+  // Sai lầm 18/09: chung trục thì với VND (P/E tới 23,5 · P/B quanh 1,2) đường P/B
+  // bị ép thành một vạch nằm sát đáy, không đọc được gì. Bản trước em dán một câu
+  // "chỉ so được hình dáng" rồi bỏ qua — đó là viết lời bào chữa chứ không phải sửa.
+  // Cùng một bệnh với biểu đồ Quy mô, và cùng một thuốc: tách trục.
+  const bien = s2 => { const v = (s2.v || []).filter(so); return v.length ? Math.max(...v.map(Math.abs)) : 0; };
+  let hai = false;
+  if (series.length === 2 && opt.truc2 !== false) {
+    const a = bien(series[0]), b = bien(series[1]);
+    hai = a > 0 && b > 0 && (a / b >= 6 || b / a >= 6);
+  }
+  const thang = ss => {
+    const v = ss.flatMap(s2 => (s2.v || []).filter(so));
+    if (!v.length) return null;
+    let hi = Math.max(...v), lo = Math.min(...v);
+    const pad = (hi - lo) * 0.18 || Math.abs(hi) * 0.1 || 1;
+    hi += pad;
+    // `zero` chỉ được ép sàn 0 khi KHÔNG có giá trị âm nào. Bản cũ ép vô điều
+    // kiện, nên P/E âm vẫn vẽ nhưng nằm dưới đáy khung và chạy ra ngoài thẻ.
+    lo = (opt.zero && lo >= 0) ? 0 : lo - pad;
+    return { hi, lo };
+  };
+  const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
+  if (hai && (!T[0] || !T[1])) hai = false;
+  const PR = hai ? 46 : 14;
   const n = labels.length;
   const X = i => PL + (i + 0.5) * (W - PL - PR) / n;
-  const Y = v => PT + (1 - (v - lo) / (hi - lo)) * (H - PT - PB);
+  const Yk = (v, k) => {
+    const t = T[hai ? k : 0];
+    return PT + (1 - (v - t.lo) / (t.hi - t.lo)) * (H - PT - PB);
+  };
+  const Y = v => Yk(v, 0);
   const f = opt.fmt || (x => x.toFixed(1));
+  const f2 = opt.fmt2 || f;
+  // Nhãn trục chỉ có 47 đơn vị. "74808.41" của NVB dài 51 đơn vị nên đè lên chính
+  // biểu đồ. Quá dài thì rút gọn k/tr — con số đầy đủ vẫn nằm ở bảng 12 quý bên dưới.
+  const RONG = 47;
+  const gon = (v, ff) => {
+    const t = ff(v);
+    if (t.length * 11 * 0.58 <= RONG) return t;
+    const a = Math.abs(v);
+    if (a >= 1e6) return (v / 1e6).toFixed(1) + 'tr';
+    if (a >= 1e3) return (v / 1e3).toFixed(1) + 'k';
+    return v.toFixed(0);
+  };
   const cp = 'cpd' + (++_cpId);
 
   let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
     <defs><clipPath id="${cp}"><rect x="${PL}" y="${PT - 4}" width="${W - PL - PR}" height="${H - PT - PB + 8}"/></clipPath></defs>`;
   for (let k = 0; k <= 3; k++) {
-    const v = lo + (hi - lo) * k / 3, y = Y(v);
+    const v = T[0].lo + (T[0].hi - T[0].lo) * k / 3, y = Yk(v, 0);
     s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
-          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(--text-muted)">${f(v)}</text>`;
+          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(${hai ? series[0].color : '--text-muted'})">${gon(v, f)}</text>`;
+  }
+  if (hai) {
+    for (let k = 0; k <= 3; k++) {
+      const v = T[1].lo + (T[1].hi - T[1].lo) * k / 3, y = Yk(v, 1);
+      s += `<text x="${W - PR + 7}" y="${y + 4}" text-anchor="start" font-size="11" fill="var(${series[1].color})">${gon(v, f2)}</text>`;
+    }
   }
   // cột mờ đánh dấu quý KHÔNG có số (lỗ, hoặc chưa công bố) — để chỗ trống trên
-  // đường không bị đọc nhầm thành "đi ngang"
+  // đường không bị đọc nhầm thành "đi ngang". Có dán chữ, không thì nhìn như
+  // một vệt xám vô nghĩa giữa biểu đồ.
   (opt.trong || boQuy).forEach((co, i) => {
     if (!co) return;
     const w = (W - PL - PR) / n;
     s += `<rect x="${X(i) - w / 2}" y="${PT}" width="${w}" height="${H - PT - PB}"
-           fill="var(--text-muted)" opacity=".08"><title>${labels[i]} · ${esc(opt.trongVi || 'quý lỗ — không có P/E')}</title></rect>`;
+           fill="var(--text-muted)" opacity=".10"><title>${labels[i]} · ${esc(opt.trongVi || 'quý lỗ — không có P/E')}</title></rect>
+          <text x="${X(i)}" y="${PT + 12}" text-anchor="middle" font-size="9.5" font-weight="700"
+           fill="var(--text-muted)" opacity=".85">lỗ</text>`;
   });
 
   // Gom mọi nhãn nổi vào một danh sách rồi mới đẩy tránh nhau — vẽ ngay tại chỗ
@@ -197,15 +248,25 @@ function duongQuy(host, labels, series, opt = {}) {
     nhan.push({ y: Y(opt.tb) - 6, x: W - PR - 3, neo: 'end', chu: 'TB ' + f(opt.tb), mau: 'var(--text-muted)', dam: 600 });
   }
   s += `<g clip-path="url(#${cp})">`;
-  series.forEach(se => {
+  series.forEach((se, k) => {
+    const ff = (hai && k === 1) ? f2 : f;
     let d = '', bat = false;
-    (se.v || []).forEach((v, i) => { if (!so(v)) { bat = false; return; } d += (bat ? 'L' : 'M') + X(i) + ' ' + Y(v); bat = true; });
+    (se.v || []).forEach((v, i) => { if (!so(v)) { bat = false; return; } d += (bat ? 'L' : 'M') + X(i) + ' ' + Yk(v, k); bat = true; });
     if (d) s += `<path d="${d}" fill="none" stroke="var(${se.color})" stroke-width="1.9" stroke-linejoin="round"/>`;
-    (se.v || []).forEach((v, i) => { if (so(v)) s += `<circle cx="${X(i)}" cy="${Y(v)}" r="2.6" fill="var(${se.color})"><title>${labels[i]} · ${esc(se.name)}: ${f(v)}</title></circle>`; });
+    (se.v || []).forEach((v, i) => {
+      if (!so(v)) return;
+      // Điểm ĐỨNG MỘT MÌNH (hai bên đều trống) không có đoạn thẳng nào nối vào,
+      // nên vẽ bằng chấm thường thì trông như bụi trên màn hình — đã bị hiểu nhầm
+      // đúng một lần. Cho nó vòng tròn để rõ đó là một quý có số thật.
+      const le = !so((se.v || [])[i - 1]) && !so((se.v || [])[i + 1]);
+      s += le
+        ? `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="4.2" fill="var(--surface-1)" stroke="var(${se.color})" stroke-width="2.2"><title>${labels[i]} · ${esc(se.name)}: ${ff(v)} (quý đứng một mình, hai bên không có số)</title></circle>`
+        : `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="2.6" fill="var(${se.color})"><title>${labels[i]} · ${esc(se.name)}: ${ff(v)}</title></circle>`;
+    });
     const cuoi = [...(se.v || [])].reverse().find(so);
     if (so(cuoi)) {
       const i = se.v.lastIndexOf(cuoi);
-      nhan.push({ y: Y(cuoi) - 8, x: Math.min(X(i) + 6, W - PR), neo: 'end', chu: f(cuoi), mau: `var(${se.color})`, dam: 700 });
+      nhan.push({ y: Yk(cuoi, k) - 8, x: Math.min(X(i) + 6, W - PR), neo: 'end', chu: ff(cuoi), mau: `var(${se.color})`, dam: 700 });
     }
   });
   s += '</g>';
@@ -225,11 +286,12 @@ function duongQuy(host, labels, series, opt = {}) {
            transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
   });
   s += '</svg>';
-  host.innerHTML = s + (nBo
-    ? `<p class="muted" style="margin:6px 0 0;font-size:12px"><b>${nBo}/${labels.length} quý doanh nghiệp lỗ</b>
-       nên không có P/E — cột tô mờ là những quý đó. P/E và P/B dùng chung một trục
-       nên chỉ so được <b>hình dáng</b>, không so được độ lớn.</p>`
-    : '');
+
+  const ghi = [];
+  if (nBo) ghi.push(`<b>${nBo}/${labels.length} quý doanh nghiệp lỗ</b> nên không có P/E — cột tô mờ có chữ "lỗ" là những quý đó.`);
+  if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải — màu số trên trục khớp màu đường.`);
+  host.innerHTML = s + (ghi.length
+    ? `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>` : '');
 }
 
 /* ============================================================================
@@ -528,4 +590,47 @@ function pageNganh(root) {
     const k = th.dataset.k; if (!k) return; sd = (k === sk) ? -sd : -1; sk = k; rend();
   });
   rend();
+}
+
+/* ============================================================================
+   ĐỒNG BỘ MÃ giữa THANH TRA CỨU và TRANG CHI TIẾT MÃ  (sửa 18/09/2026)
+
+   Lỗi: gõ "VND" vào thanh tra cứu trên đỉnh thì thanh đó đổi, nhưng bốn biểu đồ
+   bên dưới vẫn là của mã cũ (BSR). Cuộn xuống một đoạn là ô nhập riêng của trang
+   khuất đi — trên màn chỉ còn chữ VND, không cách nào biết biểu đồ là mã khác.
+   Đúng họ lỗi đã ghi trong sổ: "nhìn như FPT mà số là của ORS".
+
+   Hai ô nhập trên cùng một màn hình mà không nói chuyện với nhau là cái bẫy, dù
+   mỗi ô tự nó chạy đúng. Từ giờ chọn mã ở đâu cũng đổi cả hai.
+
+   Khai báo bằng `function` nên được kéo lên đầu phạm vi — p9.js và p10.js nạp
+   TRƯỚC file này vẫn gọi được lúc chạy.
+   ========================================================================== */
+// Cờ chặn gọi vòng ĐẶT NGAY TRÊN HÀM, không dùng `let` ở phạm vi ngoài.
+// Lý do đã vấp: IIFE thanh tra cứu trong p10.js chạy NGAY LÚC NẠP và gọi hàm này,
+// tức trước khi p16.js (nạp sau) kịp khởi tạo biến — `let` lúc đó còn trong vùng
+// chết, chạm vào là ném ReferenceError và chết cả trang. Thuộc tính của hàm thì
+// hàm được kéo lên đầu phạm vi nên lúc nào cũng có.
+function nsiChonMa(sym, tu) {
+  if (!sym || nsiChonMa._dang) return;      // chặn gọi vòng: thanh -> trang -> thanh
+  // `typeof x` KHÔNG cứu được biến let/const đang trong vùng chết — chạm vào là
+  // ném ReferenceError. Mà hàm này bị gọi lúc p10.js nạp, tức TRƯỚC khi p7.js
+  // khai báo `secs` và p9.js khai báo `_chartSym`. Nên mọi lần đọc biến của file
+  // khác đều phải bọc try/catch. Đã vấp đúng chỗ này hai lần trong một buổi.
+  const doc = f => { try { return f(); } catch (e) { return null; } };
+  nsiChonMa._dang = true;
+  try {
+    if (tu !== 'thanh' && typeof window._lkShow === 'function') {
+      try { document.getElementById('lkIn').value = sym; } catch (e) {}
+      try { window._lkShow(sym); } catch (e) {}
+    }
+    if (tu !== 'trang') {
+      const S  = doc(() => secs);
+      const LK = doc(() => (D.lookup || {}));
+      const cu = doc(() => _chartSym);
+      if (S && S.bieudo && S.bieudo.rendered && LK && LK[sym] && cu !== sym) {
+        try { _chartSym = sym; veLaiTrang('bieudo'); } catch (e) {}
+      }
+    }
+  } finally { nsiChonMa._dang = false; }
 }

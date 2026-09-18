@@ -514,7 +514,11 @@ function pageNotebook(root){
        <span class="lkbadge ${x.state}">${esc(x.label)}</span> ${tim} ${need}
        ${sub ? `<div style="flex-basis:100%;margin-top:-4px">${sub}</div>` : ''}`;
     try { localStorage.setItem('nsi_lk', sym); } catch(e){}
+    // Trang Chi tiết mã phải đi theo. Xem chú thích ở nsiChonMa trong p16.js.
+    if (typeof nsiChonMa === 'function') nsiChonMa(sym, 'thanh');
   }
+  // Mở cửa cho nsiChonMa gọi ngược lại vào đây (hàm show nằm trong IIFE).
+  window._lkShow = show;
 
   let cur = -1, list = [];
   function search(q){

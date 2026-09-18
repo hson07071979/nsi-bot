@@ -199,6 +199,9 @@ function pageChart(root){
 
   const ve = sym => {
     _chartSym = sym;
+    // Đổi mã ở đây thì thanh tra cứu trên đỉnh phải đổi theo, không thì hai chỗ
+    // trên cùng một màn hình nói hai mã khác nhau (lỗi 18/09).
+    if (typeof nsiChonMa === 'function') nsiChonMa(sym, 'trang');
     const x = L[sym], F = FS[sym];
     document.getElementById('ctTen').innerHTML = x
       ? `<b style="font-size:20px">${sym}</b> <span class="muted">— ${esc(x.name)} · ${esc(x.sector)} · ${esc(x.exch)}</span>`

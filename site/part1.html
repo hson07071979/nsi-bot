@@ -2,7 +2,7 @@
 <html lang="vi" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Nguyễn Sơn Invest — Hệ thống giao dịch & Backtest</title>
   <meta name="description" content="Hệ thống giao dịch cổ phiếu Việt Nam theo chín lớp — backtest chạy lại từng phiên từ 02/01/2019 trên TOP 110 mã thanh khoản nhất, đã trừ phí. Công cụ nghiên cứu, không phải khuyến nghị đầu tư.">
   <meta property="og:type" content="website">
@@ -16,6 +16,16 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Nguyễn Sơn Invest — hiệu suất hệ thống">
   <meta name="twitter:card" content="summary_large_image">
+  <!-- ---- Cài vào màn hình chính. Bốn file dưới đây là file TĨNH nằm ở gốc repo
+       public (manifest.json, sw.js, icon-*.png) — build_site2.py không sinh ra
+       chúng, nên bản dựng tối nào cũng không đụng tới. ---- -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f7f5" media="(prefers-color-scheme: light)">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="NS Invest">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
 :root{
   color-scheme: dark;
@@ -459,6 +469,87 @@ details.dt>summary:hover{background:var(--surface-2);border-radius:12px}
 .lktrong a:hover{background:var(--surface-2)}
 .lktrong a b{display:block;color:var(--text-primary);font-size:14px;font-weight:640}
 .lktrong a span{display:block;color:var(--text-muted);font-size:12.5px;margin-top:2px;line-height:1.45}
+
+/* ============================================================================
+   LỚP ĐIỆN THOẠI — bật dưới 700px, tắt hoàn toàn ở trên
+   Không đổi một biến màu, một cỡ chữ gốc nào. Trên máy tính trang chạy y như cũ.
+   ========================================================================== */
+.dnav, .dngan, .dmoi{display:none}
+
+@media (max-width:700px){
+  /* Thanh tab trên đỉnh xuống dòng thành ba hàng ở màn 390px, chiếm gần nửa
+     màn hình trước khi thấy chữ đầu tiên. Dưới 700px thay hẳn bằng thanh dưới. */
+  nav.tabs{display:none}
+  header.top .topin{height:52px}
+  body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+  .wrap{padding:0 14px}
+  section.page{padding:16px 0 8px}
+  h1{font-size:25px}
+  h2{font-size:19px;margin:26px 0 6px}
+  p.lead{font-size:15px}
+  .card{padding:15px 16px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .kpi .val{font-size:22px}
+  .livebar{padding:8px 14px}
+  .lookbar{position:static}
+  /* Bảng nhiều cột: vẫn cuộn ngang như trên máy tính, nhưng bỏ padding thừa và
+     ghim cột Mã lại để cuộn mà vẫn biết đang xem mã nào. */
+  .tblwrap{max-height:none}
+  table{font-size:12.5px}
+  th, td{padding:7px 8px}
+  .tblwrap td.sym, .card > table td.sym{position:sticky;left:0;z-index:1;
+    background:var(--surface-1);box-shadow:1px 0 0 var(--line)}
+  .tblwrap tr:hover td.sym{background:var(--surface-2)}
+  .two, .three{grid-template-columns:1fr}
+
+  /* ---- thanh điều hướng dưới ---- */
+  .dnav{display:grid;position:fixed;bottom:0;left:0;right:0;z-index:70;
+    grid-template-columns:repeat(5,1fr);
+    background:color-mix(in srgb,var(--bg) 93%,transparent);backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+  .dnav:has(button:nth-child(5):last-child){grid-template-columns:repeat(5,1fr)}
+  .dnav button{background:none;border:0;color:var(--text-muted);font:inherit;font-size:10.5px;
+    font-weight:640;padding:7px 2px 8px;cursor:pointer;display:flex;flex-direction:column;
+    align-items:center;gap:3px;min-width:0;letter-spacing:-.01em}
+  .dnav button.on{color:var(--accent)}
+  .dnav .ic{display:block;line-height:0}
+  .dnav svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.85;
+    stroke-linecap:round;stroke-linejoin:round}
+
+  /* ---- ngăn "Thêm" ---- */
+  .dngan{display:block;position:fixed;inset:0;z-index:80;pointer-events:none}
+  .dngan-nen{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .2s}
+  .dngan-hop{position:absolute;left:0;right:0;bottom:0;background:var(--surface-1);
+    border-top:1px solid var(--line);border-radius:18px 18px 0 0;padding:8px 14px
+    calc(16px + env(safe-area-inset-bottom));transform:translateY(102%);transition:transform .24s cubic-bezier(.32,.72,0,1)}
+  .dngan.on{pointer-events:auto}
+  .dngan.on .dngan-nen{opacity:1}
+  .dngan.on .dngan-hop{transform:translateY(0)}
+  .dngan-keo{width:36px;height:4px;border-radius:3px;background:var(--line);margin:4px auto 12px}
+  .dngan-hop button{display:block;width:100%;text-align:left;background:var(--surface-2);
+    border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;
+    font:inherit;color:var(--text-secondary);cursor:pointer}
+  .dngan-hop button b{display:block;color:var(--text-primary);font-size:15px;font-weight:660}
+  .dngan-hop button span{display:block;font-size:12.5px;color:var(--text-muted);margin-top:1px}
+  .dngan-huy{text-align:center !important;color:var(--text-muted) !important;
+    background:none !important;border:0 !important;margin:2px 0 0 !important;font-size:14px !important}
+
+  /* ---- lời mời cài app ---- */
+  .dmoi{display:block;position:fixed;left:12px;right:12px;
+    bottom:calc(74px + env(safe-area-inset-bottom));z-index:75;
+    background:var(--surface-1);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:13px;padding:13px 15px;font-size:13.5px;color:var(--text-secondary);
+    box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  .dmoi b{color:var(--text-primary);font-weight:680}
+  .dmoi-nut{display:flex;gap:8px;margin-top:11px}
+  .dmoi-nut .btn{flex:1;text-align:center}
+}
+
+/* Đã cài vào màn hình chính thì không còn thanh địa chỉ của trình duyệt nữa,
+   nên phần đầu trang phải tự chừa chỗ cho thanh trạng thái của điện thoại. */
+@media (display-mode:standalone){
+  header.top{padding-top:env(safe-area-inset-top)}
+}
 </style>
 </head>
 <body>
