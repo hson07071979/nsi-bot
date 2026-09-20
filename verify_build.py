@@ -102,10 +102,29 @@ check(1.0 < M['total_return'] < 20.0, f"loi nhuan {M['total_return']*100:.0f}% n
 check(0.02 < M['maxdd'] < 0.30, f"sut giam toi da {M['maxdd']*100:.1f}% bat thuong")
 check(M['pf'] and M['pf'] > 1.5, f"Profit Factor {M['pf']} qua thap, nghi cau hinh sai")
 
-# ---------- 5. vu tru dung 110 chua ----------
-TOP_N = 110
+# ---------- 5. bo loc co dung cung mot bo nguong voi bo may khong ----------
+# LOI 21/09/2026: dong nay tung ghi cung `TOP_N = 110`. Doi bot sang TOP 120 la
+# chot chan nay truot, build do, KHONG DANG DUOC gi len trang — mat ca mot lan
+# dung 10 phut. Nay doc thang tu cau hinh bo may nhung trong trang, nen doi
+# nguong o produce2.py la kiem tra tu theo, khong bao gio lech nua.
+CFP = D.get('cfg_prod') or {}
+TOP_N = CFP.get('top_n')
 sc = D['screener']
-check(sc.get('n') == TOP_N, f"bo loc co {sc.get('n')} ma, phai la {TOP_N} — nghi quen chay screener.py")
+check(TOP_N is not None,
+      'thieu khoi "cfg_prod" trong trang — produce2.py chua ghi cau hinh dang chay')
+if TOP_N is not None:
+    check(sc.get('n') == TOP_N,
+          f"bo loc co {sc.get('n')} ma, phai la {TOP_N} — nghi quen chay screener.py, "
+          "hoac screener.py va produce2.py dang de hai gia tri top_n khac nhau")
+
+# Cung mot bay, hai nguong con lai. Lop watchlist va lop bo may PHAI dung chung
+# mot bo nguong; lech la co ma vua nam trong watchlist vua bi bao "chua du dieu
+# kien" — so kien truc da ghi ba lan.
+_wr = (D.get('watchlist') or {}).get('rules') or {}
+if _wr.get('max_base_range') is not None and CFP.get('base_range') is not None:
+    check(abs(_wr['max_base_range'] - CFP['base_range']) < 1e-9,
+          f"nen gia lech: watchlist {_wr['max_base_range']:.2f} khac bo may "
+          f"{CFP['base_range']:.2f} — sua ca screener.py lan produce2.py")
 
 # ---------- 6. du lieu co moi khong ----------
 asof = D.get('asof', '')
