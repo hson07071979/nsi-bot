@@ -157,7 +157,7 @@ function lydongan(h) {
   if (h.volr >= 2) o.push(`vol ${h.volr}× TB20`);
   else if (h.volr >= 1.3) o.push(`vol nhích ${h.volr}×`);
   if (h.gtgd >= 15) o.push(`GTGD ${h.gtgd} tỷ`);
-  if (h.ordimb != null && h.ordimb >= (h.ordimb_min || 1.2)) o.push('dòng tiền mua mạnh');
+  if (h.ordimb != null && h.ordimb >= (h.ordimb_min || cpDT())) o.push('dòng tiền mua mạnh');
   if (h.score != null) o.push(`điểm ${Math.round(h.score)}`);
   return o.slice(0, 4).join(' · ') || '—';
 }
@@ -327,7 +327,7 @@ function pageHieuQua(root) {
   <details class="dt"><summary><b>Hệ thống chọn mã thế nào</b> — chín lớp lọc, trượt lớp nào là dừng</summary>
     <div class="dtin">
       <ol class="dtol">
-        <li><b>Vũ trụ</b> — chỉ TOP 110 mã thanh khoản nhất, xếp hạng lại từng phiên.</li>
+        <li><b>Vũ trụ</b> — chỉ TOP ${cpTop()} mã thanh khoản nhất, xếp hạng lại từng phiên.</li>
         <li><b>Cổng rủi ro</b> — dòng tiền âm, không đủ trả lãi vay, nợ quá cao thì loại thẳng.</li>
         <li><b>Chấm điểm</b> — tăng trưởng lợi nhuận, doanh thu, ROE, sức mạnh giá. Sàn 45/100.</li>
         <li><b>Nền giá</b> — 30 phiên gần nhất phải tích luỹ trong biên độ hẹp.</li>

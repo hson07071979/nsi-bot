@@ -77,7 +77,8 @@ function pageFlow(root){
   <h2>Nó thực sự có tác dụng không?</h2>
   
   <div class="card"><table><thead><tr><th>Cấu hình</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>
-    <th style="text-align:right">PF</th><th style="text-align:right">Drawdown</th><th style="text-align:right">Sharpe</th><th style="text-align:right">Tỷ lệ thắng</th></tr></thead><tbody id="ftbl"></tbody></table></div>
+    <th style="text-align:right">PF</th><th style="text-align:right">Drawdown</th><th style="text-align:right">Sharpe</th><th style="text-align:right">Tỷ lệ thắng</th></tr></thead><tbody id="ftbl"></tbody></table>
+    <p class="muted" style="margin:12px 0 0">Bảng này là lần quét đầu, chỉ đo tới 1,3. <b>Ngưỡng bộ máy đang chạy là ≥ ${cpDTvi()}</b> (đổi 21/09/2026) — quét lại xa hơn thấy cả dải 1,28–1,48 đều tốt hơn, nhưng 1,50 thì rơi vực.</p></div>
 
   <h2>Nó sửa đúng những năm anh nói là "lỗ"</h2>
   <div class="card"><div id="fyear"></div>
@@ -91,7 +92,10 @@ function pageFlow(root){
 
   const base=s2['baseline'], f10=s2['loc co lenh mua>ban (>=1.0)'], f13=s2['loc co lenh mua>ban (>=1.3)'];
   document.getElementById('ftbl').innerHTML=[
-    ['Không lọc dòng tiền',base],['Tỷ số ≥ 1,0 (đang dùng)',f10],['Tỷ số ≥ 1,3 (khắt khe hơn)',f13]
+    // "(đang dùng)" ở đây từng ghi sai: bảng này đo 1,0 và 1,3, còn bộ máy chạy
+    // 1,20 rồi nay là 1,40. Không gắn nhãn "đang dùng" cho một dòng không phải
+    // ngưỡng thật nữa — ngưỡng thật ghi ở câu dưới bảng.
+    ['Không lọc dòng tiền',base],['Tỷ số ≥ 1,0',f10],['Tỷ số ≥ 1,3',f13]
   ].map(([n,m])=>`<tr><td class="sym">${n}</td><td style="text-align:right">${m.trades}</td>
     <td style="text-align:right" class="${cls(m.total_return)}">${sg(m.total_return)}</td>
     <td style="text-align:right;font-weight:640;color:var(--text-primary)">${m.pf}</td>

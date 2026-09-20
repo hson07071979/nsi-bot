@@ -58,7 +58,7 @@ function pageHome(root){
   root.innerHTML = `
   ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
-    <div class="badge">Dữ liệu real-time · nguồn FireAnt · chỉ giao dịch TOP 110 mã thanh khoản nhất</div>
+    <div class="badge">Dữ liệu real-time · nguồn FireAnt · chỉ giao dịch TOP ${cpTop()} mã thanh khoản nhất</div>
     <h1>Hiệu suất thật,<br>đo trên ${(dates.length/250).toFixed(1)} năm dữ liệu.</h1>
     
   </div>
@@ -715,7 +715,8 @@ function rsi14(bars) {
    Vì sao bỏ iframe TradingView. Hai lý do, cả hai đều là lỗi thật anh Sơn gặp:
      1. TradingView KHÔNG có đủ mã sàn Việt Nam. HOSE:ORS báo "Mã giao dịch này
         chỉ có trên TradingView" — tức là ô biểu đồ trống trơn. Một biểu đồ chỉ
-        chạy với mã lớn thì vô dụng với hệ thống này, vì hệ thống soi cả 110 mã.
+        chạy với mã lớn thì vô dụng với hệ thống này, vì hệ thống soi cả TOP
+        thanh khoản chứ không chỉ vài chục mã đầu bảng.
      2. Widget đó dựng chữ tiếng Việt hỏng ("Oợ Hợ Lợ Cợ ợ").
 
    Thay bằng Lightweight Charts — cùng nhà TradingView làm ra, mã nguồn mở,

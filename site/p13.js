@@ -170,7 +170,7 @@ async function napChiSo() {
    Thà báo thiếu còn hơn báo mua một phiên mà bộ máy chín lớp vốn không đụng vào. */
 function tinhLaiTinHieuVPS() {
   const R = NSI.rt || {}, L = D.lookup || {}, hits = [];
-  const oiMin = (LIVE.server && LIVE.server.ordimb_min) || 1.20;
+  const oiMin = (LIVE.server && LIVE.server.ordimb_min) || cpDT();
   const f = phanPhien(), mo = phienMo();
 
   Object.keys(R).forEach(sym => {

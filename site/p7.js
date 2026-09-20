@@ -28,16 +28,18 @@ function pageEvidence(root){
     <tr><td class="sym">+ GTGD ≥ 15 tỷ</td><td style="text-align:right">3.717</td><td style="text-align:right">66,8%</td></tr>
     <tr><td class="sym">+ Biến động &amp; đóng cửa nửa trên nến</td><td style="text-align:right">3.675</td><td style="text-align:right">98,9%</td></tr>
     <tr style="border-top:2px solid var(--line)"><td class="sym">+ Nền 30 phiên ≤ 12% (nguyên bản)</td><td style="text-align:right">709</td><td style="text-align:right"><b style="color:var(--text-primary)">93/năm</b></td></tr>
-    <tr><td class="sym">+ Nền 30 phiên ≤ 18% (đang dùng)</td><td style="text-align:right">1.553</td><td style="text-align:right"><b style="color:var(--text-primary)">204/năm</b></td></tr>
+    <tr><td class="sym">+ Nền 30 phiên ≤ 18%</td><td style="text-align:right">1.553</td><td style="text-align:right"><b style="color:var(--text-primary)">204/năm</b></td></tr>
     <tr><td class="sym">+ Nền 30 phiên ≤ 25%</td><td style="text-align:right">2.304</td><td style="text-align:right">303/năm</td></tr></tbody></table>
-  <p class="muted" style="margin:12px 0 0">Bản v1 chạy trên 311 mã cho <b>21 tín hiệu kỹ thuật/năm</b>. Bản v2 với ${D.universe_n} mã, cùng luật nguyên bản ≤12%, cho <b>93/năm</b> — gấp 4,4 lần. Luật không sai; vũ trụ mới sai.</p></div>
+  <p class="muted" style="margin:12px 0 0">Bản v1 chạy trên 311 mã cho <b>21 tín hiệu kỹ thuật/năm</b>. Bản v2 với ${D.universe_n} mã, cùng luật nguyên bản ≤12%, cho <b>93/năm</b> — gấp 4,4 lần. Luật không sai; vũ trụ mới sai.<br><br>
+  <b>Ngưỡng đang chạy là ${cpNen()}%</b> (đổi 21/09/2026), nằm giữa hai dòng 18% và 25% ở bảng trên. Ba con số đếm trong bảng là kết quả đo của lần dựng cũ, giữ nguyên chứ không sửa theo — đếm lại mới được phép thay số.</p></div>
 
   <h2>2. Ngưỡng dòng tiền — factor mạnh nhất tìm được</h2>
   <p class="muted" style="margin-top:0">Quét ngưỡng cỡ lệnh mua ÷ cỡ lệnh bán, cỡ vị thế cố định 30% NAV. Nếu đây chỉ là nhiễu thì đường cong sẽ nhảy lung tung; nó lại đi lên gần như đơn điệu.</p>
   <div class="card"><div id="omChart"></div>
   <table style="margin-top:14px"><thead><tr><th>Ngưỡng</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>
     <th style="text-align:right">PF</th><th style="text-align:right">Drawdown</th><th style="text-align:right">Tỷ lệ thắng</th></tr></thead><tbody id="omTbl"></tbody></table>
-  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> Profit Factor đi từ 2,16 lên 4,62 khi siết ngưỡng, tỷ lệ thắng từ 44% lên 48%, đổi lại số lệnh giảm dần. Em chọn <b>≥1,20</b> vì nó giữ được ~29 lệnh/năm (xấp xỉ 31 lệnh/năm của anh Khoa) mà Profit Factor vẫn 3,28 và drawdown thấp nhất bảng.</p></div>
+  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> Profit Factor đi từ 2,16 lên 4,62 khi siết ngưỡng, tỷ lệ thắng từ 44% lên 48%, đổi lại số lệnh giảm dần. Bảng này là lần quét đầu, dừng ở 1,30.<br><br>
+  <b>Cập nhật 21/09/2026 — ngưỡng đang chạy là ≥ ${cpDTvi()}, không còn 1,20.</b> Quét lại xa hơn cùng với TOP ${cpTop()} và nền ${cpNen()}%: cả dải 1,28–1,48 đều tốt hơn 1,20 ở mọi chỉ số, PF lên 5,87 và sụt giảm xuống 9,45%. Chọn 1,40 vì nó nằm giữa dải phẳng đó. <b style="color:var(--critical)">Nhưng 1,50 rơi vực</b> (tổng lợi nhuận về 462,5%) — nên đừng siết thêm quá 1,45.</p></div>
 
   <h2>3. Cỡ vị thế dưới ràng buộc drawdown ≤ 15%</h2>
   <p class="muted" style="margin-top:0">Quét cỡ vị thế và số mã song song, tìm cấu hình cho lợi nhuận cao nhất mà vẫn không vượt ngưỡng chịu đau anh đặt ra.</p>
@@ -141,7 +143,7 @@ function pageEvidence(root){
     <td style="text-align:right">${m.pf}</td><td style="text-align:right" class="neg">−${pct(m.maxdd)}</td>
     <td style="text-align:right">${m.sharpe}</td><td>${v}</td></tr>`).join('');
   document.getElementById('shelfTbl').innerHTML=[
-    ['Chỉ nền 30 phiên ≤18% (đang dùng)',s5['baseline + ve bo']],
+    ['Chỉ nền 30 phiên ≤18% (bản gốc của thí nghiệm này)',s5['baseline + ve bo']],
     ['+ nền phẳng 15 phiên ≤10%',s5['+ nen phang 15 phien <=10%']],
     ['+ nền phẳng 15 phiên ≤12%',s5['+ nen phang 15 phien <=12%']],
   ].map(([n,m])=>`<tr><td class="sym">${n}</td><td style="text-align:right">${m.trades}</td>

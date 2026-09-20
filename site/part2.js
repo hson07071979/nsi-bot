@@ -67,6 +67,25 @@ const vnd = x => (Math.abs(x)>=1e9? (x/1e9).toFixed(2)+' tỷ' : (x/1e6).toFixed
 const cls = x => x>=0?'pos':'neg';
 const el  = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const CV = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+/* ---------- ba ngưỡng ĐANG CHẠY, đọc thẳng từ cấu hình bộ máy ----------
+   Đừng gõ tay 120 / 22% / 1,40 vào bất kỳ câu chữ nào trên trang nữa. Đổi luật
+   ở produce2.py là chữ trên trang tự đổi theo. Sổ lỗi đã ghi ba lần cùng một
+   bẫy: trang nói một đằng, bộ máy chạy một nẻo. Giá trị dự phòng chỉ dùng khi
+   mở bằng file:// hoặc bản dựng cũ chưa có khối cfg_prod. */
+const CP     = D.cfg_prod || {};
+const cpTop  = () => CP.top_n ?? 120;
+const cpNen  = () => Math.round((CP.base_range ?? 0.22) * 100);
+const cpDT   = () => CP.ordimb_min ?? 1.40;
+const cpDTvi = () => cpDT().toFixed(2).replace('.', ',');
+const cpV    = (k, mac) => (CP[k] ?? mac);
+const cpBat  = (k, mac) => !!(CP[k] ?? mac);
+const cpSo   = (v, d = 1) => Number(v).toFixed(d).replace('.', ',').replace(/,0$/, '');
+/* Nhãn BẬT/TẮT cho từng luật. Trang này từng liệt kê cả những luật đã tắt như
+   thể chúng đang chạy — người đọc học thuộc một bộ luật không tồn tại. */
+const cpNhan = b => b
+  ? '<span style="color:var(--good);font-weight:650;white-space:nowrap">● đang chạy</span>'
+  : '<span style="color:var(--text-muted);font-weight:650;white-space:nowrap">○ đã tắt</span>';
+
 const LIGHTVAR = {XANH:'--good', VANG:'--warn', CAM:'--serious', DO:'--critical'};
 const LIGHTNAME = {XANH:'Xanh', VANG:'Vàng', CAM:'Cam', DO:'Đỏ'};
 

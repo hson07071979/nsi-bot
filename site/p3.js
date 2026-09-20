@@ -147,7 +147,10 @@ function pageOverview(root){
 
   drawEquity('prod');
   const seg=document.getElementById('presetSeg');
-  const PRE=[['prod','Đang chạy — nền 18%, T+4'],['thucte','Có trượt giá 0,2%'],['nhieudeal','Nhiều deal hơn — nền 20%'],['khoa','Nhiều deal nhất — nền 25%'],['benhat','Bền nhất — size 30%'],['tvalve6','Van T+6 — cấu hình cũ']];
+  // Nhãn lấy thẳng từ PRESETS của produce2.py, không chép tay lần hai.
+  const THUTU=['cu','thucte','dt120','nhieudeal','khoa','benhat','dt145','toanTT','tvalve6'];
+  const PRE=[['prod',`Đang chạy — TOP ${cpTop()}, nền ${cpNen()}%, dòng tiền ${cpDTvi()}`]]
+    .concat(THUTU.filter(k=>(D.presets||{})[k]).slice(0,6).map(k=>[k,(D.presets[k].label||k)]));
   PRE.forEach(([k,lab],i)=>{const b=el('button',i===0?'on':'',lab);
     b.onclick=()=>{seg.querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');drawEquity(k);};seg.appendChild(b);});
 

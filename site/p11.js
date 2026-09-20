@@ -491,7 +491,7 @@ function tinhLaiTinHieu() {
     const bavg = r.bc > 0 ? r.bq / r.bc : 0;
     const savg = r.sc > 0 ? r.sq / r.sc : 0;
     const oi = savg > 0 ? bavg / savg : 0;
-    const oiMin = (LIVE.server && LIVE.server.ordimb_min) || 1.20;
+    const oiMin = (LIVE.server && LIVE.server.ordimb_min) || cpDT();
     const cond = {
       'Biên độ tăng giá': pct * 100 >= t.thr,
       'Khối lượng ≥ 2× TB20': r.vol >= t.need_vol,
@@ -587,7 +587,7 @@ function pageLiveTrucTiep(root, L) {
       <th>Mã</th><th>Doanh nghiệp</th><th style="text-align:right">Giá</th>
       <th style="text-align:right">%</th><th style="text-align:right">Cần đạt</th>
       <th style="text-align:right">Vol/TB20</th><th style="text-align:right">GTGD</th>
-      <th style="text-align:right" title="Cỡ lệnh mua ÷ cỡ lệnh bán — trên 1,20 là tổ chức đang gom">Dòng tiền</th>
+      <th style="text-align:right" title="Cỡ lệnh mua ÷ cỡ lệnh bán — hệ đòi ≥ ${cpDTvi()}">Dòng tiền</th>
       <th style="text-align:right">Điểm</th><th>Còn thiếu</th></tr></thead><tbody>
       ${list.map(h => `<tr>
         <td class="sym">${esc(h.sym)}</td>

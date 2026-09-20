@@ -15,8 +15,8 @@ function pageBacktest(root){
     <th style="text-align:right">Deal/năm</th><th style="text-align:right">Tỷ lệ thắng</th><th style="text-align:right">R:R</th>
     <th style="text-align:right">PF</th><th style="text-align:right">Tổng LN</th><th style="text-align:right">Drawdown</th>
     <th style="text-align:right">Sharpe</th></tr></thead><tbody id="tradeoffTbl"></tbody></table>
-  <p class="muted" style="margin:12px 0 0"><b>Quy luật rất rõ:</b> mỗi deal thêm vào đều là một tín hiệu <i>kém hơn</i> tín hiệu trước đó — vì hệ thống đã xếp hạng và lấy cái tốt nhất trước. Nới nền từ 18% lên 25% cho gấp rưỡi số deal nhưng tổng lợi nhuận giảm. Không có bữa trưa miễn phí ở đây.<br><br>
-  Bản đang chạy là <b>nền 18% + van T+4</b> — cho tổng lợi nhuận cao nhất. Nếu anh muốn nhiều deal hơn thì bấm nút ở tab Tổng quan để xem ngay các phương án nới rộng; cái giá phải trả nằm đúng ở cột Tổng LN trong bảng này.</p></div>
+  <p class="muted" style="margin:12px 0 0"><b>Quy luật rất rõ:</b> mỗi deal thêm vào đều là một tín hiệu <i>kém hơn</i> tín hiệu trước đó — vì hệ thống đã xếp hạng và lấy cái tốt nhất trước. Nới nền hay nới vũ trụ đều cho thêm deal nhưng làm loãng chất lượng: Profit Factor rơi. Không có bữa trưa miễn phí ở đây.<br><br>
+  Bản đang chạy là <b>TOP ${cpTop()} · nền ${cpNen()}% · dòng tiền ${cpDTvi()}</b> — đổi ngày 21/09/2026. Cách đi là <i>nới rồi lọc</i>: nới TOP và nới nền để có thêm tín hiệu, rồi siết ngưỡng dòng tiền để loại phần loãng. Số deal về gần chỗ cũ nhưng mỗi deal tốt hơn, nên tổng lợi nhuận tăng mà sụt giảm lại thấp hơn bản cũ. Nếu anh muốn nhiều deal hơn thì bấm nút ở tab Tổng quan; cái giá phải trả nằm đúng ở cột Tổng LN trong bảng này.</p></div>
 
   <h2>Đếm theo lệnh hay theo deal?</h2>
   
@@ -52,12 +52,15 @@ function pageBacktest(root){
   <div class="card"><table><thead><tr><th>Chỉ số</th><th style="text-align:right">Nguyên bản</th><th style="text-align:right">Bản đang chạy</th></tr></thead><tbody id="cmpTbl"></tbody></table>
   </div>`;
 
-  const rows=[['Đang chạy — nền 18%, van T+4',M],
-    ['Có trượt giá 0,2% (sát thực tế nhất)',D.presets.thucte.metrics],
-    ['Nhiều deal hơn — nền 20%, T+4',D.presets.nhieudeal.metrics],
-    ['Nhiều deal nhất — nền 25%, size 25%',D.presets.khoa.metrics],
-    ['Bền nhất — size 30%',D.presets.benhat.metrics],
-    ['Van T+4',D.presets.tvalve4.metrics]];
+  // LỖI ĐÃ SỬA 21/09/2026: hai bảng dưới trước đây gọi cứng `D.presets.tvalve4`,
+  // mà bản chạy đó đã bị gỡ khỏi produce2.py từ lâu. Cả trang Backtest văng
+  // TypeError và không ai thấy, vì trang này bị ẩn khỏi menu. Nay đọc theo danh
+  // sách và BỎ QUA bản nào không có — đổi tên bản chạy không làm gãy trang nữa.
+  const _ps = D.presets || {};
+  const _lay = k => _ps[k] ? [_ps[k].label || k, _ps[k]] : null;
+  const rows=[[`Đang chạy — TOP ${cpTop()}, nền ${cpNen()}%, dòng tiền ${cpDTvi()}`,M],
+    ...['cu','thucte','dt120','nhieudeal','khoa','benhat']
+       .map(_lay).filter(Boolean).map(([n,p])=>[n,p.metrics])];
   document.getElementById('presetTbl').innerHTML=rows.map(([n,m])=>
     `<tr><td class="sym">${n}</td><td style="text-align:right" class="${cls(m.total_return)}">${sg(m.total_return)}</td>
      <td style="text-align:right" class="${cls(m.cagr)}">${sg(m.cagr)}</td>
@@ -68,11 +71,8 @@ function pageBacktest(root){
      <td style="text-align:right" class="neg">−${pct(BM.mdd)}</td><td style="text-align:right">—</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr>`;
 
   const DM=P.deal_metrics||{}, KK=D.peer.khoa;
-  const TO=[['Nền 18% + T+4 — đang chạy',{metrics:M,deal_metrics:DM}],
-            ['Van T+4 (giải phóng vốn nhanh hơn)',D.presets.tvalve4],
-            ['Nền 20% + T+4 — nhiều deal hơn',D.presets.nhieudeal],
-            ['Nền 25% + size 25% — nhiều deal nhất',D.presets.khoa],
-            ['Size 30% — bền nhất',D.presets.benhat]];
+  const TO=[[`TOP ${cpTop()} · nền ${cpNen()}% · dòng tiền ${cpDTvi()} — đang chạy`,{metrics:M,deal_metrics:DM}],
+            ...['cu','dt120','nhieudeal','khoa','benhat'].map(_lay).filter(Boolean)];
   document.getElementById('tradeoffTbl').innerHTML=TO.map(([n,p])=>{
     const m=p.metrics, d=p.deal_metrics||{};
     return `<tr><td class="sym">${n}</td><td style="text-align:right;font-weight:650;color:var(--text-primary)">${d.deals??'—'}</td>
