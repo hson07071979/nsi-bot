@@ -41,7 +41,10 @@ from produce2 import PROD as _PROD
 # trong khi bo may that chay 50%. Dung bao gio go lai bang tay nua.
 _CO = {k: _PROD[k] for k in ('base_size', 'max_pos', 'max_total', 'max_pos_n', 'size_map')}
 
-CFG_LIVE = dict(base_range=0.20, use_ordimb=True, ordimb_min=1.20,
+# LECH CU DA SUA 21/09/2026: dong nay tung de base_range=0.20 trong khi bo may
+# chay 0.18 — lop chuong NOI HON lop backtest, dung cai bay so kien truc ghi ba
+# lan. Nay ca hai deu 0.22. Doi mot ben thi phai doi ben kia, khong co ngoai le.
+CFG_LIVE = dict(base_range=0.22, use_ordimb=True, ordimb_min=1.40,
                 score_floor=45, vol_floor=2.0, gtgd_min=15e9, volat_min=0.015,
                 **_CO)
 

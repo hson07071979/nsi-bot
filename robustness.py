@@ -89,11 +89,11 @@ def walk_forward():
        dep vi tham so da duoc nhin thay ca ky. Walk-forward khong cho phep dieu do.
 
        Luu y trung thuc: cua so 'train' o day chon giua MOT LUOI NHO cac tham so
-       (nen 16/18/20%, san diem 42/45/48). Do khong phai toan bo khong gian tham so,
+       (nen 20/22/25%, san diem 42/45/48). Do khong phai toan bo khong gian tham so,
        nhung du de tra loi cau hoi "chon bang qua khu co song sang tuong lai khong".
     """
     LUOI = [dict(base_range=b, score_floor=s)
-            for b in (0.16, 0.18, 0.20) for s in (42, 45, 48)]
+            for b in (0.20, 0.22, 0.25) for s in (42, 45, 48)]
     CUA = [('2019-01-02', '2022-12-31', '2023'),
            ('2019-01-02', '2023-12-31', '2024'),
            ('2019-01-02', '2024-12-31', '2025'),
@@ -159,10 +159,13 @@ def perturb():
        dau hieu tham so duoc vat cho vua qua khu, khong phai quy luat.
     """
     LUOI = [
-        ('base_range',  'Độ rộng nền 30 phiên',        [0.14,0.16,0.17,0.18,0.19,0.20,0.22]),
+        ('base_range',  'Độ rộng nền 30 phiên',        [0.18,0.20,0.21,0.22,0.23,0.25,0.30]),
+        ('top_n',       'Độ rộng vũ trụ (TOP thanh khoản)', [110,115,120,125,130,140,160]),
         ('score_floor', 'Sàn điểm CANSLIM',   [40,42,45,48,50]),
         ('vol_floor',   'Bội số khối lượng so TB20',  [1.6,1.8,2.0,2.2,2.4]),
-        ('ordimb_min',  'Tỷ lệ cỡ lệnh mua/bán (order-flow proxy)',      [1.10,1.15,1.20,1.25,1.30]),
+        # De ca 1,50 trong luoi co chu dich: do la VUC, phai nhin thay tren trang
+        # de khong ai siet them mot nac nua ma tuong van an toan.
+        ('ordimb_min',  'Tỷ lệ cỡ lệnh mua/bán (order-flow proxy)',      [1.20,1.30,1.36,1.40,1.44,1.48,1.50]),
         ('big_win',     'Ngưỡng lãi lớn bật trailing MA10',     [0.16,0.18,0.19,0.20,0.22]),
         ('base_size',   'Cỡ vị thế (% NAV)',   [0.20,0.25,0.30,0.35,0.40,0.42]),
         ('t_valve',     'Van thời gian T+n',      [4,5,6,7,8]),

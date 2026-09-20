@@ -72,7 +72,7 @@ def main():
         vol_floor=2.0,
         # Dieu kien 7 — co lenh mua / co lenh ban. Bo quet trong phien tinh duoc
         # tu chinh dong du lieu ngay cua FireAnt, nen phai biet nguong la bao nhieu.
-        ordimb_min=1.20,
+        ordimb_min=1.40,
         light=_rg.get('light', 'XANH'),
         n=len(syms),
         syms=syms,

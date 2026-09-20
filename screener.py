@@ -25,8 +25,8 @@ WL = dict(
     min_mktcap     = 1000e9,
     min_gtgd20     = 15e9,       # = gtgd_min cua bot
     use_top_liquid = True,
-    top_n          = 110,        # = top_n cua bot
-    max_base_range = 0.18,       # = base_range cua bot
+    top_n          = 120,        # = top_n cua bot (110 -> 120 ngay 21/09/2026)
+    max_base_range = 0.22,       # = base_range cua bot (0.18 -> 0.22 ngay 21/09/2026)
     min_volat      = 0.015,      # = volat_min cua bot
     min_rs         = 0,          # bot khong chan theo RS, chi hien de tham khao
     max_from_high  = -0.99,      # bot khong chan theo khoang cach dinh
@@ -67,7 +67,7 @@ def screen(as_of_date=None):
     # VU TRU: chi TOP 100 ma thanh khoan nhat (xep hang theo GTGD binh quan 20 phien
     # cua CHINH phien dang xet). Dong bo voi bot: bot chi giao dich trong nhom nay.
     from vn300 import build_topn
-    TOPN = build_topn(I, WL.get('top_n', 110))[i]
+    TOPN = build_topn(I, WL.get('top_n', 120))[i]
     rows=[]
     for j,s in enumerate(S):
         if np.isnan(AC[i,j]) or I['nbars'][i,j]<250: continue

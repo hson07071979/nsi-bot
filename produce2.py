@@ -3,7 +3,26 @@ import json, numpy as np, datetime as dt, copy
 from collections import defaultdict, Counter
 import engine2 as E
 
-PROD=dict(base_range=0.18, use_ftd=True, use_ordimb=True, ordimb_min=1.20, slip=0.0,
+# ============================================================================
+# DOI CAU HINH 21/09/2026 — ba nguong cung luc. Quet 110 cau hinh de chon.
+#   base_range  0.18 -> 0.22   (noi nen gia)
+#   top_n       110  -> 120    (noi vu tru)
+#   ordimb_min  1.20 -> 1.40   (siet dong tien)
+# Do duoc: +522,9% -> +688,0% · sut giam 11,34% -> 9,45% · PF 4,44 -> 5,87
+#          Sharpe 1,78 -> 1,96 · ty le thang 37,1% -> 46,4% · deal 118 -> 115
+# Co che: noi TOP + noi nen TAO THEM tin hieu (118 -> 151 deal) nhung lam loang
+# chat luong (PF 4,44 -> 4,04); siet dong tien LOC LAI (151 -> 115) va keo PF
+# len 5,87. Ba can gat bu nhau, bat rieng tung cai thi kem hon nhieu.
+# Bon bai kiem da qua: (1) ca dai dong tien 1,28-1,48 deu tot hon, PF tang deu
+# -> cao nguyen that, NHUNG 1,50 roi vuc (+462,5%) nen dung siet qua 1,45;
+# (2) nen 22% la cot cao nhat o ca sau hang TOP 110/115/120/125/130/140, va
+# TOP 120 la hang cao nhat o ca sau cot; (3) co truot gia 0,2% van +618,2% so
+# +464,9%; (4) 6/8 nam tot hon, hai nam thua deu thua duoi 5 diem.
+# KHONG noi TOP len 160-300: nhin tong thi dep (+768% o TOP 200) nhung toan bo
+# phan hon nam o 2019-2022, con 2023-2026 THUA han ban cu (+84% so +132%), va
+# PF roi deu tu 4,44 xuong 2,5. Do la con so cua song penny 2020-2021 da qua.
+# ============================================================================
+PROD=dict(base_range=0.22, use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=0.0,
           size_map={'XANH':1.0,'VANG':0.6,'CAM':0.35,'DO':0.2},
           base_size=0.42, max_pos=0.50, max_total=1.0, max_pos_n=12,
           use_be=True, be_trigger=0.08, be_level=0.01,
@@ -19,9 +38,11 @@ PROD=dict(base_range=0.18, use_ftd=True, use_ordimb=True, ordimb_min=1.20, slip=
           # so 1,71. Va T+4/T+5 gan nhu trung nhau nen day la VUNG PHANG that, khong
           # phai dinh nhon. Walk-forward dong bang cap 18%/T+4: thang 5/8 nam.
           t_valve=4, trail_ma=30, score_floor=45,
-          # CHI GIAO DICH TOP 110 MA THANH KHOAN NHAT, xep hang lai theo TUNG PHIEN.
+          # CHI GIAO DICH TOP 120 MA THANH KHOAN NHAT, xep hang lai theo TUNG PHIEN.
           # Khong dung danh sach VN30/VN100 cua hom nay ap nguoc lai qua khu (nhin truoc).
-          use_top_liquid=True, top_n=110,
+          # 110 -> 120 ngay 21/09/2026. Dung o 120: tu 160 tro len PF sup (3,08)
+          # va 2023-2026 thua han ban cu.
+          use_top_liquid=True, top_n=120,
           # Nguong "lai lon" bat trailing MA10 de chot nhanh. 19% nam giua vung phang
           # 18-22% va cho DD thap nhat toan luoi (9,9%). Tu 24% tro len DD nhay len 13%.
           big_win=0.19)
@@ -32,8 +53,12 @@ PRESETS={
  'top100'  : ('TOP 100 thanh khoản — ít deal, PF cao', dict(top_n=100)),
  'top180'  : ('TOP 180 thanh khoản — nhiều deal hơn', dict(top_n=180)),
  'bw25'    : ('Ngưỡng lãi lớn 25% (bản cũ)', dict(big_win=0.25)),
- 'nhieudeal': ('Nhiều deal hơn — nền 20%, T+4', dict(base_range=0.20, t_valve=4)),
- 'khoa'    : ('Nhiều deal nhất — nền 25%, size 25%, T+4', dict(base_range=0.25,base_size=0.25,max_pos=0.33,max_pos_n=16,t_valve=4)),
+ 'cu'      : ('Cấu hình CŨ trước 21/09 — TOP 110, nền 18%, dòng tiền 1,20',
+              dict(top_n=110, base_range=0.18, ordimb_min=1.20)),
+ 'dt120'   : ('Dòng tiền 1,20 (nới) — nhiều deal hơn, PF thấp hơn', dict(ordimb_min=1.20)),
+ 'dt145'   : ('Dòng tiền 1,45 (siết) — ít deal nhất', dict(ordimb_min=1.45)),
+ 'nhieudeal': ('Nhiều deal hơn — nền 25%, dòng tiền 1,20', dict(base_range=0.25, ordimb_min=1.20)),
+ 'khoa'    : ('Nhiều deal nhất — nền 25%, size 25%, dòng tiền 1,20', dict(base_range=0.25,base_size=0.25,max_pos=0.33,max_pos_n=16,ordimb_min=1.20)),
  'benhat'  : ('Bền nhất — size 30%', dict(base_size=0.30,max_pos=0.38)),
  'tvalve6' : ('Van T+6 — cấu hình cũ trước 30/08', dict(t_valve=6)),
 }
@@ -155,7 +180,7 @@ if __name__=='__main__':
     _sig = [x['sym'] for x in out['signals'][-40:]]
     _op  = [x['sym'] for x in out['open_positions']]
     _d6  = [x['sym'] for x in out['top6m']['deals']]
-    # Nhung nen cho TOAN BO vu tru giao dich (TOP 110), khong chi vai chuc ma.
+    # Nhung nen cho TOAN BO vu tru giao dich (TOP 120), khong chi vai chuc ma.
     # Trang Chi tiet ma phai xem duoc moi ma he thong co the mua ma khong cần cầu nối.
     # Ma ngoai vu tru thi lay qua cau noi real-time — nhung san ca 694 ma thi trang
     # phong len chuc MB, khong dang.
