@@ -35,263 +35,362 @@ const so = v => typeof v === 'number' && Number.isFinite(v);
 
 let _cpId = 0;                        // mỗi biểu đồ một clipPath riêng
 
-function cotKep(host, labels, series, opt = {}) {
-  const W = FCW, H = FCH, PL = 54, PR = 10, PT = 14, PB = 34;
-  const tran = opt.cap || null;
-  const kep = v => tran ? Math.max(-tran, Math.min(tran, v)) : v;
+/* ============================================================================
+   BỐN BIỂU ĐỒ CƠ BẢN — bản 21/09/2026: TƯƠNG TÁC ĐƯỢC và TỰ GIÃN
 
-  // ---- có cần trục phải không? ----
-  // Chuỗi nhỏ bị nuốt khi chuỗi lớn gấp >= 25 lần. Đo trên biên độ thật, không
-  // phải trên giá trị lớn nhất, để chuỗi có số âm cũng đo đúng.
-  const bien = s => {
-    const v = (s.v || []).filter(so);
-    return v.length ? Math.max(...v.map(Math.abs)) : 0;
-  };
-  let hai = false;
-  if (series.length === 2 && opt.truc2 !== false && !tran) {
-    const a = bien(series[0]), b = bien(series[1]);
-    hai = a > 0 && b > 0 && (a / b >= 25 || b / a >= 25);
-  }
+   Ba chuyện đổi so với bản trước:
 
-  // ---- thang đo: một thang chung, hoặc một thang cho mỗi trục ----
-  const thang = ss => {
-    const v = ss.flatMap(s => (s.v || []).filter(so)).map(kep);
-    if (!v.length) return null;
-    let hi = Math.max(...v, 0), lo = Math.min(...v, 0);
-    const pad = (hi - lo) * 0.12 || Math.abs(hi) * 0.12 || 1;
-    hi += pad;
-    // Chỉ nới mép dưới khi thật sự có giá trị âm. Không thì trục hiện "−2427 tỷ
-    // doanh thu" — một con số không tồn tại, chỉ là khoảng đệm bị dán nhãn.
-    lo = lo < 0 ? lo - pad : 0;
-    // Đã cắt ở ±cap thì TRỤC cũng không được in số vượt quá cap — chú thích ghi
-    // "chạm biên ±150%" mà trục hiện −186% là hai con số nói hai chuyện khác nhau.
-    // PHẢI kẹp SAU dòng nới mép dưới: kẹp trước thì dòng đó trừ thêm pad lần nữa
-    // và biên lại vọt ra ngoài. Đã vấp đúng thứ tự này một lần.
-    if (tran) { hi = Math.min(hi, tran); lo = Math.max(lo, -tran); }
-    return { hi, lo };
-  };
-  const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
-  if (!T[0]) { host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return; }
-  if (hai && !T[1]) hai = false;
+   1. RÊ CHUỘT LÀ RA SỐ. Trước đây chỉ có `<title>` của SVG — trình duyệt hiện
+      sau một giây rưỡi, chữ bé, không theo ý mình, và trên điện thoại thì
+      không có gì cả. Giờ có lớp phủ bắt con trỏ: chạm/rê tới quý nào thì quý
+      đó sáng lên và bảng số nổi ra, đủ mọi chuỗi cùng lúc.
+   2. TỰ GIÃN THEO BỀ NGANG. Khung vẽ trước đây cố định 560 đơn vị, nên khi
+      trang chạy tràn màn hình thì SVG giữ nguyên tỷ lệ và CAO VỌT LÊN — màn
+      2560px cho biểu đồ cao gần 1200px. Giờ bề ngang khung đo theo thẻ chứa,
+      chiều cao giữ nguyên ~260, và vẽ lại khi đổi kích thước cửa sổ.
+   3. CHỖ THIẾU SỐ NÓI RÕ LÀ THIẾU. Đường đứt đúng chỗ thiếu, không nối bắc
+      cầu qua, và dưới biểu đồ ghi thiếu mấy quý trên mấy quý.
 
-  const PR2 = hai ? 48 : PR;                       // chừa chỗ cho trục phải
-  const n = labels.length, nS = series.length;
-  const X = i => PL + (i + 0.5) * (W - PL - PR2) / n;
-  const Yk = (v, k) => {
-    const t = T[hai ? k : 0];
-    return PT + (1 - (v - t.lo) / (t.hi - t.lo)) * (H - PT - PB);
-  };
-  const bw = (W - PL - PR2) / n * 0.66 / nS;
-  const cp = 'cpk' + (++_cpId);
-  const fmt = opt.fmt || (x => x.toFixed(0));
-  const fmt2 = opt.fmt2 || fmt;
+   Giữ nguyên từ bản trước: cắt biên ±cap có đầu nhọn, tách hai trục khi hai
+   chuỗi lệch nhau quá xa, clipPath chặn nét vẽ tràn ra ngoài thẻ, quý lỗ bỏ
+   trống thay vì vẽ P/E âm.
+   ========================================================================== */
 
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
-    <defs><clipPath id="${cp}"><rect x="${PL}" y="${PT - 2}" width="${W - PL - PR2}" height="${H - PT - PB + 2}"/></clipPath></defs>`;
+const FC_H = 260;                       // chiều cao khung, cố định
+const FC_WMIN = 480, FC_WMAX = 1040;   // bề ngang khung, kẹp hai đầu
 
-  // lưới + trục trái (luôn theo thang 0)
-  for (let k = 0; k <= 3; k++) {
-    const v = T[0].lo + (T[0].hi - T[0].lo) * k / 3, y = Yk(v, 0);
-    s += `<line x1="${PL}" x2="${W - PR2}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
-          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(${hai ? series[0].color : '--text-muted'})">${fmt(v)}</text>`;
-  }
-  // trục phải, chỉ khi tách hai thang
-  if (hai) {
-    for (let k = 0; k <= 3; k++) {
-      const v = T[1].lo + (T[1].hi - T[1].lo) * k / 3, y = Yk(v, 1);
-      s += `<text x="${W - PR2 + 7}" y="${y + 4}" text-anchor="start" font-size="11" fill="var(${series[1].color})">${fmt2(v)}</text>`;
-    }
-  }
-  if (T[0].lo < 0 && T[0].hi > 0)
-    s += `<line x1="${PL}" x2="${W - PR2}" y1="${Yk(0, 0)}" y2="${Yk(0, 0)}" stroke="var(--text-muted)" stroke-width="1.2" opacity=".55"/>`;
-
-  // ---- cột ----
-  let nCat = 0, nCo = 0;
-  s += `<g clip-path="url(#${cp})">`;
-  series.forEach((se, k) => {
-    (se.v || []).forEach((v0, i) => {
-      if (!so(v0)) return;
-      nCo++;
-      const cut = tran && Math.abs(v0) > tran;
-      if (cut) nCat++;
-      const v = cut ? Math.sign(v0) * tran : v0;
-      const x = X(i) - (nS * bw) / 2 + k * bw;
-      const y = Math.min(Yk(v, k), Yk(0, k)), h = Math.max(1.5, Math.abs(Yk(v, k) - Yk(0, k)));
-      const w = bw * 0.86;
-      const tip = `<title>${labels[i]} · ${esc(se.name)}: ${(opt.fmtV || fmt)(v0)}${cut ? ' (vượt biên, cột bị cắt)' : ''}</title>`;
-      if (cut) {
-        // Cột chạm biên có ĐẦU NHỌN — nhìn là biết bị cắt, không phải đoán qua độ mờ.
-        const len = v0 > 0 ? y : y + h, mui = v0 > 0 ? len + 7 : len - 7;
-        s += `<path d="M ${x} ${v0 > 0 ? y + 7 : y} h ${w} ${v0 > 0 ? `v ${h - 7} h ${-w} Z` : `v ${h - 7} l ${-w / 2} 7 l ${-w / 2} -7 Z`}"
-               fill="var(${se.color})" opacity=".45">${tip}</path>
-              <path d="M ${x} ${v0 > 0 ? y + 7 : y + h - 7} l ${w / 2} ${v0 > 0 ? -7 : 7} l ${w / 2} ${v0 > 0 ? 7 : -7} Z"
-               fill="var(${se.color})" opacity=".95">${tip}</path>`;
-      } else {
-        s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="var(${se.color})" rx="1" opacity=".92">${tip}</rect>`;
-      }
-    });
-  });
-  s += '</g>';
-
-  // Nhãn quý: 12 nhãn trong 560 đơn vị thì chật, nên xoay nghiêng cho dễ đọc
-  // thay vì để chúng dính vào nhau.
-  labels.forEach((l, i) => {
-    s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
-           transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
-  });
-  s += '</svg>';
-
-  // chú thích tự đếm — nói đúng chuyện của CHÍNH mã đang xem
-  let ghi = '';
-  if (tran && nCat) ghi = `<b>${nCat}/${nCo} cột chạm biên ±${tran}%</b> — đầu nhọn là cột bị cắt, thường do nền cùng kỳ gần bằng không. Số thật xem ở bảng dưới.`;
-  else if (hai) ghi = `<b>Hai trục khác nhau.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải — chênh nhau trên ${Math.round(Math.max(bien(series[0]) / bien(series[1]), bien(series[1]) / bien(series[0])))} lần nên chung một trục thì cột nhỏ biến mất. <b>Đừng so chiều cao hai màu với nhau.</b>`;
-  host.innerHTML = s + (ghi ? `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi}</p>` : '');
+/* Bề ngang khung vẽ, đo theo thẻ chứa. Kẹp hai đầu vì:
+   - hẹp quá thì 12 nhãn quý chồng nhau
+   - rộng quá thì nét mảnh như sợi chỉ, đọc cũng không ra */
+function _khung(host) {
+  let w = 0;
+  try { w = host.clientWidth || (host.getBoundingClientRect() || {}).width || 0; } catch (e) { w = 0; }
+  if (!w) w = 560;
+  return Math.round(Math.max(FC_WMIN, Math.min(FC_WMAX, w)));
 }
 
-function duongQuy(host, labels, series, opt = {}) {
-  const W = FCW, H = FCH, PL = 54, PT = 18, PB = 34;
-  // `zero: true` nghĩa là "đại lượng này KHÔNG âm được về bản chất" — P/E, P/B.
-  // P/E của quý LỖ thì âm, mà P/E −1740 không có nghĩa "rẻ gấp 1740 lần": càng lỗ
-  // ít thì con số càng âm to. Đó là một đại lượng không tồn tại, và chính nó kéo
-  // đường P/E của 12/110 mã chạy ra ngoài thẻ (BSR −1740 · VPL −1551 · DCL −1348).
-  // Cách đúng, cũng là cách mọi bảng điện chuyên nghiệp làm: quý lỗ thì để TRỐNG.
-  let nBo = 0;
-  const boQuy = new Array(labels.length).fill(false);
-  if (opt.zero) {
-    series = series.map(s2 => ({ ...s2, v: (s2.v || []).map((v, i) => {
-      if (so(v) && v <= 0) { nBo++; boQuy[i] = true; return null; }
-      return v;
-    }) }));
-  }
-  if (!series.flatMap(s2 => (s2.v || []).filter(so)).length) {
-    host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return;
-  }
+/* Dựng vỏ: một thẻ .chartbox + một bảng nổi .tip, dùng đúng CSS sẵn có của
+   trang. Trả về {box, tip} để hàm vẽ nhét SVG vào. */
+function _voBieuDo(host) {
+  host.innerHTML = '';
+  const box = document.createElement('div'); box.className = 'chartbox';
+  const tip = document.createElement('div'); tip.className = 'tip';
+  box.appendChild(tip); host.appendChild(box);
+  return { box, tip };
+}
 
-  // ---- P/E và P/B KHÔNG được dùng chung một trục -------------------------
-  // Sai lầm 18/09: chung trục thì với VND (P/E tới 23,5 · P/B quanh 1,2) đường P/B
-  // bị ép thành một vạch nằm sát đáy, không đọc được gì. Bản trước em dán một câu
-  // "chỉ so được hình dáng" rồi bỏ qua — đó là viết lời bào chữa chứ không phải sửa.
-  // Cùng một bệnh với biểu đồ Quy mô, và cùng một thuốc: tách trục.
-  const bien = s2 => { const v = (s2.v || []).filter(so); return v.length ? Math.max(...v.map(Math.abs)) : 0; };
-  let hai = false;
-  if (series.length === 2 && opt.truc2 !== false) {
-    const a = bien(series[0]), b = bien(series[1]);
-    hai = a > 0 && b > 0 && (a / b >= 6 || b / a >= 6);
-  }
-  const thang = ss => {
-    const v = ss.flatMap(s2 => (s2.v || []).filter(so));
-    if (!v.length) return null;
-    let hi = Math.max(...v), lo = Math.min(...v);
-    const pad = (hi - lo) * 0.18 || Math.abs(hi) * 0.1 || 1;
-    hi += pad;
-    // `zero` chỉ được ép sàn 0 khi KHÔNG có giá trị âm nào. Bản cũ ép vô điều
-    // kiện, nên P/E âm vẫn vẽ nhưng nằm dưới đáy khung và chạy ra ngoài thẻ.
-    lo = (opt.zero && lo >= 0) ? 0 : lo - pad;
-    return { hi, lo };
+/* Nối lớp bắt con trỏ. `n` = số cột, `X(i)` = toạ độ tâm cột trong hệ viewBox,
+   `noiDung(i)` = HTML của bảng nổi. Dùng chung cho cả cột lẫn đường. */
+function _batCon(box, tip, svg, W, H, PL, PR, n, X, noiDung) {
+  const NS = 'http://www.w3.org/2000/svg';
+  const dai = svg.querySelector('.hi-band');
+  const chon = i => {
+    if (i == null) { if (dai) dai.setAttribute('opacity', 0); tip.style.opacity = 0; return; }
+    const w = (W - PL - PR) / n;
+    if (dai) {
+      dai.setAttribute('x', X(i) - w / 2); dai.setAttribute('width', w);
+      // 0,13 chứ không phải 1. Để 1 là một khối xám đặc che mất cột đang xem —
+      // đúng thứ cần nhìn thì bị lấp.
+      dai.setAttribute('opacity', 0.13);
+    }
+    tip.innerHTML = noiDung(i);
+    tip.style.opacity = 1;
+    const r = box.getBoundingClientRect();
+    const px = (X(i) / W) * r.width;                 // đổi từ hệ viewBox sang pixel
+    const tw = tip.offsetWidth || 150;
+    tip.style.left = Math.max(2, Math.min(px - tw / 2, r.width - tw - 2)) + 'px';
+    tip.style.top = '4px';
   };
-  const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
-  if (hai && (!T[0] || !T[1])) hai = false;
-  const PR = hai ? 46 : 14;
-  const n = labels.length;
-  const X = i => PL + (i + 0.5) * (W - PL - PR) / n;
-  const Yk = (v, k) => {
-    const t = T[hai ? k : 0];
-    return PT + (1 - (v - t.lo) / (t.hi - t.lo)) * (H - PT - PB);
+  const tuToaDo = ev => {
+    const r = box.getBoundingClientRect();
+    if (!r.width) return null;
+    const x = (ev.clientX - r.left) / r.width * W;    // pixel -> viewBox
+    if (x < PL - 8 || x > W - PR + 8) return null;
+    const i = Math.round((x - PL) / ((W - PL - PR) / n) - 0.5);
+    return Math.max(0, Math.min(n - 1, i));
   };
-  const Y = v => Yk(v, 0);
-  const f = opt.fmt || (x => x.toFixed(1));
-  const f2 = opt.fmt2 || f;
-  // Nhãn trục chỉ có 47 đơn vị. "74808.41" của NVB dài 51 đơn vị nên đè lên chính
-  // biểu đồ. Quá dài thì rút gọn k/tr — con số đầy đủ vẫn nằm ở bảng 12 quý bên dưới.
-  const RONG = 47;
-  const gon = (v, ff) => {
-    const t = ff(v);
-    if (t.length * 11 * 0.58 <= RONG) return t;
-    const a = Math.abs(v);
-    if (a >= 1e6) return (v / 1e6).toFixed(1) + 'tr';
-    if (a >= 1e3) return (v / 1e3).toFixed(1) + 'k';
-    return v.toFixed(0);
-  };
-  const cp = 'cpd' + (++_cpId);
+  box.addEventListener('pointermove', ev => chon(tuToaDo(ev)));
+  box.addEventListener('pointerdown', ev => chon(tuToaDo(ev)));
+  box.addEventListener('pointerleave', () => chon(null));
+  box.style.touchAction = 'pan-y';                   // vẫn cuộn trang được bằng ngón
+}
 
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
-    <defs><clipPath id="${cp}"><rect x="${PL}" y="${PT - 4}" width="${W - PL - PR}" height="${H - PT - PB + 8}"/></clipPath></defs>`;
-  for (let k = 0; k <= 3; k++) {
-    const v = T[0].lo + (T[0].hi - T[0].lo) * k / 3, y = Yk(v, 0);
-    s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
-          <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(${hai ? series[0].color : '--text-muted'})">${gon(v, f)}</text>`;
-  }
-  if (hai) {
+/* Vẽ lại khi thẻ chứa đổi bề ngang. Gỡ bộ theo dõi cũ trước khi gắn cái mới —
+   không gỡ thì đổi mã hai chục lần là có hai chục bộ cùng vẽ lên một khung. */
+function _theoDoiKhung(host, veLai) {
+  try {
+    if (host._ro) host._ro.disconnect();
+    let w0 = _khung(host);
+    host._ro = new ResizeObserver(() => {
+      const w = _khung(host);
+      if (Math.abs(w - w0) >= 24) { w0 = w; veLai(); }
+    });
+    host._ro.observe(host);
+  } catch (e) { /* trình duyệt cũ: thôi thì không tự vẽ lại, vẫn dùng được */ }
+}
+
+let _cpId2 = 0;
+
+/* ---------------------------------------------------------------- CỘT KÉP -- */
+function cotKep(host, labels, series, opt = {}) {
+  const ve = () => {
+    const W = _khung(host), H = FC_H, PL = 54, PT = 14, PB = 34;
+    const tran = opt.cap || null;
+    const kep = v => tran ? Math.max(-tran, Math.min(tran, v)) : v;
+    const bien = s => { const v = (s.v || []).filter(so); return v.length ? Math.max(...v.map(Math.abs)) : 0; };
+
+    let hai = false;
+    if (series.length === 2 && opt.truc2 !== false && !tran) {
+      const a = bien(series[0]), b = bien(series[1]);
+      hai = a > 0 && b > 0 && (a / b >= 25 || b / a >= 25);
+    }
+    const thang = ss => {
+      const v = ss.flatMap(s => (s.v || []).filter(so)).map(kep);
+      if (!v.length) return null;
+      let hi = Math.max(...v, 0), lo = Math.min(...v, 0);
+      const pad = (hi - lo) * 0.12 || Math.abs(hi) * 0.12 || 1;
+      hi += pad;
+      lo = lo < 0 ? lo - pad : 0;
+      // Kẹp SAU dòng nới mép dưới — kẹp trước thì dòng đó trừ thêm pad lần nữa.
+      if (tran) { hi = Math.min(hi, tran); lo = Math.max(lo, -tran); }
+      return { hi, lo };
+    };
+    const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
+    if (!T[0]) { host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return; }
+    if (hai && !T[1]) hai = false;
+
+    const PR = hai ? 48 : 10;
+    const n = labels.length, nS = series.length;
+    const X = i => PL + (i + 0.5) * (W - PL - PR) / n;
+    const Yk = (v, k) => { const t = T[hai ? k : 0]; return PT + (1 - (v - t.lo) / (t.hi - t.lo)) * (H - PT - PB); };
+    const bw = (W - PL - PR) / n * 0.66 / nS;
+    const cp = 'ck' + (++_cpId2);
+    const fmt = opt.fmt || (x => x.toFixed(0));
+    const fmt2 = opt.fmt2 || fmt;
+    const fv = opt.fmtV || fmt;
+
+    let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
+      <defs><clipPath id="${cp}"><rect x="${PL}" y="${PT - 2}" width="${W - PL - PR}" height="${H - PT - PB + 2}"/></clipPath></defs>
+      <rect class="hi-band" x="0" y="${PT - 2}" width="0" height="${H - PT - PB + 2}" fill="var(--text-muted)" opacity="0" style="transition:opacity .08s"/>`;
     for (let k = 0; k <= 3; k++) {
+      const v = T[0].lo + (T[0].hi - T[0].lo) * k / 3, y = Yk(v, 0);
+      s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
+            <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(${hai ? series[0].color : '--text-muted'})">${fmt(v)}</text>`;
+    }
+    if (hai) for (let k = 0; k <= 3; k++) {
+      const v = T[1].lo + (T[1].hi - T[1].lo) * k / 3, y = Yk(v, 1);
+      s += `<text x="${W - PR + 7}" y="${y + 4}" text-anchor="start" font-size="11" fill="var(${series[1].color})">${fmt2(v)}</text>`;
+    }
+    if (T[0].lo < 0 && T[0].hi > 0)
+      s += `<line x1="${PL}" x2="${W - PR}" y1="${Yk(0, 0)}" y2="${Yk(0, 0)}" stroke="var(--text-muted)" stroke-width="1.2" opacity=".55"/>`;
+
+    // Quý KHÔNG có báo cáo: tô một dải mờ và ghi chữ, đừng để trống trơn. Chỗ
+    // trống trơn bị đọc nhầm thành "quý đó bằng 0" — đúng cái bẫy anh Sơn chỉ.
+    const trong = labels.map((_, i) => series.every(se => !so((se.v || [])[i])));
+    trong.forEach((t, i) => {
+      if (!t) return;
+      const w = (W - PL - PR) / n;
+      s += `<rect x="${X(i) - w / 2}" y="${PT}" width="${w}" height="${H - PT - PB}" fill="var(--text-muted)" opacity=".10"/>
+            <text x="${X(i)}" y="${PT + 12}" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--text-muted)" opacity=".85">thiếu</text>`;
+    });
+
+    let nCat = 0, nCo = 0, nThieu = 0;
+    s += `<g clip-path="url(#${cp})">`;
+    series.forEach((se, k) => {
+      (se.v || []).forEach((v0, i) => {
+        if (!so(v0)) { if (k === 0) nThieu++; return; }
+        nCo++;
+        const cut = tran && Math.abs(v0) > tran; if (cut) nCat++;
+        const v = cut ? Math.sign(v0) * tran : v0;
+        const x = X(i) - (nS * bw) / 2 + k * bw, w = bw * 0.86;
+        const y = Math.min(Yk(v, k), Yk(0, k)), h = Math.max(1.5, Math.abs(Yk(v, k) - Yk(0, k)));
+        s += cut
+          ? `<path d="M ${x} ${v0 > 0 ? y + 7 : y} h ${w} ${v0 > 0 ? `v ${h - 7} h ${-w} Z` : `v ${h - 7} l ${-w / 2} 7 l ${-w / 2} -7 Z`}" fill="var(${se.color})" opacity=".45"/>
+             <path d="M ${x} ${v0 > 0 ? y + 7 : y + h - 7} l ${w / 2} ${v0 > 0 ? -7 : 7} l ${w / 2} ${v0 > 0 ? 7 : -7} Z" fill="var(${se.color})" opacity=".95"/>`
+          : `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="var(${se.color})" rx="1" opacity=".92"/>`;
+      });
+    });
+    s += '</g>';
+    labels.forEach((l, i) => {
+      s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
+             transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
+    });
+    s += '</svg>';
+
+    const { box, tip } = _voBieuDo(host);
+    box.insertAdjacentHTML('beforeend', s);
+    const svg = box.querySelector('svg');
+    _batCon(box, tip, svg, W, H, PL, PR, n, X, i => {
+      let h = `<b>${labels[i]}</b>`;
+      series.forEach(se => {
+        const v = (se.v || [])[i];
+        h += `<div style="display:flex;gap:8px;align-items:center;margin-top:3px">
+          <span style="width:9px;height:9px;border-radius:3px;background:var(${se.color});display:inline-block"></span>
+          ${esc(se.name)}: <b>${so(v) ? fv(v) : '—'}</b>
+          ${so(v) && tran && Math.abs(v) > tran ? '<span class="muted">(vượt biên)</span>' : ''}</div>`;
+      });
+      return h;
+    });
+
+    const ghi = [];
+    if (tran && nCat) ghi.push(`<b>${nCat}/${nCo} cột chạm biên ±${tran}%</b> — đầu nhọn là cột bị cắt, thường do nền cùng kỳ gần bằng không. Số thật rê chuột vào cột là ra, hoặc xem bảng dưới.`);
+    if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải — màu số trên trục khớp màu cột. Đừng so chiều cao hai màu với nhau.`);
+    if (nThieu) ghi.push(`Thiếu ${nThieu}/${labels.length} quý — dải mờ ghi <b>thiếu</b> là quý chưa có báo cáo, không phải quý bằng 0.`);
+    if (ghi.length) host.insertAdjacentHTML('beforeend',
+      `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>`);
+  };
+  ve(); _theoDoiKhung(host, ve);
+}
+
+/* ------------------------------------------------------------------ ĐƯỜNG -- */
+function duongQuy(host, labels, series0, opt = {}) {
+  const ve = () => {
+    const W = _khung(host), H = FC_H, PL = 54, PT = 18, PB = 34;
+    let series = series0;
+
+    // `zero: true` = đại lượng KHÔNG âm được về bản chất (P/E, P/B). P/E của quý
+    // LỖ thì âm, mà P/E −1740 không có nghĩa "rẻ gấp 1740 lần" — càng lỗ ít thì
+    // con số càng âm to. Bỏ trống, đánh dấu quý đó là quý lỗ.
+    let nBo = 0;
+    const boQuy = new Array(labels.length).fill(false);
+    if (opt.zero) {
+      series = series.map(s2 => ({ ...s2, v: (s2.v || []).map((v, i) => {
+        if (so(v) && v <= 0) { nBo++; boQuy[i] = true; return null; }
+        return v;
+      }) }));
+    }
+    if (!series.flatMap(s2 => (s2.v || []).filter(so)).length) {
+      host.innerHTML = '<p class="muted" style="margin:0">Chưa có số liệu.</p>'; return;
+    }
+
+    const bien = s2 => { const v = (s2.v || []).filter(so); return v.length ? Math.max(...v.map(Math.abs)) : 0; };
+    let hai = false;
+    if (series.length === 2 && opt.truc2 !== false) {
+      const a = bien(series[0]), b = bien(series[1]);
+      hai = a > 0 && b > 0 && (a / b >= 6 || b / a >= 6);
+    }
+    const thang = ss => {
+      const v = ss.flatMap(s2 => (s2.v || []).filter(so));
+      if (!v.length) return null;
+      let hi = Math.max(...v), lo = Math.min(...v);
+      const pad = (hi - lo) * 0.18 || Math.abs(hi) * 0.1 || 1;
+      hi += pad;
+      lo = (opt.zero && lo >= 0) ? 0 : lo - pad;
+      return { hi, lo };
+    };
+    const T = hai ? [thang([series[0]]), thang([series[1]])] : [thang(series)];
+    if (hai && (!T[0] || !T[1])) hai = false;
+
+    const PR = hai ? 46 : 14;
+    const n = labels.length;
+    const X = i => PL + (i + 0.5) * (W - PL - PR) / n;
+    const Yk = (v, k) => { const t = T[hai ? k : 0]; return PT + (1 - (v - t.lo) / (t.hi - t.lo)) * (H - PT - PB); };
+    const Y = v => Yk(v, 0);
+    const f = opt.fmt || (x => x.toFixed(1));
+    const f2 = opt.fmt2 || f;
+    const RONG = 47;
+    const gon = (v, ff) => {
+      const t = ff(v);
+      if (t.length * 11 * 0.58 <= RONG) return t;
+      const a = Math.abs(v);
+      if (a >= 1e6) return (v / 1e6).toFixed(1) + 'tr';
+      if (a >= 1e3) return (v / 1e3).toFixed(1) + 'k';
+      return v.toFixed(0);
+    };
+    const cp = 'cd' + (++_cpId2);
+
+    let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
+      <defs><clipPath id="${cp}"><rect x="${PL}" y="${PT - 4}" width="${W - PL - PR}" height="${H - PT - PB + 8}"/></clipPath></defs>
+      <rect class="hi-band" x="0" y="${PT - 4}" width="0" height="${H - PT - PB + 8}" fill="var(--text-muted)" opacity="0" style="transition:opacity .08s"/>`;
+    for (let k = 0; k <= 3; k++) {
+      const v = T[0].lo + (T[0].hi - T[0].lo) * k / 3, y = Yk(v, 0);
+      s += `<line x1="${PL}" x2="${W - PR}" y1="${y}" y2="${y}" stroke="var(--line)" stroke-width="1"/>
+            <text x="${PL - 7}" y="${y + 4}" text-anchor="end" font-size="11" fill="var(${hai ? series[0].color : '--text-muted'})">${gon(v, f)}</text>`;
+    }
+    if (hai) for (let k = 0; k <= 3; k++) {
       const v = T[1].lo + (T[1].hi - T[1].lo) * k / 3, y = Yk(v, 1);
       s += `<text x="${W - PR + 7}" y="${y + 4}" text-anchor="start" font-size="11" fill="var(${series[1].color})">${gon(v, f2)}</text>`;
     }
-  }
-  // cột mờ đánh dấu quý KHÔNG có số (lỗ, hoặc chưa công bố) — để chỗ trống trên
-  // đường không bị đọc nhầm thành "đi ngang". Có dán chữ, không thì nhìn như
-  // một vệt xám vô nghĩa giữa biểu đồ.
-  (opt.trong || boQuy).forEach((co, i) => {
-    if (!co) return;
-    const w = (W - PL - PR) / n;
-    s += `<rect x="${X(i) - w / 2}" y="${PT}" width="${w}" height="${H - PT - PB}"
-           fill="var(--text-muted)" opacity=".10"><title>${labels[i]} · ${esc(opt.trongVi || 'quý lỗ — không có P/E')}</title></rect>
-          <text x="${X(i)}" y="${PT + 12}" text-anchor="middle" font-size="9.5" font-weight="700"
-           fill="var(--text-muted)" opacity=".85">lỗ</text>`;
-  });
-
-  // Gom mọi nhãn nổi vào một danh sách rồi mới đẩy tránh nhau — vẽ ngay tại chỗ
-  // là cách sinh ra cảnh "5.8" nằm đè lên "6.6".
-  const nhan = [];
-  if (so(opt.tb)) {
-    s += `<line x1="${PL}" x2="${W - PR}" y1="${Y(opt.tb)}" y2="${Y(opt.tb)}" stroke="var(--text-muted)"
-           stroke-width="1.1" stroke-dasharray="5 4" opacity=".65"/>`;
-    nhan.push({ y: Y(opt.tb) - 6, x: W - PR - 3, neo: 'end', chu: 'TB ' + f(opt.tb), mau: 'var(--text-muted)', dam: 600 });
-  }
-  s += `<g clip-path="url(#${cp})">`;
-  series.forEach((se, k) => {
-    const ff = (hai && k === 1) ? f2 : f;
-    let d = '', bat = false;
-    (se.v || []).forEach((v, i) => { if (!so(v)) { bat = false; return; } d += (bat ? 'L' : 'M') + X(i) + ' ' + Yk(v, k); bat = true; });
-    if (d) s += `<path d="${d}" fill="none" stroke="var(${se.color})" stroke-width="1.9" stroke-linejoin="round"/>`;
-    (se.v || []).forEach((v, i) => {
-      if (!so(v)) return;
-      // Điểm ĐỨNG MỘT MÌNH (hai bên đều trống) không có đoạn thẳng nào nối vào,
-      // nên vẽ bằng chấm thường thì trông như bụi trên màn hình — đã bị hiểu nhầm
-      // đúng một lần. Cho nó vòng tròn để rõ đó là một quý có số thật.
-      const le = !so((se.v || [])[i - 1]) && !so((se.v || [])[i + 1]);
-      s += le
-        ? `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="4.2" fill="var(--surface-1)" stroke="var(${se.color})" stroke-width="2.2"><title>${labels[i]} · ${esc(se.name)}: ${ff(v)} (quý đứng một mình, hai bên không có số)</title></circle>`
-        : `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="2.6" fill="var(${se.color})"><title>${labels[i]} · ${esc(se.name)}: ${ff(v)}</title></circle>`;
+    // Hai loại ô trống, KHÁC nhau, phải phân biệt bằng mắt:
+    //   "lỗ"    = có báo cáo nhưng lãi âm  -> P/E, P/B vô nghĩa nên bỏ trống
+    //   "thiếu" = chưa có báo cáo quý đó
+    const _nen = (i, chu) => {
+      const w = (W - PL - PR) / n;
+      return `<rect x="${X(i) - w / 2}" y="${PT}" width="${w}" height="${H - PT - PB}" fill="var(--text-muted)" opacity=".10"/>
+              <text x="${X(i)}" y="${PT + 12}" text-anchor="middle" font-size="9.5" font-weight="700" fill="var(--text-muted)" opacity=".85">${chu}</text>`;
+    };
+    const danhDauLo = opt.trong || boQuy;
+    danhDauLo.forEach((co, i) => { if (co) s += _nen(i, 'lỗ'); });
+    labels.forEach((_, i) => {
+      if (danhDauLo[i]) return;
+      if (series0.every(se => !so((se.v || [])[i]))) s += _nen(i, 'thiếu');
     });
-    const cuoi = [...(se.v || [])].reverse().find(so);
-    if (so(cuoi)) {
-      const i = se.v.lastIndexOf(cuoi);
-      nhan.push({ y: Yk(cuoi, k) - 8, x: Math.min(X(i) + 6, W - PR), neo: 'end', chu: ff(cuoi), mau: `var(${se.color})`, dam: 700 });
-    }
-  });
-  s += '</g>';
-  // đẩy tránh nhau: nhãn nào cách nhãn trước dưới 13 đơn vị thì đùn xuống
-  nhan.sort((a, b) => a.y - b.y);
-  for (let k = 1; k < nhan.length; k++) {
-    if (nhan[k].y - nhan[k - 1].y < 13) nhan[k].y = nhan[k - 1].y + 13;
-  }
-  nhan.forEach(t => {
-    // viền nền cùng màu trang: chữ nằm trên đường kẻ vẫn đọc được
-    s += `<text x="${t.x}" y="${Math.max(PT + 10, Math.min(t.y, H - PB - 2))}" text-anchor="${t.neo}" font-size="12" font-weight="${t.dam}"
-           fill="${t.mau}" stroke="var(--surface-1)" stroke-width="3.2" paint-order="stroke"
-           stroke-linejoin="round">${t.chu}</text>`;
-  });
-  labels.forEach((l, i) => {
-    s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
-           transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
-  });
-  s += '</svg>';
 
-  const ghi = [];
-  if (nBo) ghi.push(`<b>${nBo}/${labels.length} quý doanh nghiệp lỗ</b> nên không có P/E — cột tô mờ có chữ "lỗ" là những quý đó.`);
-  if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải — màu số trên trục khớp màu đường.`);
-  host.innerHTML = s + (ghi.length
-    ? `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>` : '');
+    const nhan = [];
+    if (so(opt.tb)) {
+      s += `<line x1="${PL}" x2="${W - PR}" y1="${Y(opt.tb)}" y2="${Y(opt.tb)}" stroke="var(--text-muted)" stroke-width="1.1" stroke-dasharray="5 4" opacity=".65"/>`;
+      nhan.push({ y: Y(opt.tb) - 6, x: W - PR - 3, chu: 'TB ' + f(opt.tb), mau: 'var(--text-muted)', dam: 600 });
+    }
+    let nThieu = 0;
+    s += `<g clip-path="url(#${cp})">`;
+    series.forEach((se, k) => {
+      const ff = (hai && k === 1) ? f2 : f;
+      let d = '', bat = false;
+      (se.v || []).forEach((v, i) => {
+        // Đường ĐỨT đúng chỗ thiếu, không nối bắc cầu — nối qua là bịa ra một
+        // đoạn số không tồn tại giữa hai quý.
+        if (!so(v)) { bat = false; if (k === 0) nThieu++; return; }
+        d += (bat ? 'L' : 'M') + X(i) + ' ' + Yk(v, k); bat = true;
+      });
+      if (d) s += `<path d="${d}" fill="none" stroke="var(${se.color})" stroke-width="1.9" stroke-linejoin="round"/>`;
+      (se.v || []).forEach((v, i) => {
+        if (!so(v)) return;
+        const le = !so((se.v || [])[i - 1]) && !so((se.v || [])[i + 1]);
+        s += le
+          ? `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="4.2" fill="var(--surface-1)" stroke="var(${se.color})" stroke-width="2.2"/>`
+          : `<circle cx="${X(i)}" cy="${Yk(v, k)}" r="2.6" fill="var(${se.color})"/>`;
+      });
+      const cuoi = [...(se.v || [])].reverse().find(so);
+      if (so(cuoi)) {
+        const i = se.v.lastIndexOf(cuoi);
+        nhan.push({ y: Yk(cuoi, k) - 8, x: Math.min(X(i) + 6, W - PR), chu: ff(cuoi), mau: `var(${se.color})`, dam: 700 });
+      }
+    });
+    s += '</g>';
+    nhan.sort((a, b) => a.y - b.y);
+    for (let k = 1; k < nhan.length; k++) if (nhan[k].y - nhan[k - 1].y < 13) nhan[k].y = nhan[k - 1].y + 13;
+    nhan.forEach(t => {
+      s += `<text x="${t.x}" y="${Math.max(PT + 10, Math.min(t.y, H - PB - 2))}" text-anchor="end" font-size="12" font-weight="${t.dam}"
+             fill="${t.mau}" stroke="var(--surface-1)" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">${t.chu}</text>`;
+    });
+    labels.forEach((l, i) => {
+      s += `<text x="${X(i)}" y="${H - PB + 16}" text-anchor="end" font-size="10.5" fill="var(--text-muted)"
+             transform="rotate(-38 ${X(i)} ${H - PB + 16})">${l}</text>`;
+    });
+    s += '</svg>';
+
+    const { box, tip } = _voBieuDo(host);
+    box.insertAdjacentHTML('beforeend', s);
+    _batCon(box, tip, box.querySelector('svg'), W, H, PL, PR, n, X, i => {
+      let h = `<b>${labels[i]}</b>`;
+      if (boQuy[i]) h += '<div class="muted" style="margin-top:3px">quý lỗ — không có P/E</div>';
+      series.forEach((se, k) => {
+        const v = (se.v || [])[i], ff = (hai && k === 1) ? f2 : f;
+        h += `<div style="display:flex;gap:8px;align-items:center;margin-top:3px">
+          <span style="width:9px;height:9px;border-radius:3px;background:var(${se.color});display:inline-block"></span>
+          ${esc(se.name)}: <b>${so(v) ? ff(v) : '—'}</b></div>`;
+      });
+      return h;
+    });
+
+    const ghi = [];
+    if (nBo) ghi.push(`<b>${nBo}/${labels.length} quý doanh nghiệp lỗ</b> nên không có P/E — cột tô mờ có chữ "lỗ" là những quý đó.`);
+    if (nThieu) ghi.push(`<b>${esc(series[0].name)} thiếu ${nThieu}/${labels.length} quý</b> — đường vẽ đứt đúng chỗ thiếu, không nối bắc cầu.`);
+    if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải.`);
+    if (ghi.length) host.insertAdjacentHTML('beforeend',
+      `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>`);
+  };
+  ve(); _theoDoiKhung(host, ve);
 }
 
 /* ============================================================================
@@ -402,7 +501,9 @@ function nganhPhanTan(host, ds, cf) {
 
   // Không kẻ lưới. Ba vạch mỗi trục, đặt ở mép. Người đọc cần biết mã nào nằm
   // góc nào, không cần đọc toạ độ chính xác của từng điểm.
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" font-family="inherit">
+  // Trang đã tràn màn hình -> SVG khung cố định bị kéo giãn tới 2200px, chữ
+  // "RẺ · SINH LỜI TỐT" to bằng tiêu đề. Chặn bề ngang lại và căn giữa.
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:880px;height:auto;display:block;margin:0 auto" font-family="inherit">
     <rect x="${PL - 8}" y="${PT - 14}" width="${W - PL - PR + 20}" height="${H - PT - PB + 26}" rx="8"
      fill="var(--surface-2)" opacity=".45"/>
     <rect x="${PL - 8}" y="${PT - 14}" width="${X(mx) - PL + 8}" height="${Y(my) - PT + 14}"
@@ -412,9 +513,11 @@ function nganhPhanTan(host, ds, cf) {
   // vạch trục: đáy, giữa, đỉnh
   [y0, (y0 + y1) / 2, y1].forEach(v =>
     s += `<text x="${PL - 12}" y="${Y(v) + 4}" text-anchor="end" font-size="12" font-weight="600" fill="var(--text-muted)">${fy(v)}</text>`);
-  [x0, (x0 + x1) / 2, x1].forEach(v =>
-    s += `<text x="${X(v)}" y="${H - PB + 22}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text-muted)">${fx(v)}</text>`);
-  s += `<text x="${PL - 12}" y="${PT - 6}" text-anchor="end" font-size="14" font-weight="800" fill="var(--text-secondary)">${tenY}</text>
+  // Vạch đầu neo trái, vạch cuối neo phải. Neo giữa hết thì số cuối ("3,71")
+  // đè lên tên trục ("P/B") — đúng lỗi anh Sơn thấy ở góc dưới phải.
+  [[x0, 'start'], [(x0 + x1) / 2, 'middle'], [x1, 'end']].forEach(([v, neo]) =>
+    s += `<text x="${X(v)}" y="${H - PB + 22}" text-anchor="${neo}" font-size="12" font-weight="600" fill="var(--text-muted)">${fx(v)}</text>`);
+  s += `<text x="${PL - 12}" y="${PT - 13}" text-anchor="end" font-size="14" font-weight="800" fill="var(--text-secondary)">${tenY}</text>
         <text x="${W - PR + 8}" y="${H - PB + 22}" text-anchor="start" font-size="14" font-weight="800" fill="var(--text-secondary)">${tenX}</text>`;
 
   // hai đường trung vị

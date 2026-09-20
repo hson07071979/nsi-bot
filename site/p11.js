@@ -303,6 +303,9 @@ function renderLiveBar() {
 
 /* ---------- băng nổi lên: đỏ = mua, vàng = để mắt ---------- */
 function bangBao(list, loai) {
+  // Cửa vào thứ hai của chuông: `napLive()` gọi thẳng hàm này, không đi qua
+  // reoChuong. Thiếu chốt giờ ở đây thì bảng nổi vẫn bật lúc nửa đêm.
+  if (typeof phienMo === 'function' && !phienMo()) return;
   const box = document.getElementById('liveToast');
   if (!box) return;
   const mua = loai === 'mua';

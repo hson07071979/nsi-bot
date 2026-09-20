@@ -269,6 +269,12 @@ function tinhLaiTinHieuVPS() {
 /* ---------- chuông: âm thanh + thông báo trình duyệt + nhấp nháy tiêu đề ---------- */
 let _titleGoc = null, _titleTimer = null;
 function reoChuong(list, loai) {
+  // CHỐT GIỜ — đặt ngay dòng đầu, trước mọi thứ khác.
+  // Lỗi 21/09: chuông nổ lúc 23h59. `live_scan.py` đã chốt giờ cho Telegram từ
+  // 17/09, nhưng lớp trình duyệt thì chưa — mở tab lúc nửa đêm, `live.json` vừa
+  // được ghi lại, lớp real-time so với lần nạp trước thấy "mã mới" và kêu.
+  // Cùng một luật phải có ở CẢ HAI nơi, không thì sửa một chỗ tưởng là xong.
+  if (typeof phienMo === 'function' && !phienMo()) return;
   const mua = loai === 'mua';
   // Hai loại chuông, hai câu chữ. Trước đây mọi thông báo đều ghi "mã đủ điểm
   // mua" kể cả khi chỉ là nhắc để mắt — đọc trên điện thoại là hiểu nhầm ngay.

@@ -34,6 +34,101 @@
     });
   }
 
+  /* ---------- 1b. viên trạng thái thị trường ----------
+     Lỗi 21/09 dạy hai lần cùng một bài: giờ phiên phải nằm ở MỌI lớp nhìn thấy
+     được, không chỉ ở lớp gửi Telegram. Viên này đọc cùng một đồng hồ giờ Việt
+     mà chuông đọc (gioVN của p13), nên không thể lệch nhau.
+     Khung giờ HOSE: 9h00-9h15 ATO · 9h15-11h30 khớp lệnh · 11h30-13h00 nghỉ
+     trưa · 13h00-14h30 khớp lệnh · 14h30-14h45 ATC · sau đó đóng.            */
+  const _pill = document.getElementById('mktPill');
+  if (_pill) {
+    const _txt = document.getElementById('mktTxt');
+    const _clk = document.getElementById('mktClk');
+    const _sau = document.getElementById('mktSau');
+    const hai = n => (n < 10 ? '0' : '') + n;
+
+    // Dùng lại gioVN của p13 nếu có; không có thì tự tính, đừng để trang gãy.
+    const gio = () => {
+      if (typeof gioVN === 'function') { try { return gioVN(); } catch (e) { /* rơi xuống dưới */ } }
+      const t = new Date();
+      return new Date(t.getTime() + (t.getTimezoneOffset() + 420) * 60000);
+    };
+
+    function trangThai(t) {
+      const d = t.getDay(), p = t.getHours() * 60 + t.getMinutes();
+      if (d === 0 || d === 6) return { l: 'dong', t: 'ĐÓNG CỬA', m: d === 6 ? 'thứ Bảy' : 'Chủ nhật' };
+      if (p < 540)             return { l: 'dong', t: 'CHƯA MỞ',  moLuc: 540 };
+      if (p < 555)             return { l: 'atc',  t: 'ATO' };
+      if (p < 690)             return { l: 'mo',   t: 'ĐANG MỞ' };
+      if (p < 780)             return { l: 'trua', t: 'NGHỈ TRƯA', moLuc: 780 };
+      if (p < 870)             return { l: 'mo',   t: 'ĐANG MỞ' };
+      if (p < 885)             return { l: 'atc',  t: 'ATC' };
+      return { l: 'dong', t: 'ĐÓNG CỬA', m: 'hết phiên' };
+    }
+
+    function ve() {
+      const t = gio(), tt = trangThai(t);
+      _pill.className = 'mkt ' + tt.l;
+      _txt.textContent = tt.t;
+      _clk.textContent = hai(t.getHours()) + ':' + hai(t.getMinutes()) + ':' + hai(t.getSeconds());
+      let phu = tt.m || '';
+      if (tt.moLuc != null) {
+        const con = tt.moLuc - (t.getHours() * 60 + t.getMinutes());
+        phu = con >= 60 ? 'mở sau ' + Math.floor(con / 60) + 'g' + hai(con % 60)
+                        : 'mở sau ' + con + ' phút';
+      }
+      _sau.textContent = phu ? '· ' + phu : '';
+    }
+
+    ve();
+    setInterval(ve, 1000);
+  }
+
+  /* ---------- 1c. bấm vào mã trong bảng là sang Chi tiết mã ----------
+     Làm ở MỘT chỗ bằng uỷ quyền sự kiện, không sửa từng bảng. Lý do: ô mã
+     (`td.sym` / `span.sym`) xuất hiện ở watchlist, bộ lọc, danh mục, chuông,
+     lịch sử lệnh... sửa từng nơi là chín chỗ phải nhớ, bỏ sót một chỗ là
+     người dùng bấm không ăn mà không biết vì sao.
+     Chỉ ô nào có số liệu thật mới được gạch chân — gạch chân một mã bấm vào
+     không ra gì còn khó chịu hơn là không gạch.                              */
+  const coMa = s => {
+    try { return !!((D.lookup || {})[s] || (D.candles || {})[s] || (D.funda || {})[s]); }
+    catch (e) { return false; }
+  };
+  // Lấy đúng chữ mã: ô còn chứa chấm tím, nhãn "WL", nhãn "Chưa đăng"...
+  const layMa = o => {
+    const t = [...o.childNodes].find(n => n.nodeType === 3 && n.textContent.trim());
+    const s = (t ? t.textContent : o.textContent).trim().split(/[\s·]+/)[0].toUpperCase();
+    return /^[A-Z0-9]{3,4}$/.test(s) ? s : null;
+  };
+  const danhDau = () => {
+    document.querySelectorAll('td.sym:not([data-ma]), span.sym:not([data-ma])').forEach(o => {
+      const m = layMa(o);
+      o.dataset.ma = (m && coMa(m)) ? m : '-';
+      if (o.dataset.ma !== '-') {
+        o.classList.add('malink');
+        if (!o.title) o.title = o.dataset.ma + ' — bấm để mở Chi tiết mã';
+      }
+    });
+  };
+
+  document.addEventListener('click', ev => {
+    const o = ev.target.closest && ev.target.closest('[data-ma]');
+    if (!o || o.dataset.ma === '-') return;
+    if (ev.target.closest('a, button, input, select')) return;   // đừng cướp nút sẵn có
+    ev.preventDefault();
+    const sym = o.dataset.ma;
+    try { openChart(sym); } catch (e) { return; }
+    // Đồng bộ luôn thanh tra cứu trên đỉnh, để hai chỗ không nói hai mã khác nhau.
+    try { if (typeof nsiChonMa === 'function') nsiChonMa(sym, 'trang'); } catch (e) {}
+  });
+
+  // Bảng được vẽ lại mỗi lần đổi trang / sắp xếp lại cột -> phải đánh dấu lại.
+  const goc = document.getElementById('main') || document.body;
+  let hen = null;
+  new MutationObserver(() => { clearTimeout(hen); hen = setTimeout(danhDau, 40); }).observe(goc, {childList: true, subtree: true});
+  danhDau();
+
   /* ---------- 2. thanh điều hướng dưới ---------- */
   // Năm ô. Bốn trang hay mở nhất lúc 14h, cộng một nút mở ngăn còn lại.
   const DUOI = [
