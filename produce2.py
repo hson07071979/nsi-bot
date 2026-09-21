@@ -215,6 +215,22 @@ if __name__=='__main__':
     print('EXTRA monthly',len(out['monthly']),'top6m',len(out['top6m']['deals']),'candles',len(out['candles']),flush=True)
 
     out['v1']= {'trades':171,'per_year':22.4,'total_return':0.605,'cagr':0.064,'maxdd':0.092,'pf':2.80,'sharpe':1.03,'universe':311}
+    # ---- CAU HINH DANG CHAY, nhung thang vao trang ----
+    # Truoc day trang go tay "TOP 110", "nen 18%", "dong tien 1,20" vao tung cau
+    # chu. Doi luat o day thi chu tren trang van noi so cu — so kien truc da ghi
+    # ba lan cung mot bay. Nay trang doc thang khoi nay (part2.js: cpTop/cpNen/
+    # cpDT) va verify_build.py cung doc no de so voi screener, nen khong the lech.
+    out['cfg_prod'] = {k: PROD.get(k, E.CFG.get(k)) for k in (
+        'base_size', 'max_pos', 'max_total', 'max_pos_n', 'min_size', 'size_map',
+        'base_len', 'base_range', 'score_floor', 'top_n', 'use_top_liquid',
+        'gtgd_min', 'volat_min', 'vol_floor', 'vol_ceil', 'ordimb_min',
+        'stop', 'hard_stop', 't_valve', 'big_win', 'trail_ma', 'trail_fast', 'conf',
+        'be_trigger', 'be_level', 'fee_buy', 'fee_sell', 'slip', 'min_mktcap',
+        'use_cond6', 'use_cond8', 'use_hard_stop', 'use_protective_candle',
+        'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
+        'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',
+        'use_ftd', 'use_pyramid', 'use_ordimb')}
+
     def cv(o):
         if isinstance(o,dict): return {k:cv(v) for k,v in o.items()}
         if isinstance(o,list): return [cv(x) for x in o]
