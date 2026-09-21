@@ -359,12 +359,11 @@ if __name__ == "__main__":
             flush=True,
         )
 
-    probe_ok = sum(
-        1
-        for d in probe_res.values()
-        if d["is"] or d["ratio"]
-    )
-
+ probe_ok = sum(
+    1
+    for d in probe_res.values()
+    if d["is"]
+)
     if probe_ok == 0:
         print_errors()
 
