@@ -103,7 +103,7 @@ function pageOverview(root){
     <p style="margin-bottom:0">Kết luận thật lòng: <b>đây là hệ bắt sóng lớn, không phải hệ đánh mọi thị trường.</b> Nó ăn đậm 2020, 2021, 2025 và đi ngang 2022–2023. Nếu cần một hệ có lãi đều mọi năm thì phải là hệ khác.</p>
   </div>
 
-  <div class="note" style="margin-top:22px"><b>Vũ trụ giao dịch hiện tại:</b> chỉ TOP 110 mã thanh khoản nhất, xếp hạng lại theo <i>từng phiên</i> bằng GTGD bình quân 20 phiên — không dùng danh sách VN30/VN100 của hôm nay áp ngược lại quá khứ (đó là nhìn trước). So với chạy toàn thị trường: lợi nhuận ${sg(M.total_return)} so với +517,6% và sụt giảm tối đa ${pct(M.maxdd)} so với 12,8%. Ngưỡng \"lãi lớn\" bật trailing MA10 chốt nhanh đã hạ từ 25% xuống <b>19%</b> — nằm giữa vùng phẳng 18–22% và cho drawdown thấp nhất toàn lưới; từ 24% trở lên drawdown nhảy lên 13%.</div>`;
+  <div class="note" style="margin-top:22px"><b>Vũ trụ giao dịch hiện tại:</b> chỉ TOP ${cpTop()} mã thanh khoản nhất, xếp hạng lại theo <i>từng phiên</i> bằng GTGD bình quân 20 phiên — không dùng danh sách VN30/VN100 của hôm nay áp ngược lại quá khứ (đó là nhìn trước). So với chạy toàn thị trường: lợi nhuận ${sg(M.total_return)} so với +517,6% và sụt giảm tối đa ${pct(M.maxdd)} so với 12,8%. Ngưỡng \"lãi lớn\" bật trailing MA10 chốt nhanh đã hạ từ 25% xuống <b>19%</b> — nằm giữa vùng phẳng 18–22% và cho drawdown thấp nhất toàn lưới; từ 24% trở lên drawdown nhảy lên 13%.</div>`;
 
   document.getElementById('kpirow').innerHTML =
     kpi('Tổng lợi nhuận', sg(M.total_return), `${(dates.length/250).toFixed(1)} năm · NAV ${vnd(M.final_nav)}`, cls(M.total_return))
