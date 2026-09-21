@@ -295,10 +295,15 @@ def lookahead(r):
     # (b) vu tru TOP-N tinh lai theo tung phien, khong ap danh sach hom nay ve qua khu
     from vn300 import build_topn
     I = E._CACHE['I']
-    T = build_topn(I, 110)
+    # LOI 21/09/2026: dong nay tung go cung 110 trong khi bo may da sang TOP 120.
+    # Bai kiem tra van XANH nen khong ai biet — no chi do "danh sach co doi theo
+    # thoi gian khong", dung 110 hay 120 deu doi. Cai sai la NHAN tren trang
+    # Kiem dinh ghi "TOP-110" trong khi bo may chay TOP 120. Lay thang tu PROD.
+    _tn = int(PROD['top_n'])
+    T = build_topn(I, _tn)
     d0 = T[300]; d1 = T[-1]
     khac = int((d0 != d1).sum())
-    them('Vũ trụ TOP-110 tính lại theo từng phiên',
+    them(f'Vũ trụ TOP-{_tn} tính lại theo từng phiên',
          khac > 0, f'phiên 300 và phiên cuối khác nhau {khac} mã — danh sách có đổi theo thời gian')
 
     # (c) gia khop khong bao gio la gia cua phien sau khi entry_mode='close'
