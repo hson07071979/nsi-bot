@@ -110,7 +110,11 @@ function pageOverview(root){
   + kpi('CAGR', sg(M.cagr), `VN-Index ${sg(BM.cagr)}`, cls(M.cagr))
   + kpi('Drawdown tối đa', '−'+pct(M.maxdd), `VN-Index −${pct(BM.mdd)}`, 'neg')
   + kpi('Profit Factor', M.pf, 'lãi gộp / lỗ gộp')
-  + kpi('Số lệnh', M.trades, `${M.per_year} lệnh mỗi năm`)
+  // Ghi ca so VI THE ngay duoi, de khong ai phai doi chieu hai trang moi hieu
+  // vi sao trang Backtest ghi mot con so khac (mot vi the chot 1/3 = hai dong lenh).
+  + kpi('Số lệnh', M.trades, ((P.deal_metrics||{}).deals
+        ? `${M.per_year}/năm · ${(P.deal_metrics||{}).deals} vị thế`
+        : `${M.per_year} lệnh mỗi năm`))
   + kpi('Tỷ lệ thắng', pct(M.winrate), `+${M.avg_win}% / ${M.avg_loss}%`)
   + kpi('Sharpe', M.sharpe, 'trên chuỗi NAV ngày');
 

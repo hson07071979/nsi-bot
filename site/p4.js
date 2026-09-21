@@ -93,6 +93,21 @@ function pageBacktest(root){
   ].map(([a,b,c,d])=>`<tr><td class="sym">${a}</td><td style="text-align:right">${b}</td>
     <td style="text-align:right"><b style="color:var(--text-primary)">${c}</b></td>
     <td style="text-align:right">${d}</td></tr>`).join('');
+  // Hai con so nay tung doc nhu mau thuan: trang Hieu suat ghi "140 lenh" con bang
+  // tren ghi "115 deal". Khong lech — mot VI THE chot 1/3 khi den Cam roi ra not thi
+  // sinh HAI dong lenh. Viet thang ra, tinh tu du lieu de khong bao gio cu.
+  (function(){
+    const _cl = P.trades.filter(t=>/1\/3/.test(t.reason||'')).length;
+    const _vt = DM.deals, _l = M.trades;
+    if (!_vt || !_l) return;
+    const _n = el('p','muted',
+      `<b>Vì sao hai cột lệch nhau:</b> hệ thống mở <b>${_vt}</b> vị thế, trong đó <b>${_cl}</b> vị thế `
+      + `chốt 1/3 khi đèn chuyển Cam rồi mới ra nốt phần còn lại — mỗi vị thế như vậy sinh <i>hai</i> dòng lệnh. `
+      + `${_vt} + ${_cl} = <b>${_l}</b>. Cột "đếm theo lệnh" là số lần bấm bán; cột "đếm theo deal" là số lần `
+      + `thật sự vào một mã. Các trang khác ghi "${_l} lệnh" là theo cột thứ nhất.`);
+    _n.style.margin = '12px 0 0';
+    document.getElementById('dealTbl').closest('.card').appendChild(_n);
+  })();
   document.getElementById('doorTbl').innerHTML=P.doors.map(d=>
     `<tr><td class="sym">${d.door}</td><td style="text-align:right">${d.n}</td><td style="text-align:right">${d.pct}%</td>
      <td style="text-align:right" class="${cls(d.median)}">${d.median>=0?'+':''}${d.median}%</td></tr>`).join('');
