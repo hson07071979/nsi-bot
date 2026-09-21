@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 """
 Cao bao cao tai chinh tu Vietcap IQ.
 
@@ -23,7 +22,7 @@ VA 21/09/2026:
 2. Them browser-like headers: Origin / Referer / Accept-Language.
 3. Giam burst request: 4 workers + global throttle.
 4. Probe 3 ma lon truoc khi cao toan bo universe.
-5. Neu probe that bai toan bo -> fail fast.
+5. Neu probe khong lay duoc KQKD -> fail fast.
 6. KHONG ghi de funda_raw2.json neu integrity check that bai.
 7. Van giu hard fail neu >3% universe bi thieu KQKD.
 
@@ -94,7 +93,14 @@ def _clean_preview(text, limit=180):
     """Rut gon response de log khong bi qua dai."""
     if text is None:
         return ""
-    s = " ".join(str(text).replace("\r", " ").replace("\n", " ").split())
+
+    s = " ".join(
+        str(text)
+        .replace("\r", " ")
+        .replace("\n", " ")
+        .split()
+    )
+
     return s[:limit]
 
 
@@ -161,7 +167,7 @@ def _get(url, params=None):
     Return:
         dict/list JSON neu thanh cong
         None neu:
-          - 400/404 (du lieu thuc su co the khong ton tai)
+          - 400/404
           - that bai sau TRIES lan
 
     Moi failure that sau retry duoc ghi vao diagnostic counter.
@@ -187,12 +193,14 @@ def _get(url, params=None):
             if status == 200:
                 try:
                     payload = r.json()
+
                 except Exception as e:
                     last_err = (
-                        f"HTTP 200 but invalid JSON: "
+                        "HTTP 200 but invalid JSON: "
                         f"{type(e).__name__}: {e}; "
                         f"body={_clean_preview(r.text)!r}"
                     )
+
                 else:
                     # Vietcap IQ thuong tra:
                     # {"successful": true, "data": ...}
@@ -204,6 +212,7 @@ def _get(url, params=None):
                             "HTTP 200 API successful=false: "
                             f"{_clean_preview(payload.get('msg'))!r}"
                         )
+
                     else:
                         return payload
 
@@ -220,6 +229,7 @@ def _get(url, params=None):
 
                 if status == 429:
                     ra = r.headers.get("Retry-After")
+
                     if ra:
                         try:
                             retry_after = float(ra)
@@ -229,19 +239,27 @@ def _get(url, params=None):
         except Exception as e:
             last_err = f"{type(e).__name__}: {e}"
 
-        # Exponential-ish backoff
+        # Backoff
         sleep_for = 1.5 * (attempt + 1)
 
         if retry_after is not None:
-            sleep_for = max(sleep_for, retry_after)
+            sleep_for = max(
+                sleep_for,
+                retry_after,
+            )
 
         time.sleep(sleep_for)
 
     if last_err:
         full_url = url
+
         if params:
             full_url += f" params={params}"
-        _note_err(last_err, full_url)
+
+        _note_err(
+            last_err,
+            full_url,
+        )
 
     return None
 
@@ -254,7 +272,9 @@ def one(sym):
     out = {}
 
     # Financial ratios
-    j = _get(B + sym + "/statistics-financial")
+    j = _get(
+        B + sym + "/statistics-financial"
+    )
 
     if isinstance(j, dict):
         out["ratio"] = j.get("data") or []
@@ -268,16 +288,22 @@ def one(sym):
     ]:
         j = _get(
             B + sym + "/financial-statement",
-            {"section": sec},
+            {
+                "section": sec
+            },
         )
 
         if isinstance(j, dict):
             data = j.get("data") or {}
 
             if isinstance(data, dict):
-                out[key] = data.get("quarters") or []
+                out[key] = (
+                    data.get("quarters") or []
+                )
+
             else:
                 out[key] = []
+
         else:
             out[key] = []
 
@@ -290,7 +316,10 @@ def one(sym):
 
 def print_errors():
     if not _err_counts:
-        print("\nKhong ghi nhan HTTP/Exception failure sau retry.", flush=True)
+        print(
+            "\nKhong ghi nhan HTTP/Exception failure sau retry.",
+            flush=True,
+        )
         return
 
     print(
@@ -300,8 +329,15 @@ def print_errors():
     )
 
     for msg, count in _err_counts.most_common(10):
-        print(f"  {count:4d}x  {msg}", flush=True)
-        print(f"         vd: {_err_sample[msg]}", flush=True)
+        print(
+            f"  {count:4d}x  {msg}",
+            flush=True,
+        )
+
+        print(
+            f"         vd: {_err_sample[msg]}",
+            flush=True,
+        )
 
 
 # ============================================================
@@ -314,28 +350,47 @@ if __name__ == "__main__":
     # Universe
     # --------------------------------------------------------
 
-    with open("data/universe.json", encoding="utf-8") as f:
+    with open(
+        "data/universe.json",
+        encoding="utf-8",
+    ) as f:
         u = json.load(f)
 
-    print("n", len(u), flush=True)
+    print(
+        "n",
+        len(u),
+        flush=True,
+    )
 
     if not u:
-        sys.exit("HONG: universe.json rong")
+        sys.exit(
+            "HONG: universe.json rong"
+        )
 
     # --------------------------------------------------------
     # PRE-FLIGHT TEST
     #
-    # Neu API / WAF dang chan GitHub Actions thi dung ngay.
-    # Khong doi 1h+ de cao 704 ma roi moi biet.
+    # Neu API / WAF dang chan GitHub Actions
+    # hoac endpoint KQKD bi hong thi dung ngay.
     # --------------------------------------------------------
 
-    preferred_probes = ["FPT", "VCB", "HPG"]
-    probes = [s for s in preferred_probes if s in u]
+    preferred_probes = [
+        "FPT",
+        "VCB",
+        "HPG",
+    ]
+
+    probes = [
+        s
+        for s in preferred_probes
+        if s in u
+    ]
 
     if len(probes) < 3:
         for s in u:
             if s not in probes:
                 probes.append(s)
+
             if len(probes) >= 3:
                 break
 
@@ -349,6 +404,7 @@ if __name__ == "__main__":
 
     for sym in probes:
         s, d = one(sym)
+
         probe_res[s] = d
 
         print(
@@ -359,21 +415,26 @@ if __name__ == "__main__":
             flush=True,
         )
 
- probe_ok = sum(
-    1
-    for d in probe_res.values()
-    if d["is"]
-)
+    # Chi coi la PASS neu lay duoc INCOME STATEMENT.
+    # Ratio co du lieu ma KQKD rong thi van la loi nghiem trong.
+    probe_ok = sum(
+        1
+        for d in probe_res.values()
+        if d["is"]
+    )
+
     if probe_ok == 0:
         print_errors()
 
         sys.exit(
             "HONG PRE-FLIGHT: ca 3 ma probe deu khong lay duoc "
-            "KQKD/ratio tu Vietcap IQ. Dung som de tranh cao 704 ma vo ich."
+            "bao cao KQKD tu Vietcap IQ. "
+            "Dung som de tranh cao ca universe vo ich."
         )
 
     print(
-        f"PRE-FLIGHT OK: {probe_ok}/{len(probes)} ma co du lieu.",
+        f"PRE-FLIGHT OK: "
+        f"{probe_ok}/{len(probes)} ma co KQKD.",
         flush=True,
     )
 
@@ -384,18 +445,28 @@ if __name__ == "__main__":
     # Giu lai ket qua probe, tranh request lai.
     res = dict(probe_res)
 
-    remaining = [s for s in u if s not in res]
+    remaining = [
+        s
+        for s in u
+        if s not in res
+    ]
 
     print(
-        f"\nBat dau cao {len(remaining)} ma con lai "
+        f"\nBat dau cao "
+        f"{len(remaining)} ma con lai "
         f"voi {WORKERS} workers...",
         flush=True,
     )
 
-    with ThreadPoolExecutor(max_workers=WORKERS) as ex:
+    with ThreadPoolExecutor(
+        max_workers=WORKERS
+    ) as ex:
 
         for i, (s, d) in enumerate(
-            ex.map(one, remaining),
+            ex.map(
+                one,
+                remaining,
+            ),
             start=len(res),
         ):
             res[s] = d
@@ -432,16 +503,18 @@ if __name__ == "__main__":
         if not v["ratio"]
     ]
 
-    print(f"\nxong {len(res)} ma")
+    print(
+        f"\nxong {len(res)} ma"
+    )
 
     print(
-        f"  thieu bao cao KQKD : "
+        "  thieu bao cao KQKD : "
         f"{len(no_is)} ma "
         f"({len(no_is) / len(res):.1%})"
     )
 
     print(
-        f"  thieu chi so ty le : "
+        "  thieu chi so ty le : "
         f"{len(no_ra)} ma "
         f"({len(no_ra) / len(res):.1%})"
     )
@@ -449,27 +522,32 @@ if __name__ == "__main__":
     if no_is:
         print(
             "  ma thieu KQKD:",
-            " ".join(sorted(no_is)[:40]),
+            " ".join(
+                sorted(no_is)[:40]
+            ),
         )
 
     # --------------------------------------------------------
     # HARD FAIL
     #
-    # GIU NGUYEN logic cu:
     # >3% thieu KQKD -> KHONG dung data nay.
     #
-    # KHAC ban cu:
-    # Chua ghi de funda_raw2.json.
+    # QUAN TRONG:
+    # Chua ghi de funda_raw2.json o thoi diem nay.
     # --------------------------------------------------------
 
-    missing_ratio = len(no_is) / len(res)
+    missing_ratio = (
+        len(no_is)
+        / len(res)
+    )
 
     if missing_ratio > MAX_MISSING_IS:
 
-        # Dam bao file tmp cu (neu co) khong bi dung nham.
+        # Xoa file tmp cu neu co
         try:
             if os.path.exists(TEMP_FILE):
                 os.remove(TEMP_FILE)
+
         except Exception:
             pass
 
@@ -477,8 +555,8 @@ if __name__ == "__main__":
             f"HONG: {len(no_is)} ma thieu bao cao KQKD "
             f"({missing_ratio:.1%}) - vuot nguong "
             f"{MAX_MISSING_IS:.0%}. "
-            "GIU NGUYEN funda_raw2.json CU; "
-            "khong dung du lieu vua cao de backtest/cham diem."
+            "KHONG GHI DE funda_raw2.json. "
+            "Khong dung du lieu vua cao de backtest/cham diem."
         )
 
     # --------------------------------------------------------
@@ -504,7 +582,7 @@ if __name__ == "__main__":
     )
 
     print(
-        f"\nOK: integrity check dat. "
+        "\nOK: integrity check dat. "
         f"Da cap nhat an toan {TARGET_FILE}.",
         flush=True,
     )
