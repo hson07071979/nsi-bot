@@ -39,7 +39,8 @@ from produce2 import PROD as _PROD
 # nhat. Truoc day chung duoc go lai bang tay o day va THIEU max_pos/max_total/
 # max_pos_n, nen chuong bao tinh co vi the bang cau hinh mac dinh (max_pos 20%)
 # trong khi bo may that chay 50%. Dung bao gio go lai bang tay nua.
-_CO = {k: _PROD[k] for k in ('base_size', 'max_pos', 'max_total', 'max_pos_n', 'size_map')}
+# `top_n` phai lay tu PROD, khong duoc go tay — xem ghi chu o dong build_topn ben duoi.
+_CO = {k: _PROD[k] for k in ('base_size', 'max_pos', 'max_total', 'max_pos_n', 'size_map', 'top_n')}
 
 # LECH CU DA SUA 21/09/2026: dong nay tung de base_range=0.20 trong khi bo may
 # chay 0.18 — lop chuong NOI HON lop backtest, dung cai bay so kien truc ghi ba
@@ -120,9 +121,14 @@ def build(cfg=None):
     _mo, _nav = _danh_muc()
     _dm_n, _dm_tong, _dm_nganh, _dm_tien = tom_tat_danh_muc(_mo, _nav) \
         if (_mo is not None and _nav) else (0, 0.0, {}, 1.0)
-    # VU TRU: chi TOP 100 ma thanh khoan nhat — dong bo voi bot va bo loc.
+    # VU TRU: phai DUNG BANG vu tru cua bo may, doc tu PROD.
+    # LOI 21/09/2026: dong nay tung go cung `build_topn(I, 110)` trong khi bo may
+    # da chuyen sang TOP 120. Chuong se quet hep hon bo may 10 ma — co ma bo may
+    # vao lenh ma chuong khong bao giờ keu. Khong chot chan nao bat duoc loi nay
+    # vi build van xanh; chi doc ky moi thay. Chu thich cu con ghi "TOP 100",
+    # tuc da lech hai lan roi.
     from vn300 import build_topn
-    TOPN = build_topn(I, 110)[i]
+    TOPN = build_topn(I, int(C['top_n']))[i]
     try:
         wl = {m['sym'] for m in json.load(open('data/watchlist.json'))['members']}
     except Exception:

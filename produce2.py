@@ -185,7 +185,10 @@ if __name__=='__main__':
     # Ma ngoai vu tru thi lay qua cau noi real-time — nhung san ca 694 ma thi trang
     # phong len chuc MB, khong dang.
     from vn300 import build_topn as _tn0
-    _uni = [str(x) for k, x in enumerate(r['d']['sym']) if _tn0(r['I'], 110)[-1][k]]
+    # LOI 21/09/2026: dong nay tung go cung 110 trong khi bo may da sang TOP 120.
+    # Hau qua khong lam do build: ma xep hang 111-120 van duoc bo may giao dich
+    # nhung KHONG co nen tren trang Chi tiet ma. Lay thang tu PROD.
+    _uni = [str(x) for k, x in enumerate(r['d']['sym']) if _tn0(r['I'], int(PROD['top_n']))[-1][k]]
     _syms = list(dict.fromkeys(_op + _d6 + _wl + _sig + _uni))
     out['candles'] = candles(r['d'], r['I'], _syms, 240, out['prod']['trades'])
     print('EXTRA candles', len(out['candles']), 'ma', flush=True)
