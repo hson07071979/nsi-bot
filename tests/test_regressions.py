@@ -48,6 +48,16 @@ def test_pyramid_respects_max_total_and_sector_cap():
     assert abs(room - 0.01e9) < 1 and why == 'sector_cap'
 
 
+@test
+def test_pyramid_respects_max_pos_and_cash():
+    C = AL.cfg_of({})
+    room, why = AL.addon_capacity(1e9, 0.5e9, 0.30e9, 0.10e9, C['max_pos'] * 1e9 - 0.02e9, cfg={})
+    assert abs(room - 0.02e9) < 1 and why == 'max_pos'
+    room, why = AL.addon_capacity(1e9, 0.003e9, 0.30e9, 0.10e9, 0.05e9, cfg={})
+    assert abs(room - 0.003e9) < 1 and why == 'cash'
+    assert AL.addon_capacity(1e9, -1.0, 0.30e9, 0.10e9, 0.05e9, cfg={})[0] == 0.0
+
+
 # ---------------------------------------------------------------- signal spec / Cond9
 def _sp():
     return dict(thr=0.058, vol_s19=19e6, vol_c19=19, tv_s19=19 * 30e9, tv_c19=19,

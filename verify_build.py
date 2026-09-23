@@ -254,7 +254,8 @@ try:
         check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
                           'cao qua som, chay lai sau khi FireAnt cap nhat')
 except Exception as e:
-    warn(False, f'khong do duoc do phu dong tien theo san: {e}')
+    # Khong do duoc = khong chung minh duoc du dong tien => chan, khong cho qua im lang.
+    check(False, f'khong do duoc do phu dong tien theo san: {type(e).__name__}: {e}')
 # (e) paper book: nothing booked without Condition 9, and the ledger reconciles
 for _p in (_pf.get('open') or []):
     if _p.get('position_source') == 'live_scan_MUA':
