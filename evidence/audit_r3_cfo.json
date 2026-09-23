@@ -1,0 +1,1392 @@
+{
+ "meta": {
+  "git_sha": "d8c27acd3cf1ecaa38edf8eb092a6e6774ed0bdc",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "cd962b2f6b06",
+  "generated": "2026-09-23T11:11:09Z",
+  "experiment_version": "audit-2026-09-23",
+  "status": "CURRENT",
+  "base": "PROD+pyr_caps+max_n_in_loop+cond8off"
+ },
+ "runs": [
+  {
+   "name": "CFO_HARD",
+   "metrics": {
+    "trades": 141,
+    "per_year": 18.3,
+    "total_return": 5.791,
+    "cagr": 0.2823,
+    "maxdd": 0.0945,
+    "winrate": 0.461,
+    "avg_win": 22.5,
+    "avg_loss": -2.71,
+    "rr": 8.31,
+    "pf": 5.62,
+    "expectancy": 8.91,
+    "sharpe": 1.89,
+    "final_nav": 6791023104
+   },
+   "deal_metrics": {
+    "deals": 116,
+    "winrate": 0.3793,
+    "avg_win": 25.81,
+    "avg_loss": -2.59,
+    "rr": 9.98,
+    "pf": 5.73,
+    "expectancy": 8.18
+   },
+   "unique_deals": 116,
+   "p2019_2022": {
+    "ret": 1.4528,
+    "maxdd": 0.0751,
+    "sharpe": 2.0,
+    "pf": 6.67
+   },
+   "p2023_2026": {
+    "ret": 1.7687,
+    "maxdd": 0.0945,
+    "sharpe": 1.85,
+    "pf": 5.35
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6811,
+    "2022": -0.0253,
+    "2023": 0.0046,
+    "2024": 0.2857,
+    "2025": 0.6901,
+    "2026": 0.2683
+   },
+   "concentration": {
+    "top1": 0.23,
+    "top3": 0.415,
+    "top5": 0.555,
+    "top6": 0.603,
+    "top10": 0.763,
+    "top20": 0.921
+   }
+  },
+  {
+   "name": "CFO_OFF",
+   "metrics": {
+    "trades": 161,
+    "per_year": 20.9,
+    "total_return": 5.3748,
+    "cagr": 0.2718,
+    "maxdd": 0.109,
+    "winrate": 0.4348,
+    "avg_win": 21.45,
+    "avg_loss": -2.85,
+    "rr": 7.53,
+    "pf": 4.77,
+    "expectancy": 7.72,
+    "sharpe": 1.79,
+    "final_nav": 6374840320
+   },
+   "deal_metrics": {
+    "deals": 134,
+    "winrate": 0.3731,
+    "avg_win": 23.4,
+    "avg_loss": -2.76,
+    "rr": 8.48,
+    "pf": 4.88,
+    "expectancy": 7.0
+   },
+   "unique_deals": 134,
+   "p2019_2022": {
+    "ret": 1.4707,
+    "maxdd": 0.0988,
+    "sharpe": 1.93,
+    "pf": 5.62
+   },
+   "p2023_2026": {
+    "ret": 1.5802,
+    "maxdd": 0.109,
+    "sharpe": 1.71,
+    "pf": 4.53
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6569,
+    "2022": -0.0038,
+    "2023": -0.0017,
+    "2024": 0.2525,
+    "2025": 0.6759,
+    "2026": 0.2313
+   },
+   "concentration": {
+    "top1": 0.232,
+    "top3": 0.42,
+    "top5": 0.519,
+    "top6": 0.563,
+    "top10": 0.717,
+    "top20": 0.9
+   }
+  },
+  {
+   "name": "CFO_WARN 0.35",
+   "metrics": {
+    "trades": 161,
+    "per_year": 20.9,
+    "total_return": 5.5931,
+    "cagr": 0.2774,
+    "maxdd": 0.1031,
+    "winrate": 0.4348,
+    "avg_win": 21.45,
+    "avg_loss": -2.75,
+    "rr": 7.79,
+    "pf": 5.2,
+    "expectancy": 7.77,
+    "sharpe": 1.86,
+    "final_nav": 6593120768
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.3704,
+    "avg_win": 23.41,
+    "avg_loss": -2.69,
+    "rr": 8.7,
+    "pf": 5.3,
+    "expectancy": 6.98
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 1.4551,
+    "maxdd": 0.0861,
+    "sharpe": 1.98,
+    "pf": 6.18
+   },
+   "p2023_2026": {
+    "ret": 1.6854,
+    "maxdd": 0.1031,
+    "sharpe": 1.8,
+    "pf": 4.93
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6699,
+    "2022": -0.0178,
+    "2023": 0.0025,
+    "2024": 0.2708,
+    "2025": 0.6707,
+    "2026": 0.2617
+   },
+   "concentration": {
+    "top1": 0.231,
+    "top3": 0.416,
+    "top5": 0.541,
+    "top6": 0.589,
+    "top10": 0.75,
+    "top20": 0.916
+   }
+  },
+  {
+   "name": "CFO_WARN 0.50",
+   "metrics": {
+    "trades": 162,
+    "per_year": 21.0,
+    "total_return": 5.4843,
+    "cagr": 0.2746,
+    "maxdd": 0.1045,
+    "winrate": 0.4321,
+    "avg_win": 21.45,
+    "avg_loss": -2.84,
+    "rr": 7.55,
+    "pf": 5.04,
+    "expectancy": 7.65,
+    "sharpe": 1.84,
+    "final_nav": 6484310016
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.3704,
+    "avg_win": 23.4,
+    "avg_loss": -2.75,
+    "rr": 8.5,
+    "pf": 5.14,
+    "expectancy": 6.93
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 1.4549,
+    "maxdd": 0.0915,
+    "sharpe": 1.96,
+    "pf": 5.99
+   },
+   "p2023_2026": {
+    "ret": 1.6413,
+    "maxdd": 0.1045,
+    "sharpe": 1.77,
+    "pf": 4.78
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6644,
+    "2022": -0.0146,
+    "2023": 0.0015,
+    "2024": 0.2635,
+    "2025": 0.6726,
+    "2026": 0.248
+   },
+   "concentration": {
+    "top1": 0.232,
+    "top3": 0.419,
+    "top5": 0.526,
+    "top6": 0.574,
+    "top10": 0.736,
+    "top20": 0.911
+   }
+  },
+  {
+   "name": "CFO_WARN 0.65",
+   "metrics": {
+    "trades": 162,
+    "per_year": 21.0,
+    "total_return": 5.3922,
+    "cagr": 0.2723,
+    "maxdd": 0.106,
+    "winrate": 0.4321,
+    "avg_win": 21.45,
+    "avg_loss": -2.84,
+    "rr": 7.55,
+    "pf": 4.91,
+    "expectancy": 7.65,
+    "sharpe": 1.82,
+    "final_nav": 6392171008
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.3704,
+    "avg_win": 23.4,
+    "avg_loss": -2.75,
+    "rr": 8.5,
+    "pf": 5.01,
+    "expectancy": 6.93
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 1.4551,
+    "maxdd": 0.0966,
+    "sharpe": 1.94,
+    "pf": 5.81
+   },
+   "p2023_2026": {
+    "ret": 1.6037,
+    "maxdd": 0.106,
+    "sharpe": 1.74,
+    "pf": 4.65
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6587,
+    "2022": -0.0112,
+    "2023": 0.0006,
+    "2024": 0.2597,
+    "2025": 0.6731,
+    "2026": 0.2346
+   },
+   "concentration": {
+    "top1": 0.233,
+    "top3": 0.422,
+    "top5": 0.522,
+    "top6": 0.566,
+    "top10": 0.723,
+    "top20": 0.906
+   }
+  },
+  {
+   "name": "CFO_SECTOR 0.50",
+   "metrics": {
+    "trades": 156,
+    "per_year": 20.2,
+    "total_return": 5.5279,
+    "cagr": 0.2757,
+    "maxdd": 0.0977,
+    "winrate": 0.4423,
+    "avg_win": 21.71,
+    "avg_loss": -2.79,
+    "rr": 7.78,
+    "pf": 5.12,
+    "expectancy": 8.05,
+    "sharpe": 1.85,
+    "final_nav": 6527892480
+   },
+   "deal_metrics": {
+    "deals": 129,
+    "winrate": 0.3798,
+    "avg_win": 23.82,
+    "avg_loss": -2.7,
+    "rr": 8.84,
+    "pf": 5.23,
+    "expectancy": 7.38
+   },
+   "unique_deals": 129,
+   "p2019_2022": {
+    "ret": 1.4557,
+    "maxdd": 0.0915,
+    "sharpe": 1.96,
+    "pf": 6.0
+   },
+   "p2023_2026": {
+    "ret": 1.6583,
+    "maxdd": 0.0977,
+    "sharpe": 1.78,
+    "pf": 4.87
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6644,
+    "2022": -0.0143,
+    "2023": 0.0032,
+    "2024": 0.274,
+    "2025": 0.6665,
+    "2026": 0.2481
+   },
+   "concentration": {
+    "top1": 0.234,
+    "top3": 0.42,
+    "top5": 0.527,
+    "top6": 0.575,
+    "top10": 0.738,
+    "top20": 0.914
+   }
+  },
+  {
+   "name": "CFO_REPEAT 0.50",
+   "metrics": {
+    "trades": 151,
+    "per_year": 19.6,
+    "total_return": 5.6731,
+    "cagr": 0.2794,
+    "maxdd": 0.0945,
+    "winrate": 0.457,
+    "avg_win": 21.39,
+    "avg_loss": -2.71,
+    "rr": 7.9,
+    "pf": 5.42,
+    "expectancy": 8.3,
+    "sharpe": 1.86,
+    "final_nav": 6673105920
+   },
+   "deal_metrics": {
+    "deals": 125,
+    "winrate": 0.384,
+    "avg_win": 23.83,
+    "avg_loss": -2.6,
+    "rr": 9.16,
+    "pf": 5.53,
+    "expectancy": 7.55
+   },
+   "unique_deals": 125,
+   "p2019_2022": {
+    "ret": 1.4167,
+    "maxdd": 0.0915,
+    "sharpe": 1.93,
+    "pf": 5.89
+   },
+   "p2023_2026": {
+    "ret": 1.7613,
+    "maxdd": 0.0945,
+    "sharpe": 1.84,
+    "pf": 5.28
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6644,
+    "2022": -0.03,
+    "2023": 0.0029,
+    "2024": 0.2845,
+    "2025": 0.6839,
+    "2026": 0.2729
+   },
+   "concentration": {
+    "top1": 0.229,
+    "top3": 0.413,
+    "top5": 0.553,
+    "top6": 0.601,
+    "top10": 0.76,
+    "top20": 0.917
+   }
+  },
+  {
+   "name": "CFO_REPEAT 1.00",
+   "metrics": {
+    "trades": 151,
+    "per_year": 19.6,
+    "total_return": 5.5953,
+    "cagr": 0.2774,
+    "maxdd": 0.0988,
+    "winrate": 0.457,
+    "avg_win": 21.39,
+    "avg_loss": -2.71,
+    "rr": 7.9,
+    "pf": 5.27,
+    "expectancy": 8.3,
+    "sharpe": 1.83,
+    "final_nav": 6595305984
+   },
+   "deal_metrics": {
+    "deals": 125,
+    "winrate": 0.384,
+    "avg_win": 23.83,
+    "avg_loss": -2.6,
+    "rr": 9.16,
+    "pf": 5.39,
+    "expectancy": 7.55
+   },
+   "unique_deals": 125,
+   "p2019_2022": {
+    "ret": 1.3944,
+    "maxdd": 0.0988,
+    "sharpe": 1.88,
+    "pf": 5.44
+   },
+   "p2023_2026": {
+    "ret": 1.7545,
+    "maxdd": 0.0945,
+    "sharpe": 1.83,
+    "pf": 5.21
+   },
+   "yearly": {
+    "2019": 0.0162,
+    "2020": 0.473,
+    "2021": 0.6569,
+    "2022": -0.0346,
+    "2023": 0.001,
+    "2024": 0.2839,
+    "2025": 0.6782,
+    "2026": 0.2771
+   },
+   "concentration": {
+    "top1": 0.227,
+    "top3": 0.412,
+    "top5": 0.551,
+    "top6": 0.599,
+    "top10": 0.757,
+    "top20": 0.913
+   }
+  },
+  {
+   "name": "CFO_HARD slip0.2%",
+   "metrics": {
+    "trades": 140,
+    "per_year": 18.2,
+    "total_return": 5.1721,
+    "cagr": 0.2665,
+    "maxdd": 0.112,
+    "winrate": 0.4357,
+    "avg_win": 23.28,
+    "avg_loss": -2.93,
+    "rr": 7.94,
+    "pf": 4.88,
+    "expectancy": 8.49,
+    "sharpe": 1.81,
+    "final_nav": 6172050944
+   },
+   "deal_metrics": {
+    "deals": 116,
+    "winrate": 0.3707,
+    "avg_win": 25.81,
+    "avg_loss": -2.89,
+    "rr": 8.94,
+    "pf": 4.93,
+    "expectancy": 7.75
+   },
+   "unique_deals": 116,
+   "p2019_2022": {
+    "ret": 1.3853,
+    "maxdd": 0.0833,
+    "sharpe": 1.95,
+    "pf": 6.2
+   },
+   "p2023_2026": {
+    "ret": 1.5875,
+    "maxdd": 0.112,
+    "sharpe": 1.74,
+    "pf": 4.54
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6502,
+    "2022": -0.025,
+    "2023": -0.0042,
+    "2024": 0.2588,
+    "2025": 0.6455,
+    "2026": 0.2544
+   },
+   "concentration": {
+    "top1": 0.232,
+    "top3": 0.42,
+    "top5": 0.561,
+    "top6": 0.611,
+    "top10": 0.772,
+    "top20": 0.928
+   }
+  },
+  {
+   "name": "CFO_OFF slip0.2%",
+   "metrics": {
+    "trades": 161,
+    "per_year": 20.9,
+    "total_return": 4.8368,
+    "cagr": 0.2573,
+    "maxdd": 0.1193,
+    "winrate": 0.4224,
+    "avg_win": 21.58,
+    "avg_loss": -3.08,
+    "rr": 7.01,
+    "pf": 4.26,
+    "expectancy": 7.34,
+    "sharpe": 1.72,
+    "final_nav": 5836835328
+   },
+   "deal_metrics": {
+    "deals": 134,
+    "winrate": 0.3657,
+    "avg_win": 23.38,
+    "avg_loss": -3.02,
+    "rr": 7.75,
+    "pf": 4.33,
+    "expectancy": 6.63
+   },
+   "unique_deals": 134,
+   "p2019_2022": {
+    "ret": 1.3929,
+    "maxdd": 0.1073,
+    "sharpe": 1.87,
+    "pf": 5.17
+   },
+   "p2023_2026": {
+    "ret": 1.4392,
+    "maxdd": 0.1193,
+    "sharpe": 1.62,
+    "pf": 3.99
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6256,
+    "2022": -0.007,
+    "2023": -0.0119,
+    "2024": 0.2261,
+    "2025": 0.656,
+    "2026": 0.2158
+   },
+   "concentration": {
+    "top1": 0.233,
+    "top3": 0.425,
+    "top5": 0.527,
+    "top6": 0.571,
+    "top10": 0.725,
+    "top20": 0.905
+   }
+  },
+  {
+   "name": "CFO_WARN 0.35 slip0.2%",
+   "metrics": {
+    "trades": 163,
+    "per_year": 21.2,
+    "total_return": 5.0347,
+    "cagr": 0.2628,
+    "maxdd": 0.1134,
+    "winrate": 0.4172,
+    "avg_win": 21.58,
+    "avg_loss": -3.06,
+    "rr": 7.06,
+    "pf": 4.57,
+    "expectancy": 7.22,
+    "sharpe": 1.78,
+    "final_nav": 6034673664
+   },
+   "deal_metrics": {
+    "deals": 136,
+    "winrate": 0.3603,
+    "avg_win": 23.37,
+    "avg_loss": -3.0,
+    "rr": 7.8,
+    "pf": 4.63,
+    "expectancy": 6.5
+   },
+   "unique_deals": 136,
+   "p2019_2022": {
+    "ret": 1.3836,
+    "maxdd": 0.0945,
+    "sharpe": 1.92,
+    "pf": 5.72
+   },
+   "p2023_2026": {
+    "ret": 1.5318,
+    "maxdd": 0.1134,
+    "sharpe": 1.7,
+    "pf": 4.27
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6383,
+    "2022": -0.0186,
+    "2023": -0.0069,
+    "2024": 0.243,
+    "2025": 0.6445,
+    "2026": 0.2472
+   },
+   "concentration": {
+    "top1": 0.231,
+    "top3": 0.42,
+    "top5": 0.544,
+    "top6": 0.594,
+    "top10": 0.755,
+    "top20": 0.919
+   }
+  },
+  {
+   "name": "CFO_WARN 0.50 slip0.2%",
+   "metrics": {
+    "trades": 162,
+    "per_year": 21.0,
+    "total_return": 4.9353,
+    "cagr": 0.2601,
+    "maxdd": 0.1148,
+    "winrate": 0.4198,
+    "avg_win": 21.58,
+    "avg_loss": -3.07,
+    "rr": 7.02,
+    "pf": 4.45,
+    "expectancy": 7.27,
+    "sharpe": 1.76,
+    "final_nav": 5935263744
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.363,
+    "avg_win": 23.37,
+    "avg_loss": -3.01,
+    "rr": 7.76,
+    "pf": 4.51,
+    "expectancy": 6.56
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 1.3814,
+    "maxdd": 0.0999,
+    "sharpe": 1.9,
+    "pf": 5.53
+   },
+   "p2023_2026": {
+    "ret": 1.4924,
+    "maxdd": 0.1148,
+    "sharpe": 1.68,
+    "pf": 4.16
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6319,
+    "2022": -0.0157,
+    "2023": -0.008,
+    "2024": 0.2366,
+    "2025": 0.6473,
+    "2026": 0.2334
+   },
+   "concentration": {
+    "top1": 0.232,
+    "top3": 0.423,
+    "top5": 0.53,
+    "top6": 0.58,
+    "top10": 0.743,
+    "top20": 0.914
+   }
+  },
+  {
+   "name": "CFO_WARN 0.65 slip0.2%",
+   "metrics": {
+    "trades": 162,
+    "per_year": 21.0,
+    "total_return": 4.8532,
+    "cagr": 0.2578,
+    "maxdd": 0.1164,
+    "winrate": 0.4198,
+    "avg_win": 21.58,
+    "avg_loss": -3.07,
+    "rr": 7.02,
+    "pf": 4.35,
+    "expectancy": 7.28,
+    "sharpe": 1.74,
+    "final_nav": 5853180928
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.363,
+    "avg_win": 23.37,
+    "avg_loss": -3.01,
+    "rr": 7.76,
+    "pf": 4.41,
+    "expectancy": 6.56
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 1.3811,
+    "maxdd": 0.1051,
+    "sharpe": 1.89,
+    "pf": 5.36
+   },
+   "p2023_2026": {
+    "ret": 1.4582,
+    "maxdd": 0.1164,
+    "sharpe": 1.65,
+    "pf": 4.06
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6278,
+    "2022": -0.0133,
+    "2023": -0.0091,
+    "2024": 0.2329,
+    "2025": 0.6492,
+    "2026": 0.22
+   },
+   "concentration": {
+    "top1": 0.234,
+    "top3": 0.426,
+    "top5": 0.529,
+    "top6": 0.573,
+    "top10": 0.73,
+    "top20": 0.91
+   }
+  },
+  {
+   "name": "CFO_SECTOR 0.50 slip0.2%",
+   "metrics": {
+    "trades": 156,
+    "per_year": 20.2,
+    "total_return": 4.9742,
+    "cagr": 0.2611,
+    "maxdd": 0.1087,
+    "winrate": 0.4295,
+    "avg_win": 21.86,
+    "avg_loss": -3.04,
+    "rr": 7.2,
+    "pf": 4.51,
+    "expectancy": 7.66,
+    "sharpe": 1.77,
+    "final_nav": 5974164992
+   },
+   "deal_metrics": {
+    "deals": 129,
+    "winrate": 0.3721,
+    "avg_win": 23.81,
+    "avg_loss": -2.97,
+    "rr": 8.02,
+    "pf": 4.57,
+    "expectancy": 6.99
+   },
+   "unique_deals": 129,
+   "p2019_2022": {
+    "ret": 1.3828,
+    "maxdd": 0.0999,
+    "sharpe": 1.91,
+    "pf": 5.56
+   },
+   "p2023_2026": {
+    "ret": 1.5072,
+    "maxdd": 0.1087,
+    "sharpe": 1.69,
+    "pf": 4.21
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6319,
+    "2022": -0.0151,
+    "2023": -0.0061,
+    "2024": 0.247,
+    "2025": 0.6395,
+    "2026": 0.2339
+   },
+   "concentration": {
+    "top1": 0.234,
+    "top3": 0.424,
+    "top5": 0.531,
+    "top6": 0.581,
+    "top10": 0.744,
+    "top20": 0.916
+   }
+  },
+  {
+   "name": "CFO_REPEAT 0.50 slip0.2%",
+   "metrics": {
+    "trades": 150,
+    "per_year": 19.5,
+    "total_return": 5.0754,
+    "cagr": 0.2639,
+    "maxdd": 0.112,
+    "winrate": 0.4333,
+    "avg_win": 22.02,
+    "avg_loss": -2.91,
+    "rr": 7.55,
+    "pf": 4.74,
+    "expectancy": 7.89,
+    "sharpe": 1.78,
+    "final_nav": 6075400192
+   },
+   "deal_metrics": {
+    "deals": 125,
+    "winrate": 0.368,
+    "avg_win": 24.26,
+    "avg_loss": -2.84,
+    "rr": 8.54,
+    "pf": 4.8,
+    "expectancy": 7.13
+   },
+   "unique_deals": 125,
+   "p2019_2022": {
+    "ret": 1.3446,
+    "maxdd": 0.0999,
+    "sharpe": 1.88,
+    "pf": 5.43
+   },
+   "p2023_2026": {
+    "ret": 1.5913,
+    "maxdd": 0.112,
+    "sharpe": 1.74,
+    "pf": 4.53
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6319,
+    "2022": -0.0309,
+    "2023": -0.0061,
+    "2024": 0.2597,
+    "2025": 0.6453,
+    "2026": 0.258
+   },
+   "concentration": {
+    "top1": 0.231,
+    "top3": 0.42,
+    "top5": 0.56,
+    "top6": 0.61,
+    "top10": 0.77,
+    "top20": 0.925
+   }
+  },
+  {
+   "name": "CFO_REPEAT 1.00 slip0.2%",
+   "metrics": {
+    "trades": 150,
+    "per_year": 19.5,
+    "total_return": 5.0013,
+    "cagr": 0.2619,
+    "maxdd": 0.1119,
+    "winrate": 0.4333,
+    "avg_win": 22.02,
+    "avg_loss": -2.91,
+    "rr": 7.55,
+    "pf": 4.63,
+    "expectancy": 7.89,
+    "sharpe": 1.76,
+    "final_nav": 6001310720
+   },
+   "deal_metrics": {
+    "deals": 125,
+    "winrate": 0.368,
+    "avg_win": 24.27,
+    "avg_loss": -2.84,
+    "rr": 8.55,
+    "pf": 4.7,
+    "expectancy": 7.14
+   },
+   "unique_deals": 125,
+   "p2019_2022": {
+    "ret": 1.3206,
+    "maxdd": 0.1073,
+    "sharpe": 1.83,
+    "pf": 5.0
+   },
+   "p2023_2026": {
+    "ret": 1.5861,
+    "maxdd": 0.1119,
+    "sharpe": 1.73,
+    "pf": 4.51
+   },
+   "yearly": {
+    "2019": 0.0143,
+    "2020": 0.4616,
+    "2021": 0.6256,
+    "2022": -0.0371,
+    "2023": -0.0081,
+    "2024": 0.2572,
+    "2025": 0.644,
+    "2026": 0.2615
+   },
+   "concentration": {
+    "top1": 0.23,
+    "top3": 0.419,
+    "top5": 0.559,
+    "top6": 0.609,
+    "top10": 0.768,
+    "top20": 0.922
+   }
+  },
+  {
+   "name": "CFO_HARD next_open",
+   "metrics": {
+    "trades": 136,
+    "per_year": 17.7,
+    "total_return": 3.0654,
+    "cagr": 0.1997,
+    "maxdd": 0.1527,
+    "winrate": 0.3529,
+    "avg_win": 24.49,
+    "avg_loss": -3.82,
+    "rr": 6.4,
+    "pf": 3.28,
+    "expectancy": 6.17,
+    "sharpe": 1.42,
+    "final_nav": 4065367040
+   },
+   "deal_metrics": {
+    "deals": 116,
+    "winrate": 0.3017,
+    "avg_win": 27.15,
+    "avg_loss": -3.7,
+    "rr": 7.35,
+    "pf": 3.3,
+    "expectancy": 5.61
+   },
+   "unique_deals": 116,
+   "p2019_2022": {
+    "ret": 0.9379,
+    "maxdd": 0.1193,
+    "sharpe": 1.53,
+    "pf": 3.71
+   },
+   "p2023_2026": {
+    "ret": 1.0979,
+    "maxdd": 0.1527,
+    "sharpe": 1.37,
+    "pf": 3.13
+   },
+   "yearly": {
+    "2019": 0.0159,
+    "2020": 0.3684,
+    "2021": 0.3547,
+    "2022": 0.029,
+    "2023": -0.0237,
+    "2024": 0.1881,
+    "2025": 0.5317,
+    "2026": 0.1808
+   },
+   "concentration": {
+    "top1": 0.243,
+    "top3": 0.465,
+    "top5": 0.598,
+    "top6": 0.645,
+    "top10": 0.8,
+    "top20": 0.952
+   }
+  },
+  {
+   "name": "CFO_OFF next_open",
+   "metrics": {
+    "trades": 159,
+    "per_year": 20.6,
+    "total_return": 2.9833,
+    "cagr": 0.1965,
+    "maxdd": 0.1588,
+    "winrate": 0.3585,
+    "avg_win": 21.77,
+    "avg_loss": -3.7,
+    "rr": 5.88,
+    "pf": 3.01,
+    "expectancy": 5.43,
+    "sharpe": 1.37,
+    "final_nav": 3983331840
+   },
+   "deal_metrics": {
+    "deals": 135,
+    "winrate": 0.2963,
+    "avg_win": 24.99,
+    "avg_loss": -3.6,
+    "rr": 6.95,
+    "pf": 3.03,
+    "expectancy": 4.87
+   },
+   "unique_deals": 135,
+   "p2019_2022": {
+    "ret": 0.9217,
+    "maxdd": 0.1455,
+    "sharpe": 1.44,
+    "pf": 3.21
+   },
+   "p2023_2026": {
+    "ret": 1.0729,
+    "maxdd": 0.1588,
+    "sharpe": 1.34,
+    "pf": 2.93
+   },
+   "yearly": {
+    "2019": 0.0159,
+    "2020": 0.3684,
+    "2021": 0.3306,
+    "2022": 0.0389,
+    "2023": -0.0226,
+    "2024": 0.1842,
+    "2025": 0.5183,
+    "2026": 0.1796
+   },
+   "concentration": {
+    "top1": 0.238,
+    "top3": 0.455,
+    "top5": 0.56,
+    "top6": 0.604,
+    "top10": 0.747,
+    "top20": 0.92
+   }
+  },
+  {
+   "name": "CFO_WARN0.5 next_open",
+   "metrics": {
+    "trades": 161,
+    "per_year": 20.9,
+    "total_return": 3.0554,
+    "cagr": 0.1993,
+    "maxdd": 0.1536,
+    "winrate": 0.354,
+    "avg_win": 21.77,
+    "avg_loss": -3.67,
+    "rr": 5.93,
+    "pf": 3.13,
+    "expectancy": 5.33,
+    "sharpe": 1.4,
+    "final_nav": 4055375872
+   },
+   "deal_metrics": {
+    "deals": 137,
+    "winrate": 0.292,
+    "avg_win": 24.99,
+    "avg_loss": -3.57,
+    "rr": 7.0,
+    "pf": 3.15,
+    "expectancy": 4.77
+   },
+   "unique_deals": 137,
+   "p2019_2022": {
+    "ret": 0.9262,
+    "maxdd": 0.1373,
+    "sharpe": 1.48,
+    "pf": 3.42
+   },
+   "p2023_2026": {
+    "ret": 1.1054,
+    "maxdd": 0.1536,
+    "sharpe": 1.37,
+    "pf": 3.03
+   },
+   "yearly": {
+    "2019": 0.0159,
+    "2020": 0.3684,
+    "2021": 0.3396,
+    "2022": 0.0344,
+    "2023": -0.0232,
+    "2024": 0.1811,
+    "2025": 0.5194,
+    "2026": 0.2011
+   },
+   "concentration": {
+    "top1": 0.237,
+    "top3": 0.453,
+    "top5": 0.571,
+    "top6": 0.616,
+    "top10": 0.767,
+    "top20": 0.929
+   }
+  }
+ ],
+ "cohort": {
+  "cohort": {
+   "n": 20,
+   "winrate": 0.4,
+   "pf": 1.92,
+   "avg": 0.53,
+   "median": -0.98,
+   "avg_loss": -3.32,
+   "worst": -8.39,
+   "best": 21.81,
+   "top1_share": 0.562,
+   "top3_share": 0.829,
+   "net_mvnd": 203,
+   "held_med": 11.5,
+   "sectors": {
+    "Bất động sản": 7,
+    "Bán lẻ": 5,
+    "Thực phẩm và đồ uống": 4,
+    "Tài nguyên Cơ bản": 2,
+    "Truyền thông": 1,
+    "Dịch vụ tài chính": 1
+   },
+   "years": {
+    "2021": 1,
+    "2022": 4,
+    "2023": 2,
+    "2024": 3,
+    "2025": 6,
+    "2026": 4
+   }
+  },
+  "rest": {
+   "n": 114,
+   "winrate": 0.368,
+   "pf": 5.45,
+   "avg": 8.14,
+   "median": -0.73,
+   "avg_loss": -2.66,
+   "worst": -9.04,
+   "best": 191.13,
+   "top1_share": 0.247,
+   "top3_share": 0.448,
+   "net_mvnd": 5102,
+   "held_med": 6.0,
+   "sectors": {
+    "Ngân hàng": 20,
+    "Dịch vụ tài chính": 15,
+    "Hóa chất": 13,
+    "Hàng & Dịch vụ Công nghiệp": 11,
+    "Bất động sản": 9,
+    "Xây dựng và Vật liệu": 9,
+    "Dầu khí": 8,
+    "Thực phẩm và đồ uống": 6,
+    "Bán lẻ": 6,
+    "Điện, nước & xăng dầu khí đốt": 4,
+    "Tài nguyên Cơ bản": 3,
+    "Hàng cá nhân & Gia dụng": 2,
+    "Bảo hiểm": 2,
+    "Ô tô và phụ tùng": 2,
+    "Công nghệ Thông tin": 2,
+    "Y tế": 1,
+    "Du lịch và Giải trí": 1
+   },
+   "years": {
+    "2019": 2,
+    "2020": 10,
+    "2021": 21,
+    "2022": 11,
+    "2023": 11,
+    "2024": 28,
+    "2025": 18,
+    "2026": 13
+   }
+  },
+  "cohort_deals": [
+   {
+    "sym": "DGW",
+    "entry": "2026-01-05",
+    "exit": "2026-02-11",
+    "pnl_pct": 15.31,
+    "pnl_vnd": 237245184,
+    "held": 27,
+    "reason": "Trailing MA10 (lãi lớn)",
+    "n_exit": 2
+   },
+   {
+    "sym": "PET",
+    "entry": "2022-02-14",
+    "exit": "2022-03-09",
+    "pnl_pct": 21.81,
+    "pnl_vnd": 79195904,
+    "held": 17,
+    "reason": "Trailing MA10 (lãi lớn)",
+    "n_exit": 1
+   },
+   {
+    "sym": "FRT",
+    "entry": "2026-07-31",
+    "exit": "2026-09-14",
+    "pnl_pct": 6.49,
+    "pnl_vnd": 33939808,
+    "held": 28,
+    "reason": "Trailing MA30",
+    "n_exit": 1
+   },
+   {
+    "sym": "IJC",
+    "entry": "2025-09-12",
+    "exit": "2025-10-02",
+    "pnl_pct": 2.37,
+    "pnl_vnd": 31572384,
+    "held": 14,
+    "reason": "Về bờ (đã lãi 8%)",
+    "n_exit": 2
+   },
+   {
+    "sym": "HAG",
+    "entry": "2025-08-05",
+    "exit": "2025-09-09",
+    "pnl_pct": 2.94,
+    "pnl_vnd": 27929920,
+    "held": 23,
+    "reason": "Trailing MA30",
+    "n_exit": 1
+   },
+   {
+    "sym": "DGW",
+    "entry": "2026-08-04",
+    "exit": "2026-09-04",
+    "pnl_pct": 0.73,
+    "pnl_vnd": 6768000,
+    "held": 20,
+    "reason": "Về bờ (đã lãi 8%)",
+    "n_exit": 1
+   },
+   {
+    "sym": "VRE",
+    "entry": "2026-04-28",
+    "exit": "2026-05-13",
+    "pnl_pct": 0.41,
+    "pnl_vnd": 3443712,
+    "held": 9,
+    "reason": "Về bờ (đã lãi 8%)",
+    "n_exit": 1
+   },
+   {
+    "sym": "HSG",
+    "entry": "2022-08-03",
+    "exit": "2022-09-19",
+    "pnl_pct": 0.36,
+    "pnl_vnd": 2335456,
+    "held": 31,
+    "reason": "Về bờ (đã lãi 8%)",
+    "n_exit": 2
+   },
+   {
+    "sym": "PAN",
+    "entry": "2022-09-13",
+    "exit": "2022-09-19",
+    "pnl_pct": -0.4,
+    "pnl_vnd": -1508576,
+    "held": 4,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "NTL",
+    "entry": "2023-11-27",
+    "exit": "2023-12-01",
+    "pnl_pct": -1.09,
+    "pnl_vnd": -6689664,
+    "held": 4,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "DGW",
+    "entry": "2025-11-17",
+    "exit": "2025-12-08",
+    "pnl_pct": -0.87,
+    "pnl_vnd": -7158400,
+    "held": 15,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "TIP",
+    "entry": "2024-02-21",
+    "exit": "2024-03-11",
+    "pnl_pct": -1.14,
+    "pnl_vnd": -8719808,
+    "held": 13,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "HAG",
+    "entry": "2023-04-17",
+    "exit": "2023-04-21",
+    "pnl_pct": -3.58,
+    "pnl_vnd": -8729296,
+    "held": 4,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "HAG",
+    "entry": "2025-11-14",
+    "exit": "2025-11-28",
+    "pnl_pct": -1.81,
+    "pnl_vnd": -14814848,
+    "held": 10,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "TCH",
+    "entry": "2024-06-20",
+    "exit": "2024-06-26",
+    "pnl_pct": -8.39,
+    "pnl_vnd": -19121264,
+    "held": 4,
+    "reason": "Cắt lỗ −7%",
+    "n_exit": 1
+   },
+   {
+    "sym": "NKG",
+    "entry": "2025-02-27",
+    "exit": "2025-03-19",
+    "pnl_pct": -2.33,
+    "pnl_vnd": -21761408,
+    "held": 14,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "PDR",
+    "entry": "2022-08-17",
+    "exit": "2022-08-23",
+    "pnl_pct": -3.14,
+    "pnl_vnd": -24324544,
+    "held": 4,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "IJC",
+    "entry": "2021-06-03",
+    "exit": "2021-06-09",
+    "pnl_pct": -4.5,
+    "pnl_vnd": -25878528,
+    "held": 4,
+    "reason": "Van thời gian T+4",
+    "n_exit": 1
+   },
+   {
+    "sym": "DSE",
+    "entry": "2025-10-06",
+    "exit": "2025-10-09",
+    "pnl_pct": -5.08,
+    "pnl_vnd": -39832064,
+    "held": 3,
+    "reason": "Trailing MA30",
+    "n_exit": 1
+   },
+   {
+    "sym": "YEG",
+    "entry": "2024-02-22",
+    "exit": "2024-02-26",
+    "pnl_pct": -7.55,
+    "pnl_vnd": -41255040,
+    "held": 2,
+    "reason": "Trailing MA30",
+    "n_exit": 1
+   }
+  ]
+ }
+}

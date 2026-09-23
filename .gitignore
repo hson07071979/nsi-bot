@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+# large / regenerated nightly by the workflow — never committed
+data/fa.npz
+data/fireant_daily.json
+data/fireant_daily.json.tmp
+data/funda_raw2.json
+data/funda_raw2.json.tmp
+data/site_data2.json
+data/robust_cache.json
+data/by_exchange.csv
+data/data_health.json
+data/portfolio.json
+data/manual.json
+data/config.json
+industries.csv
+out/
+site/index.html
+data/orderflow_fill.json

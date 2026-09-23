@@ -3,6 +3,7 @@ function pageEvidence(root){
   const s2=D.sweeps.s2, s3=D.sweeps.s3, op=D.sweeps.opt;
   root.innerHTML=`
   <h1>Bằng chứng</h1>
+  ${archBanner(['s2','s3','opt','fill','o6','s4','s5','fill2','gate','refine','o2','o3','o4','o7'])}
   <p class="lead">Tài liệu gốc yêu cầu: luật hạng C phải chạy backtest riêng, bật từng cái một. Đây là kết quả những bài test đó trên dữ liệu FireAnt — cùng bộ dữ liệu, mỗi lần chỉ đổi đúng một tham số.</p>
 
   <h2 style="color:var(--warn)">0. Giả định khớp lệnh — thứ quan trọng nhất trên trang này</h2>

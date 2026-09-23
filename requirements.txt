@@ -1,4 +1,9 @@
-requests>=2.31
-numpy>=1.26
-pandas>=2.1
-vnstock>=3.2
+# Pinned 23/09/2026 (audit): BASELINE_0 reproduced bit-for-bit with exactly these
+# versions. Loose ">=" let every nightly run pick up new releases and silently
+# change backtest numbers. Upgrade deliberately: bump, rerun, compare trades.
+requests==2.33.1
+numpy==2.2.6
+pandas==2.3.3
+vnstock==4.0.8
+vnai==2.6.1
+certifi==2026.04.22

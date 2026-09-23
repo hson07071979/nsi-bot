@@ -1,0 +1,22 @@
+{
+ "meta": {"generated": "2026-09-24T03:05:00+07:00", "experiment_version": "audit-2026-09-24-sources", "git_sha": "cb44616", "data_asof": "2026-09-23", "prod_config_hash": "4cafdd187f59", "status": "CURRENT", "note": "Probed after the close (~02:30 VN 24/09). In-session availability is measured separately (obs/)."},
+ "definition": "OrdImb = (BuyQuantity/BuyCount)/(SellQuantity/SellCount); order-PLACEMENT statistics (so lenh / KL dat mua-ban), not matched-trade side.",
+ "exact_same_definition": [
+  {"source": "FireAnt Companies/HistoricalQuotes", "boards": "HOSE,HNX,UPCoM", "timing": "HOSE ~96% at 18:30; HNX 0% at 18:30 (placeholders 60-80% of final quantities), complete by ~02:20", "history": "2017-"},
+  {"source": "FireAnt Markets/Quotes (batch snapshot)", "boards": "all", "check": "147/147 equal to HistoricalQuotes after close", "timing": "UNKNOWN in-session -> measured 24/09 by obs/probe2.py"},
+  {"source": "hnx.vn TK_CungCau (official)", "boards": "HNX (NY), UPCoM (UC)", "check": "8/8 names 23/09, SHS 50/50 sessions equal; 40/40 random blank-and-refill exact", "timing": "EOD, publication time to be measured", "history": "~64 sessions"},
+  {"source": "Vietstock gettradingresult (CSRF token from public page)", "boards": "HOSE exact; HNX DIFFERENT series (never use)", "check": "8/8 HOSE x 2 days equal (+-2 shares)", "history": "~1 year"},
+  {"source": "CafeF ThongKeDL.ashx", "boards": "HOSE exact; HNX broken (KLDatBan 0 since 09/2025)", "history": "HOSE 2007-"}
+ ],
+ "proxies_rejected": [
+  {"source": "VPS getliststocktrade (side B/S)", "rank_corr_vs_ordimb": 0.02, "note": "trade counts not order counts; HPG proxy 1.51 vs true 0.55"},
+  {"source": "KBS trade history (LC B/S)", "rank_corr": 0.02},
+  {"source": "Vietcap LEData (matchType b/s)", "rank_corr": -0.21},
+  {"source": "FireAnt TotalActiveBuy/SellVolume", "rank_corr": 0.25, "threshold": "caught 7/12 true >=1.40, 20 false"},
+  {"source": "FireAnt IntradayQuotes ticks", "rank_corr": 0.36},
+  {"source": "Simplize buy/sellQuantity", "note": "same quantities as FireAnt on HOSE but NO order counts -> cannot compute OrdImb"},
+  {"source": "VNDirect trading_statistics", "note": "counts 10-30% low on HOSE, HNX zero"}
+ ],
+ "blocked_or_auth": ["SSI iBoard (403 SSI block page)", "SSI FastConnect (needs ConsumerID/Secret; DailyStockPrice has TotalBuyTrade/TotalBuyTradeVol/TotalSellTrade/TotalSellTradeVol = exact definition)", "TCBS (Cloudflare 403)", "restv2.fireant.vn (bearer token)", "HOSE api.hsx.vn per-symbol order stats (market total only)"],
+ "decision": "No proxy enters PROD (rank correlation with OrdImb <= 0.36). EOD gaps are filled from exact official sources (orderflow_fill.py). Intraday exact candidates: FireAnt Markets/Quotes (measure 24/09) and SSI FastConnect (needs registration by the user)."
+}

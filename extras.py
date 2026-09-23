@@ -50,7 +50,10 @@ def monthly(curve, trades):
 
 
 def top6m(deals, asof, months=6):
-    """Cac deal ket thuc trong N thang gan nhat, sap theo loi suat giam dan."""
+    """Cac deal (da dong) co NGAY VAO LENH trong N thang gan nhat, sap theo loi suat.
+    Audit 23/09/2026: docstring cu ghi "ket thuc" nhung code loc theo ngay VAO; trang
+    web goi day la "Top tin hieu 6 thang qua" (tin hieu = ngay vao) -> loc theo entry
+    la dung; sua docstring cho khop, khong doi hanh vi."""
     y, m, _ = map(int, asof.split('-'))
     m -= months
     while m <= 0:
@@ -67,10 +70,21 @@ def candles(d, I, syms, nbar=260, trades=None):
     cal = [str(x) for x in d['cal']]
     idx = {s: k for k, s in enumerate(S)}
     lo = max(0, len(cal) - nbar)
+    # AUDIT 23/09/2026 — marker prices must be in the SAME units as the candles
+    # (RAW prices). Before, markers used entry_px/exit_px = ADJUSTED prices incl.
+    # buy fee (and the blended pyramid average): 29/56 markers sat 0,3-40% off
+    # their candle (PVD -40% after a stock dividend). Also one B per ENTRY (a 1/3 +
+    # remainder exit used to draw two B), and the pyramid add-on gets its own mark.
     marks = defaultdict(list)
+    seenB = set()
     for t in (trades or []):
-        marks[t['sym']].append(('B', t['entry'], t.get('entry_px')))
-        marks[t['sym']].append(('S', t['exit'], t.get('exit_px')))
+        k = (t['sym'], t['entry'])
+        if k not in seenB:
+            seenB.add(k)
+            marks[t['sym']].append(('B', t['entry'], t.get('entry_raw', t.get('entry_px'))))
+            if t.get('pyr_date'):
+                marks[t['sym']].append(('B+', t['pyr_date'], t.get('pyr_raw')))
+        marks[t['sym']].append(('S', t['exit'], t.get('exit_raw', t.get('exit_px'))))
 
     out = {}
     for s in syms:

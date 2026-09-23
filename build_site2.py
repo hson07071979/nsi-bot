@@ -26,7 +26,9 @@ for khoa, duong in (('portfolio', 'data/portfolio.json'),
                     ('config',    'data/config.json'),
                     ('funda',     'data/funda_series.json'),
                     ('robust',    'data/robust.json'),
-                    ('congb',     'data/cong_b.json')):
+                    ('congb',     'data/cong_b.json'),
+                    ('data_health', 'data/data_health.json'),
+                    ('audit',     'evidence/audit_summary.json')):
     try:
         data[khoa] = json.load(open(duong, encoding='utf-8'))
     except Exception:
@@ -46,6 +48,8 @@ js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     # p16 = trang So sanh trong nganh (pageNganh). Phai sau p9 vi dung `so` va
     #       `_cpId` khai bao o do; truoc p7 vi p7 chay bo dieu huong ngay khi nap.
     'p16.js',
+    # p18 = trang Chan doan & kiem toan (audit 23/09/2026), truoc p7.
+    'p18.js',
     'p7.js',
     # p17 = lop dien thoai + cai thanh app (service worker, thanh dieu huong duoi).
     #       Day la file DUY NHAT duoc nam SAU p7.js: no DOC `secs` va `go` ma p7

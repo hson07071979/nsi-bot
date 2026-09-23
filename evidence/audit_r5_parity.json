@@ -1,0 +1,1610 @@
+{
+ "meta": {
+  "git_sha": "d8c27acd3cf1ecaa38edf8eb092a6e6774ed0bdc",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "cd962b2f6b06",
+  "generated": "2026-09-23T11:16:20Z",
+  "experiment_version": "audit-2026-09-23",
+  "status": "CURRENT"
+ },
+ "entries": [
+  {
+   "sym": "PLX",
+   "date": "2019-07-01",
+   "state": "cho",
+   "miss": [],
+   "live4": false,
+   "oi_ok": true
+  },
+  {
+   "sym": "D2D",
+   "date": "2019-10-16",
+   "state": "khongdat",
+   "miss": [
+    "GTGD bình quân 7 tỷ < 15 tỷ"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "IMP",
+   "date": "2020-02-18",
+   "state": "khongdat",
+   "miss": [
+    "GTGD bình quân 6 tỷ < 15 tỷ"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "TCB",
+   "date": "2020-05-08",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DHC",
+   "date": "2020-07-08",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DPM",
+   "date": "2020-08-21",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DCM",
+   "date": "2020-09-28",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "TCM",
+   "date": "2020-11-06",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DBC",
+   "date": "2020-11-20",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DBC",
+   "date": "2020-12-11",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DPM",
+   "date": "2020-12-22",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGW",
+   "date": "2020-12-30",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "EIB",
+   "date": "2021-01-13",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 43 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "SSI",
+   "date": "2021-04-01",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HDB",
+   "date": "2021-05-05",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "TPB",
+   "date": "2021-05-10",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DCM",
+   "date": "2021-05-14",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BMI",
+   "date": "2021-05-18",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản",
+    "điểm CANSLIM 43 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "CTR",
+   "date": "2021-06-11",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DRC",
+   "date": "2021-06-15",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 38 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "AAA",
+   "date": "2021-06-17",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "NKG",
+   "date": "2021-06-28",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "TCB",
+   "date": "2021-07-05",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "ACB",
+   "date": "2021-07-30",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VIB",
+   "date": "2021-09-20",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BVB",
+   "date": "2021-09-23",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "SZC",
+   "date": "2021-10-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DXG",
+   "date": "2021-10-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VIX",
+   "date": "2021-10-18",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "FRT",
+   "date": "2021-10-27",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HDB",
+   "date": "2021-11-03",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "MBB",
+   "date": "2021-11-24",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "TPB",
+   "date": "2021-12-08",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VHC",
+   "date": "2022-02-08",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HPG",
+   "date": "2022-03-03",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGW",
+   "date": "2022-03-23",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "FPT",
+   "date": "2022-03-29",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "MWG",
+   "date": "2022-04-01",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VND",
+   "date": "2022-04-04",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GAS",
+   "date": "2022-05-31",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DPM",
+   "date": "2022-08-25",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DCM",
+   "date": "2022-08-25",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "IDI",
+   "date": "2022-08-31",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "NT2",
+   "date": "2022-09-09",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BID",
+   "date": "2023-01-16",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HAH",
+   "date": "2023-04-04",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HDC",
+   "date": "2023-04-12",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BID",
+   "date": "2023-07-10",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "LPB",
+   "date": "2023-08-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "LPB",
+   "date": "2023-08-21",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BSI",
+   "date": "2023-08-30",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HCM",
+   "date": "2023-08-30",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HAH",
+   "date": "2023-09-08",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 39 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PLX",
+   "date": "2023-11-29",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 37 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VTP",
+   "date": "2023-12-22",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGW",
+   "date": "2024-01-03",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 41 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGC",
+   "date": "2024-02-26",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HCM",
+   "date": "2024-02-26",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PVD",
+   "date": "2024-02-28",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGW",
+   "date": "2024-03-01",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "AGR",
+   "date": "2024-03-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "IJC",
+   "date": "2024-03-14",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PHR",
+   "date": "2024-03-19",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VSC",
+   "date": "2024-03-27",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 43 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "LPB",
+   "date": "2024-04-09",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "CTG",
+   "date": "2024-04-12",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 43 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "FPT",
+   "date": "2024-04-24",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BSR",
+   "date": "2024-05-22",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 33 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "SZC",
+   "date": "2024-05-28",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGC",
+   "date": "2024-06-18",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VTP",
+   "date": "2024-06-19",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DRC",
+   "date": "2024-06-26",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PC1",
+   "date": "2024-07-09",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HHV",
+   "date": "2024-08-08",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "NTP",
+   "date": "2024-08-16",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HCM",
+   "date": "2024-08-16",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PNJ",
+   "date": "2024-08-19",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VTP",
+   "date": "2024-09-18",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 40 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HDC",
+   "date": "2024-09-25",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VTP",
+   "date": "2024-10-09",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 41 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "ORS",
+   "date": "2024-12-05",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 44 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VOS",
+   "date": "2024-12-20",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BMP",
+   "date": "2024-12-23",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VIX",
+   "date": "2025-02-17",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GEE",
+   "date": "2025-04-11",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DBC",
+   "date": "2025-06-04",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "SZC",
+   "date": "2025-06-23",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VIX",
+   "date": "2025-07-02",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GEE",
+   "date": "2025-07-15",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "MBB",
+   "date": "2025-08-05",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GVR",
+   "date": "2025-08-11",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 43 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GMD",
+   "date": "2025-08-27",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HVN",
+   "date": "2025-09-15",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VHC",
+   "date": "2025-09-15",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 38 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "HAH",
+   "date": "2025-10-23",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "NT2",
+   "date": "2025-10-29",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PVD",
+   "date": "2025-10-31",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 42 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "DGC",
+   "date": "2025-11-13",
+   "state": "fa",
+   "miss": [
+    "điểm CANSLIM 42 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "MSB",
+   "date": "2025-11-27",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PC1",
+   "date": "2025-12-02",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "CTG",
+   "date": "2025-12-03",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BVH",
+   "date": "2025-12-08",
+   "state": "khongdat",
+   "miss": [
+    "chưa vào TOP 120 thanh khoản",
+    "điểm CANSLIM 31 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PC1",
+   "date": "2026-01-06",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GVR",
+   "date": "2026-01-06",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PLX",
+   "date": "2026-01-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BVH",
+   "date": "2026-01-07",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "CTS",
+   "date": "2026-01-12",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "IDC",
+   "date": "2026-01-19",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PVD",
+   "date": "2026-05-13",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "GAS",
+   "date": "2026-05-13",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VND",
+   "date": "2026-05-22",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "CTS",
+   "date": "2026-06-15",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 38 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PC1",
+   "date": "2026-06-18",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "VCG",
+   "date": "2026-06-29",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PLX",
+   "date": "2026-08-18",
+   "state": "khongdat",
+   "miss": [
+    "điểm CANSLIM 27 < 45"
+   ],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BVH",
+   "date": "2026-09-14",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "BSR",
+   "date": "2026-09-15",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  },
+  {
+   "sym": "PLX",
+   "date": "2026-09-15",
+   "state": "cho",
+   "miss": [],
+   "live4": true,
+   "oi_ok": true
+  }
+ ],
+ "states": {
+  "cho": 93,
+  "khongdat": 15,
+  "fa": 10
+ },
+ "recall": 92,
+ "false_mua_2023": [
+  {
+   "sym": "TCM",
+   "date": "2023-01-18",
+   "oi_ok": false,
+   "oi": 0.850893497467041
+  },
+  {
+   "sym": "BSR",
+   "date": "2023-04-03",
+   "oi_ok": false,
+   "oi": 1.1929965019226074
+  },
+  {
+   "sym": "SSI",
+   "date": "2023-08-22",
+   "oi_ok": false,
+   "oi": 1.1616097688674927
+  },
+  {
+   "sym": "ORS",
+   "date": "2023-08-28",
+   "oi_ok": false,
+   "oi": 1.0469552278518677
+  },
+  {
+   "sym": "CTS",
+   "date": "2023-08-30",
+   "oi_ok": false,
+   "oi": 1.2902833223342896
+  },
+  {
+   "sym": "FTS",
+   "date": "2023-08-30",
+   "oi_ok": true,
+   "oi": 1.5499464273452759
+  },
+  {
+   "sym": "FTS",
+   "date": "2023-08-31",
+   "oi_ok": false,
+   "oi": 1.126718282699585
+  },
+  {
+   "sym": "GMD",
+   "date": "2023-08-31",
+   "oi_ok": false,
+   "oi": 0.6268234252929688
+  },
+  {
+   "sym": "HHV",
+   "date": "2023-09-13",
+   "oi_ok": false,
+   "oi": 1.3743513822555542
+  },
+  {
+   "sym": "DCM",
+   "date": "2023-10-04",
+   "oi_ok": false,
+   "oi": 1.0378594398498535
+  },
+  {
+   "sym": "LPB",
+   "date": "2023-10-27",
+   "oi_ok": true,
+   "oi": 1.5019400119781494
+  },
+  {
+   "sym": "VTP",
+   "date": "2023-12-25",
+   "oi_ok": true,
+   "oi": 1.902491807937622
+  },
+  {
+   "sym": "BSI",
+   "date": "2024-01-17",
+   "oi_ok": false,
+   "oi": 1.0356559753417969
+  },
+  {
+   "sym": "SZC",
+   "date": "2024-02-01",
+   "oi_ok": false,
+   "oi": NaN
+  },
+  {
+   "sym": "VGC",
+   "date": "2024-02-21",
+   "oi_ok": false,
+   "oi": 1.298271894454956
+  },
+  {
+   "sym": "NTL",
+   "date": "2024-02-27",
+   "oi_ok": false,
+   "oi": 1.0470887422561646
+  },
+  {
+   "sym": "VCB",
+   "date": "2024-02-28",
+   "oi_ok": true,
+   "oi": 1.6671568155288696
+  },
+  {
+   "sym": "BSI",
+   "date": "2024-03-01",
+   "oi_ok": false,
+   "oi": 1.3894463777542114
+  },
+  {
+   "sym": "LCG",
+   "date": "2024-03-01",
+   "oi_ok": false,
+   "oi": 1.278563141822815
+  },
+  {
+   "sym": "PNJ",
+   "date": "2024-03-01",
+   "oi_ok": false,
+   "oi": 1.1314330101013184
+  },
+  {
+   "sym": "KBC",
+   "date": "2024-03-04",
+   "oi_ok": true,
+   "oi": 1.8873032331466675
+  },
+  {
+   "sym": "CTS",
+   "date": "2024-03-05",
+   "oi_ok": false,
+   "oi": 0.8346235156059265
+  },
+  {
+   "sym": "VIX",
+   "date": "2024-03-07",
+   "oi_ok": false,
+   "oi": 1.3797743320465088
+  },
+  {
+   "sym": "DGW",
+   "date": "2024-03-12",
+   "oi_ok": false,
+   "oi": 1.2941584587097168
+  },
+  {
+   "sym": "ORS",
+   "date": "2024-03-13",
+   "oi_ok": true,
+   "oi": 1.752902865409851
+  },
+  {
+   "sym": "VGC",
+   "date": "2024-03-13",
+   "oi_ok": false,
+   "oi": 1.3728188276290894
+  },
+  {
+   "sym": "DPG",
+   "date": "2024-03-18",
+   "oi_ok": false,
+   "oi": 1.3760384321212769
+  },
+  {
+   "sym": "BSI",
+   "date": "2024-03-22",
+   "oi_ok": false,
+   "oi": 1.1107263565063477
+  },
+  {
+   "sym": "PVD",
+   "date": "2024-04-02",
+   "oi_ok": false,
+   "oi": 1.254969835281372
+  },
+  {
+   "sym": "DPG",
+   "date": "2024-04-04",
+   "oi_ok": false,
+   "oi": 1.0561981201171875
+  },
+  {
+   "sym": "CTS",
+   "date": "2024-04-12",
+   "oi_ok": false,
+   "oi": 1.27193284034729
+  },
+  {
+   "sym": "LPB",
+   "date": "2024-04-12",
+   "oi_ok": false,
+   "oi": 1.2995595932006836
+  },
+  {
+   "sym": "HAH",
+   "date": "2024-05-06",
+   "oi_ok": false,
+   "oi": 1.304673433303833
+  },
+  {
+   "sym": "BSR",
+   "date": "2024-05-23",
+   "oi_ok": false,
+   "oi": 1.3043664693832397
+  },
+  {
+   "sym": "HAH",
+   "date": "2024-06-10",
+   "oi_ok": true,
+   "oi": 1.62208092212677
+  },
+  {
+   "sym": "DCM",
+   "date": "2024-07-08",
+   "oi_ok": false,
+   "oi": 1.3228164911270142
+  },
+  {
+   "sym": "PLX",
+   "date": "2024-07-08",
+   "oi_ok": false,
+   "oi": 0.9936772584915161
+  },
+  {
+   "sym": "NAB",
+   "date": "2024-08-13",
+   "oi_ok": false,
+   "oi": 0.961014449596405
+  },
+  {
+   "sym": "SSI",
+   "date": "2024-08-16",
+   "oi_ok": false,
+   "oi": 1.313187837600708
+  },
+  {
+   "sym": "NAB",
+   "date": "2024-09-16",
+   "oi_ok": false,
+   "oi": 0.841886579990387
+  },
+  {
+   "sym": "CSV",
+   "date": "2024-10-29",
+   "oi_ok": false,
+   "oi": 1.3190221786499023
+  },
+  {
+   "sym": "CMG",
+   "date": "2024-11-11",
+   "oi_ok": false,
+   "oi": 0.6730909943580627
+  },
+  {
+   "sym": "CSV",
+   "date": "2024-11-13",
+   "oi_ok": false,
+   "oi": 1.3223060369491577
+  },
+  {
+   "sym": "ORS",
+   "date": "2024-11-18",
+   "oi_ok": false,
+   "oi": 1.3638111352920532
+  },
+  {
+   "sym": "NHA",
+   "date": "2024-11-26",
+   "oi_ok": false,
+   "oi": 1.2432565689086914
+  },
+  {
+   "sym": "NHA",
+   "date": "2024-12-05",
+   "oi_ok": false,
+   "oi": 1.252184271812439
+  },
+  {
+   "sym": "VIX",
+   "date": "2024-12-05",
+   "oi_ok": false,
+   "oi": 1.1244529485702515
+  },
+  {
+   "sym": "CSV",
+   "date": "2024-12-06",
+   "oi_ok": false,
+   "oi": 1.0155062675476074
+  },
+  {
+   "sym": "LPB",
+   "date": "2024-12-27",
+   "oi_ok": false,
+   "oi": 0.4834598898887634
+  },
+  {
+   "sym": "NAB",
+   "date": "2025-01-07",
+   "oi_ok": false,
+   "oi": 1.1128088235855103
+  },
+  {
+   "sym": "CSV",
+   "date": "2025-02-13",
+   "oi_ok": false,
+   "oi": 1.1279499530792236
+  },
+  {
+   "sym": "MBB",
+   "date": "2025-04-11",
+   "oi_ok": false,
+   "oi": 0.7510396838188171
+  },
+  {
+   "sym": "STB",
+   "date": "2025-04-11",
+   "oi_ok": false,
+   "oi": 1.1974955797195435
+  },
+  {
+   "sym": "SZC",
+   "date": "2025-05-26",
+   "oi_ok": false,
+   "oi": 1.383147954940796
+  },
+  {
+   "sym": "TCM",
+   "date": "2025-05-27",
+   "oi_ok": false,
+   "oi": 0.7073084115982056
+  },
+  {
+   "sym": "REE",
+   "date": "2025-06-05",
+   "oi_ok": false,
+   "oi": 1.3622230291366577
+  },
+  {
+   "sym": "SJS",
+   "date": "2025-06-20",
+   "oi_ok": false,
+   "oi": 0.5553114414215088
+  },
+  {
+   "sym": "VCI",
+   "date": "2025-07-11",
+   "oi_ok": true,
+   "oi": 1.4901819229125977
+  },
+  {
+   "sym": "GEE",
+   "date": "2025-07-16",
+   "oi_ok": true,
+   "oi": 1.8734333515167236
+  },
+  {
+   "sym": "POW",
+   "date": "2025-08-12",
+   "oi_ok": true,
+   "oi": 2.028196096420288
+  },
+  {
+   "sym": "TCH",
+   "date": "2025-09-04",
+   "oi_ok": false,
+   "oi": 0.8539866209030151
+  },
+  {
+   "sym": "PAN",
+   "date": "2025-09-15",
+   "oi_ok": false,
+   "oi": 1.1080329418182373
+  },
+  {
+   "sym": "ANV",
+   "date": "2025-10-03",
+   "oi_ok": false,
+   "oi": 1.261051893234253
+  },
+  {
+   "sym": "VHM",
+   "date": "2025-10-09",
+   "oi_ok": false,
+   "oi": 0.8467413187026978
+  },
+  {
+   "sym": "GEX",
+   "date": "2025-10-14",
+   "oi_ok": false,
+   "oi": 0.697550356388092
+  },
+  {
+   "sym": "GEX",
+   "date": "2025-10-15",
+   "oi_ok": false,
+   "oi": 0.7315373420715332
+  },
+  {
+   "sym": "HAH",
+   "date": "2025-10-28",
+   "oi_ok": true,
+   "oi": 2.2934389114379883
+  },
+  {
+   "sym": "PVD",
+   "date": "2025-11-05",
+   "oi_ok": true,
+   "oi": 1.8717035055160522
+  },
+  {
+   "sym": "ANV",
+   "date": "2025-11-18",
+   "oi_ok": false,
+   "oi": 1.1372343301773071
+  },
+  {
+   "sym": "MWG",
+   "date": "2025-12-03",
+   "oi_ok": false,
+   "oi": 0.8648188710212708
+  },
+  {
+   "sym": "TCH",
+   "date": "2025-12-16",
+   "oi_ok": false,
+   "oi": 1.1435518264770508
+  },
+  {
+   "sym": "BVH",
+   "date": "2025-12-29",
+   "oi_ok": false,
+   "oi": 1.3595316410064697
+  },
+  {
+   "sym": "PLX",
+   "date": "2026-01-06",
+   "oi_ok": false,
+   "oi": 1.2122600078582764
+  },
+  {
+   "sym": "GVR",
+   "date": "2026-01-07",
+   "oi_ok": true,
+   "oi": 1.8695249557495117
+  },
+  {
+   "sym": "CTG",
+   "date": "2026-01-09",
+   "oi_ok": false,
+   "oi": 1.2220770120620728
+  },
+  {
+   "sym": "HCM",
+   "date": "2026-01-12",
+   "oi_ok": true,
+   "oi": 1.702936053276062
+  },
+  {
+   "sym": "MBS",
+   "date": "2026-01-12",
+   "oi_ok": true,
+   "oi": 1.8290886878967285
+  },
+  {
+   "sym": "SSI",
+   "date": "2026-01-12",
+   "oi_ok": true,
+   "oi": 1.6616542339324951
+  },
+  {
+   "sym": "VCI",
+   "date": "2026-01-12",
+   "oi_ok": false,
+   "oi": 1.258367657661438
+  },
+  {
+   "sym": "NT2",
+   "date": "2026-01-13",
+   "oi_ok": false,
+   "oi": 1.235766887664795
+  },
+  {
+   "sym": "VIX",
+   "date": "2026-01-13",
+   "oi_ok": false,
+   "oi": 1.2275922298431396
+  },
+  {
+   "sym": "PC1",
+   "date": "2026-01-15",
+   "oi_ok": false,
+   "oi": 1.0697180032730103
+  },
+  {
+   "sym": "PHR",
+   "date": "2026-01-15",
+   "oi_ok": false,
+   "oi": 0.8160886168479919
+  },
+  {
+   "sym": "PNJ",
+   "date": "2026-01-16",
+   "oi_ok": false,
+   "oi": 1.1052461862564087
+  },
+  {
+   "sym": "HAH",
+   "date": "2026-01-20",
+   "oi_ok": false,
+   "oi": 1.0076847076416016
+  },
+  {
+   "sym": "PC1",
+   "date": "2026-02-26",
+   "oi_ok": false,
+   "oi": 0.9978794455528259
+  },
+  {
+   "sym": "POW",
+   "date": "2026-03-02",
+   "oi_ok": false,
+   "oi": 0.6054241061210632
+  },
+  {
+   "sym": "POW",
+   "date": "2026-03-03",
+   "oi_ok": false,
+   "oi": 0.6113144755363464
+  },
+  {
+   "sym": "VCI",
+   "date": "2026-03-04",
+   "oi_ok": false,
+   "oi": 1.1801108121871948
+  },
+  {
+   "sym": "MCH",
+   "date": "2026-03-17",
+   "oi_ok": false,
+   "oi": 0.8621194362640381
+  },
+  {
+   "sym": "BVH",
+   "date": "2026-03-24",
+   "oi_ok": false,
+   "oi": 0.9341755509376526
+  },
+  {
+   "sym": "GEG",
+   "date": "2026-03-25",
+   "oi_ok": false,
+   "oi": 1.0545748472213745
+  },
+  {
+   "sym": "MWG",
+   "date": "2026-04-17",
+   "oi_ok": true,
+   "oi": 2.539334297180176
+  },
+  {
+   "sym": "GAS",
+   "date": "2026-05-15",
+   "oi_ok": true,
+   "oi": 2.0945370197296143
+  },
+  {
+   "sym": "PLX",
+   "date": "2026-05-18",
+   "oi_ok": false,
+   "oi": 1.3842520713806152
+  },
+  {
+   "sym": "PVD",
+   "date": "2026-05-18",
+   "oi_ok": false,
+   "oi": 1.3390530347824097
+  },
+  {
+   "sym": "CTS",
+   "date": "2026-06-16",
+   "oi_ok": true,
+   "oi": 1.7984694242477417
+  },
+  {
+   "sym": "LPB",
+   "date": "2026-06-23",
+   "oi_ok": false,
+   "oi": 0.4829476475715637
+  },
+  {
+   "sym": "PVP",
+   "date": "2026-09-22",
+   "oi_ok": false,
+   "oi": 1.3806818723678589
+  }
+ ]
+}

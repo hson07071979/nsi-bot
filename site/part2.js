@@ -185,3 +185,16 @@ function barChart(host, items, opt={}){
   svg.appendChild(mk('line',{x1:P.l,x2:W-P.r,y1:Y(0),y2:Y(0),stroke:CV('--text-muted'),'stroke-width':1.5,'vector-effect':'non-scaling-stroke'}));
   return box;
 }
+
+/* EVIDENCE VERSIONING (audit 23/09/2026). Research files not stamped with the
+   running prod_config_hash are ARCHIVED — shown, but never as current evidence. */
+function archBanner(keys){
+  const sw = D.sweeps || {};
+  const old = keys.filter(k => sw[k] && Object.keys(sw[k]).length && !sw[k]._current);
+  if (!old.length) return '';
+  return `<div class="note" style="border-left:4px solid var(--warn);margin:10px 0">
+    <b>LƯU TRỮ · CẤU HÌNH CŨ · KHÔNG PHẢI PROD HIỆN TẠI</b> — ${old.length} bảng dưới đây
+    (${old.join(', ')}) được chạy dưới cấu hình khác cấu hình đang chạy
+    (<code>${(D.cfg_prod||{}).prod_config_hash||'?'}</code>). Chỉ dùng để hiểu lịch sử nghiên cứu,
+    không phải bằng chứng cho luật hiện hành.</div>`;
+}

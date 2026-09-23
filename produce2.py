@@ -45,7 +45,21 @@ PROD=dict(base_range=0.22, use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=
           use_top_liquid=True, top_n=120,
           # Nguong "lai lon" bat trailing MA10 de chot nhanh. 19% nam giua vung phang
           # 18-22% va cho DD thap nhat toan luoi (9,9%). Tu 24% tro len DD nhay len 13%.
-          big_win=0.19)
+          big_win=0.19,
+          # ---- AUDIT 23/09/2026 (evidence/audit_r1_fixes.json) ----
+          # Pyramid add-ons now respect max_total + sector_cap through the shared
+          # allocator (allocator.py). Before, an add-on only checked max_pos and
+          # cash, so a 30%-sector-capped entry could grow to ~45% in one sector.
+          # Rule as documented, cost measured: +696,8% -> +579,1%, DD 9,46% -> 9,45%,
+          # PF 5,84 -> 5,62, Sharpe 1,96 -> 1,89 (the old number relied on the breach).
+          pyr_caps=True, sector_cap=0.30,
+          # max_pos_n re-checked for every same-session entry (never bound in history,
+          # identical result — pure correctness guard).
+          max_n_in_loop=True,
+          # Condition 8 (close in upper half of the candle) removed: A/B identical to
+          # the trade (0 trades removed, with and without slippage), and it only adds
+          # an intraday timing ambiguity to the live layer.
+          use_cond8=False)
 PRESETS={
  'thucte'  : ('Có trượt giá 0,2% (thực tế)', dict(slip=0.002)),
  'toanTT'  : ('Toàn thị trường (không giới hạn thanh khoản)', dict(use_top_liquid=False)),
@@ -82,7 +96,7 @@ def pack(r,name):
         yearly=yearly(eq), lights=dict(Counter(e[2] for e in eq)),
         doors=[{'door':k,'n':v,'pct':round(v/len(tr)*100,1),'median':dmed[k]} for k,v in doors.most_common()],
         curve=[[e[0],round(float(e[1])/1e9,4),e[2]] for e in eq],
-        trades=[{k:t[k] for k in ('sym','sector','entry','exit','entry_px','exit_px','held','pnl_pct','pnl_vnd','reason','light','peak')} for t in tr])
+        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','held','pnl_pct','pnl_vnd','reason','light','peak')} for t in tr])
 
 if __name__=='__main__':
     out={}
@@ -149,6 +163,9 @@ if __name__=='__main__':
     print('STRICT',out['strict']['metrics'],flush=True)
     # Ket qua cac thi nghiem MOT LAN (khong chay lai hang ngay). Uu tien doc tu
     # thu muc evidence/ di kem ma nguon; neu khong co thi lay o data/ nhu truoc.
+    import hashlib as _hl0
+    _f0 = dict(E.CFG); _f0.update(PROD)
+    _cur_hash = _hl0.sha256(json.dumps(_f0, sort_keys=True, default=str).encode()).hexdigest()[:12]
     sw={}
     for k,fn in [('s2','sweep2'),('s3','sweep3'),('opt','opt_dd'),('s4','sweep4'),('s5','sweep5'),
                  ('o2','opt2'),('o3','opt3'),('o4','opt4'),('o6','opt6'),('o7','opt7'),
@@ -159,6 +176,12 @@ if __name__=='__main__':
                 sw[k]=json.load(open(_p)); break
             except Exception: pass
         if not sw[k]: print(f'  thieu bang chung: {fn}.json', flush=True)
+        # EVIDENCE VERSIONING: only files stamped with TODAY's prod_config_hash are
+        # current; everything else is archived research under another config.
+        elif isinstance(sw[k], dict):
+            _m = sw[k].get('meta') or {}
+            sw[k]['_current'] = bool(_m.get('prod_config_hash')) and _m.get('prod_config_hash') == _cur_hash
+            sw[k]['_label'] = 'CURRENT' if sw[k]['_current'] else 'ARCHIVED · OLD CONFIG · NOT CURRENT PROD'
     out['sweeps']=sw
     out['peer']={'khoa':{'name':'Khoa Nguyen Invest','total':4.628,'deals':237,'winrate':0.35,'rr':5.2,
                          'vni_1y':0.343,'vni_3y':0.636,'vni_2019':1.114,'url':'https://khoanguyeninvest.vn/'},
@@ -224,6 +247,7 @@ if __name__=='__main__':
     # ba lan cung mot bay. Nay trang doc thang khoi nay (part2.js: cpTop/cpNen/
     # cpDT) va verify_build.py cung doc no de so voi screener, nen khong the lech.
     out['cfg_prod'] = {k: PROD.get(k, E.CFG.get(k)) for k in (
+        'sector_cap', 'pyr_caps', 'max_n_in_loop', 'min_history', 'cfo_mode', 'rank_mode',
         'base_size', 'max_pos', 'max_total', 'max_pos_n', 'min_size', 'size_map',
         'base_len', 'base_range', 'score_floor', 'top_n', 'use_top_liquid',
         'gtgd_min', 'volat_min', 'vol_floor', 'vol_ceil', 'ordimb_min',
@@ -233,6 +257,19 @@ if __name__=='__main__':
         'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
         'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',
         'use_ftd', 'use_pyramid', 'use_ordimb')}
+
+    import hashlib as _hl
+    _full = dict(E.CFG); _full.update(PROD)
+    out['prod_config_hash'] = _hl.sha256(json.dumps(_full, sort_keys=True, default=str).encode()).hexdigest()[:12]
+    out['cfg_prod']['prod_config_hash'] = out['prod_config_hash']
+    # ---- SIGNAL SPEC for the next session (live scanner parity, signal_spec.py) ----
+    from spec_export import export as _spx
+    _C2 = dict(E.CFG); _C2.update(PROD)
+    _held = [x['sym'] for x in out['open_positions']]
+    out['spec'], out['spec_u'] = _spx(r['d'], r['I'], _tls, _sect, _C2, len(r['d']['cal']) - 1,
+                                      syms_extra=tuple(_held))
+    print('SPEC', len(out['spec']), 'ma cho phien ke tiep · TOP-N cut',
+          round(out['spec_u']['topn_cut'] / 1e9, 1), 'ty', flush=True)
 
     def cv(o):
         if isinstance(o,dict): return {k:cv(v) for k,v in o.items()}

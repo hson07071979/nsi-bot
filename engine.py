@@ -14,10 +14,14 @@ INSUR = set("BVH BMI PVI PTI BIC MIG ABI PGI VNR".split())
 # Nap tu data/sector2.json khi chay engine2 — dung de mien tru CFO cho nganh
 # co dong tien kinh doanh am mot cach CO CAU (bat dong san om quy dat / xay do dang).
 REALESTATE = set()
+WC_HEAVY = set()     # working-capital-heavy sectors (CFO swings with inventory / receivables)
+_WC_WORDS = ('Bất động sản', 'Xây dựng', 'Tài nguyên', 'Hàng cá nhân', 'Bán lẻ', 'Ô tô')
 def load_sector_groups(sect):
-    REALESTATE.clear()
+    REALESTATE.clear(); WC_HEAVY.clear()
     for sym, name in (sect or {}).items():
         if 'Bất động sản' in str(name): REALESTATE.add(sym)
+        if any(w in str(name) for w in _WC_WORDS): WC_HEAVY.add(sym)
+def _wc_heavy(sym): return sym in WC_HEAVY
 
 CFG = dict(
     nav0=1_000_000_000.0,
@@ -114,9 +118,27 @@ def risk_gate(sym, f):
         return False,'',mult
     cfo=f.get('cfo_ttm')
     if cfo is not None and cfo<0:
+        # CFO_MODE (audit 23/09/2026) — research variants of the generic CFO veto:
+        #   hard   : CFO TTM < 0 blocks (historical PROD behaviour)
+        #   off    : never blocks on CFO
+        #   warn   : never blocks, size x cfo_warn_mul
+        #   sector : real estate / construction / materials / retail (working-capital
+        #            heavy) -> warn; everyone else -> hard
+        #   repeat : block only on STRUCTURAL burn — CFO TTM < 0 now AND one year
+        #            earlier; a single negative year is only a warning
+        mode=CFG.get('cfo_mode','hard')
+        wm=CFG.get('cfo_warn_mul',0.5)
+        if mode=='off':
+            pass
+        elif mode=='warn':
+            mult*=wm
+        elif mode=='sector' and _wc_heavy(sym):
+            mult*=wm
+        elif mode=='repeat' and not (f.get('cfo_ttm_prev') is not None and f['cfo_ttm_prev']<0):
+            mult*=wm
         # Bat dong san: CFO am trong ky om quy dat / xay do dang la co cau, khong phai benh.
         # Mac dinh VAN CHAN (dung tai lieu). Bat co RE_CFO_WARN de doi thanh co vang.
-        if sym in REALESTATE and CFG.get('re_cfo_warn'):
+        elif sym in REALESTATE and CFG.get('re_cfo_warn'):
             mult*=0.5
         else:
             return True,'CFO < 0',0
@@ -147,6 +169,11 @@ def funda_timeline(rows):
         ie=[abs(x.get('intexp') or 0) for x in win]
         cf=[x.get('cfo') for x in win if x.get('cfo') is not None]
         m['cfo_ttm']=sum(cf) if len(cf)>=3 else None
+        # same TTM one year earlier (for the 'repeat' CFO variant) + negative-quarter count
+        _w2=rows[max(0,i-7):max(0,i-3)]
+        _c2=[x.get('cfo') for x in _w2 if x.get('cfo') is not None]
+        m['cfo_ttm_prev']=sum(_c2) if (len(_w2)==4 and len(_c2)>=3) else None
+        m['cfo_neg_q']=sum(1 for x in cf if x<0)
         ebit=r.get('ebit')
         tot_ie=sum(ie)
         m['icr']= (ebit/tot_ie) if (ebit is not None and tot_ie>0) else (99.0 if ebit is not None else None)

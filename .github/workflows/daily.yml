@@ -126,6 +126,15 @@ jobs:
       - name: Nén dữ liệu giá
         run: python fa_prep.py
 
+      # Dieu kien 9 khong duoc phu thuoc MOT nguon den muon (audit 24/09/2026):
+      # lap cho trong dong tien phien cuoi bang nguon CUNG dinh nghia —
+      # hnx.vn (HNX/UPCoM, nguon goc chinh thuc), Vietstock/CafeF (HOSE) — va doi
+      # chung mau ngau nhien voi FireAnt. Hong nguon phu thi van chay tiep: con
+      # thieu bao nhieu thi verify_build.py chan dang, khong bao gio dien so 0.
+      - name: Lấp dòng tiền phiên cuối từ nguồn chính thức
+        continue-on-error: true
+        run: python orderflow_fill.py
+
       - name: Cào báo cáo tài chính (Vietcap IQ)
         run: python fetch_funda.py
 
@@ -226,6 +235,9 @@ jobs:
           # hai file thu cong di theo, de bo quet trong phien cung biet ma nao bi loai
           cp out/loai.txt        public/loai.txt
           cp out/ghim.txt        public/ghim.txt
+          # dinh nghia tin hieu + bo chia von dung chung voi bo may (audit 23/09/2026)
+          cp out/signal_spec.py  public/signal_spec.py
+          cp out/allocator.py    public/allocator.py
           # Trí nhớ watchlist đi cùng bản đăng: lần chạy sau kéo lại file này ở
           # bước "Lấy sổ lệnh…" nên nhật ký thêm/loại mới cộng dồn được qua ngày.
           cp data/watchlist_state.json public/watchlist_state.json || \
@@ -234,7 +246,7 @@ jobs:
           cd public
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"
-          git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll
+          git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll signal_spec.py allocator.py
           if git diff --cached --quiet; then
             echo "Không có gì thay đổi, bỏ qua."
           else
