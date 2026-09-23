@@ -98,93 +98,68 @@ function tenCua(sym) {
   return (x && x.name) || '';
 }
 
-/* ============================================================================
-   DANH MỤC HỆ THỐNG — MỘT cuốn sổ duy nhất
-
-   Nguyên tắc: bảng này trả lời đúng một câu — "ngay lúc này hệ thống đang cầm
-   mã nào, bao nhiêu cổ, bao nhiêu tiền". Vị thế nào ĐÃ ĐÓNG HẲN thì biến khỏi
-   đây và sang Lệnh đã đóng. Vị thế bị BÁN MỘT PHẦN (ví dụ đèn Cam hạ 1/3) thì
-   phần bán sang Lệnh đã đóng, phần CÒN CẦM vẫn nằm nguyên ở đây — chứ không
-   biến mất như bản trước.
-
-   Ba nguồn, gộp lại, khử trùng theo mã:
-     1. sổ chạy của hệ thống  (D.open_positions — bộ máy chín lớp, chạy liên tục
-        từ 02/01/2019 tới phiên gần nhất). Đây là sổ CHÍNH.
-     2. sổ ghi tiến (portfolio.json) — bản ghi có dấu thời gian trên GitHub.
-     3. sổ tay anh Sơn (manual.json).
-   Trùng mã thì lấy sổ chính, vì nó biết cả số cổ lẫn phần đã hạ.
-   ========================================================================== */
+/* DANH MỤC HỆ THỐNG — xem ghi chú trong danhMuc(): các sổ tách bạch theo book_id. */
 function danhMuc() {
+  /* AUDIT 23/09/2026 — SỔ TÁCH BẠCH (book_id), không trộn NAV.
+     "Đang cầm" = sổ LIVE_PAPER (portfolio.json, vốn 1 tỷ mở 15/09/2026, cỡ lệnh
+     tính trên CHÍNH NAV của nó) + sổ MANUAL (lệnh anh Sơn nhập tay, không có NAV).
+     Vị thế của BACKTEST (D.open_positions, NAV ~vài tỷ từ 2019) KHÔNG còn chen vào
+     bảng hiện tại — xem danhMucBacktest() ở trang nghiên cứu. Một mã có thể nằm ở
+     hai sổ cùng lúc: hiện cả hai dòng, mỗi dòng ghi rõ sổ của nó. */
   const out = [];
-  // Mã anh Sơn đã ẩn ở Sổ tay. Vì sao cần: sổ chạy của bộ máy (D.open_positions)
-  // là kết quả BACKTEST — nó nói "hệ thống đang cầm ORS mua 21/08". Anh Sơn ngoài
-  // đời có thể không cầm mã đó, và trước đây không có cách nào gỡ nó khỏi trang
-  // khách hàng: vào Sổ tay xoá cũng vô ích, vì Sổ tay chỉ quản `manual.json` còn
-  // ORS đến từ nguồn khác. Danh sách `an` là chỗ để gỡ, và nó CHỈ giấu khỏi màn
-  // hình — không đụng một chữ nào vào sổ backtest.
   const an = new Set((manualGop().an || []).map(s => String(s).toUpperCase()));
-  const them = (o) => {
-    if (an.has(String(o.sym).toUpperCase())) return;
-    if (!out.some(x => x.sym === o.sym)) out.push(o);
-  };
-
-  // 1. sổ chạy của hệ thống — có số cổ nên tính được tiền
-  (D.open_positions || []).forEach(p => {
-    const px = giaMoiNhat(p.sym) || (p.last / 1000);
-    const von = p.entry_px / 1000;
-    them({
-      sym: p.sym, name: tenCua(p.sym), sector: p.sector || nganhCua(p.sym),
-      entry: p.entry, entry_px: von, last: px, sh: p.shares || null,
-      pnl: laiSauPhi(von, px) * 100,
-      tien: p.shares ? p.shares * px * 1000 : null,
-      // NAV của CHÍNH quyển sổ sinh ra dòng này. Sổ chạy của bộ máy xuất phát
-      // 1 tỷ từ 02/01/2019 và đã lãi lên vài tỷ; sổ ghi tiến mới mở, vẫn 1 tỷ.
-      // Chia chung một mẫu số thì cột "% tài khoản" vô nghĩa: BSR vào đúng 25%
-      // NAV của sổ ghi tiền nhưng hiện ra 4% vì bị chia cho NAV của bộ máy.
-      navGoc: ((D.prod || {}).metrics || {}).final_nav || null,
-      held: null, peak: null, nguon: 'auto', bomay: true,
-    });
-  });
-
-  // 2. sổ ghi tiến — mã nào hệ thống có mà sổ chính chưa kịp ghi
   const F = pfData();
   (F && F.open || []).forEach(p => {
+    if (an.has(String(p.sym).toUpperCase())) return;
     const px = giaMoiNhat(p.sym) || p.last || (p.entry_px / 1000);
-    them({
-      sym: p.sym, name: p.name || tenCua(p.sym), sector: p.sector || nganhCua(p.sym),
+    // giá trị = số cổ × giá trị mỗi cổ gốc (đã quy đổi quyền, xem portfolio.py)
+    const k = p.k_adj || 1;
+    const val1 = (p.last_val && p.last) ? (p.last_val / 1000) * (px / p.last) : px;
+    out.push({
+      book_id: 'LIVE_PAPER', sym: p.sym, name: p.name || tenCua(p.sym), sector: p.sector || nganhCua(p.sym),
       entry: p.entry, entry_px: p.entry_px / 1000, last: px, sh: p.sh || null,
-      pnl: laiSauPhi(p.entry_px / 1000, px) * 100,
-      tien: p.sh ? p.sh * px * 1000 : null,
-      navGoc: (F && F.nav) || null,      // NAV của sổ ghi tiến, không phải của bộ máy
-      held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'auto',
+      cost_px: (p.cost_px || p.entry_px * (1 + PHI_MUA)) / 1000,
+      pnl: ((val1 * (1 - PHI_BAN)) / ((p.cost_px || p.entry_px * (1 + PHI_MUA)) / 1000) - 1) * 100,
+      tien: p.sh ? p.sh * val1 * 1000 : null,
+      navGoc: (F && F.nav) || null,
+      held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'auto', live: true,
     });
   });
-
-  // 3. sổ tay anh Sơn
   manualGop().trades.filter(t => !t.sell_px).forEach(t => {
+    if (an.has(String(t.sym).toUpperCase())) return;
     const px = giaMoiNhat(t.sym);
-    them({
-      sym: t.sym, name: tenCua(t.sym), sector: nganhCua(t.sym),
+    out.push({
+      book_id: 'MANUAL', sym: t.sym, name: tenCua(t.sym), sector: nganhCua(t.sym),
       entry: t.buy_d, entry_px: +t.buy_px, last: px, sh: t.sh || null,
       pnl: px ? laiSauPhi(t.buy_px, px) * 100 : null,
       tien: (t.sh && px) ? t.sh * px * 1000 : null,
-      held: null, peak: null, light: null, navGoc: null,   // lệnh tay: không có sổ riêng để so
+      held: null, peak: null, light: null, navGoc: null,
       note: t.note || '', nguon: t.chuaDang ? 'nhap' : 'tay',
     });
   });
-
   out.sort((a, b) => String(b.entry).localeCompare(String(a.entry)));
   return out;
 }
 
-/* Giá trị tài khoản của sổ chính — vốn 1 tỷ từ 02/01/2019 chạy liên tục tới nay.
-   Chỉ cộng cổ phiếu của CHÍNH sổ đó (cờ `bomay`); lệnh anh Sơn nhập tay và mã
-   sổ ghi tiến bắt thêm không cộng vào, không thì phép tính tiền mặt sai. */
+/* Sổ BACKTEST — ảnh chụp nghiên cứu, NAV riêng (1 tỷ từ 02/01/2019). Không bao giờ
+   trộn với sổ hiện tại. */
+function danhMucBacktest() {
+  const nav = ((D.prod || {}).metrics || {}).final_nav || null;
+  return (D.open_positions || []).map(p => {
+    const px = giaMoiNhat(p.sym) || p.last;
+    return { book_id: 'BACKTEST', sym: p.sym, sector: p.sector, entry: p.entry,
+             entry_px: p.entry_px / 1000, last: px, sh: p.shares,
+             tien: p.shares ? p.shares * px * 1000 : null, navGoc: nav,
+             pnl: laiSauPhi(p.entry_px / 1000, px) * 100, nguon: 'backtest' };
+  });
+}
+
+/* Tài khoản hiện tại = sổ LIVE_PAPER: NAV, tiền mặt, cổ phiếu — đúng một mẫu số. */
 function taiKhoan() {
-  const M = (D.prod || {}).metrics || {};
-  const nav = M.final_nav || null;
-  const cp = danhMuc().filter(x => x.bomay && x.tien).reduce((a, x) => a + x.tien, 0);
-  return { nav, nav0: 1e9, cp, tien: nav ? Math.max(0, nav - cp) : null };
+  const F = pfData() || {};
+  const cp = danhMuc().filter(x => x.book_id === 'LIVE_PAPER' && x.tien).reduce((a, x) => a + x.tien, 0);
+  const tien = F.cash != null ? F.cash : null;
+  return { nav: (tien != null ? tien + cp : F.nav || null), nav0: F.nav0 || 1e9, cp, tien, book_id: 'LIVE_PAPER' };
 }
 
 function lichSuThat() {
@@ -286,7 +261,8 @@ function bangDanhMucNgan() {
 const tyd = x => (x / 1e9).toFixed(3).replace('.', ',') + ' tỷ';
 
 function nhanNguon(n) {
-  if (n === 'auto') return '<span class="tag B" style="margin-left:6px">Hệ thống</span>';
+  if (n === 'auto') return '<span class="tag B" style="margin-left:6px" title="Sổ LIVE_PAPER — portfolio.json">Sổ live (paper)</span>';
+  if (n === 'backtest') return '<span class="tag A" style="margin-left:6px">Backtest</span>';
   if (n === 'nhap') return '<span class="tag A" style="margin-left:6px" title="Mới nhập trong máy anh, khách hàng chưa thấy — nhớ bấm Đăng lên trang">Chưa đăng</span>';
   return '<span class="tag C" style="margin-left:6px">Anh Sơn nhập</span>';
 }
@@ -367,13 +343,16 @@ function pageSoLenh(root) {
 
   root.innerHTML = `
   <h1>Danh mục hệ thống</h1>
+  <p class="lead" style="margin-top:-4px">Sổ <b>LIVE_PAPER</b> (portfolio.json — sổ ghi tiến, vốn ${tyd(nav0)} từ ${ddmm((F && F.stats && F.stats.since) || '')}) + lệnh anh nhập tay.
+    Vị thế của backtest dùng NAV khác nên <b>không</b> nằm trong bảng này.${
+    (F && F.checks) ? (F.checks.ok ? ' <span class="tag B">Đối soát sổ: đạt</span>' : ' <span class="tag A">Đối soát sổ: TRƯỢT</span>') : ''}</p>
 
   <div class="grid kpis">
     ${kpi('Đang nắm giữ', `${dm.length} mã`, nTay ? `${dm.length - nTay} do hệ thống · ${nTay} anh nhập` : 'toàn bộ do hệ thống vào')}
     ${kpi('Giá trị cổ phiếu', TK.cp ? vnd(TK.cp) : '—', nav ? `${Math.round(100 * TK.cp / nav)}% tài khoản` : '')}
-    ${nav != null ? kpi('Giá trị tài khoản', tyd(nav), `xuất phát ${tyd(nav0)} ngày 02/01/2019`) : ''}
+    ${nav != null ? kpi('Giá trị tài khoản', tyd(nav), `sổ LIVE_PAPER · xuất phát ${tyd(nav0)}`) : ''}
     ${nav != null ? kpi('Tiền mặt', tyd(TK.tien), `${Math.round(100 * TK.tien / nav)}% tài khoản`) : ''}
-    ${lai != null ? kpi('Lãi/lỗ tổng', (lai >= 0 ? '+' : '') + (lai * 100).toFixed(1) + '%', 'từ 02/01/2019', cls(lai)) : ''}
+    ${lai != null ? kpi('Lãi/lỗ tổng', (lai >= 0 ? '+' : '') + (lai * 100).toFixed(1) + '%', 'sổ LIVE_PAPER', cls(lai)) : ''}
     ${kpi('Đèn thị trường', LIGHTNAME[(D.regime[D.regime.length - 1] || {}).light] || '—', 'phiên gần nhất')}
   </div>
 

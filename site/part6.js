@@ -8,9 +8,9 @@ function pageSystem(root){
    [4,'Điểm mua','Hôm nay có phải phiên tiền lớn nhảy vào không?','Phải đạt <b>tất cả các điều kiện đang bật, trong cùng một phiên</b>. Xem bảng bên dưới — bảng ghi rõ luật nào đang chạy, luật nào đã tắt.','A'],
    [5,'Cổng thị trường','Thị trường chung có cho phép mua không?','Hệ đèn 4 mức từ ba tín hiệu: G1 (chỉ số đều trọng số vs MA200), G2 (VN-Index vs MA50), G3 (đếm ngày phân phối 25 phiên). <b>Luật vàng: cổng chỉ chặn MỞ LỆNH MỚI</b> — vị thế đang cầm vẫn chạy theo bộ thoát bình thường.','A'],
    [6,'Lọc ngành','Danh mục có bị dồn quá nhiều vào một ngành không?','Trần 30% NAV cho một nhóm ngành ICB.','B'],
-   [7,'Cỡ vị thế','Nên bỏ bao nhiêu tiền vào?','<b>42% NAV</b> × hệ số đèn (Xanh 1,0 · Vàng 0,6 · Cam 0,35 · Đỏ 0,2) × hệ số nền (1,2 / 1,0) × hệ số rủi ro (cờ vàng 0,5). Trần <b>50% NAV</b> một mã, <b>100% NAV</b> toàn danh mục, tối đa <b>12 mã</b>, sàn 2% NAV. <b style="color:var(--warn)">Trang này từng ghi 10%/20%/60% — đó là giá trị mặc định của engine, KHÔNG phải cấu hình đang chạy. Toàn bộ con số hiệu suất trên trang được tạo ra ở mức 42%.</b> Kelly tính ra 19,6%; 42% là <b>hơn hai lần Kelly</b> — đây là lựa chọn đánh đổi rủi ro lấy lợi nhuận, không phải mức an toàn.','A'],
+   [7,'Cỡ vị thế','Nên bỏ bao nhiêu tiền vào?',`<b>${cpSo(cpV('base_size',0.42)*100)}% NAV</b> × hệ số đèn (Xanh 1,0 · Vàng 0,6 · Cam 0,35 · Đỏ 0,2) × hệ số nền (1,2 / 1,0) × hệ số rủi ro (cờ vàng 0,5), rồi cắt bởi các trần: <b>${cpSo(cpV('max_pos',0.5)*100)}% NAV</b> một mã, <b>${cpSo(cpV('sector_cap',0.30)*100)}% NAV</b> một ngành, <b>${cpSo(cpV('max_total',1)*100)}% NAV</b> toàn danh mục, tiền mặt, tối đa <b>${cpV('max_pos_n',12)} mã</b>, sàn ${cpSo(cpV('min_size',0.02)*100)}% NAV. <b style="color:var(--warn)">Thực tế: trần ngành ${cpSo(cpV('sector_cap',0.30)*100)}% luôn cắt trước khi đèn Xanh cho ra ${cpSo(cpV('base_size',0.42)*100)}% — lệnh mới lớn nhất là ${cpSo(Math.min(cpV('base_size',0.42),cpV('sector_cap',0.30))*100)}% NAV.</b> Cùng một bộ chia vốn (allocator.py) dùng cho backtest, sổ paper, chuông Telegram và trang này.`,'A'],
    [8,'Bộ thoát','Khi nào thì ra?','Kiểm tra theo đúng thứ tự ưu tiên. Đây là nơi tiền thực sự được kiếm — xem bảng bên dưới.','A'],
-   [9,'Pyramid','Có nên gia tăng vị thế không?','Phiên 4–7 sau điểm mua, đang lãi ≥ 10%, giá ≥ 99,9% đỉnh 10 phiên, chỉ 1 lần, chỉ khi đèn Xanh. Thêm 50% vị thế gốc.','B'],
+   [9,'Pyramid','Có nên gia tăng vị thế không?','Phiên 4–7 sau điểm mua, đang lãi ≥ 10%, giá ≥ 99,9% đỉnh 10 phiên, chỉ 1 lần, chỉ khi đèn Xanh. Thêm tối đa 50% vị thế gốc — <b>nhưng không bao giờ vượt trần mỗi mã, trần ngành, trần tổng vốn hay tiền mặt</b> (sửa 23/09/2026: bản trước chỉ xét trần mỗi mã và tiền).','B'],
   ];
   // Đọc thẳng từ cấu hình bộ máy (D.cfg_prod). Cột cuối nói luật nào ĐANG CHẠY,
   // luật nào ĐÃ TẮT — bản cũ liệt kê cả luật đã tắt như thể đang chạy, người đọc
@@ -31,12 +31,12 @@ function pageSystem(root){
   // "Van thời gian" chiếm gần một nửa số lệnh ra.
   const cf = cpV('conf', 2);
   const exits=[
-   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,'Bán hết, áp dụng mọi phiên','B',cpBat('use_hard_stop',true)],
+   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,'Bán hết, xét từ phiên T+2 — phiên đầu tiên cổ phiếu về tài khoản và bán được (quy định thanh toán T+2). Đứng trước mọi luật thoát khác','B',cpBat('use_hard_stop',true)],
    ['2','Cây nến bảo vệ','Đóng cửa dưới low của nến breakout → bán hết. Cắt sớm kiểu này làm mất quá nhiều lệnh về sau thành lãi lớn','C',cpBat('use_protective_candle',false)],
    ['3',`Cắt lỗ ${cpSo(cpV('stop',-0.07)*100)}%`,'Từ phiên 3 trở đi → bán hết','A',true],
    ['4','Chốt bảo vệ (trả lại % đỉnh)','Lãi từng chạm ngưỡng rồi trả lại quá nửa → bán hết','C',cpBat('use_giveback',false)],
    ['5','Về bờ',`Đã từng lãi ≥ ${cpSo(cpV('be_trigger',0.08)*100)}% mà tụt về ${cpSo(cpV('be_level',0.01)*100)}% → bán hết. Không để lệnh đã có lãi thành lệnh lỗ`,'A',cpBat('use_be',true)],
-   ['6',`Van thời gian T+${cpV('t_valve',4)}`,`Hết phiên thứ ${cpV('t_valve',4)} mà lệnh vẫn chưa có lãi → bán hết, bất kể lý do. <b>Đây là cửa ra đông nhất</b>`,'A',true],
+   ['6',`Van thời gian T+${cpV('t_valve',4)}`,`Đến phiên T+${cpV('t_valve',4)} mà lãi/lỗ (đã tính phí mua) ≤ 0 → bán hết. Lệnh chỉ cần <b>còn lãi dù nhỏ</b> là qua van, không cần đã bùng nổ. <b>Đây là cửa ra đông nhất</b>`,'A',true],
    ['7','Big sell khẩn','Giảm &gt; 4% + volume &gt; 120% TB20 → bán 1/2. Trùng chức năng với trailing MA và cửa đèn Cam','C',cpBat('use_big_sell',false)],
    ['8','Trailing lãi lớn',`Đã từng lãi ≥ <b>${cpSo(cpV('big_win',0.19)*100)}%</b> → ${cf} phiên đóng dưới MA${cpV('trail_fast',10)} → bán hết`,'A',true],
    ['9','Trailing mặc định',`${cf} phiên liên tiếp đóng dưới <b>MA${cpV('trail_ma',30)}</b> → bán hết. MA${cpV('trail_ma',30)} là cửa ra THẬT, không phải chỉ báo động như trang này từng ghi`,'A',true],

@@ -11,17 +11,35 @@ H={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Ch
 BASE='https://www.fireant.vn/api/Data'
 START='2017-01-01'
 
+ERR={}
 def daily(sym, start=START, end=None):
     end = end or time.strftime('%Y-%m-%d')
+    last=None
     for a in range(4):
         try:
             r=requests.get(BASE+'/Companies/HistoricalQuotes',
                 params={'symbol':sym,'startDate':start,'endDate':end}, headers=H, timeout=90)
+            if r.status_code!=200:
+                last=f'HTTP {r.status_code}: {r.text[:120]!r}'
+                if r.status_code in (400,404): break
+                ra=r.headers.get('Retry-After')
+                time.sleep(float(ra) if (ra and ra.isdigit()) else 1.5*(a+1)); continue
             d=r.json()
             if isinstance(d,list): return d
-        except Exception:
-            time.sleep(1.5*(a+1))
+            last=f'schema: {type(d).__name__} {str(d)[:120]!r}'
+        except Exception as e:
+            last=f'{type(e).__name__}: {e}'
+        time.sleep(1.5*(a+1))
+    if last: ERR[sym]=last
     return None
+
+# ---- INTEGRITY GUARD (audit 23/09/2026) -----------------------------------
+# A partial fetch must never be published as a normal healthy build. Coverage is
+# measured on symbols LISTED TODAY on HOSE/HNX (dead symbols may legitimately be
+# short or empty). Below these floors the run FAILS and the previous good file
+# stays in place (atomic replace only after the guard passes).
+MIN_LIVE_COVER=0.97      # listed HOSE/HNX symbols with a usable history
+MIN_LAST_COVER=0.93      # ... of which carry the latest session
 
 def intraday(sym):
     try:
@@ -72,6 +90,12 @@ def universe():
     return ex
 
 
+def universe_live():
+    d = pd.read_csv('data/by_exchange.csv')
+    d = d[(d.type == 'STOCK') & d.exchange.isin(['HSX', 'HNX'])]
+    return {r.symbol: ('HOSE' if r.exchange == 'HSX' else 'HNX') for r in d.itertuples()}
+
+
 def suy_ra_san(rows):
     """Suy ra san NIEM YET LICH SU tu bien do gia quan sat duoc.
 
@@ -96,7 +120,7 @@ def suy_ra_san(rows):
 if __name__=='__main__':
     ex=universe(); syms=sorted(ex)
     print('universe',len(syms),flush=True)
-    res={}; bad=[]
+    res={}; bad=[]; fetched=set()
     def job(s):
         d=daily(s)
         if not d: return s, None, None
@@ -108,6 +132,7 @@ if __name__=='__main__':
     n_suy = 0
     with ThreadPoolExecutor(8) as pool:
         for i,(s,c,san) in enumerate(pool.map(job,syms)):
+            if c and c['d']: fetched.add(s)
             if c and len(c['d'])>=250:
                 res[s]=c
                 if san: ex[s]=san; n_suy+=1
@@ -121,6 +146,40 @@ if __name__=='__main__':
     bo_upcom = [s for s in res if ex.get(s) == 'UPCOM']
     for s in bo_upcom: res.pop(s, None); ex.pop(s, None)
     print(f'bo {len(bo_upcom)} ma suy ra la UPCOM (he chi giao dich HOSE + HNX)', flush=True)
-    json.dump({'ex':ex,'data':res}, open('data/fireant_daily.json','w'))
+    # ---------------- guard ----------------
+    import datetime as _dt
+    song=[s for s,v in universe_live().items()]
+    got=[s for s in song if s in fetched]            # answered with data (any length)
+    last=max((res[s]['d'][-1] for s in res), default='')
+    hist=[s for s in song if s in res]                # >= 250 sessions, tradable history
+    at_last=[s for s in hist if res[s]['d'][-1]==last]
+    # order-flow coverage measured where it matters: liquid names (GTGD >= 5 bn today)
+    liq=[s for s in at_last if (res[s]['TotalValue'][-1] or 0)>=5e9]
+    oi_last=[s for s in liq if (res[s]['BuyCount'][-1] or 0)>0 and (res[s]['SellCount'][-1] or 0)>0]
+    exch={}
+    for s in song:
+        e=universe_live()[s]; exch.setdefault(e,[0,0]); exch[e][0]+=1; exch[e][1]+= (s in got)
+    H_=dict(source='FireAnt HistoricalQuotes', fetched=_dt.datetime.utcnow().isoformat(timespec='seconds')+'Z',
+            expected_listed=len(song), received_listed=len(got), coverage=round(len(got)/max(1,len(song)),4),
+            latest_session=last, latest_session_coverage=round(len(at_last)/max(1,len(hist)),4),
+            by_exchange={k:dict(expected=v[0],received=v[1],coverage=round(v[1]/max(1,v[0]),4)) for k,v in exch.items()},
+            orderflow_latest_coverage=round(len(oi_last)/max(1,len(liq)),4), orderflow_liquid_n=len(liq),
+            http_errors=len(ERR), error_sample=dict(list(ERR.items())[:10]),
+            missing_listed=sorted(set(song)-set(got))[:100])
+    ok = H_['coverage']>=MIN_LIVE_COVER and H_['latest_session_coverage']>=MIN_LAST_COVER
+    H_['status']='OK' if ok else 'FAIL'
+    try:
+        import data_health as _dh; _dh.put('fireant_price', H_)
+        _dh.put('fireant_orderflow', dict(source='FireAnt HistoricalQuotes Buy/SellCount',
+                status=('OK' if H_['orderflow_latest_coverage']>=0.70 else 'DEGRADED'),
+                coverage=H_['orderflow_latest_coverage'], freshness=last))
+    except Exception as e: print('data_health:',e)
+    print(json.dumps({k:v for k,v in H_.items() if k not in ('missing_listed','error_sample')},ensure_ascii=False),flush=True)
+    if not ok:
+        sys.exit(f"HONG: FireAnt chi phu {H_['coverage']:.1%} ma dang niem yet / {H_['latest_session_coverage']:.1%} "
+                 "co phien moi nhat — KHONG ghi de data/fireant_daily.json, KHONG dang ban thieu.")
+    tmp='data/fireant_daily.json.tmp'
+    json.dump({'ex':ex,'data':res}, open(tmp,'w'))
+    os.replace(tmp,'data/fireant_daily.json')
     print('OK',len(res),'bad',len(bad),'time',round(time.time()-t0),'s',
           'size MB',round(os.path.getsize('data/fireant_daily.json')/1e6,1))

@@ -172,11 +172,17 @@ function tinhLaiTinHieuVPS() {
   const R = NSI.rt || {}, L = D.lookup || {}, hits = [];
   const oiMin = (LIVE.server && LIVE.server.ordimb_min) || cpDT();
   const f = phanPhien(), mo = phienMo();
+  const GT_MIN = (D.cfg_prod && D.cfg_prod.gtgd_min) || 15e9;
+  // MUA đã được máy chủ chứng minh ĐỦ MỌI điều kiện PROD, cùng phiên
+  const svMua = {};
+  ((LIVE.server || {}).hits || []).forEach(h => {
+    if (h.level === 'MUA' && h.prod_ok) svMua[h.sym] = h;
+  });
 
   Object.keys(R).forEach(sym => {
     const t = L[sym], r = R[sym];
     if (!t || !r || !r.price || !r.ref) return;
-    if (t.state !== 'cho' && t.state !== 'fa') return;
+    if (t.state !== 'cho' && t.state !== 'fa' && !svMua[sym]) return;
 
     const pct = r.price / r.ref - 1;
     const volr = t.vma20 ? r.vol / t.vma20 : 0;
@@ -189,19 +195,22 @@ function tinhLaiTinHieuVPS() {
     const cond = {
       'Biên độ tăng giá': pct * 100 >= t.thr,
       'Khối lượng ≥ 2× TB20': r.vol >= t.need_vol,
-      'GTGD ≥ 15 tỷ': r.tv >= 15e9,
+      'GTGD ≥ 15 tỷ': r.tv >= GT_MIN,
       'Đóng cửa nửa trên nến': r.hi > r.lo ? r.price >= (r.hi + r.lo) / 2 : true,
     };
     cond[`Cỡ lệnh mua ≥ ${oiMin.toFixed(2)}× cỡ lệnh bán`] = coOI ? r.oi >= oiMin : false;
 
     const n4 = ['Biên độ tăng giá', 'Khối lượng ≥ 2× TB20', 'GTGD ≥ 15 tỷ', 'Đóng cửa nửa trên nến']
                  .filter(k => cond[k]).length;
-    const du5 = n4 === 4 && coOI && r.oi >= oiMin;
     const cho = t.state === 'cho';
-
+    // AUDIT 23/09/2026 — MỘT định nghĩa MUA duy nhất: máy chủ (live_scan.py +
+    // signal_spec.py, khớp backtest 98,6% khi phát lại 2019–2026). Trình duyệt
+    // KHÔNG tự lên MUA: VPS không có số lệnh mua/bán (Điều kiện 9) và ô tra cứu
+    // tính điểm từ đêm trước. Trình duyệt chỉ hiển thị giá nhanh hơn.
+    const svHit = svMua[sym];
     let lvl = null;
-    if (cho && du5) lvl = 'MUA';
-    else if (cho && n4 === 4) lvl = 'SAP_DU';               // đủ 4, chờ xác nhận dòng tiền
+    if (svHit) lvl = 'MUA';
+    else if (cho && n4 === 4) lvl = 'SAP_DU';               // đủ phần giá, chờ máy chủ xác nhận
     else if (cho && n4 >= 3) lvl = 'SAP_DU';
     else if (pct * 100 >= ((LIVE.data || {}).de_mat_pct || 2.5)) lvl = 'DE_MAT';
     else if (cho && (volr >= 1.5 || pct * 100 >= t.thr * 0.5)) lvl = 'THEO_DOI';

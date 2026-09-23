@@ -39,6 +39,7 @@ const PAGES = [
  ['hethong','Hệ thống 9 lớp',      pageSystem,    true],
  ['bangchung','Bằng chứng',        pageEvidence,  true],
  ['sotay','Sổ tay của tôi',        pageNotebook,  true],
+ ['chandoan','Chẩn đoán dữ liệu & kiểm toán', pageChanDoan, true],
  // ba trang thử nghiệm của bản 17 — giữ lại, ẩn khỏi menu
  ['homnay','Hôm nay (thử nghiệm)',      pageHomNay,  true],
  ['cohoi','Cơ hội (thử nghiệm)',        pageCoHoi,   true],
@@ -54,12 +55,12 @@ function pageOverview(root){
   <div class="hero">
     <div class="badge">Dữ liệu FireAnt · ${D.universe_n} mã HOSE + HNX · backtest từ 2019 đến phiên gần nhất</div>
     <h1>Hệ thống không đoán thị trường.<br>Nó chỉ chờ đúng một loại phiên.</h1>
-    <p class="lead">Hệ thống của Nguyễn Sơn mua cổ phiếu <b>đúng phiên tiền lớn nhảy vào</b> — giá cận trần, khối lượng gấp đôi, <b>cỡ lệnh mua to hơn cỡ lệnh bán 20%</b>, sau một nền giá yên tĩnh 30 phiên. Sai thì cắt trong 3–4%, đúng thì gồng tới cùng. Dưới đây là toàn bộ những gì đã thực sự xảy ra trong ${(dates.length/250).toFixed(1)} năm qua.</p>
+    <p class="lead">Hệ thống của Nguyễn Sơn mua cổ phiếu <b>đúng phiên tiền lớn nhảy vào</b> — giá cận trần, khối lượng gấp đôi, <b>cỡ lệnh mua ≥ ${cpDTvi()} lần cỡ lệnh bán</b>, sau một nền giá yên tĩnh ${cpV('base_len',30)} phiên. Luật cắt lỗ là −7% (từ T+3) và −10% (hard stop); lệnh thua trong lịch sử trung bình chỉ khoảng −2,7% vì van thời gian T+${cpV('t_valve',4)} và luật về bờ ra sớm hơn — đó là <i>kết quả</i>, không phải luật. Đúng thì gồng tới cùng. Dưới đây là toàn bộ những gì đã thực sự xảy ra trong ${(dates.length/250).toFixed(1)} năm qua.</p>
   </div>
   <div class="grid kpis" id="kpirow"></div>
 
   <h2>Đường vốn — Hệ thống so với VN-Index</h2>
-  <p class="muted" style="margin-top:0">Cùng xuất phát 1,00 vào 02/01/2019. Vốn 1 tỷ, mỗi lệnh 42% NAV, tối đa 12 mã, phí 0,15% mua / 0,25% bán, van T+4.</p>
+  <p class="muted" style="margin-top:0">Cùng xuất phát 1,00 vào 02/01/2019. Vốn 1 tỷ, mỗi lệnh ${cpSo(cpV('base_size',0.42)*100)}% NAV × đèn (trần ngành ${cpSo(cpV('sector_cap',0.30)*100)}% cắt trước), tối đa 12 mã, phí 0,15% mua / 0,25% bán, van T+4.</p>
   <div class="seg" id="presetSeg" style="margin-bottom:12px"></div>
   <div class="card"><div class="legend">
     <span><i style="background:var(--s1)"></i>Hệ thống Nguyễn Sơn</span>

@@ -191,8 +191,7 @@ _mn = D.get('manual') or {}
 # moi nhat — trong y het "hom nay khong co tin hieu". Da tung xay ra ngay 21/08.
 _oic = D.get('oi_cover')
 if _oic is not None:
-    check(_oic >= 0.50, f'phien cuoi chi {_oic*100:.0f}% ma co du lieu dong tien mua/ban '
-                        '— cao qua som, chay lai fireant.py sau 18h gio Viet Nam')
+    warn(_oic >= 0.50, f'phien cuoi chi {_oic*100:.0f}% ma (ca ma khong thanh khoan) co du lieu dong tien')
     warn(_oic >= 0.85, f'{(1-_oic)*100:.0f}% ma thieu du lieu dong tien o phien cuoi')
 
 _bm = {p['sym'] for p in (D.get('open_positions') or [])}
@@ -205,6 +204,69 @@ if _pf.get('open') and _mn.get('trades'):
     _trung = {p['sym'] for p in _pf['open']} & {t['sym'] for t in _mn['trades'] if not t.get('sell_px')}
     warn(not _trung, 'ma vua o so tu dong vua o so tay, trang chi hien mot lan: '
          + ' '.join(sorted(_trung)))
+
+# ---------- 8c. AUDIT 23/09/2026: parity + data health are BUILD-BREAKING ----------
+# (a) the running config must be stamped and identical everywhere
+_h = D.get('prod_config_hash')
+check(bool(_h) and (D.get('cfg_prod') or {}).get('prod_config_hash') == _h,
+      'thieu / lech prod_config_hash giua site_data va cfg_prod')
+check(bool(D.get('spec')) and bool(D.get('spec_u')),
+      'thieu signal spec cho phien ke tiep — lop quet trong phien se khong the bao MUA')
+# (b) live scanner definition == engine definition, replayed on recent history
+try:
+    sys.path.insert(0, 'tests')
+    import importlib
+    tp = importlib.import_module('test_parity')
+    _d0 = dt.date.fromisoformat(asof) - dt.timedelta(days=400)
+    _pr = tp.main(_d0.isoformat(), None, verbose=False)
+    _tot = _pr['both'] + _pr['engine_only'] + _pr['live_only']
+    _ag = _pr['both'] / _tot if _tot else 1.0
+    print(f"PARITY live<->engine 400 ngay: {_pr['both']} khop, {_pr['engine_only']} chi engine, "
+          f"{_pr['live_only']} chi live ({_ag:.1%})")
+    check(_ag >= 0.95, f'parity live<->engine chi {_ag:.1%} (<95%) — signal_spec.py lech engine2.screen()')
+except SystemExit:
+    raise
+except Exception as e:
+    check(False, f'khong chay duoc tests/test_parity.py: {type(e).__name__}: {e}')
+# (c) data sources
+try:
+    _dh = json.load(open('data/data_health.json', encoding='utf-8'))
+except Exception:
+    _dh = {}
+for _src in ('fireant_price', 'vietcap'):
+    _b = _dh.get(_src)
+    if _b is None:
+        warn(False, f'data_health thieu nguon {_src} (ban dung cu chua ghi)')
+    else:
+        check(_b.get('status') == 'OK', f"nguon {_src} trang thai {_b.get('status')} — khong dang ban thieu du lieu")
+# (d) order flow on the LAST session, measured per exchange on liquid names:
+#     HNX publishes BuyCount/SellCount later than HOSE; a build that runs too early
+#     silently kills every HNX signal of the day.
+try:
+    import numpy as _np
+    import engine2 as _E
+    _d, _I, _, _ = _E.load()
+    _TV = _d['TotalValue'][-1]; _BC = _d['BuyCount'][-1]
+    for _ex in ('HOSE', 'HNX'):
+        _m = (_d['exch'] == _ex) & (_TV >= 5e9)
+        _c = float(((_BC > 0) & _m).sum()) / max(1, int(_m.sum()))
+        print(f'dong tien phien cuoi {_ex}: {_c:.0%} ma thanh khoan co BuyCount')
+        check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
+                          'cao qua som, chay lai sau khi FireAnt cap nhat')
+except Exception as e:
+    # Khong do duoc = khong chung minh duoc du dong tien => chan, khong cho qua im lang.
+    check(False, f'khong do duoc do phu dong tien theo san: {type(e).__name__}: {e}')
+# (e) paper book: nothing booked without Condition 9, and the ledger reconciles
+for _p in (_pf.get('open') or []):
+    if _p.get('position_source') == 'live_scan_MUA':
+        check(_p.get('ordimb') is not None and _p['ordimb'] >= CFP.get('ordimb_min', 1.4),
+              f"so paper vao {_p['sym']} {_p['entry']} ma khong chung minh Dieu kien 9")
+_ck = _pf.get('checks')
+if _ck:
+    check(_ck.get('ok'), f'so paper doi soat truot: {_ck}')
+# (f) evidence shown on the site must be labelled when produced under another config
+_arch = [k for k, v in (D.get('sweeps') or {}).items() if isinstance(v, dict) and v and not v.get('_current')]
+warn(not _arch, f'{len(_arch)} bang chung cu (cau hinh khac) — trang phai hien nhan LUU TRU: ' + ' '.join(_arch))
 
 # ---------- 9. bang thang ----------
 check(len(D['monthly']) > 60, f"bang thang chi co {len(D['monthly'])} thang")

@@ -536,6 +536,24 @@ if __name__ == "__main__":
     # Chua ghi de funda_raw2.json o thoi diem nay.
     # --------------------------------------------------------
 
+    # CASH FLOW guard (audit 23/09/2026): a missing CF statement makes cfo_ttm
+    # None, and risk_gate() then SILENTLY lets the stock through the CFO veto.
+    no_cf = [s for s, v in res.items() if not v["cf"]]
+    print(f"  thieu luu chuyen tien te: {len(no_cf)} ma ({len(no_cf) / len(res):.1%})")
+    try:
+        import data_health as _dh
+        _dh.put('vietcap', dict(
+            source='Vietcap IQ', status=('OK' if (len(no_is) / len(res) <= MAX_MISSING_IS
+                                                 and len(no_cf) / len(res) <= MAX_MISSING_IS) else 'FAIL'),
+            expected=len(u), received=len(res), coverage=round(1 - len(no_is) / len(res), 4),
+            missing_is=len(no_is), missing_cf=len(no_cf), missing_ratio=len(no_ra),
+            missing_sample=sorted(set(no_is) | set(no_cf))[:40],
+            last_error=(_err_counts.most_common(1)[0][0] if _err_counts else None)))
+    except Exception as e:
+        print('data_health:', e)
+    if len(no_cf) / len(res) > MAX_MISSING_IS:
+        sys.exit(f"HONG: {len(no_cf)} ma thieu luu chuyen tien te — cong CFO se bi vo hieu am tham. "
+                 "KHONG GHI DE funda_raw2.json.")
     missing_ratio = (
         len(no_is)
         / len(res)

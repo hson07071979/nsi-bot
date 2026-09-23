@@ -62,6 +62,7 @@ function pageFlow(root){
   }
   root.innerHTML=`
   <h1>Dòng tiền lớn</h1>
+  ${archBanner(['s2','s3'])}
 
   <h2>Cách đo mới: cỡ lệnh mua so với cỡ lệnh bán</h2>
   <div class="card">

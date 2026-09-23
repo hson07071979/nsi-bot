@@ -261,6 +261,21 @@ function renderLiveBar() {
   const mua = L.hits.filter(h => h.level === 'MUA');
   const sap = L.hits.filter(h => h.level === 'SAP_DU');
 
+  // DỮ LIỆU THIẾU ≠ KHÔNG CÓ TÍN HIỆU (audit 23/09/2026). Máy chủ ghi status +
+  // source_health; quét thiếu mã thì phải nói thẳng, không được hiện "0 tín hiệu".
+  const sv = LIVE.server || {};
+  const sh = sv.source_health || {};
+  if (sv.status === 'DATA_DEGRADED') {
+    el2.className = 'livebar alert';
+    el2.innerHTML = `<span class="ldot"></span>
+      <b>DỮ LIỆU THIẾU — chưa kết luận được</b>
+      <span>máy chủ quét được ${sh.scanned ?? '?'}/${sh.expected ?? '?'} mã (${Math.round((sh.coverage || 0) * 100)}%)${
+        sh.spec_ok === false ? ' · thiếu đặc tả tín hiệu từ bản dựng tối qua' : ''}</span>
+      <span class="lmuted">"không có tín hiệu" lúc này KHÔNG có nghĩa là không có mã nào đạt · ${hhmm(sv.asof)}</span>
+      ${mua.length ? `<b>${mua.length} mã đủ điểm mua: ${mua.map(h => h.sym).join(' · ')}</b>` : ''}`;
+    return;
+  }
+
   if (mua.length) {
     el2.className = 'livebar alert';
     el2.innerHTML = `<span class="ldot"></span>
@@ -482,7 +497,8 @@ function tinhLaiTinHieu() {
   Object.keys(R).forEach(sym => {
     const t = L[sym], r = R[sym];
     if (!t || !r || !r.price || !r.ref) return;
-    if (t.state !== 'cho' && t.state !== 'fa') return;
+    const _sv = ((LIVE.server || {}).hits || []).some(h => h.sym === sym && h.level === 'MUA' && h.prod_ok);
+    if (t.state !== 'cho' && t.state !== 'fa' && !_sv) return;
     const pct = r.price / r.ref - 1;
     const volr = t.vma20 ? r.vol / t.vma20 : 0;
     // Điều kiện 7 — cỡ lệnh mua so cỡ lệnh bán. Phải có, không thì lớp real-time
@@ -495,14 +511,16 @@ function tinhLaiTinHieu() {
     const cond = {
       'Biên độ tăng giá': pct * 100 >= t.thr,
       'Khối lượng ≥ 2× TB20': r.vol >= t.need_vol,
-      'GTGD ≥ 15 tỷ': r.tv >= 15e9,
+      'GTGD ≥ 15 tỷ': r.tv >= ((D.cfg_prod && D.cfg_prod.gtgd_min) || 15e9),
       'Đóng cửa nửa trên nến': r.hi > r.lo ? r.price >= (r.hi + r.lo) / 2 : true,
       [`Cỡ lệnh mua ≥ ${oiMin.toFixed(2)}× cỡ lệnh bán`]: oi >= oiMin,
     };
     const n = Object.values(cond).filter(Boolean).length;
     const cho = t.state === 'cho';
+    // MUA chỉ khi máy chủ (signal_spec.py) đã chứng minh đủ mọi điều kiện PROD.
+    const sv = ((LIVE.server || {}).hits || []).find(h => h.sym === sym && h.level === 'MUA' && h.prod_ok);
     let lvl = null;
-    if (cho && n === 5) lvl = 'MUA';
+    if (sv) lvl = 'MUA';
     else if (cho && n >= 4) lvl = 'SAP_DU';
     else if (pct * 100 >= (LIVE.data || {}).de_mat_pct || pct * 100 >= 2.5) lvl = 'DE_MAT';
     else if (cho && (volr >= 1.5 || pct * 100 >= t.thr * 0.5)) lvl = 'THEO_DOI';

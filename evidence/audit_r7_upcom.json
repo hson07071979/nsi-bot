@@ -1,0 +1,127 @@
+{
+ "meta": {
+  "git_sha": "eeee39ca4e0dc35c8ba969964ecadb8c7bccddca",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "4cafdd187f59",
+  "generated": "2026-09-23T20:02:05Z",
+  "experiment_version": "audit-2026-09-23",
+  "status": "CURRENT"
+ },
+ "base": {
+  "name": "PROD",
+  "metrics": {
+   "trades": 141,
+   "per_year": 18.3,
+   "total_return": 5.791,
+   "cagr": 0.2823,
+   "maxdd": 0.0945,
+   "winrate": 0.461,
+   "avg_win": 22.5,
+   "avg_loss": -2.71,
+   "rr": 8.31,
+   "pf": 5.62,
+   "expectancy": 8.91,
+   "sharpe": 1.89,
+   "final_nav": 6791023104
+  },
+  "deal_metrics": {
+   "deals": 116,
+   "winrate": 0.3793,
+   "avg_win": 25.81,
+   "avg_loss": -2.59,
+   "rr": 9.98,
+   "pf": 5.73,
+   "expectancy": 8.18
+  },
+  "unique_deals": 116,
+  "p2019_2022": {
+   "ret": 1.4528,
+   "maxdd": 0.0751,
+   "sharpe": 2.0,
+   "pf": 6.67
+  },
+  "p2023_2026": {
+   "ret": 1.7687,
+   "maxdd": 0.0945,
+   "sharpe": 1.85,
+   "pf": 5.35
+  },
+  "yearly": {
+   "2019": 0.0162,
+   "2020": 0.473,
+   "2021": 0.6811,
+   "2022": -0.0253,
+   "2023": 0.0046,
+   "2024": 0.2857,
+   "2025": 0.6901,
+   "2026": 0.2683
+  },
+  "concentration": {
+   "top1": 0.23,
+   "top3": 0.415,
+   "top5": 0.555,
+   "top6": 0.603,
+   "top10": 0.763,
+   "top20": 0.921
+  }
+ },
+ "alt": {
+  "name": "PROD, TOP-N without UPCOM-today names",
+  "metrics": {
+   "trades": 144,
+   "per_year": 18.7,
+   "total_return": 5.6438,
+   "cagr": 0.2787,
+   "maxdd": 0.0945,
+   "winrate": 0.4514,
+   "avg_win": 22.5,
+   "avg_loss": -2.76,
+   "rr": 8.15,
+   "pf": 5.37,
+   "expectancy": 8.64,
+   "sharpe": 1.87,
+   "final_nav": 6643790336
+  },
+  "deal_metrics": {
+   "deals": 119,
+   "winrate": 0.3697,
+   "avg_win": 25.81,
+   "avg_loss": -2.65,
+   "rr": 9.75,
+   "pf": 5.47,
+   "expectancy": 7.87
+  },
+  "unique_deals": 119,
+  "p2019_2022": {
+   "ret": 1.4408,
+   "maxdd": 0.0788,
+   "sharpe": 1.98,
+   "pf": 6.45
+  },
+  "p2023_2026": {
+   "ret": 1.722,
+   "maxdd": 0.0945,
+   "sharpe": 1.82,
+   "pf": 5.09
+  },
+  "yearly": {
+   "2019": 0.0162,
+   "2020": 0.473,
+   "2021": 0.6742,
+   "2022": -0.026,
+   "2023": 0.0045,
+   "2024": 0.2641,
+   "2025": 0.6899,
+   "2026": 0.2685
+  },
+  "concentration": {
+   "top1": 0.229,
+   "top3": 0.414,
+   "top5": 0.555,
+   "top6": 0.603,
+   "top10": 0.762,
+   "top20": 0.92
+  }
+ },
+ "avg_upcom_in_top120": 6.267106347897774
+}

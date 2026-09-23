@@ -86,16 +86,25 @@ V, TV = d['Volume'], d['TotalValue']
 
 # Voi tung deal, kiem PHIEN VAO LENH: gia dong cua co bang gia tran khong,
 # va khoi luong phien do co be bat thuong khong (dau hieu trang ben ban).
+# AUDIT 23/09/2026: count UNIQUE ENTRIES, not exit rows. A position that exits
+# in two pieces (1/3 + remainder) is ONE entry opportunity -> dedupe on
+# (symbol, entry_date) via dealstats.deals(). Ceiling threshold is exchange
+# specific (HOSE 7%, HNX 10%), not a flat 6.7% for everything.
+from dealstats import deals as _deals
+DEALS = _deals(r0['trades'])
+EXCH = {str(s): str(x) for s, x in zip(d['sym'], d['exch'])}
+def _ceil(sym):
+    return 0.097 if EXCH.get(sym) == 'HNX' else 0.067
 tran_cung = 0
 mong = 0
 chi_tiet = []
-for t in r0['trades']:
+for t in DEALS:
     i = idx_ngay.get(t['entry']); j = idx_ma.get(t['sym'])
     if i is None or j is None: continue
     px, pb = PX[i, j], PB[i, j]
     if not (px and pb) or np.isnan(px) or np.isnan(pb): continue
     pct = px / pb - 1
-    tran = pct >= 0.067                       # cham tran HOSE (7%) hoac gan
+    tran = pct >= _ceil(t['sym'])             # cham tran (HOSE 7% / HNX 10%) hoac gan
     vr = float(I['volr'][i, j]) if not np.isnan(I['volr'][i, j]) else 0
     if tran:
         tran_cung += 1
@@ -104,21 +113,21 @@ for t in r0['trades']:
             mong += 1
             chi_tiet.append(dict(sym=t['sym'], ngay=t['entry'], pct=round(pct * 100, 2),
                                  volr=round(vr, 2), pnl=t['pnl_pct']))
-n = len(r0['trades'])
-print(f"  {n} lenh · {tran_cung} lenh vao dung phien CHAM TRAN ({tran_cung/n:.0%})")
+n = len(DEALS)
+print(f"  {n} deal (vao lenh duy nhat) · {tran_cung} lenh vao dung phien CHAM TRAN ({tran_cung/n:.0%})")
 print(f"  trong do {mong} lenh co khoi luong < 3x TB20 — kha nang khong khop du ({mong/n:.0%})")
 
 # Mo phong: mot ty le X% so lenh cham tran KHONG khop duoc -> bo han lenh do.
 # Khong phai truot gia, ma la MAT LUON co hoi.
 print('\n  Mo phong bo lenh khong khop duoc (2.000 lan moi muc):')
 b2 = []
-p = np.array([t['pnl_pct'] for t in r0['trades']]) / 100.0
+p = np.array([t['pnl_pct'] for t in DEALS]) / 100.0
 la_tran = np.zeros(n, dtype=bool)
-for k, t in enumerate(r0['trades']):
+for k, t in enumerate(DEALS):
     i = idx_ngay.get(t['entry']); j = idx_ma.get(t['sym'])
     if i is None or j is None: continue
     px, pb = PX[i, j], PB[i, j]
-    if px and pb and not np.isnan(px) and not np.isnan(pb) and px / pb - 1 >= 0.067:
+    if px and pb and not np.isnan(px) and not np.isnan(pb) and px / pb - 1 >= _ceil(t['sym']):
         la_tran[k] = True
 # hieu chuan co vi the de duong von dung lai khop backtest that
 lo, hi = 1e-4, 1.0
@@ -151,7 +160,7 @@ print('=' * 74)
 print('B3 — SUC CHUA VON (mot lenh chiem bao nhieu % GTGD phien do)')
 print('=' * 74)
 gtgd = []
-for t in r0['trades']:
+for t in DEALS:
     i = idx_ngay.get(t['entry']); j = idx_ma.get(t['sym'])
     if i is None or j is None: continue
     tv = TV[i, j]
@@ -161,7 +170,9 @@ print(f"  GTGD phien vao lenh: trung vi {np.median(gtgd)/1e9:.0f} ty · "
       f"p25 {np.percentile(gtgd,25)/1e9:.0f} ty · p10 {np.percentile(gtgd,10)/1e9:.0f} ty")
 b3 = []
 for nav in (1e9, 5e9, 10e9, 50e9, 100e9, 500e9):
-    lenh = nav * PROD['base_size']                 # 42% NAV moi lenh
+    # co that khi vao lenh: base_size bi tran nganh 30% cat o den Xanh, nen
+    # dung co lon nhat THUC SU dat duoc (min(base_size, sector_cap)), khong phai 42%.
+    lenh = nav * min(PROD['base_size'], PROD.get('sector_cap', 0.30))
     ty = lenh / gtgd
     # nguyen tac thi truong: mot lenh vuot 10% GTGD phien la bat dau day gia
     qua = float((ty > 0.10).mean())
@@ -180,5 +191,10 @@ def _sach(o):
     if isinstance(o, (np.bool_,)):    return bool(o)
     return o
 
+try:
+    from research.common import meta as _meta
+    OUT['meta'] = _meta(dict(experiment_version='cong_b-2026-09-23-dedupe'))
+except Exception as _e:
+    print('meta skipped:', _e)
 json.dump(_sach(OUT), open('data/cong_b.json', 'w'), ensure_ascii=False)
 print('\nGHI data/cong_b.json')

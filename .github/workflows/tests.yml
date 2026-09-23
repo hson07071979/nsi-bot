@@ -1,0 +1,29 @@
+name: Kiểm thử (PR)
+
+# Chay tren moi PR va moi lan day nhanh khac main: bien dich toan bo Python,
+# kiem cu phap JavaScript cua trang, va chay bo test hoi quy (cac test can du
+# lieu thi tu bo qua khi khong co data/fa.npz). Khong cao du lieu, khong dang web.
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Cài thư viện (đã ghim phiên bản)
+        run: pip install -r requirements.txt
+      - name: Biên dịch toàn bộ Python
+        run: python -m compileall -q . -x '(^|/)(archive|out)/'
+      - name: Cú pháp JavaScript của trang
+        run: |
+          for f in site/*.js; do node -e "new Function(require('fs').readFileSync('$f','utf8'))" || { echo "LOI CU PHAP: $f"; exit 1; }; done
+      - name: Test hồi quy
+        run: python tests/test_regressions.py
