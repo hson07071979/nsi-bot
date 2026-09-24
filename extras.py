@@ -81,10 +81,12 @@ def candles(d, I, syms, nbar=260, trades=None):
         k = (t['sym'], t['entry'])
         if k not in seenB:
             seenB.add(k)
-            marks[t['sym']].append(('B', t['entry'], t.get('entry_raw', t.get('entry_px'))))
+            # (loai, ngay, gia THO, gia DIEU CHINH hien tai — cho nen tai tu VPS)
+            marks[t['sym']].append(('B', t['entry'], t.get('entry_raw', t.get('entry_px')),
+                                    (t['entry_px'] / 1.0015) if t.get('entry_px') else None))
             if t.get('pyr_date'):
-                marks[t['sym']].append(('B+', t['pyr_date'], t.get('pyr_raw')))
-        marks[t['sym']].append(('S', t['exit'], t.get('exit_raw', t.get('exit_px'))))
+                marks[t['sym']].append(('B+', t['pyr_date'], t.get('pyr_raw'), t.get('pyr_adj')))
+        marks[t['sym']].append(('S', t['exit'], t.get('exit_raw', t.get('exit_px')), t.get('exit_px')))
 
     out = {}
     for s in syms:
@@ -99,7 +101,7 @@ def candles(d, I, syms, nbar=260, trades=None):
                 continue
             v = float(d['Volume'][i, j]) if d['Volume'][i, j] == d['Volume'][i, j] else 0.0
             bars.append([cal[i], round(float(o) / 1000, 2), round(float(h) / 1000, 2),
-                         round(float(l) / 1000, 2), round(float(c) / 1000, 2), round(v / 1000)])
+                         round(float(l) / 1000, 2), round(float(c) / 1000, 2), round(v)])   # KL = so co phieu (cung don vi voi nguon VPS)
         if len(bars) < 30:
             continue
         ma = {}
@@ -109,7 +111,8 @@ def candles(d, I, syms, nbar=260, trades=None):
                 k = np.convolve(cl, np.ones(n) / n, mode='valid')
                 ma[f'ma{n}'] = [None] * (n - 1) + [round(float(x), 2) for x in k]
         seen = {b[0] for b in bars}
-        mk = [dict(t=k, d=dt, px=(round(float(px) / 1000, 2) if px else None))
-              for k, dt, px in marks.get(s, []) if dt in seen]
+        mk = [dict(t=k, d=dt, px=(round(float(px) / 1000, 2) if px else None),
+                   pxa=(round(float(pa) / 1000, 2) if pa else None))
+              for k, dt, px, pa in marks.get(s, []) if dt in seen]
         out[s] = dict(bars=bars, **ma, marks=mk)
     return out

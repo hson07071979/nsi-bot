@@ -246,10 +246,17 @@ try:
     import numpy as _np
     import engine2 as _E
     _d, _I, _, _ = _E.load()
-    _TV = _d['TotalValue'][-1]; _BC = _d['BuyCount'][-1]
+    _TV = _d['TotalValue'][-1]; _BC = _d['BuyCount'][-1]; _SC = _d['SellCount'][-1]
+    import csv as _csv
+    try:   # san HIEN TAI (fa.npz `exch` la san lich su suy ra: ACV UPCoM bi gan HOSE)
+        _cur = {r_['symbol']: {'HSX': 'HOSE'}.get(r_['exchange'], r_['exchange'])
+                for r_ in _csv.DictReader(open('data/by_exchange.csv', encoding='utf-8'))}
+    except Exception:
+        _cur = {}
+    _exn = _np.array([_cur.get(str(s_), str(e_)) for s_, e_ in zip(_d['sym'], _d['exch'])])
     for _ex in ('HOSE', 'HNX'):
-        _m = (_d['exch'] == _ex) & (_TV >= 5e9)
-        _c = float(((_BC > 0) & _m).sum()) / max(1, int(_m.sum()))
+        _m = (_exn == _ex) & (_TV >= 5e9)
+        _c = float(((_BC > 0) & (_SC > 0) & _m).sum()) / max(1, int(_m.sum()))
         print(f'dong tien phien cuoi {_ex}: {_c:.0%} ma thanh khoan co BuyCount')
         check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
                           'cao qua som, chay lai sau khi FireAnt cap nhat')
@@ -258,7 +265,7 @@ except Exception as e:
     check(False, f'khong do duoc do phu dong tien theo san: {type(e).__name__}: {e}')
 # (e) paper book: nothing booked without Condition 9, and the ledger reconciles
 for _p in (_pf.get('open') or []):
-    if _p.get('position_source') == 'live_scan_MUA':
+    if _p.get('position_source') in ('live_scan_MUA', 'engine_signal'):
         check(_p.get('ordimb') is not None and _p['ordimb'] >= CFP.get('ordimb_min', 1.4),
               f"so paper vao {_p['sym']} {_p['entry']} ma khong chung minh Dieu kien 9")
 _ck = _pf.get('checks')

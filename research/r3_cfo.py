@@ -4,7 +4,7 @@ from collections import Counter
 from common import pmap, line, meta, run
 import engine2 as E, engine as EN
 from dealstats import deals
-CUR=dict(pyr_caps=True,max_n_in_loop=True,use_cond8=False)
+CUR=dict()   # = PROD (pyr_caps=False, max_n_in_loop=True, use_cond8=False) since 24/09
 def c(**k): x=dict(CUR); x.update(k); return x
 J=[]
 for sl in (0.0,0.002):
@@ -49,4 +49,4 @@ print('CFO-only cohort:',json.dumps(out['cohort'],ensure_ascii=False))
 print('others        :',json.dumps({k:v for k,v in out['rest'].items() if k not in('sectors','years')},ensure_ascii=False))
 print('cohort top:',[(x['sym'],x['entry'],x['pnl_pct']) for x in out['cohort_deals'][:8]])
 print('cohort worst:',[(x['sym'],x['entry'],x['pnl_pct']) for x in sorted(coh,key=lambda x:x['pnl_pct'])[:5]])
-json.dump(dict(meta=meta(dict(base='PROD+pyr_caps+max_n_in_loop+cond8off')),runs=R,cohort=out),open('evidence/audit_r3_cfo.json','w'),ensure_ascii=False,indent=1,default=str)
+json.dump(dict(meta=meta(dict(base='PROD')),runs=R,cohort=out),open('evidence/audit_r3_cfo.json','w'),ensure_ascii=False,indent=1,default=str)

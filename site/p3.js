@@ -104,17 +104,17 @@ function pageOverview(root){
     <p style="margin-bottom:0">Kết luận thật lòng: <b>đây là hệ bắt sóng lớn, không phải hệ đánh mọi thị trường.</b> Nó ăn đậm 2020, 2021, 2025 và đi ngang 2022–2023. Nếu cần một hệ có lãi đều mọi năm thì phải là hệ khác.</p>
   </div>
 
-  <div class="note" style="margin-top:22px"><b>Vũ trụ giao dịch hiện tại:</b> chỉ TOP ${cpTop()} mã thanh khoản nhất, xếp hạng lại theo <i>từng phiên</i> bằng GTGD bình quân 20 phiên — không dùng danh sách VN30/VN100 của hôm nay áp ngược lại quá khứ (đó là nhìn trước). So với chạy toàn thị trường: lợi nhuận ${sg(M.total_return)} so với +517,6% và sụt giảm tối đa ${pct(M.maxdd)} so với 12,8%. Ngưỡng \"lãi lớn\" bật trailing MA10 chốt nhanh đã hạ từ 25% xuống <b>19%</b> — nằm giữa vùng phẳng 18–22% và cho drawdown thấp nhất toàn lưới; từ 24% trở lên drawdown nhảy lên 13%.</div>`;
+  <div class="note" style="margin-top:22px"><b>Vũ trụ giao dịch hiện tại:</b> chỉ TOP ${cpTop()} mã thanh khoản nhất, xếp hạng lại theo <i>từng phiên</i> bằng GTGD bình quân 20 phiên — không dùng danh sách VN30/VN100 của hôm nay áp ngược lại quá khứ (đó là nhìn trước). So với chạy toàn thị trường: lợi nhuận ${sg(M.total_return)} so với ${sg((((D.presets||{}).toanTT||{}).metrics||{}).total_return||0)} và sụt giảm tối đa ${(M.maxdd*100).toFixed(2).replace('.',',')}% so với ${(((((D.presets||{}).toanTT||{}).metrics||{}).maxdd||0)*100).toFixed(2).replace('.',',')}%. Ngưỡng \"lãi lớn\" bật trailing MA10 chốt nhanh đã hạ từ 25% xuống <b>19%</b> — nằm giữa vùng phẳng 18–22% và cho drawdown thấp nhất toàn lưới; từ 24% trở lên drawdown nhảy lên 13%.</div>`;
 
   document.getElementById('kpirow').innerHTML =
     kpi('Tổng lợi nhuận', sg(M.total_return), `${(dates.length/250).toFixed(1)} năm · NAV ${vnd(M.final_nav)}`, cls(M.total_return))
   + kpi('CAGR', sg(M.cagr), `VN-Index ${sg(BM.cagr)}`, cls(M.cagr))
-  + kpi('Drawdown tối đa', '−'+pct(M.maxdd), `VN-Index −${pct(BM.mdd)}`, 'neg')
+  + kpi('Drawdown tối đa', '−'+(M.maxdd*100).toFixed(2).replace('.',',')+'%', `VN-Index −${pct(BM.mdd)}`, 'neg')
   + kpi('Profit Factor', M.pf, 'lãi gộp / lỗ gộp')
   // Ghi ca so VI THE ngay duoi, de khong ai phai doi chieu hai trang moi hieu
   // vi sao trang Backtest ghi mot con so khac (mot vi the chot 1/3 = hai dong lenh).
   + kpi('Số lệnh', M.trades, ((P.deal_metrics||{}).deals
-        ? `${M.per_year}/năm · ${(P.deal_metrics||{}).deals} vị thế`
+        ? `${M.per_year} dòng lệnh/năm · ${(P.deal_metrics||{}).deals} vị thế (${((P.deal_metrics||{}).deals/(dates.length/250)).toFixed(1)}/năm)`
         : `${M.per_year} lệnh mỗi năm`))
   + kpi('Tỷ lệ thắng', pct(M.winrate), `+${M.avg_win}% / ${M.avg_loss}%`)
   + kpi('Sharpe', M.sharpe, 'trên chuỗi NAV ngày');

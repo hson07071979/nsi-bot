@@ -2,7 +2,7 @@ import sys,os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import json, numpy as np
 from common import pmap, line, meta, run
 import engine2 as E
-CUR=dict(pyr_caps=True,max_n_in_loop=True,use_cond8=False)
+CUR=dict()   # = PROD (pyr_caps=False, max_n_in_loop=True, use_cond8=False) since 24/09
 def c(**k): x=dict(CUR); x.update(k); return x
 J=[]
 for rm in E.RANKERS:
@@ -51,5 +51,5 @@ def bucket(key,hb=True):
     return {k:(len(v),round(float(np.mean(v))*100,1) if v else None) for k,v in b.items()}
 for k,hb in (('sc',True),('base',False),('oi',True),('volr',True),('rs',True),('pct',True)):
     print(f'  rank bucket by {k:5s} (0=worst third..2=best): n,f20%:',bucket(k,hb))
-json.dump(dict(meta=meta(dict(base='PROD+pyr_caps+max_n_in_loop+cond8off')),runs=R,miss20=agg,competition=comp),
+json.dump(dict(meta=meta(dict(base='PROD')),runs=R,miss20=agg,competition=comp),
           open('evidence/audit_r4_rank.json','w'),ensure_ascii=False,indent=1,default=str)

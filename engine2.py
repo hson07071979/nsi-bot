@@ -59,7 +59,7 @@ CFG = dict(
 )
 
 class Pos:
-    __slots__=('sym','j','ei','epx','sh','peak','b20','b10','part','pyr','sector','bo_low','stage','oi_ok','tgt','eraw','pyr_d','pyr_raw')
+    __slots__=('sym','j','ei','epx','sh','peak','b20','b10','part','pyr','sector','bo_low','stage','oi_ok','tgt','eraw','pyr_d','pyr_raw','pyr_adj')
     def __init__(s,**kw):
         for k,v in kw.items(): setattr(s,k,v)
 
@@ -289,7 +289,7 @@ def run(cfg=None, log=True):
                   # RAW traded prices for chart markers (candles are raw). entry_px /
                   # exit_px above stay ADJUSTED (+fees) because P&L is computed on them.
                   entry_raw=round(float(getattr(p,'eraw',np.nan)),2),exit_raw=round(float(PX[i,j]),2),
-                  pyr_date=getattr(p,'pyr_d',None),pyr_raw=getattr(p,'pyr_raw',None),
+                  pyr_date=getattr(p,'pyr_d',None),pyr_raw=getattr(p,'pyr_raw',None),pyr_adj=getattr(p,'pyr_adj',None),
                   pnl_pct=round(float(px*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
                   pnl_vnd=round(float(got-sh*p.epx)),reason=r,
                   light=R['light'][p.ei],peak=round(float(p.peak)*100,1)))
@@ -381,16 +381,21 @@ def run(cfg=None, log=True):
                 cash-=sh*px
                 # raw price actually paid, same bar as `fill` (FireAnt AdjRatio = PriceClose/AdjClose)
                 _ar=d['AdjRatio'][ei,j]
-                _raw=round(float(fill*_ar),0) if (_ar==_ar and _ar>0) else float(PX[ei,j])
+                if mode in ('close','next_open','signal_high'):
+                    _raw={'close':d['PriceClose'],'next_open':d['PriceOpen'],'signal_high':d['PriceHigh']}[mode][ei,j]
+                    _raw=float(_raw) if _raw==_raw else float(fill*_ar)
+                else:
+                    _raw=round(float(fill*_ar)/10)*10 if (_ar==_ar and _ar>0) else float(PX[ei,j])
                 pos[sym]=Pos(sym=sym,j=int(j),ei=ei,epx=float(px),sh=sh,peak=0.0,b20=0,b10=0,
                              part=False,pyr=False,sector=secn,bo_low=float(AL_[i,j]),
                              stage=(1 if two else 0), oi_ok=rw['oi_ok'], tgt=float(tgt),
-                             eraw=_raw, pyr_d=None, pyr_raw=None)
+                             eraw=_raw, pyr_d=None, pyr_raw=None, pyr_adj=None)
                 if day_log is not None: day_log[-1].update(taken=True,why=None,size=round(sh*px/nav,4))
                 if log: sigs.append(dict(date=str(cal[i]),sym=sym,score=round(float(sc),1),
                     px=round(float(PX[i,j])/1000,2),light=R['light'][i],sector=secn,pts=pts,
                     size_pct=round(sh*px/nav*100,2),theo_pct=round(A['theoretical']/nav*100,2),
-                    binding=A['binding'],ordimb=round(rw['oi'],3)))
+                    binding=A['binding'],ordimb=round(rw['oi'],3),rmul=float(rmul),
+                    base=round(float(rw['base']),4),raw_px=float(PX[i,j]),mode=mode))
             if day_log is not None: cands_log.append(dict(date=str(cal[i]),i=i,light=R['light'][i],cands=day_log))
         # ---------- LOP 9: PYRAMID ----------
         for sym,p in list(pos.items()):
@@ -413,7 +418,7 @@ def run(cfg=None, log=True):
                 if add<100: continue
             elif add<100 or (px*p.sh+add*px)>nav*C['max_pos'] or add*c2>cash: continue
             p.epx=(p.epx*p.sh+c2*add)/(p.sh+add); cash-=add*c2; p.sh+=add; p.pyr=True
-            p.pyr_d=str(cal[i]); p.pyr_raw=round(float(PX[i,p.j]),2)
+            p.pyr_d=str(cal[i]); p.pyr_raw=round(float(PX[i,p.j]),2); p.pyr_adj=round(float(px),2)
     return dict(eq=eq,trades=trades,signals=sigs,R=R,blocked=blocked,pos=pos,
                 nav=nav,cash=cash,cal=cal,d=d,I=I,cfg=C,cb_log=cb_log,cands=cands_log)
 

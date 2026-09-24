@@ -10,8 +10,8 @@ import engine2 as E, lookup
 from vn300 import build_topn
 from common import run, meta
 from produce2 import PROD
-CUR=dict(PROD,pyr_caps=True,max_n_in_loop=True,use_cond8=False)
-s,r=run(dict(pyr_caps=True,max_n_in_loop=True,use_cond8=False),'CUR',keep=True)
+CUR=dict(PROD)
+s,r=run({},'CUR',keep=True)
 d,I,tls,sect=E.load()
 C=dict(E.CFG); C.update(CUR)
 TOPN=build_topn(I,C['top_n'])

@@ -10,7 +10,7 @@ function pageSystem(root){
    [6,'Lọc ngành','Danh mục có bị dồn quá nhiều vào một ngành không?','Trần 30% NAV cho một nhóm ngành ICB.','B'],
    [7,'Cỡ vị thế','Nên bỏ bao nhiêu tiền vào?',`<b>${cpSo(cpV('base_size',0.42)*100)}% NAV</b> × hệ số đèn (Xanh 1,0 · Vàng 0,6 · Cam 0,35 · Đỏ 0,2) × hệ số nền (1,2 / 1,0) × hệ số rủi ro (cờ vàng 0,5), rồi cắt bởi các trần: <b>${cpSo(cpV('max_pos',0.5)*100)}% NAV</b> một mã, <b>${cpSo(cpV('sector_cap',0.30)*100)}% NAV</b> một ngành, <b>${cpSo(cpV('max_total',1)*100)}% NAV</b> toàn danh mục, tiền mặt, tối đa <b>${cpV('max_pos_n',12)} mã</b>, sàn ${cpSo(cpV('min_size',0.02)*100)}% NAV. <b style="color:var(--warn)">Thực tế: trần ngành ${cpSo(cpV('sector_cap',0.30)*100)}% luôn cắt trước khi đèn Xanh cho ra ${cpSo(cpV('base_size',0.42)*100)}% — lệnh mới lớn nhất là ${cpSo(Math.min(cpV('base_size',0.42),cpV('sector_cap',0.30))*100)}% NAV.</b> Cùng một bộ chia vốn (allocator.py) dùng cho backtest, sổ paper, chuông Telegram và trang này.`,'A'],
    [8,'Bộ thoát','Khi nào thì ra?','Kiểm tra theo đúng thứ tự ưu tiên. Đây là nơi tiền thực sự được kiếm — xem bảng bên dưới.','A'],
-   [9,'Pyramid','Có nên gia tăng vị thế không?','Phiên 4–7 sau điểm mua, đang lãi ≥ 10%, giá ≥ 99,9% đỉnh 10 phiên, chỉ 1 lần, chỉ khi đèn Xanh. Thêm tối đa 50% vị thế gốc — <b>nhưng không bao giờ vượt trần mỗi mã, trần ngành, trần tổng vốn hay tiền mặt</b> (sửa 23/09/2026: bản trước chỉ xét trần mỗi mã và tiền).','B'],
+   [9,'Pyramid','Có nên gia tăng vị thế không?','Phiên 4–7 sau điểm mua, đang lãi ≥ 10%, giá ≥ 99,9% đỉnh 10 phiên, chỉ 1 lần, chỉ khi đèn Xanh. Thêm 50% vị thế gốc nếu sau khi nhồi mã đó vẫn ≤ trần mỗi mã (50% NAV) và đủ tiền mặt. <b>Trần ngành 30% chỉ áp cho lệnh mới, không áp cho lệnh nhồi</b> — đó là luật đang chạy (kiểm toán 23/09 đo: bắt lệnh nhồi tôn trọng cả trần ngành thì +696,8% còn +579,1%; anh Sơn giữ luật cũ).','B'],
   ];
   // Đọc thẳng từ cấu hình bộ máy (D.cfg_prod). Cột cuối nói luật nào ĐANG CHẠY,
   // luật nào ĐÃ TẮT — bản cũ liệt kê cả luật đã tắt như thể đang chạy, người đọc
@@ -54,7 +54,7 @@ function pageSystem(root){
   <div class="card">${gates.map(([n,t,q,d,g])=>`<div class="gate"><div class="gnum">${n}</div><div>
     <h4>${t}<span class="tag ${g}">${g}</span></h4><p>${d}</p></div></div>`).join('')}</div>
 
-  <h2>Cửa 4 — tám điều kiện của một điểm mua</h2>
+  <h2>Cửa 4 — các điều kiện của một điểm mua (xem cột Đang chạy)</h2>
   
   <div class="card"><table><thead><tr><th>#</th><th>Điều kiện</th><th>Ngưỡng</th><th>Hạng</th><th>Trạng thái</th></tr></thead><tbody>
    ${conds.map(([i,n,v,g,on])=>`<tr${on?'':' style="opacity:.55"'}><td>${i}</td><td class="sym">${n}</td><td>${v}</td><td><span class="tag ${g}">${g}</span></td><td>${cpNhan(on)}</td></tr>`).join('')}</tbody></table>
@@ -73,13 +73,12 @@ function pageSystem(root){
     <div class="card"><h3 style="margin-top:0">Chốt lời cứng ở 18–20%</h3>
       <p style="font-size:14px">Chỉ 10,3% số lệnh tạo ra gần như toàn bộ lợi nhuận, với lãi trung vị +26,8%. Chốt ở mốc 18–20% là bán đúng ngay trước khi nhóm này bung ra. A/B test: tỷ lệ thắng rơi gần một nửa nhưng kỳ vọng <b class="pos">gấp ba</b>. <b>Đã bỏ</b> (trừ khi volume &gt; 4,5×).</p></div>
     <div class="card"><h3 style="margin-top:0">Phân bổ 25% NAV một mã</h3>
-      <p style="font-size:14px">Công thức Kelly f* = W − (1−W)/R với W=40%, R=3,0 cho ra <b>20%</b>, không phải 25%. Full-Kelly là mức tối đa lý thuyết; thực hành chuẩn là nửa Kelly, tức khoảng 10% NAV.
-      <b style="color:var(--warn)">Nhưng cấu hình đang chạy là 42% NAV — hơn hai lần full-Kelly.</b>
+      <p style="font-size:14px">Công thức Kelly f* = W − (1−W)/R. Với số hiện tại (theo vị thế: W = ${Math.round(((D.prod.deal_metrics||{}).winrate||0)*1000)/10}%, R = ${String((D.prod.deal_metrics||{}).rr||'—').replace('.',',')}) full-Kelly ≈ <b>${(()=>{const w=(D.prod.deal_metrics||{}).winrate||0,r=(D.prod.deal_metrics||{}).rr||1;return (Math.max(0,w-(1-w)/r)*100).toFixed(1).replace('.',',')})()}%</b> NAV; nửa Kelly bằng một nửa số đó.
+      <b style="color:var(--warn)">Cỡ lý thuyết 42% NAV, nhưng mỗi lệnh mới thực tế tối đa 30% (trần ngành cắt).</b>
       Đây là lựa chọn đánh đổi rủi ro lấy lợi nhuận, không phải mức an toàn theo Kelly.
-      Quét cỡ vị thế cho thấy Sharpe đạt đỉnh ở 30% NAV (1,77) chứ không phải 42% (1,71):
-      42% mua thêm lợi nhuận bằng cách trả Profit Factor 4,70 xuống 4,04.</p></div>
+      <span class="muted">(Số đo CŨ, cấu hình trước 21/09:)</span> quét cỡ vị thế khi đó cho thấy Sharpe đỉnh ở 30% NAV (1,77) chứ không phải 42% (1,71). <b>Thực tế đang chạy:</b> trần ngành 30% cắt mọi lệnh mới về tối đa 30% NAV; quét lại 24/09: bỏ trần ngành (để 42%) còn +610,8% so với +696,8%.</p></div>
   </div>
 
-  <div class="note" style="margin-top:22px"><b>Điều bạn cần chấp nhận trước khi dùng hệ thống này:</b> tỷ lệ thắng của hệ nằm quanh 30–42%. Bạn sẽ thấy chuỗi 5–6 lệnh lỗ liên tiếp. Mỗi lệnh lỗ chỉ mất 2–4%, nhưng cảm giác thì rất khó chịu. Nếu bạn tắt hệ thống sau chuỗi thua đó, bạn sẽ bỏ lỡ đúng nhóm lệnh tạo ra toàn bộ lợi nhuận.</div>
+  <div class="note" style="margin-top:22px"><b>Điều bạn cần chấp nhận trước khi dùng hệ thống này:</b> tỷ lệ thắng của hệ khoảng ${Math.round(((D.prod.deal_metrics||{}).winrate||0.38)*100)}% theo vị thế (${Math.round((D.prod.metrics.winrate||0.46)*100)}% theo dòng lệnh). Bạn sẽ thấy chuỗi 5–6 lệnh lỗ liên tiếp. Mỗi lệnh lỗ chỉ mất 2–4%, nhưng cảm giác thì rất khó chịu. Nếu bạn tắt hệ thống sau chuỗi thua đó, bạn sẽ bỏ lỡ đúng nhóm lệnh tạo ra toàn bộ lợi nhuận.</div>
   `;
 }

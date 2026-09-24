@@ -1,0 +1,592 @@
+{
+ "meta": {
+  "git_sha": "88f758c6df33d983c05f5d1164633a566e95f287",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "89c720ebf701",
+  "generated": "2026-09-23T21:14:24Z",
+  "experiment_version": "audit-2026-09-23",
+  "status": "CURRENT"
+ },
+ "runs": [
+  {
+   "name": "no sector cap, base 0.26",
+   "metrics": {
+    "trades": 148,
+    "per_year": 19.2,
+    "total_return": 5.205,
+    "cagr": 0.2674,
+    "maxdd": 0.0962,
+    "winrate": 0.4459,
+    "avg_win": 21.78,
+    "avg_loss": -2.69,
+    "rr": 8.1,
+    "pf": 6.25,
+    "expectancy": 8.22,
+    "sharpe": 1.96,
+    "final_nav": 6205015552
+   },
+   "deal_metrics": {
+    "deals": 120,
+    "winrate": 0.375,
+    "avg_win": 24.53,
+    "avg_loss": -2.59,
+    "rr": 9.48,
+    "pf": 6.39,
+    "expectancy": 7.58
+   },
+   "unique_deals": 120,
+   "p2019_2022": {
+    "ret": 1.6451,
+    "maxdd": 0.0847,
+    "sharpe": 2.17,
+    "pf": 9.2
+   },
+   "p2023_2026": {
+    "ret": 1.3458,
+    "maxdd": 0.0962,
+    "sharpe": 1.79,
+    "pf": 5.5
+   },
+   "yearly": {
+    "2019": 0.015,
+    "2020": 0.5415,
+    "2021": 0.7202,
+    "2022": -0.0172,
+    "2023": -0.0049,
+    "2024": 0.1634,
+    "2025": 0.6349,
+    "2026": 0.2394
+   },
+   "concentration": {
+    "top1": 0.252,
+    "top3": 0.467,
+    "top5": 0.603,
+    "top6": 0.653,
+    "top10": 0.777,
+    "top20": 0.928
+   }
+  },
+  {
+   "name": "no sector cap, base 0.28",
+   "metrics": {
+    "trades": 148,
+    "per_year": 19.2,
+    "total_return": 5.9601,
+    "cagr": 0.2864,
+    "maxdd": 0.1012,
+    "winrate": 0.4459,
+    "avg_win": 21.78,
+    "avg_loss": -2.69,
+    "rr": 8.1,
+    "pf": 6.35,
+    "expectancy": 8.22,
+    "sharpe": 1.98,
+    "final_nav": 6960068608
+   },
+   "deal_metrics": {
+    "deals": 120,
+    "winrate": 0.375,
+    "avg_win": 24.53,
+    "avg_loss": -2.59,
+    "rr": 9.49,
+    "pf": 6.49,
+    "expectancy": 7.58
+   },
+   "unique_deals": 120,
+   "p2019_2022": {
+    "ret": 1.8044,
+    "maxdd": 0.088,
+    "sharpe": 2.18,
+    "pf": 9.37
+   },
+   "p2023_2026": {
+    "ret": 1.4819,
+    "maxdd": 0.1012,
+    "sharpe": 1.82,
+    "pf": 5.61
+   },
+   "yearly": {
+    "2019": 0.0161,
+    "2020": 0.5879,
+    "2021": 0.7705,
+    "2022": -0.0183,
+    "2023": -0.0054,
+    "2024": 0.1814,
+    "2025": 0.6914,
+    "2026": 0.2488
+   },
+   "concentration": {
+    "top1": 0.259,
+    "top3": 0.471,
+    "top5": 0.611,
+    "top6": 0.66,
+    "top10": 0.786,
+    "top20": 0.933
+   }
+  },
+  {
+   "name": "no sector cap, base 0.30",
+   "metrics": {
+    "trades": 147,
+    "per_year": 19.1,
+    "total_return": 6.7708,
+    "cagr": 0.3049,
+    "maxdd": 0.106,
+    "winrate": 0.4422,
+    "avg_win": 21.76,
+    "avg_loss": -2.69,
+    "rr": 8.09,
+    "pf": 6.47,
+    "expectancy": 8.12,
+    "sharpe": 2.0,
+    "final_nav": 7770759168
+   },
+   "deal_metrics": {
+    "deals": 120,
+    "winrate": 0.375,
+    "avg_win": 24.26,
+    "avg_loss": -2.59,
+    "rr": 9.38,
+    "pf": 6.62,
+    "expectancy": 7.48
+   },
+   "unique_deals": 120,
+   "p2019_2022": {
+    "ret": 1.9507,
+    "maxdd": 0.0912,
+    "sharpe": 2.19,
+    "pf": 9.42
+   },
+   "p2023_2026": {
+    "ret": 1.6335,
+    "maxdd": 0.106,
+    "sharpe": 1.84,
+    "pf": 5.78
+   },
+   "yearly": {
+    "2019": 0.0172,
+    "2020": 0.6359,
+    "2021": 0.8065,
+    "2022": -0.0184,
+    "2023": -0.0057,
+    "2024": 0.2043,
+    "2025": 0.7481,
+    "2026": 0.2581
+   },
+   "concentration": {
+    "top1": 0.265,
+    "top3": 0.476,
+    "top5": 0.617,
+    "top6": 0.666,
+    "top10": 0.793,
+    "top20": 0.937
+   }
+  },
+  {
+   "name": "no sector cap, base 0.32",
+   "metrics": {
+    "trades": 144,
+    "per_year": 18.7,
+    "total_return": 5.9578,
+    "cagr": 0.2863,
+    "maxdd": 0.1064,
+    "winrate": 0.4514,
+    "avg_win": 21.97,
+    "avg_loss": -2.61,
+    "rr": 8.41,
+    "pf": 6.12,
+    "expectancy": 8.48,
+    "sharpe": 1.93,
+    "final_nav": 6957772288
+   },
+   "deal_metrics": {
+    "deals": 118,
+    "winrate": 0.3814,
+    "avg_win": 24.59,
+    "avg_loss": -2.55,
+    "rr": 9.66,
+    "pf": 6.26,
+    "expectancy": 7.8
+   },
+   "unique_deals": 118,
+   "p2019_2022": {
+    "ret": 1.5733,
+    "maxdd": 0.0867,
+    "sharpe": 2.05,
+    "pf": 7.6
+   },
+   "p2023_2026": {
+    "ret": 1.7038,
+    "maxdd": 0.1064,
+    "sharpe": 1.85,
+    "pf": 5.74
+   },
+   "yearly": {
+    "2019": 0.0184,
+    "2020": 0.5316,
+    "2021": 0.6767,
+    "2022": -0.0161,
+    "2023": -0.0061,
+    "2024": 0.2303,
+    "2025": 0.7444,
+    "2026": 0.2676
+   },
+   "concentration": {
+    "top1": 0.259,
+    "top3": 0.458,
+    "top5": 0.607,
+    "top6": 0.654,
+    "top10": 0.784,
+    "top20": 0.935
+   }
+  },
+  {
+   "name": "no sector cap, base 0.34",
+   "metrics": {
+    "trades": 141,
+    "per_year": 18.3,
+    "total_return": 6.1016,
+    "cagr": 0.2898,
+    "maxdd": 0.1033,
+    "winrate": 0.4468,
+    "avg_win": 22.35,
+    "avg_loss": -2.57,
+    "rr": 8.71,
+    "pf": 5.93,
+    "expectancy": 8.57,
+    "sharpe": 1.92,
+    "final_nav": 7101567488
+   },
+   "deal_metrics": {
+    "deals": 116,
+    "winrate": 0.3793,
+    "avg_win": 24.87,
+    "avg_loss": -2.5,
+    "rr": 9.96,
+    "pf": 6.07,
+    "expectancy": 7.88
+   },
+   "unique_deals": 116,
+   "p2019_2022": {
+    "ret": 1.6434,
+    "maxdd": 0.0909,
+    "sharpe": 2.05,
+    "pf": 7.56
+   },
+   "p2023_2026": {
+    "ret": 1.6865,
+    "maxdd": 0.1033,
+    "sharpe": 1.83,
+    "pf": 5.51
+   },
+   "yearly": {
+    "2019": 0.0195,
+    "2020": 0.5696,
+    "2021": 0.6743,
+    "2022": -0.0134,
+    "2023": -0.0065,
+    "2024": 0.2556,
+    "2025": 0.6968,
+    "2026": 0.2692
+   },
+   "concentration": {
+    "top1": 0.238,
+    "top3": 0.444,
+    "top5": 0.595,
+    "top6": 0.644,
+    "top10": 0.773,
+    "top20": 0.934
+   }
+  },
+  {
+   "name": "no sector cap, base 0.36",
+   "metrics": {
+    "trades": 141,
+    "per_year": 18.3,
+    "total_return": 6.1599,
+    "cagr": 0.2911,
+    "maxdd": 0.0997,
+    "winrate": 0.4468,
+    "avg_win": 22.35,
+    "avg_loss": -2.57,
+    "rr": 8.71,
+    "pf": 5.66,
+    "expectancy": 8.57,
+    "sharpe": 1.9,
+    "final_nav": 7159932928
+   },
+   "deal_metrics": {
+    "deals": 116,
+    "winrate": 0.3793,
+    "avg_win": 24.87,
+    "avg_loss": -2.5,
+    "rr": 9.96,
+    "pf": 5.79,
+    "expectancy": 7.88
+   },
+   "unique_deals": 116,
+   "p2019_2022": {
+    "ret": 1.717,
+    "maxdd": 0.0944,
+    "sharpe": 2.04,
+    "pf": 7.55
+   },
+   "p2023_2026": {
+    "ret": 1.6352,
+    "maxdd": 0.0997,
+    "sharpe": 1.79,
+    "pf": 5.19
+   },
+   "yearly": {
+    "2019": 0.0207,
+    "2020": 0.6091,
+    "2021": 0.6723,
+    "2022": -0.0108,
+    "2023": -0.0069,
+    "2024": 0.2759,
+    "2025": 0.6476,
+    "2026": 0.2623
+   },
+   "concentration": {
+    "top1": 0.216,
+    "top3": 0.433,
+    "top5": 0.576,
+    "top6": 0.628,
+    "top10": 0.762,
+    "top20": 0.929
+   }
+  },
+  {
+   "name": "no sector cap, base 0.42",
+   "metrics": {
+    "trades": 133,
+    "per_year": 17.3,
+    "total_return": 6.1081,
+    "cagr": 0.2899,
+    "maxdd": 0.1041,
+    "winrate": 0.4586,
+    "avg_win": 21.47,
+    "avg_loss": -2.46,
+    "rr": 8.75,
+    "pf": 4.9,
+    "expectancy": 8.52,
+    "sharpe": 1.81,
+    "final_nav": 7108125696
+   },
+   "deal_metrics": {
+    "deals": 110,
+    "winrate": 0.3909,
+    "avg_win": 24.03,
+    "avg_loss": -2.41,
+    "rr": 9.96,
+    "pf": 5.0,
+    "expectancy": 7.92
+   },
+   "unique_deals": 110,
+   "p2019_2022": {
+    "ret": 1.8731,
+    "maxdd": 0.1041,
+    "sharpe": 1.99,
+    "pf": 7.16
+   },
+   "p2023_2026": {
+    "ret": 1.474,
+    "maxdd": 0.0978,
+    "sharpe": 1.65,
+    "pf": 4.35
+   },
+   "yearly": {
+    "2019": 0.0242,
+    "2020": 0.7087,
+    "2021": 0.6442,
+    "2022": -0.0016,
+    "2023": -0.0081,
+    "2024": 0.3342,
+    "2025": 0.5055,
+    "2026": 0.2418
+   },
+   "concentration": {
+    "top1": 0.147,
+    "top3": 0.397,
+    "top5": 0.535,
+    "top6": 0.582,
+    "top10": 0.747,
+    "top20": 0.923
+   }
+  },
+  {
+   "name": "no sector cap, base 0.28 slip0.2%",
+   "metrics": {
+    "trades": 147,
+    "per_year": 19.1,
+    "total_return": 5.3885,
+    "cagr": 0.2722,
+    "maxdd": 0.1159,
+    "winrate": 0.4218,
+    "avg_win": 22.49,
+    "avg_loss": -2.92,
+    "rr": 7.69,
+    "pf": 5.46,
+    "expectancy": 7.8,
+    "sharpe": 1.9,
+    "final_nav": 6388505088
+   },
+   "deal_metrics": {
+    "deals": 120,
+    "winrate": 0.3583,
+    "avg_win": 25.06,
+    "avg_loss": -2.85,
+    "rr": 8.79,
+    "pf": 5.58,
+    "expectancy": 7.15
+   },
+   "unique_deals": 120,
+   "p2019_2022": {
+    "ret": 1.7267,
+    "maxdd": 0.0976,
+    "sharpe": 2.12,
+    "pf": 8.42
+   },
+   "p2023_2026": {
+    "ret": 1.343,
+    "maxdd": 0.1159,
+    "sharpe": 1.71,
+    "pf": 4.75
+   },
+   "yearly": {
+    "2019": 0.0137,
+    "2020": 0.5773,
+    "2021": 0.7443,
+    "2022": -0.0223,
+    "2023": -0.0119,
+    "2024": 0.1607,
+    "2025": 0.6532,
+    "2026": 0.2357
+   },
+   "concentration": {
+    "top1": 0.261,
+    "top3": 0.479,
+    "top5": 0.619,
+    "top6": 0.67,
+    "top10": 0.797,
+    "top20": 0.942
+   }
+  },
+  {
+   "name": "no sector cap, base 0.30 slip0.2%",
+   "metrics": {
+    "trades": 146,
+    "per_year": 19.0,
+    "total_return": 6.1301,
+    "cagr": 0.2904,
+    "maxdd": 0.1195,
+    "winrate": 0.4178,
+    "avg_win": 22.48,
+    "avg_loss": -2.92,
+    "rr": 7.69,
+    "pf": 5.58,
+    "expectancy": 7.69,
+    "sharpe": 1.93,
+    "final_nav": 7130079232
+   },
+   "deal_metrics": {
+    "deals": 120,
+    "winrate": 0.3583,
+    "avg_win": 24.78,
+    "avg_loss": -2.85,
+    "rr": 8.7,
+    "pf": 5.7,
+    "expectancy": 7.05
+   },
+   "unique_deals": 120,
+   "p2019_2022": {
+    "ret": 1.8668,
+    "maxdd": 0.1015,
+    "sharpe": 2.13,
+    "pf": 8.46
+   },
+   "p2023_2026": {
+    "ret": 1.4871,
+    "maxdd": 0.1195,
+    "sharpe": 1.74,
+    "pf": 4.91
+   },
+   "yearly": {
+    "2019": 0.0146,
+    "2020": 0.6252,
+    "2021": 0.7787,
+    "2022": -0.0226,
+    "2023": -0.0128,
+    "2024": 0.1829,
+    "2025": 0.7114,
+    "2026": 0.2445
+   },
+   "concentration": {
+    "top1": 0.267,
+    "top3": 0.483,
+    "top5": 0.624,
+    "top6": 0.674,
+    "top10": 0.803,
+    "top20": 0.945
+   }
+  },
+  {
+   "name": "no sector cap, base 0.32 slip0.2%",
+   "metrics": {
+    "trades": 143,
+    "per_year": 18.6,
+    "total_return": 5.3538,
+    "cagr": 0.2713,
+    "maxdd": 0.1202,
+    "winrate": 0.4266,
+    "avg_win": 22.71,
+    "avg_loss": -2.84,
+    "rr": 7.98,
+    "pf": 5.27,
+    "expectancy": 8.06,
+    "sharpe": 1.84,
+    "final_nav": 6353846272
+   },
+   "deal_metrics": {
+    "deals": 118,
+    "winrate": 0.3644,
+    "avg_win": 25.11,
+    "avg_loss": -2.81,
+    "rr": 8.94,
+    "pf": 5.38,
+    "expectancy": 7.37
+   },
+   "unique_deals": 118,
+   "p2019_2022": {
+    "ret": 1.494,
+    "maxdd": 0.094,
+    "sharpe": 1.98,
+    "pf": 6.81
+   },
+   "p2023_2026": {
+    "ret": 1.5477,
+    "maxdd": 0.1202,
+    "sharpe": 1.75,
+    "pf": 4.87
+   },
+   "yearly": {
+    "2019": 0.0156,
+    "2020": 0.5208,
+    "2021": 0.6483,
+    "2022": -0.0204,
+    "2023": -0.0137,
+    "2024": 0.2058,
+    "2025": 0.709,
+    "2026": 0.2534
+   },
+   "concentration": {
+    "top1": 0.262,
+    "top3": 0.463,
+    "top5": 0.614,
+    "top6": 0.66,
+    "top10": 0.793,
+    "top20": 0.943
+   }
+  }
+ ]
+}
