@@ -60,10 +60,13 @@ const LIENHE = {
 })();
 
 /* ---------- helpers ---------- */
-const pct = (x,d=1)=> (x*100).toFixed(d)+'%';
-const sg  = (x,d=1)=> (x>=0?'+':'')+(x*100).toFixed(d)+'%';
+// So kieu Viet Nam: dau phay thap phan (audit UI 25/09).
+const dec = (x,d=2)=> (x==null||x!==x)?'—':(+x).toFixed(d).replace('.',',');
+const vn  = x => (x==null||x==='')?'—':String(x).replace('.',',');
+const pct = (x,d=1)=> (x*100).toFixed(d).replace('.',',')+'%';
+const sg  = (x,d=1)=> (x>=0?'+':'')+(x*100).toFixed(d).replace('.',',')+'%';
 const num = (x,d=0)=> x.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
-const vnd = x => (Math.abs(x)>=1e9? (x/1e9).toFixed(2)+' tỷ' : (x/1e6).toFixed(0)+' tr');
+const vnd = x => (Math.abs(x)>=1e9? (x/1e9).toFixed(2).replace('.',',')+' tỷ' : (x/1e6).toFixed(0)+' tr');
 const cls = x => x>=0?'pos':'neg';
 const el  = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
 const CV = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();

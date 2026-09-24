@@ -58,12 +58,13 @@ function _bkVal(a, u, code){
   if (a === undefined || a === null) return '—';
   if (u === 'có/không') return a >= 1 ? 'Có' : 'Không';
   if (u === 'đạt/chặn') return a >= 1 ? 'Không bị chặn' : 'Bị chặn';
-  if (u === '%')    return (a > 0 && BKDAU.has(code) ? '+' : '') + a + '%';
-  if (u === 'lần')  return a + '×';
-  if (u === 'tỷ')   return a + ' tỷ';
+  if (u === '%')    return (a > 0 && BKDAU.has(code) ? '+' : '') + _vnN(a) + '%';
+  if (u === 'lần')  return _vnN(a) + '×';
+  if (u === 'tỷ')   return _vnN(a) + ' tỷ';
   if (u === 'đ/cp') return Math.round(a).toLocaleString('vi-VN') + ' đ/cp';
-  return a + (u ? ' ' + u : '');
+  return _vnN(a) + (u ? ' ' + u : '');
 }
+function _vnN(x){ return typeof x === 'number' ? x.toLocaleString('vi-VN', {maximumFractionDigits: 2}) : x; }
 function _bkBench(b, u, op){
   if (op === 'band')  return 'ngoài vùng 0–25%';
   if (op === 'thang') return 'thang trượt';
@@ -71,19 +72,19 @@ function _bkBench(b, u, op){
   if (b === undefined || b === null) return '—';
   if (u === 'có/không' || u === 'đạt/chặn') return 'bắt buộc';
   const s = op === '<=' ? '≤' : '≥';
-  if (u === '%')   return s + ' ' + b + '%';
-  if (u === 'lần') return s + ' ' + b + '×';
-  if (u === 'tỷ')  return s + ' ' + b + ' tỷ';
-  return s + ' ' + b + (u ? ' ' + u : '');
+  if (u === '%')   return s + ' ' + _vnN(b) + '%';
+  if (u === 'lần') return s + ' ' + _vnN(b) + '×';
+  if (u === 'tỷ')  return s + ' ' + _vnN(b) + ' tỷ';
+  return s + ' ' + _vnN(b) + (u ? ' ' + u : '');
 }
 function _bkGap(c, u){
   const [, a, b, tt] = c;
   if (tt !== 'no' || a === null || b === null) return '';
   const g = Math.round(Math.abs(a - b) * 100) / 100;
-  if (u === '%')    return 'còn thiếu ' + g + ' điểm %';
-  if (u === 'lần')  return 'còn thiếu ' + g + '× TB20';
-  if (u === 'tỷ')   return 'còn thiếu ' + g + ' tỷ';
-  if (u === 'điểm') return 'còn thiếu ' + g + ' điểm';
+  if (u === '%')    return 'còn thiếu ' + _vnN(g) + ' điểm %';
+  if (u === 'lần')  return 'còn thiếu ' + _vnN(g) + '× TB20';
+  if (u === 'tỷ')   return 'còn thiếu ' + _vnN(g) + ' tỷ';
+  if (u === 'điểm') return 'còn thiếu ' + _vnN(g) + ' điểm';
   return '';
 }
 
@@ -630,7 +631,7 @@ function pageLiveTrucTiep(root, L) {
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
     <div><div class="muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:12px">Đèn thị trường</div>
       <div style="font-size:34px;font-weight:750;color:var(${LIGHTVAR[last.light]})">${LIGHTNAME[last.light].toUpperCase()}</div>
-      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${(42 * smul).toFixed(1)}% NAV mỗi lệnh</div></div>
+      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${dec(42 * smul, 1)}% NAV mỗi lệnh</div></div>
     <div style="border-left:1px solid var(--line);padding-left:26px;display:grid;gap:6px">
       <div><span class="muted">G1 · chỉ số đều trọng số so MA200</span><br>
         <b class="${last.g1 >= (last.g1ma || 0) ? 'pos' : 'neg'}">${last.g1ma ? (last.g1 >= last.g1ma ? 'trên' : 'dưới') : '—'}</b></div>

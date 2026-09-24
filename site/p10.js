@@ -494,18 +494,18 @@ function pageNotebook(root){
   const nodau = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
   const IDX = KEYS.map(k => ({k, s:k.toLowerCase(), n:nodau(L[k].name)}));
 
-  const trieu = v => v >= 1e6 ? (v/1e6).toFixed(1)+' triệu cp' : Math.round(v/1000)+ ' nghìn cp';
+  const trieu = v => v >= 1e6 ? dec(v/1e6,1)+' triệu cp' : Math.round(v/1000)+ ' nghìn cp';
 
   function show(sym){
     const x = L[sym];
     if (!x){ out.innerHTML=''; return; }
     const need = x.state === 'chan'
       ? `<span class="lkmiss">${x.block}</span>`
-      : `<span class="need">Đóng cửa phiên tới <b style="color:var(--text-primary)">≥ ${x.need_px}</b> · KL <b style="color:var(--text-primary)">≥ ${trieu(x.need_vol)}</b></span>`;
+      : `<span class="need">Đóng cửa phiên tới <b style="color:var(--text-primary)">≥ ${dec(x.need_px)}</b> · KL <b style="color:var(--text-primary)">≥ ${trieu(x.need_vol)}</b></span>`;
     const tim = x.tim ? `<span class="lkbadge tim" title="${esc(x.tim_vi) || ''}">ĐÈN TÍM</span>` : '';
     const sub = (x.tim ? `<span class="lkmiss" style="color:var(--s7)">đèn tím: ${esc(x.tim_vi)} — lãi kiểu này không lặp lại quý sau</span><br>` : '')
       + ((x.state === 'cho')
-      ? `<span class="lkmiss">nền ${x.base}% · điểm ${x.score} · GTGD ${x.gtgd} tỷ — ${
+      ? `<span class="lkmiss">nền ${dec(x.base,1)}% · điểm ${dec(x.score,1)} · GTGD ${dec(x.gtgd,1)} tỷ — ${
           x.dang_cam ? 'hệ thống ĐANG CẦM mã này, không mua thêm' : 'đã qua mọi cổng, chỉ chờ phiên bùng nổ'}</span>`
       : (x.miss && x.miss.length ? `<span class="lkmiss">còn thiếu: ${x.miss.join(' · ')}</span>` : ''));
 

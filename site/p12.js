@@ -275,12 +275,12 @@ function bangDanhMucNgan() {
       ${dm.map(p => `<tr><td class="sym">${esc(p.sym)}</td>
         <td class="muted" style="font-size:13px">${(p.sector || '').slice(0, 24)}</td>
         <td>${ddmm(p.entry)}</td>
-        <td style="text-align:right">${(+p.entry_px).toFixed(2)}</td>
-        <td style="text-align:right">${p.last != null ? (+p.last).toFixed(2) : '—'}</td>
+        <td style="text-align:right">${dec(+p.entry_px)}</td>
+        <td style="text-align:right">${p.last != null ? dec(+p.last) : '—'}</td>
         <td style="text-align:right" class="muted">${p.sh ? num(p.sh) : '—'}</td>
         <td style="text-align:right">${p.tien ? vnd(p.tien) : '—'}</td>
         <td style="text-align:right;font-weight:640" class="${p.pnl == null ? '' : cls(p.pnl)}">${
-          p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + p.pnl.toFixed(2) + '%'}</td>
+          p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + dec(p.pnl) + '%'}</td>
         <td>${nhanNguon(p.nguon)}</td></tr>`).join('')}
     </tbody></table></div>
     `;
@@ -330,15 +330,15 @@ function pageSoLenh(root) {
             ? ` <span title="Đèn tím — ${((D.lookup||{})[p.sym]||{}).tim_vi||''}" style="color:var(--s7)">●</span>` : ''}</td>
           <td class="muted" style="font-size:13px">${(p.name || '').slice(0, 30)}</td>
           <td>${ddmm(p.entry)}</td>
-          <td style="text-align:right">${(+p.entry_px).toFixed(2)}</td>
-          <td style="text-align:right">${p.last != null ? (+p.last).toFixed(2) : '—'}</td>
+          <td style="text-align:right">${dec(+p.entry_px)}</td>
+          <td style="text-align:right">${p.last != null ? dec(+p.last) : '—'}</td>
           <td style="text-align:right" class="muted">${p.sh ? num(p.sh) : '—'}</td>
           <td style="text-align:right;font-weight:640">${p.tien ? vnd(p.tien) : '—'}</td>
           <td style="text-align:right" class="muted" title="${
             p.navGoc ? escA('Tính trên NAV của sổ sinh ra vị thế này: ' + tyd(p.navGoc)) : ''}">${
             (p.tien && p.navGoc) ? Math.round(100 * p.tien / p.navGoc) + '%' : '—'}</td>
           <td style="text-align:right;font-weight:660" class="${p.pnl == null ? '' : cls(p.pnl)}">${
-            p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + p.pnl.toFixed(2) + '%'}</td>
+            p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + dec(p.pnl) + '%'}</td>
           <td>${(() => { const v = vieccanlam(p);
             return `<span class="vclpill" style="color:var(${VCLMAU[v.m]});border-color:color-mix(in srgb,var(${VCLMAU[v.m]}) 45%,transparent)"
               title="${escA(v.ly)}">${v.v}</span>`; })()}</td>
@@ -355,9 +355,9 @@ function pageSoLenh(root) {
       <th style="text-align:right">Giữ</th><th>Lý do bán</th><th>Nguồn</th></tr></thead><tbody>
       ${ls.map(c => `<tr>
         <td class="sym">${esc(c.sym)}</td><td>${ddmm(c.entry)}</td><td>${ddmm(c.exit)}</td>
-        <td style="text-align:right">${(+c.entry_px).toFixed(2)}</td>
-        <td style="text-align:right">${(+c.exit_px).toFixed(2)}</td>
-        <td style="text-align:right;font-weight:660" class="${cls(c.pnl)}">${c.pnl >= 0 ? '+' : ''}${c.pnl.toFixed(2)}%</td>
+        <td style="text-align:right">${dec(+c.entry_px)}</td>
+        <td style="text-align:right">${dec(+c.exit_px)}</td>
+        <td style="text-align:right;font-weight:660" class="${cls(c.pnl)}">${c.pnl >= 0 ? '+' : ''}${dec(c.pnl)}%</td>
         <td style="text-align:right" class="muted">${c.held == null ? '—' : c.held + ' phiên'}</td>
         <td class="muted" style="font-size:12.5px">${esc(c.reason)}</td>
         <td>${nhanNguon(c.nguon)}</td></tr>`).join('')}
@@ -383,7 +383,7 @@ function pageSoLenh(root) {
     ${kpi('Giá trị cổ phiếu', TK.cp ? vnd(TK.cp) : '—', nav ? `${Math.round(100 * TK.cp / nav)}% tài khoản` : '')}
     ${nav != null ? kpi('Giá trị tài khoản', tyd(nav), `xuất phát ${tyd(nav0)} ngày 02/01/2019`) : ''}
     ${nav != null ? kpi('Tiền mặt', tyd(TK.tien), `${Math.round(100 * TK.tien / nav)}% tài khoản`) : ''}
-    ${lai != null ? kpi('Lãi/lỗ tổng', (lai >= 0 ? '+' : '') + (lai * 100).toFixed(1) + '%', 'từ 02/01/2019', cls(lai)) : ''}
+    ${lai != null ? kpi('Lãi/lỗ tổng', (lai >= 0 ? '+' : '') + dec(lai * 100, 1) + '%', 'từ 02/01/2019', cls(lai)) : ''}
     ${kpi('Đèn thị trường', LIGHTNAME[(D.regime[D.regime.length - 1] || {}).light] || '—', 'phiên gần nhất')}
   </div>
 
