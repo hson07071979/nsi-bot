@@ -369,7 +369,7 @@ function pageNotebook(root){
       .filter(x => !daAn.includes(x.sym));
     const sel = document.getElementById('anSel');
     sel.innerHTML = dang.length
-      ? dang.map(x => `<option value="${esc(x.sym)}">${esc(x.sym)} — ${x.nguon === 'auto' ? 'Hệ thống' : 'Anh Sơn nhập'}${
+      ? dang.map(x => `<option value="${esc(x.sym)}">${esc(x.sym)} — ${x.nguon === 'auto' ? 'Hệ thống' : x.nguon === 'ghitien' ? 'Sổ ghi tiến' : 'Anh Sơn nhập'}${
           x.entry ? ' · mua ' + ddmm(x.entry) : ''}${x.sh ? ' · ' + x.sh.toLocaleString('vi') + ' cp' : ''}</option>`).join('')
       : '<option value="">(danh mục đang trống)</option>';
     document.getElementById('anAdd').disabled = !dang.length;

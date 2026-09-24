@@ -98,7 +98,7 @@ function pageHomNay(root) {
       <div class="cclydo">${lydongan(h)}</div>
       ${h.level === 'MUA' ? `<div class="ccact">Cỡ đề xuất <b>${
           h.size_pct != null ? String(h.size_pct).replace('.', ',') : (42 * smul).toFixed(0)
-        }% NAV</b>${h.size_tran && h.size_tran !== 'cỡ nền' ? ` <span class="muted">— bị ${esc(h.size_tran)} cắt</span>` : ''
+        }% NAV</b>${tienTheoNav(h.size_pct != null ? h.size_pct : 42 * smul)}${h.size_tran && h.size_tran !== 'cỡ nền' ? ` <span class="muted">— bị ${esc(h.size_tran)} cắt</span>` : ''
         } · vào lệnh trong chính phiên này</div>` : ''}
       ${h.miss && h.miss.length ? `<div class="ccthieu">Còn thiếu: ${h.miss.map(esc).join(' · ')}</div>` : ''}
     </a>`;
@@ -213,7 +213,7 @@ function pageCoHoi(root) {
     m[s] = { sym: s, name: x.name, level: 'CHO', price: x.price, pct: 0, score: x.score,
              base: x.base, need_px: x.need_px, need_vol: x.need_vol, miss: x.miss || [],
              size_pct: x.size_pct, size_tran: x.size_tran, size_1dong: x.size_1dong,
-             size_vi_sao: x.size_vi_sao,
+             size_vi_sao: x.size_vi_sao, size_thuc: x.size_thuc, size_vao_duoc: x.size_vao_duoc,
              fa: x.state === 'fa' };
   });
   // Mã có tín hiệu trong phiên (từ chuông báo) đã mang sẵn cỡ vị thế; mã chỉ nằm
@@ -224,6 +224,7 @@ function pageCoHoi(root) {
       h.size_pct = Lk[h.sym].size_pct; h.size_tran = Lk[h.sym].size_tran;
       h.size_1dong = Lk[h.sym].size_1dong; h.size_vi_sao = Lk[h.sym].size_vi_sao;
     }
+    if (h.size_thuc == null && Lk[h.sym]) { h.size_thuc = Lk[h.sym].size_thuc; h.size_vao_duoc = Lk[h.sym].size_vao_duoc; }
   });
   const ds = Object.values(m);
   const bac = { MUA: 0, SAP_DU: 1, DE_MAT: 2, THEO_DOI: 3, CHO: 4 };
@@ -265,9 +266,11 @@ function pageCoHoi(root) {
           h.need_vol ? ` · KL ≥ <b>${(h.need_vol / 1e6).toFixed(1)} triệu</b>` : ''}</div>` : ''}
         ${h.size_pct != null ? `<div class="ccact" title="${
             escA((h.size_vi_sao || []).join('\n'))}">Nếu vào lệnh: <b>${
-            String(h.size_pct).replace('.', ',')}% NAV</b>${
+            String(h.size_pct).replace('.', ',')}% NAV</b>${tienTheoNav(h.size_pct)}${
             h.size_tran && h.size_tran !== 'cỡ nền'
-              ? ` — bị ${esc(h.size_tran)} cắt` : ''}</div>` : ''}
+              ? ` — bị ${esc(h.size_tran)} cắt` : ''}${
+            (h.size_thuc != null && h.size_thuc < h.size_pct - 0.05)
+              ? `<br><span style="color:var(--warn)">Sổ hệ thống hiện chỉ còn chỗ <b>${String(h.size_thuc).replace('.', ',')}% NAV</b>${tienTheoNav(h.size_thuc)}</span>` : ''}</div>` : ''}
         ${h.miss && h.miss.length ? `<div class="ccthieu">Còn thiếu: ${h.miss.slice(0, 3).map(esc).join(' · ')}</div>` : ''}
       </a>`).join('');
   };

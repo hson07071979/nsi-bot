@@ -134,12 +134,14 @@ def test_frontend_mua_requires_server_confirmation():
 
 
 @test
-def test_current_holdings_do_not_mix_backtest_book():
+def test_holdings_rows_carry_own_book_and_nav():
+    # System book (engine) is the main "current holdings"; paper book rows keep
+    # THEIR OWN NAV as the % denominator (never the other book's NAV).
     p12 = open('site/p12.js', encoding='utf-8').read()
-    body = p12[p12.index('function danhMuc() {'):p12.index('function danhMucBacktest()')]
-    code = '\n'.join(l for l in body.split('\n') if not l.strip().startswith('//'))
-    code = re.sub(r'/\*.*?\*/', '', code, flags=re.S)
-    assert 'D.open_positions' not in code
+    for b in ("book_id: 'HE_THONG'", "book_id: 'SO_GHI_TIEN'", "book_id: 'TAY'"):
+        assert b in p12, b
+    assert "navGoc: ((D.prod || {}).metrics || {}).final_nav" in p12
+    assert "navGoc: (F && F.nav) || null" in p12
 
 
 @test

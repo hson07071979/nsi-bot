@@ -198,3 +198,13 @@ function archBanner(keys){
     (<code>${(D.cfg_prod||{}).prod_config_hash||'?'}</code>). Chỉ dùng để hiểu lịch sử nghiên cứu,
     không phải bằng chứng cho luật hiện hành.</div>`;
 }
+
+/* Tiền giải ngân = % NAV × NAV HIỆN TẠI của sổ hệ thống (không phải vốn gốc 1 tỷ). */
+function navHienTai() { return (D.book && D.book.nav) || ((D.prod || {}).metrics || {}).final_nav || null; }
+function tienTheoNav(pct) {
+  const n = navHienTai();
+  if (pct == null || !n) return '';
+  const v = n * pct / 100;
+  const tr = Math.round(v / 1e6).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  return ` ≈ <b>${tr} triệu</b> <span class="muted">(NAV hiện tại ${(n / 1e9).toFixed(2).replace('.', ',')} tỷ)</span>`;
+}

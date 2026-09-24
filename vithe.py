@@ -188,7 +188,13 @@ def tom_tat_danh_muc(vi_the, nav):
         try:
             sh = float(p.get('shares', p.get('sh', 0)) or 0)
             gia = p.get('last')
-            gia = float(gia) * 1000.0 if gia else float(p.get('entry_px') or 0)
+            # Hai kieu ban ghi, HAI don vi (audit 24/09 — loi don vi lam moi o tra cuu
+            # bao "so lenh KHONG con cho"): open_positions cua bo may co 'shares' va
+            # 'last' tinh bang DONG; portfolio.json co 'sh' va 'last' tinh bang NGHIN dong.
+            if gia:
+                gia = float(gia) if 'shares' in p else float(gia) * 1000.0
+            else:
+                gia = float(p.get('entry_px') or 0)
         except (TypeError, ValueError):
             continue
         gt = sh * gia

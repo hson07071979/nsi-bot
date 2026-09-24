@@ -47,12 +47,11 @@ PROD=dict(base_range=0.22, use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=
           # 18-22% va cho DD thap nhat toan luoi (9,9%). Tu 24% tro len DD nhay len 13%.
           big_win=0.19,
           # ---- AUDIT 23/09/2026 (evidence/audit_r1_fixes.json) ----
-          # Pyramid add-ons now respect max_total + sector_cap through the shared
-          # allocator (allocator.py). Before, an add-on only checked max_pos and
-          # cash, so a 30%-sector-capped entry could grow to ~45% in one sector.
-          # Rule as documented, cost measured: +696,8% -> +579,1%, DD 9,46% -> 9,45%,
-          # PF 5,84 -> 5,62, Sharpe 1,96 -> 1,89 (the old number relied on the breach).
-          pyr_caps=True, sector_cap=0.30,
+          # Pyramid: GIU NGUYEN hanh vi goc theo quyet dinh cua anh Son (24/09).
+          # Tran nganh 30% chi ap cho LENH MOI; lenh nhoi them chi xet tran moi ma
+          # 50% va tien mat. (Bat pyr_caps=True thi lenh nhoi ton trong ca tran nganh
+          # va tran tong von: +696,8% -> +579,1% — co trong evidence, KHONG dung.)
+          pyr_caps=False, sector_cap=0.30,
           # max_pos_n re-checked for every same-session entry (never bound in history,
           # identical result — pure correctness guard).
           max_n_in_loop=True,
@@ -96,7 +95,7 @@ def pack(r,name):
         yearly=yearly(eq), lights=dict(Counter(e[2] for e in eq)),
         doors=[{'door':k,'n':v,'pct':round(v/len(tr)*100,1),'median':dmed[k]} for k,v in doors.most_common()],
         curve=[[e[0],round(float(e[1])/1e9,4),e[2]] for e in eq],
-        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','held','pnl_pct','pnl_vnd','reason','light','peak')} for t in tr])
+        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','pyr_adj','held','pnl_pct','pnl_vnd','reason','light','peak')} for t in tr])
 
 if __name__=='__main__':
     out={}
@@ -126,10 +125,36 @@ if __name__=='__main__':
         'br50':round(float(R['above50'][i0+k]),3),'ftd':bool(R['ftd'][i0+k])} for k in range(n)]
     out['signals']=r['signals']
     _rg_light = out['regime'][-1]['light'] if out.get('regime') else 'XANH'
+    def _lastpx(p):   # ma bi treo phien cuoi -> NaN khong duoc lot vao JSON; lui ve gia von
+        v=float(r['d']['AdjClose'][-1,p.j]); return v if v==v else float(p.epx)
     out['open_positions']=[{'sym':p.sym,'entry':str(cal[p.ei]),'entry_px':round(float(p.epx),2),
-        'shares':int(p.sh),'sector':p.sector,'last':round(float(r['d']['AdjClose'][-1,p.j]),2),
-        'pnl':round(float(r['d']['AdjClose'][-1,p.j])/float(p.epx)*100-100,2)} for p in r['pos'].values()]
+        # gia THO da khop (de ve dau B dung nen) — entry_px o tren la gia von DIEU CHINH da gom phi
+        'entry_raw':round(float(getattr(p,'eraw',float('nan'))),0),
+        'shares':int(p.sh),'sector':p.sector,'last':round(_lastpx(p),2),
+        'pnl':round(_lastpx(p)/float(p.epx)*100-100,2)} for p in r['pos'].values()]
+    # TIN HIEU CUA CHINH PHIEN VUA CHOT — so ghi tien (portfolio.py, repo public) vao
+    # so DUNG cac lenh nay, sau khi ban dung toi da lap du dong tien HNX. Mot nguon su
+    # that: khong con chuyen live.json bao MUA nhung bo may khong mua (hoac nguoc lai).
+    out['signals_today']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
+                               sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
+                               base=x['base'],size_pct_engine=x['size_pct'])
+                          for x in r['signals'] if x['date']==str(cal[-1]) and x.get('mode','close')=='close']
+    # 10 phien gan nhat: de so ghi tien XU LY BU dung thu tu neu lo mot dem dung trang
+    _rec=[str(x) for x in cal[-30:]]
+    out['light_by_date']={d_:R['light'][len(cal)-30+k] for k,d_ in enumerate(_rec)}
+    out['signals_recent']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
+                                sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
+                                base=x['base'],size_pct_engine=x['size_pct'])
+                           for x in r['signals'] if x['date'] in _rec and x.get('mode','close')=='close']
     out['blocked']={k:int(v) for k,v in r['blocked'].items()}
+    # SO HE THONG (bo may) o phien cuoi: NAV HIEN TAI + tien mat + vi the. Chuong
+    # Telegram va trang web tinh "vao bao nhieu % NAV / bao nhieu tien" tren CHINH
+    # NAV nay (anh Son 24/09: 25% la 25% NAV hien tai, khong phai 25% cua 1 ty).
+    out['book']={'book_id':'HE_THONG','asof':str(cal[-1]),'nav':round(float(r['nav'])),
+                 'cash':round(float(r['cash'])),
+                 'positions':[{'sym':p.sym,'sector':p.sector,'shares':int(p.sh),
+                               'value':round(float(r['d']['AdjClose'][-1,p.j] if r['d']['AdjClose'][-1,p.j]==r['d']['AdjClose'][-1,p.j] else p.epx)*int(p.sh))}
+                              for p in r['pos'].values()]}
     out['universe_n']=int(len(r['d']['sym'])); out['asof']=str(cal[-1])
     # DO PHU CUA DONG TIEN MUA/BAN O PHIEN CUOI — canh bao im lang tung nuot ca ngay.
     # FireAnt tra BuyCount/SellCount TRE hon gia vai tieng. Neu cao truoc luc do thi
@@ -256,7 +281,8 @@ if __name__=='__main__':
         'use_cond6', 'use_cond8', 'use_hard_stop', 'use_protective_candle',
         'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
         'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',
-        'use_ftd', 'use_pyramid', 'use_ordimb')}
+        'use_ftd', 'use_pyramid', 'use_ordimb',
+        'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'fill_ratio')}
 
     import hashlib as _hl
     _full = dict(E.CFG); _full.update(PROD)

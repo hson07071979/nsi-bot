@@ -141,6 +141,7 @@ svg{display:block;width:100%;overflow:visible}
 .badge{display:inline-block;font-size:12px;font-weight:640;color:var(--accent);background:color-mix(in srgb,var(--accent) 13%,transparent);
   padding:5px 12px;border-radius:20px;margin-bottom:16px;letter-spacing:.01em}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.two>*,.three>*{min-width:0} /* bang rong cuon trong the, khong day trang ra ngoai 390px */
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:820px){.two,.three{grid-template-columns:1fr}h1{font-size:29px}.topin{height:auto;padding:10px 0;flex-wrap:wrap}}
 input[type=search],select{background:var(--surface-2);border:1px solid var(--line);color:var(--text-primary);

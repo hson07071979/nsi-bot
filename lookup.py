@@ -75,14 +75,9 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
     # Gop ca hai quyen so: so chay cua bo may (`vi_the`) va so ghi tien
     # (`data/portfolio.json`, workflow da tai ve). Thieu file thi bo qua.
     _cam = {str(p.get('sym', '')).upper() for p in (vi_the or []) if p.get('sym')}
-    for _p in ('data/portfolio.json', 'portfolio.json'):
-        try:
-            _P = json.load(open(_p, encoding='utf-8'))
-            _cam |= {str(x.get('sym', '')).upper() for x in (_P.get('open') or [])
-                     if x.get('sym') and (x.get('sh') or 0) > 0}
-            break
-        except Exception:
-            continue
+    # (24/09) So ghi tien nay la BAN SAO cua bo may (vao dung signals cua engine), nen
+    # "dang cam" chi lay tu so he thong. Gop ca portfolio.json cu tung giu PVP (lenh sai
+    # luat) -> PVP bi coi la dang cam va bi an khoi Co hoi.
 
     # Trang thai danh muc hien tai — de biet con bao nhieu cho cho lenh moi.
     # Khong truyen thi coi nhu danh muc rong, va phan giai thich NOI RO dieu do.

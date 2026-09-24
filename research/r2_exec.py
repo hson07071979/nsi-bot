@@ -2,7 +2,7 @@ import sys,os; sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import json, numpy as np
 from common import pmap, line, meta, run
 from dealstats import deals
-CUR=dict(pyr_caps=True,max_n_in_loop=True,use_cond8=False)
+CUR=dict()   # = PROD (pyr_caps=False, max_n_in_loop=True, use_cond8=False) since 24/09
 def c(**k): x=dict(CUR); x.update(k); return x
 J=[('CUR signal close',c()),
    ('signal high',c(entry_mode='signal_high')),
@@ -35,5 +35,5 @@ for p in (5,10,20,30):
     agg[p]=dict(ret_p10=float(np.percentile(tr,10)),ret_med=float(np.median(tr)),ret_p90=float(np.percentile(tr,90)),
                 dd_med=float(np.median(dd)),dd_max=float(dd.max()),pf_med=float(np.median(pf)),pf_min=float(pf.min()))
     print(f'miss {p}%: ret p10 {agg[p]["ret_p10"]*100:+.0f}% med {agg[p]["ret_med"]*100:+.0f}% p90 {agg[p]["ret_p90"]*100:+.0f}% | DD med {agg[p]["dd_med"]*100:.1f}% max {agg[p]["dd_max"]*100:.1f}% | PF med {agg[p]["pf_med"]:.2f} min {agg[p]["pf_min"]:.2f}')
-json.dump(dict(meta=meta(dict(base='PROD+pyr_caps+max_n_in_loop+cond8off')),exec=R,forced=R2,random=agg,
+json.dump(dict(meta=meta(dict(base='PROD')),exec=R,forced=R2,random=agg,
                top_winners=D[:10]),open('evidence/audit_r2_exec.json','w'),ensure_ascii=False,indent=1,default=str)

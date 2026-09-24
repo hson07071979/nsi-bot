@@ -80,13 +80,13 @@ function pageChanDoan(root) {
 
   if (!A) { root.innerHTML = h + '<div class="note">Thiếu evidence/audit_summary.json.</div>'; return; }
   const b0 = A.baseline0 || {};
-  const cur = (A.fixes || []).find(x => x.name === 'pyr_caps+max_n') || {};
+  const cur = (A.fixes || []).find(x => x.name === 'max_n_in_loop') || {};
   h += `
-  <h2>BASELINE_0 → PROD sau kiểm toán</h2>
+  <h2>BASELINE_0 và PROD sau kiểm toán (trùng từng lệnh)</h2>
   <div class="grid kpis">
-    ${kpi('BASELINE_0', _pc1(b0.ret), `DD ${_pc1(b0.dd)} · PF ${_n2(b0.pf)} · Sharpe ${_n2(b0.sharpe)} · ${b0.deals} deal`)}
-    ${kpi('PROD mới', _pc1(cur.ret), `DD ${_pc1(cur.dd)} · PF ${_n2(cur.pf)} · Sharpe ${_n2(cur.sh)} · ${cur.deals} deal`)}
-    ${kpi('Lý do chênh', 'Pyramid tôn trọng trần ngành', 'bản cũ cho nhồi vượt 30% ngành')}
+    ${kpi('BASELINE_0', _pc1(b0.ret), `DD ${(b0.dd*100).toFixed(2).replace('.',',')}% · PF ${_n2(b0.pf)} · Sharpe ${_n2(b0.sharpe)} · ${b0.deals} deal`)}
+    ${kpi('PROD mới', _pc1(cur.ret), `DD ${((cur.dd||0)*100).toFixed(2).replace('.',',')}% · PF ${_n2(cur.pf)} · Sharpe ${_n2(cur.sh)} · ${cur.deals} deal`)}
+    ${kpi('Pyramid', 'Giữ luật cũ', 'trần ngành chỉ áp cho lệnh mới; bắt áp cho lệnh nhồi: +579,1%')}
   </div>
   ${_tbl(A.fixes || [], _MCOLS)}
 

@@ -84,7 +84,16 @@ jobs:
           # 0.70 vi ban day du do duoc ~0.77; de 0.85 thi khong bao gio dat
           # => `kiem` khong bao gio bo qua => 3 cua deu dung lai, phi 33 phut/ngay.
           du_day = isinstance(cover, (int, float)) and cover >= 0.70
-          bo_qua = bool(phien) and asof == phien and du_day
+          # so ghi tien cung phai da chot phien nay (neu buoc portfolio.py hong lan truoc)
+          so_xong = False
+          try:
+              pf = get('https://raw.githubusercontent.com/'
+                       f'{os.environ["CHU"]}/{os.environ["REPO"]}/main/portfolio.json')
+              so_xong = str(pf.get('session_done') or '') == phien
+          except Exception as e:
+              print(f'  chua doc duoc portfolio.json: {e}')
+          print(f'so ghi tien da chot phien  : {so_xong}')
+          bo_qua = bool(phien) and asof == phien and du_day and so_xong
 
           print(f'phien moi nhat (FireAnt)  : {phien or "KHONG HOI DUOC"}')
           print(f'trang dang dung phien     : {asof or "?"}')
@@ -244,6 +253,11 @@ jobs:
             echo "::warning::không có data/watchlist_state.json — nhật ký watchlist sẽ không cộng dồn"
           touch public/.nojekyll
           cd public
+          # SO GHI TIEN chay O DAY, sau khi thresholds.json cua CHINH phien vua chot da
+          # co: cung den thi truong, cung tin hieu voi bo may (audit 24/09/2026).
+          # Hong thi khong lam do ca buoc dang trang.
+          python portfolio.py || echo "::warning::portfolio.py loi — so ghi tien chua cap nhat phien nay"
+          git add portfolio.json 2>/dev/null || true
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"
           git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll signal_spec.py allocator.py
@@ -251,6 +265,8 @@ jobs:
             echo "Không có gì thay đổi, bỏ qua."
           else
             git commit -m "Cập nhật $(TZ=Asia/Ho_Chi_Minh date '+%d/%m/%Y %H:%M')"
+            # live.yml co the vua day live.json trong luc dung trang -> keo ve roi day
+            git pull --rebase -q || true
             git push
             echo "Đã đăng lên https://${CHU}.github.io/${REPO}/"
           fi

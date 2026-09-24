@@ -1,0 +1,637 @@
+{
+ "meta": {
+  "git_sha": "a4de81b9d50d972365c08da117e43413238a27e0",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "89c720ebf701",
+  "generated": "2026-09-24T13:28:13Z",
+  "experiment_version": "audit-2026-09-23/r10",
+  "status": "CURRENT",
+  "session": "2026-09-24"
+ },
+ "question": "Có quan sát được OrdImb (BuyCount/SellCount) của phiên TRƯỚC 14:45 để báo MUA trong phiên không?",
+ "rows": [
+  {
+   "at": "09:25",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "09:25",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "09:25",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "09:25",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.837,
+    "PVS": 1.1
+   }
+  },
+  {
+   "at": "09:25",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.837,
+    "PVS": 1.1
+   }
+  },
+  {
+   "at": "13:45",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "13:45",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "13:45",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.816,
+    "PVS": 1.421
+   }
+  },
+  {
+   "at": "14:00",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:00",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:00",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.56,
+    "PVS": 1.241
+   }
+  },
+  {
+   "at": "14:10",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:10",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:10",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.774,
+    "PVS": 1.217
+   }
+  },
+  {
+   "at": "14:20",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:20",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:20",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.926,
+    "PVS": 1.608
+   }
+  },
+  {
+   "at": "14:30",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:30",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:30",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 1.033,
+    "PVS": 1.832
+   }
+  },
+  {
+   "at": "14:40",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:40",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:40",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.97,
+    "PVS": 1.539
+   }
+  },
+  {
+   "at": "14:46",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:46",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "14:46",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.989,
+    "PVS": 1.398
+   }
+  },
+  {
+   "at": "15:05",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "15:05",
+   "source": "FireAnt Markets/Quotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 0,
+   "has_SellCount": null,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "15:05",
+   "source": "Vietstock mẫu (HPG FPT SSI | SHS PVS)",
+   "expected": 5,
+   "received": 5,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 2,
+   "has_SellCount": null,
+   "ordimb_avail": 2,
+   "ordimb_cov": 0.4,
+   "by_board": {
+    "HSX": "0/3",
+    "HNX": "2/2"
+   },
+   "sample": {
+    "HPG": null,
+    "FPT": null,
+    "SSI": null,
+    "SHS": 0.989,
+    "PVS": 1.398
+   }
+  },
+  {
+   "at": "15:06",
+   "source": "Vietstock gettradingresult",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 14,
+   "has_SellCount": 14,
+   "ordimb_avail": 14,
+   "ordimb_cov": 0.117,
+   "by_board": {
+    "HSX": "0/106",
+    "UPCOM": "5/5",
+    "HNX": "9/9"
+   },
+   "cafef_hose": 0,
+   "hnx_vn": 0
+  },
+  {
+   "at": "15:25",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "15:25",
+   "source": "Vietstock gettradingresult",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 14,
+   "has_SellCount": 14,
+   "ordimb_avail": 14,
+   "ordimb_cov": 0.117,
+   "by_board": {
+    "HSX": "0/106",
+    "UPCOM": "5/5",
+    "HNX": "9/9"
+   },
+   "cafef_hose": 0,
+   "hnx_vn": 0
+  },
+  {
+   "at": "15:45",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 14,
+   "has_BuyCount": 0,
+   "has_SellCount": 0,
+   "ordimb_avail": 0,
+   "ordimb_cov": 0.0
+  },
+  {
+   "at": "20:26",
+   "source": "FireAnt HistoricalQuotes",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": 120,
+   "has_BuyCount": 120,
+   "has_SellCount": 120,
+   "ordimb_avail": 120,
+   "ordimb_cov": 1.0
+  },
+  {
+   "at": "20:26",
+   "source": "Vietstock gettradingresult",
+   "expected": 120,
+   "received": 120,
+   "has_BuyQuantity": null,
+   "has_BuyCount": 120,
+   "has_SellCount": 120,
+   "ordimb_avail": 120,
+   "ordimb_cov": 1.0,
+   "by_board": {
+    "HSX": "106/106",
+    "UPCOM": "5/5",
+    "HNX": "9/9"
+   },
+   "cafef_hose": 0,
+   "hnx_vn": 4
+  }
+ ],
+ "engine_entries_by_board": {
+  "HSX": 114,
+  "HNX": 2
+ },
+ "first_hose_counts_vietstock": "20:26",
+ "first_ordimb_fireant": "20:26",
+ "eod_check": {
+  "fireant_eod_at": "20:26",
+  "vietstock_eod_at": "20:26",
+  "hnx_upcom": {
+   "ABB": {
+    "vietstock_1506": 3.1316,
+    "vietstock_eod": 3.1316,
+    "fireant_eod": 1.589,
+    "hnx_vn": null
+   },
+   "ACV": {
+    "vietstock_1506": 0.4943,
+    "vietstock_eod": 0.4943,
+    "fireant_eod": 0.442,
+    "hnx_vn": null
+   },
+   "BVS": {
+    "vietstock_1506": 1.5098,
+    "vietstock_eod": 1.5098,
+    "fireant_eod": 0.767,
+    "hnx_vn": null
+   },
+   "CEO": {
+    "vietstock_1506": 0.9021,
+    "vietstock_eod": 0.9021,
+    "fireant_eod": 0.517,
+    "hnx_vn": 0.5165465641607149
+   },
+   "HUT": {
+    "vietstock_1506": 1.4202,
+    "vietstock_eod": 1.4202,
+    "fireant_eod": 1.226,
+    "hnx_vn": null
+   },
+   "IDC": {
+    "vietstock_1506": 2.3892,
+    "vietstock_eod": 2.3892,
+    "fireant_eod": 0.871,
+    "hnx_vn": null
+   },
+   "MBS": {
+    "vietstock_1506": 0.5456,
+    "vietstock_eod": 0.5456,
+    "fireant_eod": 0.541,
+    "hnx_vn": 0.5410274378175824
+   },
+   "MSR": {
+    "vietstock_1506": 3.6117,
+    "vietstock_eod": 3.6117,
+    "fireant_eod": 0.728,
+    "hnx_vn": null
+   },
+   "OIL": {
+    "vietstock_1506": 1.1437,
+    "vietstock_eod": 1.1437,
+    "fireant_eod": 0.363,
+    "hnx_vn": null
+   },
+   "PVS": {
+    "vietstock_1506": 1.3978,
+    "vietstock_eod": 1.3978,
+    "fireant_eod": 0.574,
+    "hnx_vn": 0.5739378976908913
+   },
+   "QNS": {
+    "vietstock_1506": 1.8309,
+    "vietstock_eod": 1.8309,
+    "fireant_eod": 0.265,
+    "hnx_vn": null
+   },
+   "SHS": {
+    "vietstock_1506": 0.989,
+    "vietstock_eod": 0.989,
+    "fireant_eod": 0.474,
+    "hnx_vn": 0.4742900454387582
+   },
+   "VC3": {
+    "vietstock_1506": 1.8111,
+    "vietstock_eod": 1.8111,
+    "fireant_eod": 0.982,
+    "hnx_vn": null
+   },
+   "VTZ": {
+    "vietstock_1506": 0.7695,
+    "vietstock_eod": 0.7695,
+    "fireant_eod": 2.709,
+    "hnx_vn": null
+   }
+  },
+  "hnx_upcom_max_abs_diff_vs_engine": 2.8837,
+  "hnx_upcom_n_diff_gt_0_01": 13,
+  "hose_vietstock_eod_vs_fireant_max_abs_diff": 0.0005,
+  "hose_n": 106
+ },
+ "findings": [
+  "HOSE (106/120 mã của vũ trụ, 114/116 deal của bộ máy): trong phiên KHÔNG nguồn miễn phí nào có số LỆNH đặt (BuyCount/SellCount = 0 ở FireAnt HistoricalQuotes, FireAnt Markets/Quotes, Vietstock, CafeF); chỉ có khối lượng đặt (BuyQuantity/SellQuantity). OrdImb cần cả số lệnh nên KHÔNG tính được trước khi đóng cửa.",
+  "HNX + UPCoM (14/120 mã, 2 deal): Vietstock gettradingresult có đủ 4 trường trong phiên (09:25 → 14:46), OrdImb thay đổi theo thời gian thực; FireAnt không có. NHƯNG so với số cuối ngày của bộ máy (FireAnt = hnx.vn) thì số Vietstock cho HNX/UPCoM KHÁC định nghĩa (13/14 mã lệch > 0,01, lệch tối đa 2.8837) → KHÔNG dùng được cho Điều kiện 9.",
+  "Sau phiên: số lệnh HOSE chưa có lúc 15:45; có đủ 106/106 ở Vietstock và 120/120 ở FireAnt lúc 20:26 (23/09: FireAnt đủ lúc 18:02). Vietstock HOSE khớp FireAnt tuyệt đối (lệch tối đa 0.0005).",
+  "Proxy thay thế (Simplize active ratio, KL mua/bán chủ động, KL đặt không có số lệnh) đã bị loại trước đó: tương quan hạng ≤ 0,36 với OrdImb."
+ ],
+ "decision": "Giữ nguyên luật: live_scan chỉ báo SAP_DU/WAITING_FOR_FLOW_CONFIRMATION cho mã HOSE khi thiếu số lệnh, KHÔNG bao giờ MUA khi thiếu Điều kiện 9. Lệnh vào theo bộ máy (giá đóng cửa phiên tín hiệu) được xác nhận sau phiên khi nguồn EOD có số lệnh. Không đổi chiến lược."
+}

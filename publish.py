@@ -92,6 +92,10 @@ def main():
         spec_version=2,
         prod_config_hash=D.get('prod_config_hash'),
         cfg=CF,
+        book=D.get('book'),
+        signals_today=D.get('signals_today') or [],
+        signals_recent=D.get('signals_recent') or [],
+        light_by_date=D.get('light_by_date') or {},
         spec_u=D.get('spec_u'),
         # Do phu du lieu dong tien mua/ban cua phien cuoi. Buoc chan trung phien
         # trong daily.yml doc con so nay de biet ban DA DANG co "day du" chua:

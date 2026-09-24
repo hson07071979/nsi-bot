@@ -240,7 +240,7 @@ function pageLive(root){
   const ob=document.getElementById('openbox');
   ob.innerHTML = D.open_positions.length
     ? '<table><thead><tr><th>Mã</th><th>Ngành</th><th>Ngày mua</th><th style="text-align:right">Giá vốn</th><th style="text-align:right">Hiện tại</th><th style="text-align:right">Lãi/lỗ</th></tr></thead><tbody>'+
-      D.open_positions.map(p=>`<tr><td class="sym">${esc(p.sym)}</td><td>${esc(p.sector)}</td><td>${p.entry}</td><td style="text-align:right">${p.entry_px}</td><td style="text-align:right">${p.last}</td><td style="text-align:right" class="${cls(p.pnl)}">${p.pnl>=0?'+':''}${p.pnl}%</td></tr>`).join('')+'</tbody></table>'
+      D.open_positions.map(p=>`<tr><td class="sym">${esc(p.sym)}</td><td>${esc(p.sector)}</td><td>${p.entry}</td><td style="text-align:right">${p.entry_raw && p.entry_raw > 0 ? (p.entry_raw).toLocaleString("vi-VN") : p.entry_px}</td><td style="text-align:right">${p.last}</td><td style="text-align:right" class="${cls(p.pnl)}">${p.pnl>=0?'+':''}${p.pnl}%</td></tr>`).join('')+'</tbody></table>'
     : `<p style="margin:0">Không có vị thế nào đang mở. Đèn thị trường đang <b style="color:var(${LIGHTVAR[last.light]})">${LIGHTNAME[last.light]}</b> — hệ thống giữ tiền mặt và chờ.</p>`;
 }
 

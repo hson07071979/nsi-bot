@@ -89,9 +89,11 @@ function pageHome(root){
   document.getElementById('hkpi').innerHTML =
       kpi('Tổng lợi nhuận', sg(M.total_return), `${(dates.length/250).toFixed(1)} năm · VN-Index ${sg(BM.total)}`, cls(M.total_return))
     + kpi('Lợi nhuận mỗi năm', sg(M.cagr), `VN-Index ${sg(BM.cagr)}`, cls(M.cagr))
-    + kpi('Sụt giảm tối đa', '−'+pct(M.maxdd), `VN-Index −${pct(BM.mdd)}`, 'neg')
+    + kpi('Sụt giảm tối đa', '−'+(M.maxdd*100).toFixed(2).replace('.',',')+'%', `VN-Index −${pct(BM.mdd)}`, 'neg')
     + kpi('Profit Factor', M.pf, 'lãi gộp / lỗ gộp')
-    + kpi('Số deal', (P.deal_metrics||{}).deals ?? M.trades, `${M.per_year} lệnh mỗi năm`)
+    + kpi('Số deal', (P.deal_metrics||{}).deals ?? M.trades, (P.deal_metrics||{}).deals
+        ? `${((P.deal_metrics||{}).deals/(dates.length/250)).toFixed(1)} deal mỗi năm · ${M.trades} dòng lệnh (chốt 1/3 tính 2 dòng)`
+        : `${M.per_year} lệnh mỗi năm`)
     + kpi('Tỷ lệ thắng', pct((P.deal_metrics||{}).winrate ?? M.winrate), `lãi TB +${(P.deal_metrics||{}).avg_win ?? M.avg_win}% · lỗ TB ${(P.deal_metrics||{}).avg_loss ?? M.avg_loss}%`)
     + kpi('Lãi / Lỗ', ((P.deal_metrics||{}).rr ?? M.rr), 'mỗi đồng rủi ro đổi lấy')
     + kpi('Sharpe', M.sharpe, 'trên chuỗi NAV ngày');
@@ -886,16 +888,22 @@ async function moBieuDo(sym) {
   // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
   CT.bars = bars;
   const co = new Set(bars.map(b => b.time));
-  const MK = (typeof dauMuaBan === 'function' ? dauMuaBan(sym) : [])
-    .concat(((D.candles || {})[sym] || {}).marks || []);
+  const MK = (typeof dauMuaBan === 'function' ? dauMuaBan(sym)
+                                             : (((D.candles || {})[sym] || {}).marks || []));
   const daVe = new Set();
   CT.marks = MK.filter(m => co.has(m.d) && !daVe.has(m.t + m.d) && daVe.add(m.t + m.d))
     .sort((a, b) => a.d < b.d ? -1 : 1)
-    .map(m => ({
-      time: m.d, position: m.t === 'B' ? 'belowBar' : 'aboveBar',
-      color: m.t === 'B' ? M.s1 : M.giam, shape: m.t === 'B' ? 'arrowUp' : 'arrowDown',
-      text: (m.t === 'B' ? 'MUA' : 'BÁN') + (m.px ? ' ' + m.px : ''),
-    }));
+    .map(m => {
+      // Nen nhung san = gia THO -> dung gia khop tho (px). Nen tai tu VPS/VNDIRECT = gia
+      // DA DIEU CHINH -> dung pxa (gia dieu chinh) cho dau khong lech nen sau chia tach.
+      const mua = String(m.t).startsWith('B');
+      const gia = (CT.nguon === 'nhúng sẵn' || m.pxa == null) ? m.px : m.pxa;
+      return {
+        time: m.d, position: mua ? 'belowBar' : 'aboveBar',
+        color: mua ? M.s1 : M.giam, shape: mua ? 'arrowUp' : 'arrowDown',
+        text: (m.t === 'B+' ? 'NHỒI' : mua ? 'MUA' : 'BÁN') + (gia ? ' ' + gia : ''),
+      };
+    });
 
   // dòng OHLC ở đầu khung, cập nhật theo con trỏ
   const dau = document.getElementById('ctHead');
