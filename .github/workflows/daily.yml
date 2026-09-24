@@ -256,7 +256,9 @@ jobs:
           # SO GHI TIEN chay O DAY, sau khi thresholds.json cua CHINH phien vua chot da
           # co: cung den thi truong, cung tin hieu voi bo may (audit 24/09/2026).
           # Hong thi khong lam do ca buoc dang trang.
-          python portfolio.py || echo "::warning::portfolio.py loi — so ghi tien chua cap nhat phien nay"
+          # -B: repo public co track __pycache__/live_scan.cpython-311.pyc; import
+          # live_scan ma ghi lai .pyc thi `git pull --rebase` ben duoi tu choi chay.
+          python -B portfolio.py || echo "::warning::portfolio.py loi — so ghi tien chua cap nhat phien nay"
           git add portfolio.json 2>/dev/null || true
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"
