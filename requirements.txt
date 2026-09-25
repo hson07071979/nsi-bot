@@ -4,6 +4,5 @@
 requests==2.33.1
 numpy==2.2.6
 pandas==2.3.3
-vnstock==4.0.8
-vnai==2.6.1
+# vnstock/vnai: PyPI go het ban (25/09/2026) — bootstrap.py goi thang VCI.
 certifi==2026.04.22

@@ -2,8 +2,9 @@
 """KHOI TAO — chay tren mot may hoan toan trong, truoc moi thu khac.
 
 Sinh 5 file ma cac buoc sau can:
-  data/by_exchange.csv   danh sach ma + san + ten cong ty   (vnstock/VCI)
-  industries.csv         nganh ICB tung ma                  (vnstock/VCI)
+  data/by_exchange.csv   danh sach ma + san + ten cong ty   (vnstock/VCI, hoac VCI truc tiep)
+  industries.csv         nganh ICB tung ma                  (vnstock/VCI; khong co thi giu
+                                                             data/sector2.json da commit)
   data/sector2.json      {ma: ten nganh cap 2}
   data/universe.json     danh sach ma HOSE + HNX
   data/VNINDEX.json      nen ngay VN-Index tu 2017          (DNSE)
@@ -43,8 +44,47 @@ def patch_vnstock():
     return True
 
 
+# 25/09/2026: PyPI go het cac ban vnstock/vnai ("from versions: none") -> pip install
+# hong, CI va ban dung toi dung ngay buoc dau. vnstock chi dung de lay danh sach ma
+# tu Vietcap (VCI), nen goi thang API do. Co vnstock thi van dung nhu cu.
+VCI_ALL = 'https://trading.vietcap.com.vn/api/price/symbols/getAll'
+VCI_COLS = {'board': 'exchange', 'organName': 'organ_name', 'organShortName': 'organ_short_name',
+            'enOrganName': 'en_organ_name', 'enOrganShortName': 'en_organ_short_name',
+            'productGrpID': 'product_grp_id'}
+
+
+def listing_vci():
+    import pandas as pd
+    import requests
+    h = {'User-Agent': 'Mozilla/5.0', 'Accept': 'application/json',
+         'Referer': 'https://trading.vietcap.com.vn/', 'Origin': 'https://trading.vietcap.com.vn'}
+    for attempt in range(4):
+        try:
+            r = requests.get(VCI_ALL, headers=h, timeout=45)
+            r.raise_for_status()
+            ex = pd.DataFrame(r.json()).rename(columns=VCI_COLS)
+            thieu = {'symbol', 'exchange', 'type'} - set(ex.columns)
+            if thieu:
+                raise ValueError(f'thieu cot {sorted(thieu)}; co {sorted(ex.columns)[:12]}')
+            n = int(((ex.type == 'STOCK') & ex.exchange.isin(['HSX', 'HNX'])).sum())
+            if n < 300:
+                raise ValueError(f'chi {n} ma HOSE+HNX — nghi du lieu hong')
+            return ex
+        except Exception as e:
+            print(f'  VCI loi lan {attempt+1}: {type(e).__name__}: {e}')
+            time.sleep(5 * (attempt + 1))
+    raise SystemExit('KHỞI TẠO HỎNG: không lấy được danh sách mã từ Vietcap (VCI)')
+
+
 def step_listing():
-    from vnstock import Listing
+    try:
+        from vnstock import Listing
+    except ImportError:
+        print('  không có vnstock — lấy danh sách mã thẳng từ Vietcap (VCI)')
+        ex = listing_vci()
+        ex.to_csv('data/by_exchange.csv', index=False)
+        print(f'  data/by_exchange.csv — {len(ex)} dòng')
+        return ex, None
     ls = Listing(source='VCI')
     ex = ls.symbols_by_exchange()
     ex.to_csv('data/by_exchange.csv', index=False)
@@ -57,6 +97,16 @@ def step_listing():
 
 
 def step_sector(ind):
+    if ind is None:
+        # nganh ICB doi rat cham; giu ban da commit thay vi dung ca ban dung toi
+        try:
+            sect = json.load(open('data/sector2.json', encoding='utf-8'))
+        except Exception:
+            sect = {}
+        if len(sect) < 300:
+            raise SystemExit('KHỞI TẠO HỎNG: không có vnstock và data/sector2.json trống')
+        print(f'  data/sector2.json — giữ bản đã commit ({len(sect)} mã có ngành)')
+        return
     sect = {}
     for r in ind.itertuples():
         try:
@@ -101,7 +151,8 @@ def step_vnindex():
 if __name__ == '__main__':
     os.makedirs('data', exist_ok=True)
     print('KHỞI TẠO — sinh các file tĩnh')
-    if not patch_vnstock():
+    import importlib.util as _iu
+    if _iu.find_spec('vnstock') and not patch_vnstock():
         print('  cảnh báo: không vá được vnstock, thử chạy tiếp')
     ex, ind = step_listing()
     step_sector(ind)
