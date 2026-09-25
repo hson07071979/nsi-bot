@@ -151,7 +151,8 @@ def step_vnindex():
 if __name__ == '__main__':
     os.makedirs('data', exist_ok=True)
     print('KHỞI TẠO — sinh các file tĩnh')
-    if not patch_vnstock():
+    import importlib.util as _iu
+    if _iu.find_spec('vnstock') and not patch_vnstock():
         print('  cảnh báo: không vá được vnstock, thử chạy tiếp')
     ex, ind = step_listing()
     step_sector(ind)
