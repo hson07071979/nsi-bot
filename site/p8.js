@@ -20,7 +20,7 @@ function pageWatchlist(root){
 
   <h2>Danh sách mua (${fit.length})</h2>
   
-  <div class="tblwrap"><table id="wt"><thead><tr>
+  <div class="tblwrap full"><table id="wt"><thead><tr>
     <th data-k="sym">Mã</th><th data-k="sector">Ngành</th><th data-k="price" style="text-align:right">Giá</th>
     <th data-k="score" style="text-align:right">Điểm</th><th data-k="fund" style="text-align:right">Cơ bản</th>
     <th data-k="tech" style="text-align:right">Kỹ thuật</th><th data-k="base" style="text-align:right">Nền %</th>
@@ -42,15 +42,15 @@ function pageWatchlist(root){
     <th style="text-align:right">GTGD</th><th style="text-align:right">ROE</th>
     <th style="text-align:right">DThu YoY</th><th style="text-align:right">LNST YoY</th></tr></thead><tbody>
     ${fa.map(m=>`<tr><td class="sym">${esc(m.sym)}${m.tim?' <span title="Đèn tím — '+(m.tim_vi||'')+'" style="color:var(--s7)">●</span>':''}</td><td>${esc(m.sector) || ''}</td>
-      <td style="text-align:right">${m.price??'—'}</td>
-      <td style="text-align:right;font-weight:650;color:var(--warn)">${m.score??'—'}</td>
-      <td style="text-align:right">${m.fund??'—'}<span class="muted">/55</span></td>
-      <td style="text-align:right">${m.tech??'—'}<span class="muted">/50</span></td>
-      <td style="text-align:right">${m.base??'—'}</td><td style="text-align:right">${m.rs??'—'}</td>
-      <td style="text-align:right">${m.gtgd20??'—'}</td>
-      <td style="text-align:right">${m.roe??'—'}${m.roe!=null?'%':''}</td>
-      <td style="text-align:right" class="${m.rev_yoy>=0?'pos':'neg'}">${m.rev_yoy??'—'}${m.rev_yoy!=null?'%':''}</td>
-      <td style="text-align:right" class="${m.npat_yoy>=0?'pos':'neg'}">${m.npat_yoy??'—'}${m.npat_yoy!=null?'%':''}</td>
+      <td style="text-align:right">${vn(m.price)}</td>
+      <td style="text-align:right;font-weight:650;color:var(--warn)">${vn(m.score)}</td>
+      <td style="text-align:right">${vn(m.fund)}<span class="muted">/55</span></td>
+      <td style="text-align:right">${vn(m.tech)}<span class="muted">/50</span></td>
+      <td style="text-align:right">${vn(m.base)}</td><td style="text-align:right">${vn(m.rs)}</td>
+      <td style="text-align:right">${vn(m.gtgd20)}</td>
+      <td style="text-align:right">${vn(m.roe)}${m.roe!=null?'%':''}</td>
+      <td style="text-align:right" class="${m.rev_yoy>=0?'pos':'neg'}">${vn(m.rev_yoy)}${m.rev_yoy!=null?'%':''}</td>
+      <td style="text-align:right" class="${m.npat_yoy>=0?'pos':'neg'}">${vn(m.npat_yoy)}${m.npat_yoy!=null?'%':''}</td>
     </tr>`).join('')}</tbody></table>`
     : '<p style="margin:0">Không có mã nào trong khoảng điểm này.</p>'}</div>
 
@@ -63,7 +63,7 @@ function pageWatchlist(root){
     ${ghimThuCong().map(w => `<tr>
       <td class="sym">${esc(w.sym)}${w.chuaDang ? '<span class="tag A" style="margin-left:6px">Chưa đăng</span>' : ''}</td>
       <td class="muted" style="font-size:13px">${((w.look && w.look.name) || '').slice(0, 34)}</td>
-      <td style="text-align:right">${w.price ?? '—'}</td>
+      <td style="text-align:right">${vn(w.price)}</td>
       <td>${w.look ? `<span class="lkbadge ${w.look.state}" style="font-size:11px">${w.look.label}</span>` : '<span class="muted">ngoài vũ trụ giao dịch</span>'}</td>
       <td class="muted" style="font-size:13px">${esc(w.note) || '—'}</td>
       <td class="muted" style="font-size:13px">${w.added || '—'}</td></tr>`).join('')}
@@ -71,15 +71,15 @@ function pageWatchlist(root){
   <div class="card tblwrap"><table><thead><tr><th>Mã</th><th>Ngành</th><th style="text-align:right">Điểm</th>
     <th style="text-align:right">Nền %</th><th style="text-align:right">RS</th><th>Vì sao chưa đạt</th></tr></thead><tbody>
     ${pin.map(m=>`<tr><td class="sym">${esc(m.sym)}</td><td>${esc(m.sector) || '—'}</td>
-      <td style="text-align:right">${m.score??'—'}</td><td style="text-align:right">${m.base??'—'}</td>
-      <td style="text-align:right">${m.rs??'—'}</td>
+      <td style="text-align:right">${vn(m.score)}</td><td style="text-align:right">${vn(m.base)}</td>
+      <td style="text-align:right">${vn(m.rs)}</td>
       <td><span class="pill ${m.blocked?'DO':'VANG'}">${esc(m.note) || '—'}</span></td></tr>`).join('')}</tbody></table></div>
 
   <h2>Nhật ký thay đổi</h2>
   <div class="two">
     <div class="card"><h3 style="margin-top:0;color:var(--good)">Thêm vào</h3>
       ${W.added.length? '<table><thead><tr><th>Mã</th><th>Ngành</th><th style="text-align:right">Điểm</th><th style="text-align:right">Nền</th><th style="text-align:right">RS</th></tr></thead><tbody>'+
-        W.added.map(a=>`<tr><td class="sym">${esc(a.sym)}</td><td>${esc(a.sector) || ''}</td><td style="text-align:right">${a.score}</td><td style="text-align:right">${a.base??'—'}%</td><td style="text-align:right">${a.rs??'—'}</td></tr>`).join('')+'</tbody></table>'
+        W.added.map(a=>`<tr><td class="sym">${esc(a.sym)}</td><td>${esc(a.sector) || ''}</td><td style="text-align:right">${a.score}</td><td style="text-align:right">${vn(a.base)}%</td><td style="text-align:right">${vn(a.rs)}</td></tr>`).join('')+'</tbody></table>'
         : '<p style="margin:0">Không có mã nào mới vào.</p>'}</div>
     <div class="card"><h3 style="margin-top:0;color:var(--critical)">Loại ra</h3>
       ${W.removed.length? '<table><thead><tr><th>Mã</th><th>Lý do</th></tr></thead><tbody>'+
@@ -95,16 +95,16 @@ function pageWatchlist(root){
     const _tim = s2 => { const x=(D.lookup||{})[s2];
       return x && x.tim ? ` <span title="Đèn tím — ${esc(x.tim_vi) || ''}" style="color:var(--s7)">●</span>` : ''; };
     document.getElementById('wtb').innerHTML=rows.map(m=>`<tr>
-      <td class="sym">${esc(m.sym)}${_tim(m.sym)}</td><td>${esc(m.sector) || ''}</td><td style="text-align:right">${m.price??'—'}</td>
-      <td style="text-align:right;font-weight:650;color:var(--text-primary)">${m.score??'—'}</td>
-      <td style="text-align:right">${m.fund??'—'}<span class="muted">/55</span></td>
-      <td style="text-align:right">${m.tech??'—'}<span class="muted">/50</span></td>
-      <td style="text-align:right">${m.base??'—'}</td><td style="text-align:right">${m.rs??'—'}</td>
-      <td style="text-align:right">${m.gtgd20??'—'}</td>
-      <td style="text-align:right;font-weight:600" class="${(m.ordimb20||0)>=1.2?'pos':''}">${m.ordimb20??'—'}</td>
-      <td style="text-align:right">${m.roe??'—'}%</td>
-      <td style="text-align:right" class="${cls(m.rev_yoy||0)}">${m.rev_yoy==null?'—':(m.rev_yoy>=0?'+':'')+m.rev_yoy+'%'}</td>
-      <td style="text-align:right" class="${cls(m.npat_yoy||0)}">${m.npat_yoy==null?'—':(m.npat_yoy>=0?'+':'')+m.npat_yoy+'%'}</td>
+      <td class="sym">${esc(m.sym)}${_tim(m.sym)}</td><td>${esc(m.sector) || ''}</td><td style="text-align:right">${vn(m.price)}</td>
+      <td style="text-align:right;font-weight:650;color:var(--text-primary)">${vn(m.score)}</td>
+      <td style="text-align:right">${vn(m.fund)}<span class="muted">/55</span></td>
+      <td style="text-align:right">${vn(m.tech)}<span class="muted">/50</span></td>
+      <td style="text-align:right">${vn(m.base)}</td><td style="text-align:right">${vn(m.rs)}</td>
+      <td style="text-align:right">${vn(m.gtgd20)}</td>
+      <td style="text-align:right;font-weight:600" class="${(m.ordimb20||0)>=cpV('ordimb_min',1.4)?'pos':''}">${vn(m.ordimb20)}</td>
+      <td style="text-align:right">${vn(m.roe)}%</td>
+      <td style="text-align:right" class="${cls(m.rev_yoy||0)}">${m.rev_yoy==null?'—':(m.rev_yoy>=0?'+':'')+vn(m.rev_yoy)+'%'}</td>
+      <td style="text-align:right" class="${cls(m.npat_yoy||0)}">${m.npat_yoy==null?'—':(m.npat_yoy>=0?'+':'')+vn(m.npat_yoy)+'%'}</td>
       <td><span class="pill ${m.grade_score==='Cao'?'XANH':m.grade_score==='Khá'?'VANG':'CAM'}">${m.grade_score}</span>
           <span class="muted" style="font-size:11.5px">${m.grade_base}</span></td></tr>`).join('');
   }
@@ -156,18 +156,18 @@ function pageScreener(root){
     R.sort((a,b)=>{const x=a[sk]??-1e9,y=b[sk]??-1e9;return (x>y?1:x<y?-1:0)*sd;});
     stb.innerHTML=R.slice(0,400).map(r=>`<tr>
       <td class="sym">${esc(r.sym)}${wl.has(r.sym)?' <span class="pill XANH" style="font-size:10px">WL</span>':''}</td>
-      <td>${esc(r.sector)}</td><td style="text-align:right">${r.price??'—'}</td>
+      <td>${esc(r.sector)}</td><td style="text-align:right">${vn(r.price)}</td>
       <td style="text-align:right">${r.mktcap? num(r.mktcap)+' tỷ':'—'}</td>
-      <td style="text-align:right;font-weight:650;color:var(--text-primary)">${r.score??'—'}</td>
-      <td style="text-align:right">${r.fund??'—'}</td><td style="text-align:right">${r.tech??'—'}</td>
-      <td style="text-align:right">${r.roe==null?'—':r.roe+'%'}</td>
-      <td style="text-align:right" class="${cls(r.rev_yoy||0)}">${r.rev_yoy==null?'—':(r.rev_yoy>=0?'+':'')+r.rev_yoy+'%'}</td>
-      <td style="text-align:right" class="${cls(r.npat_yoy||0)}">${r.npat_yoy==null?'—':(r.npat_yoy>=0?'+':'')+r.npat_yoy+'%'}</td>
-      <td style="text-align:right" class="${(r.icr!=null&&r.icr<1.5)?'neg':''}">${r.icr??'—'}</td>
-      <td style="text-align:right" class="${(r.de!=null&&r.de>4)?'neg':''}">${r.de??'—'}</td>
-      <td style="text-align:right">${r.base??'—'}</td><td style="text-align:right">${r.rs??'—'}</td>
-      <td style="text-align:right">${r.gtgd20??'—'}</td>
-      <td style="text-align:right" class="${(r.ordimb20||0)>=1.2?'pos':''}">${r.ordimb20??'—'}</td>
+      <td style="text-align:right;font-weight:650;color:var(--text-primary)">${vn(r.score)}</td>
+      <td style="text-align:right">${vn(r.fund)}</td><td style="text-align:right">${vn(r.tech)}</td>
+      <td style="text-align:right">${r.roe==null?'—':vn(r.roe)+'%'}</td>
+      <td style="text-align:right" class="${cls(r.rev_yoy||0)}">${r.rev_yoy==null?'—':(r.rev_yoy>=0?'+':'')+vn(r.rev_yoy)+'%'}</td>
+      <td style="text-align:right" class="${cls(r.npat_yoy||0)}">${r.npat_yoy==null?'—':(r.npat_yoy>=0?'+':'')+vn(r.npat_yoy)+'%'}</td>
+      <td style="text-align:right" class="${(r.icr!=null&&r.icr<1.5)?'neg':''}">${vn(r.icr)}</td>
+      <td style="text-align:right" class="${(r.de!=null&&r.de>4)?'neg':''}">${vn(r.de)}</td>
+      <td style="text-align:right">${vn(r.base)}</td><td style="text-align:right">${vn(r.rs)}</td>
+      <td style="text-align:right">${vn(r.gtgd20)}</td>
+      <td style="text-align:right" class="${(r.ordimb20||0)>=1.2?'pos':''}">${vn(r.ordimb20)}</td>
       <td>${r.blocked?`<span class="pill DO">${r.block}</span>`:(r.warn?'<span class="pill VANG">Cờ vàng</span>':'<span class="pill XANH">Qua</span>')}</td></tr>`).join('');
     const pass=R.filter(r=>!r.blocked).length;
     skpi.innerHTML=kpi('Số mã',R.length,R.length>400?'hiện 400 dòng đầu':'')

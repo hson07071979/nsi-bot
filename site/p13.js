@@ -408,9 +408,11 @@ function bangDieuKhienChuong() {
       </select>
     </div>
     <div class="note info" style="margin:10px 0 0"><b>Một chỗ trung thực phải nói rõ.</b>
-      Giá, khối lượng, GTGD ở trên là <b>real-time</b>. Nhưng <b>điều kiện 7 — cỡ lệnh mua so cỡ lệnh bán</b>
-      thì bảng giá VPS không có; nó lấy từ ảnh chụp máy chủ lúc <b>${tuoiOI}</b> (làm mới 10–20 phút một lần).
-      Vì vậy mã nào chưa có số đó thì <b>không</b> được lên mức đủ điểm mua — chỉ đứng ở mức sắp đủ.
+      Giá, khối lượng, GTGD ở trên là <b>real-time</b>. Riêng <b>Điều kiện 9 — cỡ lệnh mua so cỡ lệnh bán</b>
+      cần <b>số lệnh</b> đặt mua/đặt bán, mà sàn chỉ công bố <b>sau khi đóng cửa</b> (đo thật phiên 24/09:
+      trong phiên 0/106 mã HOSE có số này ở FireAnt, Vietstock, CafeF; buổi tối mới đủ). Vì vậy trong phiên
+      mã đủ các điều kiện khác chỉ đứng ở mức <b>sắp đủ — chờ dòng tiền</b>; lệnh mua được xác nhận ở bản dựng tối
+      (máy chủ quét lần cuối lúc <b>${tuoiOI}</b>).
       Thà báo thiếu còn hơn báo mua một phiên mà bộ máy chín lớp vốn không đụng vào.</div>
   </div>`;
 }

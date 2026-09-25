@@ -59,7 +59,7 @@ function pageHome(root){
   ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
     <div class="badge">Dữ liệu real-time · nguồn FireAnt · chỉ giao dịch TOP ${cpTop()} mã thanh khoản nhất</div>
-    <h1>Hiệu suất thật,<br>đo trên ${(dates.length/250).toFixed(1)} năm dữ liệu.</h1>
+    <h1>Hiệu suất thật,<br>đo trên ${dec(dates.length/250,1)} năm dữ liệu.</h1>
     
   </div>
   <div class="grid kpis" id="hkpi"></div>
@@ -87,16 +87,16 @@ function pageHome(root){
   `;
 
   document.getElementById('hkpi').innerHTML =
-      kpi('Tổng lợi nhuận', sg(M.total_return), `${(dates.length/250).toFixed(1)} năm · VN-Index ${sg(BM.total)}`, cls(M.total_return))
+      kpi('Tổng lợi nhuận', sg(M.total_return), `${dec(dates.length/250,1)} năm · VN-Index ${sg(BM.total)}`, cls(M.total_return))
     + kpi('Lợi nhuận mỗi năm', sg(M.cagr), `VN-Index ${sg(BM.cagr)}`, cls(M.cagr))
     + kpi('Sụt giảm tối đa', '−'+(M.maxdd*100).toFixed(2).replace('.',',')+'%', `VN-Index −${pct(BM.mdd)}`, 'neg')
-    + kpi('Profit Factor', M.pf, 'lãi gộp / lỗ gộp')
+    + kpi('Profit Factor', dec(M.pf), 'lãi gộp / lỗ gộp')
     + kpi('Số deal', (P.deal_metrics||{}).deals ?? M.trades, (P.deal_metrics||{}).deals
-        ? `${((P.deal_metrics||{}).deals/(dates.length/250)).toFixed(1)} deal mỗi năm · ${M.trades} dòng lệnh (chốt 1/3 tính 2 dòng)`
+        ? `${dec((P.deal_metrics||{}).deals/(dates.length/250),1)} deal mỗi năm · ${M.trades} dòng lệnh (chốt 1/3 tính 2 dòng)`
         : `${M.per_year} lệnh mỗi năm`)
-    + kpi('Tỷ lệ thắng', pct((P.deal_metrics||{}).winrate ?? M.winrate), `lãi TB +${(P.deal_metrics||{}).avg_win ?? M.avg_win}% · lỗ TB ${(P.deal_metrics||{}).avg_loss ?? M.avg_loss}%`)
-    + kpi('Lãi / Lỗ', ((P.deal_metrics||{}).rr ?? M.rr), 'mỗi đồng rủi ro đổi lấy')
-    + kpi('Sharpe', M.sharpe, 'trên chuỗi NAV ngày');
+    + kpi('Tỷ lệ thắng', pct((P.deal_metrics||{}).winrate ?? M.winrate), `lãi TB +${dec((P.deal_metrics||{}).avg_win ?? M.avg_win)}% · lỗ TB ${dec((P.deal_metrics||{}).avg_loss ?? M.avg_loss)}%`)
+    + kpi('Lãi / Lỗ', dec((P.deal_metrics||{}).rr ?? M.rr), 'mỗi đồng rủi ro đổi lấy')
+    + kpi('Sharpe', dec(M.sharpe), 'trên chuỗi NAV ngày');
 
   document.getElementById('h6kpi').innerHTML =
       kpi('Số deal 6 tháng', dl.length, `${wins.length} thắng · ${dl.length-wins.length} thua`)
