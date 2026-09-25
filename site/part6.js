@@ -16,23 +16,25 @@ function pageSystem(root){
   // luật nào ĐÃ TẮT — bản cũ liệt kê cả luật đã tắt như thể đang chạy, người đọc
   // học thuộc một bộ luật không tồn tại.
   const conds=[
-   ['1','Biên độ tăng giá','HOSE ≥ 5,8% · HNX ≥ 8,8% — cận trần hoặc trần','A',true],
+   ['1','Biên độ tăng giá',`HOSE ≥ ${cpSo(cpV('trig_hose',0.058)*100)}% · HNX ≥ ${cpSo(cpV('trig_hnx',0.088)*100)}% — cận trần hoặc trần`,'A',true],
    ['2','Khối lượng sàn dưới',`≥ ${cpSo(cpV('vol_floor',2.0))} × trung bình 20 phiên — tiền thật đổ vào`,'A',true],
    ['3','Giá trị giao dịch phiên',`≥ ${Math.round(cpV('gtgd_min',15e9)/1e9)} tỷ — đủ thanh khoản để sau này còn thoát được`,'A',true],
    ['4','Nền 30 phiên sạch',`Biên độ nền ${cpV('base_len',30)} phiên ≤ ${cpNen()}% — đã tích luỹ yên tĩnh, không phải mã vừa chạy xong`,'A',true],
-   ['5','LNST YoY ngoài vùng yếu','Ngoài khoảng 0–25%','B',true],
+   ['5','LNST YoY ngoài vùng yếu',cpV('dk5_hi',0.25)>cpV('dk5_lo',0)?`Ngoài khoảng ${Math.round(cpV('dk5_lo',0)*100)}–${Math.round(cpV('dk5_hi',0.25)*100)}%`:'Đã tắt 25/09/2026 — giữ vùng 0–25% làm giảm lợi nhuận ở mọi nấc thử','B',cpV('dk5_hi',0.25)>cpV('dk5_lo',0)],
    ['6','Trần khối lượng',`vol ≤ ${cpSo(cpV('vol_ceil',4.5))} × TB20 — ý tưởng là tránh phiên "đổi thuyền trưởng", nhưng bật lên thì cắt mất chính nhóm bùng nổ về sau thành lãi lớn`,'C',cpBat('use_cond6',false)],
    ['7','Biến động TB20',`≥ ${cpSo(cpV('volat_min',0.015)*100)}%/ngày — loại các mã "chết"`,'A',true],
    ['8','Đóng cửa nửa trên nến','close ≥ (high+low)/2 — tránh bẫy UTAD','C',cpBat('use_cond8',true)],
-   ['9','Ngưỡng dòng tiền',`cỡ lệnh mua ÷ cỡ lệnh bán ≥ <b>${cpDTvi()}</b> — nhân tố mạnh nhất tìm được. Đây là cổng vào THẬT của bộ máy, không phải lớp phủ real-time như tài liệu cũ viết`,'A',cpBat('use_ordimb',true)],
+   ['9','Ngưỡng dòng tiền',`cỡ lệnh mua ÷ cỡ lệnh bán ≥ <b>${cpDTvi()}</b> — nhân tố mạnh nhất tìm được. Sở chỉ công bố số lệnh SAU giờ đóng cửa, nên ĐK9 là bước XÁC NHẬN buổi tối cho lệnh đã mua dò lúc ATC (không đạt → bán ATC T+2)`,'A',cpBat('use_ordimb',true)],
   ];
   // THỨ TỰ DƯỚI ĐÂY LÀ THỨ TỰ ƯU TIÊN THẬT trong bộ máy — luật nào đứng trước
   // thì nổ trước, không phải xếp cho đẹp. Chép sai thứ tự là hiểu sai vì sao
   // "Van thời gian" chiếm gần một nửa số lệnh ra.
   const cf = cpV('conf', 2);
   const exits=[
-   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,'Bán hết, xét từ phiên T+2 — phiên đầu tiên cổ phiếu về tài khoản và bán được (quy định thanh toán T+2). Đứng trước mọi luật thoát khác','B',cpBat('use_hard_stop',true)],
+   ['0','Lệnh dò trượt ĐK9',`Mua dò ĐỦ lệnh lúc ATC khi đạt ĐK1–8 (ĐK9 chỉ có số sau giờ đóng cửa). Tối ~18–19h: ĐK9 ≥ ${cpDTvi()} → giữ; không đạt → bán ATC T+2, lúc hàng vừa về. Đứng trước mọi luật thoát khác`,'A',cpV('stage1',null)!=null],
+   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,'Bán hết, xét từ phiên CHIỀU T+2 (ATC) — hàng về tài khoản chiều T+2 (T+2,5), trước đó không bán được. Mọi luật thoát đều tính bằng giá đóng cửa từ T+2 trở đi. Đứng trước mọi luật thoát khác','B',cpBat('use_hard_stop',true)],
    ['2','Cây nến bảo vệ','Đóng cửa dưới low của nến breakout → bán hết. Cắt sớm kiểu này làm mất quá nhiều lệnh về sau thành lãi lớn','C',cpBat('use_protective_candle',false)],
+   ['2b',`Momentum T+${cpV('mo_by',3)}`,`Tới phiên T+${cpV('mo_by',3)} mà chưa từng đóng cửa lãi ≥ ${cpSo(cpV('mo_need',0.01)*100)}% (đã tính phí mua) → bán hết. Breakout thật thì phải chạy ngay (thêm 25/09/2026)`,'A',!!cpV('mo_by',0)],
    ['3',`Cắt lỗ ${cpSo(cpV('stop',-0.07)*100)}%`,'Từ phiên 3 trở đi → bán hết','A',true],
    ['4','Chốt bảo vệ (trả lại % đỉnh)','Lãi từng chạm ngưỡng rồi trả lại quá nửa → bán hết','C',cpBat('use_giveback',false)],
    ['5','Về bờ',`Đã từng lãi ≥ ${cpSo(cpV('be_trigger',0.08)*100)}% mà tụt về ${cpSo(cpV('be_level',0.01)*100)}% → bán hết. Không để lệnh đã có lãi thành lệnh lỗ`,'A',cpBat('use_be',true)],

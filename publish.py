@@ -124,6 +124,11 @@ def main():
     # and the paper book import THESE files, so they cannot drift from the engine.
     for f in ('signal_spec.py', 'allocator.py'):
         shutil.copy(f, f'{OUT}/{f}')
+    # Nguon dong tien (Dieu kien 9) dung chung: bo quet trong phien dung chung de lap
+    # so lenh ngay khi so gd cong bo sau phien (HOSE: Vietstock, HNX/UPCoM: hnx.vn).
+    os.makedirs(f'{OUT}/sources', exist_ok=True)
+    for f in ('__init__.py', 'vietstock.py', 'hnx.py'):
+        shutil.copy(f'sources/{f}', f'{OUT}/sources/{f}')
 
     cho = sum(1 for v in syms.values() if v['state'] == 'cho')
     fa  = sum(1 for v in syms.values() if v['state'] == 'fa')

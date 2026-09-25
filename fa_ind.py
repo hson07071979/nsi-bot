@@ -29,6 +29,8 @@ def pct_rank(a):
         v=row[m]; out[i,m]=v.argsort().argsort()/(len(v)-1)
     return out
 
+THR_HOSE, THR_HNX = 0.056, 0.088
+
 def indicators(d, base_len=30):
     AC=d['AdjClose']; AH=d['AdjHigh']; AL=d['AdjLow']; AO=d['AdjOpen']
     C=d['PriceClose']; B=d['PriceBasic']; V=d['Volume']; TV=d['TotalValue']
@@ -36,7 +38,10 @@ def indicators(d, base_len=30):
     for n in (5,10,20,30,50,200): I['ma%d'%n]=sma(AC,n)
     I['vma20']=sma(V,20); I['tvma20']=sma(TV,20)
     I['pct']=C/np.where(B>0,B,np.nan)-1
-    I['thr']=np.where(d['exch']=='HNX',0.088,0.058).astype(np.float32)
+    # Dieu kien 1 (bien do tang gia). HOSE 5,8% -> 5,6% ngay 25/09/2026 (R11: Monte
+    # Carlo + ca hai nua ky, evidence/r11_progress.json). PHAI trung produce2.PROD
+    # trig_hose/trig_hnx (tests/test_regressions.py kiem).
+    I['thr']=np.where(d['exch']=='HNX',THR_HNX,THR_HOSE).astype(np.float32)
     I['thr_hard']=np.where(d['exch']=='HNX',0.098,0.068).astype(np.float32)
     I['volr']=V/np.where(I['vma20']>0,I['vma20'],np.nan)
     rng=(AH-AL)/np.where(AC>0,AC,np.nan)

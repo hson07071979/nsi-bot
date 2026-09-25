@@ -160,7 +160,7 @@ def test_midnight_bell_guard_present():
         if os.path.exists(os.path.join(ROOT, '..', 'nguyensoninvest', 'live_scan.py')) else None
     if src is None:
         return
-    assert '9.0 <= now_bao.hour + now_bao.minute / 60 <= 15.0' in src
+    assert '9.0 <= t_bao <= 21.5' in src      # 09h-15h trong phien + xac nhan sau phien toi 21h30
     assert "h['level'] == 'MUA' and h.get('prod_ok')" in src
 
 
@@ -222,6 +222,59 @@ def test_evidence_is_versioned():
 def test_cong_b_counts_unique_entries():
     src = open('cong_b.py', encoding='utf-8').read()
     assert 'DEALS = _deals(r0' in src and 'for t in DEALS:' in src
+
+
+# ---------------------------------------------------------------- 25/09/2026 PROD change
+@test
+def test_cond1_threshold_single_source():
+    import fa_ind
+    from produce2 import PROD
+    assert abs(PROD['trig_hose'] - fa_ind.THR_HOSE) < 1e-9 and abs(PROD['trig_hnx'] - fa_ind.THR_HNX) < 1e-9
+
+
+@test
+def test_dk5_off_is_not_required_and_never_blocks():
+    off = dict(CFG, dk5_lo=0.0, dk5_hi=0.0)
+    assert 'dk5' not in SP.required_conditions(off) and 'dk5' in SP.required_conditions(CFG)
+    sp = dict(_sp(), npat_yoy=0.10)                       # inside the old weak band
+    assert 'dk5' in SP.evaluate(sp, _row(), U, CFG)['missing']
+    assert SP.evaluate(sp, _row(), U, off)['all_ok']
+
+
+@test
+def test_alerts_layer_reads_prod_not_hand_typed():
+    src = open('alerts2.py', encoding='utf-8').read()
+    assert 'CFG_LIVE = dict(base_range=' not in src and "_PM[k] for k in ('base_range'" in src
+
+
+@test
+def test_momentum_exit_rule():
+    if not HAVE_DATA:
+        return
+    import engine2 as E
+    from produce2 import PROD
+    C = dict(E.CFG); C.update(PROD)
+    r = E.run(C, log=False)
+    mo = [t for t in r['trades'] if t['reason'].startswith('Momentum')]
+    assert mo, 'momentum rule never fired'
+    for t in mo:      # fired exactly at T+mo_by (or later only if not sellable), never after a +1% close
+        assert t['held'] >= PROD['mo_by'] and t['peak'] < PROD['mo_need'] * 100 + 1e-6, t
+
+
+@test
+def test_probe_scheme_sells_only_when_shares_arrive():
+    """PROD 25/09: buy at ATC without Cond9, confirm in the evening, sell failures at the T+2
+    CLOSE (shares arrive the afternoon of T+2) — never earlier, never at an open."""
+    if not HAVE_DATA:
+        return
+    import engine2 as E
+    from produce2 import PROD
+    assert PROD.get('stage1') == 1.0 and PROD.get('probe_exit') == 'close'
+    C = dict(E.CFG); C.update(PROD)
+    r = E.run(C, log=False)
+    assert all(t['held'] >= 2 for t in r['trades'])
+    pr = [t for t in r['trades'] if t['reason'].startswith('Cond9')]
+    assert pr and all(t['held'] == 2 for t in pr), [t for t in pr if t['held'] != 2][:3]
 
 
 if __name__ == '__main__':

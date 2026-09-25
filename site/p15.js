@@ -36,6 +36,14 @@
 function vieccanlam(p) {
   const l = p.pnl, giu = p.held, dinh = p.peak;
   if (l == null) return { m: 'cho', t: 'CHƯA CÓ GIÁ', v: 'Chờ dữ liệu', ly: '' };
+  // Lệnh dò trượt ĐK9 (PROD 25/09/2026): bán ATC T+2, lúc hàng vừa về.
+  if (p.probe_fail) return (giu != null && giu < 2)
+    ? { m: 'ha', t: 'TRƯỢT ĐK9', v: 'Bán ATC T+2', ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán lúc ATC T+2 khi hàng về (còn ${2 - giu} phiên).` }
+    : { m: 'thoat', t: 'THOÁT', v: 'Bán ATC hôm nay', ly: 'Lệnh dò trượt Điều kiện 9 — hàng đã về, bán ATC.' };
+  // T+2,5: hàng mua phiên T về tài khoản CHIỀU T+2 — trước đó không bán được, dù chạm luật nào.
+  if (giu != null && giu < 2) return { m: 'cho', t: 'CHỜ HÀNG VỀ', v: 'Chưa bán được',
+    ly: `Hàng về chiều T+2 (còn ${2 - giu} phiên). Luật thoát xét từ phiên chiều/ATC T+2` +
+        (l <= -7 ? ` — đang lỗ ${l.toFixed(1)}%, chuẩn bị bán ngay khi hàng về.` : '.') };
 
   if (l <= -10) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
     ly: `Lỗ ${l.toFixed(1)}% — đã chạm cắt lỗ cứng −10%.` };
@@ -43,11 +51,17 @@ function vieccanlam(p) {
     ly: `Lỗ ${l.toFixed(1)}% sau ${giu} phiên — đã chạm cắt lỗ −7%.` };
   if (dinh != null && dinh >= 8 && l <= 1) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
     ly: `Từng lãi ${dinh.toFixed(1)}% rồi rơi về ${l.toFixed(1)}% — luật về bờ.` };
-  if (giu != null && giu >= 4 && l <= 0) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Giữ ${giu} phiên vẫn chưa có lãi — van thời gian T+4. Giả thuyết đã sai, trả vốn về.` };
+  // Momentum (25/09/2026): tới T+mo_by mà đỉnh lãi (đã tính phí mua) chưa từng ≥ mo_need -> ra
+  const moBy = cpV('mo_by', 0), moNeed = cpV('mo_need', 0) * 100;
+  if (moBy && giu != null && giu >= moBy && dinh != null && dinh < moNeed) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
+    ly: `Tới T+${giu} mà chưa từng lãi ${cpSo(moNeed)}% (đỉnh ${cpSo(dinh)}%) — breakout không chạy, luật momentum.` };
+  if (giu != null && giu >= cpV('t_valve', 4) && l <= 0) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
+    ly: `Giữ ${giu} phiên vẫn chưa có lãi — van thời gian T+${cpV('t_valve', 4)}. Giả thuyết đã sai, trả vốn về.` };
 
   if (l <= -5) return { m: 'ha', t: 'GẦN CẮT LỖ', v: 'Theo dõi sát',
     ly: `Lỗ ${l.toFixed(1)}% — còn ${(l + 7).toFixed(1)} điểm nữa là chạm cắt lỗ −7%.` };
+  if (moBy && giu != null && giu >= moBy - 1 && giu < moBy && dinh != null && dinh < moNeed) return { m: 'ha', t: 'PHẢI CHẠY NGAY', v: 'Chuẩn bị ra',
+    ly: `Phiên sau là T+${moBy}: nếu vẫn chưa đóng cửa lãi ≥ ${cpSo(moNeed)}% thì bán (luật momentum).` };
   if (giu != null && giu >= 2 && l <= 2) return { m: 'ha', t: 'SẮP HẾT GIỜ', v: 'Chuẩn bị ra',
     ly: `Giữ ${giu} phiên mới lãi ${l.toFixed(1)}% — còn ${4 - giu} phiên tới van T+4.` };
   if (dinh != null && dinh >= 19) return { m: 'theo', t: 'BÁM MA10', v: 'Giữ, theo MA10',

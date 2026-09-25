@@ -43,11 +43,11 @@ const BK = {
   NEN:  ['Biên độ nền 30 phiên',        '%',        '<=', 'cg'],
   VOLAT:['Biên độ dao động TB20',       '%',        '>=', 'cg'],
   DIEM: ['Điểm CANSLIM tổng',           'điểm',     '>=', 'cg'],
-  DK5:  ['LNST YoY ngoài vùng yếu 0–25%', '%',      'band', 'cg'],
+  DK5:  ['LNST YoY (ĐK5)',                 '%',      'band', 'cg'],
   RUIRO:['Cổng rủi ro tài chính',       'đạt/chặn', '>=', 'cg'],
 };
 const BKCHU = {
-  DK5: 'Vùng tăng 0–25% đẹp vừa đủ để đánh lừa bộ chấm điểm, không đủ mạnh để bùng nổ.',
+  DK5: 'Đã tắt từ 25/09/2026: loại vùng LNST tăng 0–25% làm giảm lợi nhuận ở mọi nấc thử (backtest R11). Chỉ hiện để tham khảo.',
   Mom: 'Thang trượt (5 × mức tăng 3 tháng), không có ngưỡng đạt/trượt.',
 };
 
@@ -66,7 +66,8 @@ function _bkVal(a, u, code){
 }
 function _vnN(x){ return typeof x === 'number' ? x.toLocaleString('vi-VN', {maximumFractionDigits: 2}) : x; }
 function _bkBench(b, u, op){
-  if (op === 'band')  return 'ngoài vùng 0–25%';
+  if (op === 'band')  return cpV('dk5_hi', 0.25) > cpV('dk5_lo', 0) ?
+    `ngoài vùng ${Math.round(cpV('dk5_lo', 0) * 100)}–${Math.round(cpV('dk5_hi', 0.25) * 100)}%` : 'đã tắt từ 25/09/2026 — chỉ để xem';
   if (op === 'thang') return 'thang trượt';
   if (op === 'ref')   return 'chỉ để tham khảo';
   if (b === undefined || b === null) return '—';
@@ -284,6 +285,19 @@ function renderLiveBar() {
       <span>${mua.map(h => h.sym).join(' · ')}</span>
       <span class="lmuted">cập nhật ${hhmm(L.asof)}${L.realtime ? ' (real-time)' : ''}</span>
       <button class="mini" onclick="go('chuong')">Xem chi tiết</button>`;
+    return;
+  }
+
+  // MUA DÒ (PROD 25/09/2026): đủ ĐK1–8, ĐK9 tối mới có số -> mua lúc ATC, tối xác nhận.
+  const doHits = (sv.hits || []).filter(h => h.mua_do);
+  const truot = (sv.hits || []).filter(h => h.truot9);
+  if (doHits.length || truot.length) {
+    el2.className = 'livebar heads';
+    el2.innerHTML = `<span class="ldot"></span>` +
+      (doHits.length ? `<b>${doHits.length} mã MUA DÒ lúc ATC</b><span>${doHits.map(h => h.sym).join(' · ')}</span>
+        <span class="lmuted">đủ ĐK1–8 · tối ~18–19h xác nhận Điều kiện 9, không đạt thì bán ATC T+2</span>` : '') +
+      (truot.length ? `<b>Không đạt ĐK9 → bán ATC T+2:</b><span>${truot.map(h => h.sym).join(' · ')}</span>` : '') +
+      `<button class="mini" onclick="go('chuong')">Xem chi tiết</button>`;
     return;
   }
 

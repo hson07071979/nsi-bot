@@ -144,7 +144,7 @@ function danhMuc() {
       // Chia chung một mẫu số thì cột "% tài khoản" vô nghĩa: BSR vào đúng 25%
       // NAV của sổ ghi tiền nhưng hiện ra 4% vì bị chia cho NAV của bộ máy.
       navGoc: ((D.prod || {}).metrics || {}).final_nav || null,
-      held: null, peak: null, nguon: 'auto', bomay: true, book_id: 'HE_THONG',
+      held: p.held ?? null, peak: p.peak ?? null, nguon: 'auto', bomay: true, book_id: 'HE_THONG', probe_fail: !!p.probe_fail,
     });
   });
 
@@ -158,7 +158,7 @@ function danhMuc() {
       pnl: laiSauPhi(p.entry_px / 1000, px) * 100,
       tien: p.sh ? p.sh * px * 1000 : null,
       navGoc: (F && F.nav) || null,      // NAV của sổ ghi tiến, không phải của bộ máy
-      held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'ghitien', book_id: 'SO_GHI_TIEN',
+      held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'ghitien', book_id: 'SO_GHI_TIEN', probe_fail: !!p.probe_fail,
     });
   });
 

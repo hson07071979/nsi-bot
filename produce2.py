@@ -22,7 +22,8 @@ import engine2 as E
 # phan hon nam o 2019-2022, con 2023-2026 THUA han ban cu (+84% so +132%), va
 # PF roi deu tu 4,44 xuong 2,5. Do la con so cua song penny 2020-2021 da qua.
 # ============================================================================
-PROD=dict(base_range=0.22, use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=0.0,
+PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
+          use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=0.0,
           size_map={'XANH':1.0,'VANG':0.6,'CAM':0.35,'DO':0.2},
           base_size=0.42, max_pos=0.50, max_total=1.0, max_pos_n=12,
           use_be=True, be_trigger=0.08, be_level=0.01,
@@ -58,7 +59,22 @@ PROD=dict(base_range=0.22, use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=
           # Condition 8 (close in upper half of the candle) removed: A/B identical to
           # the trade (0 trades removed, with and without slippage), and it only adds
           # an intraday timing ambiguity to the live layer.
-          use_cond8=False)
+          use_cond8=False,
+          # ---- TOI UU 25/09/2026 (R11/R13, evidence/r11_progress.json, r13_joint.json,
+          # r13_verify_final.json). Moi thay doi qua: Monte Carlo lo 10% lenh (200 lan),
+          # hai o lan can, DD thuc <= 12%, nua 2023-26 khong kem hon, bo 3 deal lon nhat
+          # them vao van hon ban cu. Anh Son duyet ngay 25/09.
+          # DK1: HOSE 5,8% -> 5,6% (phai trung fa_ind.THR_HOSE).
+          trig_hose=0.056, trig_hnx=0.088,
+          # DK5 (loai LNST YoY 0-25%): TAT. Giu vung 0-25% lam giam loi nhuan o moi nac.
+          dk5_lo=0.0, dk5_hi=0.0,
+          # Momentum sau breakout: toi phien T+3 ma chua tung dong cua lai >= +1% (da tinh
+          # phi mua) thi ban — "da break thi phai chay". Cat som -2,5% da thu: KEM hon.
+          mo_by=3, mo_need=0.01,
+          # MUA DO (anh Son chot 25/09, R14): DK9 chi co so SAU gio dong cua, nen lenh that
+          # la: mua DU lenh luc ATC khi dat DK1-8 -> toi xac nhan DK9 -> truot thi ban ATC T+2
+          # (hang ve chieu T+2). +903%, DD 12,3%; lenh that PF 5,99, lenh do ~hoa von.
+          stage1=1.0, probe_exit='close')
 PRESETS={
  'thucte'  : ('Có trượt giá 0,2% (thực tế)', dict(slip=0.002)),
  'toanTT'  : ('Toàn thị trường (không giới hạn thanh khoản)', dict(use_top_liquid=False)),
@@ -131,20 +147,27 @@ if __name__=='__main__':
         # gia THO da khop (de ve dau B dung nen) — entry_px o tren la gia von DIEU CHINH da gom phi
         'entry_raw':round(float(getattr(p,'eraw',float('nan'))),0),
         'shares':int(p.sh),'sector':p.sector,'last':round(_lastpx(p),2),
-        'pnl':round(_lastpx(p)/float(p.epx)*100-100,2)} for p in r['pos'].values()]
+        'pnl':round(_lastpx(p)/float(p.epx)*100-100,2),
+        # so phien da giu + dinh lai (da tinh phi mua) — trang dich luat thoat (momentum T+3,
+        # van thoi gian, ve bo) thanh viec phai lam cho dung so he thong
+        'held':int(len(cal)-1-p.ei),'peak':round(float(getattr(p,'peak',0.0))*100,2),
+        # lenh do truot DK9 (stage 3) — se ban ATC T+2
+        'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True)))} for p in r['pos'].values()]
     # TIN HIEU CUA CHINH PHIEN VUA CHOT — so ghi tien (portfolio.py, repo public) vao
     # so DUNG cac lenh nay, sau khi ban dung toi da lap du dong tien HNX. Mot nguon su
     # that: khong con chuyen live.json bao MUA nhung bo may khong mua (hoac nguoc lai).
     out['signals_today']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
                                sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
-                               base=x['base'],size_pct_engine=x['size_pct'])
+                               base=x['base'],size_pct_engine=x['size_pct'],
+                               cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None)
                           for x in r['signals'] if x['date']==str(cal[-1]) and x.get('mode','close')=='close']
     # 10 phien gan nhat: de so ghi tien XU LY BU dung thu tu neu lo mot dem dung trang
     _rec=[str(x) for x in cal[-30:]]
     out['light_by_date']={d_:R['light'][len(cal)-30+k] for k,d_ in enumerate(_rec)}
     out['signals_recent']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
                                 sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
-                                base=x['base'],size_pct_engine=x['size_pct'])
+                                base=x['base'],size_pct_engine=x['size_pct'],
+                                cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None)
                            for x in r['signals'] if x['date'] in _rec and x.get('mode','close')=='close']
     out['blocked']={k:int(v) for k,v in r['blocked'].items()}
     # SO HE THONG (bo may) o phien cuoi: NAV HIEN TAI + tien mat + vi the. Chuong
@@ -282,7 +305,9 @@ if __name__=='__main__':
         'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
         'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',
         'use_ftd', 'use_pyramid', 'use_ordimb',
-        'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'fill_ratio')}
+        'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'fill_ratio',
+        'trig_hose', 'trig_hnx', 'dk5_lo', 'dk5_hi', 'mo_by', 'mo_need', 'mo_window',
+        'mo_stop', 'mo_stop_until', 'valve_min', 'ceil_vol_floor', 'probe_exit', 'pre_proxy', 'pre_min')}
 
     import hashlib as _hl
     _full = dict(E.CFG); _full.update(PROD)
