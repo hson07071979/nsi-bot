@@ -202,6 +202,12 @@ def test_incomplete_cross_section_is_never_mua():
 
 
 @test
+def test_no_financial_statements_is_never_scored_like_engine():
+    r = _eval(sp=dict(_sp(), funda=False, blocked=True, pts_static={}))
+    assert r['ok']['score'] is False and not r['all_ok']
+
+
+@test
 def test_missing_adjusted_close_is_nan_like_engine():
     # engine: AdjClose NaN -> r12 / r3 / 52w-high NaN -> L = N = Mom = 0 (no raw-price fallback)
     r = _eval(row=dict(_row(), AdjClose=None))
