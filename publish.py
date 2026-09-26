@@ -16,6 +16,8 @@ import os
 import shutil
 import sys
 
+import signal_spec as SP
+
 OUT = 'out'
 
 
@@ -89,7 +91,8 @@ def main():
 
     th = dict(
         asof=D['asof'],
-        spec_version=2,
+        # = signal_spec.SPEC_VERSION: live_scan tu choi bao MUA khi lech phien ban dac ta
+        spec_version=SP.SPEC_VERSION,
         prod_config_hash=D.get('prod_config_hash'),
         cfg=CF,
         book=D.get('book'),
