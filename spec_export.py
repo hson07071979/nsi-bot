@@ -88,7 +88,8 @@ def export(d, I, tls, sect, C, i, next_day=None, scan_n=None, syms_extra=()):
         tl = tls.get(s)
         f = as_of(tl, next_day) if tl else None
         if f is None:
-            blocked, why, rmul, npg, pts = True, 'Chưa có BCTC', 0.0, None, {}
+            # engine2.screen: khong co BCTC -> `continue` truoc canslim_score: KHONG co diem
+            blocked, why, rmul, npg, pts = True, 'Chưa có BCTC', 0.0, None, None
         else:
             blocked, why, rmul = risk_gate(s, f)
             npg = f.get('npat_yoy')
@@ -106,7 +107,7 @@ def export(d, I, tls, sect, C, i, next_day=None, scan_n=None, syms_extra=()):
             shares=_f(MC[i, j] / PC[i, j]) if (MC[i, j] == MC[i, j] and PC[i, j] > 0) else None,
             nbars_prev=int(I['nbars'][i, j]), nbars=int(I['nbars'][i, j]) + 1,
             base=base, blocked=bool(blocked), block_why=(why or None) if blocked else None,
-            rmul=float(rmul), npat_yoy=_f(npg), pts_static=pts,
+            rmul=float(rmul), npat_yoy=_f(npg), pts_static=pts or {}, funda=pts is not None,
             sector=sect.get(s, 'Khác'), in_topn_prev=bool(x[j] >= cut),
         )
     return out, U
