@@ -285,6 +285,30 @@ if _ck:
 _arch = [k for k, v in (D.get('sweeps') or {}).items() if isinstance(v, dict) and v and not v.get('_current')]
 warn(not _arch, f'{len(_arch)} bang chung cu (cau hinh khac) — trang phai hien nhan LUU TRU: ' + ' '.join(_arch))
 
+# ---------- 8d. TOP110 + S1 KHOA LAI (26/09/2026) — mot dinh nghia o moi lop ----------
+try:
+    from produce2 import PROD as _PR
+    import exit_rules as _ER
+    check(CFP.get('top_n') == _PR['top_n'] == 110, f"top_n trang {CFP.get('top_n')} / PROD {_PR['top_n']} — phai 110")
+    check(CFP.get('profit_lock') == _PR.get('profit_lock') and _ER.tiers(CFP) == [(0.08, 0.02), (0.12, 0.05)],
+          f"profit_lock trang {CFP.get('profit_lock')} lech PROD {_PR.get('profit_lock')}")
+    check(not CFP.get('use_be'), 'use_be (ve bo +1%) van bat trong cau hinh dang chay')
+    _tr = (D.get('prod') or {}).get('trades') or D.get('trades') or []
+    if _tr:
+        check(not any(str(t.get('reason', '')).startswith('Về bờ') for t in _tr), 'backtest con lenh "Về bờ" (+1%)')
+        check(any(_ER.is_lock_reason(t.get('reason')) for t in _tr), 'backtest khong co lenh nao ra bang khoa lai S1')
+    for _p in (D.get('open_positions') or []):
+        for _k in ('peak_gain', 'profit_floor', 'profit_lock_active', 'sellable', 'action'):
+            check(_k in _p, f"vi the {_p.get('sym')} thieu truong {_k} (exit_rules.status)")
+    check('function erDecide' in html and 'Khoá lãi S1' in html, 'trang thieu exit_rules.js (luat thoat S1 cua Viec can lam)')
+    check('luật về bờ' not in html, 'trang con cau "luật về bờ" o Viec can lam')
+    for _p in (_pf.get('open') or []):
+        warn('profit_floor' in _p, f"so ghi tien: {_p.get('sym')} chua co truong khoa lai (se co sau lan chay portfolio.py ke tiep)")
+except SystemExit:
+    raise
+except Exception as e:
+    check(False, f'khong kiem duoc TOP110 + S1: {type(e).__name__}: {e}')
+
 # ---------- 9. bang thang ----------
 check(len(D['monthly']) > 60, f"bang thang chi co {len(D['monthly'])} thang")
 

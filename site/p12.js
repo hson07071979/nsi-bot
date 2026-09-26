@@ -145,6 +145,9 @@ function danhMuc() {
       // NAV của sổ ghi tiền nhưng hiện ra 4% vì bị chia cho NAV của bộ máy.
       navGoc: ((D.prod || {}).metrics || {}).final_nav || null,
       held: p.held ?? null, peak: p.peak ?? null, nguon: 'auto', bomay: true, book_id: 'HE_THONG', probe_fail: !!p.probe_fail,
+      // luật thoát (exit_rules): gain theo quy ước bộ máy = giá ÷ giá vốn đã gồm phí mua − 1
+      gainR: px ? (px * 1000) / p.entry_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part, light: p.light || null,
+      srv: p.action || null,
     });
   });
 
@@ -159,6 +162,8 @@ function danhMuc() {
       tien: p.sh ? p.sh * px * 1000 : null,
       navGoc: (F && F.nav) || null,      // NAV của sổ ghi tiến, không phải của bộ máy
       held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'ghitien', book_id: 'SO_GHI_TIEN', probe_fail: !!p.probe_fail,
+      gainR: (px && p.cost_px) ? (px * 1000) / p.cost_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part,
+      srv: p.action || null,
     });
   });
 

@@ -247,6 +247,8 @@ jobs:
           # dinh nghia tin hieu + bo chia von dung chung voi bo may (audit 23/09/2026)
           cp out/signal_spec.py  public/signal_spec.py
           cp out/allocator.py    public/allocator.py
+          # luat thoat dung chung (S1 khoa lai, 26/09/2026): portfolio.py + live_scan.py import file nay
+          cp out/exit_rules.py   public/exit_rules.py
           mkdir -p public/sources && cp out/sources/*.py public/sources/
           # Trí nhớ watchlist đi cùng bản đăng: lần chạy sau kéo lại file này ở
           # bước "Lấy sổ lệnh…" nên nhật ký thêm/loại mới cộng dồn được qua ngày.
@@ -263,7 +265,7 @@ jobs:
           git add portfolio.json 2>/dev/null || true
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"
-          git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll signal_spec.py allocator.py sources/
+          git add index.html thresholds.json loai.txt ghim.txt watchlist_state.json .nojekyll signal_spec.py allocator.py exit_rules.py sources/
           if git diff --cached --quiet; then
             echo "Không có gì thay đổi, bỏ qua."
           else

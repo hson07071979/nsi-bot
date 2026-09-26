@@ -2,6 +2,7 @@
 """NGUYEN SON INVEST - BOT v2 (du lieu FireAnt)
    He 9 lop theo 'He Thong Giao Dich Hop Nhat v1.0', chay walk-forward khong nhin truoc."""
 import numpy as np, json, datetime as dt, copy
+from exit_rules import profit_floor as _pl, lock_reason as _plr
 from fa_prep import build as fa_build
 from fa_ind import indicators
 from regime2 import build_regime
@@ -29,6 +30,7 @@ CFG = dict(
   use_giveback=False, gb_trigger=0.10, gb_keep=0.50, use_shelf=False, shelf_range=0.10,
   re_cfo_warn=False, icr_cfo_rescue=False, cfo_icr_min=3.0,   # True = BDS co CFO<0 chi bi co vang (size x0.5) thay vi chan han
   use_be=False, be_trigger=0.08, be_level=0.01,
+  profit_lock=None,         # S1 (PROD 26/09/2026): [[peak_trigger, floor], ...] — exit_rules.profit_floor
   # nan_tot_fix=False -> tai hien loi cu (tran tong von + tran nganh bi NaN lam
   # ngung ap dung khi co ma bi treo). Chi de chay A/B, dung bat o PROD.
   nan_tot_fix=True,
@@ -343,6 +345,10 @@ def run(cfg=None, log=True):
             elif held>=3 and gain<=C['stop']: r='Cắt lỗ −7%'
             elif C['use_giveback'] and p.peak>=C['gb_trigger'] and gain<=p.peak*C['gb_keep']: r='Chốt bảo vệ (trả lại %d%% đỉnh)'%int((1-C['gb_keep'])*100)
             elif C['use_be'] and p.peak>=C['be_trigger'] and gain<=C['be_level']: r='Về bờ (đã lãi %d%%)'%int(C['be_trigger']*100)
+            # S1 PROFIT LOCK (PROD 26/09/2026, anh Son): peak>=8% -> floor +2%, peak>=12% -> floor +5%.
+            # Same function as portfolio.py / live_scan / website (exit_rules.py). Close-based, from T+3.
+            elif C.get('profit_lock') and _pl(p.peak, C['profit_lock'])[1] is not None and gain<=_pl(p.peak, C['profit_lock'])[1]:
+                r=_plr(*_pl(p.peak, C['profit_lock']))
             elif held>=C['t_valve'] and gain<=C.get('valve_min',0.0): r='Van thời gian T+%d'%C['t_valve']
             elif C['use_big_sell'] and I['pct'][i,j]<-0.04 and V[i,j]>1.2*I['vma20'][i,j]: r='Big sell khẩn'; frac=0.5
             elif p.peak>=C['big_win'] and p.b10>=C['conf']: r='Trailing MA%d (lãi lớn)'%C['trail_fast']
