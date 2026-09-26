@@ -170,6 +170,8 @@ if __name__=='__main__':
         # lenh do truot DK9 (stage 3) — se ban ATC phien sell_from (T+3)
         'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
         'b10':int(p.b10),'b20':int(p.b20),'part':bool(p.part),'light':R['light'][p.ei],
+        # ty trong (ma, nganh, tong)/NAV luc vao va luc nhoi — chi ghi nhan (26/09/2026)
+        'x0':getattr(p,'x0',None),'xp':getattr(p,'xp',None),
         # trang thai cua ra theo exit_rules (S1: peak_gain, profit_floor, sellable, action...)
         **_ER.status(_CF, _lastpx(p)/float(p.epx)-1, float(getattr(p,'peak',0.0)), int(len(cal)-1-p.ei),
                      probe_fail=bool(getattr(p,'stage',0)==3), b10=int(p.b10), b20=int(p.b20),

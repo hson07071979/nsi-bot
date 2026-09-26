@@ -360,7 +360,7 @@ function pageHieuQua(root) {
         <li><b>Nền giá</b> — 30 phiên gần nhất phải tích luỹ trong biên độ hẹp.</li>
         <li><b>Điểm mua</b> — đủ cả 8 điều kiện trong <i>cùng một phiên</i>.</li>
         <li><b>Đèn thị trường</b> — bối cảnh chung quyết định đánh mạnh cỡ nào.</li>
-        <li><b>Lọc ngành</b> — không dồn quá 30% NAV vào một nhóm ngành.</li>
+        <li><b>Lọc ngành</b> — không mở lệnh mới khi nhóm ngành đã chạm 30% NAV (lệnh nhồi có thể đẩy ngành vượt 30% — hiện rõ ở cột % tài khoản).</li>
         <li><b>Cỡ vị thế</b> — 42% NAV × hệ số đèn × hệ số rủi ro.</li>
         <li><b>Bộ thoát</b> — bảy luật, kiểm theo thứ tự mỗi phiên.</li>
       </ol>
