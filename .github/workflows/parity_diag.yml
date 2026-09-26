@@ -1,0 +1,33 @@
+name: Chẩn đoán parity (tạm)
+
+# Nhanh chan doan tam thoi — KHONG merge. Dung lai du lieu y het day chuyen
+# production (bootstrap -> fireant -> fa_prep -> orderflow_fill -> fetch_funda) roi
+# chay tests/parity_diag.py. Du lieu duoc cache de lan chay sau khong cao lai.
+on:
+  push:
+    branches: ['diag/**']
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - id: cache
+        uses: actions/cache@v4
+        with:
+          path: data
+          key: parity-data-ses-2026-09-25-v1
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          python bootstrap.py
+          python fireant.py
+          python fa_prep.py
+          python orderflow_fill.py || true
+          python fetch_funda.py
+      - name: Parity diag
+        run: python tests/parity_diag.py "${DIAG_WINDOWS:-2025-08-21,2023-01-01,2018-02-01}"
