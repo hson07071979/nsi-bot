@@ -219,15 +219,22 @@ try:
     tp = importlib.import_module('test_parity')
     _d0 = dt.date.fromisoformat(asof) - dt.timedelta(days=400)
     _pr = tp.main(_d0.isoformat(), None, verbose=False)
-    _tot = _pr['both'] + _pr['engine_only'] + _pr['live_only']
-    _ag = _pr['both'] / _tot if _tot else 1.0
     print(f"PARITY live<->engine 400 ngay: {_pr['both']} khop, {_pr['engine_only']} chi engine, "
-          f"{_pr['live_only']} chi live ({_ag:.1%})")
-    # Mau 400 ngay chi ~40 tin hieu: 1 lech bien (RS sat 70, TOP-N sat nguong) da la -2,5%.
-    # Chan khi <95% VA lech tu 3 ma tro len — tranh mot lech bien lam dung ca ban dung toi.
-    _lech = _pr['engine_only'] + _pr['live_only']
-    check(_ag >= 0.95 or _lech <= 2,
-          f'parity live<->engine chi {_ag:.1%} ({_lech} ma lech) — signal_spec.py lech engine2.screen()')
+          f"{_pr['live_only']} chi live, {_pr['cond_disagree']} lech dieu kien, "
+          f"{_pr['undetermined']} chua quyet (thong tin: {_pr['agreement']:.1%})")
+    # CHOT CUNG (26/09/2026): tin hieu MUA phai khop TUYET DOI. Mot "chi live" la mot
+    # lenh backtest chua tung cho phep; mot "chi engine" la mot lenh live bo lo. Ty le
+    # % chi de doc — khong quyet dinh DAT/TRUOT. In ro tung ca lech (ngay, ma, dieu kien).
+    for _tb in _pr.get('tables') or []:
+        print(_tb)
+    for _e in (_pr.get('cond_examples') or [])[:20]:
+        print('  lech dieu kien:', _e)
+    check(_pr['engine_only'] == 0 and _pr['live_only'] == 0,
+          f"parity live<->engine: {_pr['engine_only']} chi engine, {_pr['live_only']} chi live "
+          f"{_pr['examples'][:10]} — signal_spec.py lech engine2.screen()")
+    check(_pr['cond_disagree'] == 0 and _pr['undetermined'] == 0,
+          f"parity dieu kien: {_pr['cond_disagree']} lech {_pr['cond_disagree_by']}, "
+          f"{_pr['undetermined']} chua quyet — {(_pr.get('cond_examples') or [])[:10]}")
 except SystemExit:
     raise
 except Exception as e:
