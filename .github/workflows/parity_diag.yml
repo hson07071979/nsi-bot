@@ -47,7 +47,7 @@ jobs:
           python tests/bt_dump.py /tmp/after.json
           git worktree add /tmp/base origin/main
           cp tests/bt_dump.py /tmp/base/tests/
-          ln -s "$PWD/data" /tmp/base/data
+          rm -rf /tmp/base/data && ln -s "$PWD/data" /tmp/base/data
           (cd /tmp/base && python tests/bt_dump.py /tmp/before.json)
           python tests/bt_cmp.py /tmp/before.json /tmp/after.json
       - name: Day chuyen toi verify_build
