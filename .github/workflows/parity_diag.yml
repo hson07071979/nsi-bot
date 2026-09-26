@@ -1,8 +1,8 @@
 name: Chẩn đoán parity (tạm)
 
-# Nhanh chan doan tam thoi — KHONG merge. Dung lai du lieu y het day chuyen
-# production (bootstrap -> fireant -> fa_prep -> orderflow_fill -> fetch_funda) roi
-# chay tests/parity_diag.py. Du lieu duoc cache de lan chay sau khong cao lai.
+# Nhanh chan doan tam thoi — KHONG merge. Du lieu y het day chuyen production
+# (cache phien 25/09/2026), chay parity + toan bo day chuyen toi verify_build
+# + backtest truoc/sau.
 on:
   push:
     branches: ['diag/**']
@@ -10,9 +10,11 @@ on:
 jobs:
   diag:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -29,5 +31,38 @@ jobs:
           python fa_prep.py
           python orderflow_fill.py || true
           python fetch_funda.py
-      - name: Parity diag
-        run: python tests/parity_diag.py "${DIAG_WINDOWS:-2025-08-21,2023-01-01,2018-02-01}"
+      - name: Test hoi quy (co du lieu)
+        run: python tests/test_regressions.py
+      - name: Parity 400 ngay
+        continue-on-error: true
+        run: python tests/test_parity.py 2025-08-21
+      - name: Parity 2023 -> nay
+        continue-on-error: true
+        run: python tests/test_parity.py 2023-01-01
+      - name: Parity toan lich su
+        continue-on-error: true
+        run: python tests/test_parity.py 2018-02-01
+      - name: Backtest truoc / sau
+        run: |
+          python tests/bt_dump.py /tmp/after.json
+          git worktree add /tmp/base origin/main
+          cp tests/bt_dump.py /tmp/base/tests/
+          ln -s "$PWD/data" /tmp/base/data
+          (cd /tmp/base && python tests/bt_dump.py /tmp/before.json)
+          python tests/bt_cmp.py /tmp/before.json /tmp/after.json
+      - name: Day chuyen toi verify_build
+        run: |
+          for f in portfolio.json manual.json config.json watchlist_state.json; do
+            curl -fsSL -o "data/$f" "https://raw.githubusercontent.com/hson07071979/nguyensoninvest/main/$f" || true
+          done
+          python screener.py
+          python watchlist.py
+          python alerts2.py
+          python produce2.py
+          python robustness.py || true
+          python cong_b.py || true
+          python funda_series.py || true
+          python build_site2.py
+          python verify_build.py
+          python publish.py
+          ls -la out/ && python -c "import json;T=json.load(open('out/thresholds.json'));print('spec_version',T['spec_version'],'xs',len(T['spec_u']['xs']),'syms',len(T['syms']))"
