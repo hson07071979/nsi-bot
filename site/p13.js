@@ -260,7 +260,7 @@ function tinhLaiTinHieuVPS() {
   // một giá trị ĐÚNG/SAI (đã chạm trần hay chưa). JavaScript đổi true thành 1 và
   // false thành 0, nên điều kiện thật sự chạy là "tăng ≥ 0,8%" hoặc "tăng ≥ 0%" —
   // gần như mọi mã xanh đều lọt. Ngưỡng coi như không tồn tại. So sánh đúng phải
-  // là với NGƯỠNG PHẦN TRĂM (5,8% HOSE · 8,8% HNX), không phải với một cờ nhị phân.
+  // là với NGƯỠNG PHẦN TRĂM (HOSE/HNX, đọc từ cấu hình bộ máy), không phải với một cờ nhị phân.
   // ---- CHUÔNG ĐỂ MẮT: mã watchlist đang tăng ≥ 2,5% ----
   // Không dùng `RTV.keu` như chuông đỏ (chuông đỏ kêu đúng một lần mỗi phiên vì
   // đủ điểm mua là việc dứt khoát). Ở đây mã có thể lên xuống quanh ngưỡng cả

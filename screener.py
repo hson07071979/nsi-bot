@@ -19,15 +19,20 @@ LOAI = _loai()          # ma loai: khong bao gio vao watchlist, khong bao gio ke
 # trong watchlist va xep hang cao, nhung o tra cuu lai bao "chua tao duoc nen gia chat"
 # vi bot doi nen <= 18%. Mot ma hoac dang CHO DIEM MUA, hoac khong — khong the vua
 # trong watchlist vua khong du dieu kien.
+# 25/09/2026: doc THANG tu PROD (engine2.CFG + produce2.PROD) — khong go tay nua.
+from produce2 import PROD as _PROD
+_P = dict(E.CFG); _P.update(_PROD)
 WL = dict(
-    min_score      = 45,         # = score_floor cua bot — NGUONG MUA, khong doi
-    fa_score_lo    = 40,         # nhom "chua dat co ban": 40 <= diem < 45, DE RIENG
-    min_mktcap     = 1000e9,
-    min_gtgd20     = 15e9,       # = gtgd_min cua bot
-    use_top_liquid = True,
-    top_n          = 120,        # = top_n cua bot (110 -> 120 ngay 21/09/2026)
-    max_base_range = 0.22,       # = base_range cua bot (0.18 -> 0.22 ngay 21/09/2026)
-    min_volat      = 0.015,      # = volat_min cua bot
+    min_score      = _P['score_floor'],     # NGUONG MUA
+    fa_score_lo    = _P['score_floor'] - 5, # nhom "chua dat co ban": [floor-5, floor), DE RIENG
+    min_mktcap     = _P['min_mktcap'],
+    min_gtgd20     = _P['gtgd_min'],
+    use_top_liquid = _P['use_top_liquid'],
+    top_n          = _P['top_n'],
+    max_base_range = _P['base_range'],
+    min_volat      = _P['volat_min'],
+    dk5_lo         = _P.get('dk5_lo', 0.0),
+    dk5_hi         = _P.get('dk5_hi', 0.25),
     min_rs         = 0,          # bot khong chan theo RS, chi hien de tham khao
     max_from_high  = -0.99,      # bot khong chan theo khoang cach dinh
     allow_yellow   = True,       # co vang (ICR 1,5-2,5) van vao, chi danh dau
@@ -100,7 +105,7 @@ def screen(as_of_date=None):
         # day nua, khong thi watchlist rong hon vu tru bot thuc su mua va o tra cuu
         # se noi khac watchlist (loi MWG cu, kieu khac).
         _npg = f.get('npat_yoy')
-        dk5_ok = not (_npg is not None and 0 <= _npg < 0.25)
+        dk5_ok = not (_npg is not None and WL['dk5_lo'] <= _npg < WL['dk5_hi'])
         # `in_uni` phai nam trong day: ma ghim ngoai TOP N duoc cham diem de hien
         # ra, nhung TUYET DOI khong duoc vao danh sach mua — khong thi lech voi
         # lookup.py va verify_build.py se bao truot, khong dang len web.

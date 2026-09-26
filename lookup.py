@@ -172,8 +172,9 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
         # bi chan (luat la 0 <= x < 0,25). Doc nhan thay "tang 25% (0-25%)" trong
         # nhu he tu mau thuan — thuc ra luat dung, chi co nhan lam tron len. Va ghi
         # khoang bang dau bat dang thuc de khong ai tuong 25% nam trong vung bi loai.
-        if npg_dk5 is not None and 0 <= npg_dk5 < 0.25:
-            miss.append(f'lợi nhuận ròng chỉ tăng {npg_dk5*100:.1f}% (vùng yếu: 0% ≤ x < 25%)')
+        _lo5, _hi5 = cfg.get('dk5_lo', 0.0), cfg.get('dk5_hi', 0.25)
+        if npg_dk5 is not None and _lo5 <= npg_dk5 < _hi5:
+            miss.append(f'lợi nhuận ròng chỉ tăng {npg_dk5*100:.1f}% (vùng yếu: {_lo5*100:.0f}% ≤ x < {_hi5*100:.0f}%)')
 
         # ---- BẢNG KIỂM CHI TIẾT (không đổi logic, chỉ phơi ra) ----
         chk = []
@@ -229,7 +230,7 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
             _ck('VOLAT', volat * 100, cfg['volat_min'] * 100, '>='),
             _ck('DIEM',  sc, cfg['score_floor'], '>='),
             _ck('DK5',   _pc(npg_dk5), None, 'band',
-                 dat=(True if npg_dk5 is None else not (0 <= npg_dk5 < 0.25))),
+                 dat=('info' if _hi5 <= _lo5 else (True if npg_dk5 is None else not (_lo5 <= npg_dk5 < _hi5)))),
             _ck('RUIRO', (0 if blk else 1), 1, '>=', dat=(not blk)),
         ]
 

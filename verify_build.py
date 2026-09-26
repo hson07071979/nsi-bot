@@ -266,6 +266,11 @@ except Exception as e:
 # (e) paper book: nothing booked without Condition 9, and the ledger reconciles
 for _p in (_pf.get('open') or []):
     if _p.get('position_source') in ('live_scan_MUA', 'engine_signal'):
+        if CFP.get('stage1') is not None and _p.get('probe_fail'):
+            # lenh do truot DK9: chi duoc nam trong so toi da toi ATC T+2 (hang ve chieu T+2)
+            check((_p.get('held') or 0) <= 2,
+                  f"lenh do {_p['sym']} {_p['entry']} truot DK9 nhung chua ban sau T+2")
+            continue
         check(_p.get('ordimb') is not None and _p['ordimb'] >= CFP.get('ordimb_min', 1.4),
               f"so paper vao {_p['sym']} {_p['entry']} ma khong chung minh Dieu kien 9")
 _ck = _pf.get('checks')

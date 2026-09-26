@@ -1,0 +1,174 @@
+{
+ "meta": {
+  "git_sha": "e7cb68b0097e36b9f9e30aac1e8aa2e0cf43835c",
+  "data_asof": "2026-09-23",
+  "prod_config_hash": "4fc79c44049d",
+  "generated": "2026-09-25T13:32:30Z",
+  "experiment_version": "audit-2026-09-25/r14",
+  "status": "CURRENT",
+  "note": "new PROD 25/09"
+ },
+ "rows": [
+  {
+   "name": "A. Lý thuyết: mua giá đóng cửa, đã biết ĐK9",
+   "cfg": {
+    "stage1": null
+   },
+   "ret": 9.3259,
+   "cagr": 0.354,
+   "dd": 0.1062,
+   "pf": 6.3,
+   "sharpe": 2.1,
+   "deals": 144,
+   "wr": 0.3958,
+   "h1": 2.0902204513549805,
+   "h2": 2.3414764404296875,
+   "mc_p50": 8.52125,
+   "mc_p10": 4.55253,
+   "slip_ret": 8.1301,
+   "slip_dd": 0.1066
+  },
+  {
+   "name": "B. Chờ ĐK9 (tối) → mua giá MỞ CỬA phiên sau",
+   "cfg": {
+    "stage1": null,
+    "entry_mode": "next_open"
+   },
+   "ret": 5.0998,
+   "cagr": 0.2645,
+   "dd": 0.1502,
+   "pf": 3.43,
+   "sharpe": 1.68,
+   "deals": 147,
+   "wr": 0.3129,
+   "h1": 1.4653570652008057,
+   "h2": 1.474194049835205,
+   "mc_p50": 4.6261,
+   "mc_p10": 2.4452000000000003,
+   "slip_ret": 4.3613,
+   "slip_dd": 0.14
+  },
+  {
+   "name": "C. Chờ ĐK9 (tối) → mua giá TRUNG BÌNH phiên sau",
+   "cfg": {
+    "stage1": null,
+    "entry_mode": "next_vwap"
+   },
+   "ret": 5.7439,
+   "cagr": 0.2811,
+   "dd": 0.1201,
+   "pf": 4.07,
+   "sharpe": 1.82,
+   "deals": 148,
+   "wr": 0.3446,
+   "h1": 1.8102447986602783,
+   "h2": 1.399749517440796,
+   "mc_p50": 4.7401,
+   "mc_p10": 2.7177700000000002,
+   "slip_ret": 4.1611,
+   "slip_dd": 0.1311
+  },
+  {
+   "name": "D. Bỏ hẳn ĐK9, mua giá đóng cửa (ATC)",
+   "cfg": {
+    "stage1": null,
+    "use_ordimb": false
+   },
+   "ret": 11.4187,
+   "cagr": 0.3868,
+   "dd": 0.1643,
+   "pf": 2.72,
+   "sharpe": 1.99,
+   "deals": 272,
+   "wr": 0.3088,
+   "h1": 4.5296311378479,
+   "h2": 1.2458398342132568,
+   "mc_p50": 9.8871,
+   "mc_p10": 7.932910000000001,
+   "slip_ret": 10.1197,
+   "slip_dd": 0.1797
+  },
+  {
+   "name": "E1. Hai bước: mua 30% lúc ATC không cần ĐK9, sáng sau đủ ĐK9 thì mua nốt, không đủ thì bán T+2",
+   "cfg": {
+    "stage1": 0.3,
+    "probe_exit": "close"
+   },
+   "ret": 5.7038,
+   "cagr": 0.2801,
+   "dd": 0.1412,
+   "pf": 3.39,
+   "sharpe": 1.81,
+   "deals": 360,
+   "wr": 0.4083,
+   "h1": 2.089256525039673,
+   "h2": 1.1700284481048584,
+   "mc_p50": 5.195600000000001,
+   "mc_p10": 2.74208,
+   "slip_ret": 4.702,
+   "slip_dd": 0.1466
+  },
+  {
+   "name": "E2. Hai bước 50%",
+   "cfg": {
+    "stage1": 0.5,
+    "probe_exit": "close"
+   },
+   "ret": 6.1118,
+   "cagr": 0.29,
+   "dd": 0.1453,
+   "pf": 3.19,
+   "sharpe": 1.83,
+   "deals": 352,
+   "wr": 0.4119,
+   "h1": 2.261005401611328,
+   "h2": 1.1808645725250244,
+   "mc_p50": 5.5004,
+   "mc_p10": 2.84886,
+   "slip_ret": 4.2286,
+   "slip_dd": 0.1508
+  },
+  {
+   "name": "E3. Mua dò đủ lệnh lúc ATC, trượt ĐK9 thì bán ATC T+2 (PROD 25/09)",
+   "cfg": {
+    "stage1": 1.0,
+    "probe_exit": "close"
+   },
+   "ret": 9.032,
+   "cagr": 0.3489,
+   "dd": 0.1228,
+   "pf": 3.04,
+   "sharpe": 2.02,
+   "deals": 321,
+   "wr": 0.4455,
+   "h1": 2.7126572132110596,
+   "h2": 1.702103614807129,
+   "mc_p50": 8.09535,
+   "mc_p10": 4.24451,
+   "slip_ret": 6.7296,
+   "slip_dd": 0.138
+  },
+  {
+   "name": "E4. E3 + lọc KL đặt mua/bán ≥ 1,2 trước ATC",
+   "cfg": {
+    "stage1": 1.0,
+    "probe_exit": "close",
+    "pre_proxy": "qty",
+    "pre_min": 1.2
+   },
+   "ret": 9.6041,
+   "cagr": 0.3587,
+   "dd": 0.1333,
+   "pf": 4.34,
+   "sharpe": 2.09,
+   "deals": 235,
+   "wr": 0.4723,
+   "h1": 2.403218984603882,
+   "h2": 2.115901231765747,
+   "mc_p50": 8.0957,
+   "mc_p10": 5.89583,
+   "slip_ret": 7.715,
+   "slip_dd": 0.1498
+  }
+ ]
+}

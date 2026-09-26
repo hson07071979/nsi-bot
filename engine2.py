@@ -118,8 +118,11 @@ def screen(i, d, I, tls, sect, C, TOPN, base_rng, base_ok, trig, day, held=(),
     live scanner's signal_spec.evaluate() against it session by session."""
     S=d['sym']; AC=d['AdjClose']; AH=d['AdjHigh']; AL_=d['AdjLow']; MC=d['MarketCap']; TV=d['TotalValue']
     uni = TOPN[i] if TOPN is not None else np.ones(len(S),dtype=bool)
+    _volok = I['volr'][i]>=C['vol_floor']
+    if C.get('ceil_vol_floor') is not None:     # research: closes AT the ceiling may pass on less volume
+        _volok = _volok | ((I['pct'][i]>=I['thr_hard']-0.001) & (I['volr'][i]>=C['ceil_vol_floor']))
     cand=np.where(trig[i] & uni & (MC[i]>C['min_mktcap']) & (I['nbars'][i]>=C['min_history'])
-                  & (I['volr'][i]>=C['vol_floor']) & (TV[i]>=C['gtgd_min'])
+                  & _volok & (TV[i]>=C['gtgd_min'])
                   & (I['volat20'][i]>=C['volat_min'])
                   & base_ok[i])[0]
     rows=[]
@@ -128,11 +131,15 @@ def screen(i, d, I, tls, sect, C, TOPN, base_rng, base_ok, trig, day, held=(),
         if sym in held: continue
         if C['use_cond8'] and AC[i,j] < (AH[i,j]+AL_[i,j])/2: continue
         if C['use_cond6'] and I['volr'][i,j]>C['vol_ceil']: continue
-        oi_ok = bool(I['ordimb'][i,j]>=C['ordimb_min'])
+        _OI = _oi_arr(d, I, C)
+        oi_ok = bool(_OI[i,j]>=C['ordimb_min'])
         # Two-stage research mode: Cond9 is NOT observable at the signal close,
         # so the candidate set is built without it and Cond9 is only used the
         # next morning to confirm (top up) or abort (sell the probe).
         if C['use_ordimb'] and not oi_ok and not ignore_ordimb: continue
+        # research: pre-filter for the two-stage ATC probe using an intraday-observable proxy
+        if C.get('pre_proxy') and not (_oi_arr(d, I, dict(oi_proxy=C['pre_proxy']))[i,j] >= C.get('pre_min', 0.0)): continue
+        if C.get('pre_set') is not None and (str(day), sym) not in C['pre_set']: continue
         if C['use_fnet'] and not (I['fnet'][i,j]>=0): continue
         if C['rs_min'] and not (I['rs'][i,j]>=C['rs_min']): continue
         tl=tls.get(sym)
@@ -144,23 +151,77 @@ def screen(i, d, I, tls, sect, C, TOPN, base_rng, base_ok, trig, day, held=(),
                 k=(why or 'NA').split()[0]; blocked[k]=blocked.get(k,0)+1
             continue
         npg=f.get('npat_yoy')
-        if npg is not None and 0<=npg<0.25: continue        # DK5
+        if npg is not None and C.get('dk5_lo',0.0)<=npg<C.get('dk5_hi',0.25): continue        # DK5
         sc,pts=canslim_score(f, I['rs'][i,j], I['mom3'][i,j],
                 float(AC[i,j]/I['hi52'][i,j]-1) if I['hi52'][i,j]>0 else None,
                 float(I['volr'][i,j]), float(I['tvma20'][i,j]))
         if sc<C['score_floor']: continue
         bm=1.2 if base_rng[i,j]<=0.10 else 1.0
         rows.append(dict(sc=float(sc),j=int(j),sym=sym,rmul=rmul,bm=bm,pts=pts,
-                         base=float(base_rng[i,j]),oi=float(I['ordimb'][i,j]),oi_ok=oi_ok,
+                         base=float(base_rng[i,j]),oi=float(_OI[i,j]),oi_ok=oi_ok,
                          volr=float(I['volr'][i,j]),rs=float(I['rs'][i,j]) if not np.isnan(I['rs'][i,j]) else 0.0,
                          mom=float(I['mom3'][i,j]) if not np.isnan(I['mom3'][i,j]) else 0.0,
                          pct=float(I['pct'][i,j]),sector=sect.get(sym,'Khác'),
                          fund=float(sum(pts.get(k,0) for k in ('C1','C2','C3','A1','A2')))))
     return rows
 
+def _trig_thr(d, thr, C):
+    """Condition-1 threshold per symbol. trig_hose / trig_hnx override the fa_ind
+    defaults (research); PROD sets them EQUAL to fa_ind.THR_* so live/spec/lookup,
+    which read I['thr'], stay identical to the backtest."""
+    if C.get('hard_ceiling') or C.get('trig_pct') is not None:
+        return thr
+    ex = np.asarray(d['exch'])
+    if C.get('trig_hose') is not None:
+        thr = np.where(ex != 'HNX', np.float32(C['trig_hose']), thr).astype(np.float32)
+    if C.get('trig_hnx') is not None:
+        thr = np.where(ex == 'HNX', np.float32(C['trig_hnx']), thr).astype(np.float32)
+    return thr
+
+_OIC = {}
+def _oi_arr(d, I, C):
+    """Condition-9 array. Default = exact OrdImb (needs order COUNTS, published after the
+    close). Research proxies that only need data observable DURING the session:
+      'qty'      : BuyQuantity/SellQuantity of today (order quantities, no counts)
+      'qty_cr1'  : today's quantity ratio x YESTERDAY's count ratio SellCount/BuyCount
+      'qty_cr5'  : today's quantity ratio x mean count ratio of the previous 5 sessions"""
+    k = C.get('oi_proxy')
+    if not k:
+        return I['ordimb']
+    if k not in _OIC:
+        BQ, SQ, BC, SC = d['BuyQuantity'], d['SellQuantity'], d['BuyCount'], d['SellCount']
+        qr = BQ / np.where(SQ > 0, SQ, np.nan)
+        cr = SC / np.where(BC > 0, BC, np.nan)
+        if k == 'qty':
+            a = qr
+        elif k == 'qty_cr1':
+            a = qr * np.vstack([np.full((1, cr.shape[1]), np.nan), cr[:-1]])
+        elif k == 'lag1':
+            a = np.vstack([np.full((1, I['ordimb'].shape[1]), np.nan), I['ordimb'][:-1]])
+        elif k == 'lag5':
+            from fa_ind import sma, shift
+            a = shift(sma(I['ordimb'], 5), 1)
+        elif k == 'qty_cr5':
+            from fa_ind import sma, shift
+            a = qr * shift(sma(cr, 5), 1)
+        else:
+            raise ValueError(k)
+        _OIC[k] = a.astype(np.float32)
+    return _OIC[k]
+
+_BRL = {}
+def _base_rng_len(d, n):
+    if n not in _BRL:
+        from fa_ind import rmax, rmin, shift
+        AC = d['AdjClose']; hi = shift(rmax(AC, n), 1); lo = shift(rmin(AC, n), 1)
+        _BRL[n] = (hi - lo) / np.where(lo > 0, lo, np.nan)
+    return _BRL[n]
+
 def prep_masks(d, I, C):
     """Arrays screen() needs, built exactly as run() builds them."""
     base_rng=(I['base_hi']-I['base_lo'])/np.where(I['base_lo']>0,I['base_lo'],np.nan)
+    if int(C.get('base_len',30))!=30:          # research knob: indicators are built with 30
+        base_rng=_base_rng_len(d, int(C['base_len']))
     shelf_rng=(I['sh_hi']-I['sh_lo'])/np.where(I['sh_lo']>0,I['sh_lo'],np.nan)
     TOPN=None
     if C.get('use_top_liquid'):
@@ -170,6 +231,7 @@ def prep_masks(d, I, C):
     if C['use_shelf']: base_ok=base_ok|(shelf_rng<=C['shelf_range'])
     _thr=(I['thr_hard'] if C['hard_ceiling'] else I['thr'])
     if C.get('trig_pct') is not None: _thr=np.full_like(_thr, float(C['trig_pct']))
+    _thr=_trig_thr(d, _thr, C)
     trig=I['pct']>=_thr
     return base_rng, base_ok, TOPN, trig
 
@@ -194,6 +256,8 @@ def run(cfg=None, log=True):
     PX=d['PriceClose']; AC=d['AdjClose']; AH=d['AdjHigh']; AL_=d['AdjLow']; AO=d['AdjOpen']
     TV=d['TotalValue']; MC=d['MarketCap']; V=d['Volume']
     base_rng=(I['base_hi']-I['base_lo'])/np.where(I['base_lo']>0,I['base_lo'],np.nan)
+    if int(C.get('base_len',30))!=30:          # research knob: indicators are built with 30
+        base_rng=_base_rng_len(d, int(C['base_len']))
     shelf_rng=(I['sh_hi']-I['sh_lo'])/np.where(I['sh_lo']>0,I['sh_lo'],np.nan)
     # VU TRU GIAO DICH: chi TOP N ma thanh khoan nhat, tinh lai theo TUNG PHIEN
     # (khong dung danh sach chi so cua hom nay ap nguoc lai qua khu -> khong nhin truoc)
@@ -206,6 +270,7 @@ def run(cfg=None, log=True):
     _thr = (I['thr_hard'] if C['hard_ceiling'] else I['thr'])
     if C.get('trig_pct') is not None:
         _thr = np.full_like(_thr, float(C['trig_pct']))
+    _thr = _trig_thr(d, _thr, C)
     trig=I['pct']>=_thr
     i0=int(np.searchsorted(cal,C['start']))
     # Cat duoi de chay walk-forward: mot lat cat thoi gian that su, khong phai loc sau.
@@ -241,7 +306,9 @@ def run(cfg=None, log=True):
                 # ei+2 open instead (conservative) by deferring when held<2.
                 p.stage=3
         for sym in [s_ for s_,p_ in pos.items() if getattr(p_,'stage',0)==3 and i-p_.ei>=2]:
-            p=pos[sym]; op=AO[i,p.j]
+            # VN: hang mua phien T ve tai khoan CHIEU T+2 (T+2,5) -> ban som nhat la phien
+            # chieu/ATC cua T+2. probe_exit='close' ban o gia dong cua T+2 (thuc te).
+            p=pos[sym]; op=(AC[i,p.j] if C.get('probe_exit','open')=='close' else AO[i,p.j])
             if np.isnan(op) or op<=0: continue
             got=p.sh*op*(1-C['fee_sell']-SS); cash+=got
             trades.append(dict(sym=str(sym),sector=p.sector,entry=str(cal[p.ei]),exit=str(cal[i]),
@@ -268,10 +335,15 @@ def run(cfg=None, log=True):
             r=None; frac=1.0
             if _hs: r='Hard stop −10%'
             elif C['use_protective_candle'] and not np.isnan(p.bo_low) and px<p.bo_low: r='Cây nến bảo vệ'
+            # ---- research knobs (default off = PROD): momentum after breakout ----
+            elif (C.get('mo_stop') is not None and held<=C.get('mo_stop_until',99)
+                  and gain<=C['mo_stop']): r='Momentum: cắt sớm %.1f%%'%(C['mo_stop']*100)
+            elif (C.get('mo_by') and C['mo_by']<=held<=C.get('mo_window',99)
+                  and p.peak<C.get('mo_need',0.0)): r='Momentum: không chạy (T+%d chưa lên %.0f%%)'%(C['mo_by'],C['mo_need']*100)
             elif held>=3 and gain<=C['stop']: r='Cắt lỗ −7%'
             elif C['use_giveback'] and p.peak>=C['gb_trigger'] and gain<=p.peak*C['gb_keep']: r='Chốt bảo vệ (trả lại %d%% đỉnh)'%int((1-C['gb_keep'])*100)
             elif C['use_be'] and p.peak>=C['be_trigger'] and gain<=C['be_level']: r='Về bờ (đã lãi %d%%)'%int(C['be_trigger']*100)
-            elif held>=C['t_valve'] and gain<=0: r='Van thời gian T+%d'%C['t_valve']
+            elif held>=C['t_valve'] and gain<=C.get('valve_min',0.0): r='Van thời gian T+%d'%C['t_valve']
             elif C['use_big_sell'] and I['pct'][i,j]<-0.04 and V[i,j]>1.2*I['vma20'][i,j]: r='Big sell khẩn'; frac=0.5
             elif p.peak>=C['big_win'] and p.b10>=C['conf']: r='Trailing MA%d (lãi lớn)'%C['trail_fast']
             elif p.b20>=C['conf']: r='Trailing MA%d'%C['trail_ma']
@@ -394,7 +466,7 @@ def run(cfg=None, log=True):
                 if log: sigs.append(dict(date=str(cal[i]),sym=sym,score=round(float(sc),1),
                     px=round(float(PX[i,j])/1000,2),light=R['light'][i],sector=secn,pts=pts,
                     size_pct=round(sh*px/nav*100,2),theo_pct=round(A['theoretical']/nav*100,2),
-                    binding=A['binding'],ordimb=round(rw['oi'],3),rmul=float(rmul),
+                    binding=A['binding'],ordimb=(round(rw['oi'],3) if rw['oi']==rw['oi'] else None),rmul=float(rmul),
                     base=round(float(rw['base']),4),raw_px=float(PX[i,j]),mode=mode))
             if day_log is not None: cands_log.append(dict(date=str(cal[i]),i=i,light=R['light'][i],cands=day_log))
         # ---------- LOP 9: PYRAMID ----------

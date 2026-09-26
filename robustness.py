@@ -93,7 +93,7 @@ def walk_forward():
        nhung du de tra loi cau hoi "chon bang qua khu co song sang tuong lai khong".
     """
     LUOI = [dict(base_range=b, score_floor=s)
-            for b in (0.20, 0.22, 0.25) for s in (42, 45, 48)]
+            for b in (0.22, 0.24, 0.26) for s in (42, 45, 48)]
     CUA = [('2019-01-02', '2022-12-31', '2023'),
            ('2019-01-02', '2023-12-31', '2024'),
            ('2019-01-02', '2024-12-31', '2025'),
@@ -159,7 +159,7 @@ def perturb():
        dau hieu tham so duoc vat cho vua qua khu, khong phai quy luat.
     """
     LUOI = [
-        ('base_range',  'Độ rộng nền 30 phiên',        [0.18,0.20,0.21,0.22,0.23,0.25,0.30]),
+        ('base_range',  'Độ rộng nền 30 phiên',        [0.18,0.20,0.22,0.23,0.24,0.25,0.26,0.30]),
         ('top_n',       'Độ rộng vũ trụ (TOP thanh khoản)', [110,115,120,125,130,140,160]),
         ('score_floor', 'Sàn điểm CANSLIM',   [40,42,45,48,50]),
         ('vol_floor',   'Bội số khối lượng so TB20',  [1.6,1.8,2.0,2.2,2.4]),

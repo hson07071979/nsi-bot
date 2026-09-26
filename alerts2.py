@@ -45,8 +45,10 @@ _CO = {k: _PROD[k] for k in ('base_size', 'max_pos', 'max_total', 'max_pos_n', '
 # LECH CU DA SUA 21/09/2026: dong nay tung de base_range=0.20 trong khi bo may
 # chay 0.18 — lop chuong NOI HON lop backtest, dung cai bay so kien truc ghi ba
 # lan. Nay ca hai deu 0.22. Doi mot ben thi phai doi ben kia, khong co ngoai le.
-CFG_LIVE = dict(base_range=0.22, use_ordimb=True, ordimb_min=1.40,
-                score_floor=45, vol_floor=2.0, gtgd_min=15e9, volat_min=0.015,
+# 25/09/2026: doc THANG tu PROD — khong con go tay mot con so nao o day.
+_PM = dict(E.CFG); _PM.update(_PROD)
+CFG_LIVE = dict({k: _PM[k] for k in ('base_range', 'use_ordimb', 'ordimb_min', 'score_floor',
+                                       'vol_floor', 'gtgd_min', 'volat_min', 'dk5_lo', 'dk5_hi')},
                 **_CO)
 
 
@@ -203,7 +205,7 @@ def build(cfg=None):
                                     volr_proj, float(I['tvma20'][p, j]))
         # điều kiện 5 của hệ: LNST YoY không nằm trong vùng yếu 0–25%
         npg = f.get('npat_yoy') if f else None
-        weak = bool(npg is not None and 0 <= npg < 0.25)
+        weak = bool(npg is not None and C.get('dk5_lo', 0.0) <= npg < C.get('dk5_hi', 0.25))
         flow_ok = True if (not C['use_ordimb'] or oi is None) else (oi >= C['ordimb_min'])
 
         miss = [k for k, v in {**static, **live_now}.items() if not v]
