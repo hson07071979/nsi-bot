@@ -175,7 +175,7 @@ def test_nan_total_cap_fix_default_on():
 def test_prod_universe_top_n_single_source():
     from produce2 import PROD
     src = open('verify_build.py', encoding='utf-8').read()
-    assert not re.search(r'^TOP_N\s*=\s*\d', src, re.M) and PROD['top_n'] == 120
+    assert not re.search(r'^TOP_N\s*=\s*\d', src, re.M) and PROD['top_n'] == 105
 
 
 @test
@@ -270,11 +270,12 @@ def test_probe_scheme_sells_only_when_shares_arrive():
     import engine2 as E
     from produce2 import PROD
     assert PROD.get('stage1') == 1.0 and PROD.get('probe_exit') == 'close'
+    sf = PROD.get('sell_from', 2); assert sf == 3 and PROD.get('hs_from') == 3
     C = dict(E.CFG); C.update(PROD)
     r = E.run(C, log=False)
-    assert all(t['held'] >= 2 for t in r['trades'])
+    assert all(t['held'] >= sf for t in r['trades']), min(t['held'] for t in r['trades'])
     pr = [t for t in r['trades'] if t['reason'].startswith('Cond9')]
-    assert pr and all(t['held'] == 2 for t in pr), [t for t in pr if t['held'] != 2][:3]
+    assert pr and all(t['held'] == sf for t in pr), [t for t in pr if t['held'] != sf][:3]
 
 
 if __name__ == '__main__':

@@ -24,15 +24,15 @@ function pageSystem(root){
    ['6','Trần khối lượng',`vol ≤ ${cpSo(cpV('vol_ceil',4.5))} × TB20 — ý tưởng là tránh phiên "đổi thuyền trưởng", nhưng bật lên thì cắt mất chính nhóm bùng nổ về sau thành lãi lớn`,'C',cpBat('use_cond6',false)],
    ['7','Biến động TB20',`≥ ${cpSo(cpV('volat_min',0.015)*100)}%/ngày — loại các mã "chết"`,'A',true],
    ['8','Đóng cửa nửa trên nến','close ≥ (high+low)/2 — tránh bẫy UTAD','C',cpBat('use_cond8',true)],
-   ['9','Ngưỡng dòng tiền',`cỡ lệnh mua ÷ cỡ lệnh bán ≥ <b>${cpDTvi()}</b> — nhân tố mạnh nhất tìm được. Sở chỉ công bố số lệnh SAU giờ đóng cửa, nên ĐK9 là bước XÁC NHẬN buổi tối cho lệnh đã mua dò lúc ATC (không đạt → bán ATC T+2)`,'A',cpBat('use_ordimb',true)],
+   ['9','Ngưỡng dòng tiền',`cỡ lệnh mua ÷ cỡ lệnh bán ≥ <b>${cpDTvi()}</b> — nhân tố mạnh nhất tìm được. Sở chỉ công bố số lệnh SAU giờ đóng cửa, nên ĐK9 là bước XÁC NHẬN buổi tối cho lệnh đã mua dò lúc ATC (không đạt → bán ATC T+${cpV('sell_from',2)})`,'A',cpBat('use_ordimb',true)],
   ];
   // THỨ TỰ DƯỚI ĐÂY LÀ THỨ TỰ ƯU TIÊN THẬT trong bộ máy — luật nào đứng trước
   // thì nổ trước, không phải xếp cho đẹp. Chép sai thứ tự là hiểu sai vì sao
   // "Van thời gian" chiếm gần một nửa số lệnh ra.
   const cf = cpV('conf', 2);
   const exits=[
-   ['0','Lệnh dò trượt ĐK9',`Mua dò ĐỦ lệnh lúc ATC khi đạt ĐK1–8 (ĐK9 chỉ có số sau giờ đóng cửa). Tối ~18–19h: ĐK9 ≥ ${cpDTvi()} → giữ; không đạt → bán ATC T+2, lúc hàng vừa về. Đứng trước mọi luật thoát khác`,'A',cpV('stage1',null)!=null],
-   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,'Bán hết, xét từ phiên CHIỀU T+2 (ATC) — hàng về tài khoản chiều T+2 (T+2,5), trước đó không bán được. Mọi luật thoát đều tính bằng giá đóng cửa từ T+2 trở đi. Đứng trước mọi luật thoát khác','B',cpBat('use_hard_stop',true)],
+   ['0','Lệnh dò trượt ĐK9',`Mua dò ĐỦ lệnh lúc ATC khi đạt ĐK1–8 (ĐK9 chỉ có số sau giờ đóng cửa). Tối ~18–19h: ĐK9 ≥ ${cpDTvi()} → giữ; không đạt → bán ATC T+${cpV('sell_from',2)}, phiên đầu tiên bán được. Đứng trước mọi luật thoát khác`,'A',cpV('stage1',null)!=null],
+   ['1',`Hard stop ${cpSo(cpV('hard_stop',-0.10)*100)}%`,`Bán hết, xét từ phiên T+${cpV('sell_from',2)} — phiên đầu tiên bán được theo tài khoản của anh Sơn; trước đó không bán dù chạm luật nào. Mọi luật thoát đều tính bằng giá đóng cửa (ATC) từ T+${cpV('sell_from',2)} trở đi. Đứng trước mọi luật thoát khác`,'B',cpBat('use_hard_stop',true)],
    ['2','Cây nến bảo vệ','Đóng cửa dưới low của nến breakout → bán hết. Cắt sớm kiểu này làm mất quá nhiều lệnh về sau thành lãi lớn','C',cpBat('use_protective_candle',false)],
    ['2b',`Momentum T+${cpV('mo_by',3)}`,`Tới phiên T+${cpV('mo_by',3)} mà chưa từng đóng cửa lãi ≥ ${cpSo(cpV('mo_need',0.01)*100)}% (đã tính phí mua) → bán hết. Breakout thật thì phải chạy ngay (thêm 25/09/2026)`,'A',!!cpV('mo_by',0)],
    ['3',`Cắt lỗ ${cpSo(cpV('stop',-0.07)*100)}%`,'Từ phiên 3 trở đi → bán hết','A',true],
