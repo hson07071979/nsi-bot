@@ -74,9 +74,12 @@ def rolling_min(a,n):
 
 # ---------------- LOP 2: CHAM DIEM CANSLIM ----------------
 def _n(x, d=None):
+    # x != x bat ca NaN cua numpy float32 (khong phai float cua Python): ban cu tra
+    # lai NaN float32 -> Mom = NaN -> diem CANSLIM NaN -> "NaN < 45" la False nen ma
+    # lot san diem. Nay NaN = thieu so -> gia tri mac dinh (parity 26/09/2026).
     try:
         if x is None: return d
-        if isinstance(x,float) and math.isnan(x): return d
+        if x != x: return d
         return x
     except Exception: return d
 

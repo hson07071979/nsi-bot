@@ -62,49 +62,151 @@ def test_pyramid_respects_max_pos_and_cash():
 def _sp():
     return dict(thr=0.058, vol_s19=19e6, vol_c19=19, tv_s19=19 * 30e9, tv_c19=19,
                 rng_s19=19 * 0.03, rng_c19=19, hi52_249=11000, c250=6000, c60=8000,
-                shares=1e9, nbars=900, base=0.10, blocked=False, npat_yoy=0.5,
+                shares=1e9, nbars_prev=900, nbars=901, base=0.10, blocked=False, npat_yoy=0.5,
                 pts_static=dict(C1=15, C2=15, C3=0, A1=10, A2=0), sector='X', rmul=1.0)
 
 
 CFG = dict(vol_floor=2.0, gtgd_min=15e9, volat_min=0.015, min_mktcap=1000e9, min_history=250,
            base_range=0.22, score_floor=45, ordimb_min=1.40, use_ordimb=True, use_cond8=False,
            top_n=120, use_top_liquid=True)
-U = dict(topn_cut=10e9, r12=sorted(random.Random(1).uniform(-0.5, 0.5) for _ in range(600)),
-         r3=sorted(random.Random(2).uniform(-0.3, 0.3) for _ in range(600)))
 
 
 def _row(bc=3000, sc=3000, bq=9e6, sq=6e6):
     return dict(PriceClose=10600, PriceBasic=10000, PriceHigh=10700, PriceLow=10000,
+                AdjClose=10600, AdjHigh=10700, AdjLow=10000, MarketCap=10600e9,
                 Volume=5e6, TotalValue=53e9, BuyCount=bc, SellCount=sc, BuyQuantity=bq, SellQuantity=sq)
+
+
+def _universe(sp, row, n=600, seed=1, others=None):
+    """Session cross-section (SPEC v3): n other symbols + the tested one ('AAA')."""
+    rnd = random.Random(seed)
+    xs = {'S%03d' % k: [1000.0, 1000.0, 19 * 5e9, 19] for k in range(n)}
+    rows = others if others is not None else {
+        s: dict(AdjClose=1000.0 * (1 + rnd.uniform(-0.5, 0.5)), TotalValue=5e9) for s in xs}
+    xs['AAA'] = [sp['c250'], sp['c60'], sp['tv_s19'], sp['tv_c19']]
+    rows = dict(rows, AAA=row)
+    U = dict(top_n=CFG['top_n'], xs=xs)
+    return U, SP.cross_section(U, rows)
+
+
+def _eval(sp=None, row=None, cfg=CFG):
+    sp = sp or _sp(); row = row or _row()
+    U, X = _universe(sp, row)
+    return SP.evaluate(sp, row, U, cfg, X)
 
 
 @test
 def test_cond9_missing_is_never_mua():
-    r = SP.evaluate(_sp(), _row(bc=0, sc=0), U, CFG)
+    r = _eval(row=_row(bc=0, sc=0))
     lvl, why = SP.classify(r, CFG)
     assert lvl == 'SAP_DU' and why == 'WAITING_FOR_FLOW_CONFIRMATION', (lvl, why, r['missing'])
 
 
 @test
 def test_cond9_below_threshold_is_not_mua():
-    r = SP.evaluate(_sp(), _row(bq=6e6, sq=6e6), U, CFG)      # OrdImb 1.0
+    r = _eval(row=_row(bq=6e6, sq=6e6))      # OrdImb 1.0
     assert 'ordimb' in r['missing'] and SP.classify(r, CFG)[0] != 'MUA'
 
 
 @test
 def test_all_conditions_is_mua():
-    r = SP.evaluate(_sp(), _row(), U, CFG)                      # OrdImb 1.5
+    r = _eval()                                                 # OrdImb 1.5
     assert r['all_ok'], r['missing']
     assert SP.classify(r, CFG) == ('MUA', None)
 
 
 @test
 def test_volume_ratio_includes_today_like_engine():
-    sp = _sp()                      # prior 19 sessions average 1e6
-    r = SP.evaluate(sp, dict(_row(), Volume=2.0e6), U, CFG)   # 2x prior mean but 1.905x incl. today
+    r = _eval(row=dict(_row(), Volume=2.0e6))   # 2x prior mean but 1.905x incl. today
     assert not r['ok']['vol']
-    r = SP.evaluate(sp, dict(_row(), Volume=2.2e6), U, CFG)
+    r = _eval(row=dict(_row(), Volume=2.2e6))
     assert r['ok']['vol']
+
+
+# ---------------------------------------------------------------- parity 26/09/2026 (SPEC v3)
+@test
+def test_rs_ranks_on_the_session_cross_section_not_yesterday():
+    """VNM 14/01/2026: yesterday's distribution put RS at 70.09 (L = 15), the session
+    cross-section at 67.92 (L = 0). The live layer must rank on the session."""
+    sp, row = _sp(), _row()
+    ac = 10600.0
+    r12 = ac / sp['c250'] - 1
+    # 100 symbols: 69 below the tested r12 YESTERDAY, but 3 of them jump above it TODAY
+    xs_rows = {}
+    for k in range(100):
+        v = r12 - 0.5 + k * 0.007 if k < 69 else r12 + 0.01 + k * 0.001
+        if k in (66, 67, 68):
+            v = r12 + 0.05
+        xs_rows['S%03d' % k] = dict(AdjClose=1000.0 * (1 + v), TotalValue=5e9)
+    U = dict(top_n=10, xs=dict({'S%03d' % k: [1000.0, 1000.0, 19 * 5e9, 19] for k in range(100)},
+                               AAA=[sp['c250'], sp['c60'], sp['tv_s19'], sp['tv_c19']]))
+    X = SP.cross_section(U, dict(xs_rows, AAA=row))
+    res = SP.evaluate(sp, row, U, dict(CFG, top_n=10), X)
+    assert res['values']['rs'] == SP.f32(SP.f32(66 / 100) * 100.0) and res['values']['pts']['L'] == 0, res['values']
+
+
+@test
+def test_pct_rank_single_definition_min_rank_ties():
+    import numpy as np, fa_ind
+    rnd = random.Random(3)
+    a = np.array([[rnd.choice([0.0, 0.1, rnd.uniform(-1, 1), np.nan]) for _ in range(300)] for _ in range(5)],
+                 dtype=np.float32)
+    E = fa_ind.pct_rank(a)
+    for i in range(a.shape[0]):
+        P = SP.pct_ranks([float(x) for x in a[i]])
+        for j in range(a.shape[1]):
+            e, p = float(E[i, j]), P[j]
+            assert (e != e and p != p) or e == SP.f32(p), (i, j, e, p)
+    # ties share the lowest rank
+    P = SP.pct_ranks([0.0] * 10 + [float(k) for k in range(1, 41)])
+    assert P[0] == P[9] == 0.0 and P[10] == 10 / 49
+
+
+@test
+def test_mean20_single_definition():
+    import numpy as np, fa_ind
+    rnd = random.Random(4)
+    a = np.array([[np.nan if rnd.random() < 0.1 else rnd.lognormvariate(20, 2) for _ in range(30)] for _ in range(80)],
+                 dtype=np.float32)
+    E = fa_ind.sma_seq(a, 20)
+    for t in range(20, 80):
+        for j in range(30):
+            s19, c19 = SP.window_sum([float(x) for x in a[t - 19:t, j]])
+            m = SP.mean20(s19, c19, float(a[t, j]))
+            e = float(E[t, j])
+            assert (e != e and m != m) or e == m, (t, j, e, m)
+
+
+@test
+def test_float32_threshold_semantics_like_numpy():
+    import numpy as np
+    x = SP.f32(1.4)                          # OrdImb exactly float32(1.40): numpy 2 says >= 1.40
+    assert bool(np.float32(x) >= 1.40) and SP.ge32(x, 1.40)
+    assert SP.round32(SP.mul32(5.0, SP.f32(0.53)), 1) == float(round(5 * np.float32(0.53), 1))
+
+
+@test
+def test_incomplete_cross_section_is_never_mua():
+    sp, row = _sp(), _row()
+    rnd = random.Random(1)
+    xs_rows = {'S%03d' % k: dict(AdjClose=1000.0 * (1 + rnd.uniform(-0.5, 0.5)), TotalValue=5e9) for k in range(600)}
+    # 300 of 600 symbols failed to download: RS / TOP-N can no longer be decided
+    part = {k: v for k, v in list(xs_rows.items())[:300]}
+    U, X = _universe(sp, row, others=part)
+    res = SP.evaluate(sp, row, U, CFG, X)
+    assert not res['all_ok'] and res['undetermined'], res
+    assert SP.classify(res, CFG) == ('SAP_DU', 'CROSS_SECTION_INCOMPLETE')
+    # no cross-section at all: never MUA
+    res = SP.evaluate(sp, row, U, CFG, None)
+    assert not res['all_ok'] and SP.classify(res, CFG)[0] != 'MUA'
+
+
+@test
+def test_missing_adjusted_close_is_nan_like_engine():
+    # engine: AdjClose NaN -> r12 / r3 / 52w-high NaN -> L = N = Mom = 0 (no raw-price fallback)
+    r = _eval(row=dict(_row(), AdjClose=None))
+    p = r['values']['pts']
+    assert r['values']['r12'] is None and p['L'] == 0 and p['N'] == 0 and p['Mom'] == 0.0, p
 
 
 @test
@@ -237,8 +339,8 @@ def test_dk5_off_is_not_required_and_never_blocks():
     off = dict(CFG, dk5_lo=0.0, dk5_hi=0.0)
     assert 'dk5' not in SP.required_conditions(off) and 'dk5' in SP.required_conditions(CFG)
     sp = dict(_sp(), npat_yoy=0.10)                       # inside the old weak band
-    assert 'dk5' in SP.evaluate(sp, _row(), U, CFG)['missing']
-    assert SP.evaluate(sp, _row(), U, off)['all_ok']
+    assert 'dk5' in _eval(sp, _row(), CFG)['missing']
+    assert _eval(sp, _row(), off)['all_ok']
 
 
 @test
