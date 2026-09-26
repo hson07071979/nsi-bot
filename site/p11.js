@@ -253,6 +253,14 @@ function renderLiveBar() {
   if (!el2) return;
   const L = LIVE.data;
 
+  if (LIVE.stale && !LIVE.rtOn) {
+    el2.className = 'livebar off';
+    el2.innerHTML = `<span class="ldot"></span><b>CẤU HÌNH CŨ — CHỜ PHIÊN QUÉT MỚI</b>
+      <span class="lmuted">bản quét gần nhất (${esc(String((LIVE.server || {}).session || '?'))}) chạy bằng cấu hình
+      ${esc(String((LIVE.server || {}).prod_config_hash || '?'))}, trang đang ở ${esc(String((D.cfg_prod || {}).prod_config_hash || '?'))} — không dùng làm tín hiệu</span>`;
+    return;
+  }
+
   if (!L) {
     el2.className = 'livebar off';
     el2.innerHTML = `<span class="ldot"></span><span>Chưa có dữ liệu real-time</span>
@@ -418,6 +426,14 @@ async function napLive() {
     return;
   }
   LIVE.server = L;
+  // live.json quét bằng CẤU HÌNH CŨ (vd. cuối tuần sau khi đổi PROD, chưa có phiên
+  // quét mới) -> KHÔNG coi là trạng thái hiện hành, không kêu chuông, nói thẳng.
+  LIVE.stale = (typeof cauHinhCu === 'function') && cauHinhCu(L);
+  if (LIVE.stale) {
+    if (!LIVE.rtOn) { LIVE.data = null; LIVE.firstLoad = false; }
+    renderLiveBar(); veLaiTrang('chuong');
+    return;
+  }
   // Khi lớp real-time đang chạy thì nó mới là nguồn chính. live.json của máy chủ
   // trễ 10–20 phút; để nó ghi đè lên số real-time là bảng nhảy lùi về quá khứ.
   if (LIVE.rtOn) return;

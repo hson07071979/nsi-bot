@@ -261,7 +261,13 @@ jobs:
           # Hong thi khong lam do ca buoc dang trang.
           # -B: repo public co track __pycache__/live_scan.cpython-311.pyc; import
           # live_scan ma ghi lai .pyc thi `git pull --rebase` ben duoi tu choi chay.
-          python -B portfolio.py || echo "::warning::portfolio.py loi — so ghi tien chua cap nhat phien nay"
+          # 26/09/2026: KHONG con nuot loi. portfolio.py tu nang cap trang thai khi
+          # prod_config_hash doi, roi tu kiem: hash so == thresholds, moi vi the du
+          # truong cua luat thoat dang chay, doi soat DAT. Truot -> dung, khong dang.
+          if ! python -B portfolio.py; then
+            echo "::error::Sổ ghi tiến TRƯỢT kiểm (lệch cấu hình / thiếu trường / đối soát) — KHÔNG đăng bản này"
+            exit 1
+          fi
           git add portfolio.json 2>/dev/null || true
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"

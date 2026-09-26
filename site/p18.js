@@ -86,7 +86,7 @@ function pageChanDoan(root) {
   <div class="grid kpis">
     ${kpi('BASELINE_0', _pc1(b0.ret), `DD ${(b0.dd*100).toFixed(2).replace('.',',')}% · PF ${_n2(b0.pf)} · Sharpe ${_n2(b0.sharpe)} · ${b0.deals} deal`)}
     ${kpi('PROD mới', _pc1(cur.ret), `DD ${((cur.dd||0)*100).toFixed(2).replace('.',',')}% · PF ${_n2(cur.pf)} · Sharpe ${_n2(cur.sh)} · ${cur.deals} deal`)}
-    ${kpi('Pyramid', 'Giữ luật cũ', 'trần ngành chỉ áp cho lệnh mới; bắt áp cho lệnh nhồi: +579,1%')}
+    ${kpi('Pyramid', 'Giữ luật cũ', 'trần ngành chỉ áp cho lệnh mới; bắt áp cho lệnh nhồi: +859,0% (vs +957,2%)')}
   </div>
   ${_tbl(A.fixes || [], _MCOLS)}
 

@@ -303,7 +303,11 @@ try:
     check('function erDecide' in html and 'Khoá lãi S1' in html, 'trang thieu exit_rules.js (luat thoat S1 cua Viec can lam)')
     check('luật về bờ' not in html, 'trang con cau "luật về bờ" o Viec can lam')
     for _p in (_pf.get('open') or []):
-        warn('profit_floor' in _p, f"so ghi tien: {_p.get('sym')} chua co truong khoa lai (se co sau lan chay portfolio.py ke tiep)")
+        # Buoc nay chay TRUOC portfolio.py (so con la ban cua lan dang truoc) nen chi canh bao;
+        # CHOT CUNG nam o buoc dang: portfolio.py nang cap trang thai roi tu kiem, truot -> exit 1.
+        warn('profit_floor' in _p, f"so ghi tien: {_p.get('sym')} chua co truong khoa lai — buoc dang se nang cap, khong duoc thi DUNG")
+    if _pf.get('prod_config_hash') and _pf.get('prod_config_hash') != CFP.get('prod_config_hash'):
+        warn(False, f"so ghi tien dang o cau hinh {_pf.get('prod_config_hash')} != {CFP.get('prod_config_hash')} — buoc dang se nang cap trang thai")
 except SystemExit:
     raise
 except Exception as e:

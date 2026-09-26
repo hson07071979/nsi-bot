@@ -27,6 +27,23 @@ const NSI = {
 /* trang có đang chạy trên máy chủ thật không (mở bằng file:// thì không) */
 function LIVEOK() { return location.protocol === 'http:' || location.protocol === 'https:'; }
 
+/* Tỷ trọng LÚC VÀO / LÚC NHỒI (trên NAV cùng phiên, sau khi khớp). Chỉ ghi nhận —
+   luật nhồi PROD (pyr_caps=False) chỉ xét trần mã 50% + tiền mặt, không xét trần ngành 30%. */
+function tyTrongVao(p) {
+  const f = x => (Math.round(x * 10) / 10).toString().replace('.', ',') + '%';
+  const a = [];
+  if (p.x0) a.push(`vào ${f(p.x0.pos_pct)} · ngành ${f(p.x0.sector_pct)}`);
+  if (p.xp) a.push(`nhồi → ${f(p.xp.pos_pct)} · ngành ${f(p.xp.sector_pct)}${p.xp.sector_pct > 30.5 ? ' (vượt 30%)' : ''}`);
+  return a.length ? `<div class="muted" style="font-size:11.5px;white-space:nowrap">${a.join('<br>')}</div>` : '';
+}
+
+/* Tệp máy chủ (portfolio.json / live.json) mang prod_config_hash khác bản dựng đang
+   xem = trạng thái của CẤU HÌNH CŨ. Không được coi là trạng thái hiện hành. */
+function cauHinhCu(o) {
+  const h = (D.cfg_prod || {}).prod_config_hash;
+  return !!(o && h && o.prod_config_hash && o.prod_config_hash !== h);
+}
+
 /* ---------- đọc ba nguồn, luôn trả về vật thể dùng được ---------- */
 function pfData() {
   return NSI.pf || D.portfolio || null;
@@ -148,6 +165,9 @@ function danhMuc() {
       // luật thoát (exit_rules): gain theo quy ước bộ máy = giá ÷ giá vốn đã gồm phí mua − 1
       gainR: px ? (px * 1000) / p.entry_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part, light: p.light || null,
       srv: p.action || null,
+      // bộ máy ghi tỷ trọng dạng phân số [mã, ngành, tổng] trên NAV
+      x0: p.x0 ? { pos_pct: p.x0[0] * 100, sector_pct: p.x0[1] * 100, total_pct: p.x0[2] * 100 } : null,
+      xp: p.xp ? { pos_pct: p.xp[0] * 100, sector_pct: p.xp[1] * 100, total_pct: p.xp[2] * 100, date: p.pyr_date || null } : null,
     });
   });
 
@@ -164,6 +184,7 @@ function danhMuc() {
       held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'ghitien', book_id: 'SO_GHI_TIEN', probe_fail: !!p.probe_fail,
       gainR: (px && p.cost_px) ? (px * 1000) / p.cost_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part,
       srv: p.action || null,
+      x0: p.x0 || null, xp: p.xp || null,     // sổ ghi tiến ghi sẵn phần trăm
     });
   });
 
@@ -341,7 +362,7 @@ function pageSoLenh(root) {
           <td style="text-align:right;font-weight:640">${p.tien ? vnd(p.tien) : '—'}</td>
           <td style="text-align:right" class="muted" title="${
             p.navGoc ? escA('Tính trên NAV của sổ sinh ra vị thế này: ' + tyd(p.navGoc)) : ''}">${
-            (p.tien && p.navGoc) ? Math.round(100 * p.tien / p.navGoc) + '%' : '—'}</td>
+            (p.tien && p.navGoc) ? Math.round(100 * p.tien / p.navGoc) + '%' : '—'}${tyTrongVao(p)}</td>
           <td style="text-align:right;font-weight:660" class="${p.pnl == null ? '' : cls(p.pnl)}">${
             p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + dec(p.pnl) + '%'}</td>
           <td>${(() => { const v = vieccanlam(p);
@@ -379,6 +400,8 @@ function pageSoLenh(root) {
 
   root.innerHTML = `
   <h1>Danh mục hệ thống</h1>
+  ${cauHinhCu(F) ? `<div class="card" style="border-color:var(--s5)"><b>SỔ GHI TIẾN ĐANG Ở CẤU HÌNH CŨ</b>
+    <span class="muted">(${esc(F.prod_config_hash)} ≠ ${esc((D.cfg_prod || {}).prod_config_hash || '?')}) — chờ lần chạy sổ kế tiếp nâng cấp trạng thái; cột Việc cần làm của sổ này tính lại trên trình duyệt theo luật mới.</span></div>` : ''}
 
   <div class="grid kpis">
     ${kpi('Đang nắm giữ', `${dm.length} mã`, [
