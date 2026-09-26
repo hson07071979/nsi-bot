@@ -223,7 +223,11 @@ try:
     _ag = _pr['both'] / _tot if _tot else 1.0
     print(f"PARITY live<->engine 400 ngay: {_pr['both']} khop, {_pr['engine_only']} chi engine, "
           f"{_pr['live_only']} chi live ({_ag:.1%})")
-    check(_ag >= 0.95, f'parity live<->engine chi {_ag:.1%} (<95%) — signal_spec.py lech engine2.screen()')
+    # Mau 400 ngay chi ~40 tin hieu: 1 lech bien (RS sat 70, TOP-N sat nguong) da la -2,5%.
+    # Chan khi <95% VA lech tu 3 ma tro len — tranh mot lech bien lam dung ca ban dung toi.
+    _lech = _pr['engine_only'] + _pr['live_only']
+    check(_ag >= 0.95 or _lech <= 2,
+          f'parity live<->engine chi {_ag:.1%} ({_lech} ma lech) — signal_spec.py lech engine2.screen()')
 except SystemExit:
     raise
 except Exception as e:
@@ -267,9 +271,10 @@ except Exception as e:
 for _p in (_pf.get('open') or []):
     if _p.get('position_source') in ('live_scan_MUA', 'engine_signal'):
         if CFP.get('stage1') is not None and _p.get('probe_fail'):
-            # lenh do truot DK9: chi duoc nam trong so toi da toi ATC T+2 (hang ve chieu T+2)
-            check((_p.get('held') or 0) <= 2,
-                  f"lenh do {_p['sym']} {_p['entry']} truot DK9 nhung chua ban sau T+2")
+            # lenh do truot DK9: chi duoc nam trong so toi da toi phien ban duoc dau tien
+            _sf = int(CFP.get('sell_from', 2) or 2)
+            check((_p.get('held') or 0) <= _sf,
+                  f"lenh do {_p['sym']} {_p['entry']} truot DK9 nhung chua ban sau T+{_sf}")
             continue
         check(_p.get('ordimb') is not None and _p['ordimb'] >= CFP.get('ordimb_min', 1.4),
               f"so paper vao {_p['sym']} {_p['entry']} ma khong chung minh Dieu kien 9")

@@ -43,7 +43,10 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # Khong dung danh sach VN30/VN100 cua hom nay ap nguoc lai qua khu (nhin truoc).
           # 110 -> 120 ngay 21/09/2026. Dung o 120: tu 160 tro len PF sup (3,08)
           # va 2023-2026 thua han ban cu.
-          use_top_liquid=True, top_n=120,
+          # 120 -> 105 ngay 26/09/2026 (R17, anh Son chon): voi mua do + ban T+3, TOP 105 cho
+          # lai +936% (120: +906%), PF 3,17 (lenh that 6,57), tru truot 0,2/0,8 van +500%.
+          # TOP 125-130 DD vuot 15% -> khong dung.
+          use_top_liquid=True, top_n=105,
           # Nguong "lai lon" bat trailing MA10 de chot nhanh. 19% nam giua vung phang
           # 18-22% va cho DD thap nhat toan luoi (9,9%). Tu 24% tro len DD nhay len 13%.
           big_win=0.19,
@@ -72,9 +75,11 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # phi mua) thi ban — "da break thi phai chay". Cat som -2,5% da thu: KEM hon.
           mo_by=3, mo_need=0.01,
           # MUA DO (anh Son chot 25/09, R14): DK9 chi co so SAU gio dong cua, nen lenh that
-          # la: mua DU lenh luc ATC khi dat DK1-8 -> toi xac nhan DK9 -> truot thi ban ATC T+2
-          # (hang ve chieu T+2). +903%, DD 12,3%; lenh that PF 5,99, lenh do ~hoa von.
-          stage1=1.0, probe_exit='close')
+          # la: mua DU lenh luc ATC khi dat DK1-8 -> toi xac nhan DK9 -> truot thi ban ATC.
+          stage1=1.0, probe_exit='close',
+          # BAN SOM NHAT T+3 (anh Son 26/09: tai khoan cua anh chua ban duoc ATC T+2). Ap cho
+          # MOI lenh ban (ke ca hard stop, lenh do truot DK9). +906,2%, DD 11,97%, PF 2,78.
+          sell_from=3, hs_from=3)
 PRESETS={
  'thucte'  : ('Có trượt giá 0,2% (thực tế)', dict(slip=0.002)),
  'toanTT'  : ('Toàn thị trường (không giới hạn thanh khoản)', dict(use_top_liquid=False)),
@@ -151,7 +156,7 @@ if __name__=='__main__':
         # so phien da giu + dinh lai (da tinh phi mua) — trang dich luat thoat (momentum T+3,
         # van thoi gian, ve bo) thanh viec phai lam cho dung so he thong
         'held':int(len(cal)-1-p.ei),'peak':round(float(getattr(p,'peak',0.0))*100,2),
-        # lenh do truot DK9 (stage 3) — se ban ATC T+2
+        # lenh do truot DK9 (stage 3) — se ban ATC phien sell_from (T+3)
         'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True)))} for p in r['pos'].values()]
     # TIN HIEU CUA CHINH PHIEN VUA CHOT — so ghi tien (portfolio.py, repo public) vao
     # so DUNG cac lenh nay, sau khi ban dung toi da lap du dong tien HNX. Mot nguon su
@@ -305,7 +310,7 @@ if __name__=='__main__':
         'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
         'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',
         'use_ftd', 'use_pyramid', 'use_ordimb',
-        'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'fill_ratio',
+        'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'sell_from', 'fill_ratio',
         'trig_hose', 'trig_hnx', 'dk5_lo', 'dk5_hi', 'mo_by', 'mo_need', 'mo_window',
         'mo_stop', 'mo_stop_until', 'valve_min', 'ceil_vol_floor', 'probe_exit', 'pre_proxy', 'pre_min')}
 

@@ -305,7 +305,7 @@ def run(cfg=None, log=True):
                 # allow this in reality before session ei+2; we model the exit at the
                 # ei+2 open instead (conservative) by deferring when held<2.
                 p.stage=3
-        for sym in [s_ for s_,p_ in pos.items() if getattr(p_,'stage',0)==3 and i-p_.ei>=2]:
+        for sym in [s_ for s_,p_ in pos.items() if getattr(p_,'stage',0)==3 and i-p_.ei>=C.get('sell_from',2)]:
             # VN: hang mua phien T ve tai khoan CHIEU T+2 (T+2,5) -> ban som nhat la phien
             # chieu/ATC cua T+2. probe_exit='close' ban o gia dong cua T+2 (thuc te).
             p=pos[sym]; op=(AC[i,p.j] if C.get('probe_exit','open')=='close' else AO[i,p.j])
@@ -331,7 +331,7 @@ def run(cfg=None, log=True):
             # sold in session ei+2. `hs_from` < 2 is a counterfactual research switch
             # only (it would assume a sale the market does not allow).
             _hs = C['use_hard_stop'] and gain<=C['hard_stop'] and held>=C.get('hs_from',2)
-            if held<2 and not _hs: continue
+            if held<C.get('sell_from',2) and not _hs: continue
             r=None; frac=1.0
             if _hs: r='Hard stop −10%'
             elif C['use_protective_candle'] and not np.isnan(p.bo_low) and px<p.bo_low: r='Cây nến bảo vệ'

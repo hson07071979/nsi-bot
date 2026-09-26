@@ -295,8 +295,8 @@ function renderLiveBar() {
     el2.className = 'livebar heads';
     el2.innerHTML = `<span class="ldot"></span>` +
       (doHits.length ? `<b>${doHits.length} mã MUA DÒ lúc ATC</b><span>${doHits.map(h => h.sym).join(' · ')}</span>
-        <span class="lmuted">đủ ĐK1–8 · tối ~18–19h xác nhận Điều kiện 9, không đạt thì bán ATC T+2</span>` : '') +
-      (truot.length ? `<b>Không đạt ĐK9 → bán ATC T+2:</b><span>${truot.map(h => h.sym).join(' · ')}</span>` : '') +
+        <span class="lmuted">đủ ĐK1–8 · tối ~18–19h xác nhận Điều kiện 9, không đạt thì bán ATC T+${cpV('sell_from',2)}</span>` : '') +
+      (truot.length ? `<b>Không đạt ĐK9 → bán ATC T+${cpV('sell_from',2)}:</b><span>${truot.map(h => h.sym).join(' · ')}</span>` : '') +
       `<button class="mini" onclick="go('chuong')">Xem chi tiết</button>`;
     return;
   }

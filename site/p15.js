@@ -36,13 +36,14 @@
 function vieccanlam(p) {
   const l = p.pnl, giu = p.held, dinh = p.peak;
   if (l == null) return { m: 'cho', t: 'CHƯA CÓ GIÁ', v: 'Chờ dữ liệu', ly: '' };
-  // Lệnh dò trượt ĐK9 (PROD 25/09/2026): bán ATC T+2, lúc hàng vừa về.
-  if (p.probe_fail) return (giu != null && giu < 2)
-    ? { m: 'ha', t: 'TRƯỢT ĐK9', v: 'Bán ATC T+2', ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán lúc ATC T+2 khi hàng về (còn ${2 - giu} phiên).` }
+  // Lệnh dò trượt ĐK9: bán ATC ở phiên đầu tiên bán được (sell_from, T+3 từ 26/09/2026).
+  const SF = cpV('sell_from', 2);
+  if (p.probe_fail) return (giu != null && giu < SF)
+    ? { m: 'ha', t: 'TRƯỢT ĐK9', v: `Bán ATC T+${SF}`, ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán lúc ATC T+${SF} (còn ${SF - giu} phiên).` }
     : { m: 'thoat', t: 'THOÁT', v: 'Bán ATC hôm nay', ly: 'Lệnh dò trượt Điều kiện 9 — hàng đã về, bán ATC.' };
   // T+2,5: hàng mua phiên T về tài khoản CHIỀU T+2 — trước đó không bán được, dù chạm luật nào.
-  if (giu != null && giu < 2) return { m: 'cho', t: 'CHỜ HÀNG VỀ', v: 'Chưa bán được',
-    ly: `Hàng về chiều T+2 (còn ${2 - giu} phiên). Luật thoát xét từ phiên chiều/ATC T+2` +
+  if (giu != null && giu < SF) return { m: 'cho', t: 'CHỜ HÀNG VỀ', v: 'Chưa bán được',
+    ly: `Chưa bán được tới phiên T+${SF} (còn ${SF - giu} phiên). Luật thoát xét từ ATC T+${SF}` +
         (l <= -7 ? ` — đang lỗ ${l.toFixed(1)}%, chuẩn bị bán ngay khi hàng về.` : '.') };
 
   if (l <= -10) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
