@@ -26,7 +26,13 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           use_ftd=True, use_ordimb=True, ordimb_min=1.40, slip=0.0,
           size_map={'XANH':1.0,'VANG':0.6,'CAM':0.35,'DO':0.2},
           base_size=0.42, max_pos=0.50, max_total=1.0, max_pos_n=12,
-          use_be=True, be_trigger=0.08, be_level=0.01,
+          # S1 PROFIT LOCK thay "ve bo +1%" (anh Son duyet 26/09/2026, research R21 —
+          # evidence/r21_exit_only.json, r21b/c/d): dinh lai (dong cua, da gom phi mua) >= 8%
+          # -> san +2%; >= 12% -> san +5%. Kiem luc dong cua, ban ATC, tu T+3. Khong co nac
+          # 15%/19%: MA10 (big_win 19%) van la cua ra cua lenh lon. Mot dinh nghia duy nhat:
+          # exit_rules.py (engine2, portfolio.py, live_scan, trang web qua test node).
+          # TOP110 + S1 tren du lieu 23/09: +945,7%, DD 11,74%, PF 3,12 (deal that 6,28), Sharpe 2,10.
+          use_be=False, profit_lock=[[0.08, 0.02], [0.12, 0.05]],
           # Chi ha 1/3 khi den THUC SU XAU DI so voi luc mua. Mua duoi den Cam thi
           # da vao co 35% roi — ha tiep 1/3 cung vi den Cam la dem hai lan mot tin
           # hieu xau. Toan ky co 31/57 lan cat kieu do. A/B: +511,7% -> +540,5%,
@@ -46,7 +52,10 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # 120 -> 105 ngay 26/09/2026 (R17, anh Son chon): voi mua do + ban T+3, TOP 105 cho
           # lai +936% (120: +906%), PF 3,17 (lenh that 6,57), tru truot 0,2/0,8 van +500%.
           # TOP 125-130 DD vuot 15% -> khong dung.
-          use_top_liquid=True, top_n=105,
+          # 105 -> 110 ngay 26/09/2026 (anh Son duyet, R21 B0/B1): 100-120 la vung phang
+          # (TOP110 +920,1% / DD 12,28% so TOP105 +935,5% / 12,01% voi luat thoat cu); TOP110
+          # la nen cua vong nghien cuu cua ra S1 va duoc duyet cung S1.
+          use_top_liquid=True, top_n=110,
           # Nguong "lai lon" bat trailing MA10 de chot nhanh. 19% nam giua vung phang
           # 18-22% va cho DD thap nhat toan luoi (9,9%). Tu 24% tro len DD nhay len 13%.
           big_win=0.19,
@@ -148,6 +157,8 @@ if __name__=='__main__':
     _rg_light = out['regime'][-1]['light'] if out.get('regime') else 'XANH'
     def _lastpx(p):   # ma bi treo phien cuoi -> NaN khong duoc lot vao JSON; lui ve gia von
         v=float(r['d']['AdjClose'][-1,p.j]); return v if v==v else float(p.epx)
+    import exit_rules as _ER
+    _CF=dict(E.CFG); _CF.update(PROD)
     out['open_positions']=[{'sym':p.sym,'entry':str(cal[p.ei]),'entry_px':round(float(p.epx),2),
         # gia THO da khop (de ve dau B dung nen) — entry_px o tren la gia von DIEU CHINH da gom phi
         'entry_raw':round(float(getattr(p,'eraw',float('nan'))),0),
@@ -157,7 +168,12 @@ if __name__=='__main__':
         # van thoi gian, ve bo) thanh viec phai lam cho dung so he thong
         'held':int(len(cal)-1-p.ei),'peak':round(float(getattr(p,'peak',0.0))*100,2),
         # lenh do truot DK9 (stage 3) — se ban ATC phien sell_from (T+3)
-        'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True)))} for p in r['pos'].values()]
+        'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
+        'b10':int(p.b10),'b20':int(p.b20),'part':bool(p.part),'light':R['light'][p.ei],
+        # trang thai cua ra theo exit_rules (S1: peak_gain, profit_floor, sellable, action...)
+        **_ER.status(_CF, _lastpx(p)/float(p.epx)-1, float(getattr(p,'peak',0.0)), int(len(cal)-1-p.ei),
+                     probe_fail=bool(getattr(p,'stage',0)==3), b10=int(p.b10), b20=int(p.b20),
+                     light_today=R['light'][len(cal)-1], light_entry=R['light'][p.ei], part=bool(p.part))} for p in r['pos'].values()]
     # TIN HIEU CUA CHINH PHIEN VUA CHOT — so ghi tien (portfolio.py, repo public) vao
     # so DUNG cac lenh nay, sau khi ban dung toi da lap du dong tien HNX. Mot nguon su
     # that: khong con chuyen live.json bao MUA nhung bo may khong mua (hoac nguoc lai).
@@ -305,7 +321,7 @@ if __name__=='__main__':
         'base_len', 'base_range', 'score_floor', 'top_n', 'use_top_liquid',
         'gtgd_min', 'volat_min', 'vol_floor', 'vol_ceil', 'ordimb_min',
         'stop', 'hard_stop', 't_valve', 'big_win', 'trail_ma', 'trail_fast', 'conf',
-        'be_trigger', 'be_level', 'fee_buy', 'fee_sell', 'slip', 'min_mktcap',
+        'be_trigger', 'be_level', 'profit_lock', 'fee_buy', 'fee_sell', 'slip', 'min_mktcap',
         'use_cond6', 'use_cond8', 'use_hard_stop', 'use_protective_candle',
         'use_big_sell', 'use_partial_take', 'use_be', 'use_giveback',
         'use_orange_cut', 'orange_cut_only_if_worse', 'use_market_gate',

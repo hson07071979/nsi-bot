@@ -69,7 +69,7 @@ def screen(as_of_date=None):
     # dong tien trung binh 20 phien
     ordimb=I['ordimb']
     oi20=np.nanmean(ordimb[max(0,i-19):i+1],axis=0)
-    # VU TRU: chi TOP N ma thanh khoan nhat (N = WL["top_n"], nay la 120) (xep hang theo GTGD binh quan 20 phien
+    # VU TRU: chi TOP N ma thanh khoan nhat (N = WL["top_n"] = PROD top_n, nay la 110) (xep hang theo GTGD binh quan 20 phien
     # cua CHINH phien dang xet). Dong bo voi bot: bot chi giao dich trong nhom nay.
     from vn300 import build_topn
     TOPN = build_topn(I, WL.get('top_n', 120))[i]

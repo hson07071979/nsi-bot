@@ -55,7 +55,7 @@ function pageOverview(root){
   <div class="hero">
     <div class="badge">Dữ liệu FireAnt · ${D.universe_n} mã HOSE + HNX · backtest từ 2019 đến phiên gần nhất</div>
     <h1>Hệ thống không đoán thị trường.<br>Nó chỉ chờ đúng một loại phiên.</h1>
-    <p class="lead">Hệ thống của Nguyễn Sơn mua cổ phiếu <b>đúng phiên tiền lớn nhảy vào</b> — giá cận trần, khối lượng gấp đôi, <b>cỡ lệnh mua ≥ ${cpDTvi()} lần cỡ lệnh bán</b>, sau một nền giá yên tĩnh ${cpV('base_len',30)} phiên. Luật cắt lỗ là −7% (từ T+3) và −10% (hard stop); lệnh thua trong lịch sử trung bình chỉ khoảng −2,7% vì van thời gian T+${cpV('t_valve',4)} và luật về bờ ra sớm hơn — đó là <i>kết quả</i>, không phải luật. Đúng thì gồng tới cùng. Dưới đây là toàn bộ những gì đã thực sự xảy ra trong ${(dates.length/250).toFixed(1)} năm qua.</p>
+    <p class="lead">Hệ thống của Nguyễn Sơn mua cổ phiếu <b>đúng phiên tiền lớn nhảy vào</b> — giá cận trần, khối lượng gấp đôi, <b>cỡ lệnh mua ≥ ${cpDTvi()} lần cỡ lệnh bán</b>, sau một nền giá yên tĩnh ${cpV('base_len',30)} phiên. Luật cắt lỗ là −7% (từ T+3) và −10% (hard stop); lệnh thua trong lịch sử trung bình chỉ khoảng −2,7% vì momentum T+${cpV('mo_by',3)}, van thời gian T+${cpV('t_valve',4)} và khoá lãi S1 ra sớm hơn — đó là <i>kết quả</i>, không phải luật. Đúng thì gồng tới cùng. Dưới đây là toàn bộ những gì đã thực sự xảy ra trong ${(dates.length/250).toFixed(1)} năm qua.</p>
   </div>
   <div class="grid kpis" id="kpirow"></div>
 
@@ -99,7 +99,7 @@ function pageOverview(root){
       <li>Hệ đòi <b>một phiên bùng nổ cận trần sau nền yên tĩnh 30 phiên</b>. Thị trường đi ngang hoặc trend đều đặn không tạo ra loại phiên đó — hệ thống đứng nhìn.</li>
       <li>Năm 2022 VN-Index mất ${pct(Math.abs(D.bench_yearly['2022']))} thì hệ thống chỉ ${sg(P.yearly['2022'])} — cổng thị trường làm đúng việc của nó, đó mới là giá trị thật.</li>
       <li>Đã thử nới bằng "nền phẳng 15 phiên" để bắt thêm lệnh: số lệnh tăng nhưng Profit Factor rơi rõ rệt. <b>Nới ra là mua thêm hàng kém, không phải mua thêm hàng tốt.</b> Nên không bật.</li>
-      <li>Luật <b>"về bờ"</b> (đã lãi ≥8% thì dời stop lên +1%) được thêm sau khi phát hiện lệnh thắng thường đạt đỉnh lãi cao hơn nhiều so với mức thoát thực tế — tức trả lại quá nhiều lợi nhuận đã có.</li>
+      <li>Luật <b>"về bờ"</b> (đã lãi ≥8% thì dời stop lên +1%) được thêm sau khi phát hiện lệnh thắng thường đạt đỉnh lãi cao hơn nhiều so với mức thoát thực tế — tức trả lại quá nhiều lợi nhuận đã có. Từ 26/09/2026 thay bằng <b>khoá lãi S1</b>: ${erTiers(CP).map(([a,b])=>`đỉnh ≥ ${cpSo(a*100)}% → giữ tối thiểu +${cpSo(b*100)}%`).join(', ')}, tính bằng giá đóng cửa, bán ATC từ T+${cpV('sell_from',2)}. Nó không cứu được cú rơi xuyên sàn trong một phiên — hệ không đặt lệnh dừng trong phiên.</li>
     </ul>
     <p style="margin-bottom:0">Kết luận thật lòng: <b>đây là hệ bắt sóng lớn, không phải hệ đánh mọi thị trường.</b> Nó ăn đậm 2020, 2021, 2025 và đi ngang 2022–2023. Nếu cần một hệ có lãi đều mọi năm thì phải là hệ khác.</p>
   </div>

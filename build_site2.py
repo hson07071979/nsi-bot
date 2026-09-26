@@ -37,7 +37,8 @@ for khoa, duong in (('portfolio', 'data/portfolio.json'),
 # p7.js phai o CUOI: no chay bo dieu huong, doi moi ham trang da khai bao xong.
 # p12.js khai bao mo hinh du lieu chung nen phai dung truoc p7.
 js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
-    'part2.js', 'p3.js', 'p4.js', 'p5.js', 'part6.js',
+    # exit_rules.js = ban JS cua exit_rules.py (TOP110 + S1, 26/09/2026) — test_exit_js.py doi chieu
+    'part2.js', 'exit_rules.js', 'p3.js', 'p4.js', 'p5.js', 'part6.js',
     'p8.js', 'p9.js', 'p10.js', 'p11.js', 'p12.js',
     # p13 = lop real-time VPS (ghi de napRealtime cua p11 -> phai SAU p11)
     # p14 = trang Kiem dinh (khai bao pageKiemDinh, duoc p3 tham chieu — ham

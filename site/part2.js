@@ -76,7 +76,7 @@ const CV = n => getComputedStyle(document.documentElement).getPropertyValue(n).t
    bẫy: trang nói một đằng, bộ máy chạy một nẻo. Giá trị dự phòng chỉ dùng khi
    mở bằng file:// hoặc bản dựng cũ chưa có khối cfg_prod. */
 const CP     = D.cfg_prod || {};
-const cpTop  = () => CP.top_n ?? 120;
+const cpTop  = () => CP.top_n ?? 110;
 const cpNen  = () => Math.round((CP.base_range ?? 0.22) * 100);
 const cpDT   = () => CP.ordimb_min ?? 1.40;
 const cpDTvi = () => cpDT().toFixed(2).replace('.', ',');

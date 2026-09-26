@@ -122,7 +122,7 @@ def main():
             shutil.copy(f, f'{OUT}/{f}')
     # Shared definitions travel to the runtime repo byte-for-byte: the live scanner
     # and the paper book import THESE files, so they cannot drift from the engine.
-    for f in ('signal_spec.py', 'allocator.py'):
+    for f in ('signal_spec.py', 'allocator.py', 'exit_rules.py'):
         shutil.copy(f, f'{OUT}/{f}')
     # Nguon dong tien (Dieu kien 9) dung chung: bo quet trong phien dung chung de lap
     # so lenh ngay khi so gd cong bo sau phien (HOSE: Vietstock, HNX/UPCoM: hnx.vn).

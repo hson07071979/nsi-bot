@@ -27,3 +27,5 @@ jobs:
           for f in site/*.js; do node -e "new Function(require('fs').readFileSync('$f','utf8'))" || { echo "LOI CU PHAP: $f"; exit 1; }; done
       - name: Test hồi quy
         run: python tests/test_regressions.py
+      - name: Test TOP110 + khoá lãi S1 (luật, bản JS của trang, thứ tự ưu tiên)
+        run: python tests/test_s1_prod.py

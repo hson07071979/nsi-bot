@@ -175,7 +175,7 @@ def test_nan_total_cap_fix_default_on():
 def test_prod_universe_top_n_single_source():
     from produce2 import PROD
     src = open('verify_build.py', encoding='utf-8').read()
-    assert not re.search(r'^TOP_N\s*=\s*\d', src, re.M) and PROD['top_n'] == 105
+    assert not re.search(r'^TOP_N\s*=\s*\d', src, re.M) and PROD['top_n'] == 110   # 105 -> 110 ngay 26/09/2026 (TOP110 + S1)
 
 
 @test

@@ -31,48 +31,57 @@
    Giới hạn phải nói thẳng: ở đây KHÔNG có MA10/MA30 (muốn có phải tải nến từng
    mã, quá nặng cho trang chủ). Nên hai luật trailing chỉ được CẢNH BÁO SỚM khi
    đỉnh lãi đã vượt ngưỡng, chứ trang không tự khẳng định đã thủng MA. Con số
-   chốt vẫn là của bộ máy chạy tối 19h30.
+   chốt vẫn là của bộ máy chạy tối 19h30. Khoá lãi S1 (26/09/2026) tính bằng giá đóng cửa
+   — giá trong phiên chỉ là giá đóng cửa tạm tính; đây KHÔNG phải lệnh dừng trong phiên.
 --------------------------------------------------------------------------- */
 function vieccanlam(p) {
-  const l = p.pnl, giu = p.held, dinh = p.peak;
+  const l = p.pnl, giu = p.held;
   if (l == null) return { m: 'cho', t: 'CHƯA CÓ GIÁ', v: 'Chờ dữ liệu', ly: '' };
-  // Lệnh dò trượt ĐK9: bán ATC ở phiên đầu tiên bán được (sell_from, T+3 từ 26/09/2026).
+  // QUYẾT ĐỊNH = erDecide (site/exit_rules.js) — cùng luật, cùng thứ tự, cùng câu chữ với
+  // exit_rules.py mà bộ máy, sổ ghi tiến và chuông Telegram dùng (test_exit_js.py đối chiếu).
+  // gain theo quy ước bộ máy: giá ÷ (giá mua × (1 + phí mua)) − 1 — KHÔNG trừ phí bán.
+  const gR = (p.gainR != null) ? p.gainR
+    : ((p.entry_px && p.last) ? p.last / (p.entry_px * (1 + PHI_MUA)) - 1 : l / 100);
+  // đỉnh lãi theo giá đóng cửa của sổ; giá trong phiên chỉ là giá đóng cửa TẠM TÍNH
+  const pkR = Math.max(p.peak != null ? p.peak / 100 : 0, gR);
   const SF = cpV('sell_from', 2);
+  const lastLight = (D.regime && D.regime.length) ? D.regime[D.regime.length - 1].light : null;
+  const d = erDecide(CP, gR, pkR, giu != null ? giu : 99,
+    { probe_fail: !!p.probe_fail, b10: p.b10 || 0, b20: p.b20 || 0, light_today: lastLight,
+      light_entry: p.light || null, part: !!p.part });
+  const txt = erActionText(d);
+
+  // Lệnh dò trượt ĐK9: bán ATC ở phiên đầu tiên bán được (sell_from, T+3 từ 26/09/2026).
   if (p.probe_fail) return (giu != null && giu < SF)
     ? { m: 'ha', t: 'TRƯỢT ĐK9', v: `Bán ATC T+${SF}`, ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán lúc ATC T+${SF} (còn ${SF - giu} phiên).` }
     : { m: 'thoat', t: 'THOÁT', v: 'Bán ATC hôm nay', ly: 'Lệnh dò trượt Điều kiện 9 — hàng đã về, bán ATC.' };
-  // T+2,5: hàng mua phiên T về tài khoản CHIỀU T+2 — trước đó không bán được, dù chạm luật nào.
-  if (giu != null && giu < SF) return { m: 'cho', t: 'CHỜ HÀNG VỀ', v: 'Chưa bán được',
-    ly: `Chưa bán được tới phiên T+${SF} (còn ${SF - giu} phiên). Luật thoát xét từ ATC T+${SF}` +
-        (l <= -7 ? ` — đang lỗ ${l.toFixed(1)}%, chuẩn bị bán ngay khi hàng về.` : '.') };
+  // Luật đã nổ và BÁN ĐƯỢC -> một việc duy nhất, đúng câu chữ của bộ máy
+  if (d.rule) {
+    if (erIsLock(d.rule)) return { m: 'thoat', t: 'KHOÁ LÃI', v: 'Bán ATC', ly: txt, rule: d.rule };
+    return { m: d.phan < 1 ? 'ha' : 'thoat', t: d.phan < 1 ? 'HẠ 1/3' : 'THOÁT', v: d.phan < 1 ? 'Hạ 1/3 ATC' : 'Bán ATC', ly: txt, rule: d.rule };
+  }
+  // T+2,5: hàng mua phiên T về tài khoản CHIỀU T+2 — trước T+sell_from không bán được, dù chạm luật nào.
+  if (!d.sellable) {
+    if (d.pending && erIsLock(d.pending)) return { m: 'ha', t: 'KHOÁ LÃI ĐÃ THỦNG', v: `Chờ T+${SF}`, ly: txt, pending: d.pending };
+    return { m: 'cho', t: 'CHỜ HÀNG VỀ', v: 'Chưa bán được', pending: d.pending,
+      ly: `Chưa bán được tới phiên T+${SF} (còn ${SF - giu} phiên). Luật thoát xét từ ATC T+${SF}` +
+          (d.pending ? ` — đang chạm: ${d.pending}, bán ATC T+${SF} nếu vẫn còn chạm.` : '.') };
+  }
 
-  if (l <= -10) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Lỗ ${l.toFixed(1)}% — đã chạm cắt lỗ cứng −10%.` };
-  if (giu != null && giu >= 3 && l <= -7) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Lỗ ${l.toFixed(1)}% sau ${giu} phiên — đã chạm cắt lỗ −7%.` };
-  if (dinh != null && dinh >= 8 && l <= 1) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Từng lãi ${dinh.toFixed(1)}% rồi rơi về ${l.toFixed(1)}% — luật về bờ.` };
-  // Momentum (25/09/2026): tới T+mo_by mà đỉnh lãi (đã tính phí mua) chưa từng ≥ mo_need -> ra
-  const moBy = cpV('mo_by', 0), moNeed = cpV('mo_need', 0) * 100;
-  if (moBy && giu != null && giu >= moBy && dinh != null && dinh < moNeed) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Tới T+${giu} mà chưa từng lãi ${cpSo(moNeed)}% (đỉnh ${cpSo(dinh)}%) — breakout không chạy, luật momentum.` };
-  if (giu != null && giu >= cpV('t_valve', 4) && l <= 0) return { m: 'thoat', t: 'THOÁT', v: 'Bán toàn bộ',
-    ly: `Giữ ${giu} phiên vẫn chưa có lãi — van thời gian T+${cpV('t_valve', 4)}. Giả thuyết đã sai, trả vốn về.` };
-
-  if (l <= -5) return { m: 'ha', t: 'GẦN CẮT LỖ', v: 'Theo dõi sát',
-    ly: `Lỗ ${l.toFixed(1)}% — còn ${(l + 7).toFixed(1)} điểm nữa là chạm cắt lỗ −7%.` };
-  if (moBy && giu != null && giu >= moBy - 1 && giu < moBy && dinh != null && dinh < moNeed) return { m: 'ha', t: 'PHẢI CHẠY NGAY', v: 'Chuẩn bị ra',
+  // Không luật nào nổ: cảnh báo sớm (không phải lệnh)
+  const moBy = cpV('mo_by', 0), moNeed = cpV('mo_need', 0) * 100, dinh = pkR * 100, lg = gR * 100;
+  if (lg <= -5) return { m: 'ha', t: 'GẦN CẮT LỖ', v: 'Theo dõi sát',
+    ly: `Lỗ ${lg.toFixed(1)}% — còn ${(lg + 7).toFixed(1)} điểm nữa là chạm cắt lỗ −7%.` };
+  if (moBy && giu != null && giu >= moBy - 1 && giu < moBy && dinh < moNeed) return { m: 'ha', t: 'PHẢI CHẠY NGAY', v: 'Chuẩn bị ra',
     ly: `Phiên sau là T+${moBy}: nếu vẫn chưa đóng cửa lãi ≥ ${cpSo(moNeed)}% thì bán (luật momentum).` };
-  if (giu != null && giu >= 2 && l <= 2) return { m: 'ha', t: 'SẮP HẾT GIỜ', v: 'Chuẩn bị ra',
-    ly: `Giữ ${giu} phiên mới lãi ${l.toFixed(1)}% — còn ${4 - giu} phiên tới van T+4.` };
-  if (dinh != null && dinh >= 19) return { m: 'theo', t: 'BÁM MA10', v: 'Giữ, theo MA10',
-    ly: `Đỉnh lãi ${dinh.toFixed(1)}% đã vượt 19% — hệ chuyển sang bám MA10, chốt nhanh hơn.` };
-  if (dinh != null && dinh >= 8 && l < dinh - 6) return { m: 'theo', t: 'ĐANG TRẢ LẠI LÃI', v: 'Theo dõi',
-    ly: `Đỉnh ${dinh.toFixed(1)}%, giờ ${l.toFixed(1)}% — đã trả lại ${(dinh - l).toFixed(1)} điểm.` };
-
+  if (dinh >= cpV('big_win', 0.19) * 100) return { m: 'theo', t: 'BÁM MA10', v: 'Giữ, theo MA10',
+    ly: `Đỉnh lãi ${cpSo(dinh)}% đã vượt ${cpSo(cpV('big_win', 0.19) * 100)}% — bán khi ${cpV('conf', 2)} phiên đóng dưới MA10; sàn khoá lãi +${erPct(d.floor)}% vẫn giữ phía dưới.` };
+  if (d.lock_active) return { m: 'theo', t: 'KHOÁ LÃI ĐANG BẬT', v: 'Giữ', ly: txt };
+  if (giu != null && giu >= 2 && lg <= 2) return { m: 'ha', t: 'SẮP HẾT GIỜ', v: 'Chuẩn bị ra',
+    ly: `Giữ ${giu} phiên mới lãi ${lg.toFixed(1)}% — van T+${cpV('t_valve', 4)} bán nếu lãi ≤ 0.` };
   return { m: 'giu', t: 'BÌNH THƯỜNG', v: 'Giữ',
-    ly: l >= 0 ? `Đang lãi ${l.toFixed(1)}%, chưa chạm luật thoát nào.`
-              : `Lỗ nhẹ ${l.toFixed(1)}%, còn xa mọi ngưỡng.` };
+    ly: lg >= 0 ? `Đang lãi ${lg.toFixed(1)}%, chưa chạm luật thoát nào.`
+               : `Lỗ nhẹ ${lg.toFixed(1)}%, còn xa mọi ngưỡng.` };
 }
 
 const VCLMAU = { thoat: '--critical', ha: '--serious', theo: '--warn', giu: '--good', cho: '--text-muted' };
