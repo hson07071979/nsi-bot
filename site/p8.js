@@ -118,6 +118,9 @@ function pageScreener(root){
   const rows=SC.rows||[];
   root.innerHTML=`
   <h1>Bộ lọc cổ phiếu</h1>
+  ${typeof obsSignalsSection==='function' ? obsSignalsSection() : ''}
+  ${typeof obsWatch78Section==='function' ? obsWatch78Section() : ''}
+  <h2>3. Các mã còn lại</h2>
   
   <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
     <input type="search" id="sq" placeholder="Tìm mã hoặc ngành…" style="min-width:220px">

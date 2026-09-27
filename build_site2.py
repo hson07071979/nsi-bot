@@ -51,6 +51,8 @@ js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     'p16.js',
     # p18 = trang Chan doan & kiem toan (audit 23/09/2026), truoc p7.
     'p18.js',
+    # p19 = lop quan sat R27A (duong di sau breakout + gan dat 7/8) — chi hien thi, truoc p7
+    'p19.js',
     'p7.js',
     # p17 = lop dien thoai + cai thanh app (service worker, thanh dieu huong duoi).
     #       Day la file DUY NHAT duoc nam SAU p7.js: no DOC `secs` va `go` ma p7

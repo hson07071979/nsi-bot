@@ -228,6 +228,7 @@ function pageChart(root){
         Lãi kiểu này không lặp lại ở quý sau, đừng chấm điểm doanh nghiệp bằng nó.</span></div>`;
     }
     if (x) bn += bangKiem(x, F);
+    if (typeof obsDetail === 'function') bn += obsDetail(sym);   // lop quan sat R27A — chi doc
     document.getElementById('ctBanner').innerHTML = bn;
 
     // ---- biểu đồ nến tương tác ----

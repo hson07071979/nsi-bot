@@ -357,6 +357,32 @@ if __name__=='__main__':
     print('SPEC', len(out['spec']), 'ma cho phien ke tiep · TOP-N cut',
           round(out['spec_u']['topn_cut'] / 1e9, 1), 'ty', flush=True)
 
+    # ---- LOP QUAN SAT (R27A) — chi hien thi, KHONG thuoc PROD, KHONG vao prod_config_hash ----
+    try:
+        import observability as _OB
+        _d = r['d']; _last = len(cal) - 1; _AC, _AH, _AL, _PX = _d['AdjClose'], _d['AdjHigh'], _d['AdjLow'], _d['PriceClose']
+        _J = {str(s_): j_ for j_, s_ in enumerate(_d['sym'])}; _IX = {str(c_): i_ for i_, c_ in enumerate(cal)}
+        _paths = {}
+        _cands = {(p['sym'], p['entry']): p.get('cond9') for p in out['open_positions']}
+        for _s in (out.get('signals_recent') or []) + (out.get('signals_today') or []):   # vi the so ghi tien = lenh cua bo may
+            _cands.setdefault((_s['sym'], _s['date']), ('DAT' if _s.get('cond9_ok') else 'TRUOT'))
+        for (_sy, _en), _c9 in _cands.items():
+            if _sy in _J and _en in _IX:
+                _pb = _OB.path_block(_AC, _AH, _AL, _PX, _IX[_en], _J[_sy], _last, E.CFG['fee_buy'],
+                                     cond9=(None if _c9 in (None, 'CHUA_CO') else _c9 == 'DAT'))
+                if _pb:
+                    _pb['breakout_date'] = _en; _paths[f'{_sy}|{_en}'] = _pb
+        _C3 = dict(E.CFG); _C3.update(PROD)
+        _w, _ws = _OB.watch78(_d, r['I'], _tls, _sect, _C3, _last, held=set(x['sym'] for x in out['open_positions']),
+                              today_signals=set(x['sym'] for x in (out.get('signals_today') or [])))
+        out['observability'] = dict(config=_OB.OBS, asof=str(cal[-1]), paths=_paths, watch78=_w, watch78_stats=_ws,
+                                    gate_labels=_OB.GATE_VI, gates=list(_OB.GATES), label_vi=_OB.LABEL_VI)
+        print('OBS', len(_paths), 'duong di ·', len(_w), 'ma gan dat', _ws, flush=True)
+    except Exception as _e:
+        # lop quan sat hong KHONG duoc lam hong ban dung: ghi ro, trang tu an khoi nay
+        out['observability'] = dict(error=f'{type(_e).__name__}: {_e}')
+        print('OBS HONG:', _e, flush=True)
+
     def cv(o):
         if isinstance(o,dict): return {k:cv(v) for k,v in o.items()}
         if isinstance(o,list): return [cv(x) for x in o]
