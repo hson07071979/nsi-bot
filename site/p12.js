@@ -478,6 +478,7 @@ function pageSoLenh(root) {
 
   <h2>Đang nắm giữ</h2>
   ${bangMo}
+  ${typeof obsPathSection === 'function' ? obsPathSection(dm) : ''}
   ${bangDong}
   ${nhatKy}
 

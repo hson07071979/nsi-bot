@@ -320,6 +320,22 @@ except SystemExit:
 except Exception as e:
     check(False, f'khong kiem duoc TOP110 + S1: {type(e).__name__}: {e}')
 
+# ---------- 8e. LOP QUAN SAT R27A — chi hien thi, khong bao gio la tin hieu ----------
+_ob = D.get('observability') or {}
+if _ob.get('error'):
+    warn(False, f"lop quan sat hong (trang tu an khoi nay): {_ob['error']}")
+elif _ob:
+    _w = _ob.get('watch78') or []
+    _sig = {s['sym'] for s in (D.get('signals_today') or [])}; _op = {p['sym'] for p in (D.get('open_positions') or [])}
+    check(not ({r['symbol'] for r in _w} & (_sig | _op)), 'ma gan dat 7/8 trung tin hieu MUA / vi the dang cam')
+    for _r in _w:
+        _bad = [g for g in _r['gates'] if not g['ok']]
+        check(_r.get('status') == 'WATCH_ONLY', f"{_r['symbol']}: 7/8 khong mang nhan WATCH_ONLY")
+        check((_r['kind'] == 'NEAR' and len(_bad) == 1) or (_r['kind'] == 'COND9_FAIL' and not _bad and _r['cond9'] is False),
+              f"{_r['symbol']}: ban ghi gan dat sai cau truc ({_r['kind']}, {len(_bad)} cong truot)")
+    check(not any(k in CFP for k in ('show_path', 'show_7of8', 'observability')), 'cau hinh quan sat lot vao cfg_prod')
+    print(f"lop quan sat: {len(_ob.get('paths') or {})} duong di, {len(_w)} ma gan dat")
+
 # ---------- 9. bang thang ----------
 check(len(D['monthly']) > 60, f"bang thang chi co {len(D['monthly'])} thang")
 
