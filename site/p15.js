@@ -53,12 +53,12 @@ function vieccanlam(p) {
 
   // Lệnh dò trượt ĐK9: bán ATC ở phiên đầu tiên bán được (sell_from, T+3 từ 26/09/2026).
   if (p.probe_fail) return (giu != null && giu < SF)
-    ? { m: 'ha', t: 'TRƯỢT ĐK9', v: `Bán ATC T+${SF}`, ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán lúc ATC T+${SF} (còn ${SF - giu} phiên).` }
-    : { m: 'thoat', t: 'THOÁT', v: 'Bán ATC hôm nay', ly: 'Lệnh dò trượt Điều kiện 9 — hàng đã về, bán ATC.' };
+    ? { m: 'ha', t: 'TRƯỢT ĐK9', v: `Bán ATC T+${SF}`, phan: 1.0, ly: `Mua dò nhưng tối đó Điều kiện 9 không đạt — bán TOÀN BỘ lúc ATC T+${SF} (còn ${SF - giu} phiên).` }
+    : { m: 'thoat', t: 'THOÁT', v: 'Bán ATC hôm nay', phan: 1.0, ly: 'Lệnh dò trượt Điều kiện 9 — hàng đã về, bán TOÀN BỘ lúc ATC.' };
   // Luật đã nổ và BÁN ĐƯỢC -> một việc duy nhất, đúng câu chữ của bộ máy
   if (d.rule) {
-    if (erIsLock(d.rule)) return { m: 'thoat', t: 'KHOÁ LÃI', v: 'Bán ATC', ly: txt, rule: d.rule };
-    return { m: d.phan < 1 ? 'ha' : 'thoat', t: d.phan < 1 ? 'HẠ 1/3' : 'THOÁT', v: d.phan < 1 ? 'Hạ 1/3 ATC' : 'Bán ATC', ly: txt, rule: d.rule };
+    if (erIsLock(d.rule)) return { m: 'thoat', t: 'KHOÁ LÃI', v: 'Bán ATC', phan: 1.0, ly: txt, rule: d.rule };
+    return { m: d.phan < 1 ? 'ha' : 'thoat', t: d.phan < 1 ? 'HẠ 1/3' : 'THOÁT', v: d.phan < 1 ? 'Hạ 1/3 ATC' : 'Bán ATC', phan: d.phan, ly: txt, rule: d.rule };
   }
   // T+2,5: hàng mua phiên T về tài khoản CHIỀU T+2 — trước T+sell_from không bán được, dù chạm luật nào.
   if (!d.sellable) {

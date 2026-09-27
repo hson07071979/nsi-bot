@@ -37,6 +37,49 @@ function tyTrongVao(p) {
   return a.length ? `<div class="muted" style="font-size:11.5px;white-space:nowrap">${a.join('<br>')}</div>` : '';
 }
 
+/* ĐIỀU KIỆN 9 CỦA PHIÊN MUA — số dòng tiền có vào tối ngày mua (bản dựng ~19h30).
+   Đạt → giữ lệnh dò như lệnh thường. Trượt → bán TOÀN BỘ lúc ATC phiên bán được đầu tiên (T+3). */
+function oDK9(p) {
+  if (p.nguon === 'tay' || p.nguon === 'nhap') return '<span class="muted">—</span>';
+  const so = x => String(x).replace('.', ',');
+  const f = x => x == null ? '' : ' ' + so((Math.round(x * 100) / 100).toFixed(2));
+  const nguong = so(p.ordimb_min || cpV('ordimb_min', 1.4));
+  const SF = cpV('sell_from', 3), giu = p.held;
+  const pill = (txt, v) => `<span class="vclpill" style="color:var(${v});border-color:color-mix(in srgb,var(${v}) 45%,transparent);font-weight:700">${txt}</span>`;
+  if (p.cond9 === 'DAT') return pill('✓ ĐẠT', '--good') + `<div class="muted" style="font-size:11.5px">OrdImb${f(p.ordimb)} ≥ ${nguong} · giữ</div>`;
+  if (p.cond9 === 'TRUOT') {
+    const con = giu == null ? null : SF - giu;
+    const ngay = (p.earliest_sell && /^\d{4}-/.test(p.earliest_sell)) ? ' (' + ddmm(p.earliest_sell) + ')' : '';
+    const khi = (con != null && con > 0) ? `bán 100% ATC T+${SF}${ngay} · còn ${con} phiên` : 'BÁN 100% ATC HÔM NAY';
+    return pill('✗ TRƯỢT', '--critical') + `<div style="font-size:11.5px;color:var(--critical);font-weight:600;white-space:normal;max-width:220px">OrdImb${f(p.ordimb)} &lt; ${nguong} → ${khi}</div>`;
+  }
+  if (giu === 0) return pill('… CHỜ SỐ', '--text-muted') + '<div class="muted" style="font-size:11.5px">ĐK9 có vào tối nay (~19h30)</div>';
+  return pill('? CHƯA CÓ SỐ', '--warn') + '<div class="muted" style="font-size:11.5px">thiếu dữ liệu dòng tiền phiên mua</div>';
+}
+
+/* BÁN BAO NHIÊU — theo đúng luật đang nổ (100% vị thế, hoặc 1/3 khi đèn Cam) + các lần đã bán trước đó. */
+function oBanBaoNhieu(p, v) {
+  const pct = x => (Math.round(x * 10) / 10).toString().replace('.', ',') + '%';
+  const nav = p.navGoc, a = [];
+  const phan = v && v.phan != null ? v.phan : null;
+  if (v && phan != null && (v.m === 'thoat' || v.m === 'ha') && p.sh) {
+    const sh = phan < 1 ? Math.floor(p.sh * phan / 100) * 100 : p.sh;
+    const tien = p.last ? sh * p.last * 1000 : null;
+    const se = v.t === 'TRƯỢT ĐK9';   // chưa tới T+3: đây là lệnh ĐÃ LÊN LỊCH, chưa bán được hôm nay
+    a.push(`<b style="color:var(--critical)">${se ? `Sẽ bán ${phan < 1 ? '1/3' : '100%'} vị thế ở T+${cpV('sell_from', 3)}` : `Bán ${phan < 1 ? '1/3' : '100%'} vị thế`}</b>`);
+    a.push(`${num(sh)} cp${tien && nav ? ' ≈ ' + pct(100 * tien / nav) + ' NAV' : ''}`);
+    if (phan < 1) a.push(`<span class="muted">còn giữ ${num(p.sh - sh)} cp</span>`);
+  } else if (v && v.t === 'KHOÁ LÃI ĐÃ THỦNG' && p.sh) {
+    a.push(`<b style="color:var(--serious)">Sẽ bán 100% ở T+${cpV('sell_from', 3)} nếu vẫn dưới sàn</b>`, `${num(p.sh)} cp`);
+  } else if (p.sh) {
+    a.push('<span class="muted">Chưa bán</span>');
+  }
+  (p.daBan || []).filter(t => t.frac != null && t.frac < 1).forEach(t => {
+    a.push(`<span style="color:var(--serious)">Đã bán ${t.frac < 0.5 ? '1/3' : pct(100 * t.frac)} ngày ${ddmm(t.date)}${t.sh ? ' (' + num(t.sh) + ' cp' + (t.pct_nav != null ? ' ≈ ' + pct(t.pct_nav) + ' NAV' : '') + ')' : ''} — ${esc(String(t.reason || '').split(' — ')[0])}</span>`);
+  });
+  return a.length ? `<div style="font-size:12px;line-height:1.35;white-space:normal;min-width:180px;max-width:250px">${a.join('<br>')}</div>` : '—';
+}
+
 /* Tệp máy chủ (portfolio.json / live.json) mang prod_config_hash khác bản dựng đang
    xem = trạng thái của CẤU HÌNH CŨ. Không được coi là trạng thái hiện hành. */
 function cauHinhCu(o) {
@@ -165,6 +208,9 @@ function danhMuc() {
       // luật thoát (exit_rules): gain theo quy ước bộ máy = giá ÷ giá vốn đã gồm phí mua − 1
       gainR: px ? (px * 1000) / p.entry_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part, light: p.light || null,
       srv: p.action || null,
+      // ĐK9 của phiên mua (số tối ngày mua) + các lần đã bán một phần (27/09/2026)
+      ordimb: p.ordimb ?? null, cond9: p.probe_fail ? 'TRUOT' : (p.cond9 || null), ordimb_min: p.ordimb_min ?? null,
+      daBan: (p.sold_parts || []).map(t => ({ date: t.date, frac: t.frac, sh: t.sh, reason: t.reason, pnl: t.pnl_pct })),
       // bộ máy ghi tỷ trọng dạng phân số [mã, ngành, tổng] trên NAV
       x0: p.x0 ? { pos_pct: p.x0[0] * 100, sector_pct: p.x0[1] * 100, total_pct: p.x0[2] * 100 } : null,
       xp: p.xp ? { pos_pct: p.xp[0] * 100, sector_pct: p.xp[1] * 100, total_pct: p.xp[2] * 100, date: p.pyr_date || null } : null,
@@ -185,6 +231,10 @@ function danhMuc() {
       gainR: (px && p.cost_px) ? (px * 1000) / p.cost_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part,
       srv: p.action || null,
       x0: p.x0 || null, xp: p.xp || null,     // sổ ghi tiến ghi sẵn phần trăm
+      ordimb: p.ordimb ?? null, ordimb_min: p.ordimb_min ?? null, earliest_sell: p.earliest_sell || null,
+      cond9: p.probe_fail ? 'TRUOT' : (p.cond9 || (p.ordimb == null ? null : (p.ordimb >= (p.ordimb_min || cpV('ordimb_min', 1.4)) ? 'DAT' : 'TRUOT'))),
+      daBan: ((F && F.closed) || []).filter(c => c.sym === p.sym && c.entry === p.entry)
+        .map(c => ({ date: c.exit, frac: c.phan, sh: c.sh, reason: c.reason, pnl: c.pnl_pct, pct_nav: c.pct_nav })),
     });
   });
 
@@ -221,7 +271,7 @@ function lichSuThat() {
   (F && F.closed || []).forEach(c => out.push({
     sym: c.sym, sector: c.sector || nganhCua(c.sym), entry: c.entry, exit: c.exit,
     entry_px: c.entry_px, exit_px: c.exit_px, pnl: c.pnl_pct, pnl_vnd: c.pnl_vnd,
-    held: c.held, reason: c.reason, peak: c.peak, nguon: 'ghitien',
+    held: c.held, reason: c.reason, peak: c.peak, nguon: 'ghitien', phan: c.phan, pct_nav: c.pct_nav, sh: c.sh,
   }));
   manualGop().trades.filter(t => t.sell_px).forEach(t => out.push({
     sym: t.sym, sector: nganhCua(t.sym), entry: t.buy_d, exit: t.sell_d,
@@ -297,6 +347,7 @@ function bangDanhMucNgan() {
       <th>Mã</th><th>Ngành</th><th>Ngày mua</th><th style="text-align:right">Giá vốn</th>
       <th style="text-align:right">Hiện tại</th><th style="text-align:right">Số cổ</th>
       <th style="text-align:right">Giá trị</th><th style="text-align:right">Lãi/lỗ</th>
+      <th>ĐK9 tối ngày mua</th><th>Bán bao nhiêu</th>
       <th>Nguồn</th></tr></thead><tbody>
       ${dm.map(p => `<tr><td class="sym">${esc(p.sym)}</td>
         <td class="muted" style="font-size:13px">${(p.sector || '').slice(0, 24)}</td>
@@ -307,6 +358,7 @@ function bangDanhMucNgan() {
         <td style="text-align:right">${p.tien ? vnd(p.tien) : '—'}</td>
         <td style="text-align:right;font-weight:640" class="${p.pnl == null ? '' : cls(p.pnl)}">${
           p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + dec(p.pnl) + '%'}</td>
+        <td>${oDK9(p)}</td><td>${oBanBaoNhieu(p, vieccanlam(p))}</td>
         <td>${nhanNguon(p.nguon)}</td></tr>`).join('')}
     </tbody></table></div>
     `;
@@ -349,7 +401,9 @@ function pageSoLenh(root) {
         <th style="text-align:right">Hiện tại</th><th style="text-align:right">Số cổ</th>
         <th style="text-align:right">Giá trị</th><th style="text-align:right">% tài khoản</th>
         <th style="text-align:right">Lãi/lỗ</th>
+        <th title="Điều kiện 9 (dòng tiền) của PHIÊN MUA — số có vào tối ngày mua">ĐK9 tối ngày mua</th>
         <th title="Luật thoát đã được dịch thành một việc phải làm">Việc cần làm</th>
+        <th title="Bán bao nhiêu phần vị thế / bao nhiêu % NAV; các lần đã bán một phần">Bán bao nhiêu</th>
         <th>Nguồn</th></tr></thead><tbody>
         ${dm.map(p => `<tr>
           <td class="sym">${esc(p.sym)}${((D.lookup||{})[p.sym]||{}).tim
@@ -365,9 +419,10 @@ function pageSoLenh(root) {
             (p.tien && p.navGoc) ? Math.round(100 * p.tien / p.navGoc) + '%' : '—'}${tyTrongVao(p)}</td>
           <td style="text-align:right;font-weight:660" class="${p.pnl == null ? '' : cls(p.pnl)}">${
             p.pnl == null ? '—' : (p.pnl >= 0 ? '+' : '') + dec(p.pnl) + '%'}</td>
-          <td>${(() => { const v = vieccanlam(p);
-            return `<span class="vclpill" style="color:var(${VCLMAU[v.m]});border-color:color-mix(in srgb,var(${VCLMAU[v.m]}) 45%,transparent)"
-              title="${escA(v.ly)}">${v.v}</span>`; })()}</td>
+          <td>${oDK9(p)}</td>
+          ${(() => { const v = vieccanlam(p);
+            return `<td><span class="vclpill" style="color:var(${VCLMAU[v.m]});border-color:color-mix(in srgb,var(${VCLMAU[v.m]}) 45%,transparent)"
+              title="${escA(v.ly)}">${v.v}</span></td><td>${oBanBaoNhieu(p, v)}</td>`; })()}
           <td>${nhanNguon(p.nguon)}</td></tr>`).join('')}
       </tbody></table></div>
       `;
@@ -378,13 +433,15 @@ function pageSoLenh(root) {
     <div class="card tblwrap"><table><thead><tr>
       <th>Mã</th><th>Mua</th><th>Bán</th><th style="text-align:right">Giá vốn</th>
       <th style="text-align:right">Giá bán</th><th style="text-align:right">Lãi/lỗ</th>
-      <th style="text-align:right">Giữ</th><th>Lý do bán</th><th>Nguồn</th></tr></thead><tbody>
+      <th style="text-align:right">Giữ</th><th>Phần bán</th><th>Lý do bán</th><th>Nguồn</th></tr></thead><tbody>
       ${ls.map(c => `<tr>
         <td class="sym">${esc(c.sym)}</td><td>${ddmm(c.entry)}</td><td>${ddmm(c.exit)}</td>
         <td style="text-align:right">${dec(+c.entry_px)}</td>
         <td style="text-align:right">${dec(+c.exit_px)}</td>
         <td style="text-align:right;font-weight:660" class="${cls(c.pnl)}">${c.pnl >= 0 ? '+' : ''}${dec(c.pnl)}%</td>
         <td style="text-align:right" class="muted">${c.held == null ? '—' : c.held + ' phiên'}</td>
+        <td style="font-size:12.5px">${c.phan == null ? '—' : (c.phan < 1 ? '<b style="color:var(--serious)">1/3</b>' : '100%')}${
+          c.sh ? `<div class="muted" style="font-size:11px">${num(c.sh)} cp${c.pct_nav != null ? ' ≈ ' + dec(c.pct_nav, 1) + '% NAV' : ''}</div>` : ''}</td>
         <td class="muted" style="font-size:12.5px">${esc(c.reason)}</td>
         <td>${nhanNguon(c.nguon)}</td></tr>`).join('')}
     </tbody></table></div>`;

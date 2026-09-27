@@ -125,7 +125,7 @@ def pack(r,name):
         yearly=yearly(eq), lights=dict(Counter(e[2] for e in eq)),
         doors=[{'door':k,'n':v,'pct':round(v/len(tr)*100,1),'median':dmed[k]} for k,v in doors.most_common()],
         curve=[[e[0],round(float(e[1])/1e9,4),e[2]] for e in eq],
-        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','pyr_adj','held','pnl_pct','pnl_vnd','reason','light','peak')} for t in tr])
+        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','pyr_adj','held','pnl_pct','pnl_vnd','reason','light','peak','sh','frac')} for t in tr])
 
 if __name__=='__main__':
     out={}
@@ -159,7 +159,19 @@ if __name__=='__main__':
         v=float(r['d']['AdjClose'][-1,p.j]); return v if v==v else float(p.epx)
     import exit_rules as _ER
     _CF=dict(E.CFG); _CF.update(PROD)
-    out['open_positions']=[{'sym':p.sym,'entry':str(cal[p.ei]),'entry_px':round(float(p.epx),2),
+    # DK9 cua PHIEN MUA (so toi ngay mua) + cac lan da ban mot phan (den Cam 1/3) — trang Danh muc
+    _oi={(x['sym'],x['date']):x.get('ordimb') for x in r['signals']}
+    _parts={}
+    for t in r['trades']:
+        _parts.setdefault((t['sym'],t['entry']),[]).append(dict(date=t['exit'],frac=t.get('frac'),sh=t.get('sh'),
+                                                               reason=t['reason'],pnl_pct=t['pnl_pct'],pnl_vnd=t['pnl_vnd']))
+    def _c9(p):
+        oi=_oi.get((p.sym,str(cal[p.ei])))
+        if oi is None or oi!=oi: return None, 'CHUA_CO'
+        return round(float(oi),3), ('DAT' if oi>=PROD['ordimb_min'] else 'TRUOT')
+    out['open_positions']=[{'sym':p.sym,
+        'ordimb':_c9(p)[0],'cond9':_c9(p)[1],'ordimb_min':PROD['ordimb_min'],
+        'sold_parts':_parts.get((p.sym,str(cal[p.ei])),[]),'entry':str(cal[p.ei]),'entry_px':round(float(p.epx),2),
         # gia THO da khop (de ve dau B dung nen) — entry_px o tren la gia von DIEU CHINH da gom phi
         'entry_raw':round(float(getattr(p,'eraw',float('nan'))),0),
         'shares':int(p.sh),'sector':p.sector,'last':round(_lastpx(p),2),

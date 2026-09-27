@@ -324,6 +324,7 @@ def run(cfg=None, log=True):
                   entry_px=round(float(p.epx),2),exit_px=round(float(op),2),held=int(i-p.ei),
                   pnl_pct=round(float(op*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
                   pnl_vnd=round(float(got-p.sh*p.epx)),reason='Cond9 không xác nhận — bán lệnh thăm dò',
+                  sh=int(p.sh),frac=1.0,
                   light=R['light'][p.ei],peak=round(float(p.peak)*100,1)))
             del pos[sym]
         # ---------- LOP 8: BO THOAT ----------
@@ -380,6 +381,8 @@ def run(cfg=None, log=True):
                   pyr_date=getattr(p,'pyr_d',None),pyr_raw=getattr(p,'pyr_raw',None),pyr_adj=getattr(p,'pyr_adj',None),
                   pnl_pct=round(float(px*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
                   pnl_vnd=round(float(got-sh*p.epx)),reason=r,
+                  # so co ban lan nay + phan cua vi the (1/3 = den Cam; 1.0 = ban het) — hien thi "ban bao nhieu"
+                  sh=int(sh),frac=round(float(frac),4),
                   light=R['light'][p.ei],peak=round(float(p.peak)*100,1)))
                 if C.get('cb_enable'):
                     cb_streak = cb_streak+1 if trades[-1]['pnl_pct']<=0 else 0
