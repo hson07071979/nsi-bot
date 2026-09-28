@@ -31,3 +31,7 @@ jobs:
         run: python tests/test_s1_prod.py
       - name: Test lớp quan sát R27A (đường đi sau breakout + gần đạt 7/8 — chỉ hiển thị)
         run: python tests/test_observability.py
+      - name: Khoá cổng CFO (nút nghiên cứu không lọt vào PROD)
+        run: python tests/test_cfo_lock.py
+      - name: R29 missed-winner audit (chỉ đo — khớp engine2.screen)
+        run: python tests/test_missed.py

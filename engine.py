@@ -137,6 +137,10 @@ def risk_gate(sym, f):
             mult*=wm
         elif mode=='sector' and _wc_heavy(sym):
             mult*=wm
+        elif mode=='growth' and (f.get('rev_yoy') is not None and f['rev_yoy']>=CFG.get('cfo_growth_min',0.30)):
+            mult*=wm
+        elif mode=='sector_growth' and _wc_heavy(sym) and (f.get('rev_yoy') is not None and f['rev_yoy']>=CFG.get('cfo_growth_min',0.30)):
+            mult*=wm
         elif mode=='repeat' and not (f.get('cfo_ttm_prev') is not None and f['cfo_ttm_prev']<0):
             mult*=wm
         # Bat dong san: CFO am trong ky om quy dat / xay do dang la co cau, khong phai benh.

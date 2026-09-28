@@ -72,11 +72,28 @@ def test_watch78_matches_engine_and_never_buy():
         assert not ({r['symbol'] for r in near} & e8)                                    # 7/8 khong bao gio la tin hieu
         for r in near:
             bad = [g for g in r['gates'] if not g['ok']]
-            assert len(bad) == 1 and bad[0]['gate'] in O.SOFT and r['passed'] == 7 and r['status'] == 'WATCH_ONLY'
+            assert len(bad) in (1, 2) and all(g['gate'] in O.SOFT for g in bad) and r['passed'] == 8 - len(bad)
+            assert r['status'] == 'WATCH_ONLY' and r['status_vi'].endswith('KHÔNG PHẢI MUA')
+            if len(bad) == 2: assert not any(g['gate'] == 'pct' for g in bad), '6/8 phai la ma da no gia'
             assert r['score'] >= C['score_floor']
         W2, _ = O.watch78(d, I, tls, sect, C, i, held=set(e8))
         assert not ({r['symbol'] for r in W2} & e8)
     print(f'   40 phien, {n78} luot gan dat')
+
+
+@test
+def test_pet_22_09_shows_6of8_volume_and_cfo():
+    """R29: ca PET 22/09/2026 — no gia 6,96%, khoi luong 1,73x < 2,0x VA CFO 4 quy am.
+    Phai hien 6/8 voi dung hai cong vol + risk (truoc R29 no bi an vi thieu 2 cong)."""
+    if not HAVE_DATA: print('   SKIP no data'); return
+    import engine2 as E
+    from produce2 import PROD
+    C = dict(E.CFG); C.update(PROD)
+    d, I, tls, sect = E.load(); cal = [str(x) for x in d['cal']]
+    if '2026-09-22' not in cal: print('   SKIP data truoc 22/09'); return
+    W, _ = O.watch78(d, I, tls, sect, C, cal.index('2026-09-22'))
+    pet = [r for r in W if r['symbol'] == 'PET']
+    assert pet and pet[0]['passed'] == 6 and sorted(pet[0]['missing_gates']) == ['risk', 'vol'], pet
 
 
 @test

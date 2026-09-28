@@ -18,6 +18,9 @@ import numpy as np
 
 OBS = dict(
     show_path=True, show_7of8=True,
+    # R29 (28/09/2026): nhan them ma thieu 2 cong mem (6/8) — VD PET 22/09 thieu khoi luong + CFO.
+    # 6/8 BAT BUOC gia da no (cong bien do dat), khong thi ma nao nam im cung thanh 6/8.
+    max_missing=2, six_needs_pct=True,
     path=dict(run_fast_t3=0.05,        # T+3 dong cua >= +5% so voi gia breakout -> RUN_FAST (R25 dinh nghia run-fast A)
               stall_band=0.02,          # |lai| < 2% sau >= 3 phien ma chua mat breakout -> STALL
               min_days_stall=3),
@@ -117,7 +120,7 @@ def watch78(d, I, tls, sect, C, i, held=(), today_signals=()):
     x = np.where(np.isnan(I['tvma20'][i]), -1.0, I['tvma20'][i]); order = np.argsort(-x)
     rank = np.empty(len(x), dtype=int); rank[order] = np.arange(1, len(x) + 1)
     OI = E._oi_arr(d, I, C)
-    out = []; stats = dict(invalid=0, full=0, near=0)
+    out = []; stats = dict(invalid=0, full=0, near=0, near7=0, near6=0)
     for j in range(len(S)):
         sym = str(S[j])
         if sym in held or sym in today_signals: continue
@@ -135,13 +138,13 @@ def watch78(d, I, tls, sect, C, i, held=(), today_signals=()):
         if any(v[1] is None for k, v in g.items() if k != 'uni'):
             continue                                                   # thieu so -> DATA INVALID
         fails = [k for k, v in g.items() if not v[0]]
-        if len(fails) > 1: continue                                    # it nhat 2 cong ky thuat truot -> khong gan dat
+        if len(fails) > OBS['max_missing']: continue                   # qua nhieu cong ky thuat truot -> khong gan dat
         tl = tls.get(sym); f = as_of(tl, day) if tl else None
         if f is None: stats['invalid'] += 1; continue                  # khong co BCTC
         blk, why, rmul = risk_gate(sym, f)
         cfo_only = bool(blk and str(why).startswith('CFO'))
         if blk and not cfo_only: stats['invalid'] += 1; continue       # rui ro cung -> RISK INVALID
-        g['risk'] = (not blk, _f(f.get('cfo_ttm')) if cfo_only else None, 0.0 if cfo_only else None)
+        g['risk'] = (not blk, _f(f.get('cfo_ttm')), 0.0 if cfo_only else None)   # CFO luon hien (ke ca khi qua)
         sc, pts = canslim_score(f, I['rs'][i, j], I['mom3'][i, j],
                                 float(AC[i, j] / I['hi52'][i, j] - 1) if I['hi52'][i, j] > 0 else None,
                                 float(I['volr'][i, j]), float(I['tvma20'][i, j]))
@@ -154,10 +157,11 @@ def watch78(d, I, tls, sect, C, i, held=(), today_signals=()):
                 stats['full'] += 1
                 out.append(_rec(sym, sect, g, [], c9, oi, C, rank[j], f, kind='COND9_FAIL'))
             continue
-        if len(fails) != 1 or fails[0] not in SOFT: continue
-        stats['near'] += 1
+        if not (1 <= len(fails) <= OBS['max_missing']) or any(k not in SOFT for k in fails): continue
+        if len(fails) == 2 and OBS['six_needs_pct'] and 'pct' in fails: continue   # 6/8 phai la ma DA NO gia
+        stats['near'] += 1; stats['near%d' % (8 - len(fails))] = stats.get('near%d' % (8 - len(fails)), 0) + 1
         out.append(_rec(sym, sect, g, fails, c9, oi, C, rank[j], f, kind='NEAR'))
-    out.sort(key=lambda r: (r['kind'] != 'NEAR', -r['score']))
+    out.sort(key=lambda r: (r['kind'] != 'NEAR', -r['passed'], -r['score']))
     return out, stats
 
 
@@ -168,10 +172,11 @@ def _rec(sym, sect, g, fails, c9, oi, C, rk, f, kind):
         if k == 'uni': gap = (th - act) if act is not None else None                       # hang: con cach bao nhieu bac
         elif k == 'base': gap = (th - act) if act is not None else None                    # <= nguong
         elif k == 'risk': gap = act if (not ok and act is not None) else None              # CFO am bao nhieu
+        if k == 'risk' and ok: th = None                                                   # qua cong: khong co nguong de so
         else: gap = (act - th) if (act is not None and th is not None) else None           # >= nguong
         gates.append(dict(gate=k, ok=bool(ok), actual=act, threshold=th, gap=gap))
     m = fails[0] if fails else None
     return dict(symbol=sym, sector=sect.get(sym, 'Khác'), kind=kind, score=g['score'][1], passed=8 - len(fails), total=8,
-                missing_gate=m, gates=gates, cond9=c9, ordimb=(round(oi, 3) if oi is not None else None),
+                missing_gate=m, missing_gates=list(fails), gates=gates, cond9=c9, ordimb=(round(oi, 3) if oi is not None else None),
                 ordimb_min=float(C['ordimb_min']), liquidity_rank=int(rk), period=f.get('label'),
-                status='WATCH_ONLY')
+                status='WATCH_ONLY', status_vi='GẦN ĐẠT — KHÔNG PHẢI MUA')

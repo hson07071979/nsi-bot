@@ -208,6 +208,7 @@ if _pf.get('open') and _mn.get('trades'):
 # ---------- 8c. AUDIT 23/09/2026: parity + data health are BUILD-BREAKING ----------
 # (a) the running config must be stamped and identical everywhere
 _h = D.get('prod_config_hash')
+check((D.get('cfg_prod') or {}).get('cfo_mode', 'hard') == 'hard', 'cfg_prod: cfo_mode khac hard (nut nghien cuu R28 lot vao PROD)')
 check(bool(_h) and (D.get('cfg_prod') or {}).get('prod_config_hash') == _h,
       'thieu / lech prod_config_hash giua site_data va cfg_prod')
 check(bool(D.get('spec')) and bool(D.get('spec_u')),
@@ -331,10 +332,22 @@ elif _ob:
     for _r in _w:
         _bad = [g for g in _r['gates'] if not g['ok']]
         check(_r.get('status') == 'WATCH_ONLY', f"{_r['symbol']}: 7/8 khong mang nhan WATCH_ONLY")
-        check((_r['kind'] == 'NEAR' and len(_bad) == 1) or (_r['kind'] == 'COND9_FAIL' and not _bad and _r['cond9'] is False),
+        _okn = (_r['kind'] == 'NEAR' and len(_bad) in (1, 2) and _r['passed'] == 8 - len(_bad)
+                and not (len(_bad) == 2 and any(g['gate'] == 'pct' for g in _bad)))       # 6/8 phai da no gia (R29)
+        check(_okn or (_r['kind'] == 'COND9_FAIL' and not _bad and _r['cond9'] is False),
               f"{_r['symbol']}: ban ghi gan dat sai cau truc ({_r['kind']}, {len(_bad)} cong truot)")
     check(not any(k in CFP for k in ('show_path', 'show_7of8', 'observability')), 'cau hinh quan sat lot vao cfg_prod')
     print(f"lop quan sat: {len(_ob.get('paths') or {})} duong di, {len(_w)} ma gan dat")
+
+# ---------- 8f. R29 MISSED-WINNER AUDIT — chi do ----------
+_ma = D.get('missed_audit') or {}
+if _ma.get('error'):
+    warn(False, f"bang R29 hong (trang tu an): {_ma['error']}")
+elif _ma:
+    check(set(_ma.get('groups') or []) >= {'SIGNAL', 'cfo', 'vol_1.8-2.0'}, 'bang R29 thieu nhom')
+    check(((_ma.get('table') or {}).get('SIGNAL') or {}).get('all', {}).get('n', 0) > 50, 'bang R29: qua it tin hieu PROD — nghi lech bo loc')
+    check(not any(k in CFP for k in ('missed_audit', 'NEAR', 'OOS_FROM')), 'cau hinh R29 lot vao cfg_prod')
+    print(f"R29: {_ma.get('n_events')} su kien, tu {_ma.get('start')}")
 
 # ---------- 9. bang thang ----------
 check(len(D['monthly']) > 60, f"bang thang chi co {len(D['monthly'])} thang")
