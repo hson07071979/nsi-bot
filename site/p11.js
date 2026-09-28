@@ -261,6 +261,21 @@ function renderLiveBar() {
     return;
   }
 
+  // BỘ QUÉT CHƯA CHẠY (28/09/2026): trong 13:00–14:45 mà máy chủ im > 20 phút -> báo đỏ.
+  // Đồng hồ ảo (Cloudflare) gọi 5'/lần trong 14:00–14:45; im lâu nghĩa là chuông MUA DÒ / luật thoát có thể không tới.
+  const _sv = LIVE.server || {};
+  const _vn = new Date(Date.now() + 7 * 3600e3), _p = _vn.getUTCHours() * 60 + _vn.getUTCMinutes();
+  if (_vn.getUTCDay() >= 1 && _vn.getUTCDay() <= 5 && _p >= 13 * 60 && _p <= 14 * 60 + 45) {
+    const _t = _sv.asof ? new Date(_sv.asof + '+07:00') : null;
+    const _tuoi = _t ? (Date.now() - _t.getTime()) / 60000 : 1e9;
+    if (_tuoi > 20) {
+      el2.className = 'livebar heads';
+      el2.innerHTML = `<span class="ldot"></span><b>⚠ BỘ QUÉT CHƯA CHẠY</b>
+        <span>lần quét gần nhất ${_t ? hhmm(_sv.asof) : 'không có'} — chuông MUA DÒ / luật thoát có thể không tới. Tự xem bảng giá.</span>`;
+      return;
+    }
+  }
+
   if (!L) {
     el2.className = 'livebar off';
     el2.innerHTML = `<span class="ldot"></span><span>Chưa có dữ liệu real-time</span>
@@ -518,18 +533,51 @@ async function napRealtime() {
   }
 }
 
+
+/* ---- CỜ MÁY CHỦ CHO LỚP REAL-TIME (sửa 28/09/2026) ----------------------------
+   Hai lớp trình duyệt (p11 + p13 VPS) tự tính lại mức tín hiệu từ giá nhanh, nhưng
+   trước đây làm RƠI hai cờ của máy chủ:
+     mua_do   : đủ ĐK1–8, ĐK9 tối mới có số -> PROD MUA DÒ lúc ATC (stage1 = 1,0)
+     dang_cam : hệ thống ĐANG CẦM mã này -> không mua thêm
+   Hệ quả: mã mua đỏ vẫn nằm ở "Sắp đủ · còn thiếu Cỡ lệnh mua…" (ĐK9 KHÔNG thể có
+   trong phiên), còn mã đang cầm (BVH 28/09) thì trông như sắp mua. Máy chủ là nơi
+   DUY NHẤT quyết định; hàm này chỉ chép cờ của nó sang bản ghi trình duyệt.      */
+const ODK9 = /^Cỡ lệnh mua/;
+function svHitsMap() {
+  const m = {};
+  ((LIVE.server || {}).hits || []).forEach(h => { if (h && h.sym) m[h.sym] = h; });
+  return m;
+}
+function apCoMayChu(h, sv, t) {
+  const cam = !!((sv && sv.dang_cam) || (t && t.dang_cam));
+  h.dang_cam = cam;
+  h.mua_do = !!(sv && sv.mua_do && !cam);
+  h.truot9 = !!(sv && sv.truot9 && !cam);
+  // mua đỏ chỉ khi giá real-time VẪN đủ mọi điều kiện đo được trong phiên (ngoài ĐK9);
+  // giá tụt khỏi ngưỡng sau lần quét của máy chủ -> quay về Sắp đủ
+  const conThieu = (h.miss || []).filter(k => !ODK9.test(k));
+  if (h.mua_do && h.realtime_mapped && conThieu.length) h.mua_do = false;
+  if (h.level === 'MUA' && cam) h.level = 'DANG_CAM';
+  else if (h.mua_do && h.level !== 'MUA') h.level = 'MUA_DO';
+  else if (cam && (h.level === 'SAP_DU' || h.level === 'THEO_DOI')) h.level = 'DANG_CAM';
+  // ĐK9 chưa có số trong phiên thì KHÔNG phải "còn thiếu" với lệnh mua đỏ / mã đang cầm
+  if (h.mua_do || cam) h.miss = (h.miss || []).filter(k => !ODK9.test(k));
+  return h;
+}
+const BAC_TH = { MUA: 0, MUA_DO: 0, SAP_DU: 1, DANG_CAM: 2, DE_MAT: 3, THEO_DOI: 4 };
+
 /* Tính lại bốn điều kiện của phiên ngay trong trình duyệt, đúng bằng công thức
    máy chủ dùng. Ngưỡng lấy từ ô tra cứu đã nhúng sẵn trong trang (cập nhật mỗi
    tối), nên không cần tải thêm gì.                                            */
 function tinhLaiTinHieu() {
   const R = NSI.rt || {};
   const L = D.lookup || {};
-  const hits = [];
+  const hits = [], _svm = svHitsMap();
   Object.keys(R).forEach(sym => {
     const t = L[sym], r = R[sym];
     if (!t || !r || !r.price || !r.ref) return;
     const _sv = ((LIVE.server || {}).hits || []).some(h => h.sym === sym && h.level === 'MUA' && h.prod_ok);
-    if (t.state !== 'cho' && t.state !== 'fa' && !_sv) return;
+    if (t.state !== 'cho' && t.state !== 'fa' && !_sv && !(_svm[sym] && _svm[sym].mua_do)) return;
     const pct = r.price / r.ref - 1;
     const volr = t.vma20 ? r.vol / t.vma20 : 0;
     // Điều kiện 7 — cỡ lệnh mua so cỡ lệnh bán. Phải có, không thì lớp real-time
@@ -562,12 +610,12 @@ function tinhLaiTinHieu() {
       pct: +(pct * 100).toFixed(2), need_px: t.need_px,
       volr: +volr.toFixed(2), volr_proj: +volr.toFixed(2), need_vol: t.need_vol,
       vol: r.vol, gtgd: +(r.tv / 1e9).toFixed(1), gtgd_proj: +(r.tv / 1e9).toFixed(1),
-      score: t.score, base: t.base, ordimb: +oi.toFixed(2), ordimb_min: oiMin, cond,
+      score: t.score, base: t.base, ordimb: +oi.toFixed(2), ordimb_min: oiMin, cond, realtime_mapped: true,
       miss: Object.keys(cond).filter(k => !cond[k]),
     });
+    apCoMayChu(hits[hits.length - 1], _svm[sym], t);
   });
-  const order = { MUA: 0, SAP_DU: 1, DE_MAT: 2, THEO_DOI: 3 };
-  hits.sort((a, b) => order[a.level] - order[b.level] || b.pct - a.pct);
+  hits.sort((a, b) => BAC_TH[a.level] - BAC_TH[b.level] || b.pct - a.pct);
 
   const cu = LIVE.server || LIVE.data || {};
   const mau = Object.values(R)[0] || {};
@@ -581,13 +629,13 @@ function tinhLaiTinHieu() {
   LIVE.data = Object.assign({}, cu, {
     hits, session: ses, asof: NSI.rtAt, realtime: true,
     scanned: Object.keys(R).length, universe: cu.universe || Object.keys(L).length,
-    n_mua: hits.filter(h => h.level === 'MUA').length,
+    n_mua: hits.filter(h => h.level === 'MUA' || h.level === 'MUA_DO').length,
     n_de_mat: hits.filter(h => h.level === 'DE_MAT').length,
   });
   // chuông cho mã VỪA đủ điểm mua trong nhịp này
-  const moi = hits.filter(h => h.level === 'MUA' && !truoc.has(h.sym)
+  const moi = hits.filter(h => (h.level === 'MUA' || h.level === 'MUA_DO') && !truoc.has(h.sym)
                             && !LIVE.seen.has('M:' + h.sym + ':' + ses));
-  hits.filter(h => h.level === 'MUA').forEach(h => LIVE.seen.add('M:' + h.sym + ':' + ses));
+  hits.filter(h => h.level === 'MUA' || h.level === 'MUA_DO').forEach(h => LIVE.seen.add('M:' + h.sym + ':' + ses));
   if (!LIVE.firstLoad && moi.length) bangBao(moi, 'mua');
 }
 
@@ -622,8 +670,11 @@ function pageLiveTrucTiep(root, L) {
     sym: '?', name: '', level: 'THEO_DOI', price: null, pct: 0, volr: 0, gtgd: 0,
     score: 0, miss: [], need_px: null, need_vol: null, ordimb: null, fa: false,
   }, h || {}));
+  // bản ghi thẳng từ live.json (không có real-time): cờ đã nằm sẵn trong bản ghi
+  L.hits.forEach(h => { if (!h.realtime_mapped) apCoMayChu(h, h.mua_do || h.dang_cam || h.truot9 ? h : null, (D.lookup || {})[h.sym]); });
   const last = D.regime[D.regime.length - 1];
-  const mua = L.hits.filter(h => h.level === 'MUA');
+  const mua = L.hits.filter(h => h.level === 'MUA' || h.level === 'MUA_DO');
+  const cam = L.hits.filter(h => h.level === 'DANG_CAM');
   const sap = L.hits.filter(h => h.level === 'SAP_DU');
   const dem = L.hits.filter(h => h.level === 'DE_MAT');
   const theo = L.hits.filter(h => h.level === 'THEO_DOI');
@@ -639,7 +690,7 @@ function pageLiveTrucTiep(root, L) {
       <th style="text-align:right" title="Cỡ lệnh mua ÷ cỡ lệnh bán — hệ đòi ≥ ${cpDTvi()}">Dòng tiền</th>
       <th style="text-align:right">Điểm</th><th>Còn thiếu</th></tr></thead><tbody>
       ${list.map(h => `<tr>
-        <td class="sym">${esc(h.sym)}</td>
+        <td class="sym">${esc(h.sym)}${h.level === 'MUA_DO' ? '<div style="font-size:11px;font-weight:700;color:var(--critical)">MUA DÒ ATC</div>' : ''}${h.dang_cam ? '<div style="font-size:11px;font-weight:700" class="muted">ĐANG CẦM</div>' : ''}</td>
         <td class="muted" style="font-size:13px">${(h.name || '').slice(0, 34)}</td>
         <td style="text-align:right">${h.price}</td>
         <td style="text-align:right;font-weight:660" class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${h.pct}%</td>
@@ -649,7 +700,10 @@ function pageLiveTrucTiep(root, L) {
         <td style="text-align:right" class="${h.ordimb == null ? 'muted' : (h.ordimb >= (h.ordimb_min || 1.2) ? 'pos' : 'neg')}">${
           h.ordimb == null ? '—' : h.ordimb.toFixed(2) + '×'}</td>
         <td style="text-align:right;color:var(--text-primary);font-weight:640">${h.score}</td>
-        <td class="muted" style="font-size:12.5px">${h.fa ? '<b style="color:var(--warn)">chưa đạt cơ bản — không mua</b> · ' : ''}${h.miss.length ? h.miss.join(' · ') : '—'}</td>
+        <td class="muted" style="font-size:12.5px">${h.fa ? '<b style="color:var(--warn)">chưa đạt cơ bản — không mua</b> · ' : ''}${
+          h.level === 'MUA_DO' ? `<b style="color:var(--critical)">Đủ ĐK1–8 → mua đủ lệnh lúc ATC</b> · tối ~18–19h xác nhận ĐK9 (cỡ lệnh mua ≥ ${String(h.ordimb_min || 1.4).replace('.', ',')}× cỡ lệnh bán); không đạt thì bán 100% ATC T+${cpV('sell_from', 3)}${h.miss.length ? ' · lưu ý: ' + h.miss.join(' · ') : ''}`
+          : h.dang_cam ? '<b>Hệ thống đang cầm mã này — không mua thêm.</b> Luật thoát xem ở Danh mục hệ thống.'
+          : (h.miss.length ? h.miss.join(' · ') : '—')}</td>
       </tr>`).join('')}
     </tbody></table></div>`;
 
@@ -661,7 +715,11 @@ function pageLiveTrucTiep(root, L) {
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
     <div><div class="muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:12px">Đèn thị trường</div>
       <div style="font-size:34px;font-weight:750;color:var(${LIGHTVAR[last.light]})">${LIGHTNAME[last.light].toUpperCase()}</div>
-      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${dec(42 * smul, 1)}% NAV mỗi lệnh</div></div>
+      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${dec(42 * smul, 1)}% NAV mỗi lệnh</div>
+      ${(() => { const t = (LIVE.server || {}).den_tam_tinh; if (!t || !t.light) return '';
+        const doi = t.light !== last.light;
+        return `<div style="margin-top:6px;${doi ? 'color:var(--warn);font-weight:700' : ''}" class="${doi ? '' : 'muted'}">Đèn TẠM TÍNH hôm nay: ${LIGHTNAME[t.light] || t.light}${doi ? ' — khác đèn hôm qua' : ''}
+          <span class="muted" style="font-weight:400"> · ${t.dcount} ngày phân phối · VNI ${t.vni}${t.vma50 ? ' / MA50 ' + t.vma50 : ''}</span></div>`; })()}</div>
     <div style="border-left:1px solid var(--line);padding-left:26px;display:grid;gap:6px">
       <div><span class="muted">G1 · chỉ số đều trọng số so MA200</span><br>
         <b class="${last.g1 >= (last.g1ma || 0) ? 'pos' : 'neg'}">${last.g1ma ? (last.g1 >= last.g1ma ? 'trên' : 'dưới') : '—'}</b></div>
@@ -684,6 +742,8 @@ function pageLiveTrucTiep(root, L) {
   ${bang(sap, '🟠 Sắp đủ', L.open
       ? 'Còn thiếu một bước, hoặc dự phóng cho thấy sẽ đạt lúc đóng cửa. Cột Vol/TB20 hiện <b>giá trị hiện tại → dự phóng cuối phiên</b>.'
       : 'Còn thiếu một bước tại thời điểm đóng cửa.')}
+
+  ${bang(cam, '⚪ Đang cầm — không mua thêm', 'Mã hệ thống đã nắm giữ. Hôm nay có nổ lại cũng không vào lệnh mới; theo dõi luật thoát ở Danh mục hệ thống.')}
 
   ${bang(dem, '🟡 Để mắt — đang tăng mạnh',
       `Mã trong watchlist đang tăng từ <b>${L.de_mat_pct || 2.5}%</b> trở lên. Đây <b>chưa phải lệnh</b> — chỉ để anh ngó chừng xem nó có đi tiếp thành phiên bùng nổ không. Nguyên tắc vào lệnh không đổi.`)}

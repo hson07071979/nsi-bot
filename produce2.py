@@ -154,6 +154,28 @@ if __name__=='__main__':
         'dd':int(R['dcount'][i0+k]),'light':R['light'][i0+k],
         'br50':round(float(R['above50'][i0+k]),3),'ftd':bool(R['ftd'][i0+k])} for k in range(n)]
     out['signals']=r['signals']
+    # ---- DEN TAM TINH TRONG PHIEN (28/09/2026): trang thai regime sau phien cuoi -> thresholds.json.
+    # regime_live.step() la DUNG vong lap regime2; phat lai toan ky phai ra dung den cua bo may,
+    # lech mot phien la KHONG xuat (chuong trong phien lui ve den hom truoc, nhu cu).
+    try:
+        import regime_live as _RLV, datetime as _dtm
+        from regime2 import _ffill as _ff
+        _V = json.load(open('data/VNINDEX.json'))
+        _vm = {_dtm.datetime.utcfromtimestamp(t).date().isoformat(): v for t, v in zip(_V['t'], _V['v'])}
+        _vv = _ff(np.array([_vm.get(str(x), np.nan) for x in cal], dtype=float))
+        _g = R['g1']; _eq = np.r_[0.0, _g[1:] / _g[:-1] - 1]
+        _C5 = dict(E.CFG); _C5.update(PROD)
+        _L, _st = _RLV.replay(_eq, R['vni'], _vv, _C5)
+        _lech = sum(1 for a_, b_ in zip(_L, R['light']) if a_ != b_)
+        _dd = r['d']; _I = r['I']
+        _val = (_dd['MarketCap'][-1] > 1000e9) & (_I['nbars'][-1] >= 250)
+        out['regime_live'] = dict(ok=(_lech == 0), mismatch=_lech, state=_RLV.state_for_export(_st, str(cal[-1])),
+                                  g1_syms=[str(x) for x in _dd['sym'][np.where(_val)[0]]],
+                                  light=R['light'][-1])
+        print('DEN TAM TINH: phat lai', len(_L), 'phien, lech', _lech, '· G1', len(out['regime_live']['g1_syms']), 'ma', flush=True)
+    except Exception as _e:
+        out['regime_live'] = dict(ok=False, error=f'{type(_e).__name__}: {_e}')
+        print('DEN TAM TINH HONG:', _e, flush=True)
     _rg_light = out['regime'][-1]['light'] if out.get('regime') else 'XANH'
     def _lastpx(p):   # ma bi treo phien cuoi -> NaN khong duoc lot vao JSON; lui ve gia von
         v=float(r['d']['AdjClose'][-1,p.j]); return v if v==v else float(p.epx)
