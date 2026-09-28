@@ -261,6 +261,21 @@ function renderLiveBar() {
     return;
   }
 
+  // BỘ QUÉT CHƯA CHẠY (28/09/2026): trong 13:00–14:45 mà máy chủ im > 20 phút -> báo đỏ.
+  // Đồng hồ ảo (Cloudflare) gọi 5'/lần trong 14:00–14:45; im lâu nghĩa là chuông MUA DÒ / luật thoát có thể không tới.
+  const _sv = LIVE.server || {};
+  const _vn = new Date(Date.now() + 7 * 3600e3), _p = _vn.getUTCHours() * 60 + _vn.getUTCMinutes();
+  if (_vn.getUTCDay() >= 1 && _vn.getUTCDay() <= 5 && _p >= 13 * 60 && _p <= 14 * 60 + 45) {
+    const _t = _sv.asof ? new Date(_sv.asof + '+07:00') : null;
+    const _tuoi = _t ? (Date.now() - _t.getTime()) / 60000 : 1e9;
+    if (_tuoi > 20) {
+      el2.className = 'livebar heads';
+      el2.innerHTML = `<span class="ldot"></span><b>⚠ BỘ QUÉT CHƯA CHẠY</b>
+        <span>lần quét gần nhất ${_t ? hhmm(_sv.asof) : 'không có'} — chuông MUA DÒ / luật thoát có thể không tới. Tự xem bảng giá.</span>`;
+      return;
+    }
+  }
+
   if (!L) {
     el2.className = 'livebar off';
     el2.innerHTML = `<span class="ldot"></span><span>Chưa có dữ liệu real-time</span>
@@ -700,7 +715,11 @@ function pageLiveTrucTiep(root, L) {
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
     <div><div class="muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:12px">Đèn thị trường</div>
       <div style="font-size:34px;font-weight:750;color:var(${LIGHTVAR[last.light]})">${LIGHTNAME[last.light].toUpperCase()}</div>
-      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${dec(42 * smul, 1)}% NAV mỗi lệnh</div></div>
+      <div class="muted">Cỡ vị thế ${Math.round(smul * 100)}% — tức ${dec(42 * smul, 1)}% NAV mỗi lệnh</div>
+      ${(() => { const t = (LIVE.server || {}).den_tam_tinh; if (!t || !t.light) return '';
+        const doi = t.light !== last.light;
+        return `<div style="margin-top:6px;${doi ? 'color:var(--warn);font-weight:700' : ''}" class="${doi ? '' : 'muted'}">Đèn TẠM TÍNH hôm nay: ${LIGHTNAME[t.light] || t.light}${doi ? ' — khác đèn hôm qua' : ''}
+          <span class="muted" style="font-weight:400"> · ${t.dcount} ngày phân phối · VNI ${t.vni}${t.vma50 ? ' / MA50 ' + t.vma50 : ''}</span></div>`; })()}</div>
     <div style="border-left:1px solid var(--line);padding-left:26px;display:grid;gap:6px">
       <div><span class="muted">G1 · chỉ số đều trọng số so MA200</span><br>
         <b class="${last.g1 >= (last.g1ma || 0) ? 'pos' : 'neg'}">${last.g1ma ? (last.g1 >= last.g1ma ? 'trên' : 'dưới') : '—'}</b></div>

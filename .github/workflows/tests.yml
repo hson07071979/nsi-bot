@@ -37,3 +37,5 @@ jobs:
         run: python tests/test_missed.py
       - name: Lớp real-time giữ cờ mua đỏ / đang cầm của máy chủ
         run: python tests/test_live_flags.py
+      - name: Đèn tạm tính = regime2 (phát lại toàn kỳ) + exit_rules chịu cfg null
+        run: python tests/test_regime_live.py
