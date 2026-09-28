@@ -39,6 +39,9 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # co truot gia 0,2% thi +460,9% -> +492,4%; bo deal tot nhat ra van hon
           # (3.852 tr so 3.642 tr). Gia phai tra: DD 12,0% -> 12,7%.
           orange_cut_only_if_worse=True,
+          # BO CUA THOAT DEN CAM (anh Son duyet 29/09/2026, research R31): khong con ha 1/3 khi den chuyen Cam.
+          # Du lieu 25/09: +957,2% -> +938,2%, DD 11,74% -> 12,78%, PF 3,15 -> 3,12, Sharpe 2,11 -> 2,06.
+          use_orange_cut=False,
           # VAN THOI GIAN T+4 (doi tu T+6 ngay 30/08/2026).
           # Quet lai tren vu tru 1.213 ma: T+4 thang T+6 o CA BON chi so cung luc —
           # +523,1% so +513,3% · DD 11,34% so 12,43% · PF 4,43 so 4,04 · Sharpe 1,78
