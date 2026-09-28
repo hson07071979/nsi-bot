@@ -174,7 +174,7 @@ function tinhLaiTinHieuVPS() {
   const f = phanPhien(), mo = phienMo();
   const GT_MIN = (D.cfg_prod && D.cfg_prod.gtgd_min) || 15e9;
   // MUA đã được máy chủ chứng minh ĐỦ MỌI điều kiện PROD, cùng phiên
-  const svMua = {};
+  const svMua = {}, svm = svHitsMap();
   ((LIVE.server || {}).hits || []).forEach(h => {
     if (h.level === 'MUA' && h.prod_ok) svMua[h.sym] = h;
   });
@@ -182,7 +182,7 @@ function tinhLaiTinHieuVPS() {
   Object.keys(R).forEach(sym => {
     const t = L[sym], r = R[sym];
     if (!t || !r || !r.price || !r.ref) return;
-    if (t.state !== 'cho' && t.state !== 'fa' && !svMua[sym]) return;
+    if (t.state !== 'cho' && t.state !== 'fa' && !svMua[sym] && !(svm[sym] && svm[sym].mua_do)) return;
 
     const pct = r.price / r.ref - 1;
     const volr = t.vma20 ? r.vol / t.vma20 : 0;
@@ -232,12 +232,12 @@ function tinhLaiTinHieuVPS() {
       gia_tran: r.tran || null,          // giá trần phiên nay, theo đồng
       da_tran: !!(r.tran && r.price >= r.tran - 1),   // đã chạm trần chưa
       nguong_pct: t.thr,                 // biên độ % cần đạt để tính là phiên bùng nổ
-      cond, miss,
+      cond, miss, realtime_mapped: true,
     });
+    apCoMayChu(hits[hits.length - 1], svm[sym], t);
   });
 
-  const bac = { MUA: 0, SAP_DU: 1, DE_MAT: 2, THEO_DOI: 3 };
-  hits.sort((a, b) => bac[a.level] - bac[b.level] || b.pct - a.pct);
+  hits.sort((a, b) => BAC_TH[a.level] - BAC_TH[b.level] || b.pct - a.pct);
 
   const cu = LIVE.server || {};
   const ses = cu.session || D.asof;
@@ -245,12 +245,12 @@ function tinhLaiTinHieuVPS() {
     hits, session: ses, asof: NSI.rtAt, realtime: true, rtSrc: 'VPS',
     open: mo, frac: f,
     scanned: RTV.n, universe: Object.keys(L).length,
-    n_mua: hits.filter(h => h.level === 'MUA').length,
+    n_mua: hits.filter(h => h.level === 'MUA' || h.level === 'MUA_DO').length,
     n_de_mat: hits.filter(h => h.level === 'DE_MAT').length,
   });
 
-  // ---- CHUÔNG ----
-  const moi = hits.filter(h => h.level === 'MUA' && !RTV.keu.has('M:' + h.sym + ':' + ses));
+  // ---- CHUÔNG ---- (mua đỏ cũng là lệnh mua thật lúc ATC -> kêu như MUA)
+  const moi = hits.filter(h => (h.level === 'MUA' || h.level === 'MUA_DO') && !RTV.keu.has('M:' + h.sym + ':' + ses));
   moi.forEach(h => RTV.keu.add('M:' + h.sym + ':' + ses));
   if (moi.length && !LIVE.firstLoad) reoChuong(moi, 'mua');
 

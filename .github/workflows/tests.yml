@@ -35,3 +35,5 @@ jobs:
         run: python tests/test_cfo_lock.py
       - name: R29 missed-winner audit (chỉ đo — khớp engine2.screen)
         run: python tests/test_missed.py
+      - name: Lớp real-time giữ cờ mua đỏ / đang cầm của máy chủ
+        run: python tests/test_live_flags.py
