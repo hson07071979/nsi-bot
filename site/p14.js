@@ -15,6 +15,7 @@ function pageKiemDinh(root) {
       Chạy <code>python3 robustness.py</code> để sinh <code>data/robust.json</code>,
       rồi dựng lại trang. Bộ kiểm định mất khoảng 8–15 phút vì nó chạy lại backtest
       vài chục lần với tham số khác nhau.</div>`;
+    root.insertAdjacentHTML('beforeend', typeof missedAuditSection === 'function' ? missedAuditSection() : '');
     return;
   }
   const S = V.scorecard, P = V.prod, PROD_SIZE = 0.42;
@@ -305,6 +306,7 @@ function pageKiemDinh(root) {
     <p style="margin:0"><b>Trượt giá vẫn là mô hình, không phải sổ khớp lệnh thật.</b> Con số thật
     chỉ có sau khi <b>Danh mục hệ thống</b> chạy đủ vài chục lệnh về phía trước.</p>
   </div>`;
+  root.insertAdjacentHTML('beforeend', typeof missedAuditSection === 'function' ? missedAuditSection() : '');
 
   veSweep();
   veMC();

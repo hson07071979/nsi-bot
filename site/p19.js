@@ -2,7 +2,7 @@
    LỚP QUAN SÁT (R27A, 27/09/2026) — CHỈ ĐỂ ĐỌC, KHÔNG PHẢI TÍN HIỆU.
    1. Đường đi sau breakout của vị thế đang nắm (T+1/T+2/T+3/T+5, lãi, đỉnh, MFE/MAE,
       giữ trên giá breakout, đỉnh mới, Cond9) + nhãn MÔ TẢ. Nhãn không đổi "Việc cần làm".
-   2. GẦN ĐẠT — thiếu đúng 1 cổng (7/8): danh sách theo dõi. Không phải MUA, không vào sổ,
+   2. GẦN ĐẠT — thiếu 1 cổng (7/8) hoặc 2 cổng mềm khi giá ĐÃ NỔ (6/8, R29): danh sách theo dõi. Không phải MUA, không vào sổ,
       không kêu chuông. R25: nhóm này không có lợi thế ngoài mẫu bền.
    Dữ liệu: D.observability (produce2 → observability.py), cập nhật mỗi tối.
 ============================================================================ */
@@ -64,7 +64,8 @@ function obsGateText(g) {
   else if (g.gate === 'gtgd') v = `${so(g.actual / 1e9, 1)} tỷ / cần ≥ ${so(g.threshold / 1e9, 0)} tỷ`;
   else if (g.gate === 'volat') v = `${pc(g.actual)} / cần ≥ ${pc(g.threshold)}`;
   else if (g.gate === 'base') v = `${pc(g.actual)} / cần ≤ ${pc(g.threshold)}` + (!g.ok ? ` · rộng hơn ${so(-g.gap * 100, 1)} điểm %` : '');
-  else if (g.gate === 'risk') v = g.ok ? 'qua' : `CFO 4 quý: ${so(g.actual / 1e9, 0)} tỷ / cần > 0 · âm ${so(-g.actual / 1e9, 0)} tỷ`;
+  else if (g.gate === 'risk') v = g.ok ? (g.actual == null ? 'qua' : (g.actual >= 0 ? `qua · CFO 4 quý +${so(g.actual / 1e9, 0)} tỷ` : `qua · CFO âm ${so(-g.actual / 1e9, 0)} tỷ nhưng ngành được miễn`))
+    : `CFO 4 quý: ${so(g.actual / 1e9, 0)} tỷ / cần > 0 · âm ${so(-g.actual / 1e9, 0)} tỷ`;
   else if (g.gate === 'score') v = `${so(g.actual, 1)} / cần ≥ ${g.threshold}`;
   return { lab, v };
 }
@@ -83,22 +84,27 @@ function obsGateList(r) {
 function obsWatch78Section() {
   const O = OBS(); if (!O || !O.config.show_7of8) return '';
   const W = O.watch78 || [];
-  const near = W.filter(r => r.kind === 'NEAR' && r.cond9 !== false), c9x = W.filter(r => r.kind === 'COND9_FAIL' || (r.kind === 'NEAR' && r.cond9 === false));
+  const near = W.filter(r => r.kind === 'NEAR'), c9x = W.filter(r => r.kind === 'COND9_FAIL');
+  const n7 = near.filter(r => r.passed === 7), n6 = near.filter(r => r.passed === 6);
   const den = (D.regime[D.regime.length - 1] || {}).light;
-  const card = (r, warn) => { const g = r.gates.find(x => !x.ok); const t = g ? obsGateText(g) : null;
+  const card = (r, warn) => { const miss = r.gates.filter(x => !x.ok).map(obsGateText);
     return `<div class="card" style="flex:1 1 280px;min-width:260px;border-style:dashed;cursor:pointer" onclick="openChart('${r.symbol}')" title="Bấm để xem đủ 8 cổng">
       <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:17px">${esc(r.symbol)}</b>
         <span class="muted" style="font-weight:700">${r.passed}/${r.total} CỔNG</span></div>
       <div style="font-size:13px;line-height:1.6;margin-top:4px">
         <div>CANSLIM <b>${String(r.score).replace('.', ',')}</b> ✅</div>
-        ${t ? `<div>Thiếu: <b style="color:var(--critical)">${esc(t.lab)}</b> ❌</div><div class="muted">${t.v}</div>` : ''}
-        <div>Cond9: ${r.cond9 == null ? 'chưa có số' : (r.cond9 ? '✅' : '❌')} · TOP hạng ${r.liquidity_rank} · đèn ${LIGHTNAME[den] || '—'}</div>
+        ${miss.map(t => `<div>Thiếu: <b style="color:var(--critical)">${esc(t.lab)}</b> ❌</div><div class="muted">${t.v}</div>`).join('')}
+        <div>Cond9: ${r.cond9 == null ? 'chưa có số' : (r.cond9 ? '✅' : '❌ (kể cả đủ cổng cũng chỉ là lệnh dò, bán T+3)')} · TOP hạng ${r.liquidity_rank} · đèn ${LIGHTNAME[den] || '—'}</div>
       </div>
       ${warn ? `<div style="margin-top:6px;color:var(--critical);font-weight:700">⚠ THIẾU COND9 — KHÔNG MUA</div>` : ''}
-      <div style="margin-top:6px;font-size:12px;font-weight:700;letter-spacing:.04em" class="muted">THEO DÕI — KHÔNG PHẢI MUA</div></div>`; };
-  return `<h2>2. Gần đạt — thiếu 1 cổng <span class="muted" style="font-size:13px;font-weight:400">(${near.length} mã · phiên ${ddmm(O.asof)} · chỉ theo dõi)</span></h2>
-    <p class="muted" style="margin-top:0;font-size:12.5px">Đạt 7/8 cổng, CANSLIM đạt sàn, dữ liệu đủ. Không phải tín hiệu: không vào sổ, không kêu chuông, không đặt lệnh. Khi đủ cổng còn thiếu, mã tự vào pipeline bình thường. Nghiên cứu R25: nhóm này KHÔNG tốt hơn nhóm đủ 8/8.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">${near.map(r => card(r, false)).join('') || '<div class="muted">Không có mã nào thiếu đúng 1 cổng ở phiên này.</div>'}</div>
+      <div style="margin-top:6px;font-size:12px;font-weight:700;letter-spacing:.04em" class="muted">${warn ? 'THEO DÕI — KHÔNG PHẢI MUA' : 'GẦN ĐẠT — KHÔNG PHẢI MUA'}</div></div>`; };
+  const grid = rs => `<div style="display:flex;gap:12px;flex-wrap:wrap">${rs.map(r => card(r, false)).join('')}</div>`;
+  return `<h2>2. Gần đạt — thiếu 1–2 cổng <span class="muted" style="font-size:13px;font-weight:400">(${near.length} mã · phiên ${ddmm(O.asof)} · chỉ theo dõi)</span></h2>
+    <p class="muted" style="margin-top:0;font-size:12.5px">CANSLIM đạt sàn, dữ liệu đủ. 7/8: thiếu 1 cổng. 6/8: giá ĐÃ NỔ nhưng còn thiếu 2 cổng (ví dụ khối lượng + CFO). Không phải tín hiệu: không vào sổ, không kêu chuông, không đặt lệnh. Mục đích là thấy ngay mã rớt ở cổng nào, không phải để nới luật. Bảng R29 ở trang Kiểm định đo xem cổng nào hay bỏ sót winner.</p>
+    <h3 style="margin:10px 0 8px">7/8 — thiếu 1 cổng (${n7.length})</h3>
+    ${n7.length ? grid(n7) : '<div class="muted">Không có mã nào thiếu đúng 1 cổng ở phiên này.</div>'}
+    <h3 style="margin:16px 0 8px">6/8 — đã nổ giá, thiếu 2 cổng (${n6.length})</h3>
+    ${n6.length ? grid(n6) : '<div class="muted">Không có mã nào đã nổ giá mà thiếu 2 cổng ở phiên này.</div>'}
     ${c9x.length ? `<h3 style="margin:16px 0 8px;color:var(--critical)">Đủ cổng nhưng thiếu Cond9 (${c9x.length}) — không mua</h3>
     <div style="display:flex;gap:12px;flex-wrap:wrap;opacity:.8">${c9x.map(r => card(r, true)).join('')}</div>` : ''}`;
 }
@@ -116,8 +122,52 @@ function obsDetail(sym) {
   let h = '';
   const r = (O.watch78 || []).find(x => x.symbol === sym);
   if (r) h += `<div class="card" style="border-style:dashed;margin-top:10px"><div style="font-weight:800;letter-spacing:.03em;margin-bottom:6px">
-      ${r.cond9 === false ? '<span style="color:var(--critical)">⚠ THIẾU COND9 — KHÔNG MUA · </span>' : ''}THEO DÕI ${r.passed}/${r.total} — CHƯA PHẢI TÍN HIỆU MUA</div>${obsGateList(r)}</div>`;
+      ${r.cond9 === false ? '<span style="color:var(--critical)">⚠ THIẾU COND9 — KHÔNG MUA · </span>' : ''}${r.kind === 'NEAR' ? `${r.passed}/${r.total} — GẦN ĐẠT — KHÔNG PHẢI MUA` : `THEO DÕI ${r.passed}/${r.total} — CHƯA PHẢI TÍN HIỆU MUA`}</div>${obsGateList(r)}</div>`;
   const held = (typeof danhMuc === 'function' ? danhMuc() : []).find(x => x.sym === sym && (x.nguon === 'auto' || x.nguon === 'ghitien'));
   if (held) { const c = obsPathCard(sym, held.entry); if (c) h += `<h3 style="margin:14px 0 8px">Đường đi sau breakout</h3><div style="display:flex">${c}</div>`; }
   return h;
+}
+
+
+/* ---------- R29 (28/09/2026): MISSED-WINNER AUDIT — chỉ đo, không đổi luật ----------
+   Các mã "gần nổ" trượt ĐÚNG 1 cổng, chia theo cổng và khoảng cách tới ngưỡng, so với tín hiệu
+   PROD. Dữ liệu: D.missed_audit (produce2 → missed.py). Mức tín hiệu, không phải deal. */
+function missedAuditSection() {
+  const A = D.missed_audit; if (!A || A.error) return A && A.error ? `<div class="note warn">Bảng R29 lỗi: ${esc(A.error)}</div>` : '';
+  const per = [['all', 'Toàn kỳ'], ['2019-2022', '2019–22'], ['2023-now', '2023 → nay'], ['oos', 'Ngoài mẫu (từ ' + ddmm(A.oos_from) + ')']];
+  const pc = x => x == null ? '—' : (x >= 0 ? '+' : '−') + Math.abs(x * 100).toFixed(1).replace('.', ',') + '%';
+  const nn = x => x == null ? '—' : String(x).replace('.', ',');
+  const base = (A.table.SIGNAL || {})['all'] || {};
+  const row = (g, k) => { const s = A.table[g][k] || {}; if (!s.n) return '';
+    const sig = g === 'SIGNAL', small = (s.n10 || 0) < 30;
+    const better = !sig && s.pf10 != null && base.pf10 != null && s.pf10 >= base.pf10;
+    return `<tr style="${sig ? 'font-weight:700;background:color-mix(in srgb,var(--good) 8%,transparent)' : ''}">
+      <td>${esc(A.group_vi[g])}</td><td style="text-align:right">${s.n}${small && !sig ? ' <span class="muted" title="Dưới 30 sự kiện — mẫu nhỏ, đừng kết luận">*</span>' : ''}</td>
+      <td style="text-align:right" class="${(s.avg3 || 0) >= 0 ? 'pos' : 'neg'}">${pc(s.avg3)}</td>
+      <td style="text-align:right" class="${(s.avg5 || 0) >= 0 ? 'pos' : 'neg'}">${pc(s.avg5)}</td>
+      <td style="text-align:right" class="${(s.avg10 || 0) >= 0 ? 'pos' : 'neg'}">${pc(s.avg10)}</td>
+      <td style="text-align:right">${pc(s.med10)}</td><td style="text-align:right">${s.win10 == null ? '—' : Math.round(s.win10 * 100) + '%'}</td>
+      <td style="text-align:right;${better ? 'color:var(--warn);font-weight:700' : ''}">${nn(s.pf10)}</td>
+      <td style="text-align:right">${s.run10 == null ? '—' : Math.round(s.run10 * 100) + '%'}</td></tr>`; };
+  const table = k => `<div class="card tblwrap"><table><thead><tr><th>Nhóm (trượt đúng 1 cổng)</th><th style="text-align:right">Số lần</th>
+      <th style="text-align:right">TB T+3</th><th style="text-align:right">TB T+5</th><th style="text-align:right">TB T+10</th>
+      <th style="text-align:right">Trung vị T+10</th><th style="text-align:right">Thắng T+10</th><th style="text-align:right">PF T+10</th>
+      <th style="text-align:right" title="Tỷ lệ có đóng cửa cao nhất ≥ +10% trong 10 phiên">Chạy ≥10%</th></tr></thead>
+      <tbody>${A.groups.map(g => row(g, k)).join('')}</tbody></table></div>`;
+  const rec = (A.recent || []).slice(-15).reverse();
+  return `<h2 style="margin-top:34px">R29 — Hệ đang bỏ lỡ winner vì cổng nào?</h2>
+    <p class="muted" style="margin-top:0">Mỗi phiên từ 2019, lấy các mã đạt mọi cổng bắt buộc (TOP ${(D.cfg_prod || {}).top_n}, vốn hoá, GTGD, biến động)
+    nhưng <b>trượt đúng 1 cổng</b>, chia theo cổng và khoảng cách tới ngưỡng. Lợi nhuận tính từ giá đóng cửa phiên đó (khớp ATC, đã trừ phí)
+    tới T+3 / T+5 / T+10. Một mã tính một lần trong ${A.cooldown} phiên. <b>Chỉ đo — không đổi luật.</b>
+    Nhóm nào có PF T+10 ≥ tín hiệu thật được tô vàng. <b>*</b> = dưới 30 sự kiện: mẫu nhỏ, chưa đủ để kết luận.
+    Chỉ nên nghĩ tới nới một cổng khi nhóm của nó tốt đều ở CẢ HAI giai đoạn <b>và</b> ở phần ngoài mẫu.</p>
+    ${per.map(([k, t]) => `<h3 style="margin:14px 0 6px">${t}</h3>${(A.table.SIGNAL[k] || {}).n || A.groups.some(g => (A.table[g][k] || {}).n)
+      ? table(k) : '<div class="muted">Chưa có sự kiện nào (phần ngoài mẫu sẽ đầy dần mỗi tối).</div>'}`).join('')}
+    <h3 style="margin:18px 0 6px">15 lần gần nhất</h3>
+    <div class="card tblwrap"><table><thead><tr><th>Phiên</th><th>Mã</th><th>Trượt cổng</th><th style="text-align:right">T+3</th>
+      <th style="text-align:right">T+5</th><th style="text-align:right">T+10</th></tr></thead><tbody>
+      ${rec.map(e => `<tr style="cursor:pointer" onclick="openChart('${e.sym}')"><td>${ddmm(e.date)}</td><td><b>${esc(e.sym)}</b></td>
+        <td>${esc(A.group_vi[e.group])}</td><td style="text-align:right">${pc(e.t3)}</td><td style="text-align:right">${pc(e.t5)}</td>
+        <td style="text-align:right">${pc(e.t10)}</td></tr>`).join('')}</tbody></table></div>
+    <div class="muted" style="font-size:11.5px">${esc(A.note)} Dữ liệu tới ${ddmm(A.asof)}.</div>`;
 }

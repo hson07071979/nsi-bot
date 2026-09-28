@@ -383,6 +383,16 @@ if __name__=='__main__':
         out['observability'] = dict(error=f'{type(_e).__name__}: {_e}')
         print('OBS HONG:', _e, flush=True)
 
+    # ---- R29 MISSED-WINNER AUDIT — chi do, KHONG thuoc PROD, KHONG vao prod_config_hash ----
+    try:
+        import missed as _MS
+        _C4 = dict(E.CFG); _C4.update(PROD)
+        out['missed_audit'] = _MS.audit(r['d'], r['I'], _tls, _C4)
+        print('R29', out['missed_audit']['n_events'], 'su kien', flush=True)
+    except Exception as _e:
+        out['missed_audit'] = dict(error=f'{type(_e).__name__}: {_e}')
+        print('R29 HONG:', _e, flush=True)
+
     def cv(o):
         if isinstance(o,dict): return {k:cv(v) for k,v in o.items()}
         if isinstance(o,list): return [cv(x) for x in o]

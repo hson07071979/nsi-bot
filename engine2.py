@@ -237,7 +237,23 @@ def prep_masks(d, I, C):
     trig=I['pct']>=_thr
     return base_rng, base_ok, TOPN, trig
 
+_RESEARCH_DEFAULTS = dict(re_cfo_warn=False, icr_cfo_rescue=False, cfo_icr_min=3.0,
+                          cfo_mode='hard', cfo_warn_mul=0.5, cfo_growth_min=0.30)
+
+def reset_research_state():
+    """engine.CFG la bien toan cuc: run() ghi cac nut nghien cuu CFO/ICR vao do. Sau moi lan
+    chay (ke ca khi loi) dua ve gia tri PROD, de chuong / trang / lop quan sat goi risk_gate
+    sau mot lan chay nghien cuu KHONG bao gio thua huong cfo_mode khac 'hard' (R29, 28/09/2026)."""
+    import engine as _eng
+    _eng.CFG.update(_RESEARCH_DEFAULTS)
+
 def run(cfg=None, log=True):
+    try:
+        return _run_core(cfg, log)
+    finally:
+        reset_research_state()
+
+def _run_core(cfg=None, log=True):
     C=dict(CFG); C.update(cfg or {})
     import engine as _eng
     _eng.CFG['re_cfo_warn']=C.get('re_cfo_warn',False)
@@ -245,6 +261,7 @@ def run(cfg=None, log=True):
     _eng.CFG['cfo_icr_min']=C.get('cfo_icr_min',3.0)   # dong bo co sang risk_gate
     _eng.CFG['cfo_mode']=C.get('cfo_mode','hard')
     _eng.CFG['cfo_warn_mul']=C.get('cfo_warn_mul',0.5)
+    _eng.CFG['cfo_growth_min']=C.get('cfo_growth_min',0.30)
     import allocator as AL
     _rng=np.random.default_rng(int(C.get('miss_seed',1)))
     _fm=set(tuple(x) for x in (C.get('force_miss') or []))
