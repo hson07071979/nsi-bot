@@ -298,7 +298,7 @@ try:
     from produce2 import PROD as _PR
     import exit_rules as _ER
     check(CFP.get('top_n') == _PR['top_n'] == 110, f"top_n trang {CFP.get('top_n')} / PROD {_PR['top_n']} — phai 110")
-    check(CFP.get('profit_lock') == _PR.get('profit_lock') and _ER.tiers(CFP) == [(0.08, 0.02), (0.12, 0.05), (0.15, 0.08)],
+    check(CFP.get('profit_lock') == _PR.get('profit_lock') and _ER.tiers(CFP) == [(0.08, 0.02), (0.12, 0.06), (0.15, 0.08)],
           f"profit_lock trang {CFP.get('profit_lock')} lech PROD {_PR.get('profit_lock')}")
     check(not CFP.get('use_be'), 'use_be (ve bo +1%) van bat trong cau hinh dang chay')
     _tr = (D.get('prod') or {}).get('trades') or D.get('trades') or []
