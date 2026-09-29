@@ -1,0 +1,57 @@
+name: Nghiên cứu (không đăng web)
+
+# Chay mot bai nghien cuu nang tren may GitHub (du lieu FireAnt + Vietcap nhu ban dung toi),
+# luu ket qua lam Artifact. KHONG dung PROD, KHONG dang len trang, KHONG ghi so.
+# Chay: tab Actions -> "Nghiên cứu" -> Run workflow (chon script), hoac tu dong khi day
+# thay doi vao chinh file script / file nay tren nhanh claude/** (khong chay tren main).
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'Script trong research/'
+        required: false
+        default: 'r32_mc_exit.py'
+  push:
+    branches: ['claude/**']
+    paths: ['research/r32_mc_exit.py', '.github/workflows/research.yml']
+
+concurrency:
+  group: nghien-cuu
+  cancel-in-progress: true
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Cài thư viện
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Dữ liệu tĩnh
+        run: python bootstrap.py
+      - name: Giá và dòng tiền (FireAnt)
+        run: python fireant.py
+      - name: Nén dữ liệu giá
+        run: python fa_prep.py
+      - name: Lấp dòng tiền phiên cuối
+        continue-on-error: true
+        run: python orderflow_fill.py
+      - name: Báo cáo tài chính (Vietcap IQ)
+        run: python fetch_funda.py
+      - name: Chạy nghiên cứu
+        env:
+          NSEED: '60'
+          PROCS: '3'
+        run: python research/${{ github.event.inputs.script || 'r32_mc_exit.py' }}
+      - name: Lưu kết quả
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nghien-cuu
+          path: evidence/r32_*.json
+          retention-days: 30
