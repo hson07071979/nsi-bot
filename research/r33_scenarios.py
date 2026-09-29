@@ -1,111 +1,106 @@
 # -*- coding: utf-8 -*-
-"""R33 — Luat thoat qua TUNG KICH BAN THI TRUONG (anh Son 30/09/2026: "test tren tat ca cac
-scenario cua thi truong chu").
+"""R33 — Monte Carlo KHOA LAI theo TUNG NAM 2019..2026 (anh Son 30/09/2026).
 
-Hai cua thoat KHAC HAN nhau, do rieng va do chung:
-  * Khoa lai (S1 + nac 15%): theo LAI CUA TUNG MA — da tung len >= 8/12/15% thi giu san +2/+5/+8%.
-  * Den Cam ha 1/3: theo THI TRUONG CHUNG — den chuyen Cam (lenh mua luc Xanh/Vang) thi ban 1/3.
-Cau hinh (moi cai mot E.run day du, cung du lieu):
-  PROD      = S1 + 15%->+8%, den Cam BAT        (dang chay tu 30/09)
-  KHONG_CAM = S1 + 15%->+8%, den Cam TAT        (chi khoa lai)
-  CHI_CAM   = KHONG khoa lai, den Cam BAT       (chi den Cam)
-  TRAN      = khong khoa lai, khong den Cam     (chi cac cua con lai: cat lo, momentum, van, MA)
-  S1        = S1 (khong nac 15%), den Cam BAT
-Kich ban:
-  (a) tung nam 2019..2026;
-  (b) che do VN-Index theo loi suat 60 phien: TANG MANH (> +10%), DI NGANG, GIAM MANH (< -10%);
-  (c) den thi truong cua bo may: XANH / VANG / CAM / DO;
-  (d) 10 dot VN-Index sut manh nhat (tu dinh 60 phien, >= 10%) — bo may mat bao nhieu trong dung dot do.
-Moi o: loi nhuan kep cua duong von trong cac phien thuoc kich ban, sut giam lon nhat trong kich ban.
-Ket qua: evidence/r33_scenarios.json + bang in ra log. KHONG doi PROD."""
-import os, sys, json
+CHI doi khoa lai (profit_lock). Moi dieu kien khac GIU NGUYEN nhu PROD dang chay
+(den Cam bat, T+3, momentum, van T+4, MA10/MA30, cat lo, cong mua...).
+Moi cau hinh khoa lai:
+  * backtest day du -> loi nhuan tung nam;
+  * Monte Carlo NSEED lan, moi lan bo ngau nhien 10% lenh vao (miss_prob=0.10) -> TRUNG VI
+    va p10 loi nhuan TUNG NAM.
+Chon: cau hinh thang PROD (S1 + 15%->+8%) o nhieu nam nhat theo MC trung vi, xem ca nam te nhat.
+Ket qua: evidence/r33_lock_years.json + bang in ra log. KHONG doi PROD."""
+import os, sys, json, time
 import numpy as np
+from multiprocessing import Pool
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); os.chdir(ROOT); sys.path.insert(0, ROOT)
-import engine2 as E
-from produce2 import PROD
 
-OUT = os.environ.get('OUT', 'evidence/r33_scenarios.json')
-S1_15 = [[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]]
-CFGS = [('PROD', dict(profit_lock=S1_15, use_orange_cut=True)),
-        ('KHONG_CAM', dict(profit_lock=S1_15, use_orange_cut=False)),
-        ('CHI_CAM', dict(profit_lock=None, use_orange_cut=True)),
-        ('TRAN', dict(profit_lock=None, use_orange_cut=False)),
-        ('S1', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05]], use_orange_cut=True))]
+OUT = os.environ.get('OUT', 'evidence/r33_lock_years.json')
+NSEED = int(os.environ.get('NSEED', 60))
+LOCKS = {'khong_khoa': None}
+for a in (0.01, 0.02, 0.03, 0.04):
+    for b in (0.04, 0.05, 0.06, 0.07):
+        LOCKS[f'8→+{int(a*100)} 12→+{int(b*100)}'] = [[0.08, a], [0.12, b]]
+for c in (0.07, 0.08, 0.10):
+    LOCKS[f'S1 + 15→+{int(c*100)}'] = [[0.08, 0.02], [0.12, 0.05], [0.15, c]]
+LOCKS['8→+2 12→+6 15→+8'] = [[0.08, 0.02], [0.12, 0.06], [0.15, 0.08]]
+LOCKS['8→+4 10→+5 12→+6'] = [[0.08, 0.04], [0.10, 0.05], [0.12, 0.06]]
+PROD_NAME = 'S1 + 15→+8'
+
+_E = None
 
 
-def seg(ret, mask):
-    """Loi nhuan kep + sut giam lon nhat cua chuoi loi suat ngay trong cac phien mask=True."""
-    r = ret[mask]
-    if len(r) == 0:
-        return dict(n=0, ret=None, dd=None)
-    nav = np.cumprod(1 + r); dd = 1 - nav / np.maximum.accumulate(np.r_[1.0, nav])[1:]
-    return dict(n=int(len(r)), ret=round(float(nav[-1] - 1), 4), dd=round(float(max(dd.max(), 0)), 4))
+def _init():
+    global _E
+    import engine2 as E; E.load(); _E = E
+
+
+def years(eq):
+    d = {}
+    for e in eq:
+        d.setdefault(e[0][:4], []).append(float(e[1]))
+    out, prev = {}, None
+    for y in sorted(d):
+        s = prev if prev is not None else d[y][0]
+        out[y] = d[y][-1] / s - 1; prev = d[y][-1]
+    return out
+
+
+def job(item):
+    name, lock = item
+    t = time.time()
+    E = _E
+    from produce2 import PROD
+    C = dict(E.CFG); C.update(PROD); C['profit_lock'] = lock
+    r = E.run(C, log=False); m = E.metrics(r)
+    base = years(r['eq'])
+    mc = {y: [] for y in base}; mc_tot = []
+    for s in range(NSEED):
+        C2 = dict(C); C2.update(miss_prob=0.10, miss_seed=1000 + s)
+        rr = E.run(C2, log=False); yy = years(rr['eq'])
+        for y in mc:
+            mc[y].append(yy.get(y, np.nan))
+        mc_tot.append(E.metrics(rr)['total_return'])
+    return dict(name=name, lock=lock, ret=m['total_return'], dd=m['maxdd'], sharpe=m['sharpe'], pf=m['pf'],
+                base=base, mc_p50={y: float(np.nanmedian(v)) for y, v in mc.items()},
+                mc_p10={y: float(np.nanquantile(v, .10)) for y, v in mc.items()},
+                mc_tot_p50=float(np.median(mc_tot)), mc_tot_p10=float(np.quantile(mc_tot, .10)),
+                sec=round(time.time() - t))
 
 
 def main():
-    runs = {}
-    for name, over in CFGS:
-        C = dict(E.CFG); C.update(PROD); C.update(over)
-        r = E.run(C, log=False); runs[name] = r
-        print(name, E.metrics(r), flush=True)
-    r0 = runs['PROD']; cal = [str(x) for x in r0['cal']]; n = len(r0['eq']); i0 = len(cal) - n
-    dates = [e[0] for e in r0['eq']]
-    vni = np.asarray(r0['R']['vni'][i0:i0 + n], float)
-    light = list(r0['R']['light'][i0:i0 + n])
-    v60 = np.full(n, np.nan); v60[60:] = vni[60:] / vni[:-60] - 1
-    # ---- kich ban ----
-    sc = {}
-    for y in sorted({d[:4] for d in dates}):
-        sc[f'Năm {y}'] = np.array([d[:4] == y for d in dates])
-    sc['VNI tăng mạnh (60 phiên > +10%)'] = v60 > 0.10
-    sc['VNI đi ngang (±10%)'] = (v60 >= -0.10) & (v60 <= 0.10)
-    sc['VNI giảm mạnh (60 phiên < −10%)'] = v60 < -0.10
-    for L_, vi in (('XANH', 'Xanh'), ('VANG', 'Vàng'), ('CAM', 'Cam'), ('DO', 'Đỏ')):
-        sc[f'Đèn {vi}'] = np.array([x == L_ for x in light])
-    # (d) cac dot sut: tu dinh 60 phien, giam >= 10%, khong chong nhau — lay 10 dot sau nhat
-    dots = []; used = np.zeros(n, bool)
-    pk = np.array([vni[max(0, k - 60):k + 1].max() for k in range(n)])
-    ddv = 1 - vni / pk
-    order = np.argsort(-ddv)
-    for k in order:
-        if ddv[k] < 0.10 or len(dots) >= 10: break
-        a = max(0, k - 60) + int(np.argmax(vni[max(0, k - 60):k + 1]))
-        if used[a:k + 1].any(): continue
-        used[a:k + 1] = True; dots.append((a, k, float(ddv[k])))
-    for a, k, d in sorted(dots):
-        m = np.zeros(n, bool); m[a + 1:k + 1] = True
-        sc[f'Đợt sụt VNI {dates[a]}→{dates[k]} (−{d*100:.0f}%)'] = m
-    # ---- do ----
-    out = dict(meta=dict(research='R33 kịch bản thị trường', asof=dates[-1], prod_config_hash=None),
-               configs={k: v for k, v in CFGS}, metrics={k: E.metrics(v) for k, v in runs.items()}, rows=[])
-    rets = {}
-    for name, r in runs.items():
-        nav = np.array([e[1] for e in r['eq']], float)
-        rets[name] = np.r_[0.0, nav[1:] / nav[:-1] - 1]
-    vret = np.r_[0.0, vni[1:] / vni[:-1] - 1]
-    print('\n==== KICH BAN (loi nhuan % / sut giam lon nhat %) ====')
-    print(f"{'Kịch bản':48s} {'phiên':>5s} " + ' '.join(f'{k:>16s}' for k, _ in CFGS) + f" {'VN-Index':>10s}")
-    for label, m in sc.items():
-        row = dict(scenario=label, sessions=int(m.sum()), vni=seg(vret, m))
-        for k, _ in CFGS:
-            row[k] = seg(rets[k], m)
-        out['rows'].append(row)
-        cell = lambda s: '—' if s['ret'] is None else f"{s['ret']*100:+7.1f}/{s['dd']*100:4.1f}"
-        print(f"{label:48s} {row['sessions']:5d} " + ' '.join(f'{cell(row[k]):>16s}' for k, _ in CFGS)
-              + f" {cell(row['vni']):>10s}", flush=True)
-    # dem kich ban moi cua thoat giup / hai
-    tong = {}
-    for a, b, ten in (('PROD', 'KHONG_CAM', 'đèn Cam (có khoá lãi)'), ('KHONG_CAM', 'TRAN', 'khoá lãi (không đèn Cam)'),
-                      ('CHI_CAM', 'TRAN', 'đèn Cam (không khoá lãi)'), ('PROD', 'S1', 'nấc 15%')):
-        g = h = 0
-        for row in out['rows']:
-            if row[a]['ret'] is None: continue
-            if row[a]['ret'] > row[b]['ret'] + 1e-4: g += 1
-            elif row[a]['ret'] < row[b]['ret'] - 1e-4: h += 1
-        tong[ten] = dict(giup=g, hai=h, bang=len(out['rows']) - g - h)
-        print(f"{ten:30s}: tốt hơn ở {g} kịch bản, kém hơn ở {h}, bằng nhau {len(out['rows']) - g - h}")
-    out['tong'] = tong
-    json.dump(out, open(OUT, 'w'), ensure_ascii=False, indent=1, default=str)
+    rows = []
+    with Pool(int(os.environ.get('PROCS', 3)), initializer=_init) as pool:
+        for res in pool.imap_unordered(job, list(LOCKS.items())):
+            rows.append(res)
+            print(f"xong {res['name']:22s} ({res['sec']}s)", flush=True)
+    by = {r['name']: r for r in rows}
+    P = by[PROD_NAME]; ys = sorted(P['base'])
+    for r in rows:
+        r['thang_nam'] = sum(1 for y in ys if r['mc_p50'][y] > P['mc_p50'][y] + 1e-4)
+        r['thua_nam'] = sum(1 for y in ys if r['mc_p50'][y] < P['mc_p50'][y] - 1e-4)
+        r['nam_te_nhat'] = min(r['mc_p50'][y] for y in ys)
+    # xep hang tung nam
+    rank = {r['name']: [] for r in rows}
+    for y in ys:
+        srt = sorted(rows, key=lambda r: -r['mc_p50'][y])
+        for k, r in enumerate(srt):
+            rank[r['name']].append(k + 1)
+    for r in rows:
+        r['hang_tb'] = float(np.mean(rank[r['name']]))
+    rows.sort(key=lambda r: r['hang_tb'])
+    f = lambda x: f"{x*100:+6.1f}"
+    print('\n==== MC TRUNG VI LOI NHUAN TUNG NAM (%) — chi doi khoa lai, moi thu khac nhu PROD ====')
+    print(f"{'Khoá lãi':22s} " + ' '.join(f'{y:>7s}' for y in ys) + '   MC tổng  MCp10 tổng   DD   hạng TB  thắng/thua PROD (năm)')
+    for r in rows:
+        print(f"{r['name']:22s} " + ' '.join(f"{f(r['mc_p50'][y]):>7s}" for y in ys)
+              + f"  {r['mc_tot_p50']*100:7.1f}%  {r['mc_tot_p10']*100:7.1f}%  {r['dd']*100:5.2f}%  {r['hang_tb']:5.1f}   "
+              + f"{r['thang_nam']}/{r['thua_nam']}" + ('   <- PROD' if r['name'] == PROD_NAME else ''), flush=True)
+    print('\n==== NAM NAO AI NHAT (MC trung vi) ====')
+    for y in ys:
+        b = max(rows, key=lambda r: r['mc_p50'][y])
+        print(f"{y}: {b['name']:22s} {f(b['mc_p50'][y])}%   (PROD {f(P['mc_p50'][y])}%)")
+    json.dump(dict(meta=dict(research='R33 MC khoa lai tung nam', nseed=NSEED, prod=PROD_NAME), rows=rows),
+              open(OUT, 'w'), ensure_ascii=False, indent=1, default=str)
 
 
 if __name__ == '__main__':
