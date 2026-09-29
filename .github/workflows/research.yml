@@ -10,10 +10,10 @@ on:
       script:
         description: 'Script trong research/'
         required: false
-        default: 'r32_mc_exit.py'
+        default: 'r33_scenarios.py'
   push:
     branches: ['claude/**']
-    paths: ['research/r32_mc_exit.py', '.github/workflows/research.yml']
+    paths: ['research/r33_scenarios.py']
 
 concurrency:
   group: nghien-cuu
@@ -47,11 +47,11 @@ jobs:
         env:
           NSEED: '60'
           PROCS: '3'
-        run: python research/${{ github.event.inputs.script || 'r32_mc_exit.py' }}
+        run: python research/${{ github.event.inputs.script || 'r33_scenarios.py' }}
       - name: Lưu kết quả
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: nghien-cuu
-          path: evidence/r32_*.json
+          path: evidence/r3*_*.json
           retention-days: 30
