@@ -14,6 +14,13 @@ on:
     - cron: '23 12 * * *'   # 19h23 gio VN - luoi 1
     - cron: '23 18 * * *'   # 01h23 gio VN hom sau - luoi 2
   workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
+    inputs:
+      nguon:
+        # 'tay' (mac dinh, bam o tab Actions) = LUON chay. Dong ho ao (Cloudflare) gui
+        # 'dong-ho' / 'moi-toi' = nghe buoc `kiem`: trang da moi thi bo qua (~30 giay).
+        description: 'Ai gọi (tay = luôn chạy; dong-ho / moi-toi = bỏ qua nếu trang đã mới)'
+        required: false
+        default: 'tay'
 
 concurrency:
   group: capnhat
@@ -108,7 +115,9 @@ jobs:
     needs: kiem
     # Bam chay tay o tab Actions thi LUON chay, ke ca khi trang da moi — de con
     # ep dung lai khi vua sua code.
-    if: github.event_name == 'workflow_dispatch' || needs.kiem.outputs.bo_qua != 'true'
+    # 29/09/2026: dong ho ao goi 19:30 / 21:00 / 21:30 bang workflow_dispatch. Truoc day moi lan
+    # goi deu dung lai 14 phut du 19:30 da dang xong. Nay chi BAM TAY moi ep chay.
+    if: (github.event_name == 'workflow_dispatch' && (github.event.inputs.nguon || 'tay') == 'tay') || needs.kiem.outputs.bo_qua != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 90
 
