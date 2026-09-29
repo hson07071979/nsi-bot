@@ -64,20 +64,20 @@ function pageEvidence(root){
   <p class="muted" style="margin-top:0">Năm 2025 lệnh thắng đạt đỉnh +15,1% nhưng thoát ở +8,0%. Em thử ba cách bịt chỗ rò rỉ này.</p>
   <div class="card"><table><thead><tr><th>Luật bảo vệ lãi</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>
     <th style="text-align:right">PF</th><th style="text-align:right">Drawdown</th><th style="text-align:right">Sharpe</th><th>Phán quyết</th></tr></thead><tbody id="exitTbl"></tbody></table>
-  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> luật <b>"về bờ"</b> (đã lãi ≥8% thì đặt stop ở +1%) là thứ duy nhất vừa tăng lợi nhuận vừa tăng Sharpe mà không đụng drawdown — đã bật từ đợt này tới 26/09/2026, rồi được thay bằng <b>khoá lãi S1</b> (đỉnh ≥8% → +2%, đỉnh ≥12% → +5%, nghiên cứu R21 trên TOP110); từ 29/09/2026 siết thành ${erTiers(CP).map(([a,b])=>`đỉnh ≥${cpSo(a*100)}% → +${cpSo(b*100)}%`).join(', ')} (bảng 7b). Bảng dưới là thí nghiệm lịch sử. Các luật "chốt bảo vệ khi trả lại % đỉnh" giảm drawdown xuống 11% nhưng cắt mất lệnh lãi lớn, tổng lợi nhuận rơi hơn 40 điểm phần trăm. Đây đúng là bài học của tài liệu: <b>bảo vệ lãi quá sớm là giết con gà đẻ trứng vàng.</b></p></div>
+  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> luật <b>"về bờ"</b> (đã lãi ≥8% thì đặt stop ở +1%) là thứ duy nhất vừa tăng lợi nhuận vừa tăng Sharpe mà không đụng drawdown — đã bật từ đợt này tới 26/09/2026, rồi được thay bằng <b>khoá lãi S1</b> (đỉnh ≥8% → +2%, đỉnh ≥12% → +5%, nghiên cứu R21 trên TOP110); 29/09/2026 thử siết 8%→+4% / 10%→+5% / 12%→+6% nhưng kém S1 (bảng 7b) nên giữ S1. Bảng dưới là thí nghiệm lịch sử. Các luật "chốt bảo vệ khi trả lại % đỉnh" giảm drawdown xuống 11% nhưng cắt mất lệnh lãi lớn, tổng lợi nhuận rơi hơn 40 điểm phần trăm. Đây đúng là bài học của tài liệu: <b>bảo vệ lãi quá sớm là giết con gà đẻ trứng vàng.</b></p></div>
 
-  <h2>7b. Khoá lãi siết + đèn Cam hạ 1/3 — đo lại MỖI TỐI (R32, 29/09/2026)</h2>
+  <h2>7b. Khoá lãi các nấc + đèn Cam hạ 1/3 — đo lại MỖI TỐI (R32, 29/09/2026)</h2>
   <p class="muted" style="margin-top:0">Hai thay đổi cùng lúc được tách riêng từng cái. Số chạy lại mỗi tối trên dữ liệu mới nhất, cùng bộ máy, chỉ khác đúng ô ghi ở cột trái.</p>
   <div class="card tblwrap"><table><thead><tr><th>Biến thể</th><th style="text-align:right">Tổng LN</th><th style="text-align:right">LN/năm</th>
     <th style="text-align:right">Drawdown</th><th style="text-align:right">PF</th><th style="text-align:right">Sharpe</th><th style="text-align:right">Lệnh</th></tr></thead><tbody>
     ${(() => { const P = D.presets || {}, M0 = (D.prod || {}).metrics || {};
       const rows = [[`<b>Đang chạy</b> — khoá lãi ${erTiers(CP).map(([a,b])=>cpSo(a*100)+'→+'+cpSo(b*100)).join(', ')}, đèn Cam ${cpBat('use_orange_cut',true)?'bật':'tắt'}`, M0]]
-        .concat(['khong_cam','khoa_cu','khoa_cu_khongcam','thucte','thucte_khongcam'].filter(k => P[k]).map(k => [P[k].label, P[k].metrics]));
+        .concat(['khong_cam','khoa_moi','khoa_3','khoa_cu_15','thucte','thucte_khongcam'].filter(k => P[k]).map(k => [P[k].label, P[k].metrics]));
       return rows.map(([n, m]) => `<tr><td>${n}</td><td style="text-align:right" class="${cls(m.total_return||0)}">${sg(m.total_return||0)}</td>
         <td style="text-align:right">${sg(m.cagr||0)}</td><td style="text-align:right" class="neg">−${pct(m.maxdd||0)}</td>
         <td style="text-align:right">${m.pf ?? '—'}</td><td style="text-align:right">${m.sharpe ?? '—'}</td><td style="text-align:right">${m.trades ?? '—'}</td></tr>`).join(''); })()}
   </tbody></table>
-  <p class="muted" style="margin:12px 0 0">Vì sao bật lại đèn Cam khi đã có khoá lãi: khoá lãi chỉ bảo vệ lệnh <b>đã từng lên ≥8%</b>; đèn Cam hạ 1/3 bảo vệ những lệnh <b>chưa lên tới đó</b> khi thị trường xấu đi. Hai cửa không che nhau. Hàng "TẮT đèn Cam" thắng ở cả tổng LN lẫn drawdown thì tắt lại — chỉ đổi một dòng <code>use_orange_cut</code>.</p></div>
+  <p class="muted" style="margin:12px 0 0">Vì sao bật lại đèn Cam khi đã có khoá lãi: khoá lãi chỉ bảo vệ lệnh <b>đã từng lên ≥8%</b>; đèn Cam hạ 1/3 bảo vệ những lệnh <b>chưa lên tới đó</b> khi thị trường xấu đi. Hai cửa không che nhau. Hàng "TẮT đèn Cam" thắng ở cả tổng LN lẫn drawdown thì tắt lại — chỉ đổi một dòng <code>use_orange_cut</code>. <b>Vì sao sàn cao hơn lại kém:</b> cổ phiếu vừa chạm đỉnh +8–10% thường rung về +3–5% rồi mới chạy tiếp; sàn +4% bán đúng nhịp rung đó, nên mất những lệnh lẽ ra chạy tới vùng MA10 (lãi ≥19%). Mỗi lệnh "giữ thêm 2%" không bù được một lệnh lớn bị cắt.</p></div>
 
   <h2>8. Nới nền giá có mua được thêm hàng tốt không?</h2>
   <div class="card"><table><thead><tr><th>Cách định nghĩa nền</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>

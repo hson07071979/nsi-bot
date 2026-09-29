@@ -370,7 +370,7 @@ def _run_core(cfg=None, log=True):
             elif held>=3 and gain<=C['stop']: r='Cắt lỗ −7%'
             elif C['use_giveback'] and p.peak>=C['gb_trigger'] and gain<=p.peak*C['gb_keep']: r='Chốt bảo vệ (trả lại %d%% đỉnh)'%int((1-C['gb_keep'])*100)
             elif C['use_be'] and p.peak>=C['be_trigger'] and gain<=C['be_level']: r='Về bờ (đã lãi %d%%)'%int(C['be_trigger']*100)
-            # S1 PROFIT LOCK (PROD 26/09/2026, anh Son; siet 29/09): tiers cfg['profit_lock'], vd 8%->+4%, 10%->+5%, 12%->+6%.
+            # S1 PROFIT LOCK (PROD 26/09/2026, anh Son; siet 29/09): tiers cfg['profit_lock'] (S1: 8%->+2%, 12%->+5%).
             # Same function as portfolio.py / live_scan / website (exit_rules.py). Close-based, from T+3.
             elif C.get('profit_lock') and _pl(p.peak, C['profit_lock'])[1] is not None and gain<=_pl(p.peak, C['profit_lock'])[1]:
                 r=_plr(*_pl(p.peak, C['profit_lock']))
