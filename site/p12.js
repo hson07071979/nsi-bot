@@ -364,6 +364,36 @@ function bangDanhMucNgan() {
     `;
 }
 
+/* LỆNH MUA DÒ HÔM NAY — CHƯA VÀO SỔ (29/09/2026)
+   Sổ hệ thống (D.open_positions) và sổ ghi tiến chỉ ghi lệnh sau bản dựng tối, nên từ lúc
+   báo MUA DÒ (14h) tới ~20h mã vừa mua không có trong Danh mục — PVT 29/09. Khối này lấy
+   thẳng từ máy chủ quét (live.json) các mã MUA DÒ / đã mua dò mà trượt ĐK9 của phiên
+   CHƯA dựng, kèm cỡ lệnh % NAV và tiền. Bản dựng tối vào sổ xong thì khối tự biến mất. */
+function lenhDoHomNay(daCo) {
+  const L = LIVE.server || {};
+  if (!L.session || !(L.session > (D.asof || '')) || (LIVE.stale)) return [];
+  return (L.hits || []).filter(h => (h.mua_do || h.truot9) && !h.dang_cam && !daCo.has(h.sym))
+    .map(h => ({ h, co: (typeof coMuaDo === 'function') ? coMuaDo(h.sym) : null }));
+}
+function bangLenhDo(ds) {
+  if (!ds.length) return '';
+  const SF = cpV('sell_from', 3), sess = (LIVE.server || {}).session;
+  return `<div class="card" style="border-color:var(--critical);margin-bottom:14px">
+    <b style="color:var(--critical)">🟠 Lệnh MUA DÒ phiên ${ddmm(sess)} — hệ thống đã vào lệnh, CHỜ VÀO SỔ tối nay</b>
+    <div class="muted" style="font-size:12.5px;margin:4px 0 8px">Bộ máy mua đủ lệnh lúc ATC khi đạt ĐK1–8; sổ ghi lệnh sau bản dựng tối (~19h30–21h30) cùng số Điều kiện 9. Cỡ lệnh theo bộ chia vốn trên NAV sổ hệ thống.</div>
+    <div class="tblwrap"><table><thead><tr><th>Mã</th><th style="text-align:right">Giá</th><th style="text-align:right">%</th>
+      <th style="text-align:right">Cỡ lệnh</th><th style="text-align:right">Tiền</th><th>Điều kiện 9</th></tr></thead><tbody>
+      ${ds.map(({ h, co }) => `<tr><td class="sym">${esc(h.sym)}</td>
+        <td style="text-align:right">${h.price}</td>
+        <td style="text-align:right" class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${dec(h.pct, 2)}%</td>
+        <td style="text-align:right;font-weight:700">${co ? dec(co.pct, 1) + '% NAV' : '—'}</td>
+        <td style="text-align:right">${co && co.tien ? vnd(co.tien) : '—'}</td>
+        <td style="font-size:12.5px">${h.truot9
+          ? `<b style="color:var(--critical)">✗ TRƯỢT</b> OrdImb ${dec(h.ordimb, 2)} &lt; ${dec(h.ordimb_min || cpV('ordimb_min', 1.4), 2)} → bán 100% ATC T+${SF} (số tạm, tối chốt lại)`
+          : '<span class="muted">… chờ số tối nay</span>'}</td></tr>`).join('')}
+    </tbody></table></div></div>`;
+}
+
 /* ============================================================================
    TRANG DANH MỤC HỆ THỐNG
    ========================================================================== */
@@ -455,8 +485,10 @@ function pageSoLenh(root) {
         <div>${(d.items || []).map(x => `<div>${x}</div>`).join('')}</div>
       </div>`).join('')}</div>`;
 
+  const lenhDo = lenhDoHomNay(new Set(dm.map(x => x.sym)));
   root.innerHTML = `
   <h1>Danh mục hệ thống</h1>
+  ${bangLenhDo(lenhDo)}
   ${cauHinhCu(F) ? `<div class="card" style="border-color:var(--s5)"><b>SỔ GHI TIẾN ĐANG Ở CẤU HÌNH CŨ</b>
     <span class="muted">(${esc(F.prod_config_hash)} ≠ ${esc((D.cfg_prod || {}).prod_config_hash || '?')}) — chờ lần chạy sổ kế tiếp nâng cấp trạng thái; cột Việc cần làm của sổ này tính lại trên trình duyệt theo luật mới.</span></div>` : ''}
 

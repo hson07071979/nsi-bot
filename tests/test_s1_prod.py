@@ -8,9 +8,11 @@ sys.path.insert(0, ROOT); os.chdir(ROOT)
 import exit_rules as ER
 
 HAVE_DATA = os.path.exists('data/fa.npz') and os.path.exists('data/funda_raw2.json')
-S1 = [[0.08, 0.02], [0.12, 0.05]]
-T1 = 'Khoá lãi S1 (đỉnh ≥8% → sàn +2%)'
-T2 = 'Khoá lãi S1 (đỉnh ≥12% → sàn +5%)'
+# siet 29/09/2026 (anh Son): 8% -> +4%, 10% -> +5%, 12% -> +6%   (26-29/09: 8% -> +2%, 12% -> +5%)
+S1 = [[0.08, 0.04], [0.10, 0.05], [0.12, 0.06]]
+T1 = 'Khoá lãi S1 (đỉnh ≥8% → sàn +4%)'
+T2 = 'Khoá lãi S1 (đỉnh ≥10% → sàn +5%)'
+T3 = 'Khoá lãi S1 (đỉnh ≥12% → sàn +6%)'
 RESULTS = []
 
 
@@ -28,7 +30,7 @@ def _cfg():
 def test_prod_is_top110_s1_without_breakeven():
     from produce2 import PROD
     assert PROD['top_n'] == 110 and PROD['profit_lock'] == S1 and PROD['use_be'] is False, PROD
-    assert ER.tiers(PROD) == [(0.08, 0.02), (0.12, 0.05)]            # no E2 15% / 19% tiers
+    assert ER.tiers(PROD) == [(0.08, 0.04), (0.10, 0.05), (0.12, 0.06)]   # no 15% / 19% tiers
 
 
 @test
@@ -36,17 +38,18 @@ def test_s1_boundaries_and_priority():
     C = _cfg()
     d = lambda pk, g, h=5, **kw: ER.decide(C, g, pk, h, **kw)
     assert d(0.079, 0.01)['floor'] is None and d(0.079, 0.01)['rule'] is None        # 1. 7,9% -> no floor
-    assert d(0.08, 0.02)['rule'] == T1                                                  # 2. 8,0% -> +2%
-    assert d(0.119, 0.03)['floor'] == 0.02 and d(0.119, 0.03)['rule'] is None          # 3. 11,9% -> still +2%
-    assert d(0.119, 0.02)['rule'] == T1
-    assert d(0.12, 0.05)['rule'] == T2 and d(0.12, 0.051)['rule'] is None               # 4. 12,0% -> +5%
-    assert d(0.15, 0.06)['floor'] == 0.05 and d(0.15, 0.06)['rule'] is None            # 5. 15% -> +5% only
+    assert d(0.08, 0.04)['rule'] == T1 and d(0.08, 0.041)['rule'] is None               # 2. 8,0% -> +4%
+    assert d(0.099, 0.045)['floor'] == 0.04 and d(0.099, 0.045)['rule'] is None        # 3. 9,9% -> still +4%
+    assert d(0.10, 0.05)['rule'] == T2 and d(0.119, 0.051)['rule'] is None              # 4. 10% -> +5%
+    assert d(0.119, 0.05)['rule'] == T2
+    assert d(0.12, 0.06)['rule'] == T3 and d(0.12, 0.061)['rule'] is None               # 5. 12,0% -> +6%
+    assert d(0.15, 0.07)['floor'] == 0.06 and d(0.15, 0.07)['rule'] is None            # 6. 15% -> +6% only
     assert d(0.25, 0.15, b10=2)['rule'] == 'Trailing MA10 (lãi lớn)'                   # 6. MA10 still works
     assert d(0.30, 0.20, b20=2)['rule'] == 'Trailing MA30'
     for h in (1, 2):                                                                    # 7. T+1/T+2 no sale
-        x = d(0.13, 0.04, h)
-        assert x['rule'] is None and not x['sellable'] and x['pending'] == T2, x
-    assert d(0.13, 0.04, 3)['rule'] == T2                                               # 8. sold at T+3
+        x = d(0.13, 0.05, h)
+        assert x['rule'] is None and not x['sellable'] and x['pending'] == T3, x
+    assert d(0.13, 0.05, 3)['rule'] == T3                                               # 8. sold at T+3
     assert d(0.09, -0.11)['rule'] == 'Hard stop −10%' and d(0.09, -0.08)['rule'] == 'Cắt lỗ −7%'
     assert d(0.09, -0.01)['rule'] == T1
     assert d(0.005, 0.0, 4)['rule'].startswith('Momentum')
@@ -60,9 +63,9 @@ def test_action_text_examples():
     b = ER.action_text(ER.decide(C, 0.047, 0.134, 5))
     c = ER.action_text(ER.decide(C, 0.048, 0.13, 2))
     print('   A:', a); print('   B:', b); print('   C:', c)
-    assert a == 'BÁN ATC — KHOÁ LÃI: từng đạt +9,0%, hiện còn +1,8%, sàn bảo vệ +2%'
-    assert b == 'BÁN ATC — KHOÁ LÃI: từng đạt +13,4%, hiện còn +4,7%, sàn bảo vệ +5%'
-    assert c.startswith('CHỜ T+3 — KHOÁ LÃI ĐÃ THỦNG: từng đạt +13,0%, hiện +4,8% ≤ sàn +5%')
+    assert a == 'BÁN ATC — KHOÁ LÃI: từng đạt +9,0%, hiện còn +1,8%, sàn bảo vệ +4%'
+    assert b == 'BÁN ATC — KHOÁ LÃI: từng đạt +13,4%, hiện còn +4,7%, sàn bảo vệ +6%'
+    assert c.startswith('CHỜ T+3 — KHOÁ LÃI ĐÃ THỦNG: từng đạt +13,0%, hiện +4,8% ≤ sàn +6%')
 
 
 @test
@@ -75,7 +78,7 @@ def test_engine_backtest_uses_top110_and_s1():
     assert int(TOPN.sum(axis=1).max()) <= 111
     r = E.run(C, log=False); rs = [t['reason'] for t in r['trades']]
     assert not any(x.startswith('Về bờ') for x in rs), 'breakeven +1% still active'
-    assert T1 in rs and T2 in rs
+    assert T1 in rs and T3 in rs
     assert all(t['held'] >= C['sell_from'] for t in r['trades'] if t['reason'].startswith('Khoá lãi S1'))
 
 
