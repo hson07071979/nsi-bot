@@ -198,6 +198,8 @@ function keng(loai) {
     const A = new (window.AudioContext || window.webkitAudioContext)();
     const notes = loai === 'mua'
       ? [{ f: 880, t: 0, v: 0.28, d: 0.5 }, { f: 1180, t: 0.18, v: 0.28, d: 0.5 }]
+      : loai === 'ban'
+      ? [{ f: 1180, t: 0, v: 0.28, d: 0.45 }, { f: 700, t: 0.2, v: 0.28, d: 0.45 }, { f: 1180, t: 0.4, v: 0.28, d: 0.45 }]
       : [{ f: 560, t: 0, v: 0.15, d: 0.42 }];
     notes.forEach(n => {
       const o = A.createOscillator(), g = A.createGain();
@@ -286,6 +288,18 @@ function renderLiveBar() {
   const mua = L.hits.filter(h => h.level === 'MUA');
   const sap = L.hits.filter(h => h.level === 'SAP_DU');
 
+  // LUẬT THOÁT HÔM NAY (29/09/2026) — ưu tiên cao nhất: bán là việc phải làm trước ATC.
+  const ban = (LIVE.ban || []).filter(() => !LIVE.stale);
+  if (ban.length) {
+    el2.className = 'livebar alert';
+    el2.innerHTML = `<span class="ldot"></span>
+      <b>🔻 ${ban.length} mã phải BÁN lúc ATC</b>
+      <span>${ban.map(x => `<b>${esc(x.sym)}</b> ${esc(viecBan(x))}`).join(' · ')}</span>
+      <span class="lmuted">giá ${hhmm((LIVE.server || {}).asof)} là giá đóng cửa TẠM TÍNH — sổ chốt theo giá đóng cửa thật</span>
+      <button class="mini" onclick="go('danhmuc')">Danh mục</button>`;
+    return;
+  }
+
   // DỮ LIỆU THIẾU ≠ KHÔNG CÓ TÍN HIỆU (audit 23/09/2026). Máy chủ ghi status +
   // source_health; quét thiếu mã thì phải nói thẳng, không được hiện "0 tín hiệu".
   const sv = LIVE.server || {};
@@ -361,6 +375,19 @@ function bangBao(list, loai) {
   if (typeof phienMo === 'function' && !phienMo()) return;
   const box = document.getElementById('liveToast');
   if (!box) return;
+  if (loai === 'ban') {
+    box.innerHTML = `
+    <div class="toastin">
+      <div class="tttl">🔻 ${list.length} mã phải BÁN lúc ATC hôm nay</div>
+      ${list.map(x => `<div class="trow"><b>${esc(x.sym)}</b> ${x.price} · ${esc(x.viec)}</div>`).join('')}
+      <div class="tact">
+        <button class="btn" onclick="go('danhmuc');dongToast()">Xem Danh mục</button>
+        <button class="btn ghost" onclick="dongToast()">Đóng</button>
+      </div>
+    </div>`;
+    box.classList.add('on'); clearTimeout(_toastTimer); keng('ban');
+    return;
+  }
   const mua = loai === 'mua';
   box.innerHTML = `
     <div class="toastin ${mua ? '' : 'heads'}">
@@ -449,6 +476,28 @@ async function napSo() {
   veLaiTrang('hieusuat');
 }
 
+/* ---------- CHUÔNG BÁN (29/09/2026) ----------
+   Trước đây chuông trên trang chỉ kêu cho MUA / để mắt; luật thoát trong phiên (live.json
+   `exits`, cùng exit_rules.decide với sổ ghi tiến, đèn TẠM TÍNH của hôm nay) chỉ đi Telegram —
+   mà Telegram chưa từng được cài secret, nên tín hiệu BÁN không tới đâu cả. Nay: mã có luật
+   thoát BÁN ĐƯỢC hôm nay -> thanh đỏ trên đỉnh trang + chuông (một lần mỗi mã mỗi phiên, từ 14h00,
+   cửa sổ ATC như Telegram). Trước 14h chỉ hiện trên thanh, không kêu (giá còn chạy). */
+function viecBan(x) {
+  const ph = x.exit_phan != null ? x.exit_phan : 1;
+  return `${ph < 1 ? 'HẠ 1/3' : 'BÁN 100%'} (${x.sell_sh != null ? num(x.sell_sh) + ' cp' : ''}${
+    x.sell_pct_nav != null ? ' ≈ ' + dec(x.sell_pct_nav, 1) + '% NAV' : ''}) — ${x.exit_reason}`;
+}
+function chuongBan(L) {
+  const ex = ((L && L.exits) || []).filter(x => x.exit_reason && x.sellable !== false);
+  LIVE.ban = ex;
+  if (!ex.length || typeof RTV === 'undefined' || typeof reoChuong !== 'function') return;
+  const t = (typeof gioVN === 'function') ? gioVN() : new Date();
+  if (t.getHours() * 60 + t.getMinutes() < 14 * 60) return;
+  const moi = ex.filter(x => !RTV.keu.has('B:' + x.sym + ':' + L.session));
+  moi.forEach(x => RTV.keu.add('B:' + x.sym + ':' + L.session));
+  if (moi.length) reoChuong(moi.map(x => ({ sym: x.sym, price: x.price, viec: viecBan(x) })), 'ban');
+}
+
 /* ---------- nạp live.json ---------- */
 async function napLive() {
   const L = await docJSON('live.json');
@@ -468,6 +517,7 @@ async function napLive() {
     renderLiveBar(); veLaiTrang('chuong');
     return;
   }
+  chuongBan(L);
   // Khi lớp real-time đang chạy thì nó mới là nguồn chính. live.json của máy chủ
   // trễ 10–20 phút; để nó ghi đè lên số real-time là bảng nhảy lùi về quá khứ.
   if (LIVE.rtOn) return;

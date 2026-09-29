@@ -284,10 +284,11 @@ function reoChuong(list, loai) {
   // được ghi lại, lớp real-time so với lần nạp trước thấy "mã mới" và kêu.
   // Cùng một luật phải có ở CẢ HAI nơi, không thì sửa một chỗ tưởng là xong.
   if (typeof phienMo === 'function' && !phienMo()) return;
-  const mua = loai === 'mua';
+  const mua = loai === 'mua' || loai === 'ban';
   // Hai loại chuông, hai câu chữ. Trước đây mọi thông báo đều ghi "mã đủ điểm
   // mua" kể cả khi chỉ là nhắc để mắt — đọc trên điện thoại là hiểu nhầm ngay.
-  const tieude = mua ? `🔴 ${list.length} mã đủ điểm mua`
+  const tieude = loai === 'ban' ? `🔻 ${list.length} mã phải BÁN ATC`
+               : mua ? `🔴 ${list.length} mã đủ điểm mua`
                      : `🟡 ${list.length} mã watchlist đang tăng mạnh`;
   CHUONG.lanCuoi = Date.now();
   if (typeof bangBao === 'function') bangBao(list, loai);      // toast sẵn có
@@ -297,11 +298,12 @@ function reoChuong(list, loai) {
   if (RTV.thongbao && 'Notification' in window && Notification.permission === 'granted') {
     try {
       const n = new Notification(tieude, {
-        body: list.map(h => `${esc(h.sym)} ${h.price} ${h.pct >= 0 ? '+' : ''}${h.pct}% · vol ${h.volr}× · điểm ${h.score}`).join('\n')
+        body: loai === 'ban' ? list.map(x => `${x.sym} ${x.price} · ${x.viec}`).join('\n') :
+              list.map(h => `${esc(h.sym)} ${h.price} ${h.pct >= 0 ? '+' : ''}${h.pct}% · vol ${h.volr}× · điểm ${h.score}`).join('\n')
               + (mua ? '' : '\nChỉ để ngó chừng — chưa đủ điều kiện vào lệnh.'),
-        tag: mua ? 'nsi-mua' : 'nsi-demat', renotify: true, requireInteraction: mua,
+        tag: loai === 'ban' ? 'nsi-ban' : mua ? 'nsi-mua' : 'nsi-demat', renotify: true, requireInteraction: mua,
       });
-      n.onclick = () => { window.focus(); if (typeof go === 'function') go('chuong'); n.close(); };
+      n.onclick = () => { window.focus(); if (typeof go === 'function') go(loai === 'ban' ? 'danhmuc' : 'chuong'); n.close(); };
     } catch (e) { /* vài trình duyệt chặn, bỏ qua */ }
   }
 
@@ -313,7 +315,7 @@ function reoChuong(list, loai) {
   clearInterval(_titleTimer);
   let on = false, dem = 0;
   _titleTimer = setInterval(() => {
-    document.title = (on = !on) ? `🔴 ${list.length} MÃ ĐỦ ĐIỂM MUA` : _titleGoc;
+    document.title = (on = !on) ? (loai === 'ban' ? `🔻 ${list.length} MÃ PHẢI BÁN` : `🔴 ${list.length} MÃ ĐỦ ĐIỂM MUA`) : _titleGoc;
     if (++dem > 40) { clearInterval(_titleTimer); document.title = _titleGoc; }
   }, 900);
   document.addEventListener('visibilitychange', function xoa() {
@@ -358,7 +360,10 @@ function docCaiDat() {
 function bangDieuKhienChuong() {
   const cho = ('Notification' in window) ? Notification.permission : 'khong-ho-tro';
   const tuoiOI = (LIVE.server && LIVE.server.asof) ? hhmm(LIVE.server.asof) : '—';
-  return `
+  const _tg = (LIVE.server && LIVE.server.telegram_cai === false)
+    ? `<div class="card" style="border-color:var(--critical);margin-bottom:10px"><b style="color:var(--critical)">⚠ TELEGRAM CHƯA CÀI — chuông MUA / BÁN không về điện thoại.</b>
+       <div class="muted" style="font-size:12.5px">Repo nguyensoninvest → Settings → Secrets and variables → Actions: tạo <code>TELEGRAM_TOKEN</code> và <code>TELEGRAM_CHAT</code>. Trong lúc chờ: mở trang này, bật chuông trình duyệt bên dưới.</div></div>` : '';
+  return `${_tg}
   <div class="card rtbox">
     <div class="rtrow">
       <div>

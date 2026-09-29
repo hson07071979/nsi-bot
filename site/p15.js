@@ -45,7 +45,12 @@ function vieccanlam(p) {
   // đỉnh lãi theo giá đóng cửa của sổ; giá trong phiên chỉ là giá đóng cửa TẠM TÍNH
   const pkR = Math.max(p.peak != null ? p.peak / 100 : 0, gR);
   const SF = cpV('sell_from', 2);
-  const lastLight = (D.regime && D.regime.length) ? D.regime[D.regime.length - 1].light : null;
+  // ĐÈN HÔM NAY (29/09/2026): trong phiên dùng đèn TẠM TÍNH của máy chủ (regime_live, cùng luật
+  // regime2) — trước đây lấy đèn đóng cửa HÔM QUA, nên "Đèn Cam — hạ 1/3" trên trang trễ một phiên
+  // so với chuông / sổ. Chưa có phiên mới (hoặc live.json cấu hình cũ) thì vẫn là đèn tối qua.
+  const _sv = (typeof LIVE !== 'undefined' && LIVE.server && !LIVE.stale) ? LIVE.server : null;
+  const _tt = (_sv && _sv.session > (D.asof || '') && _sv.den_tam_tinh) ? _sv.den_tam_tinh.light : null;
+  const lastLight = _tt || ((D.regime && D.regime.length) ? D.regime[D.regime.length - 1].light : null);
   const d = erDecide(CP, gR, pkR, giu != null ? giu : 99,
     { probe_fail: !!p.probe_fail, b10: p.b10 || 0, b20: p.b20 || 0, light_today: lastLight,
       light_entry: p.light || null, part: !!p.part });
