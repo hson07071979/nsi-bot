@@ -10,9 +10,10 @@ on:
     # Chay ca 7 ngay: cuoi tuan `kiem` bo qua het (~30s) va lam luoi sua sai
     # cho phien thu Sau. Ca hai repo PUBLIC => phut Actions mien phi khong gioi han.
     # Giai thich day du: doc du an "kien truc va quyet dinh" §9.
-    - cron: '23 9  * * *'   # 16h23 gio VN - cua chinh, ky vong no ~20h VN
-    - cron: '23 12 * * *'   # 19h23 gio VN - luoi 1
-    - cron: '23 18 * * *'   # 01h23 gio VN hom sau - luoi 2
+    # 29/09/2026 (anh Son): ban dung toi CHI MOT LUOT — dong ho ao (Cloudflare) goi 21:00 VN moi toi.
+    # Bo hai cron 16h23 / 19h23 (tre ~+4h, co the no truoc 21:00 thanh luot thu hai). Giu mot luoi
+    # dem: neu 21:00 da dang xong thi `kiem` bo qua (~30 giay), chi dung khi 21:00 hong / khong goi.
+    - cron: '23 18 * * *'   # 01h23 gio VN hom sau - luoi du phong
   workflow_dispatch:        # cho phép bấm chạy tay từ tab Actions
     inputs:
       nguon:
