@@ -317,7 +317,7 @@ function renderLiveBar() {
   if (doHits.length || truot.length) {
     el2.className = 'livebar heads';
     el2.innerHTML = `<span class="ldot"></span>` +
-      (doHits.length ? `<b>${doHits.length} mã MUA DÒ lúc ATC</b><span>${doHits.map(h => h.sym).join(' · ')}</span>
+      (doHits.length ? `<b>${doHits.length} mã MUA DÒ lúc ATC</b><span>${doHits.map(h => `${esc(h.sym)} <b>${coMuaDoTxt(h.sym)}</b>`).join(' · ')}</span>
         <span class="lmuted">đủ ĐK1–8 · tối ~18–19h xác nhận Điều kiện 9, không đạt thì bán ATC T+${cpV('sell_from',2)}</span>` : '') +
       (truot.length ? `<b>Không đạt ĐK9 → bán ATC T+${cpV('sell_from',2)}:</b><span>${truot.map(h => h.sym).join(' · ')}</span>` : '') +
       `<button class="mini" onclick="go('chuong')">Xem chi tiết</button>`;
@@ -401,6 +401,22 @@ function dongToast() {
    Thiếu file nào thì lùi về ảnh chụp nhúng sẵn trong trang, KHÔNG báo lỗi đỏ lòm
    cho khách hàng xem. Mở bằng file:// trên máy vẫn đọc được ảnh chụp.
    ========================================================================== */
+/* CỠ LỆNH MUA DÒ (29/09/2026): PVT báo MUA DÒ mà trang không nói vào bao nhiêu. Cỡ lấy từ máy chủ
+   (live.json size_pct = bộ chia vốn theo đèn lúc dựng tối qua), thiếu thì từ ô tra cứu; tiền = % × NAV
+   của sổ hệ thống (D.book). Trả {pct, tien} hoặc null. */
+function coMuaDo(sym) {
+  const sv = ((LIVE.server || {}).hits || []).find(h => h.sym === sym) || {};
+  const lk = (D.lookup || {})[sym] || {};
+  const p = sv.size_pct ?? lk.size_thuc ?? lk.size_pct;
+  if (p == null || p !== p) return null;
+  const nav = (D.book || {}).nav;
+  return { pct: +p, tien: nav ? nav * p / 100 : null };
+}
+function coMuaDoTxt(sym) {
+  const c = coMuaDo(sym);
+  return c ? `${dec(c.pct, 1)}% NAV${c.tien ? ' ≈ ' + vnd(c.tien) : ''}` : 'cỡ: chưa tính được';
+}
+
 async function docJSON(ten) {
   try {
     const r = await fetch(ten + '?t=' + Date.now(), { cache: 'no-store' });
@@ -441,6 +457,9 @@ async function napLive() {
     return;
   }
   LIVE.server = L;
+  // lệnh MUA DÒ mới trong phiên -> trang Danh mục hiện ngay dòng "chờ vào sổ" (29/09/2026)
+  const _dsig = (L.hits || []).filter(h => h.mua_do || h.truot9).map(h => h.sym + (h.truot9 ? '!' : '')).join(',');
+  if (_dsig !== LIVE._doSig) { LIVE._doSig = _dsig; veLaiTrang('danhmuc'); }
   // live.json quét bằng CẤU HÌNH CŨ (vd. cuối tuần sau khi đổi PROD, chưa có phiên
   // quét mới) -> KHÔNG coi là trạng thái hiện hành, không kêu chuông, nói thẳng.
   LIVE.stale = (typeof cauHinhCu === 'function') && cauHinhCu(L);
@@ -701,7 +720,7 @@ function pageLiveTrucTiep(root, L) {
           h.ordimb == null ? '—' : h.ordimb.toFixed(2) + '×'}</td>
         <td style="text-align:right;color:var(--text-primary);font-weight:640">${h.score}</td>
         <td class="muted" style="font-size:12.5px">${h.fa ? '<b style="color:var(--warn)">chưa đạt cơ bản — không mua</b> · ' : ''}${
-          h.level === 'MUA_DO' ? `<b style="color:var(--critical)">Đủ ĐK1–8 → mua đủ lệnh lúc ATC</b> · tối ~18–19h xác nhận ĐK9 (cỡ lệnh mua ≥ ${String(h.ordimb_min || 1.4).replace('.', ',')}× cỡ lệnh bán); không đạt thì bán 100% ATC T+${cpV('sell_from', 3)}${h.miss.length ? ' · lưu ý: ' + h.miss.join(' · ') : ''}`
+          h.level === 'MUA_DO' ? `<b style="color:var(--critical)">Đủ ĐK1–8 → mua đủ lệnh lúc ATC · ${coMuaDoTxt(h.sym)}</b> · tối ~18–19h xác nhận ĐK9 (cỡ lệnh mua ≥ ${String(h.ordimb_min || 1.4).replace('.', ',')}× cỡ lệnh bán); không đạt thì bán 100% ATC T+${cpV('sell_from', 3)}${h.miss.length ? ' · lưu ý: ' + h.miss.join(' · ') : ''}`
           : h.dang_cam ? '<b>Hệ thống đang cầm mã này — không mua thêm.</b> Luật thoát xem ở Danh mục hệ thống.'
           : (h.miss.length ? h.miss.join(' · ') : '—')}</td>
       </tr>`).join('')}
