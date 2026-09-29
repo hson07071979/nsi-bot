@@ -35,11 +35,12 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # 29/09 toi: da thu siet 8%->+4% / 10%->+5% / 12%->+6% (R32, du lieu 29/09, cung bat den Cam):
           # +916,2% so +976,5% cua S1, DD bang nhau 11,74%, Sharpe 2,08 so 2,12, lai TB lenh thang
           # 10,89% so 11,49%. San cao ban lenh thang trong nhip rung binh thuong -> mat lenh chay toi MA10.
-          # QUAY LAI S1 + THEM NAC 15% -> +8% (anh Son chon 30/09, R32 Monte Carlo 36 cau hinh x 60 lan
-          # lo 10% lenh, evidence r32_mc_exit.json): MC trung vi +839,2% (S1: +830,7%), p10 +604,6%
-          # (+596,6%), backtest +993,0% (+976,5%), co truot 0,2% +749,7% (+744,1%), DD 11,74% nhu nhau,
-          # Sharpe 2,13 (2,12). Nhuoc: 2023-26 kem S1 mot chut. Doi chieu moi toi: PRESET 's1' (bo nac 15%).
-          use_be=False, profit_lock=[[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]],
+          # 30/09/2026 (anh Son): S1 + nac 15%, SAN NAC 12% NANG +5% -> +6%. R33 Monte Carlo tung nam
+          # (22 cau hinh khoa lai x 60 lan lo 10% lenh, moi thu khac nhu PROD, evidence r33_lock_years.json):
+          # bang hoac hon S1+15->+8 o CA 8 NAM (hon 2024/2025/2026, khong thua nam nao), MC ca ky +848,3%
+          # (+839,2%), p10 +611,4% (+604,6%), DD 11,74% nhu nhau. San 8% giu +2%: nang len +3/+4% mat
+          # ~28 diem nam 2021 (song lon). Doi chieu moi toi: PRESET 's1_15' (12->+5) va 's1'.
+          use_be=False, profit_lock=[[0.08, 0.02], [0.12, 0.06], [0.15, 0.08]],
           # Chi ha 1/3 khi den THUC SU XAU DI so voi luc mua. Mua duoi den Cam thi
           # da vao co 35% roi — ha tiep 1/3 cung vi den Cam la dem hai lan mot tin
           # hieu xau. Toan ky co 31/57 lan cat kieu do. A/B: +511,7% -> +540,5%,
@@ -122,6 +123,7 @@ PRESETS={
  'khoa_moi'       : ('Khoá lãi siết 8%→+4%, 10%→+5%, 12%→+6% (thử 29/09)', dict(profit_lock=[[0.08, 0.04], [0.10, 0.05], [0.12, 0.06]])),
  'khoa_3'         : ('Khoá lãi 8%→+3%, 12%→+5%', dict(profit_lock=[[0.08, 0.03], [0.12, 0.05]])),
  's1'             : ('Khoá lãi S1 (8%→+2%, 12%→+5%, không nấc 15%)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05]])),
+ 's1_15'          : ('Khoá lãi 8%→+2%, 12%→+5%, 15%→+8% (PROD 30/09 sáng)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]])),
  'thucte_khongcam': ('Khoá lãi đang chạy, tắt đèn Cam, trượt giá 0,2%', dict(use_orange_cut=False, slip=0.002)),
 }
 STRICT=dict(base_range=0.12, use_ftd=False, use_ordimb=False, t_valve=3, trail_ma=20, slip=0.002,

@@ -8,9 +8,9 @@ sys.path.insert(0, ROOT); os.chdir(ROOT)
 import exit_rules as ER
 
 HAVE_DATA = os.path.exists('data/fa.npz') and os.path.exists('data/funda_raw2.json')
-S1 = [[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]]   # + nac 15% -> +8% tu 30/09/2026 (R32)
+S1 = [[0.08, 0.02], [0.12, 0.06], [0.15, 0.08]]   # 30/09/2026 (R32/R33): 12% -> +6%, + nac 15% -> +8%
 T1 = 'Khoá lãi S1 (đỉnh ≥8% → sàn +2%)'
-T2 = 'Khoá lãi S1 (đỉnh ≥12% → sàn +5%)'
+T2 = 'Khoá lãi S1 (đỉnh ≥12% → sàn +6%)'
 T3 = 'Khoá lãi S1 (đỉnh ≥15% → sàn +8%)'
 RESULTS = []
 
@@ -29,7 +29,7 @@ def _cfg():
 def test_prod_is_top110_s1_without_breakeven():
     from produce2 import PROD
     assert PROD['top_n'] == 110 and PROD['profit_lock'] == S1 and PROD['use_be'] is False, PROD
-    assert ER.tiers(PROD) == [(0.08, 0.02), (0.12, 0.05), (0.15, 0.08)]   # no 19% tier
+    assert ER.tiers(PROD) == [(0.08, 0.02), (0.12, 0.06), (0.15, 0.08)]   # no 19% tier
 
 
 @test
@@ -40,8 +40,8 @@ def test_s1_boundaries_and_priority():
     assert d(0.08, 0.02)['rule'] == T1                                                  # 2. 8,0% -> +2%
     assert d(0.119, 0.03)['floor'] == 0.02 and d(0.119, 0.03)['rule'] is None          # 3. 11,9% -> still +2%
     assert d(0.119, 0.02)['rule'] == T1
-    assert d(0.12, 0.05)['rule'] == T2 and d(0.12, 0.051)['rule'] is None               # 4. 12,0% -> +5%
-    assert d(0.149, 0.06)['floor'] == 0.05 and d(0.149, 0.06)['rule'] is None          # 5. 14,9% -> still +5%
+    assert d(0.12, 0.06)['rule'] == T2 and d(0.12, 0.061)['rule'] is None               # 4. 12,0% -> +6%
+    assert d(0.149, 0.07)['floor'] == 0.06 and d(0.149, 0.07)['rule'] is None          # 5. 14,9% -> still +6%
     assert d(0.15, 0.08)['rule'] == T3 and d(0.15, 0.081)['rule'] is None               # 5b. 15% -> +8%
     assert d(0.25, 0.15, b10=2)['rule'] == 'Trailing MA10 (lãi lớn)'                   # 6. MA10 still works
     assert d(0.30, 0.20, b20=2)['rule'] == 'Trailing MA30'
@@ -63,8 +63,8 @@ def test_action_text_examples():
     c = ER.action_text(ER.decide(C, 0.048, 0.13, 2))
     print('   A:', a); print('   B:', b); print('   C:', c)
     assert a == 'BÁN ATC — KHOÁ LÃI: từng đạt +9,0%, hiện còn +1,8%, sàn bảo vệ +2%'
-    assert b == 'BÁN ATC — KHOÁ LÃI: từng đạt +13,4%, hiện còn +4,7%, sàn bảo vệ +5%'
-    assert c.startswith('CHỜ T+3 — KHOÁ LÃI ĐÃ THỦNG: từng đạt +13,0%, hiện +4,8% ≤ sàn +5%')
+    assert b == 'BÁN ATC — KHOÁ LÃI: từng đạt +13,4%, hiện còn +4,7%, sàn bảo vệ +6%'
+    assert c.startswith('CHỜ T+3 — KHOÁ LÃI ĐÃ THỦNG: từng đạt +13,0%, hiện +4,8% ≤ sàn +6%')
 
 
 @test
