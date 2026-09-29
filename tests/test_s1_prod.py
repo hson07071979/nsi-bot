@@ -8,9 +8,10 @@ sys.path.insert(0, ROOT); os.chdir(ROOT)
 import exit_rules as ER
 
 HAVE_DATA = os.path.exists('data/fa.npz') and os.path.exists('data/funda_raw2.json')
-S1 = [[0.08, 0.02], [0.12, 0.05]]
+S1 = [[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]]   # + nac 15% -> +8% tu 30/09/2026 (R32)
 T1 = 'Khoá lãi S1 (đỉnh ≥8% → sàn +2%)'
 T2 = 'Khoá lãi S1 (đỉnh ≥12% → sàn +5%)'
+T3 = 'Khoá lãi S1 (đỉnh ≥15% → sàn +8%)'
 RESULTS = []
 
 
@@ -28,7 +29,7 @@ def _cfg():
 def test_prod_is_top110_s1_without_breakeven():
     from produce2 import PROD
     assert PROD['top_n'] == 110 and PROD['profit_lock'] == S1 and PROD['use_be'] is False, PROD
-    assert ER.tiers(PROD) == [(0.08, 0.02), (0.12, 0.05)]            # no E2 15% / 19% tiers
+    assert ER.tiers(PROD) == [(0.08, 0.02), (0.12, 0.05), (0.15, 0.08)]   # no 19% tier
 
 
 @test
@@ -40,7 +41,8 @@ def test_s1_boundaries_and_priority():
     assert d(0.119, 0.03)['floor'] == 0.02 and d(0.119, 0.03)['rule'] is None          # 3. 11,9% -> still +2%
     assert d(0.119, 0.02)['rule'] == T1
     assert d(0.12, 0.05)['rule'] == T2 and d(0.12, 0.051)['rule'] is None               # 4. 12,0% -> +5%
-    assert d(0.15, 0.06)['floor'] == 0.05 and d(0.15, 0.06)['rule'] is None            # 5. 15% -> +5% only
+    assert d(0.149, 0.06)['floor'] == 0.05 and d(0.149, 0.06)['rule'] is None          # 5. 14,9% -> still +5%
+    assert d(0.15, 0.08)['rule'] == T3 and d(0.15, 0.081)['rule'] is None               # 5b. 15% -> +8%
     assert d(0.25, 0.15, b10=2)['rule'] == 'Trailing MA10 (lãi lớn)'                   # 6. MA10 still works
     assert d(0.30, 0.20, b20=2)['rule'] == 'Trailing MA30'
     for h in (1, 2):                                                                    # 7. T+1/T+2 no sale
