@@ -378,8 +378,12 @@ function lenhDoHomNay(daCo) {
 function bangLenhDo(ds) {
   if (!ds.length) return '';
   const SF = cpV('sell_from', 3), sess = (LIVE.server || {}).session;
+  // trong phiên (chưa hết ATC): lệnh SẼ mua ATC, còn có thể rớt nếu tới đóng cửa không đủ ĐK1–8
+  const dangPhien = !!(LIVE.server || {}).open && ((LIVE.server || {}).frac || 0) < 1;
   return `<div class="card" style="border-color:var(--critical);margin-bottom:14px">
-    <b style="color:var(--critical)">🟠 Lệnh MUA DÒ phiên ${ddmm(sess)} — hệ thống đã vào lệnh, CHỜ VÀO SỔ tối nay</b>
+    <b style="color:var(--critical)">🟠 Lệnh MUA DÒ phiên ${ddmm(sess)} — ${dangPhien
+      ? 'ĐANG ĐỦ ĐK1–8: mua đủ lệnh lúc ATC hôm nay (rớt điều kiện trước đóng cửa thì dòng này tự mất)'
+      : 'hệ thống đã mua lúc ATC, CHỜ VÀO SỔ tối nay'}</b>
     <div class="muted" style="font-size:12.5px;margin:4px 0 8px">Bộ máy mua đủ lệnh lúc ATC khi đạt ĐK1–8; sổ ghi lệnh sau bản dựng tối (~19h30–21h30) cùng số Điều kiện 9. Cỡ lệnh theo bộ chia vốn trên NAV sổ hệ thống.</div>
     <div class="tblwrap"><table><thead><tr><th>Mã</th><th style="text-align:right">Giá</th><th style="text-align:right">%</th>
       <th style="text-align:right">Cỡ lệnh</th><th style="text-align:right">Tiền</th><th>Điều kiện 9</th></tr></thead><tbody>
