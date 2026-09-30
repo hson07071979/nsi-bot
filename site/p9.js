@@ -92,7 +92,7 @@ function pageHome(root){
     + kpi('Sụt giảm tối đa', '−'+(M.maxdd*100).toFixed(2).replace('.',',')+'%', `VN-Index −${pct(BM.mdd)}`, 'neg')
     + kpi('Profit Factor', dec(M.pf), 'lãi gộp / lỗ gộp')
     + kpi('Số deal', (P.deal_metrics||{}).deals ?? M.trades, (P.deal_metrics||{}).deals
-        ? `${dec((P.deal_metrics||{}).deals/(dates.length/250),1)} deal mỗi năm · ${M.trades} dòng lệnh (chốt 1/3 tính 2 dòng)`
+        ? `${dec((P.deal_metrics||{}).deals/(dates.length/250),1)} deal mỗi năm · ${M.trades} dòng lệnh`
         : `${M.per_year} lệnh mỗi năm`)
     + kpi('Tỷ lệ thắng', pct((P.deal_metrics||{}).winrate ?? M.winrate), `lãi TB +${dec((P.deal_metrics||{}).avg_win ?? M.avg_win)}% · lỗ TB ${dec((P.deal_metrics||{}).avg_loss ?? M.avg_loss)}%`)
     + kpi('Lãi / Lỗ', dec((P.deal_metrics||{}).rr ?? M.rr), 'mỗi đồng rủi ro đổi lấy')

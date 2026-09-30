@@ -116,7 +116,7 @@ def decide(C, gain, peak, held, probe_fail=False, b10=0, b20=0, light_today=None
             return 'Trailing MA%d (lãi lớn)' % C.get('trail_fast', 10), 1.0
         if b20 >= C.get('conf', 2):
             return 'Trailing MA%d' % C.get('trail_ma', 30), 1.0
-        if (C.get('use_orange_cut', True) and light_today == 'CAM' and not part
+        if (C.get('use_orange_cut', False) and light_today == 'CAM' and not part
                 and (not C.get('orange_cut_only_if_worse', True) or light_entry in ('XANH', 'VANG'))):
             return 'Đèn Cam — hạ 1/3', 1.0 / 3
         return None, 1.0

@@ -57,7 +57,7 @@ function oDK9(p) {
   return pill('? CHƯA CÓ SỐ', '--warn') + '<div class="muted" style="font-size:11.5px">thiếu dữ liệu dòng tiền phiên mua</div>';
 }
 
-/* BÁN BAO NHIÊU — theo đúng luật đang nổ (100% vị thế, hoặc 1/3 khi đèn Cam) + các lần đã bán trước đó. */
+/* BÁN BAO NHIÊU — theo đúng luật đang nổ (100% vị thế; 1/3 chỉ còn nếu bật lại luật Đèn Cam — đã bỏ 30/09) + các lần đã bán trước đó. */
 function oBanBaoNhieu(p, v) {
   const pct = x => (Math.round(x * 10) / 10).toString().replace('.', ',') + '%';
   const nav = p.navGoc, a = [];

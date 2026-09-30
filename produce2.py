@@ -51,8 +51,12 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # Du lieu 25/09: +957,2% -> +938,2%, DD 11,74% -> 12,78%, PF 3,15 -> 3,12, Sharpe 2,11 -> 2,06.
           # BAT LAI cung dot siet khoa lai (anh Son 29/09 toi, R32): khoa lai chi bao ve lenh DA len >= 8%;
           # den Cam ha 1/3 bao ve lenh CHUA len toi do khi thi truong xau di — hai cua khong trung nhau.
-          # R31 (co S1) cho thay bat den Cam tot hon o ca bon chi so. Ban tat: PRESET 'khong_cam'.
-          use_orange_cut=True,
+          # R31 (co S1) cho thay bat den Cam tot hon o ca bon chi so.
+          # BO HAN 30/09/2026 (anh Son): den thi truong TAM TINH khong chac co trong gio giao dich
+          # (29-30/09 rong suot 09:00-14:45) -> khong the ha 1/3 trong phien ngoai doi -> backtest co
+          # luat nay la so khong lam duoc. Tat trong bo may, so ghi tien (hoan tac lan ha 1/3 BVH
+          # 28/09), chuong, trang. Doi chieu moi toi: PRESET 'co_cam' (bat lai de xem mat bao nhieu).
+          use_orange_cut=False,
           # VAN THOI GIAN T+4 (doi tu T+6 ngay 30/08/2026).
           # Quet lai tren vu tru 1.213 ma: T+4 thang T+6 o CA BON chi so cung luc —
           # +523,1% so +513,3% · DD 11,34% so 12,43% · PF 4,43 so 4,04 · Sharpe 1,78
@@ -119,12 +123,12 @@ PRESETS={
  'benhat'  : ('Bền nhất — size 30%', dict(base_size=0.30,max_pos=0.38)),
  'tvalve6' : ('Van T+6 — cấu hình cũ trước 30/08', dict(t_valve=6)),
  # R32 (29/09/2026): tach rieng tung thay doi cua luat thoat de doc moi toi.
- 'khong_cam'      : ('Khoá lãi đang chạy, TẮT đèn Cam hạ 1/3', dict(use_orange_cut=False)),
+ 'co_cam'         : ('Có luật Đèn Cam hạ 1/3 (đã bỏ 30/09 — chỉ để đối chiếu)', dict(use_orange_cut=True)),
  'khoa_moi'       : ('Khoá lãi siết 8%→+4%, 10%→+5%, 12%→+6% (thử 29/09)', dict(profit_lock=[[0.08, 0.04], [0.10, 0.05], [0.12, 0.06]])),
  'khoa_3'         : ('Khoá lãi 8%→+3%, 12%→+5%', dict(profit_lock=[[0.08, 0.03], [0.12, 0.05]])),
  's1'             : ('Khoá lãi S1 (8%→+2%, 12%→+5%, không nấc 15%)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05]])),
  's1_15'          : ('Khoá lãi 8%→+2%, 12%→+5%, 15%→+8% (PROD 30/09 sáng)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]])),
- 'thucte_khongcam': ('Khoá lãi đang chạy, tắt đèn Cam, trượt giá 0,2%', dict(use_orange_cut=False, slip=0.002)),
+ 'thucte_cocam'   : ('Có Đèn Cam hạ 1/3, trượt giá 0,2% (đối chiếu)', dict(use_orange_cut=True, slip=0.002)),
 }
 STRICT=dict(base_range=0.12, use_ftd=False, use_ordimb=False, t_valve=3, trail_ma=20, slip=0.002,
             use_be=False, size_map={'XANH':1.0,'VANG':0.5,'CAM':0.0,'DO':0.0},

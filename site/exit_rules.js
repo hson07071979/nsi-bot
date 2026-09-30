@@ -53,7 +53,7 @@ function erDecide(C, gain, peak, held, o) {
     if (h >= erG(C, 't_valve', 4) && gain <= erG(C, 'valve_min', 0.0)) return [`Van thời gian T+${erG(C, 't_valve', 4)}`, 1.0];
     if (peak >= erG(C, 'big_win', 0.19) && (o.b10 || 0) >= erG(C, 'conf', 2)) return [`Trailing MA${erG(C, 'trail_fast', 10)} (lãi lớn)`, 1.0];
     if ((o.b20 || 0) >= erG(C, 'conf', 2)) return [`Trailing MA${erG(C, 'trail_ma', 30)}`, 1.0];
-    if (erG(C, 'use_orange_cut', true) && o.light_today === 'CAM' && !o.part
+    if (erG(C, 'use_orange_cut', false) && o.light_today === 'CAM' && !o.part
         && (!erG(C, 'orange_cut_only_if_worse', true) || ['XANH', 'VANG'].includes(o.light_entry)))
       return ['Đèn Cam — hạ 1/3', 1 / 3];
     return [null, 1.0];

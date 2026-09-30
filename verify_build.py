@@ -301,6 +301,16 @@ try:
     check(CFP.get('profit_lock') == _PR.get('profit_lock') and _ER.tiers(CFP) == [(0.08, 0.02), (0.12, 0.06), (0.15, 0.08)],
           f"profit_lock trang {CFP.get('profit_lock')} lech PROD {_PR.get('profit_lock')}")
     check(not CFP.get('use_be'), 'use_be (ve bo +1%) van bat trong cau hinh dang chay')
+    # DEN CAM HA 1/3 DA BO (30/09/2026): khong con trong cau hinh, backtest, vi the, so ghi tien
+    check(not CFP.get('use_orange_cut') and not _PR.get('use_orange_cut'), 'luat Den Cam ha 1/3 van bat')
+    _cam = 'Đèn Cam — hạ 1/3'
+    _trc = (D.get('prod') or {}).get('trades') or D.get('trades') or []
+    check(not any(t.get('reason') == _cam for t in _trc), 'backtest con lenh "Den Cam — ha 1/3"')
+    check(not any(x.get('reason') == _cam for p_ in (D.get('open_positions') or []) for x in (p_.get('sold_parts') or [])),
+          'vi the dang mo con phan ban "Den Cam — ha 1/3"')
+    _op_pf = {(q['sym'], q['entry']) for q in (_pf.get('open') or [])}
+    warn(not any(c.get('reason') == _cam and (c['sym'], c['entry']) in _op_pf for c in (_pf.get('closed') or [])),
+         'so ghi tien con lan ha 1/3 cua vi the dang mo — portfolio.py se hoan tac o buoc dang')
     _tr = (D.get('prod') or {}).get('trades') or D.get('trades') or []
     if _tr:
         check(not any(str(t.get('reason', '')).startswith('Về bờ') for t in _tr), 'backtest con lenh "Về bờ" (+1%)')

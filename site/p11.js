@@ -752,7 +752,7 @@ function bangThoat() {
   return `<h2>🔻 Luật thoát hôm nay${ss ? ' — phiên ' + ss : ''}</h2>
     <p class="muted" style="margin-top:0">Máy chủ tính lại mỗi nhịp quét (${hhmm(sv.asof)}) bằng giá đóng cửa <b>tạm tính</b>${
       sv.den_tam_tinh && sv.den_tam_tinh.light ? ' và đèn tạm tính <b>' + (LIGHTNAME[sv.den_tam_tinh.light] || sv.den_tam_tinh.light) + '</b>' : ''}. Chốt thật theo giá đóng cửa; bán lúc <b>ATC</b>. Chuông kêu từ 14h00.</p>
-    ${(!sv.den_tam_tinh && sv.den_tam_tinh_loi && sv.open) ? `<p style="margin-top:0;color:var(--warn)"><b>⚠ Chưa có đèn tạm tính hôm nay</b> — ${esc(sv.den_tam_tinh_loi)}. Luật "Đèn Cam hạ 1/3" chưa báo được trong phiên; các luật khác vẫn báo.</p>` : ''}
+    ${(!sv.den_tam_tinh && sv.den_tam_tinh_loi && sv.open) ? `<p style="margin-top:0;color:var(--warn)"><b>⚠ Chưa có đèn tạm tính hôm nay</b> — ${esc(sv.den_tam_tinh_loi)}. Cỡ lệnh mua trong phiên tạm tính theo đèn hôm qua; mọi luật bán vẫn báo bình thường.</p>` : ''}
     <div class="card tblwrap" style="${ban.length ? 'border-color:var(--critical)' : ''}"><table><thead><tr>
       <th>Mã</th><th style="text-align:right">Giá</th><th style="text-align:right">Lãi/lỗ</th><th style="text-align:right">Đỉnh lãi</th>
       <th style="text-align:right">Sàn khoá lãi</th><th style="text-align:right">Giữ</th><th>Việc phải làm</th></tr></thead><tbody>
