@@ -99,7 +99,7 @@ function pageBacktest(root){
   (function(){
     const _cl = P.trades.filter(t=>/1\/3/.test(t.reason||'')).length;
     const _vt = DM.deals, _l = M.trades;
-    if (!_vt || !_l) return;
+    if (!_vt || !_l || !_cl) return;   // khong con lenh ban mot phan (Den Cam bo 30/09) -> deal = lenh
     const _n = el('p','muted',
       `<b>Vì sao hai cột lệch nhau:</b> hệ thống mở <b>${_vt}</b> vị thế, trong đó <b>${_cl}</b> vị thế `
       + `chốt 1/3 khi đèn chuyển Cam rồi mới ra nốt phần còn lại — mỗi vị thế như vậy sinh <i>hai</i> dòng lệnh. `

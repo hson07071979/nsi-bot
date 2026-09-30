@@ -50,7 +50,7 @@ function pageEvidence(root){
   <h2>4. Đèn thị trường: khoá cứng hay thăm dò?</h2>
   <div class="card"><table><thead><tr><th>Cách xử lý đèn Cam</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>
     <th style="text-align:right">PF</th><th style="text-align:right">Tỷ lệ thắng</th></tr></thead><tbody id="mgTbl"></tbody></table>
-  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> luật "đèn Cam hạ 1/3 danh mục" (hạng C trong tài liệu) nâng tỷ lệ thắng từ 27% lên 38% nhưng gần như không đổi tổng lợi nhuận — nó đổi cảm giác lấy sự bình yên chứ không tạo ra tiền. Em giữ vì nó giảm drawdown và giúp gồng phần còn lại dễ hơn.</p></div>
+  <p class="muted" style="margin:12px 0 0"><b>Kết luận:</b> luật "đèn Cam hạ 1/3 danh mục" (hạng C trong tài liệu) nâng tỷ lệ thắng từ 27% lên 38% nhưng gần như không đổi tổng lợi nhuận — nó đổi cảm giác lấy sự bình yên chứ không tạo ra tiền. Từng giữ vì nó giảm drawdown; <b>bỏ từ 30/09/2026</b> vì đèn tạm tính không chắc có trong giờ giao dịch nên ngoài đời không hạ kịp trong phiên.</p></div>
 
   <h2>5. Trần cứng hay cận trần?</h2>
   <div class="card"><div id="ceilChart"></div>
@@ -71,13 +71,13 @@ function pageEvidence(root){
   <div class="card tblwrap"><table><thead><tr><th>Biến thể</th><th style="text-align:right">Tổng LN</th><th style="text-align:right">LN/năm</th>
     <th style="text-align:right">Drawdown</th><th style="text-align:right">PF</th><th style="text-align:right">Sharpe</th><th style="text-align:right">Lệnh</th></tr></thead><tbody>
     ${(() => { const P = D.presets || {}, M0 = (D.prod || {}).metrics || {};
-      const rows = [[`<b>Đang chạy</b> — khoá lãi ${erTiers(CP).map(([a,b])=>cpSo(a*100)+'→+'+cpSo(b*100)).join(', ')}, đèn Cam ${cpBat('use_orange_cut',true)?'bật':'tắt'}`, M0]]
-        .concat(['s1_15','s1','khong_cam','khoa_moi','khoa_3','thucte','thucte_khongcam'].filter(k => P[k]).map(k => [P[k].label, P[k].metrics]));
+      const rows = [[`<b>Đang chạy</b> — khoá lãi ${erTiers(CP).map(([a,b])=>cpSo(a*100)+'→+'+cpSo(b*100)).join(', ')}, đèn Cam ${cpBat('use_orange_cut',false)?'bật':'tắt'}`, M0]]
+        .concat(['s1_15','s1','co_cam','khoa_moi','khoa_3','thucte','thucte_cocam'].filter(k => P[k]).map(k => [P[k].label, P[k].metrics]));
       return rows.map(([n, m]) => `<tr><td>${n}</td><td style="text-align:right" class="${cls(m.total_return||0)}">${sg(m.total_return||0)}</td>
         <td style="text-align:right">${sg(m.cagr||0)}</td><td style="text-align:right" class="neg">−${pct(m.maxdd||0)}</td>
         <td style="text-align:right">${m.pf ?? '—'}</td><td style="text-align:right">${m.sharpe ?? '—'}</td><td style="text-align:right">${m.trades ?? '—'}</td></tr>`).join(''); })()}
   </tbody></table>
-  <p class="muted" style="margin:12px 0 0">Vì sao bật lại đèn Cam khi đã có khoá lãi: khoá lãi chỉ bảo vệ lệnh <b>đã từng lên ≥8%</b>; đèn Cam hạ 1/3 bảo vệ những lệnh <b>chưa lên tới đó</b> khi thị trường xấu đi. Hai cửa không che nhau. Hàng "TẮT đèn Cam" thắng ở cả tổng LN lẫn drawdown thì tắt lại — chỉ đổi một dòng <code>use_orange_cut</code>. <b>Vì sao sàn cao hơn lại kém:</b> cổ phiếu vừa chạm đỉnh +8–10% thường rung về +3–5% rồi mới chạy tiếp; sàn +4% bán đúng nhịp rung đó, nên mất những lệnh lẽ ra chạy tới vùng MA10 (lãi ≥19%). Mỗi lệnh "giữ thêm 2%" không bù được một lệnh lớn bị cắt.</p></div>
+  <p class="muted" style="margin:12px 0 0"><b>Luật Đèn Cam hạ 1/3 đã bỏ từ 30/09/2026:</b> đèn thị trường tạm tính không chắc có trong giờ giao dịch, nên ngoài đời không hạ 1/3 kịp trong phiên — số backtest có luật này là số không làm được. Hàng "Có luật Đèn Cam" chỉ để đối chiếu. <b>Vì sao sàn cao hơn lại kém:</b> cổ phiếu vừa chạm đỉnh +8–10% thường rung về +3–5% rồi mới chạy tiếp; sàn +4% bán đúng nhịp rung đó, nên mất những lệnh lẽ ra chạy tới vùng MA10 (lãi ≥19%). Mỗi lệnh "giữ thêm 2%" không bù được một lệnh lớn bị cắt.</p></div>
 
   <h2>8. Nới nền giá có mua được thêm hàng tốt không?</h2>
   <div class="card"><table><thead><tr><th>Cách định nghĩa nền</th><th style="text-align:right">Lệnh</th><th style="text-align:right">Tổng LN</th>
@@ -126,7 +126,7 @@ function pageEvidence(root){
       <td>${cur?'<span class="tag A">Đã chọn</span>':ok?'<span class="tag B">Đạt ngưỡng</span>':'<span class="tag C">Vượt 15%</span>'}</td></tr>`;}).join('');
 
   document.getElementById('mgTbl').innerHTML=[
-    ['Hạ 1/3 danh mục (đang dùng)',s2['baseline']],
+    ['Hạ 1/3 danh mục (đã bỏ 30/09/2026)',s2['baseline']],
     ['Không làm gì',s2['tat den CAM ha 1/3']],
     ['Ngừng mua hoàn toàn',s2['den CAM chi ngung mua (0%)']],
   ].map(([n,m])=>`<tr><td class="sym">${n}</td><td style="text-align:right">${m.trades}</td>

@@ -45,8 +45,8 @@ function pageSystem(root){
    ['9','Trailing mặc định',`${cf} phiên liên tiếp đóng dưới <b>MA${cpV('trail_ma',30)}</b> → bán hết. MA${cpV('trail_ma',30)} là cửa ra THẬT, không phải chỉ báo động như trang này từng ghi`,'A',true],
    ['10',`Chốt 1/3 khi vol &gt; ${cpSo(cpV('vol_ceil',4.5))}×`,'Lãi ≥ 20% và volume cực đoan → bán 1/3','C',cpBat('use_partial_take',false)],
    ['11','Đèn Cam — hạ 1/3',cpBat('orange_cut_only_if_worse',true)
-      ? 'Đèn Cam <b>VÀ đèn xấu đi so với lúc mua</b> → hạ 1/3. Mua dưới đèn Cam thì đã vào có 35% rồi, hạ tiếp cũng vì đèn Cam là đếm hai lần một tín hiệu xấu'
-      : 'Đèn Cam (≥ 5 ngày phân phối) → hạ 1/3 danh mục','C',cpBat('use_orange_cut',true)],
+      ? '<b>ĐÃ BỎ 30/09/2026</b> — đèn tạm tính không chắc có trong phiên nên không hạ kịp ngoài đời. Luật cũ: Đèn Cam <b>VÀ đèn xấu đi so với lúc mua</b> → hạ 1/3. Mua dưới đèn Cam thì đã vào có 35% rồi, hạ tiếp cũng vì đèn Cam là đếm hai lần một tín hiệu xấu'
+      : 'Đèn Cam (≥ 5 ngày phân phối) → hạ 1/3 danh mục','C',cpBat('use_orange_cut',false)],
   ];
   root.innerHTML=`
   <h1>Hệ thống 9 lớp</h1>
