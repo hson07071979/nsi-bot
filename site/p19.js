@@ -37,7 +37,7 @@ function obsPathCard(sym, entry, ten) {
       ${o('Đỉnh mới sau breakout', co(p.new_high_since_breakout) + (p.days_since_last_high != null ? ` <span class="muted" style="font-weight:400">(đỉnh cách ${p.days_since_last_high} phiên)</span>` : ''))}
       ${o('Cond9', c9)}
     </div>
-    <div class="muted" style="font-size:11px;margin-top:6px">CHỈ QUAN SÁT — không dùng để mua thêm, bán hay đổi cỡ lệnh. Việc cần làm xem ở bảng trên.</div>
+    <div class="muted" style="font-size:11px;margin-top:6px">CHỈ QUAN SÁT</div>
   </div>`;
 }
 
@@ -100,7 +100,6 @@ function obsWatch78Section() {
       <div style="margin-top:6px;font-size:12px;font-weight:700;letter-spacing:.04em" class="muted">${warn ? 'THEO DÕI — KHÔNG PHẢI MUA' : 'GẦN ĐẠT — KHÔNG PHẢI MUA'}</div></div>`; };
   const grid = rs => `<div style="display:flex;gap:12px;flex-wrap:wrap">${rs.map(r => card(r, false)).join('')}</div>`;
   return `<h2>2. Gần đạt — thiếu 1–2 cổng <span class="muted" style="font-size:13px;font-weight:400">(${near.length} mã · phiên ${ddmm(O.asof)} · chỉ theo dõi)</span></h2>
-    <p class="muted" style="margin-top:0;font-size:12.5px">CANSLIM đạt sàn, dữ liệu đủ. 7/8: thiếu 1 cổng. 6/8: giá ĐÃ NỔ nhưng còn thiếu 2 cổng (ví dụ khối lượng + CFO). Không phải tín hiệu: không vào sổ, không kêu chuông, không đặt lệnh. Mục đích là thấy ngay mã rớt ở cổng nào, không phải để nới luật. Bảng R29 ở trang Kiểm định đo xem cổng nào hay bỏ sót winner.</p>
     <h3 style="margin:10px 0 8px">7/8 — thiếu 1 cổng (${n7.length})</h3>
     ${n7.length ? grid(n7) : '<div class="muted">Không có mã nào thiếu đúng 1 cổng ở phiên này.</div>'}
     <h3 style="margin:16px 0 8px">6/8 — đã nổ giá, thiếu 2 cổng (${n6.length})</h3>

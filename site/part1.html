@@ -311,6 +311,27 @@ body.inpriv main.wrap::before{content:'Trang nội bộ — không hiển thị 
 .toastin.heads{border-color:color-mix(in srgb,var(--warn) 45%,transparent); border-left-color:var(--warn)}
 .toastin .tsub{font-size:12.5px;color:var(--text-muted);margin:-4px 0 8px}
 /* ---------- thanh liên hệ ---------- */
+/* 03/10/2026: Lich su lenh tren trang Hieu suat */
+.lslloc{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.lslloc input{min-width:200px;flex:1 1 200px}
+.lslloc select,.lslloc input{max-width:100%}
+table.lsl td.r,table.lsl th.r{text-align:right}
+table.lsl th[data-k]{cursor:pointer;user-select:none;white-space:nowrap}
+table.lsl th[data-k]:hover{color:var(--text)}
+table.lsl th.sorted{color:var(--s1)}
+table.lsl th[data-k]::after{content:attr(data-dir);margin-left:4px;font-size:10px}
+table.lsl td{white-space:nowrap}
+table.lsl td.lsn{max-width:170px;overflow:hidden;text-overflow:ellipsis}
+.nk .nkd{padding:7px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.nk .nkd:last-child{border-bottom:0}
+.nk .nkm{color:var(--s1);font-weight:700}.nk .nkb{color:var(--critical);font-weight:700}
+.ngsc .ngpt{transition:opacity .12s}
+.ngsc:hover .ngpt{opacity:.28}.ngsc .ngpt:hover{opacity:1}
+.ngsc .ngpt:hover circle{r:7.5}.ngsc .ngpt:hover text{font-size:15px}
+.lban td.r,.lban th.r{text-align:right}
+.lban tr.lbdo td{background:color-mix(in srgb,var(--critical) 8%,transparent)}
+.lban .lbn{font-size:10.5px;font-weight:700;letter-spacing:.03em;color:var(--text-muted)}
+.lban .lbn.sotay{color:var(--s7)}
 .cbar{display:none} /* 03/10/2026: bo thanh lien he + nut Zalo; Zalo chuyen sang trang cho duyet cua cong dang nhap */
 .cbin{display:flex;align-items:center;gap:13px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px;font-size:13.5px}
 .cbnm{font-weight:700;color:var(--text-primary);letter-spacing:-.01em;white-space:nowrap}

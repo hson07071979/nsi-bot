@@ -111,8 +111,51 @@ def candles(d, I, syms, nbar=260, trades=None):
                 k = np.convolve(cl, np.ones(n) / n, mode='valid')
                 ma[f'ma{n}'] = [None] * (n - 1) + [round(float(x), 2) for x in k]
         seen = {b[0] for b in bars}
-        mk = [dict(t=k, d=dt, px=(round(float(px) / 1000, 2) if px else None),
-                   pxa=(round(float(pa) / 1000, 2) if pa else None))
+        # 03/10/2026: pxa = gia THO x he so dieu chinh cua CHINH phien do (AdjClose/PriceClose),
+        # khop nen da dieu chinh tai tu VPS. Truoc day pxa = entry_px/1.0015 con dinh truot gia.
+        cidx = {c: i for i, c in enumerate(cal)}
+        def _adj(dt, px, pa):
+            i = cidx.get(dt)
+            if px and px == px and i is not None:
+                pc, ac = d['PriceClose'][i, j], d['AdjClose'][i, j]
+                if pc == pc and ac == ac and pc > 0:
+                    return round(float(px) * float(ac) / float(pc) / 1000, 2)
+            return round(float(pa) / 1000, 2) if pa and pa == pa else None
+        mk = [dict(t=k, d=dt, px=(round(float(px) / 1000, 2) if px and px == px else None),
+                   pxa=_adj(dt, px, pa))
               for k, dt, px, pa in marks.get(s, []) if dt in seen]
         out[s] = dict(bars=bars, **ma, marks=mk)
     return out
+
+
+def trade_marks(d, trades):
+    """03/10/2026 — dau MUA/BAN cho MOI lenh trong Lich su lenh, moi ma, moi ngay (khong gioi
+    han cua so 240 phien cua nen nhung san). Trang Chi tiet ma tai nen dai tu VPS nen can du dau.
+    px = gia THO da khop; pxa = gia tho x he so dieu chinh (AdjClose/PriceClose) cua chinh phien do."""
+    S = [str(x) for x in d['sym']]
+    cal = [str(x) for x in d['cal']]
+    idx = {s: k for k, s in enumerate(S)}
+    cidx = {c: i for i, c in enumerate(cal)}
+    def one(sym, dt, raw, adj):
+        j, i = idx.get(sym), cidx.get(dt)
+        px = round(float(raw) / 1000, 2) if raw and raw == raw else None
+        pxa = None
+        if px is not None and j is not None and i is not None:
+            pc, ac = d['PriceClose'][i, j], d['AdjClose'][i, j]
+            if pc == pc and ac == ac and pc > 0:
+                pxa = round(float(raw) * float(ac) / float(pc) / 1000, 2)
+        if pxa is None and adj and adj == adj:
+            pxa = round(float(adj) / 1000, 2)
+        return dict(d=dt, px=px, pxa=pxa)
+    out = defaultdict(list); seenB = set()
+    for t in (trades or []):
+        k = (t['sym'], t['entry'])
+        if k not in seenB:
+            seenB.add(k)
+            out[t['sym']].append(dict(t='B', **one(t['sym'], t['entry'], t.get('entry_raw'), None)))
+            if t.get('pyr_date'):
+                out[t['sym']].append(dict(t='B+', **one(t['sym'], t['pyr_date'], t.get('pyr_raw'), t.get('pyr_adj'))))
+        m = dict(t='S', **one(t['sym'], t['exit'], t.get('exit_raw'), t.get('exit_px')))
+        if t.get('frac') and t['frac'] < 1: m['t'] = 'S1/3'
+        out[t['sym']].append(m)
+    return dict(out)

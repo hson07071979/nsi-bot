@@ -200,6 +200,7 @@ function pageLive(root){
   const by=k=>A.alerts.filter(a=>a.level===k);
   root.innerHTML=`
   <h1>Chuông báo</h1>
+  ${typeof bangLenhBan === 'function' ? bangLenhBan() : ''}
 
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:16px">
     <div><div class="muted" style="text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:12px">Đèn thị trường</div>

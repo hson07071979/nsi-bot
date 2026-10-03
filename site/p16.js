@@ -233,9 +233,9 @@ function cotKep(host, labels, series, opt = {}) {
     });
 
     const ghi = [];
-    if (tran && nCat) ghi.push(`<b>${nCat}/${nCo} cột chạm biên ±${tran}%</b> — đầu nhọn là cột bị cắt, thường do nền cùng kỳ gần bằng không. Số thật rê chuột vào cột là ra, hoặc xem bảng dưới.`);
-    if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải — màu số trên trục khớp màu cột. Đừng so chiều cao hai màu với nhau.`);
-    if (nThieu) ghi.push(`Thiếu ${nThieu}/${labels.length} quý — dải mờ ghi <b>thiếu</b> là quý chưa có báo cáo, không phải quý bằng 0.`);
+    if (tran && nCat) ghi.push(`${nCat}/${nCo} cột chạm biên ±${tran}%`);
+    if (hai) ghi.push(`${esc(series[0].name)} trục trái · ${esc(series[1].name)} trục phải`);
+    if (nThieu) ghi.push(`thiếu ${nThieu}/${labels.length} quý`);
     if (ghi.length) host.insertAdjacentHTML('beforeend',
       `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>`);
   };
@@ -384,9 +384,9 @@ function duongQuy(host, labels, series0, opt = {}) {
     });
 
     const ghi = [];
-    if (nBo) ghi.push(`<b>${nBo}/${labels.length} quý doanh nghiệp lỗ</b> nên không có P/E — cột tô mờ có chữ "lỗ" là những quý đó.`);
-    if (nThieu) ghi.push(`<b>${esc(series[0].name)} thiếu ${nThieu}/${labels.length} quý</b> — đường vẽ đứt đúng chỗ thiếu, không nối bắc cầu.`);
-    if (hai) ghi.push(`<b>Hai trục riêng.</b> ${esc(series[0].name)} đọc ở trục trái, ${esc(series[1].name)} ở trục phải.`);
+    if (nBo) ghi.push(`${nBo}/${labels.length} quý lỗ (không có P/E)`);
+    if (nThieu) ghi.push(`${esc(series[0].name)} thiếu ${nThieu}/${labels.length} quý`);
+    if (hai) ghi.push(`${esc(series[0].name)} trục trái · ${esc(series[1].name)} trục phải`);
     if (ghi.length) host.insertAdjacentHTML('beforeend',
       `<p class="muted" style="margin:6px 0 0;font-size:12px">${ghi.join(' ')}</p>`);
   };
@@ -482,7 +482,7 @@ function nganhSoLieu(cf) {
 
 /* ---------- 1. PHÂN TÁN — ít nét nhất có thể ---------- */
 function nganhPhanTan(host, ds, cf) {
-  const W = 560, H = 330, PL = 46, PR = 34, PT = 26, PB = 40;
+  const W = 760, H = 440, PL = 46, PR = 34, PT = 26, PB = 40;
   const co = ds.filter(d => so(d.x) && so(d.y));
   if (co.length < 2) { host.innerHTML = '<p class="muted" style="margin:0">Không đủ mã có số liệu để vẽ.</p>'; return; }
   const xs = co.map(d => d.x), ys = co.map(d => d.y);
@@ -503,7 +503,7 @@ function nganhPhanTan(host, ds, cf) {
   // góc nào, không cần đọc toạ độ chính xác của từng điểm.
   // Trang đã tràn màn hình -> SVG khung cố định bị kéo giãn tới 2200px, chữ
   // "RẺ · SINH LỜI TỐT" to bằng tiêu đề. Chặn bề ngang lại và căn giữa.
-  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:880px;height:auto;display:block;margin:0 auto" font-family="inherit">
+  let s = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:1040px;height:auto;display:block;margin:0 auto" font-family="inherit">
     <rect x="${PL - 8}" y="${PT - 14}" width="${W - PL - PR + 20}" height="${H - PT - PB + 26}" rx="8"
      fill="var(--surface-2)" opacity=".45"/>
     <rect x="${PL - 8}" y="${PT - 14}" width="${X(mx) - PL + 8}" height="${Y(my) - PT + 14}"
@@ -526,24 +526,61 @@ function nganhPhanTan(host, ds, cf) {
         <text x="${X(mx) + 6}" y="${H - PB + 1}" font-size="11.5" font-weight="650" fill="var(--text-muted)">${tenX} trung vị ${fx(mx)}</text>
         <text x="${W - PR + 12}" y="${Y(my) + 15}" text-anchor="end" font-size="11.5" font-weight="650" fill="var(--text-muted)">${tenY} trung vị ${fy(my)}</text>`;
 
-  // điểm — cùng một cỡ. Đổi cỡ theo vốn hoá chỉ thêm một chiều mà không ai đọc.
-  const nh = co.map(d => ({ d, x: X(d.x), y: Y(d.y) - 11, tren: true })).sort((a, b) => a.y - b.y);
-  for (let k = 1; k < nh.length; k++) {
-    const t = nh[k], p = nh[k - 1];
-    if (Math.abs(t.x - p.x) < 40 && t.y - p.y < 15) { t.y = Y(t.d.y) + 18; t.tren = false; }
-  }
-  co.forEach(d => {
+  // 03/10/2026: đặt nhãn không đè nhau — thử 8 vị trí quanh điểm, rồi vòng xa hơn kèm
+  // đường dẫn; rê chuột vào một mã thì mã đó nổi lên, các mã khác mờ đi.
+  const FS = 13, CW = 8.4, LH = 15;
+  const box = (cx, cy, w) => ({ x0: cx - w / 2 - 1, x1: cx + w / 2 + 1, y0: cy - LH + 3, y1: cy + 3 });
+  const dung = (a, b) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
+  const pts = co.map(d => ({ d, x: X(d.x), y: Y(d.y) }));
+  const ptBox = pts.map(p => ({ x0: p.x - 6.5, x1: p.x + 6.5, y0: p.y - 6.5, y1: p.y + 6.5 }));
+  const daDat = [];
+  const trong = (bx) => bx.x0 >= PL - 10 && bx.x1 <= W - 4 && bx.y0 >= PT - 16 && bx.y1 <= H - PB + 4;
+  const diem = bx => (trong(bx) ? 0 : 1000) + daDat.reduce((n, o) => n + (dung(bx, o) ? 100 : 0), 0)
+                     + ptBox.reduce((n, o) => n + (dung(bx, o) ? 30 : 0), 0);
+  const thuTu = pts.map((p, k) => k).sort((a, b) => {   // điểm nằm chỗ đông đặt trước
+    const dem = k => pts.reduce((n, q) => n + (Math.hypot(q.x - pts[k].x, q.y - pts[k].y) < 45 ? 1 : 0), 0);
+    return dem(b) - dem(a);
+  });
+  const nhan = new Array(pts.length);
+  thuTu.forEach(k => {
+    const p = pts[k], txt = p.d.sym + (p.d.tim ? ' ●' : ''), w = txt.length * CW;
+    let tot = null;
+    const thu = (cx, cy, xa) => {
+      const bx = box(cx, cy, w), sc = diem(bx) + (xa ? 8 + xa : 0);
+      if (!tot || sc < tot.sc) tot = { cx, cy, bx, sc, xa };
+    };
+    const r = 9;
+    [[0, -r - 1], [w / 2 + r, 5], [-w / 2 - r, 5], [0, r + LH - 2],
+     [w / 2 + 4, -r], [-w / 2 - 4, -r], [w / 2 + 4, r + LH - 4], [-w / 2 - 4, r + LH - 4]]
+      .forEach(([dx, dy]) => thu(p.x + dx, p.y + dy, 0));
+    if (tot.sc >= 30) {
+      for (const R of [26, 38, 52, 68]) {
+        for (let g = 0; g < 16; g++) {
+          const an = g / 16 * 2 * Math.PI;
+          thu(p.x + Math.cos(an) * (R + w / 2 * Math.abs(Math.cos(an))), p.y + Math.sin(an) * R + 5, R);
+        }
+        if (tot.sc < 30 + R + 8) break;
+      }
+    }
+    daDat.push(tot.bx);
+    nhan[k] = Object.assign({ txt }, tot);
+  });
+  s += '<g class="ngsc">';
+  pts.forEach((p, k) => {
+    const d = p.d, n = nhan[k];
     const mau = d.blocked ? '--critical' : (reHon(d) ? '--good' : '--text-muted');
-    s += `<circle cx="${X(d.x)}" cy="${Y(d.y)}" r="5.5" fill="var(${mau})" style="cursor:pointer"
-           onclick="openChart('${d.sym}')"><title>${d.sym} — ${esc(d.ten)}
-${tenX}: ${fx(d.x)}   ${tenY}: ${fy(d.y)}${d.tim ? '\nĐèn tím — ' + esc(d.tim_vi || '') : ''}${d.blocked ? '\nCổng rủi ro CHẶN: ' + esc(d.block || '') : ''}</title></circle>`;
+    const mauC = d.blocked ? '--critical' : (reHon(d) ? '--good' : '--text-secondary');
+    const leo = n.xa ? (() => { // đường dẫn từ điểm tới mép nhãn gần nhất
+      const tx = Math.max(n.bx.x0, Math.min(p.x, n.bx.x1)), ty = Math.max(n.bx.y0, Math.min(p.y, n.bx.y1));
+      return `<line x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${tx.toFixed(1)}" y2="${ty.toFixed(1)}" stroke="var(${mau})" stroke-width="1" opacity=".6"/>`;
+    })() : '';
+    s += `<g class="ngpt" style="cursor:pointer" onclick="openChart('${d.sym}')"><title>${d.sym} — ${esc(d.ten)}
+${tenX}: ${fx(d.x)}   ${tenY}: ${fy(d.y)}${d.tim ? '\nĐèn tím — ' + esc(d.tim_vi || '') : ''}${d.blocked ? '\nCổng rủi ro CHẶN: ' + esc(d.block || '') : ''}</title>
+      ${leo}<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5.5" fill="var(${mau})"/>
+      <text x="${n.cx.toFixed(1)}" y="${n.cy.toFixed(1)}" text-anchor="middle" font-size="${FS}" font-weight="780"
+        fill="var(${mauC})" stroke="var(--surface-1)" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">${n.txt}</text></g>`;
   });
-  nh.forEach(t => {
-    const mau = t.d.blocked ? '--critical' : (reHon(t.d) ? '--good' : '--text-secondary');
-    s += `<text x="${t.x}" y="${Math.max(PT - 2, Math.min(t.y, H - PB + 2))}" text-anchor="middle" font-size="13.5"
-           font-weight="780" fill="var(${mau})" stroke="var(--surface-1)" stroke-width="3.2" paint-order="stroke"
-           stroke-linejoin="round" style="cursor:pointer" onclick="openChart('${t.d.sym}')">${t.d.sym}${t.d.tim ? ' ●' : ''}</text>`;
-  });
+  s += '</g>';
   host.innerHTML = s + '</svg>';
 }
 
@@ -582,10 +619,7 @@ function nganhThanhKhoang(host, ds, cf) {
       <div class="ngnow"><b>${fx(d.x)}</b><span>${vitri(d)}</span></div>
     </div>`;
   }).join('') +
-  `<p class="muted" style="margin:12px 0 0;font-size:12px">Mỗi thanh chạy từ <b style="color:var(--good)">${tenX} thấp nhất</b>
-   tới <b style="color:var(--critical)">${tenX} cao nhất</b> của chính mã đó trong <b>${nq} quý</b> gần nhất; chấm đen là ${tenX} hiện tại,
-   vạch mảnh là trung vị ngành ${fx(mx)}. Đây là so mã với <b>chính nó</b> — khác hẳn biểu đồ trên, nơi so mã với <b>hàng xóm cùng ngành</b>.
-   <b>Sát đáy khoảng không có nghĩa là rẻ</b>: cả ngành cùng rơi thì mã nào cũng sát đáy.</p>`;
+  `<p class="muted" style="margin:12px 0 0;font-size:12px">chấm đen = ${tenX} hiện tại · vạch mảnh = trung vị ngành ${fx(mx)}</p>`;
 }
 
 /* ---------- trang ---------- */
@@ -605,27 +639,18 @@ function pageNganh(root) {
 
   root.innerHTML = `
   <h1>So sánh trong ngành</h1>
-  <p class="lead">Một mã chỉ <b>đắt</b> hay <b>rẻ</b> khi đặt cạnh mã cùng ngành. Hai khối dưới đây trả lời hai câu khác nhau —
-  <b>so với hàng xóm</b>, và <b>so với chính nó</b>. Đừng gộp hai câu đó làm một.</p>
 
   <div class="seg" id="ngSeg" style="margin-bottom:14px"></div>
 
-  ${ds.length < 6 ? `<div class="note" style="border-color:var(--critical);background:color-mix(in srgb,var(--critical) 9%,transparent)">
-    <b>Mẫu quá nhỏ — chỉ ${ds.length} mã.</b> Trung vị của ${ds.length} mã không phải một phân phối, nó chỉ là con số nằm giữa ${ds.length} con số.
-    Nhìn tương quan thì được; kết luận "rẻ hơn ngành" thì <b>không</b>. Vũ trụ giao dịch là TOP ${D.universe_n} mã thanh khoản nhất nên nhóm này vốn chỉ có bấy nhiêu.</div>` : ''}
-  ${cf.thieu ? `<div class="note" style="margin-top:12px">${cf.thieu}</div>` : ''}
+  ${ds.length < 6 ? `<div class="muted" style="font-size:12.5px">Mẫu nhỏ: ${ds.length} mã</div>` : ''}
 
   <h2 style="margin-top:22px">${tenY} so với ${tenX} hiện tại</h2>
-  <p class="muted" style="margin-top:0">Vùng xanh là góc đáng đào: <b>${tenX} dưới trung vị</b> mà <b>${tenY} trên trung vị</b> —
-  trả ít hơn hàng xóm cho một doanh nghiệp làm tốt hơn hàng xóm. Bấm vào mã để mở Chi tiết mã.</p>
   <div class="card"><div id="ngChart"></div></div>
   ${dao.length ? `<div class="note info" style="margin-top:12px"><b>${dao.length}/${co.length} mã đang nằm trong vùng xanh:</b>
-    ${dao.sort((a, b) => b.y - a.y).map(d => `<b>${d.sym}</b> (${tenX} ${fx(d.x)} · ${tenY} ${d.y.toFixed(1)}%)`).join(' · ')}.
-    Đây là <b>chỗ để bắt đầu đọc</b>, không phải danh sách mua — hệ thống vẫn chỉ vào lệnh khi mã qua đủ chín lớp.</div>`
-    : `<div class="note" style="margin-top:12px">Không mã nào nằm trong vùng xanh — trong nhóm này, mã nào ${tenY} cao thì ${tenX} cũng cao. Thị trường đang định giá khá nhất quán.</div>`}
+    ${dao.sort((a, b) => b.y - a.y).map(d => `<b>${d.sym}</b> (${tenX} ${fx(d.x)} · ${tenY} ${d.y.toFixed(1).replace('.', ',')}%)`).join(' · ')}</div>`
+    : `<div class="note" style="margin-top:12px">Không mã nào nằm trong vùng xanh</div>`}
 
   <h2 style="margin-top:26px">Khoảng ${tenX} ${nq} quý</h2>
-  <p class="muted" style="margin-top:0">Mỗi mã so với <b>chính nó</b>: thanh chạy từ ${tenX} thấp nhất tới cao nhất trong ${nq} quý gần nhất, chấm đen là hiện tại.</p>
   <div class="seg" id="ngSort" style="margin-bottom:10px"></div>
   <div class="card" id="ngKhoang"></div>
 
@@ -643,8 +668,7 @@ function pageNganh(root) {
       <th>Ghi chú</th></tr></thead><tbody id="ngBody"></tbody></table></div>
   </details>
 
-  <div class="note" style="margin-top:18px"><b>Vì sao ngành này dùng ${tenX} ghép với ${tenY}.</b> ${cf.vi}
-    ${cf.tam ? '<br><br><b style="color:var(--warn)">Ngành này đang dùng thước TẠM</b> — đọc băng ở trên trước khi kết luận gì.' : ''}</div>`;
+`;
 
   const seg = document.getElementById('ngSeg');
   NGANH.forEach(x => {

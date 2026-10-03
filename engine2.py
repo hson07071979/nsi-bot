@@ -356,6 +356,10 @@ def _run_core(cfg=None, log=True):
             got=p.sh*op*(1-C['fee_sell']-SS); cash+=got
             trades.append(dict(sym=str(sym),sector=p.sector,entry=str(cal[p.ei]),exit=str(cal[i]),
                   entry_px=round(float(p.epx),2),exit_px=round(float(op),2),held=int(i-p.ei),
+                  # gia THO cho dau mua/ban tren bieu do nen (03/10/2026: lenh do truot DK9 truoc day thieu)
+                  entry_raw=round(float(getattr(p,'eraw',np.nan)),2),
+                  exit_raw=round(float((d['PriceClose'] if C.get('probe_exit','open')=='close' else d['PriceOpen'])[i,p.j]),2),
+                  x0=getattr(p,'x0',None),
                   pnl_pct=round(float(op*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
                   pnl_vnd=round(float(got-p.sh*p.epx)),reason='Cond9 không xác nhận — bán lệnh thăm dò',
                   sh=int(p.sh),frac=1.0,
@@ -399,6 +403,17 @@ def _run_core(cfg=None, log=True):
             elif (C['use_orange_cut'] and R['light'][i]=='CAM' and not p.part
                   and (not C.get('orange_cut_only_if_worse')
                        or R['light'][p.ei] in ('XANH','VANG'))): r='Đèn Cam — hạ 1/3'; frac=1/3
+            # R34 (nghien cuu, mac dinh TAT = PROD): chot 1/3 khi lai >= tp_part (1 lan / vi the).
+            # tp_part_mode 'close' = gia dong cua; 'touch' = lenh ban dat san o muc lai, khop khi gia cao trong phien cham.
+            if r is None and C.get('tp_part') is not None and not p.part:
+                _thr=float(C['tp_part']); _fr=float(C.get('tp_frac',1/3))
+                if C.get('tp_part_mode','close')=='touch':
+                    _h=AH[i,j]/p.epx-1
+                    if not np.isnan(_h) and _h>=_thr:
+                        _lv=p.epx*(1+_thr); _o=AO[i,j]
+                        px=min(AH[i,j], max(_lv, _o) if not np.isnan(_o) else _lv)
+                        r='Chốt 1/3 lãi %d%%'%round(_thr*100); frac=_fr
+                elif gain>=_thr: r='Chốt 1/3 lãi %d%%'%round(_thr*100); frac=_fr
             if r:
                 sh=int(p.sh*frac//100*100) if frac<1 else p.sh
                 if sh<=0: continue
@@ -408,7 +423,7 @@ def _run_core(cfg=None, log=True):
                   exit_px=round(float(px),2),held=int(held),
                   # RAW traded prices for chart markers (candles are raw). entry_px /
                   # exit_px above stay ADJUSTED (+fees) because P&L is computed on them.
-                  entry_raw=round(float(getattr(p,'eraw',np.nan)),2),exit_raw=round(float(PX[i,j]),2),
+                  entry_raw=round(float(getattr(p,'eraw',np.nan)),2),exit_raw=round(float(PX[i,j] if px==AC[i,j] else PX[i,j]*px/AC[i,j]),2),
                   # TY TRONG LUC VAO / LUC NHOI (chi ghi nhan, khong doi luat — 26/09/2026):
                   # vi the / nganh / tong von tren NAV ngay hom do, sau khi khop.
                   x0=getattr(p,'x0',None), xp=getattr(p,'xp',None),
@@ -552,6 +567,7 @@ def _run_core(cfg=None, log=True):
         # ---------- LOP 9: PYRAMID ----------
         for sym,p in list(pos.items()):
             if not C['use_pyramid'] or p.pyr or R['light'][i]!='XANH': continue
+            if C.get('tp_part') is not None and p.part and C.get('tp_block_pyr',True): continue
             if getattr(p,'stage',0) in (1,3): continue
             held=i-p.ei
             if not (4<=held<=7): continue

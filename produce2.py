@@ -271,6 +271,60 @@ if __name__=='__main__':
                                'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
                                'value':round(float(r['d']['AdjClose'][-1,p.j] if r['d']['AdjClose'][-1,p.j]==r['d']['AdjClose'][-1,p.j] else p.epx)*int(p.sh))}
                               for p in r['pos'].values()]}
+    # ---- KE HOACH BAN PHIEN TOI (03/10/2026, anh Son): moi ma dang cam, phien toi gia dong cua
+    # bao nhieu thi BAN HET ATC. Dung exit_rules.decide (khong them luat). Gia thuc = gia dieu
+    # chinh x fx (gia tho / gia dieu chinh cua phien cuoi). Trang web + chuong ntfy doc khoi nay.
+    def _kh(sym, j, cost, peak, held_next, b10, b20, probe_fail, part):
+        _AC = r['d']['AdjClose'][:, j]; _PX = r['d']['PriceClose'][:, j]
+        _prev = [float(x) for x in _AC[-40:] if x == x]
+        _fx = float(_PX[-1] / _AC[-1]) if (_AC[-1] == _AC[-1] and _PX[-1] == _PX[-1] and _AC[-1] > 0) else 1.0
+        k = _ER.ke_hoach_ban(_CF, float(cost), float(peak), int(held_next), _prev, int(b10), int(b20),
+                             probe_fail=bool(probe_fail), part=bool(part), fx=_fx)
+        q = lambda v: (round(float(v) * _fx / 1000, 2) if v is not None else None)
+        return dict(sym=sym, viec=k['viec'], ly_do=k['ly_do'], held=k['held'], sell_from=k['sell_from'],
+                    nguong=(round(k['nguong_raw'] / 1000, 2) if k.get('nguong_raw') else q(k['nguong'])),
+                    gia_von=q(cost), dong_cua=q(_AC[-1]), peak=round(float(peak) * 100, 2),
+                    b10=k['b10'], b20=k['b20'], moc={kk: q(vv) for kk, vv in k['moc'].items()})
+    _kh_he = {}
+    for p in r['pos'].values():
+        try:
+            _kh_he[p.sym] = _kh(p.sym, p.j, p.epx, getattr(p, 'peak', 0.0), len(cal) - p.ei, p.b10, p.b20,
+                                getattr(p, 'stage', 0) == 3 or (getattr(p, 'stage', 0) == 1 and not getattr(p, 'oi_ok', True)),
+                                p.part)
+        except Exception as e:
+            print('ke hoach ban loi', p.sym, e, flush=True)
+    for q_ in out['book']['positions']:
+        if q_['sym'] in _kh_he: q_['ke_hoach'] = _kh_he[q_['sym']]
+    for q_ in out['open_positions']:
+        if q_['sym'] in _kh_he: q_['ke_hoach'] = _kh_he[q_['sym']]
+    # So tay anh Son (manual.json da dang): vi the chua ban -> cung mot ham, trang thai dung lai
+    # tu gia dong cua (dinh lai, so phien duoi MA10/MA30). Chi trang quan tri hien khoi nay.
+    out['ke_hoach_so_tay'] = []
+    try:
+        _mn = json.load(open('data/manual.json', encoding='utf-8'))
+        _S = [str(x) for x in r['d']['sym']]; _cal = [str(x) for x in cal]
+        for t in (_mn.get('trades') or []):
+            if t.get('sell_d') or not t.get('buy_d') or not t.get('buy_px') or t.get('sym') not in _S: continue
+            j = _S.index(t['sym']); bi = next((k for k, c in enumerate(_cal) if c >= str(t['buy_d'])), None)
+            if bi is None: continue
+            _AC = r['d']['AdjClose'][:, j]; _PX = r['d']['PriceClose'][:, j]
+            f0 = float(_AC[bi] / _PX[bi]) if (_PX[bi] == _PX[bi] and _PX[bi] > 0) else 1.0
+            cost = float(t['buy_px']) * 1000 * f0 * (1 + float(PROD.get('fee_buy', E.CFG.get('fee_buy', 0.0015))))
+            peak = 0.0; b10 = b20 = 0
+            nf, ns = int(_CF.get('trail_fast') or 10), int(_CF.get('trail_ma') or 30)
+            for i in range(bi + 1, len(cal)):
+                c = _AC[i]
+                if c != c: continue
+                peak = max(peak, float(c) / cost - 1)
+                w10 = _AC[max(0, i - nf + 1):i + 1]; w30 = _AC[max(0, i - ns + 1):i + 1]
+                b10 = b10 + 1 if (len(w10) == nf and c < np.nanmean(w10)) else 0
+                b20 = b20 + 1 if (len(w30) == ns and c < np.nanmean(w30)) else 0
+            k = _kh(t['sym'], j, cost, peak, len(cal) - bi, b10, b20, False, False)
+            k.update(buy_d=t['buy_d'], buy_px=t['buy_px'], sh=t.get('sh'))
+            out['ke_hoach_so_tay'].append(k)
+    except Exception as e:
+        print('ke hoach so tay loi', e, flush=True)
+    print('KE HOACH BAN', len(_kh_he), 'ma he thong,', len(out['ke_hoach_so_tay']), 'ma so tay', flush=True)
     out['universe_n']=int(len(r['d']['sym'])); out['asof']=str(cal[-1])
     # DO PHU CUA DONG TIEN MUA/BAN O PHIEN CUOI — canh bao im lang tung nuot ca ngay.
     # FireAnt tra BuyCount/SellCount TRE hon gia vai tieng. Neu cao truoc luc do thi
@@ -355,6 +409,8 @@ if __name__=='__main__':
     _uni = [str(x) for k, x in enumerate(r['d']['sym']) if _tn0(r['I'], int(PROD['top_n']))[-1][k]]
     _syms = list(dict.fromkeys(_op + _d6 + _wl + _sig + _uni))
     out['candles'] = candles(r['d'], r['I'], _syms, 240, out['prod']['trades'])
+    from extras import trade_marks as _tm
+    out['marks'] = _tm(r['d'], out['prod']['trades'])   # dau mua/ban cho moi lenh (03/10/2026)
     print('EXTRA candles', len(out['candles']), 'ma', flush=True)
     # o tra cuu tung ma: phien toi can gia bao nhieu, khoi luong bao nhieu
     from lookup import build as _lk

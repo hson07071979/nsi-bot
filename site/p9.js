@@ -1,89 +1,45 @@
 /* ============================================================================
-   TRANG KHÁCH HÀNG — Hiệu suất · Biểu đồ nhiệt theo tháng · Top tín hiệu 6 tháng
+   TRANG KHÁCH HÀNG — Hiệu suất · Lịch sử lệnh
    ========================================================================== */
 
-/* ---------- biểu đồ nhiệt lợi suất theo tháng ---------- */
-const MONTHNAME = ['','Th1','Th2','Th3','Th4','Th5','Th6','Th7','Th8','Th9','Th10','Th11','Th12'];
-
-function heatColor(ret, maxAbs, inmkt){
-  if (ret === null || ret === undefined) return 'transparent';
-  const t = Math.min(1, Math.abs(ret) / (maxAbs || 0.01));
-  // đậm = biên độ lớn. Ngoài thị trường thì làm mờ đi.
-  const alpha = (0.10 + 0.90 * Math.pow(t, 0.65)) * (inmkt > 0.05 ? 1 : 0.28);
-  const base = ret >= 0 ? 'var(--s3)' : 'var(--s2)';
-  return `color-mix(in srgb, ${base} ${(alpha*100).toFixed(0)}%, transparent)`;
-}
-
-function monthHeatmap(host){
-  const M = D.monthly || [];
-  if (!M.length){ host.innerHTML = '<p class="muted">Chưa có dữ liệu theo tháng.</p>'; return; }
-  const byYear = {};
-  M.forEach(m => { const [y, mo] = m.ym.split('-'); (byYear[y] = byYear[y] || {})[+mo] = m; });
-  const years = Object.keys(byYear).sort();
-  const maxAbs = Math.max(...M.map(m => Math.abs(m.ret)));
-
-  let h = '<div class="hm"><table class="hmtab"><thead><tr><th></th>' +
-    MONTHNAME.slice(1).map(x => `<th>${x}</th>`).join('') +
-    '<th class="hmyr">Cả năm</th></tr></thead><tbody>';
-
-  years.forEach(y => {
-    const row = byYear[y];
-    let comp = 1;
-    Object.values(row).forEach(m => comp *= (1 + m.ret));
-    comp -= 1;
-    h += `<tr><td class="hmy">${y}</td>`;
-    for (let mo = 1; mo <= 12; mo++){
-      const m = row[mo];
-      if (!m){ h += '<td class="hmc empty"></td>'; continue; }
-      const out = m.inmkt <= 0.05;
-      h += `<td class="hmc${out ? ' out' : ''}" style="background:${heatColor(m.ret, maxAbs, m.inmkt)}"
-             title="${m.ym} · ${sg(m.ret,2)} · có hàng ${pct(m.inmkt,0)} số phiên">
-             <span>${out ? '·' : (m.ret*100).toFixed(1)}</span></td>`;
-    }
-    h += `<td class="hmc hmyr ${cls(comp)}"><b>${sg(comp,1)}</b></td></tr>`;
-  });
-  h += '</tbody></table></div>';
-  host.innerHTML = h;
-}
-
 /* ============================ TRANG HIỆU SUẤT ============================ */
+/* 03/10/2026 (anh Sơn): bỏ bảng "Lợi suất theo tháng"; "Top tín hiệu 6 tháng" thay bằng
+   LỊCH SỬ LỆNH đầy đủ (lọc + sắp xếp + KPI chạy theo bộ lọc); tab Lịch sử lệnh bỏ khỏi menu. */
 function pageHome(root){
-  const T6 = D.top6m || {deals:[]}, dl = T6.deals || [];
-  const wins = dl.filter(d => d.pnl_pct > 0);
-  const cur6 = P.curve.filter(c => c[0] >= (T6.frm || '9999'));
-  const nav6 = cur6.length ? (cur6[cur6.length-1][1] / cur6[0][1] - 1) : 0;
-  const b6 = D.bench.filter(b => b[0] >= (T6.frm || '9999'));
-  const vni6 = b6.length ? (b6[b6.length-1][1] / b6[0][1] - 1) : 0;
-
   root.innerHTML = `
   ${typeof bangSoLieuCu === 'function' ? bangSoLieuCu() : ''}
   <div class="hero">
     <div class="badge">Dữ liệu real-time · nguồn FireAnt · chỉ giao dịch TOP ${cpTop()} mã thanh khoản nhất</div>
     <h1>Hiệu suất thật,<br>đo trên ${dec(dates.length/250,1)} năm dữ liệu.</h1>
-    
   </div>
   <div class="grid kpis" id="hkpi"></div>
 
   <h2>Đường vốn — Hệ thống so với VN-Index</h2>
-  
   <div class="card"><div class="legend">
     <span><i style="background:var(--s1)"></i>Hệ thống Nguyễn Sơn</span>
     <span><i style="background:var(--s2)"></i>VN-Index</span></div><div id="heq"></div></div>
 
-  <h2>Lợi suất theo tháng</h2>
-  
-  <div class="card" id="hheat"></div>
-
-  <h2>Top tín hiệu 6 tháng qua</h2>
-  
-  <div class="grid kpis" id="h6kpi" style="margin-bottom:14px"></div>
-  <div class="card tblwrap"><table><thead><tr><th>Mã</th><th>Ngày mua</th><th>Ngày bán</th>
-    <th style="text-align:right">Giữ</th><th style="text-align:right">Lợi suất</th><th>Lý do thoát</th><th style="width:120px">Biểu đồ</th></tr></thead>
-    <tbody id="h6body"></tbody></table></div>
+  <h2 id="lichsulenh">Lịch sử lệnh</h2>
+  <div class="lslloc">
+    <input type="search" id="lq" placeholder="Tìm mã, ngành…">
+    <select id="lky"></select>
+    <select id="lr"><option value="">Mọi lý do bán</option></select>
+    <select id="lw"><option value="">Thắng &amp; thua</option><option value="w">Chỉ thắng</option><option value="l">Chỉ thua</option></select>
+    <select id="ll"><option value="">Mọi đèn</option><option value="XANH">Đèn Xanh</option><option value="VANG">Đèn Vàng</option><option value="CAM">Đèn Cam</option><option value="DO">Đèn Đỏ</option></select>
+    <button class="mini" id="lxoa">Xoá lọc</button>
+  </div>
+  <div class="grid kpis" id="lkpi" style="margin-bottom:14px"></div>
+  <div class="card tblwrap"><table id="ltab" class="lsl"><thead><tr>
+    <th data-k="sym">Mã</th><th data-k="sector">Ngành</th>
+    <th data-k="entry">Ngày mua</th><th data-k="exit">Ngày bán</th>
+    <th data-k="held" class="r">Giữ</th><th data-k="gm" class="r">Giá mua</th><th data-k="gb" class="r">Giá bán</th>
+    <th data-k="pnl_pct" class="r">Lãi/lỗ</th><th data-k="tk" class="r">% tài khoản</th><th data-k="peak" class="r">Đỉnh lãi</th>
+    <th data-k="reason">Lý do bán</th><th data-k="light">Đèn</th><th></th></tr></thead>
+    <tbody id="lbody"></tbody></table></div>
+  <div class="muted" id="ldem" style="font-size:12.5px;margin-top:6px"></div>
 
   <h2>Danh mục hệ thống đang cầm</h2>
   <div class="card" id="hopen"></div>
-
   `;
 
   document.getElementById('hkpi').innerHTML =
@@ -92,27 +48,12 @@ function pageHome(root){
     + kpi('Sụt giảm tối đa', '−'+(M.maxdd*100).toFixed(2).replace('.',',')+'%', `VN-Index −${pct(BM.mdd)}`, 'neg')
     + kpi('Profit Factor', dec(M.pf), 'lãi gộp / lỗ gộp')
     + kpi('Số deal', (P.deal_metrics||{}).deals ?? M.trades, (P.deal_metrics||{}).deals
-        ? `${dec((P.deal_metrics||{}).deals/(dates.length/250),1)} deal mỗi năm · ${M.trades} dòng lệnh`
+        ? `${dec((P.deal_metrics||{}).deals/(dates.length/250),1)} deal mỗi năm`
         : `${M.per_year} lệnh mỗi năm`)
     + kpi('Tỷ lệ thắng', pct((P.deal_metrics||{}).winrate ?? M.winrate), `lãi TB +${dec((P.deal_metrics||{}).avg_win ?? M.avg_win)}% · lỗ TB ${dec((P.deal_metrics||{}).avg_loss ?? M.avg_loss)}%`)
     + kpi('Lãi / Lỗ', dec((P.deal_metrics||{}).rr ?? M.rr), 'mỗi đồng rủi ro đổi lấy')
     + kpi('Sharpe', dec(M.sharpe), 'trên chuỗi NAV ngày');
 
-  document.getElementById('h6kpi').innerHTML =
-      kpi('Số deal 6 tháng', dl.length, `${wins.length} thắng · ${dl.length-wins.length} thua`)
-    + kpi('Tỷ lệ thắng', dl.length ? pct(wins.length/dl.length,0) : '—', '6 tháng gần nhất')
-    + kpi('NAV 6 tháng', sg(nav6), `VN-Index ${sg(vni6)}`, cls(nav6))
-    + kpi('Deal tốt nhất', dl.length ? (dl[0].sym + ' ' + sg(dl[0].pnl_pct/100)) : '—', dl.length ? dl[0].entry : '');
-
-  document.getElementById('h6body').innerHTML = dl.length ? dl.map(d => `
-    <tr><td class="sym">${esc(d.sym)}</td><td>${d.entry}</td><td>${d.exit}</td>
-      <td style="text-align:right">${d.held} phiên</td>
-      <td style="text-align:right;font-weight:660" class="${cls(d.pnl_pct)}">${d.pnl_pct>=0?'+':''}${d.pnl_pct}%</td>
-      <td class="muted" style="font-size:13px">${esc(d.reason)}</td>
-      <td>${(D.candles||{})[d.sym] ? `<button class="mini" onclick="openChart('${esc(d.sym)}')">Xem nến</button>` : '—'}</td></tr>`).join('')
-    : '<tr><td colspan="7" class="muted">Không có deal nào trong 6 tháng qua.</td></tr>';
-
-  // Danh mục THẬT (sổ máy chủ + sổ tay anh Sơn), không phải danh mục của backtest.
   document.getElementById('hopen').innerHTML = bangDanhMucNgan();
 
   lineChart(document.getElementById('heq'), {h:330, series:[
@@ -120,12 +61,132 @@ function pageHome(root){
     {name:'VN-Index',       color:'--s2', v:benchCurve}],
     labels:dates, xticks, fmtY:v=>v.toFixed(2), fmtV:v=>v.toFixed(3)+'×'});
 
-  monthHeatmap(document.getElementById('hheat'));
+  lichSuLenh();
+}
+
+/* ---------- LỊCH SỬ LỆNH (trên trang Hiệu suất) ---------- */
+function lsDuLieu(){
+  const cur = P.curve || [];
+  const navCuoi = cur.length ? cur[cur.length-1][1] : 1;
+  const nav0 = (M.final_nav && navCuoi) ? M.final_nav / navCuoi : 1e9;
+  const navNgay = {}; cur.forEach(c => navNgay[c[0]] = c[1]);
+  const navTruoc = d => { // NAV cuoi phien lien truoc ngay d (luc dat lenh)
+    let lo = 0, hi = cur.length - 1, k = -1;
+    while (lo <= hi){ const m = (lo+hi)>>1; if (cur[m][0] < d){ k = m; lo = m+1; } else hi = m-1; }
+    return (k >= 0 ? cur[k][1] : (cur[0]||[0,1])[1]) * nav0;
+  };
+  const gia = (raw, adj, phi) => raw ? raw/1000 : (adj ? adj/1000/(1+phi) : null);
+  return (P.trades || []).map(t => Object.assign({}, t, {
+    gm: gia(t.entry_raw, t.entry_px, PHI_MUA), gb: gia(t.exit_raw, t.exit_px, 0),
+    tk: t.pnl_vnd != null ? t.pnl_vnd / navTruoc(t.entry) * 100 : null,
+  }));
+}
+function lsKy(v){ // khoang thoi gian theo NGAY MUA -> [tu, den]
+  const asof = D.asof || dates[dates.length-1];
+  if (!v) return [dates[0], asof];
+  if (v[0] === 'm'){ const n = +v.slice(1); const [y,m] = asof.split('-').map(Number);
+    let yy = y, mm = m - n; while (mm <= 0){ mm += 12; yy--; }
+    return [`${yy}-${String(mm).padStart(2,'0')}-01`, asof]; }
+  return [v + '-01-01', v + '-12-31'];
+}
+function lsDoiTK(tu, den){ // % thay doi tai khoan va VN-Index trong [tu, den]
+  const doi = (arr) => {
+    const a = arr.filter(x => x[0] < tu), b = arr.filter(x => x[0] <= den);
+    const s = a.length ? a[a.length-1][1] : (arr.find(x => x[0] >= tu) || [0,null])[1];
+    const e = b.length ? b[b.length-1][1] : null;
+    return (s && e) ? e/s - 1 : null;
+  };
+  return [doi(P.curve || []), doi(D.bench || [])];
+}
+function lichSuLenh(){
+  const R = lsDuLieu();
+  const $ = id => document.getElementById(id);
+  const years = [...new Set(R.map(t => t.entry.slice(0,4)))].sort().reverse();
+  $('lky').innerHTML = `<option value="">Tất cả từ ${dates[0].slice(0,4)}</option>
+    <option value="m6">6 tháng gần nhất</option><option value="m12">12 tháng gần nhất</option>` +
+    years.map(y => `<option value="${y}">Năm ${y}</option>`).join('');
+  const reasons = [...new Set(R.map(t => t.reason))].sort();
+  $('lr').innerHTML += reasons.map(r => `<option value="${esc(r)}">${esc(r)}</option>`).join('');
+  let sk = 'entry', sd = -1;
+  const p2 = x => x == null ? '—' : (+x).toFixed(2).replace('.', ',');
+  const pc = (x, d=1) => x == null ? '—' : (x >= 0 ? '+' : '') + (+x).toFixed(d).replace('.', ',') + '%';
+  const ngay = d => d ? d.split('-').reverse().join('/') : '—';
+
+  function render(){
+    const Q = $('lq').value.trim().toLowerCase(), ky = $('lky').value;
+    const [tu, den] = lsKy(ky);
+    const rows = R.filter(t => {
+      if (t.entry < tu || t.entry > den) return false;
+      if ($('lr').value && t.reason !== $('lr').value) return false;
+      if ($('ll').value && t.light !== $('ll').value) return false;
+      if ($('lw').value === 'w' && !(t.pnl_pct > 0)) return false;
+      if ($('lw').value === 'l' && t.pnl_pct > 0) return false;
+      if (Q && !(t.sym + ' ' + (t.sector||'')).toLowerCase().includes(Q)) return false;
+      return true;
+    });
+    rows.sort((a, b) => {
+      const x = a[sk], y = b[sk];
+      if (x == null && y == null) return 0; if (x == null) return 1; if (y == null) return -1;
+      const c = (x > y ? 1 : x < y ? -1 : 0) * sd;
+      return c || (a.entry < b.entry ? 1 : a.entry > b.entry ? -1 : 0);
+    });
+    $('lbody').innerHTML = rows.length ? rows.map(t => `<tr>
+      <td class="sym">${esc(t.sym)}</td><td class="muted lsn">${esc(t.sector||'')}</td>
+      <td>${ngay(t.entry)}</td><td>${ngay(t.exit)}</td>
+      <td class="r">${t.held} phiên</td><td class="r">${p2(t.gm)}</td><td class="r">${p2(t.gb)}</td>
+      <td class="r ${cls(t.pnl_pct)}" style="font-weight:660">${pc(t.pnl_pct, 2)}</td>
+      <td class="r ${t.tk==null?'':cls(t.tk)}">${pc(t.tk, 2)}</td>
+      <td class="r">${t.peak ? '+' + String(t.peak).replace('.', ',') + '%' : '—'}</td>
+      <td class="muted" style="font-size:13px">${esc(t.reason)}${t.frac && t.frac < 1 ? ' (bán 1 phần)' : ''}</td>
+      <td><span class="pill ${t.light}">${LIGHTNAME[t.light] || t.light || ''}</span></td>
+      <td><button class="mini" onclick="openChart('${esc(t.sym)}')">Nến</button></td></tr>`).join('')
+      : '<tr><td colspan="13" class="muted">Không có lệnh nào khớp bộ lọc.</td></tr>';
+
+    // KPI — dem theo DEAL (gop cac lan ban tung phan cung ma + ngay mua)
+    const g = {};
+    rows.forEach(t => { const k = t.sym + '|' + t.entry;
+      (g[k] = g[k] || { sym: t.sym, entry: t.entry, w: 0, p: 0 });
+      const w = t.pnl_pct ? Math.abs(t.pnl_vnd / (t.pnl_pct/100)) : 0;
+      g[k].w += w; g[k].p += t.pnl_pct * w; g[k].n = (g[k].n||0) + 1; g[k].p1 = t.pnl_pct; });
+    const deals = Object.values(g).map(d => ({ sym: d.sym, entry: d.entry, pnl: d.w ? d.p / d.w : d.p1 }));
+    const thang = deals.filter(d => d.pnl > 0), thua = deals.filter(d => d.pnl <= 0);
+    const tot = deals.slice().sort((a, b) => b.pnl - a.pnl)[0];
+    const [tk, vni] = lsDoiTK(tu, den);
+    const locThem = Q || $('lr').value || $('ll').value || $('lw').value;
+    const dongGop = rows.reduce((s, t) => s + (t.tk || 0), 0);
+    const tenKy = ky === '' ? 'từ ' + dates[0].slice(0,4) : ky[0] === 'm' ? ky.slice(1) + ' tháng gần nhất' : 'năm ' + ky;
+    const tb = a => a.length ? a.reduce((s, d) => s + d.pnl, 0) / a.length : null;
+    $('lkpi').innerHTML =
+        kpi('Số giao dịch', deals.length, `${thang.length} thắng · ${thua.length} thua`)
+      + kpi('Tỷ lệ thắng', deals.length ? pct(thang.length / deals.length, 0) : '—', tenKy)
+      + kpi('Giá trị tài khoản', tk == null ? '—' : sg(tk), (vni == null ? '' : `VN-Index ${sg(vni)} cùng kỳ`)
+            + (locThem ? `<br>các lệnh đang lọc: ${pc(dongGop, 1)} tài khoản` : ''), tk == null ? '' : cls(tk))
+      + kpi('Deal tốt nhất', tot ? `${esc(tot.sym)} ${pc(tot.pnl)}` : '—', tot ? ngay(tot.entry) : '')
+      + kpi('Lãi TB · lỗ TB', `<span class="pos">${pc(tb(thang))}</span> · <span class="neg">${pc(tb(thua))}</span>`, 'mỗi lệnh thắng · thua');
+    $('ldem').textContent = `${rows.length} / ${R.length} lệnh`;
+    document.querySelectorAll('#ltab thead th[data-k]').forEach(th => {
+      th.classList.toggle('sorted', th.dataset.k === sk);
+      th.dataset.dir = th.dataset.k === sk ? (sd < 0 ? '▼' : '▲') : '';
+    });
+  }
+  document.querySelectorAll('#ltab thead th[data-k]').forEach(th => th.onclick = () => {
+    const k = th.dataset.k;
+    if (k === sk) sd = -sd; else { sk = k; sd = (k === 'sym' || k === 'sector' || k === 'reason' || k === 'light') ? 1 : -1; }
+    render();
+  });
+  ['lq', 'lky', 'lr', 'lw', 'll'].forEach(id => { $(id).oninput = render; $(id).onchange = render; });
+  $('lxoa').onclick = () => { ['lq', 'lky', 'lr', 'lw', 'll'].forEach(id => $(id).value = ''); sk = 'entry'; sd = -1; render(); };
+  render();
 }
 
 /* ============================ TRANG BIỂU ĐỒ ============================ */
 let _chartSym = null;
-function openChart(sym){ _chartSym = sym; go('bieudo'); }
+function openChart(sym){
+  _chartSym = sym;
+  // trang Chi tiet ma da ve roi thi phai ve lai cho ma moi (truoc day bam "Nen" lan hai van ra ma cu)
+  try { if (secs.bieudo && secs.bieudo.rendered) { secs.bieudo.rendered = false; secs.bieudo.node.innerHTML = ''; } } catch (e) {}
+  go('bieudo');
+}
 
 function pageChart(root){
   const L = D.lookup || {};
@@ -216,12 +277,6 @@ function pageChart(root){
        : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
     // Ma da nam giu: noi thang ra, keo doc dong trang thai o tren thanh "he thong
     // cham truot". Nguong o tren la cua PHIEN KE TIEP va danh cho mot lenh MUA MOI.
-    if (x && x.dang_cam) bn += `<div class="ctstate cho"><b>ĐANG NẮM GIỮ</b>
-      <span class="muted">— mã này đã nằm trong Danh mục hệ thống. Các ngưỡng phía trên
-      là điều kiện để mở <b style="color:var(--text-primary)">một lệnh mua mới ở phiên kế tiếp</b>,
-      không nói gì về vị thế đang mở. Chính cây bùng nổ hôm vào lệnh vừa lọt vào cửa sổ
-      30 phiên nên nền giá rộng ra — vì vậy dòng trạng thái có thể ghi “chưa tạo được
-      nền giá chặt”. Lãi/lỗ của vị thế xem ở trang Danh mục hệ thống.</span></div>`;
     if (F && F.tim && F.tim[F.tim.length - 1]) {
       bn += `<div class="ctstate tim"><b>ĐÈN TÍM — lãi đến từ hoạt động bất thường</b>
         <span class="muted">— ${F.vi[F.vi.length - 1]} (${F.q[F.q.length - 1]}).
@@ -898,11 +953,13 @@ async function moBieuDo(sym) {
       // Nen nhung san = gia THO -> dung gia khop tho (px). Nen tai tu VPS/VNDIRECT = gia
       // DA DIEU CHINH -> dung pxa (gia dieu chinh) cho dau khong lech nen sau chia tach.
       const mua = String(m.t).startsWith('B');
-      const gia = (CT.nguon === 'nhúng sẵn' || m.pxa == null) ? m.px : m.pxa;
+      // 03/10/2026: chu tren dau = GIA KHOP THAT (gia tho) — dung bang Lich su lenh. Dau gan theo NGAY nen
+      // khong lech nen du nen VPS da dieu chinh co tuc.
+      const gia = m.px != null ? m.px : m.pxa;
       return {
         time: m.d, position: mua ? 'belowBar' : 'aboveBar',
         color: mua ? M.s1 : M.giam, shape: mua ? 'arrowUp' : 'arrowDown',
-        text: (m.t === 'B+' ? 'NHỒI' : mua ? 'MUA' : 'BÁN') + (gia ? ' ' + gia : ''),
+        text: (m.sotay ? 'SỔ TAY ' : '') + (m.t === 'B+' ? 'NHỒI' : mua ? 'MUA' : m.t === 'S1/3' ? 'BÁN 1/3' : 'BÁN') + (gia != null && gia !== '' ? ' ' + (+gia).toFixed(2).replace('.', ',') : ''),
       };
     });
 

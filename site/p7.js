@@ -184,6 +184,8 @@ PAGES.forEach(([id,label,fn,hidden],i)=>{
   secs[id]={fn,rendered:false,node:s,hidden:!!hidden,label};
 });
 function go(id){
+  // 03/10/2026: tab Lich su lenh da gop vao trang Hieu suat -> #lenh mo Hieu suat, cuon toi bang
+  if(id==='lenh'){ setTimeout(()=>{const e=document.getElementById('lichsulenh'); if(e) e.scrollIntoView({behavior:'instant'});},80); id=HOME; }
   if(!secs[id]) id=HOME;
   tabs.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.id===id));
   document.body.classList.toggle('inpriv', !!secs[id].hidden);
@@ -200,6 +202,6 @@ document.getElementById('themebtn').onclick=()=>{
 };
 go(location.hash?location.hash.slice(1):HOME);
 // cho phep dieu huong bang thanh dia chi / nut back cua trinh duyet
-window.addEventListener('hashchange',()=>{const id=location.hash.slice(1)||HOME; if(secs[id])go(id);});
+window.addEventListener('hashchange',()=>{const id=location.hash.slice(1)||HOME; if(secs[id]||id==='lenh')go(id);});
 // lop truc tiep: doc live.json va tu cap nhat
 if (typeof batDauLive === 'function') batDauLive();
