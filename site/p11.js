@@ -455,9 +455,23 @@ async function docJSON(ten) {
 function veLaiTrang(id) {
   const s = (typeof secs !== 'undefined') && secs[id];
   if (!s || !s.rendered) return;
+  // 03/10/2026: trang Hiệu suất chỉ có MỘT ô đổi theo giá (danh mục đang cầm) — vẽ lại riêng ô đó,
+  // không dựng lại cả trang (biểu đồ + 213 dòng lịch sử lệnh, mất bộ lọc đang chọn).
+  if (id === 'hieusuat') { capNhatDanhMucHieuSuat(); return; }
+  if (!s.node.classList.contains('on')) { s.node.innerHTML = ''; s.rendered = false; return; }
+  // giữ nguyên chỗ đang cuộn + chiều cao trong lúc dựng lại, trang không giật lên giật xuống
+  const y = window.scrollY, cao = s.node.offsetHeight;
+  s.node.style.minHeight = cao + 'px';
   s.node.innerHTML = '';
-  if (s.node.classList.contains('on')) s.fn(s.node);
-  else s.rendered = false;
+  s.fn(s.node);
+  s.node.style.minHeight = '';
+  if (Math.abs(window.scrollY - y) > 1) window.scrollTo(0, y);
+}
+function capNhatDanhMucHieuSuat() {
+  const e = document.getElementById('hopen');
+  if (!e || typeof bangDanhMucNgan !== 'function') return;
+  const h = bangDanhMucNgan();
+  if (e._h !== h) { e._h = h; e.innerHTML = h; }
 }
 
 async function napSo() {

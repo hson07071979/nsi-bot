@@ -121,42 +121,62 @@ function dichChu(s) {
 }
 
 (function caiDichChu() {
+  /* 03/10/2026 (đêm) — chạy MƯỢT: bản trước quét lại TOÀN BỘ trang 60 ms sau MỌI thay đổi,
+     kể cả đồng hồ đầu trang đổi mỗi giây -> mỗi giây đi hết vài nghìn ô chữ, và chữ gốc hiện
+     ra 60 ms rồi mới đổi -> chữ nhảy dòng. Nay: dịch NGAY trong MutationObserver (chạy trước khi
+     trình duyệt vẽ, nên không bao giờ thấy chữ gốc), chỉ dịch phần VỪA thay đổi, nhớ kết quả. */
   const AN = new Set((typeof PAGES !== 'undefined' ? PAGES : []).filter(p => p[3]).map(p => p[0]));
-  const trangAn = () => AN.has((location.hash || '').replace(/^#/, '').split(/[?&]/)[0]);
   const BO = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'CODE', 'PRE', 'svg']);
-  let dang = false, hen = null;
-  function chay() {
-    hen = null;
-    if (trangAn() || dang) return;
-    dang = true;
-    try {
-      const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
-        acceptNode(n) {
-          for (let e = n.parentElement; e && e !== document.body; e = e.parentElement) {
-            if (BO.has(e.tagName) || e.classList.contains('khong-dich') || e.isContentEditable) return NodeFilter.FILTER_REJECT;
-          }
-          return NodeFilter.FILTER_ACCEPT;
+  const nho = new Map();
+  const dich = v => {
+    if (!v || v.length < 2 || !/[A-Za-zÀ-ỹĐđ]/.test(v)) return v;
+    let m = nho.get(v);
+    if (m === undefined) { m = dichChu(v); if (nho.size > 30000) nho.clear(); nho.set(v, m); }
+    return m;
+  };
+  const boQua = el => {
+    for (let e = el; e && e !== document.body; e = e.parentElement) {
+      if (BO.has(e.tagName) || e.isContentEditable || (e.classList && e.classList.contains('khong-dich'))) return true;
+      if (e.id && e.id.startsWith('pg-') && AN.has(e.id.slice(3))) return true;   // trang ẩn (nội bộ)
+    }
+    return false;
+  };
+  const dichNut = n => {
+    const v = n.nodeValue, m = dich(v);
+    if (m !== v) {
+      // <option> khong co value: gia tri = chu goc -> giu chu goc lam value truoc khi dich (bo loc van khop du lieu)
+      const pe = n.parentElement;
+      if (pe && pe.tagName === 'OPTION' && !pe.hasAttribute('value')) pe.setAttribute('value', v);
+      n.nodeValue = m;
+    }
+  };
+  const dichTitle = e => { const v = e.getAttribute('title'), m = dich(v); if (m !== v) e.setAttribute('title', m); };
+  function dichCay(goc) {
+    if (!goc) return;
+    if (goc.nodeType === 3) { if (!boQua(goc.parentElement)) dichNut(goc); return; }
+    if (goc.nodeType !== 1 || boQua(goc)) return;
+    const w = document.createTreeWalker(goc, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        for (let e = n.parentElement; e && e !== goc; e = e.parentElement) {
+          if (BO.has(e.tagName) || (e.classList && e.classList.contains('khong-dich'))) return NodeFilter.FILTER_REJECT;
+          if (e.id && e.id.startsWith('pg-') && AN.has(e.id.slice(3))) return NodeFilter.FILTER_REJECT;
         }
-      });
-      for (let n = w.nextNode(); n; n = w.nextNode()) {
-        const v = n.nodeValue, m = dichChu(v);
-        if (m !== v) {
-          // <option> khong co value: gia tri = chu goc -> giu chu goc lam value truoc khi dich (bo loc van khop du lieu)
-          const pe = n.parentElement;
-          if (pe && pe.tagName === 'OPTION' && !pe.hasAttribute('value')) pe.setAttribute('value', v);
-          n.nodeValue = m;
-        }
+        return NodeFilter.FILTER_ACCEPT;
       }
-      document.querySelectorAll('[title]').forEach(e => {
-        const v = e.getAttribute('title'), m = dichChu(v);
-        if (m !== v) e.setAttribute('title', m);
-      });
-    } finally { dang = false; }
+    });
+    for (let n = w.nextNode(); n; n = w.nextNode()) dichNut(n);
+    if (goc.hasAttribute && goc.hasAttribute('title')) dichTitle(goc);
+    goc.querySelectorAll('[title]').forEach(e => { if (!boQua(e)) dichTitle(e); });
   }
-  const hoan = () => { if (!hen) hen = setTimeout(chay, 60); };
-  new MutationObserver(ms => { if (!dang) hoan(); })
-    .observe(document.documentElement, { childList: true, subtree: true, characterData: true });
-  window.addEventListener('hashchange', hoan);
-  document.addEventListener('DOMContentLoaded', hoan);
-  hoan();
+  const obs = new MutationObserver(ms => {
+    for (const m of ms) {
+      if (m.type === 'characterData') { if (!boQua(m.target.parentElement)) dichNut(m.target); }
+      else m.addedNodes.forEach(dichCay);
+    }
+    obs.takeRecords();      // bỏ các thay đổi do chính mình vừa dịch
+  });
+  obs.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  const toanBo = () => { dichCay(document.body); obs.takeRecords(); };
+  document.addEventListener('DOMContentLoaded', toanBo);
+  if (document.body) toanBo();
 })();
