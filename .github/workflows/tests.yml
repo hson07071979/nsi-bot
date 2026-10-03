@@ -39,3 +39,5 @@ jobs:
         run: python tests/test_live_flags.py
       - name: Đèn tạm tính = regime2 (phát lại toàn kỳ) + exit_rules chịu cfg null
         run: python tests/test_regime_live.py
+      - name: Test luật tối đa 1 lệnh dò treo
+        run: python tests/test_max_unconf.py
