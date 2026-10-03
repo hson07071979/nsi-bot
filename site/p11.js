@@ -47,8 +47,8 @@ const BK = {
   RUIRO:['Cổng rủi ro tài chính',       'đạt/chặn', '>=', 'cg'],
 };
 const BKCHU = {
-  DK5: 'Đã tắt từ 25/09/2026: loại vùng LNST tăng 0–25% làm giảm lợi nhuận ở mọi nấc thử (backtest R11). Chỉ hiện để tham khảo.',
-  Mom: 'Thang trượt (5 × mức tăng 3 tháng), không có ngưỡng đạt/trượt.',
+  DK5: 'Đã tắt — chỉ tham khảo',
+  Mom: 'Thang trượt',
 };
 
 // Chỉ mấy chỉ tiêu TĂNG TRƯỞNG mới cần dấu +/−. Nền giá hay biên độ dao động
@@ -123,8 +123,7 @@ function bangKiem(x, F){
   const cs  = chk.filter(c => (BK[c[0]] || [])[3] === 'cs');
   const _eps = _epsQuy(x, F);
   if (_eps) cs.unshift(['EPS', _eps[0], null, 'info', null,
-    `Quý ${_eps[1]} · suy ra từ LNST quý ÷ (vốn hoá ÷ giá), theo số cổ phiếu hiện tại. `
-    + `Mức tăng trưởng xem dòng "C — LNST quý YoY".`]);
+    `Quý ${_eps[1]}`]);
   const thieu = cg.filter(c => c[3] === 'no');
   const nas   = chk.filter(c => c[3] === 'na');
   const dat   = cg.filter(c => c[3] === 'ok').length;
@@ -173,9 +172,6 @@ function bangKiem(x, F){
     ${cg.map(dong).join('')}
     ${cs.length ? `<div class="bkhead">Chấm điểm CANSLIM — tổng ${x.score} điểm, cần ≥ ${nguong}</div>${
       cs.map(dong).join('')}` : ''}
-    <div class="bkchan">Mọi con số trên đây do bot tính sẵn mỗi tối; trang web chỉ hiện lại,
-      không chấm điểm trong trình duyệt. Điểm CANSLIM phản ánh <b>ngày hiện tại</b>,
-      không phải ngày phát tín hiệu.</div>
   </details>`;
 }
 
@@ -814,6 +810,7 @@ function pageLiveTrucTiep(root, L) {
   root.innerHTML = `
   <h1>Hệ thống hôm nay</h1>
   ${bangSoLieuCu()}
+  ${typeof bangLenhBan === 'function' ? bangLenhBan() : bangThoat()}
   ${typeof bangDieuKhienChuong === 'function' ? bangDieuKhienChuong() : ''}
 
   <div class="card" style="display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
@@ -840,7 +837,6 @@ function pageLiveTrucTiep(root, L) {
     </div>
   </div>
 
-  ${bangThoat()}
 
   ${mua.length ? bang(mua, '🔴 Đủ điểm mua', '')
     : '<h2>🔴 Đủ điểm mua</h2><p class="muted" style="margin-top:0">Chưa có mã nào.</p>'}

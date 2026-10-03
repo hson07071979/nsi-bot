@@ -19,7 +19,7 @@ const DICH = [
   [/OrdImb ([\d.,]+) < ([\d.,]+)/g, 'lệnh mua chỉ gấp $1 lần lệnh bán (cần ≥ $2)'],
   [/OrdImb ([\d.,]+)/g, 'lệnh mua gấp $1 lần lệnh bán'],
   [/Cond9: ❌ \(kể cả đủ cổng cũng chỉ là lệnh dò, bán T\+3\)/g,
-   'Lệnh mua lớn hơn lệnh bán: ❌ (dù đủ các điều kiện khác cũng chỉ mua thử, bán ở phiên thứ 3)'],
+   'Lệnh mua lớn hơn lệnh bán: ❌ (chỉ mua thử)'],
   [/XÁC NHẬN ĐK9/g, 'XÁC NHẬN LỆNH MUA LỚN HƠN LỆNH BÁN'],
   [/ĐK9 TỐI NGÀY MUA/g, 'MUA > BÁN TỐI NGÀY MUA'],
   [/(?:Cond9|ĐK9|DK9|Điều kiện 9|OrdImb)/g, 'Lệnh mua lớn hơn lệnh bán'],
@@ -140,7 +140,12 @@ function dichChu(s) {
       });
       for (let n = w.nextNode(); n; n = w.nextNode()) {
         const v = n.nodeValue, m = dichChu(v);
-        if (m !== v) n.nodeValue = m;
+        if (m !== v) {
+          // <option> khong co value: gia tri = chu goc -> giu chu goc lam value truoc khi dich (bo loc van khop du lieu)
+          const pe = n.parentElement;
+          if (pe && pe.tagName === 'OPTION' && !pe.hasAttribute('value')) pe.setAttribute('value', v);
+          n.nodeValue = m;
+        }
       }
       document.querySelectorAll('[title]').forEach(e => {
         const v = e.getAttribute('title'), m = dichChu(v);

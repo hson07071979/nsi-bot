@@ -96,6 +96,8 @@ def main():
         prod_config_hash=D.get('prod_config_hash'),
         cfg=CF,
         book=D.get('book'),
+        # ke hoach ban phien toi cho ma trong So tay anh Son (03/10/2026) — chuong ntfy cua anh Son
+        ke_hoach_so_tay=D.get('ke_hoach_so_tay') or [],
         signals_today=D.get('signals_today') or [],
         signals_recent=D.get('signals_recent') or [],
         light_by_date=D.get('light_by_date') or {},

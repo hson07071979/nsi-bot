@@ -333,7 +333,7 @@ async function xinQuyenThongBao() {
   RTV.thongbao = (q === 'granted');
   luuCaiDat();
   veLaiTrang('chuong');
-  if (RTV.thongbao) new Notification('Nguyễn Sơn Invest', { body: 'Chuông báo đã bật. Khi có mã đủ điểm mua, thông báo sẽ hiện ở đây kể cả khi anh đang ở tab khác.' });
+  if (RTV.thongbao) new Notification('Nguyễn Sơn Invest', { body: 'Chuông báo đã bật.' });
 }
 
 /* ---------- nhớ lựa chọn của anh Sơn giữa các lần mở trang ---------- */
@@ -360,9 +360,10 @@ function docCaiDat() {
 function bangDieuKhienChuong() {
   const cho = ('Notification' in window) ? Notification.permission : 'khong-ho-tro';
   const tuoiOI = (LIVE.server && LIVE.server.asof) ? hhmm(LIVE.server.asof) : '—';
-  const _tg = (LIVE.server && LIVE.server.telegram_cai === false)
-    ? `<div class="card" style="border-color:var(--critical);margin-bottom:10px"><b style="color:var(--critical)">⚠ TELEGRAM CHƯA CÀI — chuông MUA / BÁN không về điện thoại.</b>
-       <div class="muted" style="font-size:12.5px">Repo nguyensoninvest → Settings → Secrets and variables → Actions: tạo <code>TELEGRAM_TOKEN</code> và <code>TELEGRAM_CHAT</code>. Trong lúc chờ: mở trang này, bật chuông trình duyệt bên dưới.</div></div>` : '';
+  const _tg = (typeof laQuanTri === 'function' && laQuanTri() && LIVE.server
+                && LIVE.server.telegram_cai === false && !LIVE.server.ntfy_cai)
+    ? `<div class="card" style="border-color:var(--critical);margin-bottom:10px"><b style="color:var(--critical)">⚠ Chuông điện thoại (ntfy) chưa cài</b>
+       <div class="muted" style="font-size:12.5px">Repo nguyensoninvest → Settings → Secrets and variables → Actions → <code>NTFY_TOPIC</code></div></div>` : '';
   return `${_tg}
   <div class="card rtbox">
     <div class="rtrow">
@@ -370,9 +371,8 @@ function bangDieuKhienChuong() {
         <div style="font-weight:660;color:var(--text-primary)">Chuông báo real-time</div>
         <div class="muted" style="font-size:12.5px">
           ${LIVE.rtOn
-            ? `Đang hỏi giá <b>${RTV.n} mã</b> mỗi <b>${RTV.nhip / 1000} giây</b> thẳng từ bảng giá VPS —
-               không qua máy chủ nào, không tốn phí. Cập nhật lúc <b>${RTV.at ? RTV.at.toLocaleTimeString('vi') : '—'}</b>.`
-            : 'Chưa nối được bảng giá. Trang đang đọc ảnh chụp của máy chủ.'}
+            ? `${RTV.n} mã · ${RTV.nhip / 1000} giây/lần · cập nhật <b>${RTV.at ? RTV.at.toLocaleTimeString('vi') : '—'}</b>`
+            : 'Chưa nối được bảng giá'}
         </div>
       </div>
       <label class="sw"><input type="checkbox" ${RTV.bat ? 'checked' : ''}
@@ -380,16 +380,15 @@ function bangDieuKhienChuong() {
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Âm thanh</div>
-        <div class="muted" style="font-size:12.5px">Hai tiếng cao khi có mã đủ điểm mua, một tiếng trầm khi mã watchlist đang tăng mạnh.</div></div>
+</div>
       <label class="sw"><input type="checkbox" ${RTV.amthanh ? 'checked' : ''}
         onchange="RTV.amthanh=this.checked;luuCaiDat()"><span></span></label>
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Thông báo hệ điều hành</div>
-        <div class="muted" style="font-size:12.5px">Thứ duy nhất kêu được khi anh đang ở tab khác.
-          ${cho === 'granted' ? 'Đã bật.' : cho === 'denied'
-            ? 'Trình duyệt đang chặn — mở khoá ở biểu tượng 🔒 cạnh thanh địa chỉ.'
-            : 'Chưa xin quyền.'}</div></div>
+        <div class="muted" style="font-size:12.5px">${cho === 'granted' ? 'Đã bật' : cho === 'denied'
+            ? 'Trình duyệt đang chặn (mở khoá ở 🔒 cạnh thanh địa chỉ)'
+            : 'Chưa bật'}</div></div>
       ${cho === 'granted'
         ? `<label class="sw"><input type="checkbox" ${RTV.thongbao ? 'checked' : ''}
              onchange="RTV.thongbao=this.checked;luuCaiDat()"><span></span></label>`
@@ -397,8 +396,7 @@ function bangDieuKhienChuong() {
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Nhắc lại chuông "để mắt"</div>
-        <div class="muted" style="font-size:12.5px">Mã watchlist tăng ≥ 2,5% thì kêu một lần, rồi im bấy nhiêu lâu
-          mới nhắc lại nếu nó vẫn còn tăng. Chuông đỏ (đủ điểm mua) không bị ảnh hưởng — vẫn kêu ngay.</div></div>
+</div>
       <select class="fin" style="width:120px" onchange="RTV.demat_nghi=+this.value;luuCaiDat()">
         ${[[5, '5 phút'], [8, '8 phút'], [10, '10 phút'], [15, '15 phút']].map(
           ([v, l]) => `<option value="${v}"${+RTV.demat_nghi === v ? ' selected' : ''}>${l}</option>`).join('')}
@@ -406,19 +404,12 @@ function bangDieuKhienChuong() {
     </div>
     <div class="rtrow">
       <div><div style="font-weight:660;color:var(--text-primary)">Nhịp hỏi giá</div>
-        <div class="muted" style="font-size:12.5px">Nhanh hơn thì hao pin hơn. 15 giây là đủ cho một hệ vào lệnh cuối phiên.</div></div>
+</div>
       <select class="fin" style="width:120px" onchange="RTV.nhip=+this.value;luuCaiDat();batRealtimeVPS()">
         ${[[10000, '10 giây'], [15000, '15 giây'], [30000, '30 giây'], [60000, '1 phút']].map(
           ([v, l]) => `<option value="${v}"${RTV.nhip === v ? ' selected' : ''}>${l}</option>`).join('')}
       </select>
     </div>
-    <div class="note info" style="margin:10px 0 0"><b>Một chỗ trung thực phải nói rõ.</b>
-      Giá, khối lượng, GTGD ở trên là <b>real-time</b>. Riêng <b>Điều kiện 9 — cỡ lệnh mua so cỡ lệnh bán</b>
-      cần <b>số lệnh</b> đặt mua/đặt bán, mà sàn chỉ công bố <b>sau khi đóng cửa</b> (đo thật phiên 24/09:
-      trong phiên 0/106 mã HOSE có số này ở FireAnt, Vietstock, CafeF; buổi tối mới đủ). Vì vậy trong phiên
-      mã đủ các điều kiện khác chỉ đứng ở mức <b>sắp đủ — chờ dòng tiền</b>; lệnh mua được xác nhận ở bản dựng tối
-      (máy chủ quét lần cuối lúc <b>${tuoiOI}</b>).
-      Thà báo thiếu còn hơn báo mua một phiên mà bộ máy chín lớp vốn không đụng vào.</div>
   </div>`;
 }
 

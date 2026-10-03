@@ -29,7 +29,6 @@ const PAGES = [
  ['danhmuc','Danh mục hệ thống', pageSoLenh],
  ['watchlist','Watchlist', pageWatchlist],
  ['boloc','Bộ lọc', pageScreener],
- ['lenh','Lịch sử lệnh', pageTrades],
  ['bieudo','Chi tiết mã', pageChart],
  ['nganh','So sánh trong ngành', pageNganh],
  ['kiemdinh','Kiểm định',        pageKiemDinh,  true],   // an khoi menu theo yeu cau

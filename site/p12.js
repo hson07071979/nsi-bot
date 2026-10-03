@@ -308,30 +308,29 @@ function loaiThuCong() {
 
 /* dấu B / S vẽ trên biểu đồ nến — gộp backtest + sổ thật + sổ tay */
 function dauMuaBan(sym) {
+  // 03/10/2026 (anh Sơn): dấu trên biểu đồ = ĐÚNG các lệnh ở bảng Lịch sử lệnh (trang Hiệu suất)
+  // + vị thế hệ thống đang cầm. Không trộn sổ ghi tiến (cấu hình cũ, ngày bán khác) để
+  // khỏi có dấu "lạ". Lệnh Sổ tay của anh Sơn chỉ hiện ở trang quản trị.
   const m = [];
-  // Vị thế ĐANG MỞ của bộ máy — backtest chỉ ghi dấu cho lệnh đã đóng, nên nếu
-  // thiếu chỗ này thì mã đang cầm không có chữ B nào trên biểu đồ. Đúng cái mã
-  // quan trọng nhất lại là mã không thấy dấu.
-  // dau cua CHINH nen (co ca gia dieu chinh pxa) dung TRUOC de bo loc trung giu ban day du
-  (((D.candles || {})[sym] || {}).marks || []).forEach(x => m.push(x));
+  const tatCa = (D.marks || {})[sym];
+  (tatCa || ((D.candles || {})[sym] || {}).marks || []).forEach(x => m.push(x));
   (D.open_positions || []).forEach(p => {
-    // dau B = gia THO da khop (nen ve bang gia tho); entry_px la gia von dieu chinh GOM PHI
-    if (p.sym === sym) m.push({ t: 'B', d: p.entry, px: ((p.entry_raw || p.entry_px) / 1000).toFixed(2),
-                                pxa: (p.entry_px / 1000 / (1 + PHI_MUA)).toFixed(2) });
+    if (p.sym !== sym) return;
+    const raw = p.entry_raw ? p.entry_raw / 1000 : p.entry_px / 1000 / (1 + PHI_MUA);
+    m.push({ t: 'B', d: p.entry, px: +raw.toFixed(2), pxa: +raw.toFixed(2) });
   });
-  const F = pfData();
-  (F && F.open || []).forEach(p => { if (p.sym === sym) m.push({ t: 'B', d: p.entry, px: (p.entry_px / 1000).toFixed(2) }); });
-  (F && F.closed || []).forEach(c => {
-    if (c.sym !== sym) return;
-    m.push({ t: 'B', d: c.entry, px: c.entry_px });
-    m.push({ t: 'S', d: c.exit, px: c.exit_px });
-  });
-  manualGop().trades.forEach(t => {
+  if (laQuanTri()) manualGop().trades.forEach(t => {
     if (t.sym !== sym) return;
-    if (t.buy_d) m.push({ t: 'B', d: t.buy_d, px: t.buy_px });
-    if (t.sell_d) m.push({ t: 'S', d: t.sell_d, px: t.sell_px });
+    if (t.buy_d) m.push({ t: 'B', d: t.buy_d, px: t.buy_px, sotay: true });
+    if (t.sell_d) m.push({ t: 'S', d: t.sell_d, px: t.sell_px, sotay: true });
   });
   return m;
+}
+
+/* trang quản trị (nsi-quantri) hoặc máy anh Sơn mở file trực tiếp — chỉ ở đây mới hiện Sổ tay */
+function laQuanTri() {
+  const h = location.hostname || '';
+  return /nsi-quantri/.test(h) || location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1';
 }
 
 /* bảng danh mục rút gọn — dùng chung cho trang Hiệu suất và trang Chuông báo,
@@ -480,21 +479,18 @@ function pageSoLenh(root) {
         <td>${nhanNguon(c.nguon)}</td></tr>`).join('')}
     </tbody></table></div>`;
 
-  const nhatKy = !(F && F.log && F.log.length) ? '' : `
-    <h2>Nhật ký sổ ghi tiến <span class="muted" style="font-size:13px;font-weight:400">(portfolio.json — sổ riêng, vốn và số cổ khác sổ hệ thống)</span></h2>
-    
-    <div class="card">${F.log.slice(0, 25).map(d => `
-      <div style="display:flex;gap:14px;padding:8px 0;border-bottom:1px solid var(--line)">
-        <b style="min-width:64px">${ddmm(d.date)}</b>
-        <div>${(d.items || []).map(x => `<div>${x}</div>`).join('')}</div>
-      </div>`).join('')}</div>`;
+  // 03/10/2026 (anh Sơn): nhật ký chỉ còn dòng MUA / BÁN, mỗi dòng một câu ngắn.
+  const nkDong = nhatKyNgan(F);
+  const nhatKy = !nkDong.length ? '' : `
+    <h2>Nhật ký sổ giao dịch thực tế</h2>
+    <div class="card nk">${nkDong.slice(0, 40).map(x => `
+      <div class="nkd"><b>${x.ngay}</b> · <span class="${x.mua ? 'nkm' : 'nkb'}">${x.mua ? 'MUA' : 'BÁN'}</span> <b class="sym">${esc(x.sym)}</b> ${x.gia}${x.them ? ` · <span class="${x.cls || ''}">${x.them}</span>` : ''}</div>`).join('')}</div>`;
 
   const lenhDo = lenhDoHomNay(new Set(dm.map(x => x.sym)));
   root.innerHTML = `
   <h1>Danh mục hệ thống</h1>
   ${bangLenhDo(lenhDo)}
-  ${cauHinhCu(F) ? `<div class="card" style="border-color:var(--s5)"><b>SỔ GHI TIẾN ĐANG Ở CẤU HÌNH CŨ</b>
-    <span class="muted">(${esc(F.prod_config_hash)} ≠ ${esc((D.cfg_prod || {}).prod_config_hash || '?')}) — chờ lần chạy sổ kế tiếp nâng cấp trạng thái; cột Việc cần làm của sổ này tính lại trên trình duyệt theo luật mới.</span></div>` : ''}
+  ${cauHinhCu(F) ? `<div class="card" style="border-color:var(--s5)"><b>SỔ GHI TIẾN CHỜ CẬP NHẬT CẤU HÌNH MỚI</b></div>` : ''}
 
   <div class="grid kpis">
     ${kpi('Đang nắm giữ', `${dm.length} mã`, [
@@ -519,4 +515,37 @@ function pageSoLenh(root) {
   ${nhatKy}
 
   `;
+}
+
+
+/* nhật ký ngắn: rút từ F.log chỉ các dòng MUA / BÁN; bỏ nâng cấp, hoàn tác, dựng lại sổ.
+   Lệnh bán đã bị HOÀN TÁC thì không hiện. */
+function nhatKyNgan(F) {
+  const log = (F && F.log) || [];
+  const hoan = new Set();
+  log.forEach(d => (d.items || []).forEach(x => {
+    const m = /^HOÀN TÁC .*?([A-Z0-9]{3,4}) ngày (\d{4}-\d{2}-\d{2})/.exec(String(x));
+    if (m) hoan.add(m[1] + '|' + m[2]);
+  }));
+  const so = v => (+v).toFixed(2).replace('.', ',');
+  const out = [];
+  log.forEach(d => (d.items || []).forEach(x0 => {
+    const x = String(x0);
+    let m = /^MUA ([A-Z0-9]{3,4}) ([\d.]+) ×[^(]*\(([\d.]+)% NAV/.exec(x);
+    if (m) { out.push({ date: d.date, ngay: ddmm(d.date), mua: true, sym: m[1], gia: so(m[2]),
+                        them: m[3].replace('.', ',') + '% tài khoản' }); return; }
+    m = /^BÁN ([A-Z0-9]{3,4}) ([\d.]+)(.*)$/.exec(x);
+    if (m) {
+      if (hoan.has(m[1] + '|' + d.date)) return;
+      const l = /lãi\/lỗ sau phí ([-+]?[\d.]+)%/.exec(m[3]);
+      const phan = /— (\d+)% vị thế/.exec(m[3]);
+      const v = l ? +l[1] : null;
+      let them = v == null ? '' : (v >= 0 ? 'lãi +' : 'lỗ −') + Math.abs(v).toFixed(1).replace('.', ',') + '%';
+      if (phan && +phan[1] < 100) them = 'bán ' + (+phan[1] < 45 ? '1/3' : phan[1] + '%') + (them ? ' · ' + them : '');
+      out.push({ date: d.date, ngay: ddmm(d.date), mua: false, sym: m[1], gia: so(m[2]), them,
+                 cls: v == null ? '' : (v >= 0 ? 'pos' : 'neg') });
+    }
+  }));
+  out.sort((a, b) => a.date < b.date ? 1 : a.date > b.date ? -1 : (a.mua === b.mua ? 0 : a.mua ? 1 : -1));
+  return out;
 }

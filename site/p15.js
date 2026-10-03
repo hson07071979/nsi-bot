@@ -205,10 +205,6 @@ function soiCFO() {
   return `
   <h2 style="margin-top:34px">Chỉ vướng cổng dòng tiền — soi tay
     <span class="muted" style="font-weight:400;font-size:14px">${L.length} mã</span></h2>
-  <p class="lead" style="margin-top:-4px">Qua hết mọi điều kiện sàng lọc, chỉ bị
-  <b>một</b> cổng chặn: dòng tiền kinh doanh 12 tháng đang âm. Hệ thống
-  <b>vẫn không mua</b> những mã này — danh sách để anh tự rà lại, vì có trường hợp
-  dòng tiền âm là do ôm hàng hoặc trả trước chứ không phải doanh nghiệp yếu.</p>
   <div class="card tblwrap"><table>
     <thead><tr><th>Mã</th><th style="text-align:right">Điểm</th>
       <th style="text-align:right">CFO 12T</th><th style="text-align:right">Nền</th>
