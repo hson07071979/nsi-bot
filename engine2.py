@@ -60,6 +60,8 @@ CFG = dict(
   log_cands=False,          # record every same-day candidate set (ranking research)
 )
 
+EXTRA = {}   # R30: mang nghien cuu (wave_on [N,S] bool da lui 1 phien, liq [N]) — rong = PROD
+
 class Pos:
     __slots__=('sym','j','ei','epx','sh','peak','b20','b10','part','pyr','sector','bo_low','stage','oi_ok','tgt','eraw','pyr_d','pyr_raw','pyr_adj','x0','xp')
     def __init__(s,**kw):
@@ -79,7 +81,7 @@ def _pr(vals, higher_better=True):
     for r,k in enumerate(order): out[k]=r/(n-1)
     return out
 
-RANKERS=('score','base','oi','score_base','score_oi','score_base_oi','multi','score_sector','pct')
+RANKERS=('score','base','oi','score_base','score_oi','score_base_oi','multi','score_sector','pct','score_wave')
 def rank_rows(rows, mode='score', held_sectors=()):
     if not rows: return rows
     if mode=='score':          # CURRENT PROD behaviour: CANSLIM score desc, then symbol
@@ -95,6 +97,7 @@ def rank_rows(rows, mode='score', held_sectors=()):
     elif mode=='score_base_oi': key=lambda k:-(sc[k]+bs[k]+oi[k])
     elif mode=='multi':         key=lambda k:-(sc[k]+bs[k]+oi[k]+vr[k]+rs[k])
     elif mode=='score_sector':  key=lambda k:(rows[k]['sector'] in held_sectors, -rows[k]['sc'])
+    elif mode=='score_wave':    key=lambda k:(not rows[k].get('wv',False), -rows[k]['sc'])   # R30 K8: ma co song nganh (T-1) duoc tien truoc
     else: raise ValueError(mode)
     idx=sorted(range(len(rows)), key=lambda k:(key(k), rows[k]['sym']))
     rows[:]=[rows[k] for k in idx]
@@ -293,6 +296,11 @@ def _run_core(cfg=None, log=True):
         TOPN=build_topn(I, int(C.get('top_n',300)))
     base_ok = (base_rng<=C['base_range'])
     if C['use_shelf']: base_ok = base_ok | (shelf_rng<=C['shelf_range'])
+    # R30 K3 (nghien cuu, mac dinh TAT): nen toi da wave_base khi nganh/theme dang co song (T-1).
+    _WV = EXTRA.get('wave_on') if (C.get('wave_base') or C.get('wave_cap')) else None
+    if C.get('wave_base') and _WV is not None:
+        base_ok = base_ok | ((base_rng<=float(C['wave_base'])) & _WV)
+    _LQ = EXTRA.get('liq') if C.get('liq_thr') else None
     _thr = (I['thr_hard'] if C['hard_ceiling'] else I['thr'])
     if C.get('trig_pct') is not None:
         _thr = np.full_like(_thr, float(C['trig_pct']))
@@ -336,6 +344,15 @@ def _run_core(cfg=None, log=True):
             # chieu/ATC cua T+2. probe_exit='close' ban o gia dong cua T+2 (thuc te).
             p=pos[sym]; op=(AC[i,p.j] if C.get('probe_exit','open')=='close' else AO[i,p.j])
             if np.isnan(op) or op<=0: continue
+            # R30 K7 (nghien cuu, mac dinh TAT): lenh do truot DK9 nhung tai phien duoc ban
+            # dau tien da lai >= probe_keep (gia dong cua, da gom phi mua) -> giu, chay cua ra thuong.
+            # probe_keep_mode: 'gain' = lai hien tai; 'peak' = dinh lai tu luc mua.
+            _pk = C.get('probe_keep')
+            if _pk is not None:
+                _g = AC[i,p.j]/p.epx-1
+                _ref = max(float(p.peak), _g) if C.get('probe_keep_mode','gain')=='peak' else _g
+                if not np.isnan(_g) and _ref >= _pk:
+                    p.stage=2; continue
             got=p.sh*op*(1-C['fee_sell']-SS); cash+=got
             trades.append(dict(sym=str(sym),sector=p.sector,entry=str(cal[p.ei]),exit=str(cal[i]),
                   entry_px=round(float(p.epx),2),exit_px=round(float(op),2),held=int(i-p.ei),
@@ -423,11 +440,28 @@ def _run_core(cfg=None, log=True):
                                    den=str(cal[min(cb_until,N-1)])))
                 cb_streak=0
             if i<=cb_until: smul*=float(C['cb_cut'])
-        if smul>0 and len(pos)<C['max_pos_n']:
+        _mpn=C['max_pos_n']; _mtot=C['max_total']
+        if _LQ is not None and _LQ[i] < float(C['liq_thr']):
+            if C.get('liq_maxn') is not None: _mpn=int(C['liq_maxn'])
+            if C.get('liq_total') is not None: _mtot=float(C['liq_total'])
+        if smul>0 and len(pos)<_mpn:
             two = C.get('stage1') is not None
             rows=screen(i, d, I, tls, sect, C, TOPN, base_rng, base_ok, trig, day,
                         held=pos, blocked=blocked, ignore_ordimb=two)
-            rank_rows(rows, C.get('rank_mode','score'), {q.sector for q in pos.values()})
+            _rmode=C.get('rank_mode','score')
+            if _rmode=='score_wave' or C.get('wave_when_short'):
+                _wv2=EXTRA.get('wave_on')
+                for _r in rows: _r['wv']=bool(_wv2[i,_r['j']]) if _wv2 is not None else False
+            # R31-B (nghien cuu, mac dinh TAT): chi uu tien ma co song KHI tien khong du cho moi ung vien.
+            if C.get('wave_when_short') and len(rows)>1:
+                _need=0.0
+                for _r in rows:
+                    _A0=AL.entry_target(nav, 1e30, 0.0, 0.0, 0, None, risk_mul=_r['rmul'], base_rng=_r['base'],
+                                        cfg=dict(C, max_pos_n=10**9), light_mul=smul)
+                    _need+=_A0['actual']
+                _inv=sum((AC[i,q.j] if not np.isnan(AC[i,q.j]) else q.epx)*q.sh for q in pos.values())
+                if _need > min(cash, nav*C['max_total']-_inv): _rmode='score_wave'
+            rank_rows(rows, _rmode, {q.sector for q in pos.values()})
             day_log=[] if C.get('log_cands') and rows else None
             for rw in rows:
                 j=rw['j']; sym=rw['sym']; sc=rw['sc']; rmul=rw['rmul']; bm=rw['bm']; pts=rw['pts']
@@ -435,7 +469,14 @@ def _run_core(cfg=None, log=True):
                 if day_log is not None: day_log.append(dict(sym=sym,sc=sc,base=rw['base'],oi=rw['oi'],
                         volr=rw['volr'],rs=rw['rs'],mom=rw['mom'],pct=rw['pct'],sector=secn,fund=rw['fund'],
                         taken=False,why=None))
-                if C.get('max_n_in_loop') and len(pos)>=C['max_pos_n']:
+                # R31-A (nghien cuu, mac dinh TAT): dang co >= max_unconf lenh do CHUA xac nhan / da truot
+                # Cond9 nhung chua ban duoc (stage 1 hoac 3) thi chua mo lenh do moi. Khong doi co lenh.
+                if C.get('max_unconf') is not None:
+                    _st=(1,3) if C.get('unconf_count','both')=='both' else (1,)
+                    if sum(1 for q in pos.values() if getattr(q,'stage',0) in _st) >= int(C['max_unconf']):
+                        if day_log is not None: day_log[-1]['why']='max_unconf'
+                        continue
+                if C.get('max_n_in_loop') and len(pos)>=_mpn:
                     if day_log is not None: day_log[-1]['why']='max_pos_n'
                     continue
                 # LOI `tot = NaN` (so 16/09, sua 18/09) -------------------------
@@ -449,11 +490,13 @@ def _run_core(cfg=None, log=True):
                 else:                                   # ban CU, giu lai de chay A/B
                     tot=sum(AC[i,q.j]*q.sh for q in pos.values())
                     sec=sum(AC[i,q.j]*q.sh for q in pos.values() if q.sector==secn)
-                if tot/nav>=C['max_total']:
+                if tot/nav>=_mtot:
                     if day_log is not None: day_log[-1]['why']='max_total'
                     break
+                _cfgA=dict(C, max_pos_n=10**9, max_total=_mtot)
+                if C.get('wave_cap') and _WV is not None and _WV[i,j]: _cfgA['sector_cap']=float(C['wave_cap'])
                 A=AL.entry_target(nav, cash, tot, sec, 0, None, risk_mul=rmul,
-                                  base_rng=rw['base'], cfg=dict(C, max_pos_n=10**9), light_mul=smul)
+                                  base_rng=rw['base'], cfg=_cfgA, light_mul=smul)
                 tgt=A['actual']
                 if not A['ok']:
                     if day_log is not None: day_log[-1]['why']=A['binding']

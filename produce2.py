@@ -106,7 +106,15 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           stage1=1.0, probe_exit='close',
           # BAN SOM NHAT T+3 (anh Son 26/09: tai khoan cua anh chua ban duoc ATC T+2). Ap cho
           # MOI lenh ban (ke ca hard stop, lenh do truot DK9). +906,2%, DD 11,97%, PF 2,78.
-          sell_from=3, hs_from=3)
+          sell_from=3, hs_from=3,
+          # TOI DA 1 LENH DO TREO (anh Son duyet 03/10/2026, research R31): dang co >= 1 lenh do
+          # CHUA xac nhan DK9 (mua trong phien nay) hoac DA truot DK9 nhung chua toi T+3 de ban thi
+          # KHONG mo lenh do moi. Khong doi co lenh do. Du lieu 02/10: +982,4% -> +1.057,9%,
+          # DD 12,70% -> 11,85%, PF 3,08 -> 4,28, 297 -> 213 deal, 2026 +14,9% -> +35,7%.
+          # MC lo 10% x 30: tv +868% -> +893%, DD p90 14,3% -> 12,8%, PF 3,07 -> 4,08.
+          # Gia phai tra: mat PVT 27/02/2026 (+335 tr), GEE 11/04/2025 (+317 tr); mua mo cua T+1
+          # +375% -> +172% (nhay voi gia khop). Mot dinh nghia: engine2 (stage 1/3), portfolio.py, live_scan.
+          max_unconf=1, unconf_count='both')
 PRESETS={
  'thucte'  : ('Có trượt giá 0,2% (thực tế)', dict(slip=0.002)),
  'toanTT'  : ('Toàn thị trường (không giới hạn thanh khoản)', dict(use_top_liquid=False)),
@@ -257,7 +265,10 @@ if __name__=='__main__':
     # NAV nay (anh Son 24/09: 25% la 25% NAV hien tai, khong phai 25% cua 1 ty).
     out['book']={'book_id':'HE_THONG','asof':str(cal[-1]),'nav':round(float(r['nav'])),
                  'cash':round(float(r['cash'])),
+                 # held + probe_fail: live_scan dem lenh do treo (luat max_unconf, 03/10/2026)
                  'positions':[{'sym':p.sym,'sector':p.sector,'shares':int(p.sh),
+                               'held':int(len(cal)-1-p.ei),
+                               'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
                                'value':round(float(r['d']['AdjClose'][-1,p.j] if r['d']['AdjClose'][-1,p.j]==r['d']['AdjClose'][-1,p.j] else p.epx)*int(p.sh))}
                               for p in r['pos'].values()]}
     out['universe_n']=int(len(r['d']['sym'])); out['asof']=str(cal[-1])
@@ -389,7 +400,8 @@ if __name__=='__main__':
         'use_ftd', 'use_pyramid', 'use_ordimb',
         'cb_enable', 'stage1', 'entry_mode', 'entry_next_open', 'hs_from', 'sell_from', 'fill_ratio',
         'trig_hose', 'trig_hnx', 'dk5_lo', 'dk5_hi', 'mo_by', 'mo_need', 'mo_window',
-        'mo_stop', 'mo_stop_until', 'valve_min', 'ceil_vol_floor', 'probe_exit', 'pre_proxy', 'pre_min')}
+        'mo_stop', 'mo_stop_until', 'valve_min', 'ceil_vol_floor', 'probe_exit', 'pre_proxy', 'pre_min',
+        'max_unconf', 'unconf_count')}
 
     import hashlib as _hl
     _full = dict(E.CFG); _full.update(PROD)
