@@ -501,7 +501,9 @@ function pageNotebook(root){
     if (!x){ out.innerHTML=''; return; }
     const need = x.state === 'chan'
       ? `<span class="lkmiss">${x.block}</span>`
-      : `<span class="need">Đóng cửa phiên tới <b style="color:var(--text-primary)">≥ ${dec(x.need_px)}</b> · KL <b style="color:var(--text-primary)">≥ ${trieu(x.need_vol)}</b></span>`;
+      : (() => { const ng = (typeof nguongPhien === 'function' && nguongPhien(sym)) || x;
+          return `<span class="need">Đóng cửa ${rtPhienMoi() ? 'hôm nay' : 'phiên tới'} <b style="color:var(--text-primary)">≥ ${dec(ng.need_px)}</b> · KL <b style="color:var(--text-primary)">≥ ${trieu(x.need_vol)}</b>${
+            ng.doi ? ` · tham chiếu hôm nay ${dec(ng.ref)}` : ''}</span>`; })();
     const tim = x.tim ? `<span class="lkbadge tim" title="${esc(x.tim_vi) || ''}">ĐÈN TÍM</span>` : '';
     const sub = (x.tim ? `<span class="lkmiss" style="color:var(--s7)">đèn tím: ${esc(x.tim_vi)} — lãi kiểu này không lặp lại quý sau</span><br>` : '')
       + ((x.state === 'cho')

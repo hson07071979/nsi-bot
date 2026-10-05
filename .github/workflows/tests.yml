@@ -43,3 +43,5 @@ jobs:
         run: python tests/test_max_unconf.py
       - name: Kế hoạch bán phiên tới + chốt 1/3 không vào PROD
         run: python tests/test_ke_hoach_ban.py
+      - name: Ngưỡng phiên (tham chiếu, bước giá, KL)
+        run: python tests/test_nguong_phien.py

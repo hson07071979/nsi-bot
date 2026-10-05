@@ -220,7 +220,7 @@ function tinhLaiTinHieuVPS() {
     hits.push({
       sym, name: t.name, level: lvl, fa: t.state === 'fa',
       price: +(r.price / 1000).toFixed(2), ref: +(r.ref / 1000).toFixed(2),
-      pct: +(pct * 100).toFixed(2), need_px: t.need_px,
+      pct: +(pct * 100).toFixed(2), need_px: (giaCan(r.ref, t.thr, t.exch) || t.need_px * 1000) / 1000,
       volr: +volr.toFixed(2), volr_proj: +volr_proj.toFixed(2), need_vol: t.need_vol, vol: r.vol,
       gtgd: +(r.tv / 1e9).toFixed(1), gtgd_proj: +(gtgd_proj / 1e9).toFixed(1),
       score: t.score, base: t.base,
