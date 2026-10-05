@@ -273,7 +273,9 @@ function pageChart(root){
     // ---- băng trạng thái + đèn tím ----
     let bn = '';
     if (x) bn += `<div class="ctstate ${x.state}"><b>${esc(x.label)}</b>` +
-      (x.state === 'cho' ? ` <span class="muted">— đóng cửa phiên tới ≥ <b style="color:var(--text-primary)">${x.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(1)} triệu cp</b></span>`
+      (x.state === 'cho' ? (() => { const ng = nguongPhien(sym) || x; const hn = rtPhienMoi();
+          return ` <span class="muted">— đóng cửa ${hn ? 'hôm nay' : 'phiên tới'} ≥ <b style="color:var(--text-primary)">${ng.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(2)} triệu cp</b>${
+            ng.doi ? ` · <span style="color:var(--warn)">tham chiếu hôm nay ${ng.ref} (khác giá đóng cửa ${x.price} — ngày giao dịch không hưởng quyền)</span>` : ''}</span>`; })()
        : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
     // Ma da nam giu: noi thang ra, keo doc dong trang thai o tren thanh "he thong
     // cham truot". Nguong o tren la cua PHIEN KE TIEP va danh cho mot lenh MUA MOI.
@@ -387,17 +389,23 @@ function pageChart(root){
 
 /* bảng chỉ số bên phải biểu đồ */
 function benPhai(sym, bars) {
+  // nến tải về rồi thì dùng lại (vẽ lại trang mỗi nhịp giá không được làm mất RSI)
+  try { if (!bars && CT.barsSym === sym && CT.bars && CT.bars.length) bars = CT.bars; } catch (e) {}
   const x = (D.lookup || {})[sym];
   const F = (D.funda || {})[sym];
   const cuoi = a => { if (!a) return null; for (let i = a.length - 1; i >= 0; i--) if (a[i] != null) return a[i]; return null; };
   const r = (NSI.rt || {})[sym];
-  const gia = r && r.price ? r.price / 1000 : (bars ? bars[bars.length - 1][4] : (x ? x.price : null));
+  const gia = r && r.price ? r.price / 1000 : (bars ? giaDong(bars[bars.length - 1]) : (x ? x.price : null));
   const pc0 = r && r.ref ? (r.price / r.ref - 1) * 100
-            : (bars && bars.length > 1 ? (bars[bars.length-1][4] / bars[bars.length-2][4] - 1) * 100 : null);
+            : (bars && bars.length > 1 ? (giaDong(bars[bars.length-1]) / giaDong(bars[bars.length-2]) - 1) * 100 : null);
+  const tlGia = (x && x.price > 0 && gia > 0) ? gia / x.price : 1;
   const d = [
     ['TB GTGD 20 phiên', x ? `${x.gtgd} tỷ` : '—'],
-    ['P/E', F ? (cuoi(F.pe) ?? '—') : '—'],
-    ['P/B', F ? (cuoi(F.pb) ?? '—') : '—'],
+    // P/E, P/B của nguồn tính theo giá đóng cửa ngày dựng trang (x.price). Giá
+    // real-time chạy thì nhân theo tỷ lệ giá, để không đứng cạnh giá "trực tiếp"
+    // mà vẫn là số của phiên trước (05/10/2026).
+    ['P/E', F && cuoi(F.pe) != null ? (cuoi(F.pe) * tlGia).toFixed(2) : '—'],
+    ['P/B', F && cuoi(F.pb) != null ? (cuoi(F.pb) * tlGia).toFixed(2) : '—'],
     ['ROE', F && cuoi(F.roe) != null ? cuoi(F.roe).toFixed(1) + '%' : '—'],
     ['RS (sức mạnh giá)', x && x.rs != null ? x.rs : '—'],
     ['RSI(14)', bars ? (rsi14(bars) ?? '—') : '—'],
@@ -415,7 +423,7 @@ function benPhai(sym, bars) {
     <div style="font-size:34px;font-weight:750;line-height:1.15;margin-top:6px">${gia != null ? (+gia).toFixed(2) : '—'}
       ${pc0 != null ? `<span style="font-size:17px" class="${pc0 >= 0 ? 'pos' : 'neg'}">${pc0 >= 0 ? '+' : ''}${pc0.toFixed(2)}%</span>` : ''}</div>
     <div class="muted" style="font-size:12.5px;margin-bottom:12px">${
-      (NSI.rt || {})[sym] ? 'real-time' : 'giá đóng cửa gần nhất'}</div>
+      (NSI.rt || {})[sym] ? (typeof phienMo === 'function' && !phienMo() ? 'giá khớp cuối · phiên đã đóng' : 'real-time') : 'giá đóng cửa gần nhất'}</div>
     <div class="muted" style="font-size:12px;letter-spacing:.06em;font-weight:700;margin-bottom:6px">CHỈ SỐ CƠ BẢN</div>
     <table style="width:100%">${d.map(([k, v]) =>
       `<tr><td class="muted" style="font-size:13px;padding:5px 0">${k}</td>
@@ -756,15 +764,24 @@ function duongQuy(host, labels, series, opt = {}) {
 }
 
 /* RSI 14 phiên — chỉ để tham khảo, hệ thống không dùng chỉ báo này để vào lệnh */
+/* 05/10/2026: (1) nến VPS là object {close} chứ không phải mảng [.., close] — bản cũ
+   đọc bars[i][4] ra undefined; (2) dùng cách làm mượt Wilder như TradingView /
+   bảng giá CTCK, bản cũ là trung bình đơn 14 phiên nên lệch vài điểm. */
+function giaDong(b) { return Array.isArray(b) ? b[4] : (b ? b.close : NaN); }
 function rsi14(bars) {
   if (!bars || bars.length < 15) return null;
+  const c = bars.map(giaDong).filter(v => v != null && isFinite(v));
+  if (c.length < 15) return null;
   let up = 0, dn = 0;
-  for (let i = bars.length - 14; i < bars.length; i++) {
-    const d = bars[i][4] - bars[i - 1][4];
-    if (d >= 0) up += d; else dn -= d;
+  for (let i = 1; i <= 14; i++) { const d = c[i] - c[i - 1]; if (d >= 0) up += d; else dn -= d; }
+  up /= 14; dn /= 14;
+  for (let i = 15; i < c.length; i++) {
+    const d = c[i] - c[i - 1];
+    up = (up * 13 + Math.max(d, 0)) / 14;
+    dn = (dn * 13 + Math.max(-d, 0)) / 14;
   }
-  if (up + dn === 0) return 50;
-  return Math.round(100 * up / (up + dn));
+  if (dn === 0) return up === 0 ? 50 : 100;
+  return +(100 - 100 / (1 + up / dn)).toFixed(1);
 }
 
 /* ============================================================================
@@ -942,7 +959,9 @@ async function moBieuDo(sym) {
   });
 
   // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
-  CT.bars = bars;
+  CT.bars = bars; CT.barsSym = sym;
+  // bảng chỉ số bên phải vẽ trước khi có nến (RSI "—") — vẽ lại khi nến đã về
+  try { const bp = document.getElementById('ctBen'); if (bp) bp.innerHTML = benPhai(sym, bars); } catch (e) {}
   const co = new Set(bars.map(b => b.time));
   const MK = (typeof dauMuaBan === 'function' ? dauMuaBan(sym)
                                              : (((D.candles || {})[sym] || {}).marks || []));

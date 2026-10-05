@@ -15,6 +15,7 @@ from engine import risk_gate, canslim_score, as_of
 from manual import loai as _loai
 from vithe import phan_bo, tom_tat_danh_muc
 from fa_ind import rmax as _rmax, rmin as _rmin
+import signal_spec as _SP
 
 
 def _names(path='data/by_exchange.csv'):
@@ -147,8 +148,19 @@ def build(d, I, tls, sect, cfg, topn, light='XANH', vi_the=None, nav=None):
             fund = sum(_pts.get(k, 0) for k in ('C1', 'C2', 'C3', 'A1', 'A2'))
 
         # --- hai nguong cua phien ke tiep ---
-        need_px = close * (1 + thr)          # gia tham chieu phien toi = gia dong cua hom nay
-        need_vol = vma * float(cfg['vol_floor'])
+        # 05/10/2026: dung DUNG phep so cua bo may (signal_spec.evaluate):
+        #  - gia: lam tron LEN theo buoc gia (truoc day round 2 so le: 45,60 x 1,056 =
+        #    48,1536 hien 48,15 — dong cua 48,15 thuc ra TRUOT, phai 48,20);
+        #  - KL: TB20 cua phien toi GOM ca phien toi (2*s19/18), khong phai 2*TB20 hom
+        #    nay (DGW hien 4,1 tr trong khi bo may can 4,33 tr).
+        # Ngay khong huong quyen thi tham chieu phien toi != gia dong cua hom nay:
+        # live_scan + trang web tinh lai tu tham chieu that cua phien.
+        need_px = _SP.gia_can(close, thr, ex) or close * (1 + thr)
+        _vs = [float(x) for x in d['Volume'][max(0, i - (_SP.MEAN_N - 2)):i + 1, j]]
+        _s, _c = _SP.window_sum(_vs)
+        need_vol = _SP.kl_can(dict(vol_s19=_s, vol_c19=_c), cfg['vol_floor'])
+        if need_vol is None:
+            need_vol = vma * float(cfg['vol_floor'])
 
         # --- trang thai ---
         miss = []

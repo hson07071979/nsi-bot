@@ -86,8 +86,9 @@ def main():
             # exact next-session volume need (engine: today is INSIDE its 20-day mean)
             sp = spec[k]; f = float(CF['vol_floor'])
             if sp.get('vol_s19') is not None and sp.get('vol_c19'):
-                n = sp['vol_c19'] + 1
-                syms[k]['need_vol'] = int(f * sp['vol_s19'] / (n - f)) if n > f else None
+                # 05/10/2026: muc NHO NHAT ma evaluate() cho qua (cung ham voi lookup.py);
+                # int(f*s19/(n-f)) cu co the thieu 1 co phieu do lam tron xuong
+                syms[k]['need_vol'] = SP.kl_can(sp, f)
 
     th = dict(
         asof=D['asof'],

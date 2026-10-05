@@ -236,7 +236,7 @@ function pageCoHoi(root) {
     if (x.dang_cam) return;
     if (m[s]) return;
     m[s] = { sym: s, name: x.name, level: 'CHO', price: x.price, pct: 0, score: x.score,
-             base: x.base, need_px: x.need_px, need_vol: x.need_vol, miss: x.miss || [],
+             base: x.base, need_px: (nguongPhien(s) || x).need_px, need_vol: x.need_vol, miss: x.miss || [],
              size_pct: x.size_pct, size_tran: x.size_tran, size_1dong: x.size_1dong,
              size_vi_sao: x.size_vi_sao, size_thuc: x.size_thuc, size_vao_duoc: x.size_vao_duoc,
              fa: x.state === 'fa' };

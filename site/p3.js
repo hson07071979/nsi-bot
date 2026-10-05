@@ -1,4 +1,50 @@
 
+/* ---------- NGƯỠNG GIÁ CỦA PHIÊN (sửa 05/10/2026) ----------
+   Bộ máy so % tăng với GIÁ THAM CHIẾU của phiên (PriceBasic), không phải giá đóng
+   cửa phiên trước. Ngày giao dịch không hưởng quyền (cổ tức tiền, chia tách) hai
+   số này khác nhau: DGW 05/10 tham chiếu 44,60 (đã trừ 1.000đ cổ tức) nhưng trang
+   ghi "đóng cửa ≥ 48,15" — cao hơn cả giá trần 47,70. Ngưỡng đúng là 47,10.
+   Ngưỡng làm tròn LÊN theo bước giá (đóng cửa 48,15 với tham chiếu 45,60 chỉ là
+   +5,59% < 5,6% — trượt). Khớp signal_spec.gia_can bên Python.            */
+function buocGia(px, ex) {
+  const e = String(ex || 'HOSE').toUpperCase();
+  if (e !== 'HOSE' && e !== 'HSX') return 100;
+  return px < 10000 ? 10 : (px < 50000 ? 50 : 100);
+}
+function giaCan(refDong, thrPct, ex) {
+  if (!(refDong > 0) || thrPct == null) return null;
+  const thr = Math.fround(thrPct / 100);
+  // đúng phép so float32 của bộ máy: ret32 = f32(f32(p / ref) - 1) >= f32(thr)
+  const ok = p => Math.fround(Math.fround(Math.fround(p) / Math.fround(refDong)) - 1) >= thr;
+  const x = refDong * (1 + thrPct / 100);
+  let p = Math.ceil(+(x / buocGia(x, ex)).toFixed(6)) * buocGia(x, ex);
+  for (let k = 0; k < 3 && !ok(p); k++) p += buocGia(p, ex);
+  while (p - buocGia(p - 1, ex) > 0 && ok(p - buocGia(p - 1, ex))) p -= buocGia(p - 1, ex);
+  return p;
+}
+/* Giá real-time có phải của một phiên SAU ngày dựng trang không. Trước 8h45 giờ VN
+   máy chủ giá còn giữ tham chiếu của phiên cũ, nên chưa dùng.               */
+function rtPhienMoi() {
+  const t = new Date(), v = new Date(t.getTime() + (t.getTimezoneOffset() + 420) * 60000);
+  const ngay = v.getFullYear() + '-' + String(v.getMonth() + 1).padStart(2, '0') + '-' + String(v.getDate()).padStart(2, '0');
+  const d = v.getDay(), p = v.getHours() * 60 + v.getMinutes();
+  return d !== 0 && d !== 6 && p >= 8 * 60 + 45 && ngay > String(D.asof || '');
+}
+/* {need_px, ref, doi}: doi = true khi tham chiếu hôm nay khác giá đóng cửa phiên trước. */
+function nguongPhien(sym) {
+  const x = (D.lookup || {})[sym];
+  if (!x) return null;
+  const out = { need_px: x.need_px, ref: x.price, doi: false };
+  // NSI khai báo bằng const ở p12 — gọi trước khi p12 chạy thì đụng vùng chết (TDZ)
+  let r = null; try { r = NSI.rt ? NSI.rt[sym] : null; } catch (e) { r = null; }
+  if (r && r.ref > 0 && rtPhienMoi()) {
+    const refk = r.ref / 1000;
+    const g = giaCan(r.ref, x.thr, x.exch);
+    if (g) { out.need_px = +(g / 1000).toFixed(2); out.ref = +refk.toFixed(2); out.doi = Math.abs(refk - x.price) > 0.001; }
+  }
+  return out;
+}
+
 /* ---------- shared ---------- */
 const P = D.prod, M = P.metrics, BM = D.bench_metrics;
 const dates = P.curve.map(c=>c[0]);
