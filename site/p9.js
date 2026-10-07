@@ -423,7 +423,15 @@ function benPhai(sym, bars) {
             : (bars && bars.length > 1 ? (giaDong(bars[bars.length-1]) / giaDong(bars[bars.length-2]) - 1) * 100 : null);
   const tlGia = (x && x.price > 0 && gia > 0) ? gia / x.price : 1;
   const d = [
-    ['TB GTGD 20 phiên', x ? `${x.gtgd} tỷ` : '—'],
+    // Có nến thì tính từ 20 cây nến cuối (KL × giá đóng cửa) — số nhúng sẵn x.gtgd
+    // là của ngày dựng trang và có lúc lệch xa (FPT 07/10/2026: 477,5 so với ~374 tỷ).
+    ['TB GTGD 20 phiên', (() => {
+      if (bars && bars.length >= 20 && !Array.isArray(bars[0])) {
+        let t = 0; for (let i = bars.length - 20; i < bars.length; i++) t += (bars[i].value || 0) * bars[i].close;
+        return `${(t * 1000 / 20 / 1e9).toFixed(1)} tỷ`;
+      }
+      return x ? `${x.gtgd} tỷ` : '—';
+    })()],
     // P/E, P/B của nguồn tính theo giá đóng cửa ngày dựng trang (x.price). Giá
     // real-time chạy thì nhân theo tỷ lệ giá, để không đứng cạnh giá "trực tiếp"
     // mà vẫn là số của phiên trước (05/10/2026).
