@@ -410,12 +410,21 @@ table.lsl td.lsn{max-width:170px;overflow:hidden;text-overflow:ellipsis}
 .ohlc .ohsym{color:var(--text-primary);font-size:14px;font-weight:700;margin-right:3px}
 .ohlc .ohk{color:var(--text-muted);font-size:11px}
 .ohlc .ohd{color:var(--text-muted);font-size:11.5px;margin-left:3px}
-.tvwrap{position:relative;width:100%;height:460px;border-radius:10px;overflow:hidden}
+.ohlc .ohvol{display:inline-flex;gap:5px;align-items:baseline;flex-wrap:wrap;margin-left:6px}
+.tvwrap{position:relative;width:100%;height:520px;border-radius:10px;overflow:hidden}
 .tvwrap #tvBox{width:100%;height:100%}
 .tvload{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:20px;
   color:var(--text-muted);font-size:13px;background:var(--surface-1)}
 .tvload b{color:var(--text-primary)}
-@media(max-width:760px){.tvwrap{height:340px}.ohlc{font-size:11.5px}}
+/* đổi mã khi đã có biểu đồ: phủ mờ lên biểu đồ cũ thay vì xoá trắng */
+.tvload.mo{background:color-mix(in srgb,var(--surface-1) 55%,transparent);pointer-events:none}
+/* logo doanh nghiệp (Simplize -> CafeF -> Vietstock -> chữ viết tắt) */
+.ctlogo{border-radius:50%;object-fit:contain;background:#fff;flex:0 0 auto;
+  box-shadow:0 0 0 1px var(--line);display:inline-block;vertical-align:middle}
+.ctlogo.chu{display:inline-grid;place-items:center;background:var(--surface-2,var(--line));
+  color:var(--text-primary);font-weight:750;letter-spacing:.02em}
+.ctten{display:inline-flex;align-items:center;gap:8px;vertical-align:middle}
+@media(max-width:760px){.tvwrap{height:400px}.ohlc{font-size:11.5px}}
 
 /* ===== bang dieu khien chuong real-time ===== */
 .rtbox{padding:6px 18px 16px;margin-bottom:16px}
