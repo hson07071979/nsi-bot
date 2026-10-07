@@ -459,6 +459,7 @@ function veLaiTrang(id) {
   // không dựng lại cả trang (biểu đồ + 213 dòng lịch sử lệnh, mất bộ lọc đang chọn).
   if (id === 'hieusuat') { capNhatDanhMucHieuSuat(); return; }
   if (!s.node.classList.contains('on')) { s.node.innerHTML = ''; s.rendered = false; return; }
+  if (id === 'bieudo' && typeof capNhatGiaBieuDo === 'function' && capNhatGiaBieuDo()) return;
   // giữ nguyên chỗ đang cuộn + chiều cao trong lúc dựng lại, trang không giật lên giật xuống
   const y = window.scrollY, cao = s.node.offsetHeight;
   s.node.style.minHeight = cao + 'px';

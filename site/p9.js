@@ -271,12 +271,7 @@ function pageChart(root){
       : `<b style="font-size:20px">${sym}</b> <span class="muted">— ngoài vũ trụ theo dõi</span>`;
 
     // ---- băng trạng thái + đèn tím ----
-    let bn = '';
-    if (x) bn += `<div class="ctstate ${x.state}"><b>${esc(x.label)}</b>` +
-      (x.state === 'cho' ? (() => { const ng = nguongPhien(sym) || x; const hn = rtPhienMoi();
-          return ` <span class="muted">— đóng cửa ${hn ? 'hôm nay' : 'phiên tới'} ≥ <b style="color:var(--text-primary)">${ng.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(2)} triệu cp</b>${
-            ng.doi ? ` · <span style="color:var(--warn)">tham chiếu hôm nay ${ng.ref} (khác giá đóng cửa ${x.price} — ngày giao dịch không hưởng quyền)</span>` : ''}</span>`; })()
-       : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
+    let bn = x ? `<div id="ctState">${dongTrangThaiMa(sym)}</div>` : '';
     // Ma da nam giu: noi thang ra, keo doc dong trang thai o tren thanh "he thong
     // cham truot". Nguong o tren la cua PHIEN KE TIEP va danh cho mot lenh MUA MOI.
     if (F && F.tim && F.tim[F.tim.length - 1]) {
@@ -292,7 +287,8 @@ function pageChart(root){
     // Zoom bằng con lăn, kéo ngang bằng chuột, chạm hai ngón trên điện thoại,
     // rê tới đâu đọc số tới đó. Nến lấy thẳng từ máy chủ dữ liệu VPS nên mã nào
     // cũng xem được, không phụ thuộc mã đó có nằm trong danh mục TradingView hay không.
-    document.getElementById('ctBen').innerHTML = benPhai(sym, null);
+    const _ben = document.getElementById('ctBen');
+    _ben.innerHTML = benPhai(sym, null); _ben._sym = sym;
     moBieuDo(sym);
 
     // ---- bốn biểu đồ cơ bản ----
@@ -385,6 +381,32 @@ function pageChart(root){
     if (v) { ve(v); chips(); noiChip(); inp.value = ''; }
   };
   if (cur) ve(cur);
+}
+
+function dongTrangThaiMa(sym) {
+  const x = (D.lookup || {})[sym];
+  if (!x) return '';
+  return `<div class="ctstate ${x.state}"><b>${esc(x.label)}</b>` +
+    (x.state === 'cho' ? (() => { const ng = nguongPhien(sym) || x; const hn = rtPhienMoi();
+        return ` <span class="muted">— đóng cửa ${hn ? 'hôm nay' : 'phiên tới'} ≥ <b style="color:var(--text-primary)">${ng.need_px}</b> · KL ≥ <b style="color:var(--text-primary)">${(x.need_vol/1e6).toFixed(2)} triệu cp</b>${
+          ng.doi ? ` · <span style="color:var(--warn)">tham chiếu hôm nay ${ng.ref} (khác giá đóng cửa ${x.price} — ngày giao dịch không hưởng quyền)</span>` : ''}</span>`; })()
+     : (x.miss && x.miss.length ? ` <span class="muted">— còn thiếu: ${x.miss.join(' · ')}</span>` : '')) + `</div>`;
+}
+
+/* Nhịp giá real-time (15 giây) chỉ đổi giá, % và P/E/P/B bên phải cùng dòng ngưỡng.
+   Dựng lại cả trang mỗi nhịp làm biểu đồ nến tải lại, bảng kiểm đóng/mở lại và trang
+   giật (07/10/2026) — chỉ ghi lại hai ô này, và chỉ khi nội dung thật sự đổi. */
+function capNhatGiaBieuDo() {
+  const sym = typeof _chartSym !== 'undefined' ? _chartSym : null;
+  if (!sym) return false;
+  const ben = document.getElementById('ctBen');
+  if (!ben || ben._sym !== sym) return false;      // đổi mã -> phải dựng lại cả trang
+  const bars = (typeof CT !== 'undefined' && CT.barsSym === sym) ? CT.bars : null;
+  const h = benPhai(sym, bars);
+  if (ben._h !== h) { ben._h = h; ben.innerHTML = h; }
+  const st = document.getElementById('ctState');
+  if (st) { const s = dongTrangThaiMa(sym); if (st._h !== s) { st._h = s; st.innerHTML = s; } }
+  return true;
 }
 
 /* bảng chỉ số bên phải biểu đồ */
