@@ -845,7 +845,12 @@ function rsi14(bars) {
    ========================================================================== */
 
 const CT = { chart: null, host: null, nen: null, kl: null, klMa: null, ma: {}, sym: null, bars: [],
-             range: '1Y', ind: { ma: true, vol: true, bot: true }, dem: {}, khop: {} };
+             range: '1Y', ind: { ma: true, vol: true, bot: true }, dem: {}, khop: {}, nguonMa: {} };
+
+/* Một đường MA n phiên chỉ vẽ khi có ít nhất n + 120 phiên — tức đường đó phủ được
+   nửa năm gần nhất. Ít hơn thì đường mọc lửng lơ giữa biểu đồ, nhìn như lỗi (MBS
+   08/10/2026: nguồn dự phòng 240 phiên -> MA200 chỉ vẽ được 40 phiên cuối). */
+const MA_DU = n => n + 120;
 
 const CT_NGUON = [
   { ten: 'VPS', url: (s, f, t) =>
@@ -921,17 +926,18 @@ async function layNen(sym) {
   else if (vps) { bars = vps; nguon = 'VPS'; }
   else if (vnd) { bars = vnd; nguon = 'VNDIRECT'; }
   if (bars) {
-    CT.dem[sym] = bars; CT.nguon = nguon;
+    CT.dem[sym] = bars; CT.nguon = nguon; CT.nguonMa[sym] = nguon;
     CT.khop[sym] = doiChieuNen(bars, nguon === 'VPS' ? vnd : vps);
     return bars;
   }
   // hết mạng: dùng nến nhúng sẵn trong trang, nếu mã đó có
   const em = (D.candles || {})[sym];
   if (em && em.bars && em.bars.length) {
-    CT.nguon = 'nhúng sẵn';
-    const bars2 = em.bars.map(b => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4], value: b[5] }));
-    CT.dem[sym] = bars2; CT.khop[sym] = null;
-    return bars2;
+    // KHÔNG cất vào CT.dem: lần mở sau phải thử lại mạng chứ không kẹt mãi ở bản
+    // dự phòng (chỉ ~240 phiên, giá CHƯA điều chỉnh cổ tức/chia tách).
+    CT.nguon = 'nhúng sẵn'; CT.nguonMa[sym] = 'nhúng sẵn';
+    CT.khop[sym] = null;
+    return em.bars.map(b => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4], value: b[5] }));
   }
   return null;
 }
@@ -1119,7 +1125,7 @@ function veDauCT(time) {
     <span class="ohk">GTGD≈</span><span>${gt >= 1 ? gt.toFixed(1) : gt.toFixed(2)} tỷ</span></span>`;
 }
 
-async function moBieuDo(sym) {
+async function moBieuDo(sym, ngam = false) {
   const hop = document.getElementById('tvBox'), tai = document.getElementById('tvLoad');
   if (!hop) return;
   CT.sym = sym;
@@ -1133,13 +1139,19 @@ async function moBieuDo(sym) {
     CT.chart = null;
   }
   // Nến đã có trong bộ nhớ thì vẽ ngay, không hiện "Đang lấy nến…" (đổi mã tức thì).
-  if (tai && !CT.dem[sym]) {
+  if (tai && !CT.dem[sym] && !ngam) {
     tai.style.display = ''; tai.textContent = 'Đang lấy nến…';
     tai.classList.toggle('mo', !!CT.chart);       // có biểu đồ cũ bên dưới -> lớp phủ mờ
   }
 
   const bars = await layNen(sym);
   if (CT.sym !== sym) return;                  // anh Sơn đã đổi mã trong lúc chờ
+  // thử lại ngầm mà mạng vẫn hỏng: giữ nguyên biểu đồ đang xem (không reset zoom), hẹn lần sau
+  if (ngam && CT.nguonMa[sym] === 'nhúng sẵn' && CT.barsSym === sym && CT.chart) {
+    clearTimeout(CT.thuLai);
+    CT.thuLai = setTimeout(() => { if (CT.sym === sym) moBieuDo(sym, true); }, 20000);
+    return;
+  }
   if (!bars) {
     if (tai) { tai.style.display = ''; tai.classList.remove('mo');
       tai.innerHTML = `<b>Không lấy được nến của ${sym}.</b><br>
@@ -1149,6 +1161,10 @@ async function moBieuDo(sym) {
   if (tai) tai.style.display = 'none';
 
   const M = mauCT();
+  // Kiểm lại SAU khi chờ nến: trong lúc chờ, trang có thể đã vẽ lại ô biểu đồ
+  // (lần gọi trước dựng khung vào ô cũ đã bị gỡ) -> bỏ khung đó, dựng vào ô hiện tại.
+  if (CT.chart && (CT.host !== hop || !CT.host.isConnected)) { try { CT.chart.remove(); } catch (e) {} CT.chart = null; }
+  if (!hop.isConnected) return;
   if (!CT.chart) dungKhung(hop, M);
   CT.bars = bars; CT.barsSym = sym;
   CT.chiSo = new Map(bars.map((b, i) => [b.time, i]));
@@ -1157,7 +1173,8 @@ async function moBieuDo(sym) {
   const kl = dungCotKL(bars, M);
   CT.kl.setData(kl.cot);
   CT.klMa.setData(kl.tb);
-  [20, 50, 200].forEach(n => CT.ma['ma' + n].setData(bars.length >= n + 5 ? ma(bars, n) : []));
+  CT.maThieu = [20, 50, 200].filter(n => bars.length < MA_DU(n));
+  [20, 50, 200].forEach(n => CT.ma['ma' + n].setData(bars.length >= MA_DU(n) ? ma(bars, n) : []));
 
   // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
   // bảng chỉ số bên phải vẽ trước khi có nến (RSI "—") — vẽ lại khi nến đã về
@@ -1186,12 +1203,21 @@ async function moBieuDo(sym) {
   apKhungThoiGian();
 
   // Chi con mot dong nguon goc, khong huong dan. Nguoi dung tu lan chuot la biet.
-  const kh = CT.khop[sym];
+  const kh = CT.khop[sym], ng = CT.nguonMa[sym] || CT.nguon, duPhong = ng === 'nhúng sẵn';
   document.getElementById('tvNote').innerHTML =
-    `<span class="muted">${bars.length} phiên · nguồn ${CT.nguon}${
+    `<span class="muted">${bars.length} phiên · nguồn ${duPhong
+      ? `<span class="neg" title="VPS và VNDIRECT đều không trả lời. Bản dự phòng có sẵn trong trang chỉ có ${bars.length} phiên, giá chưa điều chỉnh cổ tức/chia tách nên có thể có bước nhảy giá giả.">dự phòng trong trang (giá chưa điều chỉnh) · đang thử lại VPS/VNDIRECT</span>`
+      : ng}${CT.maThieu.length ? ` · ẩn ${CT.maThieu.map(n => 'MA' + n).join(', ')} vì chưa đủ phiên` : ''}${
       kh ? ` · <span title="Số phiên giá đóng cửa khớp giữa VPS và VNDIRECT (lệch dưới 0,5%), trong ${kh.chung} phiên gần nhất"
         class="${kh.khop === kh.chung ? '' : 'neg'}">khớp chéo ${kh.khop}/${kh.chung} phiên</span>` : ''}${
       CT.marks.length ? ` · ${CT.marks.length} dấu bot` : ''}</span>`;
+
+  // Đang ở bản dự phòng: 20 giây sau thử lại mạng; lấy được thì vẽ lại bằng nến thật.
+  if (duPhong) {
+    clearTimeout(CT.thuLai);
+    // ngam = true: không hiện lớp "Đang lấy nến…" mỗi lần thử (không nháy biểu đồ)
+    CT.thuLai = setTimeout(() => { if (CT.sym === sym) moBieuDo(sym, true); }, 20000);
+  }
 
   // đổi nền sáng/tối thì dựng lại khung cho khớp màu
   if (!CT.theoDoiMau) {
@@ -1247,7 +1273,7 @@ function capNhatNenCuoi(sym) {
     if (tb != null) CT.klMa.update({ time: hn, value: Math.round(tb) });
     [20, 50, 200].forEach(n => {
       const v = maTai(bars, i, n);
-      if (v != null && bars.length >= n + 5) CT.ma['ma' + n].update({ time: hn, value: +v.toFixed(3) });
+      if (v != null && bars.length >= MA_DU(n)) CT.ma['ma' + n].update({ time: hn, value: +v.toFixed(3) });
     });
   } catch (e) { return false; }
   veDauCT(null);
