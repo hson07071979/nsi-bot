@@ -267,7 +267,7 @@ function pageChart(root){
     if (typeof nsiChonMa === 'function') nsiChonMa(sym, 'trang');
     const x = L[sym], F = FS[sym];
     document.getElementById('ctTen').innerHTML = x
-      ? `<b style="font-size:20px">${sym}</b> <span class="muted">— ${esc(x.name)} · ${esc(x.sector)} · ${esc(x.exch)}</span>`
+      ? `<span class="ctten">${logoMa(sym, 30)}<b style="font-size:20px">${sym}</b></span> <span class="muted">— ${esc(x.name)} · ${esc(x.sector)} · ${esc(x.exch)}</span>`
       : `<b style="font-size:20px">${sym}</b> <span class="muted">— ngoài vũ trụ theo dõi</span>`;
 
     // ---- băng trạng thái + đèn tím ----
@@ -401,6 +401,7 @@ function capNhatGiaBieuDo() {
   if (!sym) return false;
   const ben = document.getElementById('ctBen');
   if (!ben || ben._sym !== sym) return false;      // đổi mã -> phải dựng lại cả trang
+  try { capNhatNenCuoi(sym); } catch (e) {}       // cây nến hôm nay chạy theo giá, không dựng lại biểu đồ
   const bars = (typeof CT !== 'undefined' && CT.barsSym === sym) ? CT.bars : null;
   const h = benPhai(sym, bars);
   if (ben._h !== h) { ben._h = h; ben.innerHTML = h; }
@@ -422,7 +423,15 @@ function benPhai(sym, bars) {
             : (bars && bars.length > 1 ? (giaDong(bars[bars.length-1]) / giaDong(bars[bars.length-2]) - 1) * 100 : null);
   const tlGia = (x && x.price > 0 && gia > 0) ? gia / x.price : 1;
   const d = [
-    ['TB GTGD 20 phiên', x ? `${x.gtgd} tỷ` : '—'],
+    // Có nến thì tính từ 20 cây nến cuối (KL × giá đóng cửa) — số nhúng sẵn x.gtgd
+    // là của ngày dựng trang và có lúc lệch xa (FPT 07/10/2026: 477,5 so với ~374 tỷ).
+    ['TB GTGD 20 phiên', (() => {
+      if (bars && bars.length >= 20 && !Array.isArray(bars[0])) {
+        let t = 0; for (let i = bars.length - 20; i < bars.length; i++) t += (bars[i].value || 0) * bars[i].close;
+        return `${(t * 1000 / 20 / 1e9).toFixed(1)} tỷ`;
+      }
+      return x ? `${x.gtgd} tỷ` : '—';
+    })()],
     // P/E, P/B của nguồn tính theo giá đóng cửa ngày dựng trang (x.price). Giá
     // real-time chạy thì nhân theo tỷ lệ giá, để không đứng cạnh giá "trực tiếp"
     // mà vẫn là số của phiên trước (05/10/2026).
@@ -440,8 +449,10 @@ function benPhai(sym, bars) {
     ['+/− Doanh thu (cùng kỳ)', F && cuoi(F.ry) != null ? `<span class="${cls(cuoi(F.ry))}">${cuoi(F.ry) >= 0 ? '+' : ''}${cuoi(F.ry).toFixed(1)}%</span>` : '—'],
     ['+/− LNST (cùng kỳ)', F && cuoi(F.ny) != null ? `<span class="${cls(cuoi(F.ny))}">${cuoi(F.ny) >= 0 ? '+' : ''}${cuoi(F.ny).toFixed(1)}%</span>` : '—'],
   ];
-  return `<div style="display:flex;justify-content:space-between;align-items:baseline">
-      <b style="font-size:17px">${sym}</b><span class="muted" style="font-size:12px">${x ? x.exch : ''}</span></div>
+  return `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+      <span style="display:flex;align-items:center;gap:10px;min-width:0">${logoMa(sym, 36)}
+        <span style="min-width:0"><b style="font-size:17px">${sym}</b>${x && x.name ? `<div class="muted" style="font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(x.name)}</div>` : ''}</span></span>
+      <span class="muted" style="font-size:12px">${x ? x.exch : ''}</span></div>
     <div style="font-size:34px;font-weight:750;line-height:1.15;margin-top:6px">${gia != null ? (+gia).toFixed(2) : '—'}
       ${pc0 != null ? `<span style="font-size:17px" class="${pc0 >= 0 ? 'pos' : 'neg'}">${pc0 >= 0 ? '+' : ''}${pc0.toFixed(2)}%</span>` : ''}</div>
     <div class="muted" style="font-size:12.5px;margin-bottom:12px">${
@@ -833,8 +844,13 @@ function rsi14(bars) {
      3. D.candles nhúng sẵn trong trang — dùng khi mất mạng
    ========================================================================== */
 
-const CT = { chart: null, nen: null, kl: null, ma: {}, sym: null, bars: [],
-             range: '1Y', ind: { ma: true, vol: true, bot: true }, dem: {} };
+const CT = { chart: null, host: null, nen: null, kl: null, klMa: null, ma: {}, sym: null, bars: [],
+             range: '1Y', ind: { ma: true, vol: true, bot: true }, dem: {}, khop: {}, nguonMa: {} };
+
+/* Một đường MA n phiên chỉ vẽ khi có ít nhất n + 120 phiên — tức đường đó phủ được
+   nửa năm gần nhất. Ít hơn thì đường mọc lửng lơ giữa biểu đồ, nhìn như lỗi (MBS
+   08/10/2026: nguồn dự phòng 240 phiên -> MA200 chỉ vẽ được 40 phiên cuối). */
+const MA_DU = n => n + 120;
 
 const CT_NGUON = [
   { ten: 'VPS', url: (s, f, t) =>
@@ -845,55 +861,104 @@ const CT_NGUON = [
     doc: j => (j && j.t && j.t.length) ? j : null },
 ];
 
-/* đổi khuôn UDF (mảng song song) sang khuôn Lightweight Charts */
+/* đổi khuôn UDF (mảng song song) sang khuôn Lightweight Charts.
+   Làm sạch luôn ở đây (07/10/2026) — một cây nến hỏng làm cả biểu đồ giật:
+     · trùng ngày (nguồn trả hai dòng cho một phiên) -> giữ dòng sau
+     · giá <= 0 hoặc không phải số -> bỏ
+     · high/low không ôm open/close (lỗi làm tròn của nguồn) -> nới cho ôm */
 function udfSangNen(j) {
-  const o = [];
+  const theoNgay = new Map();
   for (let i = 0; i < j.t.length; i++) {
     const c = +j.c[i];
-    if (!c) continue;
+    if (!(c > 0)) continue;
+    const o = +j.o[i] > 0 ? +j.o[i] : c;
+    const h = Math.max(+j.h[i] || 0, o, c);
+    const l = Math.min(+j.l[i] > 0 ? +j.l[i] : Infinity, o, c);
     // Lightweight Charts nhận ngày dạng 'YYYY-MM-DD'. Mốc thời gian trả về là
     // giờ quốc tế, nên phải cộng bù 7 tiếng trước khi cắt, không thì phiên nào
     // cũng lùi một ngày.
-    o.push({ time: new Date((j.t[i] + 25200) * 1000).toISOString().slice(0, 10),
-             open: +j.o[i], high: +j.h[i], low: +j.l[i], close: c, value: +j.v[i] });
+    const time = new Date((j.t[i] + 25200) * 1000).toISOString().slice(0, 10);
+    theoNgay.set(time, { time, open: o, high: h, low: l, close: c, value: Math.max(0, +j.v[i] || 0) });
   }
-  o.sort((a, b) => a.time < b.time ? -1 : 1);
-  return o;
+  return [...theoNgay.values()].sort((a, b) => a.time < b.time ? -1 : 1);
+}
+
+/* Đối chiếu hai nguồn trên 60 phiên chung gần nhất: bao nhiêu phiên giá đóng cửa
+   lệch dưới 0,5%. Ra số thấp = một nguồn đang sai (chưa điều chỉnh cổ tức, mất phiên). */
+function doiChieuNen(a, b) {
+  if (!a || !b) return null;
+  const mb = new Map(b.map(x => [x.time, x.close]));
+  let chung = 0, khop = 0;
+  for (let i = a.length - 1; i >= 0 && chung < 60; i--) {
+    const c2 = mb.get(a[i].time);
+    if (c2 == null) continue;
+    chung++;
+    if (Math.abs(a[i].close / c2 - 1) < 0.005) khop++;
+  }
+  return chung ? { chung, khop } : null;
+}
+
+/* Lấy nến từ MỘT nguồn, có hẹn giờ — một máy chủ treo không được bắt cả trang chờ. */
+async function layNenMotNguon(ng, sym, f, t, ms) {
+  const ac = typeof AbortController === 'function' ? new AbortController() : null;
+  const hen = ac ? setTimeout(() => ac.abort(), ms) : null;
+  try {
+    const r = await fetch(ng.url(sym, f, t), { cache: 'no-store', signal: ac ? ac.signal : undefined });
+    if (!r.ok) return null;
+    const j = ng.doc(await r.json());
+    if (!j) return null;
+    const bars = udfSangNen(j);
+    return bars.length > 30 ? bars : null;
+  } catch (e) { return null; } finally { if (hen) clearTimeout(hen); }
 }
 
 async function layNen(sym) {
   if (CT.dem[sym]) return CT.dem[sym];
   const t = Math.floor(Date.now() / 1000), f = t - 86400 * 365 * 8;
-  for (const ng of CT_NGUON) {
-    try {
-      const r = await fetch(ng.url(sym, f, t), { cache: 'no-store' });
-      if (!r.ok) continue;
-      const j = ng.doc(await r.json());
-      if (!j) continue;
-      const bars = udfSangNen(j);
-      if (bars.length > 30) { CT.dem[sym] = bars; CT.nguon = ng.ten; return bars; }
-    } catch (e) { /* nguồn này hỏng thì thử nguồn sau */ }
+  // Gọi HAI nguồn cùng lúc thay vì lần lượt: trước đây VPS chết thì phải chờ nó
+  // hết giờ mới hỏi VNDIRECT — biểu đồ trống cả chục giây.
+  const kq = await Promise.all(CT_NGUON.map(ng => layNenMotNguon(ng, sym, f, t, 8000)));
+  const [vps, vnd] = kq;
+  let bars = null, nguon = null;
+  // Ưu tiên VPS (cùng nguồn với giá real-time), trừ khi VPS thiếu phiên gần nhất
+  // mà VNDIRECT có — khi đó VPS đang chậm, dùng nguồn mới hơn.
+  if (vps && vnd && vnd[vnd.length - 1].time > vps[vps.length - 1].time) { bars = vnd; nguon = 'VNDIRECT'; }
+  else if (vps) { bars = vps; nguon = 'VPS'; }
+  else if (vnd) { bars = vnd; nguon = 'VNDIRECT'; }
+  if (bars) {
+    CT.dem[sym] = bars; CT.nguon = nguon; CT.nguonMa[sym] = nguon;
+    CT.khop[sym] = doiChieuNen(bars, nguon === 'VPS' ? vnd : vps);
+    return bars;
   }
   // hết mạng: dùng nến nhúng sẵn trong trang, nếu mã đó có
   const em = (D.candles || {})[sym];
   if (em && em.bars && em.bars.length) {
-    CT.nguon = 'nhúng sẵn';
-    const bars = em.bars.map(b => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4], value: b[5] }));
-    CT.dem[sym] = bars;
-    return bars;
+    // KHÔNG cất vào CT.dem: lần mở sau phải thử lại mạng chứ không kẹt mãi ở bản
+    // dự phòng (chỉ ~240 phiên, giá CHƯA điều chỉnh cổ tức/chia tách).
+    CT.nguon = 'nhúng sẵn'; CT.nguonMa[sym] = 'nhúng sẵn';
+    CT.khop[sym] = null;
+    return em.bars.map(b => ({ time: b[0], open: b[1], high: b[2], low: b[3], close: b[4], value: b[5] }));
   }
   return null;
 }
 
-function ma(bars, n) {
+/* trung bình trượt n phiên của một trường (close cho giá, value cho khối lượng) */
+function ma(bars, n, k = 'close') {
   const o = [];
   let s = 0;
   for (let i = 0; i < bars.length; i++) {
-    s += bars[i].close;
-    if (i >= n) s -= bars[i - n].close;
-    if (i >= n - 1) o.push({ time: bars[i].time, value: +(s / n).toFixed(3) });
+    s += bars[i][k];
+    if (i >= n) s -= bars[i - n][k];
+    if (i >= n - 1) o.push({ time: bars[i].time, value: +(s / n).toFixed(k === 'close' ? 3 : 0) });
   }
   return o;
+}
+/* giá trị MA n phiên tại đúng phiên i (dùng cho dòng số và nến cập nhật trực tiếp) */
+function maTai(bars, i, n, k = 'close') {
+  if (i < n - 1) return null;
+  let s = 0;
+  for (let j = i - n + 1; j <= i; j++) s += bars[j][k];
+  return s / n;
 }
 
 function mauCT() {
@@ -904,40 +969,85 @@ function mauCT() {
            chu: g('--text-secondary') || '#c3c2b7', mo: g('--text-muted') || '#8b8a80',
            duong: g('--line') || '#33322f', nen: 'transparent',
            s1: g('--s1') || '#3987e5', s4: g('--s4') || '#c98500', s7: g('--s7') || '#9085e9',
+           // viền cột khối lượng "rỗng" — xám trung tính, đủ đậm để đọc được trên cả hai nền
+           xam: toi ? '#8a8f98' : '#9aa0a6',
            toi };
 }
 
-async function moBieuDo(sym) {
-  const hop = document.getElementById('tvBox'), tai = document.getElementById('tvLoad');
-  if (!hop) return;
-  CT.sym = sym;
-  if (CT.chart) { try { CT.chart.remove(); } catch (e) {} CT.chart = null; }
-  hop.innerHTML = '';
-  if (tai) { tai.style.display = ''; tai.textContent = 'Đang lấy nến…'; }
+/* Mã màu dạng #rrggbb + độ đục (00–ff). Biến CSS có thể là rgb()/tên màu — khi đó
+   trả nguyên màu, mất độ trong còn hơn ra một màu sai. */
+function mauDuc(c, a) { return /^#[0-9a-f]{6}$/i.test(c) ? c + a : c; }
 
-  if (typeof LightweightCharts === 'undefined') {
-    if (tai) tai.innerHTML = '<b>Không nạp được thư viện biểu đồ.</b> Tải lại trang.';
-    return;
-  }
+/* Một cột khối lượng, vẽ bằng NẾN chứ không phải cột histogram: thân nến chạy từ 0
+   lên KL. Làm vậy mới có cột RỖNG (chỉ viền) như bảng giá Vietstock/FireAnt —
+   histogram của thư viện chỉ tô đặc được.
+     · KL >= TB 20 phiên -> tô đặc xanh/đỏ (phiên có dòng tiền thật)
+     · KL < TB 20 phiên  -> cột rỗng viền xám, đáy ánh nhẹ màu tăng/giảm
+   Màu tăng/giảm so với giá đóng cửa phiên TRƯỚC (như bảng giá), không phải mở cửa. */
+function cotKL(bars, i, tb, M) {
+  const b = bars[i], v = b.value || 0;
+  const tang = i === 0 ? b.close >= b.open : b.close >= bars[i - 1].close;
+  const mau = tang ? M.len : M.giam;
+  const dac = tb != null && v >= tb;
+  return { time: b.time, open: 0, high: v, low: 0, close: v,
+           color: dac ? mau : mauDuc(mau, '26'), borderColor: dac ? mau : M.xam, wickColor: 'transparent' };
+}
 
-  const bars = await layNen(sym);
-  if (CT.sym !== sym) return;                  // anh Sơn đã đổi mã trong lúc chờ
-  if (!bars) {
-    if (tai) tai.innerHTML = `<b>Không lấy được nến của ${sym}.</b><br>
-      <span class="muted">Cả hai máy chủ dữ liệu đều không trả lời. Thử lại sau, hoặc kiểm tra mạng.</span>`;
-    return;
-  }
-  if (tai) tai.style.display = 'none';
+function dungCotKL(bars, M) {
+  const tb = ma(bars, 20, 'value'), mTb = new Map(tb.map(x => [x.time, x.value]));
+  return { cot: bars.map((b, i) => cotKL(bars, i, mTb.get(b.time), M)), tb };
+}
 
-  const M = mauCT();
+/* ---------- LOGO doanh nghiệp: thử lần lượt nhiều nguồn ----------
+   Ảnh <img> không cần CORS nên trình duyệt tải thẳng được. Nguồn nào 404 thì
+   onerror nhảy sang nguồn sau; hết nguồn thì hiện chữ viết tắt (không bao giờ ra
+   ô ảnh vỡ). Nguồn chạy được của từng mã được nhớ lại để lần sau khỏi thử lại. */
+const LOGO_NGUON = [
+  s => `https://cdn.simplize.vn/simplizevn/logo/${s}.jpeg`,
+  s => `https://cafefnew.mediacdn.vn/LOGO/${s}.jpg`,
+  s => `https://finance.vietstock.vn/image/${s}`,
+];
+const LOGO_NHO = (() => { try { return JSON.parse(localStorage.getItem('nsi_logo') || '{}') || {}; } catch (e) { return {}; } })();
+function logoMa(sym, px = 36) {
+  const s = String(sym || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (!s) return '';
+  const i0 = Number.isInteger(LOGO_NHO[s]) ? LOGO_NHO[s] : 0;
+  const chu = `<span class="ctlogo chu" style="width:${px}px;height:${px}px;font-size:${Math.round(px * .34)}px">${s.slice(0, 3)}</span>`;
+  if (i0 < 0) return chu;                         // đã biết: không nguồn nào có
+  return `<img class="ctlogo" data-logo="${s}" data-i="${i0}" src="${LOGO_NGUON[i0](s)}" alt="${s}"
+    width="${px}" height="${px}" loading="lazy" decoding="async" referrerpolicy="no-referrer"
+    onload="logoDuoc(this)" onerror="logoHong(this,${px})">`;
+}
+function logoDuoc(img) {
+  // ảnh 1×1 hoặc quá nhỏ = ảnh giữ chỗ của nguồn, coi như hỏng
+  if (img.naturalWidth < 8 || img.naturalHeight < 8) return logoHong(img, img.width || 36);
+  const s = img.dataset.logo, i = +img.dataset.i;
+  if (LOGO_NHO[s] !== i) { LOGO_NHO[s] = i; try { localStorage.setItem('nsi_logo', JSON.stringify(LOGO_NHO)); } catch (e) {} }
+}
+function logoHong(img, px) {
+  const s = img.dataset.logo, i = +img.dataset.i + 1;
+  if (i < LOGO_NGUON.length) { img.dataset.i = i; img.src = LOGO_NGUON[i](s); return; }
+  LOGO_NHO[s] = -1; try { localStorage.setItem('nsi_logo', JSON.stringify(LOGO_NHO)); } catch (e) {}
+  const sp = document.createElement('span');
+  sp.className = 'ctlogo chu';
+  sp.style.cssText = `width:${px}px;height:${px}px;font-size:${Math.round(px * .34)}px`;
+  sp.textContent = s.slice(0, 3);
+  img.replaceWith(sp);
+}
+
+/* Dựng khung biểu đồ MỘT lần cho mỗi ô; đổi mã chỉ thay dữ liệu. Trước đây đổi mã
+   là xoá cả biểu đồ rồi dựng lại -> ô trống nhấp nháy, mất vị trí zoom. */
+function dungKhung(hop, M) {
   const c = LightweightCharts.createChart(hop, {
     layout: { background: { type: 'solid', color: 'transparent' }, textColor: M.chu,
               fontFamily: 'Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif', fontSize: 11 },
-    grid: { vertLines: { color: M.duong }, horzLines: { color: M.duong } },
-    rightPriceScale: { borderColor: M.duong, scaleMargins: { top: 0.08, bottom: 0.26 } },
+    grid: { vertLines: { color: mauDuc(M.duong, '99') }, horzLines: { color: mauDuc(M.duong, '99') } },
+    // Giá chiếm 70% trên, khối lượng 22% dưới, chừa 8% làm khe — hai vùng không chồng lên nhau.
+    rightPriceScale: { borderColor: M.duong, scaleMargins: { top: 0.06, bottom: 0.32 } },
     // rightOffset 12: chừa chỗ trống bên phải để nhãn "MUA 14.05" của phiên cuối
     // không bị mép biểu đồ cắt cụt.
-    timeScale: { borderColor: M.duong, rightOffset: 12, minBarSpacing: 0.4 },
+    timeScale: { borderColor: M.duong, rightOffset: 12, minBarSpacing: 0.4, barSpacing: 6,
+                 fixLeftEdge: true, lockVisibleTimeRangeOnResize: true },
     crosshair: {
       mode: LightweightCharts.CrosshairMode.Normal,
       vertLine: { color: M.mo, width: 1, style: 3, labelBackgroundColor: M.toi ? '#333' : '#555' },
@@ -948,51 +1058,134 @@ async function moBieuDo(sym) {
       priceFormatter: p => p.toFixed(2),
       timeFormatter: t => t,
     },
+    // kéo thả có quán tính (thả tay vẫn trôi tiếp rồi chậm dần) — cảm giác "mượt"
+    kineticScroll: { mouse: true, touch: true },
     handleScroll: { mouseWheel: true, pressedMouseMove: true, horzTouchDrag: true, vertTouchDrag: false },
     handleScale:  { mouseWheel: true, pinch: true, axisPressedMouseMove: true, axisDoubleClickReset: true },
     autoSize: true,
   });
-  CT.chart = c;
+  CT.chart = c; CT.host = hop; CT.M = M;
 
   CT.nen = c.addCandlestickSeries({
     upColor: M.len, downColor: M.giam, borderUpColor: M.len, borderDownColor: M.giam,
     wickUpColor: M.len, wickDownColor: M.giam,
     priceFormat: { type: 'price', precision: 2, minMove: 0.01 },
   });
-  CT.nen.setData(bars);
 
-  // Khối lượng, ép xuống 22% dưới cùng để không che nến.
-  // lastValueVisible: false — không thì trục giá bên phải hiện thêm một nhãn
-  // "2305900.00" nằm ngay dưới nhãn giá, nhìn như giá cổ phiếu là hai triệu.
-  CT.kl = c.addHistogramSeries({ priceFormat: { type: 'volume' }, priceScaleId: 'kl',
-                                 lastValueVisible: false, priceLineVisible: false });
-  c.priceScale('kl').applyOptions({ scaleMargins: { top: 0.78, bottom: 0 } });
-  CT.kl.setData(bars.map(b => ({ time: b.time, value: b.value,
-    color: (b.close >= b.open ? M.len : M.giam) + '55' })));
+  // Khối lượng: thang riêng 'kl' ở 22% dưới cùng. lastValueVisible: false — không
+  // thì trục bên phải hiện thêm nhãn "2305900" ngay dưới nhãn giá.
+  CT.kl = c.addCandlestickSeries({ priceScaleId: 'kl', priceFormat: { type: 'volume' },
+    wickVisible: false, borderVisible: true, lastValueVisible: false, priceLineVisible: false });
+  CT.klMa = c.addLineSeries({ priceScaleId: 'kl', color: M.s4, lineWidth: 1.5,
+    priceLineVisible: false, lastValueVisible: false, crosshairMarkerVisible: false,
+    priceFormat: { type: 'volume' } });
+  c.priceScale('kl').applyOptions({ scaleMargins: { top: 0.76, bottom: 0 }, borderVisible: false });
 
-  // ba đường trung bình
+  // ba đường trung bình giá
   CT.ma = {};
   [[20, M.s1], [50, M.s4], [200, M.s7]].forEach(([n, col]) => {
-    if (bars.length < n + 5) return;
-    const s = c.addLineSeries({ color: col, lineWidth: 1.5, priceLineVisible: false,
-                                lastValueVisible: false, crosshairMarkerVisible: false });
-    s.setData(ma(bars, n));
-    CT.ma['ma' + n] = s;
+    CT.ma['ma' + n] = c.addLineSeries({ color: col, lineWidth: 1.5, priceLineVisible: false,
+                                        lastValueVisible: false, crosshairMarkerVisible: false });
   });
 
-  // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
+  // dòng OHLC ở đầu khung, cập nhật theo con trỏ. requestAnimationFrame: rê chuột
+  // bắn hàng trăm sự kiện/giây, chỉ ghi DOM một lần mỗi khung hình.
+  let cho = null, raf = 0;
+  c.subscribeCrosshairMove(p => {
+    cho = (p && p.time) ? p.time : null;
+    if (raf) return;
+    raf = requestAnimationFrame(() => { raf = 0; veDauCT(cho); });
+  });
+}
+
+/* dòng số trên đầu biểu đồ: OHLC + khối lượng + TB KL 20 phiên của phiên đang trỏ */
+function veDauCT(time) {
+  const dau = document.getElementById('ctHead'), bars = CT.bars;
+  if (!dau || !bars || !bars.length) return;
+  let i = bars.length - 1;
+  if (time != null) { const k = CT.chiSo ? CT.chiSo.get(time) : undefined; if (k != null) i = k; }
+  const b = bars[i];
+  const p = i > 0 ? (b.close / bars[i - 1].close - 1) * 100 : null;
+  const m = (i > 0 ? b.close >= bars[i - 1].close : b.close >= b.open) ? 'var(--good)' : 'var(--critical)';
+  const tb = maTai(bars, i, 20, 'value');
+  const tl = tb ? b.value / tb * 100 : null;
+  const tr = v => v >= 1e6 ? (v / 1e6).toFixed(2) + ' tr' : (v / 1e3).toFixed(1) + ' k';
+  // GTGD ước tính = KL × giá đóng cửa (giá theo nghìn đồng) — gần đúng, nên ghi "≈"
+  const gt = b.value * b.close * 1000 / 1e9;
+  dau.innerHTML = `<b class="ohsym">${CT.sym}</b>
+    <span class="ohk">M</span><span style="color:${m}">${b.open.toFixed(2)}</span>
+    <span class="ohk">C</span><span style="color:${m}">${b.high.toFixed(2)}</span>
+    <span class="ohk">T</span><span style="color:${m}">${b.low.toFixed(2)}</span>
+    <span class="ohk">Đ</span><b style="color:${m}">${b.close.toFixed(2)}</b>
+    ${p == null ? '' : `<span style="color:${m}">${p >= 0 ? '+' : ''}${p.toFixed(2)}%</span>`}
+    <span class="ohd">${b.time.split('-').reverse().join('/')}</span>
+    <span class="ohvol"><span class="ohk">KL</span><span>${tr(b.value)}</span>
+    <span class="ohk" style="color:${CT.M ? CT.M.s4 : ''}">TB KL 20</span><span>${tb ? tr(tb) : '—'}</span>
+    ${tl == null ? '' : `<span class="${tl >= 100 ? 'pos' : 'muted'}">${tl.toFixed(0)}%</span>`}
+    <span class="ohk">GTGD≈</span><span>${gt >= 1 ? gt.toFixed(1) : gt.toFixed(2)} tỷ</span></span>`;
+}
+
+async function moBieuDo(sym, ngam = false) {
+  const hop = document.getElementById('tvBox'), tai = document.getElementById('tvLoad');
+  if (!hop) return;
+  CT.sym = sym;
+  if (typeof LightweightCharts === 'undefined') {
+    if (tai) { tai.style.display = ''; tai.innerHTML = '<b>Không nạp được thư viện biểu đồ.</b> Tải lại trang.'; }
+    return;
+  }
+  // ô biểu đồ đã bị trang vẽ lại (đổi trang rồi quay về) -> khung cũ chết theo, dựng mới
+  if (CT.chart && (CT.host !== hop || !hop.isConnected || !hop.firstChild)) {
+    try { CT.chart.remove(); } catch (e) {}
+    CT.chart = null;
+  }
+  // Nến đã có trong bộ nhớ thì vẽ ngay, không hiện "Đang lấy nến…" (đổi mã tức thì).
+  if (tai && !CT.dem[sym] && !ngam) {
+    tai.style.display = ''; tai.textContent = 'Đang lấy nến…';
+    tai.classList.toggle('mo', !!CT.chart);       // có biểu đồ cũ bên dưới -> lớp phủ mờ
+  }
+
+  const bars = await layNen(sym);
+  if (CT.sym !== sym) return;                  // anh Sơn đã đổi mã trong lúc chờ
+  // thử lại ngầm mà mạng vẫn hỏng: giữ nguyên biểu đồ đang xem (không reset zoom), hẹn lần sau
+  if (ngam && CT.nguonMa[sym] === 'nhúng sẵn' && CT.barsSym === sym && CT.chart) {
+    clearTimeout(CT.thuLai);
+    CT.thuLai = setTimeout(() => { if (CT.sym === sym) moBieuDo(sym, true); }, 20000);
+    return;
+  }
+  if (!bars) {
+    if (tai) { tai.style.display = ''; tai.classList.remove('mo');
+      tai.innerHTML = `<b>Không lấy được nến của ${sym}.</b><br>
+      <span class="muted">Cả hai máy chủ dữ liệu đều không trả lời. Thử lại sau, hoặc kiểm tra mạng.</span>`; }
+    return;
+  }
+  if (tai) tai.style.display = 'none';
+
+  const M = mauCT();
+  // Kiểm lại SAU khi chờ nến: trong lúc chờ, trang có thể đã vẽ lại ô biểu đồ
+  // (lần gọi trước dựng khung vào ô cũ đã bị gỡ) -> bỏ khung đó, dựng vào ô hiện tại.
+  if (CT.chart && (CT.host !== hop || !CT.host.isConnected)) { try { CT.chart.remove(); } catch (e) {} CT.chart = null; }
+  if (!hop.isConnected) return;
+  if (!CT.chart) dungKhung(hop, M);
   CT.bars = bars; CT.barsSym = sym;
+  CT.chiSo = new Map(bars.map((b, i) => [b.time, i]));
+
+  CT.nen.setData(bars);
+  const kl = dungCotKL(bars, M);
+  CT.kl.setData(kl.cot);
+  CT.klMa.setData(kl.tb);
+  CT.maThieu = [20, 50, 200].filter(n => bars.length < MA_DU(n));
+  [20, 50, 200].forEach(n => CT.ma['ma' + n].setData(bars.length >= MA_DU(n) ? ma(bars, n) : []));
+
+  // dấu bot vào / thoát lệnh — thứ mà TradingView không bao giờ vẽ được
   // bảng chỉ số bên phải vẽ trước khi có nến (RSI "—") — vẽ lại khi nến đã về
-  try { const bp = document.getElementById('ctBen'); if (bp) bp.innerHTML = benPhai(sym, bars); } catch (e) {}
-  const co = new Set(bars.map(b => b.time));
+  try { const bp = document.getElementById('ctBen'); if (bp) { const h = benPhai(sym, bars); bp._h = h; bp.innerHTML = h; } } catch (e) {}
+  const co = CT.chiSo;
   const MK = (typeof dauMuaBan === 'function' ? dauMuaBan(sym)
                                              : (((D.candles || {})[sym] || {}).marks || []));
   const daVe = new Set();
   CT.marks = MK.filter(m => co.has(m.d) && !daVe.has(m.t + m.d) && daVe.add(m.t + m.d))
     .sort((a, b) => a.d < b.d ? -1 : 1)
     .map(m => {
-      // Nen nhung san = gia THO -> dung gia khop tho (px). Nen tai tu VPS/VNDIRECT = gia
-      // DA DIEU CHINH -> dung pxa (gia dieu chinh) cho dau khong lech nen sau chia tach.
       const mua = String(m.t).startsWith('B');
       // 03/10/2026: chu tren dau = GIA KHOP THAT (gia tho) — dung bang Lich su lenh. Dau gan theo NGAY nen
       // khong lech nen du nen VPS da dieu chinh co tuc.
@@ -1004,48 +1197,96 @@ async function moBieuDo(sym) {
       };
     });
 
-  // dòng OHLC ở đầu khung, cập nhật theo con trỏ
-  const dau = document.getElementById('ctHead');
-  const veDau = b => {
-    if (!b || !dau) return;
-    const tr = bars.findIndex(x => x.time === b.time) - 1;
-    const p = tr >= 0 ? (b.close / bars[tr].close - 1) * 100 : null;
-    const m = b.close >= b.open ? 'var(--good)' : 'var(--critical)';
-    dau.innerHTML = `<b class="ohsym">${sym}</b>
-      <span class="ohk">M</span><span style="color:${m}">${b.open.toFixed(2)}</span>
-      <span class="ohk">C</span><span style="color:${m}">${b.high.toFixed(2)}</span>
-      <span class="ohk">T</span><span style="color:${m}">${b.low.toFixed(2)}</span>
-      <span class="ohk">Đ</span><b style="color:${m}">${b.close.toFixed(2)}</b>
-      ${p == null ? '' : `<span style="color:${m}">${p >= 0 ? '+' : ''}${p.toFixed(2)}%</span>`}
-      <span class="ohk">KL</span><span>${(b.value / 1e6).toFixed(2)} tr</span>
-      <span class="ohd">${b.time.split('-').reverse().join('/')}</span>`;
-  };
-  veDau(bars[bars.length - 1]);
-  c.subscribeCrosshairMove(p => {
-    if (!p || !p.time) { veDau(bars[bars.length - 1]); return; }
-    const b = p.seriesData.get(CT.nen);
-    if (b) veDau(Object.assign({ time: p.time, value: (p.seriesData.get(CT.kl) || {}).value || 0 }, b));
-  });
-
+  capNhatNenCuoi(sym);                         // ghép giá real-time vào cây nến hôm nay
+  veDauCT(null);
   apChiBao();
   apKhungThoiGian();
 
   // Chi con mot dong nguon goc, khong huong dan. Nguoi dung tu lan chuot la biet.
+  const kh = CT.khop[sym], ng = CT.nguonMa[sym] || CT.nguon, duPhong = ng === 'nhúng sẵn';
   document.getElementById('tvNote').innerHTML =
-    `<span class="muted">${bars.length} phiên · nguồn ${CT.nguon}${
+    `<span class="muted">${bars.length} phiên · nguồn ${duPhong
+      ? `<span class="neg" title="VPS và VNDIRECT đều không trả lời. Bản dự phòng có sẵn trong trang chỉ có ${bars.length} phiên, giá chưa điều chỉnh cổ tức/chia tách nên có thể có bước nhảy giá giả.">dự phòng trong trang (giá chưa điều chỉnh) · đang thử lại VPS/VNDIRECT</span>`
+      : ng}${CT.maThieu.length ? ` · ẩn ${CT.maThieu.map(n => 'MA' + n).join(', ')} vì chưa đủ phiên` : ''}${
+      kh ? ` · <span title="Số phiên giá đóng cửa khớp giữa VPS và VNDIRECT (lệch dưới 0,5%), trong ${kh.chung} phiên gần nhất"
+        class="${kh.khop === kh.chung ? '' : 'neg'}">khớp chéo ${kh.khop}/${kh.chung} phiên</span>` : ''}${
       CT.marks.length ? ` · ${CT.marks.length} dấu bot` : ''}</span>`;
 
-  // đổi nền sáng/tối thì vẽ lại cho khớp
+  // Đang ở bản dự phòng: 20 giây sau thử lại mạng; lấy được thì vẽ lại bằng nến thật.
+  if (duPhong) {
+    clearTimeout(CT.thuLai);
+    // ngam = true: không hiện lớp "Đang lấy nến…" mỗi lần thử (không nháy biểu đồ)
+    CT.thuLai = setTimeout(() => { if (CT.sym === sym) moBieuDo(sym, true); }, 20000);
+  }
+
+  // đổi nền sáng/tối thì dựng lại khung cho khớp màu
   if (!CT.theoDoiMau) {
-    CT.theoDoiMau = new MutationObserver(() => { if (CT.sym) moBieuDo(CT.sym); });
+    CT.theoDoiMau = new MutationObserver(() => {
+      if (!CT.sym) return;
+      if (CT.chart) { try { CT.chart.remove(); } catch (e) {} CT.chart = null; }
+      moBieuDo(CT.sym);
+    });
     CT.theoDoiMau.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   }
+}
+
+/* Ngày giờ Việt Nam dạng 'YYYY-MM-DD' (máy anh Sơn để múi giờ nào cũng đúng). */
+function ngayVN() {
+  const t = new Date(), v = new Date(t.getTime() + (t.getTimezoneOffset() + 420) * 60000);
+  return v.getFullYear() + '-' + String(v.getMonth() + 1).padStart(2, '0') + '-' + String(v.getDate()).padStart(2, '0');
+}
+
+/* Ghép nhịp giá real-time (NSI.rt, 15 giây) vào CÂY NẾN CUỐI bằng series.update()
+   — chỉ vẽ lại một cây nến, không dựng lại biểu đồ, nên không giật và giữ nguyên zoom.
+     · nến lịch sử đã có phiên hôm nay -> sửa cây đó
+     · chưa có, và phiên đang mở        -> thêm cây mới
+     · ngoài giờ mà nguồn chưa có hôm nay -> không tự bịa nến (có thể là ngày nghỉ) */
+function capNhatNenCuoi(sym) {
+  if (!CT.chart || CT.barsSym !== sym || !CT.bars.length) return false;
+  const r = (NSI.rt || {})[sym];
+  if (!r || !(r.price > 0)) return false;
+  const hn = ngayVN(), bars = CT.bars, cuoi = bars[bars.length - 1];
+  const dow = new Date(hn + 'T00:00:00Z').getUTCDay();
+  if (dow === 0 || dow === 6) return false;
+  const gia = r.price / 1000;
+  let i;
+  if (cuoi.time === hn) i = bars.length - 1;
+  else if (cuoi.time < hn && typeof phienMo === 'function' && phienMo()) {
+    bars.push({ time: hn, open: gia, high: gia, low: gia, close: gia, value: 0 });
+    CT.chiSo.set(hn, bars.length - 1);
+    i = bars.length - 1;
+  } else return false;
+  const b = bars[i];
+  const o = r.open > 0 ? r.open / 1000 : b.open;
+  const nb = { time: hn, open: o,
+    high: Math.max(r.hi > 0 ? r.hi / 1000 : gia, o, gia, b.time === hn && b.value ? b.high : 0),
+    low: Math.min(r.lo > 0 ? r.lo / 1000 : gia, o, gia, b.time === hn && b.value ? b.low : Infinity),
+    close: gia, value: Math.max(r.vol || 0, b.value || 0) };
+  if (nb.open === b.open && nb.high === b.high && nb.low === b.low && nb.close === b.close && nb.value === b.value) return false;
+  bars[i] = nb;
+  try {
+    // TRUYỀN BẢN SAO: update() của thư viện đổi `time` của object được đưa vào thành
+    // dạng {year,month,day} — đưa thẳng nb vào là CT.bars hỏng ngày ở cây cuối.
+    CT.nen.update(Object.assign({}, nb));
+    const tb = maTai(bars, i, 20, 'value');
+    CT.kl.update(cotKL(bars, i, tb, CT.M));
+    if (tb != null) CT.klMa.update({ time: hn, value: Math.round(tb) });
+    [20, 50, 200].forEach(n => {
+      const v = maTai(bars, i, n);
+      if (v != null && bars.length >= MA_DU(n)) CT.ma['ma' + n].update({ time: hn, value: +v.toFixed(3) });
+    });
+  } catch (e) { return false; }
+  veDauCT(null);
+  return true;
 }
 
 function apChiBao() {
   if (!CT.chart) return;
   Object.values(CT.ma).forEach(s => s.applyOptions({ visible: !!CT.ind.ma }));
   if (CT.kl) CT.kl.applyOptions({ visible: !!CT.ind.vol });
+  if (CT.klMa) CT.klMa.applyOptions({ visible: !!CT.ind.vol });
+  // tắt KL thì trả 22% dưới cho nến, không để một khoảng trống
+  CT.chart.priceScale('right').applyOptions({ scaleMargins: { top: 0.06, bottom: CT.ind.vol ? 0.32 : 0.06 } });
   if (CT.nen) CT.nen.setMarkers(CT.ind.bot ? (CT.marks || []) : []);
 }
 
@@ -1053,6 +1294,7 @@ function apKhungThoiGian() {
   if (!CT.chart || !CT.bars.length) return;
   const n = { '3M': 66, '1Y': 250, '3Y': 750, '5Y': 1250, 'ALL': CT.bars.length }[CT.range] || 250;
   const b = CT.bars;
-  const tu = b[Math.max(0, b.length - n)].time, den = b[b.length - 1].time;
-  CT.chart.timeScale().setVisibleRange({ from: tu, to: den });
+  // setVisibleLogicalRange theo SỐ PHIÊN (không theo ngày): giữ được khoảng trống
+  // rightOffset bên phải, và đổi khung không bị nhảy cóc khi có ngày nghỉ dài.
+  CT.chart.timeScale().setVisibleLogicalRange({ from: Math.max(0, b.length - n) - 0.5, to: b.length - 1 + 6 });
 }
