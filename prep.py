@@ -21,18 +21,22 @@ def build():
 
 def qend(y,q): return dt.date(y,[3,6,9,12][q-1], [31,30,30,31][q-1])
 
-# ---------------- NGAY CONG BO DA NGUON (R36, CHO anh Son duyet — mac dinh TAT) ----------------
-# Bat: bo may dung so quy moi tu PHIEN SAU ngay ban dau duoc dang, thay vi tu
-# max(ngay Vietcap, het quy + 45 ngay). Nguon: Vietstock + CafeF (thoi diem dang
-# file, data/ngay_cong_bo.json) + Vietcap publicDate.
+# ---------------- NGAY CONG BO DA NGUON — BIEN THE C (R36, anh Son chot 09/10/2026) ----------------
+# Bo may dung so quy moi tu PHIEN SAU ngay ban DAU duoc dang (Vietstock + CafeF:
+# thoi diem dang file, data/ngay_cong_bo.json; + Vietcap publicDate), NHUNG van
+# khong som hon het quy + 45 ngay (SAN_NGAY = 45). Khac cach cu chu yeu o quy 2 /
+# quy 4: Vietcap ghi ngay ban soat xet / kiem toan (cuoi thang 8 / cuoi thang 3),
+# bien the C dung ngay ban dau -> keo ve moc 45 ngay. R36: +1.057% (cach cu +1.062%),
+# PF 4,34 (4,28), MC p10 +719% (+667%). Bien the B (SAN_NGAY = 10) +813% — KHONG dung.
+# Khong co data/ngay_cong_bo.json (buoc cao hong ca dem lan cache) -> tu lui ve cach cu.
 #   * lay ngay som nhat co >= 2 nguon khop trong KHOP_NGAY ngay (lay ngay MUON hon
 #     cua cap do); chi 1 nguon co ngay thi dung ngay do; lech nhau het -> ngay muon nhat
 #   * ngay dung khong duoc som hon het quy + SAN_NGAY (day ve moc do); quy khong co ngay Vietstock/CafeF
 #     (vd truoc 2023) hoac khong hop le -> cach cu (Vietcap + san 45 ngay)
-NGAY_DA_NGUON = False
+NGAY_DA_NGUON = True
 NGAY_FILE = 'data/ngay_cong_bo.json'
 KHOP_NGAY = 3
-SAN_NGAY = 10
+SAN_NGAY = 45
 _ngay_cache = {}
 
 def _ngay_file():

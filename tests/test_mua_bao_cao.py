@@ -148,16 +148,26 @@ def test_da_nguon_bat_tat():
     raw = {'X': _ma(*[_quy(*q) for q in LICH])}
     ngay = {'X': {'vs': {'2026Q2': '2026-07-27T22:34', '2025Q4': '2026-01-26T21:36'},
                   'cf': {'2026Q2': '2026-07-28T09:51'}}}
-    assert prep.NGAY_DA_NGUON is False, 'PROD phai TAT cho den khi anh Son duyet'
+    # PROD = bien the C (anh Son chot 09/10/2026): bat, san 45 ngay
+    assert prep.NGAY_DA_NGUON is True and prep.SAN_NGAY == 45, 'PROD phai la bien the C'
     with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
         json.dump(ngay, f); pn = f.name
-    cu = (prep.NGAY_DA_NGUON, prep.NGAY_FILE)
+    cu = (prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY)
     try:
+        prep.NGAY_DA_NGUON = False; prep._ngay_cache.clear()
         tat = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
-        prep.NGAY_DA_NGUON, prep.NGAY_FILE = True, pn; prep._ngay_cache.clear()
+        prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY = True, pn, 10; prep._ngay_cache.clear()
         bat = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+        prep.SAN_NGAY = 45; prep._ngay_cache.clear()
+        c = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+        prep.NGAY_FILE = pn + '.khong-co'; prep._ngay_cache.clear()
+        mat_file = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
     finally:
-        prep.NGAY_DA_NGUON, prep.NGAY_FILE = cu; prep._ngay_cache.clear(); os.remove(pn)
+        prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY = cu; prep._ngay_cache.clear(); os.remove(pn)
+    # bien the C: Q2/2026 ban dau 28/07 -> keo ve moc 45 ngay 14/08 (cach cu 22/08)
+    assert c[(2026, 2)] == dt.date(2026, 8, 14), c[(2026, 2)]
+    # mat file ngay cong bo -> tu lui ve cach cu, khong hong
+    assert mat_file == tat
     assert tat[(2026, 2)] == dt.date(2026, 8, 22) and bat[(2026, 2)] == dt.date(2026, 7, 29)
     # Q4/2025: chi Vietstock 26/01 vs Vietcap 20/03 (kiem toan) lech, ngay muon nhat la cua
     # Vietcap -> khong co Vietstock/CafeF xac nhan -> giu nguyen cach cu
