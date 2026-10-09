@@ -21,6 +21,44 @@ def build():
 
 def qend(y,q): return dt.date(y,[3,6,9,12][q-1], [31,30,30,31][q-1])
 
+# ---------------- NGAY CONG BO DA NGUON (R36, CHO anh Son duyet — mac dinh TAT) ----------------
+# Bat: bo may dung so quy moi tu PHIEN SAU ngay ban dau duoc dang, thay vi tu
+# max(ngay Vietcap, het quy + 45 ngay). Nguon: Vietstock + CafeF (thoi diem dang
+# file, data/ngay_cong_bo.json) + Vietcap publicDate.
+#   * lay ngay som nhat co >= 2 nguon khop trong KHOP_NGAY ngay (lay ngay MUON hon
+#     cua cap do); chi 1 nguon co ngay thi dung ngay do; lech nhau het -> ngay muon nhat
+#   * ngay dung khong duoc som hon het quy + SAN_NGAY; quy khong co ngay Vietstock/CafeF
+#     (vd truoc 2023) hoac khong hop le -> cach cu (Vietcap + san 45 ngay)
+NGAY_DA_NGUON = False
+NGAY_FILE = 'data/ngay_cong_bo.json'
+KHOP_NGAY = 3
+SAN_NGAY = 10
+_ngay_cache = {}
+
+def _ngay_file():
+    if NGAY_FILE not in _ngay_cache:
+        try: _ngay_cache[NGAY_FILE] = json.load(open(NGAY_FILE, encoding='utf-8'))
+        except Exception: _ngay_cache[NGAY_FILE] = {}
+    return _ngay_cache[NGAY_FILE]
+
+def ngay_dau(ung_vien, y, q):
+    """ung_vien: {'vs': 'YYYY-MM-DD..', 'cf': .., 'vc': ..} (thieu thi None).
+    Tra ve (ngay, nguon) hoac (None, None)."""
+    qe = qend(y, q); ds = []
+    for k, v in ung_vien.items():
+        if not v: continue
+        try: d = dt.date.fromisoformat(str(v)[:10])
+        except Exception: continue
+        if qe < d <= qe + dt.timedelta(days=150): ds.append((d, k))
+    if not ds: return None, None
+    ds.sort()
+    for i in range(len(ds)):
+        for j in range(i + 1, len(ds)):
+            if (ds[j][0] - ds[i][0]).days <= KHOP_NGAY:
+                return ds[j][0], ds[i][1] + '+' + ds[j][1]
+    if len(ds) == 1: return ds[0][0], ds[0][1]
+    return ds[-1][0], 'lech:' + ds[-1][1]
+
 def parse_funda(path='data/funda_raw.json'):
     raw=json.load(open(path))
     out={}
@@ -67,7 +105,22 @@ def parse_funda(path='data/funda_raw.json'):
             p=r.get('publicDate')
             if p and k not in pub: pub[k]=p[:10]
         rows=[]
+        nf = _ngay_file().get(s) if NGAY_DA_NGUON else None
         for (y,q),v in sorted(recs.items()):
+            if nf is not None:
+                kq = f'{y}Q{q}'
+                uv = {'vs': (nf.get('vs') or {}).get(kq), 'cf': (nf.get('cf') or {}).get(kq)}
+                # phai co it nhat MOT nguon ngay dang file; chi co Vietcap -> cach cu
+                nd, ng = (ngay_dau(dict(uv, vc=pub_is.get((y,q))), y, q)
+                          if (uv['vs'] or uv['cf']) else (None, None))
+                if nd is not None and nd + dt.timedelta(days=1) >= qend(y,q) + dt.timedelta(days=SAN_NGAY):
+                    v=dict(v); v['y']=y; v['q']=q
+                    v['avail'] = nd + dt.timedelta(days=1)       # phien SAU ngay dang
+                    v['nguon_ngay'] = ng
+                    v['phan']=sorted(phan.get((y,q),()))
+                    v['pub_is'] = nd.isoformat()
+                    rows.append(v)
+                    continue
             pd_=pub.get((y,q))
             if pd_: avail=dt.date(*map(int,pd_.split('-')))
             else: avail=qend(y,q)+dt.timedelta(days=45)
