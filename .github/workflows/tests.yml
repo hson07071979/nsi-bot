@@ -45,3 +45,5 @@ jobs:
         run: python tests/test_ke_hoach_ban.py
       - name: Ngưỡng phiên (tham chiếu, bước giá, KL)
         run: python tests/test_nguong_phien.py
+      - name: Mùa báo cáo (chờ đủ 3 phần, mượn số đêm trước, nhật ký BCTC)
+        run: python tests/test_mua_bao_cao.py

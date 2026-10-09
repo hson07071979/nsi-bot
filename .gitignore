@@ -17,3 +17,4 @@ industries.csv
 out/
 site/index.html
 data/orderflow_fill.json
+data/funda_age.json

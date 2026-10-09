@@ -25,6 +25,38 @@ def load_state():
 
 def save_state(s): json.dump(s, open(STATE,'w'), ensure_ascii=False, indent=1)
 
+def nhat_ky_bctc(st, rows, today):
+    """Ghi lai ma nao doi trang thai vi quy bao cao tai chinh moi vao bo may.
+
+    Moi lan chay nho {ma: [quy, diem, bi_chan, ly_do_chan, den_tim, mua_duoc,
+    de_mat]}. Quy cua ma doi so voi lan truoc => mot dong nhat ky, ghi ro doi
+    nhung gi. Lan dau (chua co tri nho) chi ghi nho, khong do ra ca nghin dong."""
+    cu = st.get('quy')
+    moi = {x['sym']: [x.get('quarter'), x.get('score'), bool(x.get('blocked')), x.get('block') or '',
+                      bool(x.get('tim')), bool(x.get('wl')), bool(x.get('fa_wl'))] for x in rows}
+    log = st.setdefault('bctc_log', [])
+    if isinstance(cu, dict):
+        for sym, m in moi.items():
+            c = cu.get(sym)
+            if not c or not m[0] or not c[0] or c[0] == m[0]:
+                continue
+            doi = []
+            if c[1] is not None and m[1] is not None and round(c[1]) != round(m[1]):
+                doi.append('điểm %.0f → %.0f' % (c[1], m[1]))
+            if c[2] != m[2]:
+                doi.append('cổng rủi ro: ' + ('chặn → qua' if c[2] else 'qua → chặn (%s)' % m[3]))
+            if c[4] != m[4]:
+                doi.append('đèn tím ' + ('bật' if m[4] else 'tắt'))
+            if c[5] != m[5]:
+                doi.append('vào danh sách mua' if m[5] else 'ra khỏi danh sách mua')
+            elif c[6] != m[6]:
+                doi.append('vào nhóm để mắt' if m[6] else 'ra khỏi nhóm để mắt')
+            log.insert(0, {'date': today, 'sym': sym, 'tu': c[0], 'den': m[0],
+                           'doi': doi, 'diem': m[1], 'chan': m[2]})
+    st['quy'] = moi
+    st['bctc_log'] = log[:400]
+
+
 def refresh(max_size=40):
     st=load_state()
     r=screen()
@@ -105,6 +137,7 @@ def refresh(max_size=40):
     else:
         st['log'].insert(0, hnay)
     st['log']=st['log'][:60]
+    nhat_ky_bctc(st, r['rows'], today)
     save_state(st)
     added, removed = hnay['added_ct'], hnay['removed_ct']
     detail=[]
@@ -118,7 +151,9 @@ def refresh(max_size=40):
          'universe':r['n'],'n_fit':len(r['watchlist']),'rules':WL,'pinned':st['pinned'],
          # 30 phien nhat ky gan nhat — truoc day chi dang duoc dong HOM NAY nen
          # trang web khong bao gio co lich su de xem.
-         'log':st['log'][:30]}
+         'log':st['log'][:30],
+         # ma doi trang thai vi QUY BAO CAO MOI vao bo may (09/10/2026)
+         'bctc_log':st.get('bctc_log', [])[:200]}
     json.dump(out, open('data/watchlist.json','w'), ensure_ascii=False)
     return out
 

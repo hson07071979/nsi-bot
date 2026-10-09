@@ -154,8 +154,28 @@ jobs:
         continue-on-error: true
         run: python orderflow_fill.py
 
+      # Mua bao cao (09/10/2026): khoi phuc BCTC cua dem truoc. fetch_funda.py chi
+      # MUON phan nao ma nao con thieu sau hai luot tai, toi da 3 dem lien tiep.
+      # Cache trong (lan dau, hay qua 7 ngay khong chay) thi buoc muon tu bo qua.
+      - name: Lấy BCTC đêm trước (dự phòng)
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/funda_raw2.json
+            data/funda_age.json
+          key: bctc-${{ github.run_id }}
+          restore-keys: bctc-
+
       - name: Cào báo cáo tài chính (Vietcap IQ)
         run: python fetch_funda.py
+
+      - name: Cất BCTC đêm nay cho đêm sau
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/funda_raw2.json
+            data/funda_age.json
+          key: bctc-${{ github.run_id }}-${{ github.run_attempt }}
 
       # Kéo các file SỐNG từ trang public về. Ba file đầu để nhúng ảnh chụp vào
       # index.html — mở file bằng đường dẫn trên máy vẫn thấy danh mục, không
