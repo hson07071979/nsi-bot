@@ -87,7 +87,8 @@ function pageWatchlist(root){
         : '<p style="margin:0">Không có mã nào bị loại.</p>'}</div>
   </div>
 
-  ${nhatKyWatchlist(W)}`;
+  ${nhatKyWatchlist(W)}
+  ${nhatKyBCTC(W)}`;
   let sk='score',sd=-1;
   function rend(){
     const rows=[...fit].sort((a,b)=>{const x=a[sk]??-1e9,y=b[sk]??-1e9;return (x>y?1:x<y?-1:0)*sd;});
@@ -253,6 +254,27 @@ function pageLive(root){
    chay lai so sanh voi anh chup dong bang tu 30/08 va "hom nay" khong bao gio
    doi. Nay state di ve tu repo public moi lan chay va watchlist.py dang ca
    `log`, nen cho no mot cai bang thuc su. */
+/* Mã đổi trạng thái vì QUÝ BÁO CÁO MỚI vào bộ máy (09/10/2026). Mùa báo cáo cả
+   trăm mã cùng sang quý mới — chỉ liệt kê mã ĐỔI gì đó (điểm, cổng rủi ro, đèn tím,
+   vào/ra danh sách), còn lại chỉ đếm. 30 ngày gần nhất. */
+function nhatKyBCTC(W){
+  const G=(W&&W.bctc_log)||[];
+  if(!G.length) return '';
+  const moc=G[0].date, tu=new Date(new Date(moc).getTime()-30*864e5).toISOString().slice(0,10);
+  const gan=G.filter(g=>g.date>=tu), doi=gan.filter(g=>g.doi&&g.doi.length);
+  const lop=t=>/chặn \(|ra khỏi|tím bật/.test(t)?'neg':/qua$|vào /.test(t)?'pos':'';
+  return `
+  <h3 style="margin-top:26px">Đổi do báo cáo tài chính mới</h3>
+  <p class="muted" style="margin:0 0 8px;font-size:13px">30 ngày qua ${gan.length} mã chuyển sang quý báo cáo mới;
+    ${doi.length} mã đổi trạng thái vì số mới (bên dưới). Mã đang cầm KHÔNG bị bán vì báo cáo — luật bán chỉ theo giá.</p>
+  ${doi.length?`<div class="card tblwrap"><table><thead><tr>
+    <th>Phiên</th><th>Mã</th><th>Quý</th><th>Thay đổi</th></tr></thead><tbody>
+    ${doi.slice(0,120).map(g=>`<tr><td>${esc(g.date)}</td><td class="sym">${esc(g.sym)}</td>
+      <td class="muted" style="white-space:nowrap">${esc(g.tu)} → ${esc(g.den)}</td>
+      <td>${g.doi.map(t=>`<span class="${lop(t)}">${esc(t)}</span>`).join(' · ')}</td></tr>`).join('')}
+  </tbody></table></div>`:''}`;
+}
+
 function nhatKyWatchlist(W){
   const G=(W&&W.log)||[];
   if(!G.length) return '';

@@ -72,6 +72,20 @@ MAX_MISSING_IS = 0.03
 TARGET_FILE = "data/funda_raw2.json"
 TEMP_FILE = "data/funda_raw2.json.tmp"
 
+# Mua bao cao (anh Son duyet 09/10/2026):
+#  * LUOT 2: ma con thieu phan sau luot dau duoc tai lai rieng, cham hon.
+#  * SO DEM TRUOC: workflow khoi phuc funda_raw2.json cua dem truoc (actions/cache).
+#    Ma van thieu mot phan thi muon phan do cua dem truoc, toi da SO_DEM_CU dem
+#    lien tiep; qua han thi tinh la thieu that (chot chan 3% van ap nhu cu).
+#    So dem dang muon ghi o AGE_FILE de trang web va data_health biet ma nao dung so cu.
+SO_DEM_CU = 3
+AGE_FILE = "data/funda_age.json"
+MIN_INTERVAL_2 = 0.6
+# Tran thoi gian luot 2: Vietcap dang chan thi moi request co the mat 4 x 45s.
+# Het tran thi dung, ma con lai di tiep sang buoc muon so dem truoc.
+LUOT_HAI_GIAY = 12 * 60
+PHAN = ("is", "cf", "ratio")
+
 
 # ============================================================
 # THREAD-SAFE DIAGNOSTICS
@@ -267,6 +281,57 @@ def _get(url, params=None):
 # ============================================================
 # FETCH ONE TICKER
 # ============================================================
+
+def thieu_phan(d):
+    """Cac phan (is/cf/ratio) dang rong cua mot ma."""
+    return [k for k in PHAN if not d.get(k)]
+
+
+def luot_hai(res, syms):
+    """Tai lai rieng cac ma con thieu, 1 luong, gian cach MIN_INTERVAL_2.
+    Chi thay phan nao luot hai lay DUOC — khong bao gio xoa phan da co."""
+    global MIN_INTERVAL
+    cu = MIN_INTERVAL
+    MIN_INTERVAL = MIN_INTERVAL_2
+    cuu = 0
+    het = time.monotonic() + LUOT_HAI_GIAY
+    try:
+        for i, sym in enumerate(syms):
+            if time.monotonic() > het:
+                print(f"  het tran {LUOT_HAI_GIAY // 60} phut — bo qua {len(syms) - i} ma con lai", flush=True)
+                break
+            _, d = one(sym)
+            for k in PHAN:
+                if d.get(k) and not res[sym].get(k):
+                    res[sym][k] = d[k]
+            if not thieu_phan(res[sym]):
+                cuu += 1
+    finally:
+        MIN_INTERVAL = cu
+    return cuu
+
+
+def muon_dem_truoc(res, truoc, tuoi):
+    """Ma con thieu phan nao ma dem truoc CO thi muon phan do, neu chua muon qua
+    SO_DEM_CU dem. Tra ve (tuoi_moi, {ma: [phan da muon]})."""
+    tuoi_moi, muon = {}, {}
+    for sym, d in res.items():
+        thieu = thieu_phan(d)
+        if not thieu:
+            continue                      # du phan dem nay -> tuoi ve 0 (khong ghi)
+        n = int(tuoi.get(sym, 0)) + 1
+        if n > SO_DEM_CU:
+            continue                      # da muon du so dem -> de thieu that
+        cu = truoc.get(sym) or {}
+        lay = [k for k in thieu if cu.get(k)]
+        if not lay:
+            continue
+        for k in lay:
+            d[k] = cu[k]
+        muon[sym] = lay
+        tuoi_moi[sym] = n
+    return tuoi_moi, muon
+
 
 def one(sym):
     out = {}
@@ -482,6 +547,30 @@ if __name__ == "__main__":
                 )
 
     # --------------------------------------------------------
+    # LUOT 2 + SO DEM TRUOC (mua bao cao, 09/10/2026)
+    # --------------------------------------------------------
+    con_thieu = sorted(s for s, d in res.items() if thieu_phan(d))
+    if con_thieu:
+        print(f"\nLUOT 2: tai lai {len(con_thieu)} ma con thieu phan...", flush=True)
+        print(f"  cuu duoc {luot_hai(res, con_thieu)} ma", flush=True)
+
+    truoc, tuoi = {}, {}
+    try:
+        with open(TARGET_FILE, encoding="utf-8") as f:
+            truoc = json.load(f)
+    except Exception:
+        print("  khong co ban dem truoc (cache trong) — bo qua buoc muon", flush=True)
+    try:
+        with open(AGE_FILE, encoding="utf-8") as f:
+            tuoi = json.load(f)
+    except Exception:
+        tuoi = {}
+    tuoi_moi, muon = muon_dem_truoc(res, truoc, tuoi)
+    if muon:
+        print(f"  muon so dem truoc cho {len(muon)} ma: " +
+              " ".join(f"{s}({','.join(v)})" for s, v in sorted(muon.items())[:40]), flush=True)
+
+    # --------------------------------------------------------
     # DIAGNOSTICS FIRST
     # --------------------------------------------------------
 
@@ -548,6 +637,7 @@ if __name__ == "__main__":
             expected=len(u), received=len(res), coverage=round(1 - len(no_is) / len(res), 4),
             missing_is=len(no_is), missing_cf=len(no_cf), missing_ratio=len(no_ra),
             missing_sample=sorted(set(no_is) | set(no_cf))[:40],
+            stale=len(muon), stale_sample={s: tuoi_moi[s] for s in sorted(muon)[:40]},
             last_error=(_err_counts.most_common(1)[0][0] if _err_counts else None)))
     except Exception as e:
         print('data_health:', e)
@@ -598,6 +688,11 @@ if __name__ == "__main__":
         TEMP_FILE,
         TARGET_FILE,
     )
+
+    # So dem dang muon, cung luc voi file chinh (chi ghi khi ban moi duoc nhan)
+    with open(AGE_FILE + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(tuoi_moi, f, ensure_ascii=False)
+    os.replace(AGE_FILE + ".tmp", AGE_FILE)
 
     print(
         "\nOK: integrity check dat. "

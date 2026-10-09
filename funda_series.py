@@ -46,10 +46,17 @@ def build(asof=None):
         d = json.load(open('data/site_data2.json', encoding='utf-8'))
         asof = dt.date.fromisoformat(d['asof'])
 
+    try:
+        tuoi = json.load(open('data/funda_age.json', encoding='utf-8'))
+    except Exception:
+        tuoi = {}
+
     out = {}
-    for s, rows in fu.items():
+    for s, tat_ca in fu.items():
         # chi giu quy DA cong bo tinh den phien du lieu — khong nhin truoc
-        rows = [r for r in rows if r.get('avail') and r['avail'] <= asof]
+        rows = [r for r in tat_ca if r.get('avail') and r['avail'] <= asof]
+        # quy DA co tren nguon nhung bot CHUA dung (chua toi ngay dung / cho du phan)
+        cho = [r for r in tat_ca if r.get('avail') and r['avail'] > asof]
         if len(rows) < 5:
             continue
         idx = {(r['y'], r['q']): r for r in rows}
@@ -90,8 +97,19 @@ def build(asof=None):
             tim.append(1 if ly else 0)
             vi.append(ly)
 
+        nhan = lambda r: f"Q{r['q']}/{r['y']}"
+        dung = rows[-1]
+        tt = dict(dung=nhan(dung), dung_tu=str(dung['avail']))
+        if dung.get('thieu_phan'):
+            tt['thieu'] = dung['thieu_phan']
+        if cho:
+            m = cho[0]
+            tt['moi'] = dict(q=nhan(m), cong_bo=m.get('pub_is'), dung_tu=str(m['avail']),
+                             thieu=m.get('thieu_phan') or [])
+        if tuoi.get(s):
+            tt['cu'] = tuoi[s]
         out[s] = dict(q=q, rev=rev, np=np_, ry=ry, ny=ny, roe=roe, pe=pe, pb=pb,
-                      tim=tim, vi=vi)
+                      tim=tim, vi=vi, tt=tt)
     return out
 
 

@@ -26,10 +26,13 @@ def parse_funda(path='data/funda_raw.json'):
     out={}
     for s,d in raw.items():
         recs={}
+        phan={}          # (y,q) -> {'ratio','is','cf'}: phan nao cua quy da ve
+        pub_is={}        # (y,q) -> ngay cong bo KQKD THO (chua qua chot chan)
         for r in d.get('ratio',[]):
             y=int(r.get('yearReport') or r.get('year') or 0); q=r.get('quarter')
             if not y or not q or int(q) not in (1,2,3,4): continue
             q=int(q)
+            phan.setdefault((y,q),set()).add('ratio')
             recs[(y,q)]={'marketCap':r.get('marketCap'),'de':r.get('debtToEquity'),
                 'roe':r.get('roe'),'ebit':r.get('ebit'),'npl':r.get('npl'),'car':r.get('car'),
                 'pe':r.get('pe'),'ps':r.get('ps'),'pcf':r.get('priceToCashFlow'),
@@ -40,6 +43,7 @@ def parse_funda(path='data/funda_raw.json'):
             if not y or lr not in (1,2,3,4): continue
             k=(int(y),int(lr))
             recs.setdefault(k,{})
+            phan.setdefault(k,set()).add('is')
             rev = (r.get('isa3') or r.get('isb38') or r.get('isb27')
                    or r.get('isi103') or r.get('iss141'))   # DN thuong / ngan hang / bao hiem / chung khoan
             # LNST CUA CO DONG CONG TY ME (isa22) truoc, khong phai LNST tong (isa20).
@@ -53,11 +57,12 @@ def parse_funda(path='data/funda_raw.json'):
             recs[k].update({'rev':rev,'npat':npat,'npat_p':r.get('isa22'),
                             'intexp':r.get('isa8'),'other':r.get('isa14'),'pretax':r.get('isa16')})
             p=r.get('publicDate')
-            if p: pub[k]=p[:10]
+            if p: pub[k]=p[:10]; pub_is[k]=p[:10]
         for r in d.get('cf',[]):
             y=r.get('yearReport'); lr=r.get('lengthReport')
             if not y or lr not in (1,2,3,4): continue
             k=(int(y),int(lr)); recs.setdefault(k,{})
+            phan.setdefault(k,set()).add('cf')
             recs[k]['cfo']=r.get('cfa18')
             p=r.get('publicDate')
             if p and k not in pub: pub[k]=p[:10]
@@ -75,6 +80,39 @@ def parse_funda(path='data/funda_raw.json'):
             som_nhat = qend(y,q)+dt.timedelta(days=45)
             if avail < som_nhat: avail = som_nhat
             v=dict(v); v['y']=y; v['q']=q; v['avail']=avail
+            v['phan']=sorted(phan.get((y,q),()))
+            if pub_is.get((y,q)): v['pub_is']=pub_is[(y,q)]
             rows.append(v)
-        out[s]=rows
+        out[s]=cho_du_phan(rows)
     return out
+
+
+# ---------------- QUY MOI PHAI DU PHAN (anh Son duyet 09/10/2026) ----------------
+# Vietcap tra ba phan RIENG: KQKD, luu chuyen tien te, bang chi so (ROE, D/E, EBIT).
+# Truoc day ma nao co KQKD quy moi la bo may chuyen ngay sang quy do, ke ca khi
+# hai phan kia chua ve -> mat ROE (tut 10 diem A2), mat EBIT/D-E (cong ICR, D/E
+# bi bo qua), CFO 4 quy chi cong 3 quy (cong CFO co the lat). Gio:
+#   * quy MOI NHAT chua co KQKD (chi co bang chi so / LCTT) -> chua dung quy do
+#   * co KQKD nhung thieu phan ma quy truoc CO -> giu quy cu toi da CHO_DU_PHAN
+#     ngay ke tu ngay cong bo KQKD; qua han thi nhan voi phan dang co, gan
+#     'thieu_phan' de trang web canh bao
+# Chi dung toi QUY MOI NHAT cua tung ma: lich su backtest (cac quy da du phan tu
+# lau) khong doi.
+CHO_DU_PHAN = 15
+
+def cho_du_phan(rows):
+    rows=list(rows)
+    # quy moi nhat chua co KQKD: khong co gi de cham diem tang truong -> bo
+    while rows and 'is' not in rows[-1].get('phan',()):
+        rows.pop()
+    if len(rows)<2: return rows
+    moi, cu = rows[-1], rows[-2]
+    can = {'is'} | (set(cu.get('phan',())) & {'cf','ratio'})
+    thieu = sorted(can - set(moi.get('phan',())))
+    if thieu:
+        moi=dict(moi)
+        moi['thieu_phan']=thieu
+        goc = (dt.date(*map(int,moi['pub_is'].split('-'))) if moi.get('pub_is') else moi['avail'])
+        moi['avail']=max(moi['avail'], goc+dt.timedelta(days=CHO_DU_PHAN))
+        rows[-1]=moi
+    return rows

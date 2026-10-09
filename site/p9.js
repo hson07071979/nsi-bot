@@ -237,6 +237,7 @@ function pageChart(root){
   </div>
 
   <h2 style="margin-top:26px">Tài chính — 12 quý gần nhất</h2>
+  <div id="ctQuy" style="margin:-4px 0 12px"></div>
   <div class="two">
     <div class="card"><h3 style="margin:0 0 4px">Tăng trưởng cùng kỳ</h3>
       <div class="legend" style="margin:0 0 4px"><span><i style="background:var(--s1)"></i>%YoY Doanh thu</span><span><i style="background:var(--s5)"></i>%YoY LNST</span></div>
@@ -290,6 +291,8 @@ function pageChart(root){
     const _ben = document.getElementById('ctBen');
     _ben.innerHTML = benPhai(sym, null); _ben._sym = sym;
     moBieuDo(sym);
+
+    document.getElementById('ctQuy').innerHTML = F ? dongQuyBCTC(F.tt) : '';
 
     // ---- bốn biểu đồ cơ bản ----
     if (!F) {
@@ -381,6 +384,27 @@ function pageChart(root){
     if (v) { ve(v); chips(); noiChip(); inp.value = ''; }
   };
   if (cur) ve(cur);
+}
+
+/* Dòng "bot đang dùng báo cáo quý nào" (09/10/2026). Mùa báo cáo khách hay hỏi
+   "báo cáo ra rồi sao điểm chưa đổi" — câu trả lời nằm ngay đây: quý đang dùng,
+   quý mới đã công bố ngày nào và bot dùng từ ngày nào (chờ đủ 3 phần, hoặc chưa
+   tới ngày được dùng). */
+function dongQuyBCTC(tt) {
+  if (!tt || !tt.dung) return '';
+  const ng = d => d ? String(d).slice(0, 10).split('-').reverse().join('/') : '—';
+  const ten = { is: 'kết quả kinh doanh', cf: 'lưu chuyển tiền tệ', ratio: 'bảng chỉ số (ROE, D/E, EBIT)' };
+  const ds = a => (a || []).map(k => ten[k] || k).join(', ');
+  let h = `Bot đang dùng báo cáo <b style="color:var(--text-primary)">${esc(tt.dung)}</b>`;
+  if (tt.moi) {
+    h += ` · <b style="color:var(--text-primary)">${esc(tt.moi.q)}</b> ${tt.moi.cong_bo ? 'đã công bố ' + ng(tt.moi.cong_bo) : 'đã có trên nguồn'}, bot dùng từ <b style="color:var(--text-primary)">${ng(tt.moi.dung_tu)}</b>`;
+    if (tt.moi.thieu && tt.moi.thieu.length) h += ` <span style="color:var(--warn)">(đang chờ đủ phần: thiếu ${ds(tt.moi.thieu)})</span>`;
+  }
+  if (tt.thieu && tt.thieu.length)
+    h += `<br><span style="color:var(--warn)">Quý ${esc(tt.dung)} vẫn thiếu ${ds(tt.thieu)} sau 15 ngày chờ — chỉ số phần đó đang để trống.</span>`;
+  if (tt.cu)
+    h += `<br><span style="color:var(--warn)">Báo cáo mã này lấy từ đêm trước (nguồn chưa trả lời, đêm thứ ${tt.cu}/3).</span>`;
+  return `<div class="muted" style="font-size:13px;line-height:1.55">${h}</div>`;
 }
 
 function dongTrangThaiMa(sym) {

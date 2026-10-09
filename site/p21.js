@@ -83,8 +83,8 @@ function bangLenhBan() {
   };
   return `<h2>🔻 Lệnh bán — phiên ${ddmm(phien)}</h2>
     <div class="card tblwrap lban"><table><thead><tr>
-      <th>Mã</th><th class="r">Giá vốn</th><th class="r">Giá hiện tại</th><th class="r">Lãi/lỗ</th>
-      <th class="r">Đỉnh lãi</th><th class="r">Ngưỡng bán</th><th>Việc hôm nay</th></tr></thead><tbody>
+      <th>Mã</th><th class="r">Giá vốn</th><th class="r">Giá hiện tại</th><th class="r" title="Tiền thực nhận nếu bán ở giá hiện tại: đã trừ phí mua, phí bán và thuế">Lãi thực nhận</th>
+      <th class="r" title="Lãi cao nhất theo giá đóng cửa, theo công thức của luật khoá lãi (chưa trừ phí bán)">Đỉnh lãi (theo luật)</th><th class="r">Ngưỡng bán</th><th>Việc hôm nay</th></tr></thead><tbody>
       ${rows.map(x => `<tr class="${x.duoi ? 'lbdo' : ''}">
         <td class="sym">${esc(x.k.sym)}<div class="lbn ${x.k.nguon}">${nhan[x.k.nguon] || ''}</div></td>
         <td class="r">${so(x.k.gia_von)}</td>
