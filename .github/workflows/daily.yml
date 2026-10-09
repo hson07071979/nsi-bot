@@ -163,11 +163,21 @@ jobs:
           path: |
             data/funda_raw2.json
             data/funda_age.json
+            data/ngay_cong_bo.json
           key: bctc-${{ github.run_id }}
           restore-keys: bctc-
 
       - name: Cào báo cáo tài chính (Vietcap IQ)
         run: python fetch_funda.py
+
+      # Bien the C (anh Son chot 09/10/2026): ngay ban DAU cua BCTC quy tu Vietstock +
+      # CafeF, de prep.py dung ngay ban dau cho quy 2 / quy 4 thay ngay ban soat xet /
+      # kiem toan (van khong som hon het quy + 45 ngay). Hong thi giu file dem truoc
+      # (cache o tren); khong co file nao thi prep.py tu lui ve cach cu — khong chan day chuyen.
+      - name: Cào ngày công bố BCTC (Vietstock + CafeF)
+        continue-on-error: true
+        timeout-minutes: 30
+        run: python fetch_ngay_cong_bo.py
 
       - name: Cất BCTC đêm nay cho đêm sau
         uses: actions/cache/save@v4
@@ -175,6 +185,7 @@ jobs:
           path: |
             data/funda_raw2.json
             data/funda_age.json
+            data/ngay_cong_bo.json
           key: bctc-${{ github.run_id }}-${{ github.run_attempt }}
 
       # Kéo các file SỐNG từ trang public về. Ba file đầu để nhúng ảnh chụp vào

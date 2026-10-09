@@ -128,6 +128,69 @@ def test_nhat_ky_bctc():
     assert len(st['bctc_log']) == 1
 
 
+@test
+def test_ngay_dau_quy_tac():
+    from prep import ngay_dau
+    D = dt.date
+    # FPT Q2/2026: Vietstock 27/07, CafeF 28/07 khop; Vietcap 22/08 la ban soat xet
+    assert ngay_dau({'vs': '2026-07-27T22:34', 'cf': '2026-07-28T09:51', 'vc': '2026-08-22'}, 2026, 2) == (D(2026, 7, 28), 'vs+cf')
+    # FPT Q1/2025: CafeF muon (21/05); Vietstock 22/04 khop Vietcap 23/04
+    assert ngay_dau({'vs': '2025-04-22', 'cf': '2025-05-21', 'vc': '2025-04-23'}, 2025, 1) == (D(2025, 4, 23), 'vs+vc')
+    # lech nhau het -> ngay muon nhat (an toan)
+    assert ngay_dau({'vs': '2025-04-01', 'cf': '2025-05-21', 'vc': '2025-04-23'}, 2025, 1)[0] == D(2025, 5, 21)
+    # ngay truoc khi het quy (kieu CAP 2023Q1) bi loai
+    assert ngay_dau({'vc': '2023-01-31'}, 2023, 1) == (None, None)
+
+
+@test
+def test_da_nguon_bat_tat():
+    import prep
+    raw = {'X': _ma(*[_quy(*q) for q in LICH])}
+    ngay = {'X': {'vs': {'2026Q2': '2026-07-27T22:34', '2025Q4': '2026-01-26T21:36'},
+                  'cf': {'2026Q2': '2026-07-28T09:51'}}}
+    # PROD = bien the C (anh Son chot 09/10/2026): bat, san 45 ngay
+    assert prep.NGAY_DA_NGUON is True and prep.SAN_NGAY == 45, 'PROD phai la bien the C'
+    with tempfile.NamedTemporaryFile('w', suffix='.json', delete=False) as f:
+        json.dump(ngay, f); pn = f.name
+    cu = (prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY)
+    try:
+        prep.NGAY_DA_NGUON = False; prep._ngay_cache.clear()
+        tat = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+        prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY = True, pn, 10; prep._ngay_cache.clear()
+        bat = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+        prep.SAN_NGAY = 45; prep._ngay_cache.clear()
+        c = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+        prep.NGAY_FILE = pn + '.khong-co'; prep._ngay_cache.clear()
+        mat_file = {(r['y'], r['q']): r['avail'] for r in _parse(raw)['X']}
+    finally:
+        prep.NGAY_DA_NGUON, prep.NGAY_FILE, prep.SAN_NGAY = cu; prep._ngay_cache.clear(); os.remove(pn)
+    # bien the C: Q2/2026 ban dau 28/07 -> keo ve moc 45 ngay 14/08 (cach cu 22/08)
+    assert c[(2026, 2)] == dt.date(2026, 8, 14), c[(2026, 2)]
+    # mat file ngay cong bo -> tu lui ve cach cu, khong hong
+    assert mat_file == tat
+    assert tat[(2026, 2)] == dt.date(2026, 8, 22) and bat[(2026, 2)] == dt.date(2026, 7, 29)
+    # Q4/2025: chi Vietstock 26/01 vs Vietcap 20/03 (kiem toan) lech, ngay muon nhat la cua
+    # Vietcap -> khong co Vietstock/CafeF xac nhan -> giu nguyen cach cu
+    assert bat[(2025, 4)] == tat[(2025, 4)] == dt.date(2026, 3, 20)
+    # quy khong co ngay Vietstock/CafeF -> giu nguyen cach cu (Vietcap + san 45 ngay)
+    assert bat[(2025, 3)] == tat[(2025, 3)] == dt.date(2025, 11, 14)
+    assert bat[(2026, 1)] == tat[(2026, 1)]
+
+
+@test
+def test_phan_loai_ten_file():
+    from sources.bctc_ngay import phan_loai, gom
+    assert phan_loai('Báo cáo tài chính Hợp nhất quý 2 năm 2026') == ((2026, 2), True)
+    assert phan_loai('Báo cáo tài chính công ty mẹ quý 2 năm 2026') == ((2026, 2), False)
+    assert phan_loai('Báo cáo tài chính hợp nhất quý 2 năm 2026 (đã soát xét)') is None
+    assert phan_loai('Báo cáo tài chính Hợp nhất Soát xét 6 tháng đầu năm 2026') is None
+    assert phan_loai('Báo cáo tài chính Hợp nhất Kiểm toán năm 2024') is None
+    # cong ty me ra truoc hop nhat: CHI tinh hop nhat (bo may dung so hop nhat)
+    g = gom([((2026, 2), False, '2026-07-20T10:00'), ((2026, 2), True, '2026-07-27T22:34'),
+             ((2026, 1), False, '2026-04-20T10:00')])
+    assert g == {'2026Q2': '2026-07-27T22:34', '2026Q1': '2026-04-20T10:00'}
+
+
 if __name__ == '__main__':
     ok = 0
     for fn in T:
