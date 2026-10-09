@@ -79,16 +79,34 @@ out = dict(meta=C.meta(dict(script='r36_ngay_cong_bo', nseed=NSEED)), do_phu=phu
            som_hon_theo_quy={k: tk(v) for k, v in sorted(som_q.items())},
            som_hon_theo_nam={k: tk(v) for k, v in sorted(som_nam.items())},
            mau=mau, hom_nay_doi=doi)
+VET = {}
 # C = da nguon nhung GIU san 45 ngay: chi keo quy 2 / quy 4 (Vietcap ghi ngay ban soat
 #     xet / kiem toan) ve moc 45 ngay — tach phan loi/hai cua 'som hon 45 ngay'.
 for ten, bat, san in (('A_cach_cu', False, 10), ('B_da_nguon_san10', True, 10), ('C_da_nguon_san45', True, 45)):
     prep.NGAY_DA_NGUON = bat; prep.SAN_NGAY = san; prep._ngay_cache.clear(); E._CACHE.clear(); E.load()
-    s = C.run({}, name=ten)
+    s, r = C.run({}, name=ten, keep=True)
+    VET[ten] = r['trades']
+    print(ten, 'tung nam', {k: round(v * 100, 1) for k, v in s['yearly'].items()}, '| tap trung', s['concentration'], flush=True)
     mc = [C.run(dict(miss_prob=0.10, miss_seed=sd), name=f'{ten}|{sd}')['metrics']['total_return']
           for sd in range(1, NSEED + 1)]
     s['mc_med'] = float(np.median(mc)); s['mc_p10'] = float(np.percentile(mc, 10))
     print(C.line(s), '| MC med %+.1f%% p10 %+.1f%%' % (s['mc_med'] * 100, s['mc_p10'] * 100), flush=True)
     out[ten] = s
+# ---------- vi sao khac: lenh co o ben nay ma khong co o ben kia ----------
+def _k(t): return (t['sym'], t['entry'])
+A_ = {}
+for t in VET['A_cach_cu']: A_.setdefault(_k(t), []).append(t)
+for ten in ('B_da_nguon_san10', 'C_da_nguon_san45'):
+    B_ = {}
+    for t in VET[ten]: B_.setdefault(_k(t), []).append(t)
+    chi_a = sorted(((k, sum(x['pnl_vnd'] for x in v)) for k, v in A_.items() if k not in B_), key=lambda x: -abs(x[1]))
+    chi_b = sorted(((k, sum(x['pnl_vnd'] for x in v)) for k, v in B_.items() if k not in A_), key=lambda x: -abs(x[1]))
+    print(f'\n{ten}: lenh chi co o A {len(chi_a)} (tong {sum(x[1] for x in chi_a)/1e9:+.2f} ty) | '
+          f'chi co o {ten[0]} {len(chi_b)} (tong {sum(x[1] for x in chi_b)/1e9:+.2f} ty)')
+    print('  chi A, lon nhat:', [(f'{k[0]} {k[1]}', round(v / 1e9, 2)) for k, v in chi_a[:12]])
+    print(f'  chi {ten[0]}, lon nhat:', [(f'{k[0]} {k[1]}', round(v / 1e9, 2)) for k, v in chi_b[:12]])
+    out['khac_' + ten] = dict(chi_a=[(k, v) for k, v in chi_a[:40]], chi_b=[(k, v) for k, v in chi_b[:40]])
+
 prep.NGAY_DA_NGUON = False; prep.SAN_NGAY = 10
 os.makedirs('evidence', exist_ok=True)
 json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, default=str, indent=1)
