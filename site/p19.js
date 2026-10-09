@@ -15,6 +15,19 @@ function obsPath(sym, entry) {
   return (O.paths || {})[sym + '|' + entry] || null;
 }
 
+/* Lãi THỰC NHẬN của vị thế — cùng số với Danh mục (giá real-time, trừ phí mua + phí bán).
+   Trước đây ô này lấy gain_now của bộ máy (giá đóng cửa tối qua, chưa trừ phí bán), nên
+   BVH 09/10/2026 hiện +14,4% trong khi Danh mục hiện +12,5%. */
+function obsLaiTN(sym, p) {
+  try {
+    const v = (typeof danhMuc === 'function' ? danhMuc() : []).find(x => x.sym === sym && x.pnl != null);
+    if (v) return { v: v.pnl / 100, nhan: 'Lãi thực nhận (giá hiện tại)' };
+  } catch (e) {}
+  const g = p.gain_now;
+  return { v: g == null ? null : (1 + g) * (1 - (typeof PHI_BAN !== 'undefined' ? PHI_BAN : 0.0025)) - 1,
+           nhan: 'Lãi thực nhận (đóng cửa)' };
+}
+
 function obsPathCard(sym, entry, ten) {
   const p = obsPath(sym, entry); if (!p) return '';
   const co = x => x == null ? '—' : (x ? 'CÓ' : 'KHÔNG');
@@ -29,8 +42,8 @@ function obsPathCard(sym, entry, ten) {
     <div style="font-size:13px;line-height:1.55">
       ${o('Breakout', `${ddmm(p.breakout_date)} @ ${dec(p.breakout_price / 1000)}`)}
       ${o('Số phiên từ breakout', p.days_since_breakout)}
-      ${o('Đang', obsPct(p.gain_now), cls(p.gain_now || 0))}
-      ${o('Đỉnh lãi (đóng cửa)', obsPct(p.peak_gain))}
+      ${(() => { const l = obsLaiTN(sym, p); return o(l.nhan, obsPct(l.v), cls(l.v || 0)); })()}
+      ${o('Đỉnh lãi (đóng cửa, theo luật)', obsPct(p.peak_gain))}
       ${o('MFE / MAE từ lúc mua', `${obsPct(p.mfe_since_entry)} / ${obsPct(p.mae_since_entry)}`)}
       ${o('T+1 · T+2 · T+3 · T+5', [p.ret_t1, p.ret_t2, p.ret_t3, p.ret_t5].map(x => obsPct(x)).join(' · '))}
       ${o('Giữ trên giá breakout', co(p.above_breakout_close))}

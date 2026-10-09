@@ -753,9 +753,12 @@ function bangThoat() {
   const ban = ex.filter(x => x.exit_reason && x.sellable !== false);
   const cho = ex.filter(x => !x.exit_reason && x.pending_exit);
   const giu = ex.filter(x => !x.exit_reason && !x.pending_exit);
+  // Máy chủ trả gain THEO LUẬT (giá ÷ giá vốn đã gồm phí mua − 1, chưa trừ phí bán).
+  // Cột lãi hiện tiền THỰC NHẬN như mọi trang khác (09/10/2026: BVH lúc +14,1% lúc +14,4%).
+  const laiTN = g => g == null ? null : ((1 + g / 100) * (1 - PHI_BAN) - 1) * 100;
   const dong = (x, mau, viec) => `<tr>
       <td class="sym">${esc(x.sym)}</td><td style="text-align:right">${x.price ?? '—'}</td>
-      <td style="text-align:right" class="${(x.gain || 0) >= 0 ? 'pos' : 'neg'}">${x.gain == null ? '—' : ((x.gain >= 0 ? '+' : '') + dec(x.gain, 1) + '%')}</td>
+      <td style="text-align:right" class="${laiTN(x.gain) >= 0 ? 'pos' : 'neg'}">${x.gain == null ? '—' : ((laiTN(x.gain) >= 0 ? '+' : '') + dec(laiTN(x.gain), 1) + '%')}</td>
       <td style="text-align:right">${x.peak_gain == null ? '—' : '+' + dec(x.peak_gain, 1) + '%'}</td>
       <td style="text-align:right">${x.profit_floor == null ? '—' : '+' + dec(x.profit_floor, 0) + '%'}</td>
       <td style="text-align:right">T+${x.held ?? '?'}</td>
@@ -765,8 +768,8 @@ function bangThoat() {
       sv.den_tam_tinh && sv.den_tam_tinh.light ? ' và đèn tạm tính <b>' + (LIGHTNAME[sv.den_tam_tinh.light] || sv.den_tam_tinh.light) + '</b>' : ''}. Chốt thật theo giá đóng cửa; bán lúc <b>ATC</b>. Chuông kêu từ 14h00.</p>
     ${(!sv.den_tam_tinh && sv.den_tam_tinh_loi && sv.open) ? `<p style="margin-top:0;color:var(--warn)"><b>⚠ Chưa có đèn tạm tính hôm nay</b> — ${esc(sv.den_tam_tinh_loi)}. Cỡ lệnh mua trong phiên tạm tính theo đèn hôm qua; mọi luật bán vẫn báo bình thường.</p>` : ''}
     <div class="card tblwrap" style="${ban.length ? 'border-color:var(--critical)' : ''}"><table><thead><tr>
-      <th>Mã</th><th style="text-align:right">Giá</th><th style="text-align:right">Lãi/lỗ</th><th style="text-align:right">Đỉnh lãi</th>
-      <th style="text-align:right">Sàn khoá lãi</th><th style="text-align:right">Giữ</th><th>Việc phải làm</th></tr></thead><tbody>
+      <th>Mã</th><th style="text-align:right">Giá</th><th style="text-align:right" title="Đã trừ phí mua, phí bán và thuế">Lãi thực nhận</th><th style="text-align:right" title="Theo công thức của luật khoá lãi — chưa trừ phí bán">Đỉnh lãi (theo luật)</th>
+      <th style="text-align:right" title="Theo công thức của luật khoá lãi — chưa trừ phí bán">Sàn khoá lãi (theo luật)</th><th style="text-align:right">Giữ</th><th>Việc phải làm</th></tr></thead><tbody>
       ${ban.map(x => dong(x, '--critical', '🔻 ' + esc(viecBan(x)))).join('')}
       ${cho.map(x => dong(x, '--warn', esc(x.action || ('CHỜ — ' + x.pending_exit)))).join('')}
       ${giu.map(x => dong(x, '--text-muted', esc(x.action || 'GIỮ'))).join('')}
