@@ -19,7 +19,7 @@ import engine2 as E
 from engine import as_of
 from research import common as C
 
-NSEED = int(os.environ.get('R36_SEED', '20'))
+NSEED = int(os.environ.get('R36_SEED', os.environ.get('NSEED', '30')))
 OUT = 'evidence/r36_ngay_cong_bo.json'
 
 if not os.path.exists(prep.NGAY_FILE):
@@ -27,8 +27,8 @@ if not os.path.exists(prep.NGAY_FILE):
 nf = json.load(open(prep.NGAY_FILE, encoding='utf-8'))
 
 
-def bo(bat):
-    prep.NGAY_DA_NGUON = bat; prep._ngay_cache.clear()
+def bo(bat, san=10):
+    prep.NGAY_DA_NGUON = bat; prep.SAN_NGAY = san; prep._ngay_cache.clear()
     return prep.parse_funda('data/funda_raw2.json')
 
 
@@ -79,15 +79,17 @@ out = dict(meta=C.meta(dict(script='r36_ngay_cong_bo', nseed=NSEED)), do_phu=phu
            som_hon_theo_quy={k: tk(v) for k, v in sorted(som_q.items())},
            som_hon_theo_nam={k: tk(v) for k, v in sorted(som_nam.items())},
            mau=mau, hom_nay_doi=doi)
-for ten, bat in (('A_cach_cu', False), ('B_da_nguon', True)):
-    prep.NGAY_DA_NGUON = bat; prep._ngay_cache.clear(); E._CACHE.clear(); E.load()
+# C = da nguon nhung GIU san 45 ngay: chi keo quy 2 / quy 4 (Vietcap ghi ngay ban soat
+#     xet / kiem toan) ve moc 45 ngay — tach phan loi/hai cua 'som hon 45 ngay'.
+for ten, bat, san in (('A_cach_cu', False, 10), ('B_da_nguon_san10', True, 10), ('C_da_nguon_san45', True, 45)):
+    prep.NGAY_DA_NGUON = bat; prep.SAN_NGAY = san; prep._ngay_cache.clear(); E._CACHE.clear(); E.load()
     s = C.run({}, name=ten)
     mc = [C.run(dict(miss_prob=0.10, miss_seed=sd), name=f'{ten}|{sd}')['metrics']['total_return']
           for sd in range(1, NSEED + 1)]
     s['mc_med'] = float(np.median(mc)); s['mc_p10'] = float(np.percentile(mc, 10))
     print(C.line(s), '| MC med %+.1f%% p10 %+.1f%%' % (s['mc_med'] * 100, s['mc_p10'] * 100), flush=True)
     out[ten] = s
-prep.NGAY_DA_NGUON = False
+prep.NGAY_DA_NGUON = False; prep.SAN_NGAY = 10
 os.makedirs('evidence', exist_ok=True)
 json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, default=str, indent=1)
 print('ghi', OUT)

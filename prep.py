@@ -27,7 +27,7 @@ def qend(y,q): return dt.date(y,[3,6,9,12][q-1], [31,30,30,31][q-1])
 # file, data/ngay_cong_bo.json) + Vietcap publicDate.
 #   * lay ngay som nhat co >= 2 nguon khop trong KHOP_NGAY ngay (lay ngay MUON hon
 #     cua cap do); chi 1 nguon co ngay thi dung ngay do; lech nhau het -> ngay muon nhat
-#   * ngay dung khong duoc som hon het quy + SAN_NGAY; quy khong co ngay Vietstock/CafeF
+#   * ngay dung khong duoc som hon het quy + SAN_NGAY (day ve moc do); quy khong co ngay Vietstock/CafeF
 #     (vd truoc 2023) hoac khong hop le -> cach cu (Vietcap + san 45 ngay)
 NGAY_DA_NGUON = False
 NGAY_FILE = 'data/ngay_cong_bo.json'
@@ -113,9 +113,11 @@ def parse_funda(path='data/funda_raw.json'):
                 # phai co it nhat MOT nguon ngay dang file; chi co Vietcap -> cach cu
                 nd, ng = (ngay_dau(dict(uv, vc=pub_is.get((y,q))), y, q)
                           if (uv['vs'] or uv['cf']) else (None, None))
-                if nd is not None and nd + dt.timedelta(days=1) >= qend(y,q) + dt.timedelta(days=SAN_NGAY):
+                # ngay chon phai co Vietstock/CafeF gop vao; chi con Vietcap -> cach cu
+                if nd is not None and ng not in ('vc', 'lech:vc'):
                     v=dict(v); v['y']=y; v['q']=q
-                    v['avail'] = nd + dt.timedelta(days=1)       # phien SAU ngay dang
+                    # phien SAU ngay dang, khong som hon het quy + SAN_NGAY
+                    v['avail'] = max(nd + dt.timedelta(days=1), qend(y,q) + dt.timedelta(days=SAN_NGAY))
                     v['nguon_ngay'] = ng
                     v['phan']=sorted(phan.get((y,q),()))
                     v['pub_is'] = nd.isoformat()

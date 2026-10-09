@@ -159,8 +159,9 @@ def test_da_nguon_bat_tat():
     finally:
         prep.NGAY_DA_NGUON, prep.NGAY_FILE = cu; prep._ngay_cache.clear(); os.remove(pn)
     assert tat[(2026, 2)] == dt.date(2026, 8, 22) and bat[(2026, 2)] == dt.date(2026, 7, 29)
-    # Q4/2025: chi Vietstock 26/01 vs Vietcap 20/03 (kiem toan) lech -> ngay muon nhat, nhu cu
-    assert bat[(2025, 4)] == dt.date(2026, 3, 21)
+    # Q4/2025: chi Vietstock 26/01 vs Vietcap 20/03 (kiem toan) lech, ngay muon nhat la cua
+    # Vietcap -> khong co Vietstock/CafeF xac nhan -> giu nguyen cach cu
+    assert bat[(2025, 4)] == tat[(2025, 4)] == dt.date(2026, 3, 20)
     # quy khong co ngay Vietstock/CafeF -> giu nguyen cach cu (Vietcap + san 45 ngay)
     assert bat[(2025, 3)] == tat[(2025, 3)] == dt.date(2025, 11, 14)
     assert bat[(2026, 1)] == tat[(2026, 1)]
