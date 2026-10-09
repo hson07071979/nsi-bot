@@ -54,7 +54,9 @@ function vieccanlam(p) {
   const d = erDecide(CP, gR, pkR, giu != null ? giu : 99,
     { probe_fail: !!p.probe_fail, b10: p.b10 || 0, b20: p.b20 || 0, light_today: lastLight,
       light_entry: p.light || null, part: !!p.part });
-  const txt = erActionText(d);
+  // Câu luật dùng số THEO LUẬT (chưa trừ phí bán), khác số lãi thực nhận to bên cạnh —
+  // nói rõ ra, không thì khách thấy +14,1% và "hiện +14,4%" cạnh nhau (09/10/2026).
+  const txt = erActionText(d).replace('(hiện ', '(theo luật, chưa trừ phí bán — hiện ');
 
   // Lệnh dò trượt ĐK9: bán ATC ở phiên đầu tiên bán được (sell_from, T+3 từ 26/09/2026).
   if (p.probe_fail) return (giu != null && giu < SF)
