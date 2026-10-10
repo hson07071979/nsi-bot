@@ -1,0 +1,31 @@
+name: Chẩn đoán hnx.vn (tạm)
+on:
+  push:
+    branches: ['claude/**']
+    paths: ['.github/workflows/chan-doan.yml']
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -r requirements.txt
+      - name: curl
+        run: |
+          curl -sv -o /dev/null http://secure.globalsign.com/cacert/gsgccr3evtlsca2025.crt 2>&1 | tail -15 || true
+          echo ----
+          curl -sv -m 60 -o /tmp/r.html -X POST 'https://www.hnx.vn/ModuleIssuer/Report_NY/TK_CungCauListSearch_Datas' -H 'X-Requested-With: XMLHttpRequest' -H 'User-Agent: Mozilla/5.0' -d 'p_issearch=1&p_market=NY&p_symbol=SHS&p_orderby=&p_ordertype=&p_currentpage=1&p_record_on_page=5' 2>&1 | tail -40 || true
+          echo ----; head -c 3000 /tmp/r.html || true
+          echo; echo ----; curl -s -m 30 -o /dev/null -w '%{http_code}\n' https://www.hnx.vn/ || true
+      - name: python
+        run: |
+          python - <<'PY'
+          import traceback, json
+          from sources import hnx
+          for s,m in (('SHS','NY'),('PVS','NY'),('ACV','UC')):
+              try:
+                  st,rows,tot=hnx.cungcau(s,m,n=5); print(s,st,tot,json.dumps(rows[:2],ensure_ascii=False))
+              except Exception: traceback.print_exc()
+          PY
