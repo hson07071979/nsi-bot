@@ -266,23 +266,12 @@ try:
     except Exception:
         _cur = {}
     _exn = _np.array([_cur.get(str(s_), str(e_)) for s_, e_ in zip(_d['sym'], _d['exch'])])
-    # 11/10/2026: phien 09/10 hnx.vn VA FireAnt deu khong co dong tien HNX qua 2 ngay ->
-    # chan cung lam trang dong bang ca HOSE. Cung ngay phien (luot 21:00) thi van CHAN de
-    # cho nguon cap nhat; da qua nua dem (luot du phong 01:23) ma van thieu thi nguon khong
-    # toi nua: dang, CANH BAO to, san do mat tin hieu MUA phien do (dieu kien 9 truot).
-    # `kiem` thay oi_cover thap nen dem sau van dung lai -> nguon ve thi tu lap.
-    _homnay = (dt.datetime.utcnow() + dt.timedelta(hours=7)).date().isoformat()
-    _qua_ngay = bool(asof) and asof < _homnay
     for _ex in ('HOSE', 'HNX'):
         _m = (_exn == _ex) & (_TV >= 5e9)
         _c = float(((_BC > 0) & (_SC > 0) & _m).sum()) / max(1, int(_m.sum()))
         print(f'dong tien phien cuoi {_ex}: {_c:.0%} ma thanh khoan co BuyCount')
-        if _qua_ngay:
-            warn(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu, '
-                             f'da qua ngay phien {asof} — DANG KEM THIEU: san {_ex} khong co tin hieu MUA phien nay')
-        else:
-            check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
-                              'cao qua som, chay lai sau khi FireAnt cap nhat')
+        check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
+                          'cao qua som, chay lai sau khi FireAnt cap nhat')
 except Exception as e:
     # Khong do duoc = khong chung minh duoc du dong tien => chan, khong cho qua im lang.
     check(False, f'khong do duoc do phu dong tien theo san: {type(e).__name__}: {e}')
