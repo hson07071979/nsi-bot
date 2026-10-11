@@ -34,6 +34,11 @@ for khoa, duong in (('portfolio', 'data/portfolio.json'),
     except Exception:
         data[khoa] = None
 
+# Nut vuot cong dong tien (vuot.py, 11/10/2026): san nao dang duoc anh Son vuot cho dung phien
+# nay -> trang hien canh bao "khong co tin hieu MUA". Rong = binh thuong.
+import vuot
+data['vuot_dong_tien'] = vuot.dang_vuot(data.get('asof'))
+
 # p7.js phai o CUOI: no chay bo dieu huong, doi moi ham trang da khai bao xong.
 # p12.js khai bao mo hinh du lieu chung nen phai dung truoc p7.
 js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [

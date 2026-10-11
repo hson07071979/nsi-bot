@@ -47,3 +47,5 @@ jobs:
         run: python tests/test_nguong_phien.py
       - name: Mùa báo cáo (chờ đủ 3 phần, mượn số đêm trước, nhật ký BCTC)
         run: python tests/test_mua_bao_cao.py
+      - name: Nút vượt cổng dòng tiền (đúng sàn + đúng phiên, file hỏng vẫn chặn)
+        run: python tests/test_vuot.py

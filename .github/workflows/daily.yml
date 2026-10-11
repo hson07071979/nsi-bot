@@ -207,7 +207,8 @@ jobs:
           REPO: ${{ vars.PAGES_REPO }}
         run: |
           mkdir -p data
-          for f in portfolio.json manual.json config.json watchlist_state.json; do
+          # override.json = nut vuot cong dong tien anh Son bam o trang Chan doan (vuot.py)
+          for f in portfolio.json manual.json config.json watchlist_state.json override.json; do
             if curl -fsSL -o "data/.tmp.$f" \
                  "https://raw.githubusercontent.com/${CHU}/${REPO}/main/$f"; then
               mv "data/.tmp.$f" "data/$f"
@@ -326,5 +327,13 @@ jobs:
 
       - name: Báo khi hỏng
         if: failure()
+        env:
+          CHU:   ${{ vars.PAGES_OWNER }}
+          REPO:  ${{ vars.PAGES_REPO }}
+          NTFY_TOPIC:     ${{ secrets.NTFY_TOPIC }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT:  ${{ secrets.TELEGRAM_CHAT }}
         run: |
           echo "::error::Dây chuyền hỏng. Vào tab Actions bấm vào lần chạy này để xem bước nào đỏ."
+          # 11/10/2026: trang dung >= 10 tieng sau dong cua phien moi nhat -> chuong cho anh Son
+          python bao_trang_dung.py || true

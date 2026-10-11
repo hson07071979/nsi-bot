@@ -57,6 +57,8 @@ function pageChanDoan(root) {
   trang này cho biết mỗi nguồn đang ở trạng thái nào. Cấu hình PROD đang chạy:
   <code>${esc((D.cfg_prod || {}).prod_config_hash || '?')}</code>.</p>
 
+  <div id="vuotBox"></div>
+
   <h2>Nguồn dữ liệu (bản dựng tối)</h2>
   ${src.length ? _tbl(src, [
     { t: 'Nguồn', f: r => `<b>${esc(r.key)}</b><div class="muted" style="font-size:12px">${esc(r.source || '')}</div>` },
@@ -78,7 +80,7 @@ function pageChanDoan(root) {
     ${(sh.missing || []).length ? `<div class="note">Mã chưa lấy được: ${esc(sh.missing.slice(0, 60).join(' '))}</div>` : ''}`
     : '<div class="note">Chưa nạp live.json (mở trang trên web thật để xem).</div>'}`;
 
-  if (!A) { root.innerHTML = h + '<div class="note">Thiếu evidence/audit_summary.json.</div>'; return; }
+  if (!A) { root.innerHTML = h + '<div class="note">Thiếu evidence/audit_summary.json.</div>'; veVuot(); return; }
   const b0 = A.baseline0 || {};
   const cur = (A.fixes || []).find(x => x.name === 'max_n_in_loop') || {};
   h += `
@@ -135,4 +137,98 @@ function pageChanDoan(root) {
     { t: 'OrdImb tính được', r: 1, f: r => `${r.ordimb_avail} (${_pc1(r.ordimb_cov)})` },
   ]) : '<div class="note">Chưa có số đo trong phiên. live_scan.py ghi obs/flow_YYYY-MM.jsonl mỗi lần quét.</div>'}`;
   root.innerHTML = h;
+  veVuot();
+}
+
+/* ---------------------------------------------------------------------------
+   NÚT VƯỢT CỔNG DÒNG TIỀN (11/10/2026) — anh Sơn bấm, đúng MỘT phiên, MỘT sàn.
+   Cổng "≥80% mã thanh khoản có số lệnh mua/bán" giữ nguyên mặc định. Khi nguồn
+   (FireAnt + hnx.vn) không có số của một phiên, nút ghi override.json lên repo
+   trang; bot (vuot.py) chỉ đăng khi sàn + phiên KHỚP ĐÚNG phiên đang dựng.
+   Ghi bằng cùng mã truy cập GitHub với nút "Đăng sổ tay" (NSI_TOKEN_KEY, p10.js).
+   ------------------------------------------------------------------------- */
+function _ngayVN(d) { return new Date(d.getTime() + 7 * 3600e3).toISOString().slice(0, 10); }
+function _phienSau(iso) {               // ngày giao dịch kế tiếp (bỏ T7/CN; lễ thì anh sửa tay)
+  const d = new Date(iso + 'T00:00:00Z');
+  do { d.setUTCDate(d.getUTCDate() + 1); } while ([0, 6].includes(d.getUTCDay()));
+  return d.toISOString().slice(0, 10);
+}
+
+async function veVuot() {
+  const box = document.getElementById('vuotBox');
+  if (!box) return;
+  const o = (await docJSON('override.json')) || {};
+  const ds = Array.isArray(o.bo_qua_dong_tien) ? o.bo_qua_dong_tien : [];
+  const homNay = _ngayVN(new Date()), asof = String(D.asof || '');
+  const ke = asof ? _phienSau(asof) : homNay;
+  const dung = asof && ke < homNay;      // đã qua hết phiên kế tiếp mà trang chưa có
+  const dangVuot = D.vuot_dong_tien || [];
+  box.innerHTML = `
+  <h2>Cổng dòng tiền — nút vượt (anh Sơn quyết từng lần)</h2>
+  ${dung ? `<div class="note" style="border-color:var(--bad)"><b style="color:var(--bad)">Trang đang đứng ở phiên ${esc(asof)}.</b>
+      Phiên ${esc(ke)} chưa đăng được — xem tab Actions của nsi-bot để biết bước nào trượt.</div>` : ''}
+  ${dangVuot.length ? `<div class="note">Bản đang đăng (phiên ${esc(asof)}) được đăng NHỜ NÚT VƯỢT: sàn ${esc(dangVuot.join(', '))} không có tín hiệu MUA phiên này.</div>` : ''}
+  <div class="card" style="padding:14px">
+    <p style="margin-top:0">Mặc định bot <b>không đăng</b> khi một sàn có dưới 80% mã thanh khoản có số lệnh đặt mua/bán phiên cuối
+      (lỗi 21/08: thiếu số → mọi mã sàn đó "không có tín hiệu" mà không ai biết). Chỉ bấm khi đã chắc <b>nguồn không có số
+      phiên đó</b> (không phải chậm vài tiếng). Bấm rồi: bot đăng ở lượt chạy kế tiếp, sàn đó <b>không có tín hiệu MUA</b>
+      phiên đó, trang hiện dòng cảnh báo cho khách. Phiên khác vẫn chặn như cũ.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <label>Sàn <select id="vuSan" class="fin"><option>HNX</option><option>HOSE</option></select></label>
+      <label>Phiên <input id="vuPhien" type="date" class="fin" value="${escA(ke)}"></label>
+      <input id="vuGhi" class="fin" style="flex:1;min-width:200px" placeholder="Ghi chú (vd: hnx.vn + FireAnt không có số, đã dò 4 nguồn)">
+      <button class="btn" id="vuBam">Vượt cho đúng phiên này</button>
+    </div>
+    <div id="vuMsg"></div>
+  </div>
+  ${ds.length ? _tbl(ds, [
+    { t: 'Sàn', f: r => `<b>${esc(r.san)}</b>` },
+    { t: 'Phiên', f: r => esc(r.phien) },
+    { t: 'Bấm lúc', f: r => esc(String(r.luc || '').replace('T', ' ').slice(0, 16)) },
+    { t: 'Ghi chú', f: r => `<span class="muted">${esc(r.ghi_chu || '')}</span>` },
+    { t: '', f: r => `<button class="btn" data-huy="${escA(r.san + '|' + r.phien)}">Huỷ</button>` },
+  ]) : '<div class="muted" style="font-size:13px">Chưa có nút vượt nào.</div>'}`;
+
+  document.getElementById('vuBam').onclick = () => {
+    const san = document.getElementById('vuSan').value, phien = document.getElementById('vuPhien').value;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(phien)) return _vuSay('Chọn phiên trước.');
+    if (!confirm(`Vượt cổng dòng tiền cho sàn ${san}, phiên ${phien}?\n\n` +
+                 `Mã sàn ${san} sẽ KHÔNG có tín hiệu MUA phiên này. Chỉ đúng phiên này, phiên khác vẫn chặn.`)) return;
+    const giu = ds.filter(x => !(x.san === san && x.phien === phien));
+    giu.push({ san, phien, luc: new Date().toISOString(), ghi_chu: document.getElementById('vuGhi').value.trim() });
+    _vuGhi(giu, `Vượt cổng dòng tiền ${san} phiên ${phien}`);
+  };
+  box.querySelectorAll('[data-huy]').forEach(b => b.onclick = () => {
+    const [san, phien] = b.dataset.huy.split('|');
+    if (!confirm(`Huỷ nút vượt ${san} phiên ${phien}? Lượt chạy sau sẽ chặn lại nếu vẫn thiếu số.`)) return;
+    _vuGhi(ds.filter(x => !(x.san === san && x.phien === phien)), `Huỷ vượt cổng dòng tiền ${san} phiên ${phien}`);
+  });
+}
+function _vuSay(h, ok) {
+  const m = document.getElementById('vuMsg');
+  if (m) m.innerHTML = `<div class="note${ok ? ' info' : ''}" style="margin-top:10px">${h}</div>`;
+}
+async function _vuGhi(ds, msg) {
+  const repo = (cfgData().repo || '').trim();
+  const token = (localStorage.getItem(NSI_TOKEN_KEY) || '').trim();
+  if (!repo || !token) return _vuSay('Chưa nối được GitHub: cần <code>repo</code> trong config.json và mã truy cập ở trang Sổ tay của tôi.');
+  // giữ gọn: bỏ mục cũ hơn 30 ngày
+  const moc = _ngayVN(new Date(Date.now() - 30 * 864e5));
+  const noi = JSON.stringify({ _doc: 'Nut vuot cong dong tien — anh Son bam o trang Chan doan. Xem vuot.py trong nsi-bot.',
+                               bo_qua_dong_tien: ds.filter(x => String(x.phien) >= moc) }, null, 1);
+  _vuSay('Đang ghi…');
+  try {
+    const url = `https://api.github.com/repos/${repo}/contents/override.json`;
+    const H = { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' };
+    let sha = null;
+    const cur = await fetch(url, { headers: H, cache: 'no-store' });
+    if (cur.ok) sha = (await cur.json()).sha;
+    const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(noi)));
+    const r = await fetch(url, { method: 'PUT', headers: H,
+      body: JSON.stringify({ message: msg, content: b64, sha: sha || undefined }) });
+    if (!r.ok) throw new Error((await r.json()).message || r.status);
+    _vuSay(`<b>Đã ghi.</b> ${esc(msg)}. Có hiệu lực ở lượt chạy kế tiếp của bot (21:00 / 01:23, hoặc bấm Run workflow ở tab Actions).`, true);
+  } catch (e) {
+    _vuSay(`<b>Ghi không được.</b> ${esc(e.message)}. Thường là mã truy cập hết hạn hoặc thiếu quyền <b>Contents: Read and write</b>.`);
+  }
 }
