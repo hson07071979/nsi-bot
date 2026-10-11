@@ -9,6 +9,7 @@ import os
 import re
 import sys
 import datetime as dt
+import vuot
 
 FAIL = []
 WARN = []
@@ -270,8 +271,16 @@ try:
         _m = (_exn == _ex) & (_TV >= 5e9)
         _c = float(((_BC > 0) & (_SC > 0) & _m).sum()) / max(1, int(_m.sum()))
         print(f'dong tien phien cuoi {_ex}: {_c:.0%} ma thanh khoan co BuyCount')
-        check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
-                          'cao qua som, chay lai sau khi FireAnt cap nhat')
+        # Nut vuot (vuot.py): anh Son bam o trang Chan doan cho DUNG san + phien nay. Khong co
+        # nut khop -> chan nhu cu. Co -> dang, san do khong co tin hieu MUA phien nay.
+        _v = None if _c >= 0.80 else vuot.khop(_ex, asof)
+        if _v:
+            warn(False, f'dong tien phien cuoi {_ex} chi {_c:.0%} — DANG NHO NUT VUOT anh Son bam '
+                        f'({_v.get("luc", "?")}): san {_ex} KHONG co tin hieu MUA phien {asof}')
+        else:
+            check(_c >= 0.80, f'dong tien phien cuoi {_ex} chi {_c:.0%} ma thanh khoan co du lieu — '
+                              'cao qua som, chay lai sau khi FireAnt cap nhat (nguon hong han: '
+                              'nut vuot o trang Chan doan, anh Son quyet)')
 except Exception as e:
     # Khong do duoc = khong chung minh duoc du dong tien => chan, khong cho qua im lang.
     check(False, f'khong do duoc do phu dong tien theo san: {type(e).__name__}: {e}')
@@ -368,6 +377,10 @@ if WARN:
     print('CANH BAO (van dang duoc):')
     for x in WARN:
         print('  !', x)
+try:   # bao_trang_dung.py doc lai de bao anh Son vi sao trang dung
+    json.dump(dict(asof=asof, fail=FAIL, warn=WARN), open('data/verify_ketqua.json', 'w'), ensure_ascii=False)
+except Exception:
+    pass
 if FAIL:
     print('KIEM TRA TRUOT — KHONG DANG LEN TRANG WEB:')
     for x in FAIL:

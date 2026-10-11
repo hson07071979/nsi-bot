@@ -27,6 +27,17 @@ function escA(x) { return esc(x).replace(/`/g, '&#96;'); }
 const D = JSON.parse(document.getElementById('DATA').textContent);
 const _asEl = document.getElementById('asof');
 if (_asEl) _asEl.textContent = D.asof;
+/* Nut vuot cong dong tien (anh Son bam, dung mot phien): san thieu so lenh mua/ban phien nay
+   -> noi ro cho khach, khong de "khong co tin hieu" trong nhu ngay thuong. */
+if ((D.vuot_dong_tien || []).length) {
+  const _vw = document.createElement('div');
+  _vw.className = 'note';
+  _vw.style.cssText = 'margin:8px auto;max-width:1100px';
+  _vw.innerHTML = `<b>Phiên ${esc(D.asof)}: sàn ${esc(D.vuot_dong_tien.join(', '))} thiếu số lệnh đặt mua/bán từ nguồn.</b>
+    Mã thuộc sàn này <b>không có tín hiệu MUA</b> phiên này. Tín hiệu BÁN và các sàn khác vẫn bình thường.`;
+  const _hd = document.querySelector('header') || document.body.firstElementChild;
+  if (_hd && _hd.parentNode) _hd.parentNode.insertBefore(_vw, _hd.nextSibling);
+}
 
 /* ---------- THANH LIEN HE — sua dung o day, khong sua cho nao khac ---------- */
 const LIENHE = {
