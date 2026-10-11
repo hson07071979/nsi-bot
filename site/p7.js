@@ -179,7 +179,7 @@ function pageEvidence(root){
 const main=document.getElementById('main'), tabs=document.getElementById('tabs');
 const secs={};
 PAGES.forEach(([id,label,fn,hidden],i)=>{
-  if(!hidden){ const b=el('button',i===0?'on':'',label); b.dataset.id=id; b.onclick=()=>go(id); tabs.appendChild(b); }
+  if(!hidden || (hidden==='qt' && laQuanTri())){ const b=el('button',i===0?'on':'',label); b.dataset.id=id; b.onclick=()=>go(id); tabs.appendChild(b); }
   const s=el('section','page'+(i===0?' on':'')); s.id='pg-'+id; main.appendChild(s);
   secs[id]={fn,rendered:false,node:s,hidden:!!hidden,label};
 });
