@@ -1,0 +1,124 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "cap_nhat": "2026-10-14",
+ "bai_hoc": "",
+ "ma": "CTG",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "ngay_vao": "2026-10-14",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: Quyết định 1743 của NHNN (hiệu lực 1/8/2026) nâng tỷ lệ tiền gửi Kho bạc được tính vào LDR từ 20% lên 50%, nêu rõ BIDV, Vietcombank, VietinBank, Agribank, MB được thêm dư địa cho vay. FACT: NHNN giữ nguyên lãi suất điều hành, yêu cầu giảm lãi suất huy động kỳ hạn từ 6 tháng (07/10).",
+  "nganh": "FACT (Thanh Tra, 02/09): đến 17/8 tín dụng +9,14%, huy động chỉ +7,29% → áp lực vốn; ACB niêm yết 7,8%, nhóm quốc doanh 6,8%. FACT (MSVN): LN ngân hàng Q3 dự báo +21%, có nguy cơ không đạt; VCB, CTG, VPB được đánh giá tích cực hơn. INTERPRETATION: ngành đang chịu ép NIM nhưng tăng trưởng tín dụng bù về quy mô.",
+  "doanh_nghiep": "Ngân hàng quốc doanh lớn, ROE 21,8% (NSI) — cao nhất nhóm quốc doanh trong dữ liệu NSI (VCB 17,9%, BID 17,7%).",
+  "mo_hinh_kd": "Cho vay doanh nghiệp và bán lẻ, huy động giá rẻ từ tiền gửi tổ chức và Kho bạc. FACT (NSI): LNST Q2/26 11.740 tỷ (+21,4%), LN 4 quý +33,4%.",
+  "lanh_dao": "Nhà nước sở hữu chi phối; định hướng chính sách đi cùng mục tiêu tăng trưởng của Chính phủ. Chưa có dữ liệu NSI về kế hoạch tăng vốn — cần kiểm.",
+  "chuoi_gia_tri": "Kênh dẫn vốn cho sản xuất kinh doanh (77% dư nợ toàn hệ thống vào SXKD) và cho dự án lớn mà NHNN muốn ưu tiên.",
+  "dan_nguoc_vi_mo": "Tín dụng là mạch máu của mục tiêu tăng trưởng 2 con số; ngân hàng quốc doanh là công cụ chính để truyền dẫn chính sách tiền tệ."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "P/B 1,15 thấp hơn cả mức thấp nhất 12 quý trong dữ liệu NSI (1,25), trong khi ROE 21,8% và LN vẫn tăng >20%.",
+   "bang_chung": [
+    "FACT: P/B 1,15, P/E 5,68 (14/10); trung vị 12 quý P/B 1,42, P/E 9,19 (NSI)",
+    "FACT: LNST Q2/26 +21,4% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Ngân hàng quốc doanh lớn hưởng lợi kép từ QĐ 1743: thêm dư địa cho vay mà không phải tranh lãi suất huy động.",
+   "bang_chung": [
+    "FACT: QĐ 1743 nêu VietinBank trong nhóm được lợi (Thanh Tra, 02/09)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/B dưới đáy 3 năm, ROE cao nhất nhóm quốc doanh.",
+  "QĐ 1743 giảm áp lực huy động cho nhóm quốc doanh.",
+  "MSVN xếp CTG vào nhóm tích cực trong mùa KQ Q3.",
+  "Tín dụng toàn hệ thống +11,6% đến 30/9 — quy mô tăng bù NIM."
+ ],
+ "bear": [
+  "Lãi huy động đã tăng 1,15 điểm %, Fed còn tăng — chi phí vốn có thể tăng tiếp.",
+  "NHNN vừa yêu cầu giảm lãi cho vay → NIM bị ép hai đầu.",
+  "Khối ngoại bán nhóm ngân hàng; NSI Tin âm ở cấp ngành.",
+  "Giá dưới MA50 (30,88) và MA200 (34,13) — xu hướng giảm chưa dừng.",
+  "Lãi suất tăng làm lộ nợ xấu với độ trễ 2–3 quý."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-14",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "P/B thấp nhất 3 năm cho ngân hàng có ROE 22% là mức chiết khấu cho một cú sốc lớn chưa xảy ra."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Tin xấu ngành ngân hàng CHƯA dừng: lãi suất Mỹ còn tăng, huy động VN còn tăng. Đây không phải ca \"tin xấu đã hết\" như HPG/MWG."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: giá có gap chia cổ tức 17/12/2025 (hệ số 0,68), đã chỉnh. P/B so với 12 quý là so trong một chu kỳ lãi suất thấp — mức \"thấp nhất 3 năm\" không đồng nghĩa với đáy lịch sử. Bear đúng ở điểm tin xấu chưa dừng."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot +1, nhưng Tin −1 (chủ đề ngành: lãi suất, khối ngoại) và Daily −1 (dưới MA50 −4,3%, dưới MA200 −12,4%). Hai máy ngắn hạn ngược chiều: port không phản bác cấu trúc giảm, chỉ khác khung thời gian."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 5,
+   "ben": "bear",
+   "noi_dung": "Stress test: thêm một lần Fed tăng + tỷ giá căng → NHNN có thể hút tiền, lãi liên ngân hàng tăng; ngân hàng bị bán tiếp, mốc 28,4 có thể thủng."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: CTG ở trong port nhưng KHÔNG giải ngân đợt 1. Chỉ vào ở đợt 3 khi đèn NSI rời ĐỎ (có FTD) và giá giữ 28,4. Đây là cách tôn trọng tín hiệu ngắn hạn của hai máy."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Bot cùng chiều (đủ điều kiện, chờ điểm mua)."
+  },
+  "tin": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Tin −1 đến từ chủ đề cấp ngành (lãi suất huy động, khối ngoại bán) trong khung T+0..T+4. Port đồng ý áp lực ngắn hạn có thật; khác nhau ở khung thời gian (port 6–12 tháng, dựa trên P/B dưới đáy 3 năm và LN +21%). Hệ quả: CTG không vào đợt 1, chờ đèn rời ĐỎ."
+  },
+  "daily": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Daily −1 vì giá dưới MA50 và MA200 — đúng là xu hướng giảm. Port không phản bác cấu trúc, chỉ dùng hỗ trợ 28,4 của Daily (4 lần chạm, đáy cũ) làm điều kiện vô hiệu, và chờ xác nhận thị trường mới giải ngân."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 28.4,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 28,4 trong 60 phiên (hỗ trợ Daily: 4 lần chạm, đáy cũ)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 10,
+   "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
+  }
+ ],
+ "vo_hieu": "Đóng cửa dưới 28,4 (−3,9% từ 29,55), hoặc LNST Q3/26 tăng dưới 10%.",
+ "dinh_gia": "P/B 1,15 vs trung vị 12 quý 1,42 (thấp nhất 12 quý 1,25); P/E 5,68 vs 9,19 (NSI, 14/10). Vùng quan sát.",
+ "pitch": "VietinBank đang được định giá thấp hơn mọi thời điểm trong 3 năm qua dù lợi nhuận vẫn tăng trên 20% và quy định mới về tiền gửi Kho bạc mở thêm dư địa cho vay. Nhưng áp lực lãi suất chưa dừng, nên danh mục chỉ giải ngân khi thị trường chung có tín hiệu xác nhận và giá vẫn giữ trên 28,4."
+}

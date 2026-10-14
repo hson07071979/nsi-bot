@@ -1,0 +1,107 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "cap_nhat": "2026-10-14",
+ "bai_hoc": "",
+ "ma": "SSI",
+ "trang_thai": "nghien_cuu",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: FTSE Russell nâng hạng hiệu lực 18/9, bổ sung 4 đợt đến 9/2027; ABS ước >2 tỷ USD vốn thụ động trong 12 tháng (Doanh nhân Pháp luật).",
+  "nganh": "FACT (MSVN): GTGD bình quân ~17.000 tỷ/phiên, bằng một nửa cùng kỳ; LN chứng khoán Q3 có nguy cơ không đạt. FACT (tin NSI 05/10): dư nợ margin lập kỷ lục. INTERPRETATION: tin xấu của ngành (thanh khoản, LN Q3) đã rõ; tin xấu chưa xảy ra là giải chấp margin.",
+  "doanh_nghiep": "Công ty chứng khoán lớn, ROE 13,4% (NSI). Thị phần môi giới quý 3 có biến động (tin NSI 06/10).",
+  "mo_hinh_kd": "Môi giới + cho vay margin + tự doanh + ngân hàng đầu tư; LN nhạy với thanh khoản thị trường. FACT (NSI): LNST Q2/26 +42,8%.",
+  "lanh_dao": "Chủ tịch Nguyễn Duy Hưng. Chưa có dữ liệu NSI về kế hoạch 2026 — cần bổ sung.",
+  "chuoi_gia_tri": "Kênh trung gian cho dòng vốn ngoại (lưu ký, môi giới tổ chức) — vị trí hưởng lợi trực tiếp khi vốn thụ động FTSE vào.",
+  "dan_nguoc_vi_mo": "Thị trường vốn sâu hơn giảm phụ thuộc tín dụng ngân hàng."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Thước đo độ nhạy của thị trường: khi đáy thị trường xuất hiện, nhóm chứng khoán hồi mạnh nhất. Chưa có xác nhận nào.",
+   "bang_chung": [
+    "FACT: P/B 1,4 vs trung vị 2,06; P/E 10,78 vs 17,87 (NSI)",
+    "OBSERVATION: giá 18,9, dưới MA50 20,28 và MA200 22,29"
+   ]
+  }
+ ],
+ "bull": [
+  "P/B thấp nhất 3 năm trong dữ liệu NSI.",
+  "Vốn thụ động FTSE vào dần đến 9/2027.",
+  "Beta cao nhất khi thị trường đảo chiều."
+ ],
+ "bear": [
+  "LN Q3 sẽ giảm do thanh khoản bằng một nửa.",
+  "Margin kỷ lục: rủi ro giải chấp chưa xảy ra.",
+  "Hỗ trợ kỹ thuật sâu (17,34) nằm xa hơn −7% → rủi ro rộng hơn chuẩn."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-14",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Chứng khoán là nơi tin xấu đã rõ nhất: thanh khoản giảm một nửa, ai cũng biết LN Q3 giảm."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "\"Ai cũng biết LN giảm\" chưa đủ. Tin xấu thật sự là giải chấp margin — chưa xảy ra. Mua trước capitulation là đứng trước xe."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: hai gap chia cổ phiếu (17/08 hệ số 0,808 và 12/2025) đã chỉnh. Đáy chỉnh 17,78 (27/07). Bear thắng vòng này."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot trung lập (CANSLIM 38), Tin trung lập, Daily +1 (sổ giữ 18,62). Không ngược chiều, không xác nhận."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 5,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: không giải ngân. Giữ trạng thái nghiên cứu, 8% tỷ trọng dự bị. Chỉ vào khi đóng cửa vượt 20,14 (biên trên kháng cự 19,65–20,14, trùng MA50) và đèn NSI rời ĐỎ."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Bot trung lập."
+  },
+  "tin": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Tin trung lập."
+  },
+  "daily": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Daily cùng chiều."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "vuot",
+   "moc": 20.14,
+   "han_phien": 40,
+   "noi_dung": "Điều kiện vào: đóng cửa vượt 20,14 trong 40 phiên (biên trên kháng cự Daily 19,65–20,14, trùng MA50)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": -40,
+   "noi_dung": "LNST Q3/26 không giảm quá 40% so với cùng kỳ (tin xấu không tệ hơn dự kiến)."
+  }
+ ],
+ "vo_hieu": "Nếu đã vào: đóng cửa dưới 17,58 (−7%). Hỗ trợ kỹ thuật 17,34 nằm xa hơn −7% → rủi ro rộng hơn chuẩn.",
+ "dinh_gia": "P/B 1,40 vs trung vị 3 năm 2,06; P/E 10,78 vs 17,87 (NSI, 14/10). Vùng quan sát.",
+ "pitch": "Nhóm chứng khoán là nơi tin xấu đã rõ nhất, nhưng rủi ro lớn nhất — giải chấp margin — chưa xảy ra. Danh mục để sẵn một phần vốn cho SSI và chỉ dùng khi giá vượt 20,1 trong lúc thị trường chung có tín hiệu tạo đáy."
+}

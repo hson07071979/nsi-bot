@@ -1,0 +1,124 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "cap_nhat": "2026-10-14",
+ "bai_hoc": "",
+ "ma": "FPT",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "ngay_vao": "2026-10-14",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. INTERPRETATION: FPT ít nhạy với lãi suất trong nước, nhạy với dòng vốn ngoại (cổ phiếu ngoại sở hữu nhiều) và với chi tiêu CNTT của Nhật/Mỹ. USD mạnh có lợi cho doanh thu xuất khẩu dịch vụ.",
+  "nganh": "HYPOTHESIS (thị trường đang tin): AI tạo sinh làm giảm nhu cầu gia công phần mềm truyền thống. OBSERVATION: chưa thấy bằng chứng trong số liệu FPT — ký mới nước ngoài H1 +32,3%, doanh thu AI & dữ liệu +54% (Doanh nhân Pháp luật, 13/10).",
+  "doanh_nghiep": "Doanh nghiệp CNTT lớn nhất Việt Nam. FACT: H1/2026 DT 26.269 tỷ (+12,6%), LNTT 5.714 tỷ (+18,1%); khối Công nghệ chiếm 88% DT; 14 dự án nước ngoài >10 triệu USD; AI Factory tại VN và Nhật >90% công suất, có lãi từ Q2.",
+  "mo_hinh_kd": "Dịch vụ CNTT xuất khẩu (Nhật, Mỹ, châu Âu, APAC) + viễn thông + giáo dục. FACT (NSI): ROE 26,5%; LNST Q2/26 2.568 tỷ (+13,7%), LN 4 quý +16,1%. Lưu ý dữ liệu: NSI ghi DT Q2 −17,1% và DT 4 quý −3,8%, trái với số FPT công bố (+12,6% H1) → nghi kỳ so sánh bị ghi lại; port không dùng chỉ tiêu doanh thu NSI cho mã này.",
+  "lanh_dao": "Chủ tịch Trương Gia Bình; kế hoạch 2026 LNTT 11.629 tỷ (+15%); sau H1 đạt ~49% kế hoạch LNTT. Lịch sử thực thi kế hoạch tốt (cần đối chiếu số liệu các năm).",
+  "chuoi_gia_tri": "Nhà cung cấp chuyển đổi số cho doanh nghiệp nước ngoài và khối công trong nước; giấy phép trung gian dữ liệu theo Luật Dữ liệu.",
+  "dan_nguoc_vi_mo": "Xuất khẩu dịch vụ thu ngoại tệ, đỡ tỷ giá; đào tạo và giữ nhân lực công nghệ cao; hạ tầng AI trong nước."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Ca đúng nhất của câu hỏi \"tin xấu đã vào giá chưa\": tin xấu dồn dập 9 tháng, giá gần giảm một nửa, nhưng LN vẫn tăng 14–18%. P/E từ ~20 về ~10,6.",
+   "bang_chung": [
+    "FACT: giá 57,1, −46,2% từ đỉnh 106,1 (29/01); đáy 1 năm 56,3 (13/10) (NSI)",
+    "FACT: P/E 10,57 vs trung vị 20,64; P/B 2,66 vs 5,41 (NSI)",
+    "FACT: LNTT H1 +18,1%"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Nếu AI thật sự làm tăng trưởng về 0, P/E 10 là hợp lý chứ không rẻ. Vì vậy cần CONFIRMATION: Q3 ký mới nước ngoài và LN vẫn tăng hai chữ số.",
+   "bang_chung": [
+    "FACT: ký mới nước ngoài H1 +32,3%"
+   ]
+  }
+ ],
+ "bull": [
+  "P/E bằng một nửa trung vị 3 năm, ROE 26,5%, LN chưa từng giảm trong 12 quý dữ liệu NSI.",
+  "Số liệu thực chưa xác nhận câu chuyện AI phá outsourcing: ký mới +32%, AI +54%.",
+  "Sở hữu ngoại toàn thị trường đã giảm một nửa — lượng cổ phiếu có thể bán ra còn ít hơn.",
+  "Giá đã đi trước phần xấu nhất của câu chuyện."
+ ],
+ "bear": [
+  "Rủi ro cấu trúc (AI) có thể chưa phản ánh vào số liệu với độ trễ 2–4 quý.",
+  "BSC dự báo FPT có nguy cơ bị loại khỏi VNDiamond → quỹ bán bắt buộc.",
+  "Khối ngoại vẫn bán ròng; RS của bot chỉ 22, điểm CANSLIM 27 — động lượng rất yếu.",
+  "Giá đang lập đáy mới, chưa có nền; bắt dao rơi."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-14",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Giá giảm 46% trong khi LN tăng: tin xấu đã được định giá nhiều hơn mức nó làm hỏng doanh nghiệp."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Thị trường đang chiết khấu tương lai, không phải quá khứ. Nếu outsourcing bị AI thay thế, LN 2027–2028 mới là thứ bị ảnh hưởng."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: không có gap chia tách 240 phiên — mức giảm 46% là thật. Phát hiện lệch doanh thu giữa NSI (−17% Q2) và FPT công bố (+12,6% H1) → ghi chú nguồn, không dùng DT NSI. Bear có lý ở điểm tương lai; bull có lý ở điểm số liệu hiện tại."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot trung lập (CANSLIM 27 < 45), Tin trung lập (+0,0, có tin âm về VNDiamond), Daily +1 (sổ giữ 55,91). Không máy nào ngược chiều, nhưng không máy nào xác nhận động lượng."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 5,
+   "ben": "bear",
+   "noi_dung": "Sự kiện dòng tiền: nếu bị loại khỏi VNDiamond, ngày hiệu lực sẽ có phiên bán bắt buộc. Mua trước sự kiện là đứng trước xe."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: giữ luận điểm tăng, tỷ trọng mục tiêu 15%, nhưng không vào đợt 1. Đợt 2 sau KQ Q3 (LN ≥ +10%) và sau ngày hiệu lực kỳ xét VNDiamond. Phản ứng giá sau sự kiện bán bắt buộc chính là phép thử \"tin xấu đã vào giá\"."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Bot trung lập (động lượng yếu). Port không dựa vào động lượng; chấp nhận vào chậm."
+  },
+  "tin": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Tin trung lập; tin âm về VNDiamond được dùng làm mốc thời gian giải ngân."
+  },
+  "daily": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Daily cùng chiều (giữ 55,91)."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 53.1,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 53,1 trong 60 phiên (−7% từ 57,1 theo chuẩn cắt lỗ; Daily không có hỗ trợ nào sâu hơn vùng 55,8–55,91)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 10,
+   "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
+  }
+ ],
+ "vo_hieu": "Đóng cửa dưới 53,1 (−7%; vùng 55,8–55,91 của Daily là cảnh báo đầu tiên), hoặc LNST Q3/26 tăng dưới 10%.",
+ "dinh_gia": "P/E 10,57 lần vs trung vị 3 năm 20,64; P/B 2,66 vs 5,41 (NSI, 14/10). Vùng quan sát.",
+ "pitch": "FPT đã giảm gần một nửa từ đỉnh tháng 1 vì lo ngại AI thay thế dịch vụ gia công, nhưng nửa đầu năm lợi nhuận trước thuế vẫn tăng 18% và hợp đồng mới ở nước ngoài tăng 32%. Danh mục chưa giải ngân ngay: chỉ vào sau khi có kết quả quý 3 và sau kỳ xét lại rổ VNDiamond. Nếu giá đóng cửa dưới 53,1 thì luận điểm sai."
+}

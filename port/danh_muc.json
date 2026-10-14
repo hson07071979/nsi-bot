@@ -1,0 +1,117 @@
+{
+ "ngay": "2026-10-14",
+ "ky_han": "6-12 tháng, cập nhật theo quý (sau mỗi mùa BCTC)",
+ "quan_diem": "Vĩ mô trong nước mạnh, thị trường yếu: GDP Q3 +9,95%, xuất khẩu +23%, nhưng VN-Index 1.704,87 (14/10), thấp hơn đỉnh 18/05 khoảng 11,6%, đèn NSI ĐỎ với 9 ngày phân phối. Áp lực đến từ bên ngoài và lãi suất: Fed tăng lại lãi suất, US10Y ~5,3%, lãi huy động trong nước tăng 1,15 điểm %, khối ngoại bán ~100 nghìn tỷ.\n\nNguyên tắc chọn: tìm nơi giá đã giảm mạnh và định giá đã co xa dưới trung vị 3 năm, nhưng lợi nhuận vẫn tăng. Ở đó tin xấu đã vào giá nhiều hơn mức nó làm hỏng doanh nghiệp. Loại nơi tin xấu chưa dừng (BĐS nhà ở: lãi suất còn tăng, dòng tiền kinh doanh âm) và nơi tin tốt đã vào giá (dầu khí: Brent ~100 USD, BSR P/B trên trung vị).\n\nGiải ngân 3–5 đợt vì đèn đang ĐỎ: đợt 1 chỉ 1/3 tỷ trọng mục tiêu ở HPG, MWG, IDC; FPT chờ KQ Q3 và kỳ xét VNDiamond; CTG chờ đèn rời ĐỎ; SSI là vốn dự bị. Dừng mọi đợt kế tiếp nếu VN-Index đóng cửa dưới 1.668,5 (đáy 22/07).",
+ "vi_tri": [
+  {
+   "ma": "HPG",
+   "ty_trong": 20,
+   "vai_tro": "Neo chu kỳ đầu tư–xây dựng",
+   "ly_do": "P/E 7,4 vs 15,0; LN Q3 dự báo +34%; Dung Quất 2. Đợt 1: 1/3."
+  },
+  {
+   "ma": "MWG",
+   "ty_trong": 18,
+   "vai_tro": "Tiêu dùng nội địa",
+   "ly_do": "LN gấp đôi, P/E 11,2 vs 23,2. Đợt 1: 1/3."
+  },
+  {
+   "ma": "CTG",
+   "ty_trong": 17,
+   "vai_tro": "Tín dụng, beta thị trường",
+   "ly_do": "P/B 1,15 dưới đáy 3 năm, ROE 21,8%. Chờ đèn rời ĐỎ (đợt 3)."
+  },
+  {
+   "ma": "FPT",
+   "ty_trong": 15,
+   "vai_tro": "Ngược dòng: tin xấu đã vào giá?",
+   "ly_do": "Giá −46%, LN vẫn +14–18%, P/E 10,6 vs 20,6. Chờ KQ Q3 + VNDiamond (đợt 2)."
+  },
+  {
+   "ma": "IDC",
+   "ty_trong": 12,
+   "vai_tro": "Xuất khẩu–FDI qua đất KCN",
+   "ly_do": "ROE 32,7%, P/E 6,6. Đợt 1: 1/3."
+  },
+  {
+   "ma": "SSI",
+   "ty_trong": 8,
+   "vai_tro": "Dự bị — chưa giải ngân",
+   "ly_do": "Chỉ vào khi vượt 20,14 và đèn rời ĐỎ."
+  },
+  {
+   "ma": "TIỀN",
+   "ty_trong": 10,
+   "vai_tro": "Đệm thanh khoản",
+   "ly_do": "Giữ thường trực để mua thêm ở đợt 4–5."
+  }
+ ],
+ "dot_giai_ngan": [
+  {
+   "dot": 1,
+   "khi": "Ngay (15–17/10)",
+   "lam": "Mua 1/3 tỷ trọng mục tiêu của HPG, MWG, IDC (~17% vốn)."
+  },
+  {
+   "dot": 2,
+   "khi": "Sau BCTC Q3 (khoảng 20/10–05/11)",
+   "lam": "Mã có K2 ĐÚNG và giá giữ K1 sau ngày công bố: thêm 1/3. FPT vào 1/2 tỷ trọng sau KQ Q3 và sau ngày hiệu lực kỳ xét VNDiamond."
+  },
+  {
+   "dot": 3,
+   "khi": "Đèn NSI rời ĐỎ (có FTD)",
+   "lam": "CTG vào 1/2; SSI vào nếu vượt 20,14."
+  },
+  {
+   "dot": "4–5",
+   "khi": "Nhịp kiểm tra lại hỗ trợ sau FTD; BCTC Q4",
+   "lam": "Hoàn tất tỷ trọng mục tiêu; giữ 10% tiền."
+  },
+  {
+   "dot": "Dừng",
+   "khi": "VN-Index đóng cửa dưới 1.668,5",
+   "lam": "Hoãn đợt kế, rà lại từng luận điểm. Không dời mốc."
+  }
+ ],
+ "pitch": "Kinh tế Việt Nam đang tăng trưởng nhanh nhất nhiều năm, nhưng thị trường chứng khoán lại giảm vì lãi suất Mỹ tăng và khối ngoại rút vốn. Danh mục này không đoán đáy. Nó chọn những doanh nghiệp đầu ngành mà giá đã giảm sâu, định giá đã về vùng thấp nhất 3 năm, trong khi lợi nhuận vẫn tăng: Hòa Phát, Thế Giới Di Động, VietinBank, FPT, IDICO, và SSI làm phần dự bị.\n\nVốn được giải ngân 3–5 lần. Lần đầu chỉ khoảng một phần sáu danh mục, vì thị trường chung chưa có tín hiệu tạo đáy. Các lần sau gắn với kết quả kinh doanh quý 3 và với tín hiệu xác nhận của thị trường. Mỗi mã có một mức giá mà nếu mất thì luận điểm được xem là sai. Nếu VN-Index đóng cửa dưới 1.668, danh mục tạm dừng giải ngân để rà lại.",
+ "rui_ro": [
+  "Fed tăng tiếp và US10Y vượt 5,3% → DXY mạnh, áp lực tỷ giá, NHNN có thể hút tiền.",
+  "Dư nợ margin kỷ lục: một nhịp giải chấp có thể kéo cả thị trường thủng 1.668,5 dù cơ bản không đổi.",
+  "Mùa BCTC Q3: một mã không đạt K2 sẽ bị loại theo quy tắc, không chờ.",
+  "Tập trung: 4/6 mã là vốn hóa lớn, cùng chịu bán của khối ngoại.",
+  "Dữ liệu: giá NSI chưa chỉnh chia tách (port đã tự chỉnh); doanh thu FPT trong NSI lệch với số công bố.",
+  "Khung thời gian: Tin và Daily nhìn vài phiên; port nhìn 6–12 tháng. Port thắng 60 phiên không có nghĩa máy sai ở 5 phiên."
+ ],
+ "debate_danh_muc": [
+  {
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Vĩ mô +10% mà P/E thị trường co: đây là lúc chọn doanh nghiệp tốt bị bán chung."
+  },
+  {
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Đèn của chính anh Sơn đang ĐỎ, 9 ngày phân phối, chưa FTD. Mua lúc này đi ngược hệ thống."
+  },
+  {
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Cả hai đúng ở khung khác nhau. Lời giải: đợt 1 nhỏ (~17% vốn), các đợt sau gắn với điều kiện có thể chấm bằng code."
+  },
+  {
+   "vong": 4,
+   "ben": "bear",
+   "noi_dung": "Câu hỏi của anh Sơn áp ngược: nếu tin xấu ở BĐS và chứng khoán đã vào giá, sao lại loại? Trả lời: vì tin xấu ở đó CHƯA dừng (lãi suất còn tăng, margin chưa giải chấp). Giá phản ánh tin xấu đã biết, không phản ánh tin xấu chưa xảy ra."
+  },
+  {
+   "vong": 5,
+   "ben": "bull",
+   "noi_dung": "Ngược lại, dầu khí đang có tin tốt nhất (LN năng lượng Q3 +66,9% theo MSVN) — chính vì vậy đã vào giá; BSR P/B 2,04 vs trung vị 1,26. Áp đúng quy tắc theo cả hai chiều."
+  },
+  {
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm sai: (1) giá NSI chưa chỉnh chia tách — đã chỉnh trước khi tính mức giảm; (2) P/E so với 12 quý nằm trong chu kỳ lãi suất thấp, nên \"thấp nhất 3 năm\" chưa chắc là rẻ tuyệt đối; (3) cả 5 mã cùng nhạy với khối ngoại — rủi ro tập trung được ghi vào rui_ro."
+  }
+ ]
+}

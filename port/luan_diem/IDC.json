@@ -1,0 +1,114 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "cap_nhat": "2026-10-14",
+ "bai_hoc": "",
+ "ma": "IDC",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "ngay_vao": "2026-10-14",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: IIP 9 tháng +12,3%, chế biến chế tạo +12,9%. INTERPRETATION: xuất khẩu và sản xuất đang kéo nhu cầu đất KCN.",
+  "nganh": "FACT (VCBS): BĐS KCN được đánh giá tích cực Q3 nhờ FDI, đặc biệt KCN miền Bắc. INTERPRETATION: KCN là nhánh BĐS ít phụ thuộc tín dụng cá nhân và lãi vay mua nhà.",
+  "doanh_nghiep": "Chủ đầu tư KCN. FACT (NSI): ROE 32,7% — ngang VHM (32,6%), cao nhất nhóm BĐS trong rổ NSI; LNST Q2/26 +104,9%, LN 4 quý +43,9%.",
+  "mo_hinh_kd": "Cho thuê đất KCN ghi nhận theo đợt bàn giao (LN quý thất thường: 343, 298, 842, 449, 271, 610 tỷ từ Q1/25 đến Q2/26 — NSI) cùng các mảng có dòng tiền đều. Cơ cấu mảng cần đối chiếu BCTC.",
+  "lanh_dao": "Chưa đủ dữ liệu về cổ đông lớn và lịch sử thực thi kế hoạch — cần bổ sung trước kỳ cập nhật quý.",
+  "chuoi_gia_tri": "Cung cấp mặt bằng sản xuất cho doanh nghiệp FDI và nội địa; là khâu đầu của chuỗi xuất khẩu chế tạo.",
+  "dan_nguoc_vi_mo": "Đất KCN đón FDI → xuất khẩu, việc làm, thu ngân sách địa phương."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Mã BĐS có ROE cao nhất và P/E thấp: giá đang bị bán theo \"ngành BĐS\" dù động lực là FDI–xuất khẩu chứ không phải tín dụng nhà ở.",
+   "bang_chung": [
+    "FACT: P/E 6,59 vs 9,36; P/B 2,12 vs 2,8; ROE 32,7% (NSI)",
+    "FACT: xuất khẩu Q3 +23,27% (Cục Thống kê)"
+   ]
+  }
+ ],
+ "bull": [
+  "ROE 32,7%, P/E 6,6 lần.",
+  "Động lực xuất khẩu–FDI đang mạnh nhất nhiều năm.",
+  "Giá đã hồi 12% từ đáy 30,0 (11/09) và đứng trên MA50."
+ ],
+ "bear": [
+  "LN theo đợt bàn giao, Q3/25 là nền cao (842 tỷ) → Q3/26 dễ giảm so với cùng kỳ.",
+  "Bị bán theo tâm lý BĐS; lãi suất tăng.",
+  "Rủi ro thuế quan/xuất khẩu sang Mỹ — chưa có dữ liệu trong NSI.",
+  "Thiếu dữ liệu cổ đông và cơ cấu mảng."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-14",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "KCN là cách đứng vào tăng trưởng xuất khẩu 23% mà không gánh rủi ro tín dụng nhà ở."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "LN KCN là lumpy; P/E thấp có thể do một quý ghi nhận lớn, không bền."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: gap 23/07 (hệ số 0,869, điều chỉnh quyền) đã chỉnh. Q3/25 = 842 tỷ là nền cao, nên đo bằng ROE thay vì tăng trưởng quý. Thiếu cổ đông/lãnh đạo — trừ điểm."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot +1 (chờ điểm mua), Tin trung lập (+0,4), Daily trung lập (test vùng 33,21–34,1 trùng MA50). Không máy nào ngược chiều."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 5,
+   "ben": "bear",
+   "noi_dung": "Stress test: nếu Mỹ siết thuế với hàng chuyển tải, FDI mới chậm lại sau 2–3 quý; mã KCN bị định giá lại."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: giữ, tỷ trọng mục tiêu 12% (thấp hơn vì thiếu dữ liệu lãnh đạo). Đợt 1 = 1/3. Bổ sung dữ liệu cổ đông trước kỳ cập nhật quý."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Bot cùng chiều."
+  },
+  "tin": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Tin trung lập."
+  },
+  "daily": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Daily trung lập."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 31.7,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 31,7 trong 60 phiên (hỗ trợ Daily: 2 lần chạm, đáy cũ; dưới vùng 32,2–33,04)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "roe",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 25,
+   "noi_dung": "ROE tại Q3/26 ≥ 25% (đo bằng ROE vì LN quý của KCN thất thường, Q3/25 là nền cao)."
+  }
+ ],
+ "vo_hieu": "Đóng cửa dưới 31,7 (−5,9% từ 33,7), hoặc ROE Q3/26 dưới 25%.",
+ "dinh_gia": "P/E 6,59 lần vs trung vị 3 năm 9,36; P/B 2,12 vs 2,8 (NSI, 14/10). Vùng quan sát.",
+ "pitch": "IDICO là cách đứng vào làn sóng xuất khẩu và FDI mà không phải gánh rủi ro thị trường nhà ở: ROE trên 30%, P/E khoảng 6,6 lần. Danh mục giữ khi giá còn trên 31,7 và hiệu quả sinh lời giữ trên 25%."
+}

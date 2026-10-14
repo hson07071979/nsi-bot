@@ -1,0 +1,124 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "cap_nhat": "2026-10-14",
+ "bai_hoc": "",
+ "ma": "MWG",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "ngay_vao": "2026-10-14",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: tiêu dùng cuối cùng Q3 +8,96%; bán buôn bán lẻ 9T +9,85%. INTERPRETATION: tiêu dùng nội địa đang tăng cùng GDP; lạm phát 4,5% và lãi suất tăng là lực cản sức mua.",
+  "nganh": "FACT (MSVN, 11/10): nhóm bán lẻ CNTT–viễn thông có thể vượt dự báo Q3. FACT (VCBS): biên lợi nhuận điện máy, CNTT cải thiện; cửa hàng hiện hữu tăng hai chữ số. INTERPRETATION: ngành đang ở pha hồi phục biên lợi nhuận sau giai đoạn đóng cửa hàng.",
+  "doanh_nghiep": "Chuỗi bán lẻ điện thoại–điện máy lớn nhất và chuỗi bách hóa Bách Hóa Xanh. FACT (NSI): ROE 29,2%, LNST Q2/26 3.302 tỷ (+100,4% cùng kỳ), LN 4 quý +103,6%.",
+  "mo_hinh_kd": "Bán lẻ quay vòng hàng tồn kho nhanh; TGDĐ+ĐMX ~65% doanh thu, BHX ~30% (ĐHCĐ 18/04). Tiền dư gửi ngân hàng, nên lãi suất tăng làm thu nhập tài chính tăng bù chi phí vay (theo ban lãnh đạo).",
+  "lanh_dao": "FACT (ĐHCĐ 18/04/2026): kế hoạch DT 185.000 tỷ (+19%), LNST 9.200 tỷ (+30%); cổ tức tiền 2.000 đ/cp; BHX đặt mục tiêu IPO 2028. ESOP bị cắt từ 1% xuống 0,5% vì cổ phiếu không vượt VN-Index — ban lãnh đạo tự chịu kỷ luật theo giá.",
+  "chuoi_gia_tri": "Khâu phân phối cuối cùng của điện thoại, điện máy và hàng tiêu dùng nhanh; là kênh bán lớn của các hãng điện tử và nhà sản xuất FMCG.",
+  "dan_nguoc_vi_mo": "Kênh bán lẻ hiện đại chính thức hóa tiêu dùng, tăng thu thuế; BHX kéo một phần chợ truyền thống lên chuỗi, tạo việc làm."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận gấp đôi nhưng giá thấp hơn đỉnh 21,6%: P/E co từ ~23 về ~11. Thị trường đang định giá như thể tăng trưởng sẽ gãy.",
+   "bang_chung": [
+    "FACT: P/E 11,23 vs trung vị 12 quý 23,18 (NSI)",
+    "FACT: LNST Q2/26 +100,4%; LN 4 quý +103,6% (NSI)",
+    "OBSERVATION: đỉnh 93,7 (02/02), đáy 63,3 (27/07), nay 73,5"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Q3 tiếp tục tăng mạnh nhờ nền thấp và biên lợi nhuận điện máy cải thiện; nếu đúng, P/E tiếp tục co dù giá đứng yên.",
+   "bang_chung": [
+    "FACT: MSVN đánh giá MWG có khả năng vượt dự báo Q3 (CafeF, 11/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Lợi nhuận đang tăng nhanh nhất trong nhóm vốn hóa lớn; ROE 29%.",
+  "P/E bằng một nửa trung vị 3 năm.",
+  "Tiêu dùng nội địa tăng cùng GDP 9–10%.",
+  "Cổ tức tiền 2.000 đ/cp, lớn nhất lịch sử — tín hiệu dòng tiền thật."
+ ],
+ "bear": [
+  "CPI 4,5% và lãi suất tăng có thể làm chậm mua sắm điện máy trả góp.",
+  "Tăng trưởng 100% có nền thấp; từ 2027 tăng trưởng sẽ chậm lại tự nhiên.",
+  "BHX cạnh tranh gay gắt, IPO 2028 còn xa.",
+  "Giá vẫn dưới MA200 (79,9)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-14",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Đây là ca \"giá giảm, lợi nhuận tăng\" rõ nhất trong nhóm tiêu dùng."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Thị trường không ngu: tăng trưởng 100% là hồi từ đáy 2023–2024, không lặp lại. P/E 11 có thể chỉ là P/E bình thường cho tăng trưởng 15–20% sau 2026."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: không có gap chia tách trong 240 phiên. P/E dùng LN 4 quý. Lập luận bear hợp lý ở dài hạn, nhưng với kỳ hạn 6–12 tháng, kế hoạch 9.200 tỷ (+30%) đặt P/E dự phóng 2026 khoảng 11–12 lần — vẫn dưới trung vị."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot +1 (chờ điểm mua), Tin +1, Daily trung lập (đang test vùng 72,0–74,1 trùng MA50). Không máy nào ngược chiều."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 5,
+   "ben": "bear",
+   "noi_dung": "Stress test lãi suất: nếu lãi huy động lên tiếp 1 điểm %, cầu trả góp chậm lại và cổ phiếu tiêu dùng bị định giá lại cùng thị trường."
+  },
+  {
+   "ngay": "2026-10-14",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: giữ, tỷ trọng mục tiêu 18%. Đợt 1 = 1/3. Đợt 2 khi LN Q3 tăng ≥30% và giá giữ 68,88."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Bot cùng chiều."
+  },
+  "tin": {
+   "ngay": "2026-10-14",
+   "noi_dung": "NSI Tin cùng chiều."
+  },
+  "daily": {
+   "ngay": "2026-10-14",
+   "noi_dung": "Daily trung lập (test vùng MA50 72,0–74,1). Port chấp nhận: đợt 1 chỉ 1/3."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 68.88,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 68,88 trong 60 phiên (biên dưới vùng hỗ trợ 68,88–70,56 của Daily: đáy 20 phiên, đáy cũ)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 30,
+   "noi_dung": "LNST Q3/26 tăng ≥ 30% so với cùng kỳ."
+  }
+ ],
+ "vo_hieu": "Đóng cửa dưới 68,88 (−6,3% từ 73,5), hoặc LNST Q3/26 tăng dưới 30%.",
+ "dinh_gia": "P/E 11,23 lần vs trung vị 3 năm 23,18; P/B 3,09 vs 3,36 (NSI, 14/10). Vùng quan sát.",
+ "pitch": "Thế Giới Di Động đã gấp đôi lợi nhuận nhưng giá vẫn thấp hơn đỉnh đầu năm khoảng 20%, nên mức định giá chỉ còn khoảng một nửa trung bình 3 năm. Danh mục giữ mã này với điều kiện lợi nhuận quý 3 tiếp tục tăng trên 30% và giá giữ vùng 68,9–70,6. Mất vùng này thì luận điểm sai."
+}
