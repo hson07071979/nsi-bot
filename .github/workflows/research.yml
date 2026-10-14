@@ -10,10 +10,10 @@ on:
       script:
         description: 'Script trong research/'
         required: false
-        default: 'r33_scenarios.py'
+        default: 'r37_mc_sizing.py'
   push:
     branches: ['claude/**']
-    paths: ['research/r33_scenarios.py']
+    paths: ['research/r37_mc_sizing.py']
 
 concurrency:
   group: nghien-cuu
@@ -22,7 +22,7 @@ concurrency:
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 340
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,9 +45,10 @@ jobs:
         run: python fetch_funda.py
       - name: Chạy nghiên cứu
         env:
-          NSEED: '60'
-          PROCS: '3'
-        run: python research/${{ github.event.inputs.script || 'r33_scenarios.py' }}
+          NSEED: '30'
+          NSEED_FINAL: '120'
+          PROCS: '4'
+        run: python research/${{ github.event.inputs.script || 'r37_mc_sizing.py' }}
       - name: Lưu kết quả
         if: always()
         uses: actions/upload-artifact@v4
