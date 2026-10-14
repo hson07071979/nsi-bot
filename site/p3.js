@@ -84,7 +84,8 @@ const PAGES = [
  ['hethong','Hệ thống 9 lớp',      pageSystem,    true],
  ['bangchung','Bằng chứng',        pageEvidence,  true],
  ['sotay','Sổ tay của tôi',        pageNotebook,  true],
- ['chandoan','Chẩn đoán dữ liệu & kiểm toán', pageChanDoan, true],
+ // 'qt' = an voi khach, HIEN trong menu khi mo tu trang quan tri (laQuanTri, p12.js) — co nut vuot
+ ['chandoan','Chẩn đoán', pageChanDoan, 'qt'],
  // ba trang thử nghiệm của bản 17 — giữ lại, ẩn khỏi menu
  ['homnay','Hôm nay (thử nghiệm)',      pageHomNay,  true],
  ['cohoi','Cơ hội (thử nghiệm)',        pageCoHoi,   true],
