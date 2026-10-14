@@ -18,5 +18,25 @@
   "ly_do_may": "cấu trúc MA: giá -4.3% so với MA50, -12.4% so với MA200",
   "gia0": 29.55,
   "vni0": 1704.87
+ },
+ {
+  "ma": "KDH",
+  "may": "bot",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cổng rủi ro cơ bản chặn: CFO < 0",
+  "gia0": 13.5,
+  "vni0": 1704.87
+ },
+ {
+  "ma": "KDH",
+  "may": "daily",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -10.7% so với MA50, -35.1% so với MA200",
+  "gia0": 13.5,
+  "vni0": 1704.87
  }
 ]
