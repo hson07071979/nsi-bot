@@ -1,1 +1,22 @@
-[]
+[
+ {
+  "ma": "CTG",
+  "may": "tin",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "11 chủ đề nhắc mã, 40 chủ đề cùng ngành trong 10 ngày; điểm chiều -2.6",
+  "gia0": 29.55,
+  "vni0": 1704.87
+ },
+ {
+  "ma": "CTG",
+  "may": "daily",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -4.3% so với MA50, -12.4% so với MA200",
+  "gia0": 29.55,
+  "vni0": 1704.87
+ }
+]
