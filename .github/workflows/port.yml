@@ -9,7 +9,7 @@ on:
     types: [completed]
   push:
     branches: [port-data]
-    paths: ['port/luan_diem/**', 'port/danh_muc.json']
+    paths: ['port/luan_diem/**', 'port/danh_muc.json', 'port/so_lenh.json']
   schedule:
     - cron: '17 11 * * 1-5'      # 18h17 giờ VN, lưới dự phòng nếu daily không gọi
   workflow_dispatch:
@@ -46,6 +46,7 @@ jobs:
           cp -r _data/port/luan_diem/. port/luan_diem/ 2>/dev/null || true
           cp -r _data/port/state/. port/state/ 2>/dev/null || true
           cp _data/port/danh_muc.json port/danh_muc.json 2>/dev/null || true
+          cp _data/port/so_lenh.json port/so_lenh.json 2>/dev/null || true
           ls port/luan_diem
       - name: Dựng hồ sơ máy, chấm điểm, đẩy KV
         env:

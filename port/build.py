@@ -34,6 +34,9 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from statistics import median
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import hoc as H  # noqa: E402  (mục tiêu + timing, sổ dự đoán, sẵn sàng, hiệu quả thực)
+
 ROOT = Path(__file__).resolve().parent
 LUAN = ROOT / 'luan_diem'
 STATE = ROOT / 'state'
@@ -45,7 +48,7 @@ TIN_RAW = 'https://raw.githubusercontent.com/hson07071979/nsi-tin/main/'
 MAYS = ('bot', 'tin', 'daily')
 TEN_MAY = {'bot': 'Bot giao dịch', 'tin': 'NSI Tin (trọng tài 3 phe)', 'daily': 'NSI Daily (mốc + sổ dự báo)'}
 CHIEU = {'tang': 1, 'giam': -1, 'trung_lap': 0}
-MOC_CHAM = (20, 60)          # số phiên chấm sổ bất đồng và kết quả luận điểm
+MOC_CHAM = H.MOC             # 20 / 60 / 120 phiên: chấm sổ bất đồng, kết quả luận điểm, sổ dự đoán
 TIN_NGAY = 10                # cửa sổ ngày lịch đọc nsi-tin cho quan điểm theo mã
 LOAI_GIA = ('giu', 'thung', 'vuot', 'duoi')
 
@@ -406,9 +409,13 @@ def build(now: datetime | None = None) -> dict:
     gia = rj(STATE / 'gia.json', {})
     so = rj(STATE / 'so_bat_dong.json', [])
     vao = rj(STATE / 'ngay_vao.json', {})
-    snapshot(gia, D, set(luan) | {r['ma'] for r in so})
+    so_dd = rj(STATE / 'so_du_doan.json', [])
+    so_lenh = rj(ROOT / 'so_lenh.json', {})
+    snapshot(gia, D, set(luan) | {r['ma'] for r in so} | {r['ma'] for r in so_dd}
+             | {str(l.get('ma', '')).upper() for l in (so_lenh.get('lenh') or []) if l.get('ma')})
 
     fu = D.get('funda') or {}
+    den = (D.get('regime_live') or {}).get('light') or (D.get('regime') or [{}])[-1].get('light')
     the = []
     for sym, t in luan.items():
         h = ho_so(t, D, reps, daily, so_db)
@@ -434,10 +441,16 @@ def build(now: datetime | None = None) -> dict:
         if sym in vao:
             kq = {f'{n}p': vuot_vni(gia, sym, vao[sym], n) for n in MOC_CHAM}
             kq['ngay_vao'] = vao[sym]
-        the.append(dict(luan=t, ho_so=h, kiem_chung=kc, ket_qua=kq, thieu=kiem_tra_luan(t),
-                        gia=gia_tai(gia, sym, asof)))
+        p_now = gia_tai(gia, sym, asof)
+        thieu = kiem_tra_luan(t)
+        tu = vao.get(sym) or t.get('ngay_vao') or t.get('ngay_mo') or asof
+        the.append(dict(luan=t, ho_so=h, kiem_chung=kc, ket_qua=kq, thieu=thieu, gia=p_now,
+                        muc_tieu_cham=H.cham_muc_tieu(t, gia, tu), rr=H.rr(t, p_now),
+                        san_sang=H.san_sang(t, h, thieu, p_now, kc, den)))
 
     cham_bat_dong(so, gia)
+    H.ghi_du_doan(so_dd, the, D, gia, asof)
+    H.cham_du_doan(so_dd, gia)
     so_dong = [r for r in so_db if r.get('trang_thai') == 'dong']
     tin_cay = dict(
         port_vs_may=tong_ket_bat_dong(so),
@@ -451,11 +464,14 @@ def build(now: datetime | None = None) -> dict:
     wj(STATE / 'gia.json', gia)
     wj(STATE / 'so_bat_dong.json', so)
     wj(STATE / 'ngay_vao.json', vao)
+    wj(STATE / 'so_du_doan.json', so_dd)
     bundle = dict(
         cap_nhat=now.isoformat(timespec='minutes'), asof=asof,
         den=(D.get('regime_live') or {}).get('light') or (D.get('regime') or [{}])[-1].get('light'),
         luan_diem=the, danh_muc=rj(ROOT / 'danh_muc.json', {}), so_bat_dong=so[-300:], tin_cay=tin_cay,
         loc=bang_loc(D), ten_may=TEN_MAY,
+        du_doan=so_dd[-400:], do_chinh_xac=H.do_chinh_xac(so_dd), timing=H.tong_ket_timing(the),
+        hieu_qua=H.hieu_qua(so_lenh, gia, asof),
         nguon=dict(site_asof=asof, tin_so_ban=len(reps), daily_ngay=(daily or {}).get('ngay')),
     )
     wj(OUT / 'bundle.json', bundle)

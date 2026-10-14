@@ -119,3 +119,84 @@ def test_build_offline(tmp_path, monkeypatch):
     b3 = B.build(datetime(2026, 10, 14, 20, 0, tzinfo=B.VN))
     assert b3['luan_diem'][0]['ho_so']['chua_tra_loi'] == []
     assert json.loads((root / 'state' / 'gia.json').read_text())['X'] == {'2026-10-13': 10}
+
+
+# ---------------------------------------------------------------- vòng học 2: mục tiêu, timing, sổ dự đoán, hiệu quả
+import hoc as H  # noqa: E402
+
+
+def test_muc_tieu_dat_vo_hieu_het_han_va_timing():
+    g = _gia({'X': zip(DAYS, [10, 10.4, 10.8, 11.2, 11.0, 10.9, 10.8, 10.7, 10.6, 10.5])}, zip(DAYS, [1000] * 10))
+    t = {'ma': 'X', 'vo_hieu_gia': 9.5, 'muc_tieu': [
+        {'id': 'T1', 'gia': 11.2, 'du_kien_phien': 5, 'han_phien': 8},
+        {'id': 'T2', 'gia': 12.0, 'du_kien_phien': 6, 'han_phien': 6}]}
+    a, b = H.cham_muc_tieu(t, g, '2026-10-01')
+    assert a['ket_qua'] == 'ĐẠT' and a['phien'] == 3 and a['lech_timing'] == -2      # đến sớm 2 phiên
+    assert b['ket_qua'] == 'HẾT HẠN' and b['phien'] == 6 and b['con_cach_pct'] > 0
+    t2 = {'ma': 'X', 'vo_hieu_gia': 10.45, 'muc_tieu': [{'id': 'T1', 'gia': 20, 'du_kien_phien': 5, 'han_phien': 50}]}
+    g2 = _gia({'X': zip(DAYS, [10.5, 10.6, 10.4, 11, 11, 11, 11, 11, 11, 11])}, zip(DAYS, [1000] * 10))
+    assert H.cham_muc_tieu(t2, g2, '2026-10-01')[0]['ket_qua'] == 'VÔ HIỆU'
+    t2['vo_hieu_gia'] = 9.0
+    assert H.cham_muc_tieu(t2, g, '2026-10-01')[0]['trang_thai'] == 'mo'
+
+
+def test_rr_va_san_sang():
+    t = {'ma': 'X', 'vo_hieu_gia': 9.4, 'muc_tieu': [{'id': 'T1', 'gia': 11, 'nguon': 'MA200', 'du_kien_phien': 40, 'han_phien': 80},
+                                                     {'id': 'T2', 'gia': 13, 'nguon': 'đỉnh cũ', 'du_kien_phien': 90, 'han_phien': 160}],
+         'luan_diem': [{'id': 'L1', 'nhan': 'INTERPRETATION', 'bang_chung': ['FACT: P/E 7']}],
+         'bull': ['a', 'b', 'c'], 'bear': ['x', 'y', 'z'],
+         'debate': [{'ben': b} for b in ('bull', 'bear', 'trong_tai', 'claude', 'trong_tai')],
+         'kiem_chung': [{'loai': 'giu'}, {'loai': 'funda'}]}
+    assert [x['rr'] for x in H.rr(t, 10)] == [1.67, 5.0]
+    s = H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10)
+    assert s['ket_luan'] == 'ĐỦ ĐỂ XUỐNG TIỀN', s
+    t['dieu_kien_vao'] = [{'loai': 'den', 'khong': ['DO']}, {'loai': 'kiem_chung', 'id': 'K2'}]
+    s = H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10, [{'id': 'K2', 'ket_qua': 'ĐÚNG'}], 'DO')
+    assert s['ket_luan'] == 'LUẬN ĐIỂM ĐỦ CHẶT — CHỜ ĐIỀU KIỆN VÀO' and [x['dat'] for x in s['dieu_kien_vao']] == [False, True]
+    assert H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10, [{'id': 'K2', 'ket_qua': 'ĐÚNG'}], 'VANG')['ket_luan'] == 'ĐỦ ĐỂ XUỐNG TIỀN'
+    t['dieu_kien_vao'] = []
+    t['vo_hieu_gia'] = 9.0                       # −10%: vượt chuẩn −7%
+    s = H.san_sang(t, {'chua_tra_loi': ['tin'], 'nguoc': ['tin']}, [], 10)
+    hong = {m['ten'] for m in s['muc'] if not m['dat']}
+    assert s['ket_luan'] == 'CHƯA ĐỦ' and any('−7%' in x for x in hong) and any('trả lời' in x for x in hong)
+    t['luan_diem'] = [{'id': 'L1', 'nhan': 'INTERPRETATION', 'bang_chung': []}]
+    assert not H.san_sang(t, {}, [], 10)['muc'][1]['dat']   # luận điểm không có luận cứ
+
+
+def test_so_du_doan_ghi_khi_doi_chieu_va_cham():
+    from datetime import date, timedelta
+    days = [(date(2026, 10, 1) + timedelta(days=i)).isoformat() for i in range(130)]
+    g = _gia({'X': [(d, 10 + i * 0.05) for i, d in enumerate(days)]}, [(d, 1000) for d in days])
+    D = {'lookup': {'X': {'price': 10, 'rs': 50}}, 'funda': {'X': {'pe': [8, 9, 10, 11, 7]}}, 'regime': [{'light': 'DO'}]}
+    may = lambda b, t, d: {'bot': {'chieu': b}, 'tin': {'chieu': t}, 'daily': {'chieu': d}}
+    the = [{'luan': {'ma': 'X', 'chieu': 'tang', 'trang_thai': 'trong_port'}, 'ho_so': {'may': may(1, -1, 0)}}]
+    so = []
+    assert H.ghi_du_doan(so, the, D, g, days[0]) == 4
+    assert so[0]['dong_thuan'] == 1 and so[0]['nguoc'] == 1 and so[0]['dac_trung']['pe_rel'] == round(7 / 9, 2)
+    assert H.ghi_du_doan(so, the, D, g, days[1]) == 0          # không đổi chiều → không ghi
+    the[0]['ho_so']['may']['tin']['chieu'] = 1
+    assert H.ghi_du_doan(so, the, D, g, days[2]) == 1           # Tin đổi chiều → một dòng mới
+    H.cham_du_doan(so, g)
+    port = so[0]
+    assert port['dung_20p'] is True and port['dung_120p'] is True and 'vuot_120p' in port
+    assert so[3]['dung_20p'] is None                            # Daily trung lập: không chấm đúng/sai
+    dc = H.do_chinh_xac(so)
+    assert dc['port']['20p']['da_cham'] == 1 and dc['port']['20p']['ty_le'] is None   # mẫu < 10
+    assert dc['tin']['20p']['da_cham'] == 2 and dc['tin']['20p']['dung'] == 1
+
+
+def test_wilson():
+    assert H.wilson_thap(0, 0) is None
+    assert H.wilson_thap(8, 10) < 80 and H.wilson_thap(80, 100) > H.wilson_thap(8, 10)
+
+
+def test_hieu_qua_tu_so_lenh():
+    g = _gia({'X': zip(DAYS, [10] * 5 + [12] * 5), 'Y': zip(DAYS, [20] * 10)}, zip(DAYS, [1000] * 9 + [1100]))
+    sl = {'lenh': [{'ngay': DAYS[0], 'ma': 'X', 'ty_le': 10}, {'ngay': DAYS[1], 'ma': 'Y', 'ty_le': 10, 'gia': 25},
+                   {'ngay': DAYS[6], 'ma': 'X', 'ty_le': 5, 'loai': 'ban'}]}
+    r = H.hieu_qua(sl, g, DAYS[-1])
+    # X: 1 cp-đơn vị giá 10, bán nửa ở 12 → chốt +1; còn nửa: giá trị 6 trên vốn 5. Y: 0,4 đơn vị giá vốn 25, nay 20 → 8.
+    assert r['lai_da_chot'] == 1.0 and r['tien_mat'] == 86.0 and r['nav'] == 100.0
+    assert r['vni_pct'] == 10.0 and r['vuot_vni'] == -10.0
+    assert {v['ma']: v['lai_pct'] for v in r['vi_the']} == {'X': 20.0, 'Y': -20.0}
+    assert H.hieu_qua({}, g, DAYS[-1]) is None
