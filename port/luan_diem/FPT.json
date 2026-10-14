@@ -11,7 +11,7 @@
   "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. INTERPRETATION: FPT ít nhạy với lãi suất trong nước, nhạy với dòng vốn ngoại (cổ phiếu ngoại sở hữu nhiều) và với chi tiêu CNTT của Nhật/Mỹ. USD mạnh có lợi cho doanh thu xuất khẩu dịch vụ.",
   "nganh": "HYPOTHESIS (thị trường đang tin): AI tạo sinh làm giảm nhu cầu gia công phần mềm truyền thống. OBSERVATION: chưa thấy bằng chứng trong số liệu FPT — ký mới nước ngoài H1 +32,3%, doanh thu AI & dữ liệu +54% (Doanh nhân Pháp luật, 13/10).",
   "doanh_nghiep": "Doanh nghiệp CNTT lớn nhất Việt Nam. FACT: H1/2026 DT 26.269 tỷ (+12,6%), LNTT 5.714 tỷ (+18,1%); khối Công nghệ chiếm 88% DT; 14 dự án nước ngoài >10 triệu USD; AI Factory tại VN và Nhật >90% công suất, có lãi từ Q2.",
-  "mo_hinh_kd": "Dịch vụ CNTT xuất khẩu (Nhật, Mỹ, châu Âu, APAC) + viễn thông + giáo dục. FACT (NSI): ROE 26,5%; LNST Q2/26 2.568 tỷ (+13,7%), LN 4 quý +16,1%. Lưu ý dữ liệu: NSI ghi DT Q2 −17,1% và DT 4 quý −3,8%, trái với số FPT công bố (+12,6% H1) → nghi kỳ so sánh bị ghi lại; port không dùng chỉ tiêu doanh thu NSI cho mã này.",
+  "mo_hinh_kd": "Dịch vụ CNTT xuất khẩu (Nhật, Mỹ, châu Âu, APAC) + viễn thông + giáo dục. FACT (NSI): ROE 26,5%; LNST Q2/26 2.568 tỷ (+13,7%), LN 4 quý +16,1%. Lưu ý dữ liệu: NSI ghi DT Q2 −17,1% vì từ 1/1/2026 FPT ngừng hợp nhất FPT Telecom (chuyển sang vốn chủ sở hữu, FPT giữ ~45,66%) trong khi kỳ so sánh 2025 còn hợp nhất — không phải lỗi; LNST cổ đông mẹ không bị ảnh hưởng (HSC/ACBS). So sánh doanh thu phải dùng số công bố cùng cơ sở (+12,6% H1).",
   "lanh_dao": "Chủ tịch Trương Gia Bình; kế hoạch 2026 LNTT 11.629 tỷ (+15%); sau H1 đạt ~49% kế hoạch LNTT. Lịch sử thực thi kế hoạch tốt (cần đối chiếu số liệu các năm).",
   "chuoi_gia_tri": "Nhà cung cấp chuyển đổi số cho doanh nghiệp nước ngoài và khối công trong nước; giấy phép trung gian dữ liệu theo Luật Dữ liệu.",
   "dan_nguoc_vi_mo": "Xuất khẩu dịch vụ thu ngoại tệ, đỡ tỷ giá; đào tạo và giữ nhân lực công nghệ cao; hạ tầng AI trong nước."
@@ -46,7 +46,8 @@
   "Rủi ro cấu trúc (AI) có thể chưa phản ánh vào số liệu với độ trễ 2–4 quý.",
   "BSC dự báo FPT có nguy cơ bị loại khỏi VNDiamond → quỹ bán bắt buộc.",
   "Khối ngoại vẫn bán ròng; RS của bot chỉ 22, điểm CANSLIM 27 — động lượng rất yếu.",
-  "Giá đang lập đáy mới, chưa có nền; bắt dao rơi."
+  "Giá đang lập đáy mới, chưa có nền; bắt dao rơi.",
+  "Mất quyền kiểm soát FPT Telecom (Bộ Công an nắm 50,17% từ 7/2025): phần lãi từ FOX thành lãi liên doanh, FPT ít chủ động về cổ tức/chiến lược của FOX."
  ],
  "debate": [
   {
@@ -84,6 +85,36 @@
    "vong": 6,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: giữ luận điểm tăng, tỷ trọng mục tiêu 15%, nhưng không vào đợt 1. Đợt 2 sau KQ Q3 (LN ≥ +10%) và sau ngày hiệu lực kỳ xét VNDiamond. Phản ứng giá sau sự kiện bán bắt buộc chính là phép thử \"tin xấu đã vào giá\"."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "anh_son",
+   "noi_dung": "FPT đã chuyển giao hết cho quân đội, khối ngoại bán nhiều, các quỹ hạ tỷ trọng — đây là bước tiến mới hay kìm hãm FPT, định giá đã đủ hấp dẫn chưa?"
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "trong_tai",
+   "noi_dung": "THESIS CHECK. (1) \"Chuyển giao hết cho quân đội\": KHÔNG ĐÚNG như phát biểu — cái được chuyển là phần vốn nhà nước 50,17% tại FPT Telecom (FOX), từ SCIC về Bộ Công an (7/2025), không phải Bộ Quốc phòng, và không phải FPT. FPT vẫn giữ ~45,66% FOX, từ 1/1/2026 ngừng hợp nhất: DT hợp nhất giảm ~28%, LNST cổ đông mẹ không đổi (HSC/ACBS, dẫn qua elibook). Điều này cũng giải thích DT NSI −17% mà port từng ghi là lỗi dữ liệu. (2) Khối ngoại/quỹ bán: ĐỒNG Ý — bán ròng ~13.900 tỷ đến 8/5; nguy cơ loại khỏi VNDiamond (BSC)."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 9,
+   "ben": "bull",
+   "noi_dung": "Bước tiến hay kìm hãm: số liệu nghiêng về \"FPT thành công ty công nghệ thuần hơn\": khối Công nghệ kế hoạch LNTT +25%, ký mới nước ngoài H1 +32%, AI & dữ liệu +54%; biên lợi nhuận ròng hợp nhất tăng từ ~13,5% lên ~18,6% khi bỏ FOX."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 10,
+   "ben": "bear",
+   "noi_dung": "Kìm hãm ở chỗ: FOX là \"bò sữa\" viễn thông ổn định; nay FPT chỉ nhận phần lãi liên doanh mà không kiểm soát. HYPOTHESIS: chính sách cổ tức FOX có thể thay đổi theo cổ đông chi phối mới."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 11,
+   "ben": "trong_tai",
+   "noi_dung": "Định giá: kế hoạch LNST cổ đông mẹ 2026 10.520 tỷ, vốn hóa ~107.700 tỷ → P/E dự phóng ~10,2 cho mảng công nghệ tăng ~20–25%. Kết luận: ĐỒNG Ý MỘT PHẦN — đủ hấp dẫn về định giá; dòng tiền tổ chức là lực cản ngắn hạn, nên giữ điều kiện vào: sau KQ Q3 và sau kỳ xét VNDiamond."
   }
  ],
  "phan_bien_may": {

@@ -47,7 +47,8 @@
   "LN quý đã qua đỉnh: Q3 dự báo −16% so với Q2; giá bán −7%.",
   "Nợ vay tăng sau đầu tư Dung Quất 2, đúng lúc lãi suất tăng.",
   "Thép phụ thuộc giá Trung Quốc; cầu TQ yếu có thể kéo giá thép xuống thêm.",
-  "Giá vẫn dưới MA200 (23,46); xu hướng trung hạn chưa đảo chiều."
+  "Giá vẫn dưới MA200 (23,46); xu hướng trung hạn chưa đảo chiều.",
+  "LN theo quý đi xuống từ đỉnh Q1/26: 8.994 → 6.371 → ~5.400 tỷ (Q3 dự báo); tin tốt không còn đẩy được giá."
  ],
  "debate": [
   {
@@ -85,6 +86,24 @@
    "vong": 6,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: giữ trong port, tỷ trọng mục tiêu 20%. Đợt 1 = 1/3. Đợt 2 chỉ khi LN Q3 tăng ≥15% và giá giữ 19,6 sau ngày công bố. Thủng 19,6 thì đóng luận điểm, không dời mốc."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "anh_son",
+   "noi_dung": "Tin tốt đã ra hết (ký đối tác lớn, khối ngoại mua, nhà máy mới) nhưng giá không đi; nhà đầu tư cá nhân đu bám quá đông, cổ nặng mông — định giá đã đủ hợp lý và đã rũ hết người đu chưa?"
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "trong_tai",
+   "noi_dung": "THESIS CHECK. (1) Tin tốt không đẩy được giá: ĐỒNG Ý — và số liệu cho lý do: LN theo quý đang đi xuống từ đỉnh Q1/26 (8.994 → 6.371 tỷ Q2 → dự báo ~5.400 tỷ Q3, RongViet); giá bán Q3 −7%. Thị trường định giá chiều quý-qua-quý, còn port đang nhìn chiều cùng kỳ (+34%). Đây là điểm yếu thật của luận điểm port. (2) Đông nhỏ lẻ: CHƯA ĐỦ DỮ LIỆU — NSI không có số cổ đông nhỏ lẻ hay dư nợ margin theo mã (cần: số cổ đông từ BCTN, danh sách margin của HOSE/CTCK). (3) Đã rũ chưa: ĐỒNG Ý MỘT PHẦN — OBSERVATION: phiên KL lớn nhất 120 phiên là 15/05 (75,9 triệu, −1,8%) và 20/07 (53,8 triệu, −5,7%) — nhịp rũ có khối lượng đã xảy ra tháng 7; từ đó giá trôi xuống với KL thấp (TB20 22,6 triệu vs TB240 32,1 triệu), 20 phiên gần nhất phiên giảm KL TB 19,7 triệu < phiên tăng 25,8 triệu → người bán thưa dần nhưng chưa có lực mua mới; đáy 20,05 (01/10) KL thấp → chưa có phiên cạn kiệt/cao trào. (4) Nặng mông: ĐÚNG — độ lệch chuẩn ngày 1,67%, thấp nhất rổ; timing T1 52 phiên đã tính điều này."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 9,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: ĐỒNG Ý MỘT PHẦN. Định giá hợp lý (P/E 7,4) nhưng chưa có xác nhận rũ hết. Đề xuất: giảm tỷ trọng mục tiêu 20% → 15% và thêm điều kiện cho đợt 2: LN Q3 không chỉ tăng ≥15% cùng kỳ mà KHÔNG giảm quá 20% so với Q2 (chặn kịch bản LN quý trượt dài). Chờ anh Sơn quyết."
   }
  ],
  "phan_bien_may": {

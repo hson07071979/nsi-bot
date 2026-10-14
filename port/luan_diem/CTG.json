@@ -84,6 +84,30 @@
    "vong": 6,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: CTG ở trong port nhưng KHÔNG giải ngân đợt 1. Chỉ vào ở đợt 3 khi đèn NSI rời ĐỎ (có FTD) và giá giữ 28,4. Đây là cách tôn trọng tín hiệu ngắn hạn của hai máy."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "anh_son",
+   "noi_dung": "Vì sao không chọn VCB thay thế (CTG đã tăng 2025, VCB chưa), vùng này đủ mua chưa, và sao không chọn MBB?"
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "trong_tai",
+   "noi_dung": "Số liệu (giá chỉnh, NSI): 27/10–31/12/2025 CTG +8,1%, VCB −2,9%, MBB +6,3% (dữ liệu giá bắt đầu 27/10/2025 nên không kiểm được cả năm 2025). Từ 31/12/2025 đến 14/10/2026: CTG −17,3%, VCB −2,1%, MBB −8,9%. → CTG đã trả lại hết phần tăng; VCB gần như không giảm."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 9,
+   "ben": "trong_tai",
+   "noi_dung": "So định giá với chính lịch sử 12 quý: P/B VCB 1,89 vs 2,62 (0,72 lần), CTG 1,15 vs 1,42 (0,81), MBB 1,22 vs 1,38 (0,88). P/E: VCB 0,76 lần, CTG 0,62, MBB 0,92. ROE: CTG 21,8%, MBB 20,7%, VCB 17,9%. LN 4 quý: CTG +33,4%, MBB +22,7%, VCB +20,2%; riêng Q2 VCB +64,7%. Máy: VCB Tin +1, Daily −1; MBB Bot +1, Tin +1, Daily −1; CTG Bot +1, Tin −1, Daily −1."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 10,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: VCB — ĐỒNG Ý MỘT PHẦN: VCB rẻ hơn CTG nếu so P/B với lịch sử của chính nó và giữ giá tốt nhất (phòng thủ khi đèn ĐỎ), nhưng ROE và tăng trưởng thấp hơn; đề xuất tách ngăn ngân hàng: VCB (phòng thủ, có thể vào sớm) + CTG (hồi phục, chờ đèn). MBB — KHÔNG CHỌN theo quy tắc port: P/E gần trung vị của chính nó (0,92) nên phép thử \"định giá co\" không đạt; thêm rủi ro góp 3.500 tỷ tái cơ cấu MBV (tin NSI 04/10). Vùng CTG hiện tại: rẻ về định giá nhưng điều kiện vào (đèn rời ĐỎ) chưa đạt."
   }
  ],
  "phan_bien_may": {
