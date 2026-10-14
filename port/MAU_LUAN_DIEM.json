@@ -1,0 +1,36 @@
+{
+ "_huong_dan": "Chép file này thành port/luan_diem/<MÃ>.json. Trường bắt đầu bằng _ bị bỏ qua. Mỗi nhận định gắn nhãn FACT/OBSERVATION/INTERPRETATION/HYPOTHESIS/CONFIRMATION.",
+ "ma": "XXX",
+ "trang_thai": "nghien_cuu | trong_port | loai | dong",
+ "chieu": "tang | giam | trung_lap",
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-14",
+ "ngay_vao": null,
+ "cap_nhat": "2026-10-14",
+ "chuoi": {
+  "vi_mo": "Bối cảnh vĩ mô nào tạo lực cho ngành (lãi suất, tỷ giá, đầu tư công, xuất khẩu…), kèm nhãn.",
+  "nganh": "Chu kỳ ngành đang ở đâu, cung–cầu, giá đầu ra/đầu vào.",
+  "doanh_nghiep": "Vị thế: đầu ngành? thị phần, biên lợi nhuận so với đối thủ.",
+  "mo_hinh_kd": "Kiếm tiền bằng gì, đòn bẩy, dòng tiền.",
+  "lanh_dao": "Ban lãnh đạo, cổ đông lớn, lịch sử thực thi kế hoạch.",
+  "chuoi_gia_tri": "Đóng góp gì cho chuỗi giá trị ngành; ai phụ thuộc vào DN này.",
+  "dan_nguoc_vi_mo": "DN/ngành này lớn lên thì tác động ngược lại vĩ mô thế nào (việc làm, xuất khẩu, tín dụng…)."
+ },
+ "luan_diem": [{"id": "L1", "noi_dung": "…", "nhan": "INTERPRETATION", "bang_chung": ["FACT: …"]}],
+ "bull": ["…"],
+ "bear": ["…"],
+ "debate": [{"ngay": "2026-10-14", "vong": 1, "ben": "bull | bear | trong_tai | anh_son | claude", "noi_dung": "…"}],
+ "phan_bien_may": {
+  "bot": {"ngay": "2026-10-14", "noi_dung": "Bot nói gì, vì sao port vẫn giữ/đổi quan điểm. Khung thời gian khác nhau thì nói rõ."},
+  "tin": {"ngay": "", "noi_dung": ""},
+  "daily": {"ngay": "", "noi_dung": ""}
+ },
+ "kiem_chung": [
+  {"id": "K1", "loai": "giu", "moc": 0, "han_phien": 60, "noi_dung": "Giữ trên mốc … (mốc có nguồn: đáy cũ/vùng Daily)"},
+  {"id": "K2", "loai": "funda", "chi_tieu": "ny", "quy": "Q3/26", "so_sanh": ">=", "nguong": 15, "noi_dung": "LNST Q3/26 tăng ≥ 15% so cùng kỳ"}
+ ],
+ "vo_hieu": "Điều gì xảy ra thì luận điểm sai (mốc kỹ thuật, không quá −7%; hoặc chỉ tiêu cơ bản).",
+ "dinh_gia": "P/E, P/B so với lịch sử/ngành — vùng quan sát hay điều kiện cần.",
+ "pitch": "3–5 câu cho khách hàng, viết theo điều kiện, không hô mua bán.",
+ "bai_hoc": ""
+}
