@@ -105,7 +105,7 @@ def evaluate(args):
 def accept(rows, inc, knob):
     best, why = inc, 'giữ (không giá trị nào vượt đủ điều kiện bền vững)'
     for k, r in enumerate(rows):
-        if r['over'].get(knob) == inc['over'].get(knob):
+        if r['v'] == inc['v']:
             continue
         fail = []
         if r['mc_p50'] < inc['mc_p50'] * 1.02: fail.append('MC trung vị chưa hơn 2%')
@@ -136,19 +136,31 @@ def main():
     log = []
     base = {}                      # chỉ chứa núm đã đổi khỏi PROD
 
+    def norm(o):
+        """Bỏ núm trùng giá trị PROD để cấu hình gốc chỉ tính MỘT lần (khóa cache ổn định)."""
+        return {k: v for k, v in o.items() if v != prod_value(k)}
+
     def run_rows(pool, knob, grid):
-        todo = []
+        todo, seen = [], set()
         for v in grid:
-            o = dict(base); o[knob] = v
-            if _key(o) not in cache:
-                todo.append((o, NSEED))
+            o = norm(dict(base, **{knob: v}))
+            k = _key(o)
+            if k not in cache and k not in seen:
+                todo.append((o, NSEED)); seen.add(k)
         for res in pool.imap_unordered(evaluate, todo):
             cache[_key(res['over'])] = res
-            print(f"  {json.dumps(res['over'])}: ret {res['ret']*100:.1f}% dd {res['dd']*100:.2f}% "
+            print(f"  {json.dumps(res['over']) if res['over'] else 'PROD'}: ret {res['ret']*100:.1f}% dd {res['dd']*100:.2f}% "
                   f"mc50 {res['mc_p50']*100:.1f}% mc10 {res['mc_p10']*100:.1f}% ddp95 {res['dd_p95']*100:.1f}%", flush=True)
-        return [cache[_key(dict(base, **{knob: v}))] for v in grid]
+        rows = []
+        for v in grid:
+            r = dict(cache[_key(norm(dict(base, **{knob: v})))]); r['v'] = v
+            rows.append(r)
+        return rows
 
     with Pool(PROCS, initializer=_init) as pool:
+        goc = run_rows(pool, 'base_size', [prod_value('base_size')])[0]
+        print(f"GỐC (PROD): ret {goc['ret']*100:.1f}% cagr {goc['cagr']*100:.2f}% dd {goc['dd']*100:.2f}% pf {goc['pf']} "
+              f"sharpe {goc['sharpe']} lệnh {goc['trades']} · MC50 {goc['mc_p50']*100:.1f}%", flush=True)
         for pas in (1, 2):
             changed = False
             for knob, grid in STEPS:
@@ -156,15 +168,15 @@ def main():
                 cur = base.get(knob, prod_value(knob))
                 g = sorted(set(grid + [cur]))
                 rows = run_rows(pool, knob, g)
-                inc = next(r for r in rows if r['over'].get(knob) == cur)
+                inc = next(r for r in rows if r['v'] == cur)
                 best, why = accept(rows, inc, knob)
                 if best is not inc:
-                    base[knob] = best['over'][knob]; changed = True
+                    base[knob] = best['v']; changed = True
                 log.append(dict(vong=pas, num=knob, hien_tai=cur, chon=base.get(knob, cur), ly_do=why,
-                                bang=[{k: r[k] for k in ('over', 'ret', 'dd', 'pf', 'sharpe', 'mc_p50', 'mc_p10',
-                                                          'dd_p95', 'h1', 'h2')} | {'loai_vi': r.get('loai_vi', [])}
+                                bang=[{k: r[k] for k in ('v', 'ret', 'dd', 'pf', 'sharpe', 'trades', 'mc_p50', 'mc_p10',
+                                                          'mc_p90', 'dd_p95', 'h1', 'h2')} | {'loai_vi': r.get('loai_vi', [])}
                                       for r in rows]))
-                json.dump(dict(trang_thai='dang_chay', nhat_ky=log, base=base), open(OUT, 'w'), ensure_ascii=False,
+                json.dump(dict(trang_thai='dang_chay', goc_prod={k: goc[k] for k in ('ret','dd','pf','mc_p50')}, nhat_ky=log, base=base), open(OUT, 'w'), ensure_ascii=False,
                           indent=1, default=str)
             if not changed:
                 break
@@ -177,6 +189,7 @@ def main():
         trang_thai='xong', chay_phut=round((time.time() - t0) / 60, 1), nseed=NSEED, nseed_cuoi=NSEED_FINAL,
         prod=dict(base_size=_PROD['base_size'], size_map=_PROD['size_map'], max_pos=_PROD['max_pos'],
                   max_pos_n=_PROD['max_pos_n'], sector_cap=_PROD.get('sector_cap', 0.30)),
+        goc_prod={k: goc[k] for k in ('ret', 'cagr', 'dd', 'pf', 'sharpe', 'trades', 'mc_p50', 'mc_p10', 'dd_p95', 'h1', 'h2')},
         doi_so_voi_prod=base, ket_luan=('Cách giải ngân hiện tại đã ở vùng tốt nhất theo tiêu chí bền vững'
                                         if not base else 'Có cấu hình bền hơn — xem doi_so_voi_prod và doi_chieu_cuoi'),
         doi_chieu_cuoi=final, nhat_ky=log)
