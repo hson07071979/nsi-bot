@@ -1,0 +1,136 @@
+{
+ "ma": "KDH",
+ "trang_thai": "nghien_cuu",
+ "chieu": "tang",
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-15",
+ "ngay_vao": null,
+ "cap_nhat": "2026-10-15",
+ "bai_hoc": "",
+ "chuoi": {
+  "vi_mo": "FACT: lãi vay mua nhà cố định 12–24 tháng bình quân 10,9% (DKRA, 8/2026); thả nổi sau ưu đãi ~13–15% (VARS-IRE Q2/2026); >80% người mua chỉ vay khi lãi <9% (PropertyGuru). FACT: Fed tăng lại lãi suất 16/9; lãi huy động VN +1,15 điểm % từ đầu năm. INTERPRETATION: lực cản lớn nhất của BĐS nhà ở là lãi vay người mua — và lực cản này CHƯA dừng.",
+  "nganh": "FACT (VCBS): BĐS nhà ở chịu áp lực, giá đi ngang hoặc điều chỉnh nhẹ Q3/2026. FACT (MSVN): LN BĐS nhà ở Q3 dự báo +48,3% nhờ nền thấp Q3/2025. INTERPRETATION: tăng trưởng LN ngành đến từ nền so sánh, không từ cầu mới.",
+  "doanh_nghiep": "Chủ đầu tư nhà ở TP.HCM, quỹ đất >160 ha giai đoạn 2026–2028 (>1.000 thấp tầng, >5.000 căn hộ, 60 ha KCN), đối tác Keppel. FACT: tồn kho 29.488 tỷ cuối Q2/2026 (trước đây 7–8 nghìn tỷ) (Doanh nhân Pháp luật 18/09).",
+  "mo_hinh_kd": "Gom quỹ đất pháp lý sạch, phát triển và bán nhà ở. FACT: DT cốt lõi H1/2026 442 tỷ (−75%); người mua trả tiền trước 399 tỷ cuối Q2 (2.387 tỷ cuối 2023); LNST H1 1.099 tỷ chủ yếu từ khoản không thường xuyên: 896 tỷ doanh thu tài chính (874,7 tỷ lãi treo từ thương vụ Keppel 2023 được kết chuyển khi mất quyền kiểm soát Bình Trưng Mới) và 285 tỷ lãi mua rẻ An Lập. INTERPRETATION: LN 4 quý +122,6% trong NSI không phản ánh kinh doanh cốt lõi.",
+  "lanh_dao": "FACT: ĐHĐCĐ 22/04/2026 đặt mục tiêu LN 1.500 tỷ, không có nợ trái phiếu. FACT: phát hành cổ tức 10% bằng cổ phiếu (giao dịch không hưởng quyền 07/10) và ESOP ~10,9 triệu cp giá 12.000 đ (công bố 03/09). Có thay đổi nhân sự cấp cao (bổ nhiệm thêm Phó TGĐ, 03/10).",
+  "chuoi_gia_tri": "Cung nhà ở trung–cao cấp cho TP.HCM (Thủ Đức, Bình Chánh); khách hàng là người mua ở thực có vay ngân hàng.",
+  "dan_nguoc_vi_mo": "Nhà ở là tài sản thế chấp và kênh tín dụng lớn; bán được hàng thì giải phóng 16,7 nghìn tỷ nợ vay ngân hàng và kích hoạt chuỗi vật liệu–xây dựng."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Giá đã phản ánh rất nhiều tin xấu: −58,7% từ đỉnh (giá chỉnh), P/B 0,90 dưới mức thấp nhất 12 quý (1,10), thủng đáy 2022.",
+   "bang_chung": [
+    "FACT: giá 13,5; đỉnh chỉnh 32,71 (30/10/2025); đáy 1 năm 13,25 (08/10) (NSI)",
+    "FACT: P/B 0,90 vs trung vị 12 quý 1,81 (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Nhưng phép thử thứ ba (lợi nhuận) KHÔNG đạt: LN tăng là kế toán, kinh doanh cốt lõi đang co (DT cốt lõi −75%, tiền khách trả trước −83% so cuối 2023).",
+   "bang_chung": [
+    "FACT: H1 DT cốt lõi 442 tỷ; 896 tỷ thu tài chính; 285 tỷ lãi mua rẻ"
+   ]
+  },
+  {
+   "id": "L3",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "KDH thành ứng viên khi lãi vay mua nhà ngừng tăng VÀ tiền khách trả trước tăng lại quý-qua-quý (Gladia Heights mở bán 8/2026 là phép thử đầu tiên).",
+   "bang_chung": []
+  }
+ ],
+ "bull": [
+  "Quỹ đất lớn, pháp lý tốt, đối tác Keppel; không nợ trái phiếu.",
+  "P/B 0,9 — dưới đáy 2022; nhóm CTCK định giá mục tiêu 31,7–34,6 (Vietcap, NHSV, Beta).",
+  "Nợ vay/vốn chủ 83% — thấp hơn nhiều chủ đầu tư cùng ngành.",
+  "Khi chu kỳ lãi suất đảo chiều, BĐS nhà ở thường hồi mạnh nhất."
+ ],
+ "bear": [
+  "Tin xấu cốt lõi CHƯA dừng: lãi vay mua nhà 10,9–15%, Fed còn tăng.",
+  "LN 2026 là một lần; LN cốt lõi đang co.",
+  "Nợ vay 16,7 nghìn tỷ, vay mới 6,5 nghìn tỷ trong H1; 520 tỷ lãi vay được vốn hóa vào tồn kho (chỉ ~25 tỷ vào chi phí) → lãi suất tăng làm giá vốn tương lai tăng, biên lợi nhuận bị ăn mòn âm thầm.",
+  "Pha loãng: cổ tức cổ phiếu 10% + ESOP giá 12.000.",
+  "RS bot 4,7 — yếu nhất nhóm."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-15",
+   "vong": 1,
+   "ben": "anh_son",
+   "noi_dung": "Quỹ đất ổn; nợ vay cao, lãi thả nổi có thể lên 20%, nhưng giá đã giảm hơn 1 năm rưỡi từ đỉnh — tin xấu đã vào giá?"
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 2,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ kiện: (a) đỉnh trong dữ liệu NSI là 30/10/2025 → ~1 năm, chưa đến 1,5 năm; (b) chưa thấy nguồn nào ghi lãi thả nổi 20% — mức ghi nhận là 13–15% sau ưu đãi; (c) \"nợ vay cao\": 83% vốn chủ là cao so với chính KDH trước 2021 (<25%) nhưng thấp so với ngành."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 3,
+   "ben": "bull",
+   "noi_dung": "Hai phép thử đầu đạt mạnh: giá −59%, P/B 0,9 dưới đáy 3 năm. Thị trường đang trả giá như thể quỹ đất không đáng giá sổ sách."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 4,
+   "ben": "bear",
+   "noi_dung": "Phép thử thứ ba trượt: lợi nhuận \"tăng\" là kế toán; tiền khách trả trước rơi 83%. Và nguồn tin xấu (lãi vay mua nhà) còn đang chạy. Theo đúng quy tắc của port: giá phản ánh tin xấu đã biết, chưa phản ánh tin xấu chưa xảy ra."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 5,
+   "ben": "bear",
+   "noi_dung": "Rủi ro ẩn: lãi vốn hóa 520 tỷ/nửa năm. Mỗi 1 điểm % lãi suất trên 16,7 nghìn tỷ nợ ≈ 167 tỷ/năm cộng vào giá vốn — không hiện trên P&L hôm nay nhưng sẽ hiện vào biên lãi gộp khi bàn giao."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 6,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: bot −1 (cổng CFO; anh Sơn chỉ đạo bỏ qua CFO cho BĐS vì chủ đầu tư đang xây thì CFO âm là bình thường) và RS 4,7; Tin/Daily để workflow chấm."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: ĐỒNG Ý MỘT PHẦN. Đồng ý giá đã phản ánh nhiều; không đồng ý rằng đã đến lúc vào. KDH ở trạng thái nghiên cứu, 0% vốn; chỉ vào khi có CONFIRMATION cốt lõi (tiền khách trả trước Q3 tăng so với Q2) và giá giữ 12,55."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Bot −1 vì cổng CFO < 0. Theo chỉ đạo anh Sơn (15/10), port bỏ qua CFO cho chủ đầu tư BĐS đang xây dựng: CFO âm phản ánh tiền đổ vào tồn kho, không tự nó là tín hiệu xấu. Port vẫn chưa vào vì lý do khác (LN cốt lõi co, lãi vay mua nhà còn tăng). RS 4,7 của bot được ghi nhận như bằng chứng động lượng rất yếu — cùng khung với port: chưa vào."
+  },
+  "tin": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Chưa vào port nên dùng chiều của Tin làm tham chiếu; nếu ngược chiều, khung T+0..T+4 khác khung 6–12 tháng."
+  },
+  "daily": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Giá dưới MA50 và MA200 — port đồng ý xu hướng giảm chưa dừng, nên mới để trạng thái nghiên cứu."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 12.55,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 12,55 trong 60 phiên (−7% từ 13,5; dưới đáy 1 năm 13,25 không còn hỗ trợ trong dữ liệu) — phép thử \"giá đã đáy\"."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ry",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": -50,
+   "noi_dung": "Doanh thu Q3/26 không giảm quá 50% so cùng kỳ — phép thử \"kinh doanh cốt lõi ngừng co\"."
+  }
+ ],
+ "vo_hieu": "Nếu đã vào: đóng cửa dưới 12,55 (−7%). Luận điểm sai nếu Q3 và Q4/26 tiền khách trả trước tiếp tục giảm.",
+ "dinh_gia": "P/B 0,90 vs trung vị 12 quý 1,81 (thấp nhất 12 quý 1,10); P/E 9,48 dựa trên LN có khoản bất thường — không dùng (NSI, 14/10). Vùng quan sát.",
+ "pitch": "Khang Điền đã giảm gần 60% và giao dịch dưới giá trị sổ sách, nên phần lớn tin xấu đã nằm trong giá. Nhưng lợi nhuận năm nay đến từ khoản kế toán một lần, còn tiền khách hàng đặt mua đang giảm mạnh, trong khi lãi vay mua nhà vẫn tăng. Danh mục theo dõi KDH và chỉ cân nhắc khi lượng bán hàng phục hồi trở lại."
+}
