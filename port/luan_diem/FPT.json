@@ -1,7 +1,7 @@
 {
  "ky_han": "6-12 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-14",
+ "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "FPT",
  "trang_thai": "trong_port",
@@ -120,5 +120,32 @@
  ],
  "vo_hieu": "Đóng cửa dưới 53,1 (−7%; vùng 55,8–55,91 của Daily là cảnh báo đầu tiên), hoặc LNST Q3/26 tăng dưới 10%.",
  "dinh_gia": "P/E 10,57 lần vs trung vị 3 năm 20,64; P/B 2,66 vs 5,41 (NSI, 14/10). Vùng quan sát.",
- "pitch": "FPT đã giảm gần một nửa từ đỉnh tháng 1 vì lo ngại AI thay thế dịch vụ gia công, nhưng nửa đầu năm lợi nhuận trước thuế vẫn tăng 18% và hợp đồng mới ở nước ngoài tăng 32%. Danh mục chưa giải ngân ngay: chỉ vào sau khi có kết quả quý 3 và sau kỳ xét lại rổ VNDiamond. Nếu giá đóng cửa dưới 53,1 thì luận điểm sai."
+ "pitch": "FPT đã giảm gần một nửa từ đỉnh tháng 1 vì lo ngại AI thay thế dịch vụ gia công, nhưng nửa đầu năm lợi nhuận trước thuế vẫn tăng 18% và hợp đồng mới ở nước ngoài tăng 32%. Danh mục chưa giải ngân ngay: chỉ vào sau khi có kết quả quý 3 và sau kỳ xét lại rổ VNDiamond. Nếu giá đóng cửa dưới 53,1 thì luận điểm sai.",
+ "vo_hieu_gia": 53.1,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 61.82,
+   "nguon": "Biên trên kháng cự Daily 61,18–61,82 (chân nến tăng mạnh, đáy cũ)",
+   "du_kien_phien": 20,
+   "han_phien": 60,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 2.0%"
+  },
+  {
+   "id": "T2",
+   "gia": 77.53,
+   "nguon": "MA200 tại 14/10; P/E tại đó ≈ 14,3 vẫn dưới trung vị 20,6",
+   "du_kien_phien": 234,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 2.0%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": [
+  {
+   "loai": "kiem_chung",
+   "id": "K2",
+   "can": "ĐÚNG"
+  }
+ ]
 }

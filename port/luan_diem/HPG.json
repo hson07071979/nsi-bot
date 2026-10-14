@@ -1,7 +1,7 @@
 {
  "ky_han": "6-12 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-14",
+ "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "HPG",
  "trang_thai": "trong_port",
@@ -121,5 +121,26 @@
  ],
  "vo_hieu": "Đóng cửa dưới 19,6 (−5,8% từ 20,8), hoặc LNST Q3/26 tăng dưới 15% so với cùng kỳ.",
  "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần.",
- "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Nếu mất 19,6, luận điểm sai và danh mục rút mã này ra."
+ "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Nếu mất 19,6, luận điểm sai và danh mục rút mã này ra.",
+ "vo_hieu_gia": 19.6,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 23.46,
+   "nguon": "MA200 tại 14/10 (NSI, giá chỉnh)",
+   "du_kien_phien": 52,
+   "han_phien": 120,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.67%"
+  },
+  {
+   "id": "T2",
+   "gia": 26.89,
+   "nguon": "Đỉnh 26/02/2026 (giá chỉnh); P/E tại đó ≈ 9,6 vẫn dưới trung vị 3 năm 15,0",
+   "du_kien_phien": 236,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.67%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": []
 }

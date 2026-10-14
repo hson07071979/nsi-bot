@@ -1,0 +1,4 @@
+{
+ "_huong_dan": "Ghi từng lệnh thật: ngay (YYYY-MM-DD), ma, loai mua|ban, ty_le = % vốn ban đầu, gia = giá khớp (bỏ trống thì lấy giá đóng cửa ngày đó), dot = đợt giải ngân. Workflow tự tính NAV, lãi/lỗ, so với VN-Index.",
+ "lenh": []
+}

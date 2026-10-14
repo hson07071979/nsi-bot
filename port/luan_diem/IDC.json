@@ -1,7 +1,7 @@
 {
  "ky_han": "6-12 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-14",
+ "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "IDC",
  "trang_thai": "trong_port",
@@ -110,5 +110,26 @@
  ],
  "vo_hieu": "Đóng cửa dưới 31,7 (−5,9% từ 33,7), hoặc ROE Q3/26 dưới 25%.",
  "dinh_gia": "P/E 6,59 lần vs trung vị 3 năm 9,36; P/B 2,12 vs 2,8 (NSI, 14/10). Vùng quan sát.",
- "pitch": "IDICO là cách đứng vào làn sóng xuất khẩu và FDI mà không phải gánh rủi ro thị trường nhà ở: ROE trên 30%, P/E khoảng 6,6 lần. Danh mục giữ khi giá còn trên 31,7 và hiệu quả sinh lời giữ trên 25%."
+ "pitch": "IDICO là cách đứng vào làn sóng xuất khẩu và FDI mà không phải gánh rủi ro thị trường nhà ở: ROE trên 30%, P/E khoảng 6,6 lần. Danh mục giữ khi giá còn trên 31,7 và hiệu quả sinh lời giữ trên 25%.",
+ "vo_hieu_gia": 31.7,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 36.5,
+   "nguon": "MA200 tại 14/10",
+   "du_kien_phien": 21,
+   "han_phien": 60,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.73%"
+  },
+  {
+   "id": "T2",
+   "gia": 45.01,
+   "nguon": "Đỉnh 03/02/2026 (giá chỉnh); P/E tại đó ≈ 8,8 vẫn dưới trung vị 9,36. Thang thời gian ước 279 phiên > kỳ hạn → giới hạn 250",
+   "du_kien_phien": 250,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.73%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": []
 }

@@ -132,5 +132,38 @@
  ],
  "vo_hieu": "Nếu đã vào: đóng cửa dưới 12,55 (−7%). Luận điểm sai nếu Q3 và Q4/26 tiền khách trả trước tiếp tục giảm.",
  "dinh_gia": "P/B 0,90 vs trung vị 12 quý 1,81 (thấp nhất 12 quý 1,10); P/E 9,48 dựa trên LN có khoản bất thường — không dùng (NSI, 14/10). Vùng quan sát.",
- "pitch": "Khang Điền đã giảm gần 60% và giao dịch dưới giá trị sổ sách, nên phần lớn tin xấu đã nằm trong giá. Nhưng lợi nhuận năm nay đến từ khoản kế toán một lần, còn tiền khách hàng đặt mua đang giảm mạnh, trong khi lãi vay mua nhà vẫn tăng. Danh mục theo dõi KDH và chỉ cân nhắc khi lượng bán hàng phục hồi trở lại."
+ "pitch": "Khang Điền đã giảm gần 60% và giao dịch dưới giá trị sổ sách, nên phần lớn tin xấu đã nằm trong giá. Nhưng lợi nhuận năm nay đến từ khoản kế toán một lần, còn tiền khách hàng đặt mua đang giảm mạnh, trong khi lãi vay mua nhà vẫn tăng. Danh mục theo dõi KDH và chỉ cân nhắc khi lượng bán hàng phục hồi trở lại.",
+ "vo_hieu_gia": 12.55,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 15.17,
+   "nguon": "MA50 tại 14/10",
+   "du_kien_phien": 36,
+   "han_phien": 90,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.95%"
+  },
+  {
+   "id": "T2",
+   "gia": 20.89,
+   "nguon": "MA200 tại 14/10; P/B tại đó ≈ 1,39 dưới trung vị 1,81. Ước 503 phiên — ngoài kỳ hạn 12 tháng, chỉ để theo dõi",
+   "du_kien_phien": 250,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.95%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": [
+  {
+   "loai": "kiem_chung",
+   "id": "K2",
+   "can": "ĐÚNG"
+  },
+  {
+   "loai": "den",
+   "khong": [
+    "DO"
+   ]
+  }
+ ]
 }

@@ -1,7 +1,7 @@
 {
  "ky_han": "6-12 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-14",
+ "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "CTG",
  "trang_thai": "trong_port",
@@ -120,5 +120,33 @@
  ],
  "vo_hieu": "Đóng cửa dưới 28,4 (−3,9% từ 29,55), hoặc LNST Q3/26 tăng dưới 10%.",
  "dinh_gia": "P/B 1,15 vs trung vị 12 quý 1,42 (thấp nhất 12 quý 1,25); P/E 5,68 vs 9,19 (NSI, 14/10). Vùng quan sát.",
- "pitch": "VietinBank đang được định giá thấp hơn mọi thời điểm trong 3 năm qua dù lợi nhuận vẫn tăng trên 20% và quy định mới về tiền gửi Kho bạc mở thêm dư địa cho vay. Nhưng áp lực lãi suất chưa dừng, nên danh mục chỉ giải ngân khi thị trường chung có tín hiệu xác nhận và giá vẫn giữ trên 28,4."
+ "pitch": "VietinBank đang được định giá thấp hơn mọi thời điểm trong 3 năm qua dù lợi nhuận vẫn tăng trên 20% và quy định mới về tiền gửi Kho bạc mở thêm dư địa cho vay. Nhưng áp lực lãi suất chưa dừng, nên danh mục chỉ giải ngân khi thị trường chung có tín hiệu xác nhận và giá vẫn giữ trên 28,4.",
+ "vo_hieu_gia": 28.4,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 31.7,
+   "nguon": "Biên trên kháng cự Daily 30,9–31,7 (MA50, đỉnh 20 phiên)",
+   "du_kien_phien": 20,
+   "han_phien": 60,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.59%"
+  },
+  {
+   "id": "T2",
+   "gia": 34.13,
+   "nguon": "MA200 tại 14/10; P/B tại đó ≈ 1,33 vẫn dưới trung vị 1,42",
+   "du_kien_phien": 82,
+   "han_phien": 180,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.59%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": [
+  {
+   "loai": "den",
+   "khong": [
+    "DO"
+   ]
+  }
+ ]
 }
