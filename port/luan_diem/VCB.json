@@ -1,0 +1,144 @@
+{
+ "ma": "VCB",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-15",
+ "ngay_vao": "2026-10-15",
+ "cap_nhat": "2026-10-15",
+ "bai_hoc": "",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: Quyết định 1743 của NHNN (hiệu lực 1/8/2026) nâng tỷ lệ tiền gửi Kho bạc được tính vào LDR từ 20% lên 50%, nêu rõ BIDV, Vietcombank, VietinBank, Agribank, MB được thêm dư địa cho vay. FACT: NHNN giữ nguyên lãi suất điều hành, yêu cầu giảm lãi suất huy động kỳ hạn từ 6 tháng (07/10).",
+  "nganh": "FACT (MSVN, 11/10): LN ngân hàng Q3 dự báo +21%, có nguy cơ không đạt; VCB, CTG, VPB được đánh giá tích cực hơn. FACT: QĐ 1743 nêu Vietcombank trong nhóm được thêm dư địa cho vay. INTERPRETATION: khi lãi suất còn tăng và đèn ĐỎ, ngân hàng có chất lượng tài sản và chi phí vốn tốt nhất chịu ít rủi ro nhất.",
+  "doanh_nghiep": "Ngân hàng quốc doanh có vốn hóa lớn nhất sàn (NSI: 470.425 tỷ). FACT (NSI): ROE 17,9%; LNST Q2/26 14.542 tỷ (+64,7% cùng kỳ), LN 4 quý +20,2%. HYPOTHESIS: Q2 tăng đột biến có thể có khoản không thường xuyên — cần kiểm cấu phần trong BCTC.",
+  "mo_hinh_kd": "Ngân hàng thương mại: cho vay, thanh toán, ngoại hối. INTERPRETATION: lợi thế chi phí vốn và thanh toán quốc tế — cần số CASA/NIM từ BCTC để chuyển thành FACT.",
+  "lanh_dao": "Nhà nước sở hữu chi phối; chính sách đi cùng điều hành của NHNN. Chưa có dữ liệu NSI về kế hoạch tăng vốn — cần kiểm.",
+  "chuoi_gia_tri": "Kênh thanh toán và ngoại hối cho doanh nghiệp xuất nhập khẩu và FDI; dẫn vốn cho dự án lớn.",
+  "dan_nguoc_vi_mo": "Xuất khẩu +23% và FDI kéo nhu cầu thanh toán/ngoại hối; VCB là công cụ chính để truyền dẫn ổn định tỷ giá và tín dụng chính sách."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "So với lịch sử của chính nó, VCB là ngân hàng rẻ nhất trong ba mã được xét: P/B bằng 0,72 lần trung vị 3 năm, thấp hơn cả mức thấp nhất 12 quý.",
+   "bang_chung": [
+    "FACT: P/B 1,89 vs trung vị 12 quý 2,62 (thấp nhất 2,02); P/E 11,3 vs 14,91 (NSI)",
+    "FACT: CTG 0,81 lần, MBB 0,88 lần (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Giữ giá tốt nhất nhóm: từ 31/12/2025 chỉ −2,1% so với CTG −17,3%, MBB −8,9% (giá chỉnh) — vai phòng thủ khi đèn ĐỎ.",
+   "bang_chung": [
+    "OBSERVATION: biến động ngày 1,38% — thấp nhất nhóm ngân hàng được xét"
+   ]
+  }
+ ],
+ "bull": [
+  "P/B dưới đáy 3 năm dù LN vẫn tăng.",
+  "Phòng thủ: biến động thấp, giữ giá tốt nhất khi thị trường giảm.",
+  "Hưởng lợi QĐ 1743 và nhu cầu ngoại hối từ xuất khẩu/FDI.",
+  "MSVN xếp vào nhóm tích cực mùa KQ Q3."
+ ],
+ "bear": [
+  "ROE 17,9% thấp hơn CTG (21,8%) và MBB (20,7%); tăng trưởng 4 quý chậm hơn.",
+  "Q2 +64,7% có thể có khoản bất thường — chưa kiểm cấu phần.",
+  "Bot chưa đủ điều kiện vì biên độ dao động quá thấp: cổ phiếu ít động lượng.",
+  "Giá dưới MA50 (58,57) và MA200 (61,04)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-15",
+   "vong": 1,
+   "ben": "anh_son",
+   "noi_dung": "Vì sao không chọn VCB thay CTG — CTG đã tăng 2025, VCB chưa?"
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 2,
+   "ben": "bull",
+   "noi_dung": "VCB rẻ nhất so với lịch sử của chính nó (P/B 0,72 lần trung vị) và giữ giá tốt nhất từ đầu năm. Khi đèn ĐỎ, đây là ngân hàng hợp để vào sớm."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 3,
+   "ben": "bear",
+   "noi_dung": "Rẻ so với lịch sử nhưng lịch sử của VCB là định giá cao nhất ngành; ROE thấp hơn CTG/MBB. Giữ giá tốt cũng có nghĩa tin xấu chưa vào giá nhiều."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 4,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm dữ liệu: không có khoảng nhảy chia tách trong 240 phiên. Dữ liệu giá bắt đầu 27/10/2025 nên không kiểm được câu \"VCB chưa tăng năm 2025\" cho cả năm; 27/10–31/12 VCB −2,9%, CTG +8,1%. P/B 1,89 dưới mức thấp nhất 12 quý (2,02)."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 5,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: Bot trung lập (biên độ thấp), Tin +1, Daily −1 (dưới MA50/MA200). Daily đúng về xu hướng; port dùng hỗ trợ 52,6 của Daily làm giá vô hiệu và chỉ vào 1/3 ở đợt 1."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận (anh Sơn chốt 15/10): tách ngăn ngân hàng — VCB 8% (phòng thủ, vào từ đợt 1) + CTG 9% (hồi phục, chờ đèn rời ĐỎ). MBB không chọn vì P/E gần trung vị của chính nó."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Bot trung lập vì biên độ dao động thấp — đúng là ít động lượng; port chọn VCB cho vai phòng thủ, không cho vai tăng nhanh."
+  },
+  "tin": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Tin cùng chiều."
+  },
+  "daily": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Daily −1 vì giá dưới MA50 và MA200. Port không phản bác xu hướng ngắn hạn; khác khung thời gian (6–12 tháng). Port dùng hỗ trợ 52,6 của Daily làm giá vô hiệu và chỉ vào 1/3 tỷ trọng ở đợt 1."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 52.6,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 52,6 trong 60 phiên (hỗ trợ Daily: 2 lần chạm, đáy cũ)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 10,
+   "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
+  }
+ ],
+ "vo_hieu": "Đóng cửa dưới 52,6 (−6,6% từ 56,3), hoặc LNST Q3/26 tăng dưới 10%.",
+ "vo_hieu_gia": 52.6,
+ "dinh_gia": "P/B 1,89 vs trung vị 3 năm 2,62 (thấp nhất 12 quý 2,02); P/E 11,3 vs 14,91 (NSI, 14/10). Vùng quan sát.",
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 61.04,
+   "nguon": "MA200 tại 14/10",
+   "du_kien_phien": 34,
+   "han_phien": 90,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1,38%"
+  },
+  {
+   "id": "T2",
+   "gia": 76.0,
+   "nguon": "Đỉnh 14/01/2026; P/B tại đó ≈ 2,55 vẫn dưới trung vị 2,62. Ước 471 phiên → giới hạn 250",
+   "du_kien_phien": 250,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1,38%"
+  }
+ ],
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "dieu_kien_vao": [],
+ "pitch": "Vietcombank đang giao dịch dưới mức định giá thấp nhất 3 năm qua so với chính nó, trong khi giữ giá tốt nhất nhóm ngân hàng từ đầu năm. Danh mục dùng VCB cho vai phòng thủ khi thị trường chung chưa có tín hiệu tạo đáy; luận điểm sai nếu giá đóng cửa dưới 52,6."
+}

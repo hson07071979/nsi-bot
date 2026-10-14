@@ -34,6 +34,15 @@
    "bang_chung": [
     "FACT: MSVN đánh giá MWG có khả năng vượt dự báo Q3 (CafeF, 11/10)"
    ]
+  },
+  {
+   "id": "L3",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Động cơ lợi nhuận là chuỗi điện máy + trả chậm, không phải BHX; luận điểm sống hay chết theo chu kỳ điện máy.",
+   "bang_chung": [
+    "FACT: BHX 910/6.112 tỷ LNST H1 (~15%) (DNSE 04/08)",
+    "FACT: chuỗi điện máy DT 8T +29%, cửa hàng hiện hữu +30%, trả chậm 38% DT (TTTC-TT)"
+   ]
   }
  ],
  "bull": [
@@ -109,6 +118,12 @@
    "vong": 10,
    "ben": "trong_tai",
    "noi_dung": "Trần 95: OBSERVATION đúng — đỉnh 93,7 (02/02/2026). Port KHÔNG giả định phá trần: T2 đặt đúng 93,7. Tại 93,7, P/E dự phóng 2026 ≈ 15 (kế hoạch 9.200 tỷ); tại 73,5 ≈ 11,8. Kết luận: ĐỒNG Ý MỘT PHẦN — vùng giá hấp dẫn về định giá và R:R 4,4 đến trần cũ; nhưng câu chuyện phải đổi từ \"BHX\" sang \"chu kỳ điện máy + trả chậm\", và thêm điều kiện: Q3 cửa hàng hiện hữu điện máy còn tăng hai chữ số."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 11,
+   "ben": "anh_son",
+   "noi_dung": "Chốt: giữ 18% và đợt 1; thêm điều kiện kiểm chứng chu kỳ điện máy (K3 + cửa hàng hiện hữu điện máy tăng hai chữ số)."
   }
  ],
  "phan_bien_may": {
@@ -141,9 +156,18 @@
    "so_sanh": ">=",
    "nguong": 30,
    "noi_dung": "LNST Q3/26 tăng ≥ 30% so với cùng kỳ."
+  },
+  {
+   "id": "K3",
+   "loai": "funda",
+   "chi_tieu": "ry",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 15,
+   "noi_dung": "Doanh thu Q3/26 tăng ≥ 15% cùng kỳ — proxy cho chuỗi điện máy; cửa hàng hiện hữu điện máy tăng hai chữ số kiểm tay từ báo cáo tháng của MWG."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 68,88 (−6,3% từ 73,5), hoặc LNST Q3/26 tăng dưới 30%.",
+ "vo_hieu": "Đóng cửa dưới 68,88 (−6,3% từ 73,5), hoặc LNST Q3/26 tăng dưới 30%, hoặc cửa hàng hiện hữu điện máy Q3 tăng dưới 10%.",
  "dinh_gia": "P/E 11,23 lần vs trung vị 3 năm 23,18; P/B 3,09 vs 3,36 (NSI, 14/10). Vùng quan sát.",
  "pitch": "Thế Giới Di Động đã gấp đôi lợi nhuận nhưng giá vẫn thấp hơn đỉnh đầu năm khoảng 20%, nên mức định giá chỉ còn khoảng một nửa trung bình 3 năm. Danh mục giữ mã này với điều kiện lợi nhuận quý 3 tiếp tục tăng trên 30% và giá giữ vùng 68,9–70,6. Mất vùng này thì luận điểm sai.",
  "vo_hieu_gia": 68.88,

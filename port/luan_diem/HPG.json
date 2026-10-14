@@ -104,6 +104,12 @@
    "vong": 9,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: ĐỒNG Ý MỘT PHẦN. Định giá hợp lý (P/E 7,4) nhưng chưa có xác nhận rũ hết. Đề xuất: giảm tỷ trọng mục tiêu 20% → 15% và thêm điều kiện cho đợt 2: LN Q3 không chỉ tăng ≥15% cùng kỳ mà KHÔNG giảm quá 20% so với Q2 (chặn kịch bản LN quý trượt dài). Chờ anh Sơn quyết."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 10,
+   "ben": "anh_son",
+   "noi_dung": "Chốt: hạ tỷ trọng mục tiêu 20% → 15%, thêm điều kiện quý (K3) cho đợt 2; 5% dôi ra làm tiền đệm."
   }
  ],
  "phan_bien_may": {
@@ -136,9 +142,18 @@
    "so_sanh": ">=",
    "nguong": 15,
    "noi_dung": "LNST Q3/26 tăng ≥ 15% so với cùng kỳ (dự báo RongViet +34%)."
+  },
+  {
+   "id": "K3",
+   "loai": "funda",
+   "chi_tieu": "np",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 5097,
+   "noi_dung": "LNST Q3/26 ≥ 5.097 tỷ, tức không giảm quá 20% so với Q2 (6.371 tỷ) — chặn kịch bản LN quý trượt dài. Điều kiện cho đợt 2 (anh Sơn chốt 15/10)."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 19,6 (−5,8% từ 20,8), hoặc LNST Q3/26 tăng dưới 15% so với cùng kỳ.",
+ "vo_hieu": "Đóng cửa dưới 19,6 (−5,8% từ 20,8), hoặc LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
  "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần.",
  "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Nếu mất 19,6, luận điểm sai và danh mục rút mã này ra.",
  "vo_hieu_gia": 19.6,
