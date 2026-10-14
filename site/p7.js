@@ -193,9 +193,15 @@ function go(id){
   const s=secs[id]; if(!s.rendered){s.fn(s.node);s.rendered=true;}
   window.scrollTo({top:0,behavior:'instant'}); location.hash=id;
 }
-document.getElementById('themebtn').onclick=()=>{
+// 14/10/2026 (anh Son): giao dien SANG la mac dinh; nut ghi chu tieng Viet (Sang/Toi) thay icon.
+// Nut ghi giao dien SE CHUYEN SANG khi bam. Lua chon duoc nho tren may nguoi xem (localStorage, loi thi bo qua).
+const themeBtn=document.getElementById('themebtn');
+const datTheme=t=>{document.documentElement.setAttribute('data-theme',t);themeBtn.textContent=t==='dark'?'Sáng':'Tối';};
+try{const t0=localStorage.getItem('nsi-theme'); datTheme(t0==='dark'?'dark':'light');}catch(e){datTheme('light');}
+themeBtn.onclick=()=>{
   const cur=document.documentElement.getAttribute('data-theme');
-  document.documentElement.setAttribute('data-theme',cur==='dark'?'light':'dark');
+  const moi=cur==='dark'?'light':'dark'; datTheme(moi);
+  try{localStorage.setItem('nsi-theme',moi);}catch(e){}
   Object.values(secs).forEach(v=>{if(v.rendered){v.node.innerHTML='';v.rendered=false;}});
   const a=(location.hash?location.hash.slice(1):HOME); const t=secs[a]?a:HOME;
   secs[t].fn(secs[t].node); secs[t].rendered=true;
