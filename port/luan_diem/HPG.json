@@ -110,6 +110,12 @@
    "vong": 10,
    "ben": "anh_son",
    "noi_dung": "Chốt: hạ tỷ trọng mục tiêu 20% → 15%, thêm điều kiện quý (K3) cho đợt 2; 5% dôi ra làm tiền đệm."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 11,
+   "ben": "trong_tai",
+   "noi_dung": "Đổi quy tắc, ghi công khai (không dời cột gôn ngầm): R38/R40 cho thấy vào lúc giá ≤ −25% so với đỉnh 250 phiên mới có lợi thế, và dừng kỹ thuật sát làm mất lợi thế (−7% cắt: +10,6% vs +14,0%/năm). Vì vậy mã này CHỜ GIÁ CỔNG 19,69 mới mua đợt 1; K1 19,6 cũ thành vùng quan sát — nếu thủng trước khi mua, sổ ghi K1 SAI. Luận điểm cơ bản vẫn chấm bằng K2/K3. Mức ngừng mua mới 18,4 ≈ giá cổng − 7%. Xếp hạng 70/30 vẫn tính, nhưng chỉ được xếp lượt khi đạt cổng."
   }
  ],
  "phan_bien_may": {
@@ -132,7 +138,7 @@
    "loai": "giu",
    "moc": 19.6,
    "han_phien": 60,
-   "noi_dung": "Giữ trên 19,6 trong 60 phiên (biên dưới vùng hỗ trợ 19,6–20,1 của Daily: đáy 20 phiên, đáy cũ, 6 lần chạm)."
+   "noi_dung": "Giữ trên 19,6 trong 60 phiên (biên dưới vùng hỗ trợ 19,6–20,1 của Daily: đáy 20 phiên, đáy cũ, 6 lần chạm). — Từ 15/10: K1 đổi vai thành VÙNG QUAN SÁT (vẫn chấm ĐÚNG/SAI trong sổ dự đoán), không còn là điều kiện vô hiệu."
   },
   {
    "id": "K2",
@@ -153,10 +159,10 @@
    "noi_dung": "LNST Q3/26 ≥ 5.097 tỷ, tức không giảm quá 20% so với Q2 (6.371 tỷ) — chặn kịch bản LN quý trượt dài. Điều kiện cho đợt 2 (anh Sơn chốt 15/10)."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 19,6; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 18,4 (giá cổng R38 19,69 − khoảng 7%); bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
  "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần.",
- "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Nếu mất 19,6, luận điểm sai và danh mục rút mã này ra.",
- "vo_hieu_gia": 19.6,
+ "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Danh mục chỉ mua đợt 1 khi giá về vùng cổng 19,7 (thấp hơn đỉnh 250 phiên 25%), và ngừng mua thêm dưới 18,4.",
+ "vo_hieu_gia": 18.4,
  "muc_tieu": [
   {
    "id": "T1",

@@ -1,0 +1,147 @@
+{
+ "ky_han": "6-12 tháng",
+ "ngay_mo": "2026-10-15",
+ "cap_nhat": "2026-10-15",
+ "bai_hoc": "",
+ "trang_thai": "trong_port",
+ "chieu": "tang",
+ "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "ma": "TNG",
+ "chuoi": {
+  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: IIP 9 tháng +12,3%, chế biến chế tạo +12,9%. INTERPRETATION: xuất khẩu và sản xuất đang kéo nhu cầu đất KCN.",
+  "nganh": "FACT (Shinhan, 13/08/2026): Mỹ áp thuế Section 301 (lao động cưỡng bức) 12,5% với Việt Nam từ 24/07/2026; nhánh dư thừa công suất chưa kết luận (ước 2,5–12,5%); nhánh sở hữu trí tuệ dự kiến kết luận 29/11/2026. FACT: xuất khẩu Mỹ ≈ 40% doanh thu TNG (elibook 18/05). INTERPRETATION: tin xấu thuế quan đã xảy ra và đã biết phần lớn; phần còn lại có ngày kết luận cụ thể.",
+  "doanh_nghiep": "May xuất khẩu Thái Nguyên, >360 chuyền. FACT (NSI): ROE 22,1%, LN 4 quý +26,3%; LNST Q2/26 149,8 tỷ (+24,8%). FACT (Shinhan): Q2/26 doanh thu 2.914 tỷ (+15%), LNST 147 tỷ (+23%), biên gộp 14,3%. Hai nguồn lệch ~3 tỷ ở LNST Q2 (149,8 vs 147) — nhiều khả năng khác LN cổ đông mẹ/hợp nhất.",
+  "mo_hinh_kd": "Gia công FOB cho thương hiệu thể thao/ngoài trời (Decathlon, Columbia, Sportmaster; mới: H&M, The North Face, LIDL). Decathlon đưa TNG vào nhóm 3 nhà cung cấp toàn cầu (elibook 18/05). Kế hoạch 2026: DT 9.500 tỷ (+9%), LNST 450 tỷ (+15%); 1H đạt 51% DT, 46% LNST (Shinhan).",
+  "lanh_dao": "ĐHĐCĐ 19/04/2026: ông Nguyễn Đức Mạnh tiếp quản Chủ tịch HĐQT từ ông Nguyễn Văn Thời (elibook). Chưa đủ dữ liệu về lịch sử thực thi của chủ tịch mới.",
+  "chuoi_gia_tri": "Khâu cắt–may (CMT/FOB), phụ thuộc nguyên liệu nhập (polyester tăng 15–20% đầu 2026). Tập trung vào 2 khách lớn (Vietcap cảnh báo).",
+  "dan_nguoc_vi_mo": "Xuất khẩu Q3 +23% là bối cảnh; TNG hưởng làn sóng chuyển đơn hàng khỏi Trung Quốc nhưng chịu trực tiếp thuế Mỹ."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Giá đã định giá kịch bản thuế quan xấu (−37% từ đỉnh 04/03 về đáy 22/07) trong khi lợi nhuận vẫn tăng và đơn hàng kín đến hết 2026: P/E 5,2 so với trung vị 3 năm 7,65.",
+   "bang_chung": [
+    "FACT: P/E 5,17 vs 7,65; P/B 1,15 vs 1,34; ROE 22,1% (NSI 14/10)",
+    "FACT: đơn hàng ký kín đến hết 2026, đàm phán 2027 từ tháng 9/2026 (Shinhan 13/08)",
+    "FACT: đỉnh 24,72 (04/03, giá chỉnh) → đáy 15,68 (22/07) → 18,1 (15/10) (FireAnt)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/E 5,2 — thấp nhất 3 năm trong khi LN 4 quý +26%.",
+  "Đơn hàng kín đến hết 2026; Decathlon nâng TNG lên nhóm 3 nhà cung cấp toàn cầu.",
+  "Thuế 301 12,5% đã có hiệu lực từ 24/07 — giá đáy đúng ngày 22/07, tin xấu chính đã ra."
+ ],
+ "bear": [
+  "Đòn bẩy cao nhất ngành: nợ vay/VCSH 166% (2025), Shinhan dự phóng 252% (2026F); chi phí lãi vay 241 → 342 tỷ — đúng lúc lãi suất huy động tăng 1,15 điểm %.",
+  "Tăng trưởng chậm lại: Shinhan dự phóng LNST 2027 chỉ +5%; 2H/26 chậm hơn 1H vì đã đẩy giao hàng trước thuế.",
+  "Thuế chưa xong: nhánh sở hữu trí tuệ kết luận 29/11/2026; kịch bản cộng dồn ≥15% (Allianz).",
+  "Q1/26 có 41% LNST từ lợi nhuận khác (bồi thường bảo hiểm lũ) — chất lượng LN cần kiểm."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-15",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Tin xấu lớn nhất (thuế Mỹ) đã thành sự thật ngày 24/07 và giá tạo đáy 22/07. Sau đó Q2 vẫn +23%, đơn hàng kín năm. Đây đúng là câu hỏi của anh Sơn: giá đã phản ánh đủ chưa — có, và còn hơn."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "P/E thấp của dệt may là 'bình thường': ngành gia công, biên mỏng 3%, nợ nhiều. Trung vị 7,65 đã thấp; 5,2 có thể là định giá đúng cho LN 2027 chỉ +5% và lãi vay tăng 40%."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Kiểm số: LN Q2 hai nguồn lệch 147 vs 149,8 — không đổi kết luận. Q1/26 bị bơm bởi bảo hiểm (NSI gắn cờ 41%) → đo bằng LN 4 quý vẫn +26% sau khi trừ ~25 tỷ (≈ +20%). Đòn bẩy là điểm yếu thật, không phải nhiễu."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 4,
+   "ben": "bear",
+   "noi_dung": "Stress: nếu nhánh IP 29/11 cộng thêm 10% và khách Mỹ ép giá, biên gộp về 12% như Q1 → LNST 2027 có thể giảm. Với nợ ròng ~1,5 lần VCSH, lãi suất +1 điểm % ăn ~30 tỷ LN."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 5,
+   "ben": "bull",
+   "noi_dung": "Hai khách lớn là thương hiệu EU (Decathlon) — phần Mỹ 40% không phải 100%. Thuế áp cho cả Việt Nam, đối thủ cùng chịu; TNG có lợi thế quy mô và chuỗi nhà máy mới (Đại Từ 2 vận hành 2H/27)."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 6,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận: vào danh mục, tỷ trọng 12,5% theo khuôn R40 nhưng đòn bẩy là rủi ro số 1 → K2 đo LN Q3/26 không giảm so cùng kỳ (nền Q3/25 117 tỷ). Mốc ngừng mua 17,2 (chuẩn −7%, ngay trên MA50); đáy 22/07 15,68 là vùng quan sát. Điểm 'giá sai' 10/15: tin xấu đã ra có ngày, nhưng còn 1 nhánh thuế chưa kết luận."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "claude",
+   "noi_dung": "Đối chất máy: TNG không có nến trên trang NSI → Daily/bot không có hồ sơ kỹ thuật; dùng FireAnt cho chuỗi giá. Cần anh Sơn xem chart: MA200 18,66 ngay trên giá — vượt và giữ được là CONFIRMATION, bị từ chối là bằng chứng hồi kỹ thuật."
+  }
+ ],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Mã ngoài rổ nến NSI — bot chưa có tín hiệu; không đối chất được."
+  },
+  "tin": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Chờ NSI Tin; nếu có tin_don về thuế IP thì coi là HYPOTHESIS."
+  },
+  "daily": {
+   "ngay": "2026-10-15",
+   "noi_dung": "Daily không theo dõi TNG."
+  }
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "giu",
+   "moc": 17.2,
+   "han_phien": 60,
+   "noi_dung": "Giữ trên 17,2 trong 60 phiên (chuẩn −7% từ 18,4 ngày 14/10, ngay trên MA50 16,98). Đáy cấu trúc 15,68 (22/07) xa hơn −13% — dưới 17,2 là ngừng mua và rà luận điểm, chưa phải bán."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST Q3/26 không giảm so với cùng kỳ (nền Q3/25 = 117 tỷ, NSI). Shinhan đã cảnh báo 2H chậm lại."
+  }
+ ],
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 17,2; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 giảm so cùng kỳ; hoặc nhánh thuế IP (29/11) cộng thêm ≥10% vào hàng may Việt Nam.",
+ "dinh_gia": "P/E 5,17 vs trung vị 3 năm 7,65; P/B 1,15 vs 1,34 (NSI, 14/10). CTCK: BSC 25,5 (05/2026), MAS 26,5, HSC 26,2, Shinhan 24,9 (08/2026). Vùng quan sát.",
+ "pitch": "TNG giảm hơn một phần ba từ đỉnh tháng 3 vì nỗi lo thuế Mỹ. Thuế đã thành sự thật từ 24/7, nhưng quý 2 lợi nhuận vẫn tăng 23% và đơn hàng đã kín đến hết năm. P/E khoảng 5 lần, thấp nhất 3 năm. Rủi ro lớn nhất là nợ vay cao đúng lúc lãi suất tăng, nên danh mục chỉ giữ khi lợi nhuận quý 3 không giảm và giá còn trên 17,2.",
+ "vo_hieu_gia": 17.2,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 20.2,
+   "nguon": "50% đoạn giảm 24,72 → 15,68 (FireAnt, giá chỉnh)",
+   "du_kien_phien": 38,
+   "han_phien": 120,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.79%"
+  },
+  {
+   "id": "T2",
+   "gia": 24.7,
+   "nguon": "Đỉnh 04/03/2026; P/E tại LN 4 quý hiện tại ≈ 7,2 ≈ trung vị 7,65. Thang thời gian ước 302 phiên > kỳ hạn → giới hạn 250",
+   "du_kien_phien": 250,
+   "han_phien": 250,
+   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.79%"
+  }
+ ],
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "dinh_gia_sai": 10,
+  "ly_do": "Tin xấu chính (thuế 301) đã xảy ra, có ngày; giá đáy trước ngày hiệu lực; LN và đơn hàng không xấu đi tương ứng. Trừ 5 vì còn nhánh thuế IP 29/11 và đòn bẩy.",
+  "cham_boi": "claude",
+  "ngay": "2026-10-15"
+ }
+}
