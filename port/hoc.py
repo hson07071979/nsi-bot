@@ -108,7 +108,7 @@ def rr(t: dict, p) -> list[dict]:
 # ---------------------------------------------------------------- 3. sẵn sàng xuống tiền
 def san_sang(t: dict, ho_so: dict, thieu: list[str], p, kc_cham: list[dict] | None = None, den: str | None = None) -> dict:
     """Checklist do code kiểm, hai tầng:
-    - Luận điểm đủ chặt chưa (cấu trúc lập luận, luận cứ, R:R, vô hiệu) — 9 mục.
+    - Luận điểm đủ chặt chưa (chuỗi, luận cứ, bull/bear, debate, máy, khâu 5, mốc cơ bản, điểm 70/30) — 8 mục.
     - Điều kiện vào của riêng luận điểm đã thỏa chưa (`dieu_kien_vao`: đèn NSI, mốc kiểm chứng đã ĐÚNG…).
     Chỉ khi cả hai đạt mới là ĐỦ ĐỂ XUỐNG TIỀN."""
     ck = []
@@ -131,28 +131,31 @@ def san_sang(t: dict, ho_so: dict, thieu: list[str], p, kc_cham: list[dict] | No
     add('Máy ngược chiều đã được trả lời', not ho_so.get('chua_tra_loi'),
         ('chưa trả lời: ' + ', '.join(ho_so['chua_tra_loi'])) if ho_so.get('chua_tra_loi') else
         (f"ngược: {', '.join(ho_so.get('nguoc') or [])} — đã trả lời" if ho_so.get('nguoc') else 'không máy nào ngược'))
-    mt = t.get('muc_tieu') or []
-    mt_ok = mt and all(_num(m.get('gia')) and str(m.get('nguon') or '').strip() and _num(m.get('du_kien_phien'))
-                       and _num(m.get('han_phien')) for m in mt)
-    add('Có mục tiêu + timing, mỗi mục tiêu có nguồn', mt_ok, f'{len(mt)} mục tiêu')
-    stop = _num(t.get('vo_hieu_gia'))
-    lo = round((1 - stop / p) * 100, 1) if (stop and p) else None
-    add(f'Giá vô hiệu không xa hơn −{CHUAN_LO:g}%', lo is not None and lo <= CHUAN_LO + 0.05,
-        f'−{lo}% so với giá hiện tại' if lo is not None else 'thiếu vo_hieu_gia')
+    # Khung 70/30 sửa 15/10/2026 (anh Sơn): port đi dài, KHÔNG số hóa điểm mua/bán — bỏ mục tiêu T1/T2,
+    # giá vô hiệu −7%, R:R. Thay bằng: khâu 5 "giá đã phản ánh hết tin xấu chưa" có phép thử, mốc cơ bản, điểm 70/30.
+    pd = t.get('pitch_diem') or {}
+    gs = pd.get('gia_sai') or {}
+    add('Khâu 5: gọi tên tin xấu, kỳ vọng ngầm trong giá và phép thử tin xấu tiếp theo',
+        all(str(gs.get(k) or '').strip() for k in ('tin_xau', 'ky_vong_ngam', 'phep_thu')),
+        str(gs.get('ket_luan') or 'thiếu pitch_diem.gia_sai'))
+    kc = t.get('kiem_chung') or []
+    add('Có mốc kiểm chứng cơ bản (code chấm)', any(k.get('loai') == 'funda' for k in kc), f'{len(kc)} mốc')
+    l70, s30 = _num(pd.get('luan_diem_70')), _num(pd.get('so_30'))
+    add('Có điểm 70/30 và kết luận bằng lời', l70 is not None and s30 is not None and str(pd.get('ket_luan') or '').strip(),
+        f"{pd.get('tong')} điểm · {pd.get('ket_luan')}" if pd.get('ket_luan') else 'thiếu pitch_diem')
     r = rr(t, p)
     r1 = r[0]['rr'] if r else None
     rmax = max((x['rr'] for x in r if x['rr'] is not None), default=None)
-    add('R:R: đến T1 ≥ 1,0 và mục tiêu xa nhất ≥ 2,5', r1 is not None and r1 >= 1.0 and rmax is not None and rmax >= 2.5,
-        ' · '.join(f"{x['id']} {x['rr']}" for x in r) or 'chưa tính được')
-    kc = t.get('kiem_chung') or []
-    add('Có mốc kiểm chứng cả giá lẫn cơ bản (code chấm)',
-        any(k.get('loai') == 'funda' for k in kc) and any(k.get('loai') in ('giu', 'thung', 'vuot', 'duoi') for k in kc),
-        f'{len(kc)} mốc')
+    stop = _num(t.get('vo_hieu_gia'))
+    lo = round((1 - stop / p) * 100, 1) if (stop and p) else None
     dat = sum(1 for x in ck if x['dat'])
     vao = dieu_kien_vao(t, kc_cham or [], den)
     chat = dat == len(ck)
     ket = ('ĐỦ ĐỂ XUỐNG TIỀN' if chat and all(x['dat'] for x in vao) else
            'LUẬN ĐIỂM ĐỦ CHẶT — CHỜ ĐIỀU KIỆN VÀO' if chat else 'CHƯA ĐỦ')
+    # Kết luận bằng lời sau debate là quyết định (anh Sơn chốt 15/10); checklist chỉ kiểm hình thức.
+    if chat and str(pd.get('ket_luan') or '').strip():
+        ket = str(pd['ket_luan'])
     return dict(muc=ck, dat=dat, tong=len(ck), dieu_kien_vao=vao, r1=r1, rmax=rmax, lo_toi_da=lo, ket_luan=ket)
 
 

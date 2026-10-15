@@ -141,24 +141,28 @@ def test_muc_tieu_dat_vo_hieu_het_han_va_timing():
 
 
 def test_rr_va_san_sang():
-    t = {'ma': 'X', 'vo_hieu_gia': 9.4, 'muc_tieu': [{'id': 'T1', 'gia': 11, 'nguon': 'MA200', 'du_kien_phien': 40, 'han_phien': 80},
-                                                     {'id': 'T2', 'gia': 13, 'nguon': 'đỉnh cũ', 'du_kien_phien': 90, 'han_phien': 160}],
+    # Khung 70/30 sửa 15/10/2026: không còn mục tiêu, R:R, giá vô hiệu −7% trong checklist.
+    t = {'ma': 'X',
          'luan_diem': [{'id': 'L1', 'nhan': 'INTERPRETATION', 'bang_chung': ['FACT: P/E 7']}],
          'bull': ['a', 'b', 'c'], 'bear': ['x', 'y', 'z'],
          'debate': [{'ben': b} for b in ('bull', 'bear', 'trong_tai', 'claude', 'trong_tai')],
-         'kiem_chung': [{'loai': 'giu'}, {'loai': 'funda'}]}
-    assert [x['rr'] for x in H.rr(t, 10)] == [1.67, 5.0]
+         'kiem_chung': [{'loai': 'funda'}],
+         'pitch_diem': {'luan_diem_70': 47, 'so_30': 24, 'tong': 71, 'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN',
+                        'gia_sai': {'tin_xau': 'AI', 'ky_vong_ngam': 'LN −49%', 'phep_thu': 'KQ Q3', 'ket_luan': 'ĐÃ PHẢN ÁNH PHẦN LỚN'}}}
+    assert H.rr(t, 10) == []                      # còn chạy được khi không có mục tiêu
     s = H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10)
-    assert s['ket_luan'] == 'ĐỦ ĐỂ XUỐNG TIỀN', s
+    assert s['ket_luan'] == 'ĐỦ ĐỂ XUỐNG TIỀN' and s['tong'] == 8, s
+    t['pitch_diem']['ket_luan'] = 'CHỜ PHÉP THỬ Q3'   # kết luận bằng lời là quyết định
+    assert H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10)['ket_luan'] == 'CHỜ PHÉP THỬ Q3'
+    t['pitch_diem']['ket_luan'] = 'ĐỦ ĐỂ XUỐNG TIỀN'
     t['dieu_kien_vao'] = [{'loai': 'den', 'khong': ['DO']}, {'loai': 'kiem_chung', 'id': 'K2'}]
     s = H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10, [{'id': 'K2', 'ket_qua': 'ĐÚNG'}], 'DO')
-    assert s['ket_luan'] == 'LUẬN ĐIỂM ĐỦ CHẶT — CHỜ ĐIỀU KIỆN VÀO' and [x['dat'] for x in s['dieu_kien_vao']] == [False, True]
-    assert H.san_sang(t, {'chua_tra_loi': [], 'nguoc': []}, [], 10, [{'id': 'K2', 'ket_qua': 'ĐÚNG'}], 'VANG')['ket_luan'] == 'ĐỦ ĐỂ XUỐNG TIỀN'
+    assert [x['dat'] for x in s['dieu_kien_vao']] == [False, True]
     t['dieu_kien_vao'] = []
-    t['vo_hieu_gia'] = 9.0                       # −10%: vượt chuẩn −7%
+    t['pitch_diem']['gia_sai'].pop('phep_thu')
     s = H.san_sang(t, {'chua_tra_loi': ['tin'], 'nguoc': ['tin']}, [], 10)
     hong = {m['ten'] for m in s['muc'] if not m['dat']}
-    assert s['ket_luan'] == 'CHƯA ĐỦ' and any('−7%' in x for x in hong) and any('trả lời' in x for x in hong)
+    assert s['ket_luan'] == 'CHƯA ĐỦ' and any('phép thử' in x for x in hong) and any('trả lời' in x for x in hong)
     t['luan_diem'] = [{'id': 'L1', 'nhan': 'INTERPRETATION', 'bang_chung': []}]
     assert not H.san_sang(t, {}, [], 10)['muc'][1]['dat']   # luận điểm không có luận cứ
 
