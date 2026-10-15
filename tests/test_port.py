@@ -297,3 +297,27 @@ def test_lop_danh_muc_cong_vni_va_nhip():
     sl8 = {'lenh': [{'ngay': DATES[0], 'ma': f'M{i}', 'ty_le': 4, 'gia': 10} for i in range(8)]}
     assert G.xep_luot([dict(luan={'ma': 'X'}, giai_ngan=dict(muc='mua', hanh_dong='Đợt 1', so_lan_mua=0), diem_70_30={'tong': 90})],
                       G.mo_gan_day(sl8, DATES))['slot'] == 0
+
+
+def test_cong_r38_va_noi_fireant():
+    ok = {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN'}
+    tt = dict(TT, dd=-11.6)
+    d = [f'2025-{1 + i // 28:02d}-{1 + i % 28:02d}' for i in range(260)]
+    c = [20.0] * 100 + [16.0] * 160                                  # −20%: chưa tới cổng
+    k = G.ke_hoach(_t(), 12.5, tt, d, c, {}, ok, [], None)
+    assert k['muc'] == 'cho_gia' and k['cong_r38']['gia_cong'] == 15.0
+    k = G.ke_hoach(_t(), 12.5, tt, d, c[:-1] + [14.9], {}, ok, [], None)
+    assert k['muc'] == 'mua' and k['cong_r38']['dat']
+    assert G.ke_hoach(dict(_t(), cong_r38=False), 12.5, tt, d, c, {}, ok, [], None)['muc'] == 'mua'
+    # nối: FireAnt dài hơn nến web → dùng FireAnt, nối phiên web mới hơn
+    D = {'candles': {'X': {'bars': [['2025-01-02', 0, 0, 0, 10.0], ['2025-01-03', 0, 0, 0, 11.0]]}}}
+    fd, fc = G.chuoi_gia(D, 'X', 'HOSE', (['2024-12-30', '2024-12-31', '2025-01-02'], [8.0, 9.0, 5.0]))
+    assert fd[-1] == '2025-01-03' and abs(fc[-1] - 5.5) < 1e-9
+    assert G.chuoi_gia(D, 'X', 'HOSE', ([], []))[1] == [10.0, 11.0]
+
+
+def test_diem_dieu_chinh_cot_loi():
+    loc = {'pe': 6, 'pe_tv': 22, 'pb': 0.93, 'pb_tv': 0.98, 'np4_yoy': 300, 'roe': 16}
+    t = {'pitch_diem': {'dinh_gia_sai': 5, 'dieu_chinh': {'dinh_gia_rel': 0.95, 'roe': 11}}}
+    d = G.diem_70_30(t, loc, {'ten': 'căng thẳng'}, {'dat': 9, 'tong': 9}, [])
+    assert d['chi_tiet']['dinh_gia'] == 7 and d['chi_tiet']['roe'] == 4 and d['chi_tiet']['dieu_chinh']

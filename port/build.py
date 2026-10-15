@@ -452,7 +452,10 @@ def build(now: datetime | None = None) -> dict:
         tu = vao.get(sym) or t.get('ngay_vao') or t.get('ngay_mo') or asof
         ss = H.san_sang(t, h, thieu, p_now, kc, den)
         mtc = H.cham_muc_tieu(t, gia, tu)
-        ngay_c, c_c = G.chuoi_gia(D, sym, (lk_all.get(sym) or {}).get('exch'))
+        fa = None
+        if dang_chay and not os.environ.get('SITE_HTML') and not os.environ.get('PORT_NO_FA'):
+            fa = G.lich_su_fa(sym, (now - timedelta(days=420)).strftime('%Y-%m-%d'), now.strftime('%Y-%m-%d'))
+        ngay_c, c_c = G.chuoi_gia(D, sym, (lk_all.get(sym) or {}).get('exch'), fa)
         for m in mtc:
             if m.get('trang_thai') == 'mo':
                 m['p60'] = G.xac_suat_cham(c_c, _num(m.get('gia')), 60)

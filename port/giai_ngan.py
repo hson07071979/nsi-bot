@@ -38,6 +38,12 @@ K_TOI_DA = 8            # tối đa 8 mã, mỗi mã 12,5% NAV
 # R40: +171,7% (16,2%/năm) 14/02/2020→15/10/2026, sụt giảm danh mục lớn nhất −18,7%; VN-Index +81,2%, −40,3%.
 # Monte Carlo (bỏ ngẫu nhiên 30% cơ hội, 300 lần): trung vị 15,9%/năm, p5 11,8%/năm, sụt giảm p95 21,5%.
 LIM = {'HOSE': 0.075, 'HNX': 0.105, 'UPCOM': 0.155}
+# Cổng giá R38 cho MÃ MỚI ('tài sản tốt, giá thấp'): đóng cửa thấp hơn đỉnh 250 phiên ≥ 25%. Các điều kiện cơ bản của
+# cổng (GTGD, ROE ≥ 12%, LN TTM > 0 & không giảm, P/E ÷ trung vị 3 năm ≤ 0,8) nằm trong checklist luận điểm.
+CONG_GIA, CONG_PHIEN = -0.25, 250
+FA_URL = 'https://www.fireant.vn/api/Data/Companies/HistoricalQuotes'
+FA_H = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126.0 Safari/537.36',
+        'Referer': 'https://fireant.vn/', 'Accept': 'application/json'}
 
 
 def _num(x):
@@ -62,10 +68,33 @@ def trang_thai_tt(D: dict) -> dict:
 
 
 # ---------------------------------------------------------------- chuỗi giá (nến trang web) đã chỉnh khoảng nhảy
-def chuoi_gia(D: dict, sym: str, san: str | None = None) -> tuple[list[str], list[float]]:
+def lich_su_fa(sym: str, tu: str, den: str) -> tuple[list[str], list[float]]:
+    """Giá đóng cửa ĐÃ ĐIỀU CHỈNH từ FireAnt (nghìn đồng). Trang web NSI chỉ có nến 240 phiên cho ~112 mã — không đủ
+    cho cổng 250 phiên và thiếu các mã ngoài rổ (TNG, CTR, POW…). Lỗi mạng → trả rỗng, build vẫn chạy bằng nến web."""
+    try:
+        import requests
+        r = requests.get(FA_URL, params={'symbol': sym, 'startDate': tu, 'endDate': den}, headers=FA_H, timeout=60)
+        rows = r.json() if r.status_code == 200 else []
+    except Exception:
+        return [], []
+    rows = sorted((x for x in rows if isinstance(x, dict) and _num(x.get('AdjClose'))), key=lambda x: x['Date'])
+    return [x['Date'][:10] for x in rows], [x['AdjClose'] / 1000 for x in rows]
+
+
+def chuoi_gia(D: dict, sym: str, san: str | None = None,
+              fa: tuple[list[str], list[float]] | None = None) -> tuple[list[str], list[float]]:
     bars = ((D.get('candles') or {}).get(sym) or {}).get('bars') or []
     d = [b[0] for b in bars if _num(b[4])]
     c = [float(b[4]) for b in bars if _num(b[4])]
+    if fa and len(fa[1]) > len(c):
+        # FireAnt đã điều chỉnh; nếu nến web có phiên mới hơn thì nối thêm (điều chỉnh chỉ đổi quá khứ)
+        fd, fc = list(fa[0]), list(fa[1])
+        sau = [(x, y) for x, y in zip(d, c) if x > fd[-1]]
+        if sau and fc and c:
+            k = fc[-1] / c[d.index(fd[-1])] if fd[-1] in d else 1.0
+            fd += [x for x, _ in sau]
+            fc += [y * k for _, y in sau]
+        return fd, fc
     lim = LIM.get(str(san or 'HOSE').upper(), 0.075)
     for i in range(len(c) - 1, 0, -1):            # chia tách/cổ tức: chỉnh ngược quá khứ
         r = c[i] / c[i - 1] - 1
@@ -74,6 +103,16 @@ def chuoi_gia(D: dict, sym: str, san: str | None = None) -> tuple[list[str], lis
             for j in range(i):
                 c[j] *= k
     return d, c
+
+
+def cong_r38(c: list[float]) -> dict | None:
+    """Cổng giá R38. Cần ≥ 200 phiên lịch sử; ít hơn → None (không đủ dữ liệu để chấm, không chặn)."""
+    if not c or len(c) < 200:
+        return None
+    dinh = max(c[-CONG_PHIEN:])
+    dd = c[-1] / dinh - 1
+    return dict(dat=dd <= CONG_GIA, dd=round(dd * 100, 1), dinh=round(dinh, 3), gia=round(c[-1], 3),
+                gia_cong=round(dinh * (1 + CONG_GIA), 3), so_phien=min(len(c), CONG_PHIEN))
 
 
 # ---------------------------------------------------------------- xác suất chạm mục tiêu
@@ -162,10 +201,16 @@ def ke_hoach(t: dict, vt_muc_tieu: float | None, tt: dict, dates: list[str], c: 
     # ---- chưa có lệnh nào
     if not v['mua']:
         ss = (san_sang or {}).get('ket_luan')
+        cong = cong_r38(c) if t.get('cong_r38', True) else None
+        if cong:
+            out['cong_r38'] = cong
         if vni_duoi:
             out.update(hanh_dong=f'Hoãn: VN-Index dưới mốc dừng {dung_vni:,.1f}.', muc='hoan')
         elif (tt.get('dd') is not None) and tt['dd'] / 100 > MO_MOI_VNI:
             out.update(hanh_dong=f'Không mở mã mới: VN-Index chỉ {tt["dd"]}% so với đỉnh 250 phiên (cần ≤ −10%) — lúc bình thường "rẻ" dễ là bẫy giá trị (R39/R40).', muc='cho')
+        elif cong is not None and not cong['dat']:
+            out.update(hanh_dong=f'Chờ giá cổng R38: cần đóng cửa ≤ {cong["gia_cong"]:,.2f} (−25% so với đỉnh 250 phiên '
+                                 f'{cong["dinh"]:,.2f}); hiện {cong["gia"]:,.2f} ({cong["dd"]:+.1f}%).', muc='cho_gia')
         elif ss == 'ĐỦ ĐỂ XUỐNG TIỀN':
             out.update(hanh_dong=f'Đợt 1: mua {tl[0]*100:.0f}% tỷ trọng mục tiêu = {muc*tl[0]:.1f}% NAV '
                                  f'(thị trường {tt.get("ten")}, kế hoạch {len(tl)} đợt).', muc='mua', ty_le_mua=round(muc * tl[0], 2))
@@ -250,7 +295,11 @@ def xep_luot(the: list[dict], mg: dict) -> dict:
     tối đa (NHIP_MO − số mã mới mở 20 phiên qua) và không vượt K_TOI_DA mã. Các mã còn lại: chờ lượt."""
     slot = max(0, min(NHIP_MO - mg['mo_gan'], K_TOI_DA - mg['dang_nam']))
     ung = [x for x in the if x.get('giai_ngan', {}).get('muc') == 'mua' and not x['giai_ngan'].get('so_lan_mua')]
-    ung.sort(key=lambda x: -((x.get('diem_70_30') or {}).get('tong') or 0))
+    def _khoa(x):                               # điểm 70/30 → phần pitch → rẻ hơn so với chính nó (hòa điểm)
+        d = x.get('diem_70_30') or {}
+        r = (d.get('chi_tiet') or {}).get('dinh_gia_rel')
+        return (-(d.get('tong') or 0), -(d.get('pitch') or 0), r if r is not None else 9.0)
+    ung.sort(key=_khoa)
     for k, x in enumerate(ung):
         g = x['giai_ngan']
         g['thu_tu'] = k + 1
@@ -293,13 +342,20 @@ def diem_70_30(t: dict, loc: dict | None, tt: dict, san_sang: dict | None, kc_ch
         if x and y and x > 0 and y > 0:
             rel.append(x / y)
     r = sum(rel) / len(rel) if rel else None
+    pd_ = t.get('pitch_diem') or {}
+    dc = pd_.get('dieu_chinh') or {}           # số liệu méo vì khoản bất thường → dùng số cốt lõi có nguồn
+    if _num(dc.get('dinh_gia_rel')):
+        r = dc['dinh_gia_rel']
     d_dg = 0 if r is None else (20 if r <= 0.6 else 14 if r <= 0.8 else 7 if r <= 1.0 else 0)
     d_tt = {'hoảng loạn': 20, 'căng thẳng': 12, 'bình thường': 4}.get(tt.get('ten'), 8)
     ss = san_sang or {}
     d_ld = round(15 * (ss.get('dat') or 0) / (ss.get('tong') or 9))
-    pd_ = t.get('pitch_diem') or {}
     d_sai = max(0, min(15, int(pd_.get('dinh_gia_sai') or 0)))
     ny, roe = _num(loc.get('np4_yoy')), _num(loc.get('roe'))
+    if _num(dc.get('np4_yoy')) is not None:
+        ny = dc['np4_yoy']
+    if _num(dc.get('roe')) is not None:
+        roe = dc['roe']
     d_ln = 0 if ny is None else (10 if ny >= 15 else 6 if ny >= 0 else 0)
     d_roe = 0 if roe is None else (10 if roe >= 20 else 7 if roe >= 15 else 4 if roe >= 10 else 0)
     k2 = next((k for k in kc_cham or [] if k.get('id') == 'K2'), None)
@@ -308,4 +364,5 @@ def diem_70_30(t: dict, loc: dict | None, tt: dict, san_sang: dict | None, kc_ch
     kq = d_ln + d_roe + d_k2
     return dict(tong=pitch + kq, pitch=pitch, ket_qua=kq,
                 chi_tiet=dict(dinh_gia=d_dg, dinh_gia_rel=round(r, 2) if r else None, thi_truong=d_tt, lap_luan=d_ld,
-                              dinh_gia_sai=d_sai, dinh_gia_sai_ly_do=pd_.get('ly_do'), loi_nhuan=d_ln, roe=d_roe, k2=d_k2))
+                              dinh_gia_sai=d_sai, dinh_gia_sai_ly_do=pd_.get('ly_do'), loi_nhuan=d_ln, roe=d_roe, k2=d_k2,
+                              dieu_chinh=dc or None))
