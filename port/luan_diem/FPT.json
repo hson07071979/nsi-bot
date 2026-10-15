@@ -1,5 +1,5 @@
 {
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
@@ -8,7 +8,7 @@
  "chieu": "tang",
  "ngay_vao": "2026-10-14",
  "chuoi": {
-  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. INTERPRETATION: FPT ít nhạy với lãi suất trong nước, nhạy với dòng vốn ngoại (cổ phiếu ngoại sở hữu nhiều) và với chi tiêu CNTT của Nhật/Mỹ. USD mạnh có lợi cho doanh thu xuất khẩu dịch vụ.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: ít nhạy lãi suất trong nước; xuất khẩu dịch vụ không dính thuế hàng hóa 301; USD mạnh có lợi; nhưng Mỹ chậm lại và vốn ngoại rút đánh thẳng vào FPT.",
   "nganh": "HYPOTHESIS (thị trường đang tin): AI tạo sinh làm giảm nhu cầu gia công phần mềm truyền thống. OBSERVATION: chưa thấy bằng chứng trong số liệu FPT — ký mới nước ngoài H1 +32,3%, doanh thu AI & dữ liệu +54% (Doanh nhân Pháp luật, 13/10).",
   "doanh_nghiep": "Doanh nghiệp CNTT lớn nhất Việt Nam. FACT: H1/2026 DT 26.269 tỷ (+12,6%), LNTT 5.714 tỷ (+18,1%); khối Công nghệ chiếm 88% DT; 14 dự án nước ngoài >10 triệu USD; AI Factory tại VN và Nhật >90% công suất, có lãi từ Q2.",
   "mo_hinh_kd": "Dịch vụ CNTT xuất khẩu (Nhật, Mỹ, châu Âu, APAC) + viễn thông + giáo dục. FACT (NSI): ROE 26,5%; LNST Q2/26 2.568 tỷ (+13,7%), LN 4 quý +16,1%. Lưu ý dữ liệu: NSI ghi DT Q2 −17,1% vì từ 1/1/2026 FPT ngừng hợp nhất FPT Telecom (chuyển sang vốn chủ sở hữu, FPT giữ ~45,66%) trong khi kỳ so sánh 2025 còn hợp nhất — không phải lỗi; LNST cổ đông mẹ không bị ảnh hưởng (HSC/ACBS). So sánh doanh thu phải dùng số công bố cùng cơ sở (+12,6% H1).",
@@ -115,6 +115,18 @@
    "vong": 11,
    "ben": "trong_tai",
    "noi_dung": "Định giá: kế hoạch LNST cổ đông mẹ 2026 10.520 tỷ, vốn hóa ~107.700 tỷ → P/E dự phóng ~10,2 cho mảng công nghệ tăng ~20–25%. Kết luận: ĐỒNG Ý MỘT PHẦN — đủ hấp dẫn về định giá; dòng tiền tổ chức là lực cản ngắn hạn, nên giữ điều kiện vào: sau KQ Q3 và sau kỳ xét VNDiamond."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 12,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 47/70 = quốc tế 5 · vĩ mô VN 9 · ngành 8 · doanh nghiệp 13 · giá sai 12; số 24/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: ĐÃ PHẢN ÁNH PHẦN LỚN. Tin xấu: AI tạo sinh làm giảm nhu cầu gia công; nguy cơ bị loại khỏi VNDiamond (BSC); khối ngoại bán ròng. Kỳ vọng ngầm: P/E 10,57 vs trung vị 20,64 → giá trả cho LN giảm ~49%. Kịch bản xấu thực tế 12–24 tháng là tăng trưởng về 0 → kỳ vọng ngầm xấu hơn thực tế rõ. Phép thử: Ngày hiệu lực kỳ xét VNDiamond + KQ Q3 (20/10–05/11): bị loại mà giá không tạo đáy mới với lực bán lớn → CONFIRMATION. Cần xác minh lịch kỳ xét. Kết luận: ĐỦ ĐỂ XUỐNG TIỀN."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 13,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -133,13 +145,6 @@
  },
  "kiem_chung": [
   {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 53.1,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 53,1 trong 60 phiên (−7% từ 57,1 theo chuẩn cắt lỗ; Daily không có hỗ trợ nào sâu hơn vùng 55,8–55,91)."
-  },
-  {
    "id": "K2",
    "loai": "funda",
    "chi_tieu": "ny",
@@ -149,40 +154,44 @@
    "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 53,1; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 10%.",
- "dinh_gia": "P/E 10,57 lần vs trung vị 3 năm 20,64; P/B 2,66 vs 5,41 (NSI, 14/10). Vùng quan sát.",
- "pitch": "FPT đã giảm gần một nửa từ đỉnh tháng 1 vì lo ngại AI thay thế dịch vụ gia công, nhưng nửa đầu năm lợi nhuận trước thuế vẫn tăng 18% và hợp đồng mới ở nước ngoài tăng 32%. Danh mục chưa giải ngân ngay: chỉ vào sau khi có kết quả quý 3 và sau kỳ xét lại rổ VNDiamond. Nếu giá đóng cửa dưới 53,1 thì luận điểm sai.",
- "vo_hieu_gia": 53.1,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 61.82,
-   "nguon": "Biên trên kháng cự Daily 61,18–61,82 (chân nến tăng mạnh, đáy cũ)",
-   "du_kien_phien": 20,
-   "han_phien": 60,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 2.0%"
-  },
-  {
-   "id": "T2",
-   "gia": 77.53,
-   "nguon": "MA200 tại 14/10; P/E tại đó ≈ 14,3 vẫn dưới trung vị 20,6",
-   "du_kien_phien": 234,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 2.0%"
-  }
- ],
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
- "dieu_kien_vao": [
-  {
-   "loai": "kiem_chung",
-   "id": "K2",
-   "can": "ĐÚNG"
-  }
- ],
+ "vo_hieu": "Vô hiệu theo sự kiện: ký mới nước ngoài giảm so với cùng kỳ; FPT bị loại khỏi VNDiamond và giá thủng đáy với lực bán lớn sau ngày hiệu lực. Mốc cơ bản: LNST Q3/26 tăng ≥ 10% (K2). Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/E 10,57 lần vs trung vị 3 năm 20,64; P/B 2,66 vs 5,41 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 10,57 vs trung vị 20,64 → giá trả cho LN giảm ~49%. Kịch bản xấu thực tế 12–24 tháng là tăng trưởng về 0 → kỳ vọng ngầm xấu hơn thực tế rõ.",
+ "pitch": "[ĐỦ ĐỂ XUỐNG TIỀN · 71 điểm] FPT giảm gần một nửa từ đỉnh tháng 1 vì nỗi sợ AI thay thế gia công và vì dòng bán bắt buộc (quỹ ngoại, nguy cơ bị loại khỏi VNDiamond), không vì số liệu: ký mới nước ngoài vẫn +32%, LNTT H1 +18%. Ở P/E khoảng 10,6 lần, giá đang trả cho kịch bản lợi nhuận giảm một nửa, xấu hơn nhiều so với kịch bản xấu thực tế là tăng trưởng chững lại. Luận điểm sai nếu hợp đồng ký mới ở nước ngoài bắt đầu giảm.",
+ "dieu_kien_vao": [],
  "pitch_diem": {
-  "dinh_gia_sai": 10,
-  "ly_do": "Thị trường bán theo câu chuyện AI thay thế gia công; số liệu chưa xác nhận (ký mới nước ngoài +32%, AI +54%); chất xúc tác: KQ Q3 và ngày hiệu lực kỳ xét VNDiamond.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 9,
+   "nganh": 8,
+   "doanh_nghiep": 13,
+   "gia_sai": 12
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 7,
+   "suc_khoe_tc": 8
+  },
+  "luan_diem_70": 47,
+  "so_30": 24,
+  "tong": 71,
+  "dinh_gia_sai": 12,
+  "gia_sai": {
+   "a_ban_chat": 4,
+   "b_trang_thai": 3,
+   "c_ky_vong_ngam": 5,
+   "ket_luan": "ĐÃ PHẢN ÁNH PHẦN LỚN",
+   "tin_xau": "AI tạo sinh làm giảm nhu cầu gia công; nguy cơ bị loại khỏi VNDiamond (BSC); khối ngoại bán ròng.",
+   "co_that_su_xau": "Hai trong ba là dòng tiền (ETF bán bắt buộc, quỹ ngoại rút vì US10Y). Nỗi sợ AI là cấu trúc nhưng chưa xác nhận: ký mới nước ngoài H1 +32,3%, AI và dữ liệu +54%.",
+   "trang_thai": "Kỳ xét rổ có lịch; dòng ngoại còn chạy; AI chưa có kích thước.",
+   "ky_vong_ngam": "P/E 10,57 vs trung vị 20,64 → giá trả cho LN giảm ~49%. Kịch bản xấu thực tế 12–24 tháng là tăng trưởng về 0 → kỳ vọng ngầm xấu hơn thực tế rõ.",
+   "nguoi_ban_can_bien": "Quỹ chỉ số bám VNDiamond (bán một lần khi hiệu lực) và quỹ ngoại.",
+   "counter": "Rủi ro AI có độ trễ 2–4 quý. Response: đúng nếu ký mới nước ngoài bắt đầu giảm; khi ký mới còn tăng thì nỗi sợ chưa có bằng chứng.",
+   "phep_thu": "Ngày hiệu lực kỳ xét VNDiamond + KQ Q3 (20/10–05/11): bị loại mà giá không tạo đáy mới với lực bán lớn → CONFIRMATION. Cần xác minh lịch kỳ xét."
+  },
+  "ket_luan": "ĐỦ ĐỂ XUỐNG TIỀN",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  }
 }

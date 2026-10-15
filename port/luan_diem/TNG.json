@@ -1,14 +1,13 @@
 {
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
- "trang_thai": "trong_port",
+ "trang_thai": "loai",
  "chieu": "tang",
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
  "ma": "TNG",
  "chuoi": {
-  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: IIP 9 tháng +12,3%, chế biến chế tạo +12,9%. INTERPRETATION: xuất khẩu và sản xuất đang kéo nhu cầu đất KCN.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: nghịch nhất: thuế 301 đánh trực tiếp (~40% DT từ Mỹ), lãi suất tăng khi nợ cao, XK dệt may cả nước tháng 9 −14,9%.",
   "nganh": "FACT (Shinhan, 13/08/2026): Mỹ áp thuế Section 301 (lao động cưỡng bức) 12,5% với Việt Nam từ 24/07/2026; nhánh dư thừa công suất chưa kết luận (ước 2,5–12,5%); nhánh sở hữu trí tuệ dự kiến kết luận 29/11/2026. FACT: xuất khẩu Mỹ ≈ 40% doanh thu TNG (elibook 18/05). INTERPRETATION: tin xấu thuế quan đã xảy ra và đã biết phần lớn; phần còn lại có ngày kết luận cụ thể.",
   "doanh_nghiep": "May xuất khẩu Thái Nguyên, >360 chuyền. FACT (NSI): ROE 22,1%, LN 4 quý +26,3%; LNST Q2/26 149,8 tỷ (+24,8%). FACT (Shinhan): Q2/26 doanh thu 2.914 tỷ (+15%), LNST 147 tỷ (+23%), biên gộp 14,3%. Hai nguồn lệch ~3 tỷ ở LNST Q2 (149,8 vs 147) — nhiều khả năng khác LN cổ đông mẹ/hợp nhất.",
   "mo_hinh_kd": "Gia công FOB cho thương hiệu thể thao/ngoài trời (Decathlon, Columbia, Sportmaster; mới: H&M, The North Face, LIDL). Decathlon đưa TNG vào nhóm 3 nhà cung cấp toàn cầu (elibook 18/05). Kế hoạch 2026: DT 9.500 tỷ (+9%), LNST 450 tỷ (+15%); 1H đạt 51% DT, 46% LNST (Shinhan).",
@@ -81,6 +80,18 @@
    "vong": 7,
    "ben": "claude",
    "noi_dung": "Đối chất máy: TNG không có nến trên trang NSI → Daily/bot không có hồ sơ kỹ thuật; dùng FireAnt cho chuỗi giá. Cần anh Sơn xem chart: MA200 18,66 ngay trên giá — vượt và giữ được là CONFIRMATION, bị từ chối là bằng chứng hồi kỹ thuật."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 26/70 = quốc tế 2 · vĩ mô VN 4 · ngành 5 · doanh nghiệp 9 · giá sai 6; số 19/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: PHẢN ÁNH MỘT PHẦN. Tin xấu: Thuế Mỹ. Kỳ vọng ngầm: P/E 5,17 vs 7,65 → LN −32%. HYPOTHESIS: cộng thêm thuế khi đòn bẩy cao, LN 2027 có thể giảm nhiều hơn → ngang hoặc chưa đủ. Phép thử: Kết luận 301 sở hữu trí tuệ, dự kiến 29/11 theo hồ sơ (cần xác minh): ra mà giá không thủng 15,68 với lực bán lớn → CONFIRMATION, mở lại luận điểm (mốc P1). Kết luận: BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 9,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -99,13 +110,6 @@
  },
  "kiem_chung": [
   {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 17.2,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 17,2 trong 60 phiên (chuẩn −7% từ 18,4 ngày 14/10, ngay trên MA50 16,98). Đáy cấu trúc 15,68 (22/07) xa hơn −13% — dưới 17,2 là ngừng mua và rà luận điểm, chưa phải bán."
-  },
-  {
    "id": "K2",
    "loai": "funda",
    "chi_tieu": "ny",
@@ -113,35 +117,55 @@
    "so_sanh": ">=",
    "nguong": 0,
    "noi_dung": "LNST Q3/26 không giảm so với cùng kỳ (nền Q3/25 = 117 tỷ, NSI). Shinhan đã cảnh báo 2H chậm lại."
-  }
- ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 17,2; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 giảm so cùng kỳ; hoặc nhánh thuế IP (29/11) cộng thêm ≥10% vào hàng may Việt Nam.",
- "dinh_gia": "P/E 5,17 vs trung vị 3 năm 7,65; P/B 1,15 vs 1,34 (NSI, 14/10). CTCK: BSC 25,5 (05/2026), MAS 26,5, HSC 26,2, Shinhan 24,9 (08/2026). Vùng quan sát.",
- "pitch": "TNG giảm hơn một phần ba từ đỉnh tháng 3 vì nỗi lo thuế Mỹ. Thuế đã thành sự thật từ 24/7, nhưng quý 2 lợi nhuận vẫn tăng 23% và đơn hàng đã kín đến hết năm. P/E khoảng 5 lần, thấp nhất 3 năm. Rủi ro lớn nhất là nợ vay cao đúng lúc lãi suất tăng, nên danh mục chỉ giữ khi lợi nhuận quý 3 không giảm và giá còn trên 17,2.",
- "vo_hieu_gia": 17.2,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 20.2,
-   "nguon": "50% đoạn giảm 24,72 → 15,68 (FireAnt, giá chỉnh)",
-   "du_kien_phien": 38,
-   "han_phien": 120,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.79%"
   },
   {
-   "id": "T2",
-   "gia": 24.7,
-   "nguon": "Đỉnh 04/03/2026; P/E tại LN 4 quý hiện tại ≈ 7,2 ≈ trung vị 7,65. Thang thời gian ước 302 phiên > kỳ hạn → giới hạn 250",
-   "du_kien_phien": 250,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.79%"
+   "id": "P1",
+   "loai": "giu",
+   "moc": 15.68,
+   "han_phien": 35,
+   "ngay_ghi": "2026-10-15",
+   "noi_dung": "Phép thử tin xấu: qua kết luận 301 sở hữu trí tuệ (dự kiến 29/11) mà không thủng đáy 22/07 (15,68, FireAnt giá chỉnh) → CONFIRMATION, mở lại luận điểm."
   }
  ],
+ "vo_hieu": "Không áp dụng (bác bỏ kỳ này). Phép thử mở lại: mốc P1.",
+ "dinh_gia": "P/E 5,17 vs trung vị 3 năm 7,65; P/B 1,15 vs 1,34 (NSI, 14/10). CTCK: BSC 25,5 (05/2026), MAS 26,5, HSC 26,2, Shinhan 24,9 (08/2026). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 5,17 vs 7,65 → LN −32%. HYPOTHESIS: cộng thêm thuế khi đòn bẩy cao, LN 2027 có thể giảm nhiều hơn → ngang hoặc chưa đủ.",
+ "pitch": "[BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11 · 45 điểm] Bác bỏ kỳ này. Tin thuế lao động cưỡng bức đã vào giá (giá đáy đúng trước ngày hiệu lực), nhưng còn hai cuộc điều tra 301 chưa kết luận và đòn bẩy cao khuếch đại mọi cú sốc. Mở lại nếu kết luận nhánh sở hữu trí tuệ ra mà giá không thủng đáy 22/07.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "dinh_gia_sai": 10,
-  "ly_do": "Tin xấu chính (thuế 301) đã xảy ra, có ngày; giá đáy trước ngày hiệu lực; LN và đơn hàng không xấu đi tương ứng. Trừ 5 vì còn nhánh thuế IP 29/11 và đòn bẩy.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 2,
+   "vi_mo_vn": 4,
+   "nganh": 5,
+   "doanh_nghiep": 9,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 8,
+   "kqkd": 8,
+   "suc_khoe_tc": 3
+  },
+  "luan_diem_70": 26,
+  "so_30": 19,
+  "tong": 45,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "a_ban_chat": 2,
+   "b_trang_thai": 2,
+   "c_ky_vong_ngam": 2,
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN",
+   "tin_xau": "Thuế Mỹ.",
+   "co_that_su_xau": "Thuế 301 lao động cưỡng bức 12,5% đã xảy ra, có ngày, có kích thước; giá đáy 15,68 ngày 22/07, hai ngày trước hiệu lực, chưa thủng lại (OBSERVATION).",
+   "trang_thai": "Hai nhánh 301 còn lại (sở hữu trí tuệ, sản xuất dư thừa) chưa có kích thước; XK dệt may tháng 9 −14,9%; nợ vay/VCSH 166%.",
+   "ky_vong_ngam": "P/E 5,17 vs 7,65 → LN −32%. HYPOTHESIS: cộng thêm thuế khi đòn bẩy cao, LN 2027 có thể giảm nhiều hơn → ngang hoặc chưa đủ.",
+   "nguoi_ban_can_bien": "Nhà đầu tư bán theo tin thuế.",
+   "counter": "Kỳ vọng ngầm chưa đủ xấu vì còn hai nhánh thuế. Response: đứng tới khi nhánh sở hữu trí tuệ có kết luận.",
+   "phep_thu": "Kết luận 301 sở hữu trí tuệ, dự kiến 29/11 theo hồ sơ (cần xác minh): ra mà giá không thủng 15,68 với lực bán lớn → CONFIRMATION, mở lại luận điểm (mốc P1)."
+  },
+  "ket_luan": "BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
- }
+ },
+ "ngay_vao": null
 }

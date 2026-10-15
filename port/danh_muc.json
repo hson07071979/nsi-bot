@@ -1,90 +1,57 @@
 {
  "ngay": "2026-10-15",
- "ky_han": "6-12 tháng, cập nhật theo quý (sau mỗi mùa BCTC)",
- "quan_diem": "Vĩ mô trong nước mạnh, thị trường yếu: GDP Q3 +9,95%, xuất khẩu Q3 +23%, nhưng VN-Index 1.704,87 (14/10) thấp hơn đỉnh 250 phiên 11,6% (trạng thái CĂNG THẲNG), đèn NSI ĐỎ. Áp lực đến từ bên ngoài và lãi suất: Fed tăng lại, US10Y ~5,3%, lãi huy động trong nước +1,15 điểm %, khối ngoại bán ~100 nghìn tỷ.\n\nLọc lại 15/10 theo nguyên tắc mới, 70% pitching – 30% dữ liệu: (1) cổng R38 'tài sản tốt, giá thấp' — giá thấp hơn đỉnh 250 phiên ≥ 25%, ROE ≥ 12%, LN 4 quý > 0 và không giảm, định giá ≤ 0,8 lần trung vị 3 năm của chính nó; (2) loại nơi tin xấu chưa dừng (PNJ, VCG, ANV, phân đạm, chứng khoán Q3 giảm, PC1); (3) xếp hạng bằng điểm 70/30 do máy chấm. Danh mục tối đa 8 mã × 12,5% NAV (R40). Thị trường đang căng thẳng nên được mở mã mới, nhưng chỉ 2 mã mỗi 20 phiên, theo điểm 70/30 từ cao xuống; mỗi mã chia 3 đợt. Phần chưa giải ngân là tiền mặt.",
+ "ky_han": "6-24 tháng, cập nhật theo quý (sau mỗi mùa BCTC)",
+ "quan_diem": "Kinh tế thực nóng, tiền đắt lên, tăng trưởng lệch. GDP Q3 +9,95% nhờ đầu tư công, FDI và tín dụng; nhưng Fed quay lại tăng lãi suất, US10Y >5,2%, CPI tháng 9 +5,08% chạm trần, tín dụng tăng nhanh hơn huy động, nhập siêu 9 tháng 19,4 tỷ USD và Mỹ áp thuế 301 với hàng VN. VN-Index thấp hơn đỉnh 250 phiên ~11,6% (CĂNG THẲNG).\n\nKhung lọc (anh Sơn chốt 15/10): 70% là luận điểm đầu tư theo chuỗi quốc tế → vĩ mô VN → ngành → doanh nghiệp → vì sao giá sai; 30% là số liệu (P/E, P/B, LN, ROE, nợ). Khâu \"vì sao giá sai\" trả lời một câu: giá hiện tại đã phản ánh hết tin xấu chưa — đọc qua kỳ vọng ngầm trong giá, người bán cận biên, và phép thử tin xấu tiếp theo. Không số hóa điểm mua/bán: bỏ cổng giá R38, mục tiêu T1/T2, ngừng mua −7%, nhịp mở R40.",
  "vi_tri": [
   {
    "ma": "FPT",
    "ty_trong": 12.5,
-   "vai_tro": "Công nghệ — tin xấu đã vào giá?",
-   "ly_do": "70/30 = 82 (cao nhất). Giá −39% so với đỉnh 250 phiên, định giá ≈ 0,5 lần trung vị 3 năm. Chờ K2 (LNST Q3/26 ≥ +10%) rồi mới mở."
-  },
-  {
-   "ma": "MWG",
-   "ty_trong": 12.5,
-   "vai_tro": "Tiêu dùng nội địa",
-   "ly_do": "70/30 = 73. Chưa qua cổng giá: chờ ≤ 68,3 (đỉnh 250 phiên 91,05 − 25%)."
-  },
-  {
-   "ma": "TNG",
-   "ty_trong": 12.5,
-   "vai_tro": "Xuất khẩu may — thuế Mỹ đã vào giá",
-   "ly_do": "70/30 = 76. Qua cổng (−26,8%), P/E 5,2 vs 7,65. LƯỢT 1 — đợt 1 ngay. Rủi ro số 1: đòn bẩy."
-  },
-  {
-   "ma": "IDC",
-   "ty_trong": 12.5,
-   "vai_tro": "Xuất khẩu–FDI qua đất KCN",
-   "ly_do": "70/30 = 71, hòa CTR nhưng kém rẻ hơn (0,73 vs 0,67 lần trung vị) → lượt 2. Qua cổng sát mép (−25,4%; cổng 33,86)."
-  },
-  {
-   "ma": "CTG",
-   "ty_trong": 12.5,
-   "vai_tro": "Ngân hàng — hồi phục",
-   "ly_do": "70/30 = 71. Qua cổng (−27,1%). Chờ đèn rời ĐỎ."
-  },
-  {
-   "ma": "CTR",
-   "ty_trong": 12.5,
-   "vai_tro": "Hạ tầng viễn thông + xây lắp",
-   "ly_do": "70/30 = 71, rẻ nhất trong nhóm hòa điểm (0,67 lần trung vị). Qua cổng (−28,1%). LƯỢT 1 — đợt 1 ngay."
-  },
-  {
-   "ma": "HPG",
-   "ty_trong": 12.5,
-   "vai_tro": "Neo chu kỳ đầu tư–xây dựng",
-   "ly_do": "70/30 = 66. Chưa qua cổng: chờ ≤ 19,7 (đỉnh 26,25 − 25%). Đợt 2 cần K3."
+   "vai_tro": "Công nghệ — tin xấu dòng tiền đã vào giá",
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 71 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN. Phép thử: Ngày hiệu lực kỳ xét VNDiamond + KQ Q3 (20/10–05/11): bị loại mà giá không tạo đáy mới với lực bán lớn → CONFIRMATION. Cần xác minh lịch kỳ xét."
   },
   {
    "ma": "VCB",
    "ty_trong": 12.5,
-   "vai_tro": "Ngân hàng — phòng thủ",
-   "ly_do": "70/30 = 68. Qua cổng sát mép (−25,0%; cổng 56,53). Lượt 2."
+   "vai_tro": "Ngân hàng — vốn ngoại rút, tài sản tốt nhất ngành",
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 69 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN (phần dòng tiền). Phép thử: Fed 27–28/10 và dòng ngoại sau đó: ngoại tiếp tục bán mà VCB không tạo đáy mới → CONFIRMATION."
+  },
+  {
+   "ma": "MWG",
+   "ty_trong": 12.5,
+   "vai_tro": "Tiêu dùng nội địa — luận điểm tăng trưởng",
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 72 điểm. Khâu 5: KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng. Phép thử: KQ Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
   }
  ],
  "dot_giai_ngan": [
   {
-   "dot": "Lượt 1 (16/10)",
-   "khi": "Mã ĐỦ ĐỂ XUỐNG TIỀN + qua cổng R38, 2 mã điểm 70/30 cao nhất (hòa điểm: pitch rồi mã rẻ hơn so với chính nó)",
-   "lam": "TNG (76) và CTR (71): mỗi mã đợt 1 = 1/3 × 12,5% ≈ 4,2% NAV → tổng ≈ 8,3% NAV."
+   "dot": "Đợt 1 (khi anh Sơn ghi lệnh)",
+   "khi": "Mã ĐỦ ĐỂ XUỐNG TIỀN; thị trường căng thẳng → chia 3 đợt",
+   "lam": "FPT, VCB, MWG: mỗi mã 1/3 × 12,5% ≈ 4,2% NAV → tổng ≈ 12,5% NAV. Phần còn lại là tiền mặt."
   },
   {
-   "dot": "Lượt 2 (sau 20 phiên)",
-   "khi": "VN-Index vẫn ≤ −10% so với đỉnh 250 phiên",
-   "lam": "2 mã kế tiếp theo điểm 70/30 tại thời điểm đó (hiện: IDC, VCB; FPT nếu K2 ĐÚNG; CTG nếu đèn rời ĐỎ; MWG/HPG nếu chạm cổng)."
+   "dot": "Mã chờ phép thử Q3 (20/10–05/11)",
+   "khi": "IDC, CTG, HPG: tin xấu đã biết được công bố mà giá không tạo đáy mới với lực bán lớn",
+   "lam": "Qua phép thử → đợt 1; không qua → đóng phần \"giá sai\" của luận điểm, không dời cột gôn."
   },
   {
    "dot": "Đợt 2–3 từng mã",
-   "khi": "Đi ngang 20 phiên sau đợt trước; chạy +10% thì nửa ngay, nửa khi hồi MA20",
-   "lam": "Mỗi đợt 1/3 tỷ trọng; quá 120 phiên không có nền → mua nốt nếu luận điểm còn đúng."
+   "khi": "Theo quy tắc anh Sơn chốt: hoảng loạn (VNI ≤ −20% so với đỉnh 250 phiên) 2 đợt 60/40; còn lại 3 đợt sau nền đi ngang",
+   "lam": "Mỗi đợt 1/3 tỷ trọng; luận điểm phải còn đúng."
   },
   {
    "dot": "Rủi ro",
-   "khi": "Giá vốn −7% / −15%; VN-Index < 1.668,5; VN-Index hồi về > −10%",
-   "lam": "Ngừng mua & rà luận điểm / bán hết / hoãn đợt mới / ngừng mở mã mới (mã đang có vẫn theo kế hoạch)."
+   "khi": "Đóng cửa dưới giá vốn bình quân −15%; điểm gãy vĩ mô hoặc sự kiện vô hiệu xảy ra",
+   "lam": "Bán hết / rà lại luận điểm. Mỗi mã ≤ 12,5% NAV; 3 mã → nhiệt tối đa ≈ 5,6% NAV."
   }
  ],
- "pitch": "Kinh tế Việt Nam tăng trưởng nhanh nhất nhiều năm, nhưng thị trường chứng khoán giảm vì lãi suất Mỹ và khối ngoại rút vốn. Danh mục không đoán đáy. Nó chỉ mua doanh nghiệp tốt khi giá đã thấp hơn đỉnh một năm ít nhất 25% và định giá đã về dưới 0,8 lần mức trung bình 3 năm của chính nó.\n\nTám mã: FPT, Thế Giới Di Động, TNG, IDICO, VietinBank, Viettel Construction, Hòa Phát và Vietcombank, mỗi mã tối đa 12,5% vốn. Vốn vào từ từ: mỗi tháng chỉ mở 2 mã mới, mỗi mã chia 3 lần, và chỉ mở mã mới khi thị trường chung còn thấp hơn đỉnh từ 10% trở lên. Đợt đầu chỉ khoảng 8% vốn, vào TNG và Viettel Construction. Mỗi mã có mức ngừng mua và mức bán; nếu VN-Index đóng cửa dưới 1.668, danh mục tạm dừng giải ngân.",
+ "pitch": "Kinh tế Việt Nam tăng trưởng gần 10%, nhưng tiền đang đắt lên vì lãi suất Mỹ, lạm phát trong nước và vốn ngoại rút, nên thị trường chứng khoán giảm. Danh mục không mua vì giá đã giảm nhiều. Nó hỏi một câu cho từng mã: tin xấu mà mọi người đang sợ có thật sự xấu cho doanh nghiệp không, và giá hiện tại đã trả tiền cho kịch bản xấu đó chưa.\n\nBa mã đủ điều kiện: FPT (bị bán vì nỗi sợ AI và dòng bán bắt buộc, trong khi hợp đồng mới vẫn tăng), Vietcombank (bị bán vì vốn ngoại rút, trong khi bộ đệm dự phòng dày nhất ngành) và Thế Giới Di Động (luận điểm tăng trưởng theo tiêu dùng). Mỗi mã tối đa 12,5% vốn, chia 3 lần. IDICO, VietinBank và Hòa Phát chờ mùa báo cáo quý 3 làm phép thử: tin xấu đã biết được công bố mà giá giữ được thì mới vào.",
  "rui_ro": [
-  "Fed tăng tiếp và US10Y vượt 5,3% → DXY mạnh, áp lực tỷ giá, NHNN có thể hút tiền.",
-  "Dư nợ margin cao: một nhịp giải chấp có thể kéo cả thị trường thủng 1.668,5 dù cơ bản không đổi.",
-  "Mùa BCTC Q3: mã không đạt K2 bị loại theo quy tắc, không chờ.",
-  "Lãi suất tăng đánh vào mã đòn bẩy cao: TNG (nợ vay/VCSH 166%).",
-  "Hai mã qua cổng sát mép (IDC −25,4%, VCB −25,0%): một phiên tăng là rớt khỏi cổng; máy sẽ tự đổi sang 'chờ giá'.",
-  "Điểm 'vì sao giá sai' (15/70) là chấm định tính của Claude — HYPOTHESIS, cần anh Sơn duyệt.",
-  "Khuôn R40 (+16,2%/năm, sụt giảm lớn nhất −18,7% giai đoạn 2020–2026) đã thử ~20 biến thể → có rủi ro quá khớp; Monte Carlo p5 11,8%/năm là cận dưới tham khảo, không phải cam kết.",
-  "Dữ liệu: TNG, CTR không có nến trên trang NSI — chuỗi giá lấy từ FireAnt (đã chỉnh); POW, MSN có LN méo vì khoản bất thường.",
-  "Nhiệt: đủ 8 mã × 12,5% với mức bán −15% giá vốn thì nhiệt tối đa = 15% NAV, vượt trần 10% đã chốt. Đến khi giải ngân khoảng 2/3 danh mục, máy sẽ báo chạm trần — anh Sơn cần chọn: giữ trần 10% (tối đa ~5 mã đủ tỷ trọng) hay nâng trần lên 15% như khuôn R40 đã mô phỏng."
+  "Fed tăng tiếp, US10Y và DXY cao hơn nữa → vốn ngoại rút thêm, áp lực tỷ giá; cả FPT và VCB đều nhạy với dòng ngoại.",
+  "NHNN đổi hướng sang tăng lãi suất điều hành hoặc siết room tín dụng → điểm gãy của cả bản đồ vĩ mô.",
+  "Mỹ kết luận 301 \"sản xuất dư thừa\" ở mức cao trên diện rộng → FDI và xuất khẩu điện tử bị kéo vào.",
+  "Lạm phát vượt trần kéo dài → sức mua tiêu dùng (MWG) yếu đi.",
+  "Điểm số và kết luận khâu 5 là HYPOTHESIS của Claude, anh Sơn duyệt 15/10; phép thử Q3 là nơi kiểm chứng.",
+  "Dữ liệu: lịch kỳ xét VNDiamond và ngày kết luận 301 sở hữu trí tuệ (29/11) cần xác minh lại; số LN HPG 2021–2022 là kiến thức nền, cần đối chiếu BCTC."
  ],
  "debate_danh_muc": [
   {
@@ -136,34 +103,78 @@
    "vong": 10,
    "ben": "trong_tai",
    "noi_dung": "15/10: lọc lại 70/30. Vào: TNG, CTR (mới), giữ FPT, MWG, IDC, CTG, HPG, VCB. Ra hàng chờ: POW (điểm thấp nhất), SSI, KDH; MSN chưa viết luận điểm. Loại sau khi đọc tin: PNJ, VCG, ANV, DCM/DPM, HDC, PC1, nhóm chứng khoán. MWG, HPG chưa qua cổng giá → chờ. Máy xếp lượt 1: TNG (76) + CTR (71, hòa IDC nhưng rẻ hơn so với chính nó)."
+  },
+  {
+   "vong": 11,
+   "ben": "anh_son",
+   "noi_dung": "15/10: đừng số hóa mọi thứ — port đi dài; 70% là câu chuyện luận điểm vĩ mô → vi mô (quốc tế trước, nhất là Mỹ và Trung Quốc), P/E, P/B thuộc 30%. Bỏ cổng giá R38, T1/T2, VNI ≤ −10%, nhịp 2 mã/20 phiên, ngừng mua −7%."
+  },
+  {
+   "vong": 12,
+   "ben": "trong_tai",
+   "noi_dung": "15/10: lọc lại từ bản đồ vĩ mô Q4/2026. TNG đổi chiều mạnh nhất (76 → 45) vì ba khâu đầu đều nghịch; CTR là định giá lại có cơ sở."
+  },
+  {
+   "vong": 13,
+   "ben": "anh_son",
+   "noi_dung": "15/10: câu hỏi cốt lõi là giá đã phản ánh hết tin xấu chưa — mọi người xem là xấu nhưng có thật sự xấu không; nếu giá chiết khấu đủ thì tin xấu thêm không làm giá giảm nhiều nữa. Viết bằng khung tư duy IES."
+  },
+  {
+   "vong": 14,
+   "ben": "trong_tai",
+   "noi_dung": "15/10: viết lại khâu 5. VCB, IDC lên (tin xấu dòng tiền/nhầm nhóm); CTG, HPG xuống (nợ xấu ngành và thép TQ còn chạy); MWG không phải ca tin xấu. Đợt 1: FPT, VCB, MWG; IDC, CTG, HPG chờ phép thử Q3; TNG mở lại nếu qua phép thử 29/11."
+  },
+  {
+   "vong": 15,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt, cho đẩy lên."
   }
  ],
- "dung_vni": 1668.5,
  "quy_tac_giai_ngan": {
-  "nguon": "R38 (research/r38_giai_ngan.py) — anh Sơn chốt 15/10/2026",
-  "hoang_loan": "VN-Index ≤ −20% so với đỉnh 250 phiên: 2 đợt 60/40",
-  "con_lai": "3 đợt 1/3",
   "dot_sau": "Chỉ khi đi ngang 20 phiên sau đợt trước: biên đóng cửa ≤ 8%, đầu–cuối ≤ 4%, nửa sau không tạo đáy mới. Quá 120 phiên không có nền → mua nốt nếu luận điểm còn đúng.",
   "chay": "Đóng cửa ≥ giá đợt 1 +10% trước đợt 2: mua nửa phần còn lại ngay, nửa khi hồi về MA20 trong 60 phiên (quá hạn mua nốt). Không bỏ lỡ.",
-  "rui_ro": "Dưới giá vốn bình quân −7%: ngừng mua thêm, rà luận điểm. Dưới −15%: bán hết. VN-Index dưới 1.668,5: hoãn đợt mới. Mỗi mã ≤ 12,5% NAV; nhiệt danh mục ≤ 10% NAV.",
-  "lop_danh_muc": "R40 (anh Sơn chốt 15/10): mở mã mới chỉ khi VN-Index ≤ −10% so với đỉnh 250 phiên; tối đa 2 mã mới mỗi 20 phiên theo điểm 70/30; tối đa 8 mã × 12,5% NAV. Cổng giá R38 cho mã mới: giá ≤ đỉnh 250 phiên × 0,75."
+  "nguon": "Anh Sơn chốt 15/10/2026 (giữ từ R38, bỏ lớp số hóa điểm mua)",
+  "hoang_loan": "VN-Index ≤ −20% so với đỉnh 250 phiên: 2 đợt 60/40",
+  "con_lai": "3 đợt 1/3 sau nền đi ngang",
+  "ban": "Đóng cửa dưới giá vốn bình quân −15%: bán hết",
+  "da_bo": "Cổng giá R38, mục tiêu T1/T2 và xác suất chạm, VNI ≤ −10% mới mở mã, tối đa 2 mã/20 phiên, ngừng mua −7%, VN-Index < 1.668,5 hoãn đợt mới"
  },
  "hang_cho": [
   {
+   "ma": "IDC",
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 74 điểm. ĐÃ PHẢN ÁNH PHẦN LỚN — còn thiếu số đất thương phẩm và tỷ trọng khách TQ. Phép thử: KQ Q3 (dự kiến giảm so với nền cao): KQ ra giảm mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  {
+   "ma": "CTG",
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 69 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: BCTC Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  {
+   "ma": "HPG",
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 67 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: KQ Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  {
+   "ma": "CTR",
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 62 điểm. KHÔNG PHẢI GIÁ SAI — định giá lại có cơ sở. Phép thử: KQ Q3 (K2 ≥ +5%; LNTT tháng 7 chỉ +2%)."
+  },
+  {
    "ma": "POW",
-   "ly_do": "70/30 = 58: qua cổng nhưng P/B chỉ ngang trung vị 3 năm; P/E và LN méo vì ~2.475 tỷ bất thường Q2/26. Thay vào khi một mã bị loại."
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 54 điểm. CHƯA CÓ CHIẾT KHẤU. Phép thử: LN cốt lõi Q3 so với cùng kỳ (nền 809 tỷ)."
   },
   {
    "ma": "KDH",
-   "ly_do": "70/30 = 67, ROE thấp; chờ K2 và đèn rời ĐỎ."
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 45 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  {
+   "ma": "TNG",
+   "ly_do": "BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11. PHẢN ÁNH MỘT PHẦN. Phép thử: Kết luận 301 sở hữu trí tuệ, dự kiến 29/11 theo hồ sơ (cần xác minh): ra mà giá không thủng 15,68 với lực bán lớn → CONFIRMATION, mở lại luận điểm (mốc P1)."
   },
   {
    "ma": "SSI",
-   "ly_do": "70/30 = 60; LN chứng khoán Q3 giảm, chờ K1 và đèn."
+   "ly_do": "BÁC BỎ (kỳ này). CHƯA PHẢN ÁNH. Phép thử: —"
   },
   {
    "ma": "MSN",
-   "ly_do": "Chưa viết luận điểm. 70/30 ước ~79 nhưng chưa qua cổng: chờ ≤ 66,15 (đỉnh 88,2 − 25%). LN 4 quý +150% cần bóc khoản bất thường trước khi chấm."
+   "ly_do": "Chưa viết luận điểm. LN 4 quý +150% cần bóc khoản bất thường trước khi chấm theo khung mới."
   }
  ]
 }

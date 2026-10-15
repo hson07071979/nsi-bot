@@ -2,13 +2,13 @@
  "ma": "VCB",
  "trang_thai": "trong_port",
  "chieu": "tang",
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
  "ngay_vao": "2026-10-15",
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "chuoi": {
-  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: Quyết định 1743 của NHNN (hiệu lực 1/8/2026) nâng tỷ lệ tiền gửi Kho bạc được tính vào LDR từ 20% lên 50%, nêu rõ BIDV, Vietcombank, VietinBank, Agribank, MB được thêm dư địa cho vay. FACT: NHNN giữ nguyên lãi suất điều hành, yêu cầu giảm lãi suất huy động kỳ hạn từ 6 tháng (07/10).",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: kênh thanh toán, ngoại hối cho XK/FDI; QĐ 1743 nêu tên Vietcombank; nhưng là mã ngoại sở hữu nhiều nên chịu dòng rút vốn khi US10Y cao.",
   "nganh": "FACT (MSVN, 11/10): LN ngân hàng Q3 dự báo +21%, có nguy cơ không đạt; VCB, CTG, VPB được đánh giá tích cực hơn. FACT: QĐ 1743 nêu Vietcombank trong nhóm được thêm dư địa cho vay. INTERPRETATION: khi lãi suất còn tăng và đèn ĐỎ, ngân hàng có chất lượng tài sản và chi phí vốn tốt nhất chịu ít rủi ro nhất.",
   "doanh_nghiep": "Ngân hàng quốc doanh có vốn hóa lớn nhất sàn (NSI: 470.425 tỷ). FACT (NSI): ROE 17,9%; LNST Q2/26 14.542 tỷ (+64,7% cùng kỳ), LN 4 quý +20,2%. HYPOTHESIS: Q2 tăng đột biến có thể có khoản không thường xuyên — cần kiểm cấu phần trong BCTC.",
   "mo_hinh_kd": "Ngân hàng thương mại: cho vay, thanh toán, ngoại hối. INTERPRETATION: lợi thế chi phí vốn và thanh toán quốc tế — cần số CASA/NIM từ BCTC để chuyển thành FACT.",
@@ -39,13 +39,15 @@
   "P/B dưới đáy 3 năm dù LN vẫn tăng.",
   "Phòng thủ: biến động thấp, giữ giá tốt nhất khi thị trường giảm.",
   "Hưởng lợi QĐ 1743 và nhu cầu ngoại hối từ xuất khẩu/FDI.",
-  "MSVN xếp vào nhóm tích cực mùa KQ Q3."
+  "MSVN xếp vào nhóm tích cực mùa KQ Q3.",
+  "FACT (CafeF 31/07): thu nhập lãi thuần Q2 +35%; bỏ phần thu nhập khác vượt bình thường (~2.900 tỷ, ước thô) thì LNTT Q2 vẫn ~+30% — phần một lần không phải nguồn tăng chính."
  ],
  "bear": [
   "ROE 17,9% thấp hơn CTG (21,8%) và MBB (20,7%); tăng trưởng 4 quý chậm hơn.",
   "Q2 +64,7% có thể có khoản bất thường — chưa kiểm cấu phần.",
   "Bot chưa đủ điều kiện vì biên độ dao động quá thấp: cổ phiếu ít động lượng.",
-  "Giá dưới MA50 (58,57) và MA200 (61,04)."
+  "Giá dưới MA50 (58,57) và MA200 (61,04).",
+  "FACT (CafeF 31/07): thu nhập hoạt động khác Q2 4.059 tỷ (~3,5 lần cùng kỳ) chủ yếu từ thu hồi nợ đã xử lý → LNST Q2 +64,7% có phần một lần."
  ],
  "debate": [
   {
@@ -83,6 +85,18 @@
    "vong": 6,
    "ben": "trong_tai",
    "noi_dung": "Kết luận (anh Sơn chốt 15/10): tách ngăn ngân hàng — VCB 8% (phòng thủ, vào từ đợt 1) + CTG 9% (hồi phục, chờ đèn rời ĐỎ). MBB không chọn vì P/E gần trung vị của chính nó."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 47/70 = quốc tế 4 · vĩ mô VN 11 · ngành 9 · doanh nghiệp 12 · giá sai 11; số 22/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: ĐÃ PHẢN ÁNH PHẦN LỚN (phần dòng tiền). Tin xấu: Vốn ngoại rút khỏi ngân hàng vốn hóa lớn; lãi suất ép NIM; nợ xấu toàn ngành tăng. Kỳ vọng ngầm: P/B 1,89 vs 2,62 → ROE ngầm ≈ 17,9% × 0,72 ≈ 12,9%. Bộ đệm 279% khó để ROE xuống mức đó → kỳ vọng ngầm xấu hơn thực tế. Phép thử: Fed 27–28/10 và dòng ngoại sau đó: ngoại tiếp tục bán mà VCB không tạo đáy mới → CONFIRMATION. Kết luận: ĐỦ ĐỂ XUỐNG TIỀN."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -101,13 +115,6 @@
  },
  "kiem_chung": [
   {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 52.6,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 52,6 trong 60 phiên (hỗ trợ Daily: 2 lần chạm, đáy cũ)."
-  },
-  {
    "id": "K2",
    "loai": "funda",
    "chi_tieu": "ny",
@@ -117,34 +124,44 @@
    "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 52,6; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 10%.",
- "vo_hieu_gia": 52.6,
- "dinh_gia": "P/B 1,89 vs trung vị 3 năm 2,62 (thấp nhất 12 quý 2,02); P/E 11,3 vs 14,91 (NSI, 14/10). Vùng quan sát.",
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 61.04,
-   "nguon": "MA200 tại 14/10",
-   "du_kien_phien": 34,
-   "han_phien": 90,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1,38%"
-  },
-  {
-   "id": "T2",
-   "gia": 76.0,
-   "nguon": "Đỉnh 14/01/2026; P/B tại đó ≈ 2,55 vẫn dưới trung vị 2,62. Ước 471 phiên → giới hạn 250",
-   "du_kien_phien": 250,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1,38%"
-  }
- ],
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "vo_hieu": "Vô hiệu theo sự kiện: nợ xấu vượt 1% hoặc bao phủ giảm mạnh; ngoại tiếp tục bán làm giá thủng đáy với lực bán lớn. Mốc cơ bản: LNST Q3/26 (K2). Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/B 1,89 vs trung vị 3 năm 2,62 (thấp nhất 12 quý 2,02); P/E 11,3 vs 14,91 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 1,89 vs 2,62 → ROE ngầm ≈ 17,9% × 0,72 ≈ 12,9%. Bộ đệm 279% khó để ROE xuống mức đó → kỳ vọng ngầm xấu hơn thực tế.",
  "dieu_kien_vao": [],
- "pitch": "Vietcombank đang giao dịch dưới mức định giá thấp nhất 3 năm qua so với chính nó, trong khi giữ giá tốt nhất nhóm ngân hàng từ đầu năm. Danh mục dùng VCB cho vai phòng thủ khi thị trường chung chưa có tín hiệu tạo đáy; luận điểm sai nếu giá đóng cửa dưới 52,6.",
+ "pitch": "[ĐỦ ĐỂ XUỐNG TIỀN · 69 điểm] Vietcombank đang bị bán chủ yếu vì vốn ngoại rút khi lợi suất Mỹ cao nhất hơn 20 năm, không vì tài sản xấu đi: nợ xấu 0,61% và quỹ dự phòng gấp gần 2,8 lần nợ xấu, dày nhất ngành. Ở P/B 1,89 lần, thấp hơn đáy 3 năm, giá đang trả cho kịch bản ROE rơi về khoảng 13%, trong khi bộ đệm dự phòng cho phép hấp thụ nợ xấu tăng. Luận điểm sai nếu nợ xấu vượt 1% hoặc tỷ lệ bao phủ giảm mạnh.",
  "pitch_diem": {
-  "dinh_gia_sai": 5,
-  "ly_do": "Rẻ so với chính nó và phòng thủ tốt; lý do thị trường định giá sai chưa rõ ngoài dòng tiền ngoại rút.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 11,
+   "nganh": 9,
+   "doanh_nghiep": 12,
+   "gia_sai": 11
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 7,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 47,
+  "so_30": 22,
+  "tong": 69,
+  "dinh_gia_sai": 11,
+  "gia_sai": {
+   "a_ban_chat": 5,
+   "b_trang_thai": 2,
+   "c_ky_vong_ngam": 4,
+   "ket_luan": "ĐÃ PHẢN ÁNH PHẦN LỚN (phần dòng tiền)",
+   "tin_xau": "Vốn ngoại rút khỏi ngân hàng vốn hóa lớn; lãi suất ép NIM; nợ xấu toàn ngành tăng.",
+   "co_that_su_xau": "Với VCB phần lớn là dòng tiền. FACT: nợ xấu 0,61%, bao phủ ~279%, cao nhất ngành (Tạp chí KTTC 10/08).",
+   "trang_thai": "Dòng ngoại còn chạy (Fed họp 27–28/10).",
+   "ky_vong_ngam": "P/B 1,89 vs 2,62 → ROE ngầm ≈ 17,9% × 0,72 ≈ 12,9%. Bộ đệm 279% khó để ROE xuống mức đó → kỳ vọng ngầm xấu hơn thực tế.",
+   "nguoi_ban_can_bien": "Quỹ ngoại.",
+   "counter": "ROE thấp hơn CTG nên P/B thấp là đúng. Response: giải thích vì sao không về P/B cũ, không giải thích P/B dưới đáy 12 quý (2,02) khi chất lượng tài sản tốt nhất ngành.",
+   "phep_thu": "Fed 27–28/10 và dòng ngoại sau đó: ngoại tiếp tục bán mà VCB không tạo đáy mới → CONFIRMATION."
+  },
+  "ket_luan": "ĐỦ ĐỂ XUỐNG TIỀN",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  }
 }

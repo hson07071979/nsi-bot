@@ -2,13 +2,13 @@
  "ma": "KDH",
  "trang_thai": "nghien_cuu",
  "chieu": "tang",
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
  "ngay_vao": null,
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "chuoi": {
-  "vi_mo": "FACT: lãi vay mua nhà cố định 12–24 tháng bình quân 10,9% (DKRA, 8/2026); thả nổi sau ưu đãi ~13–15% (VARS-IRE Q2/2026); >80% người mua chỉ vay khi lãi <9% (PropertyGuru). FACT: Fed tăng lại lãi suất 16/9; lãi huy động VN +1,15 điểm % từ đầu năm. INTERPRETATION: lực cản lớn nhất của BĐS nhà ở là lãi vay người mua — và lực cản này CHƯA dừng.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: nghịch nhất bảng: vay mua nhà 11–15%, tín dụng BĐS bị kiểm soát.",
   "nganh": "FACT (VCBS): BĐS nhà ở chịu áp lực, giá đi ngang hoặc điều chỉnh nhẹ Q3/2026. FACT (MSVN): LN BĐS nhà ở Q3 dự báo +48,3% nhờ nền thấp Q3/2025. INTERPRETATION: tăng trưởng LN ngành đến từ nền so sánh, không từ cầu mới.",
   "doanh_nghiep": "Chủ đầu tư nhà ở TP.HCM, quỹ đất >160 ha giai đoạn 2026–2028 (>1.000 thấp tầng, >5.000 căn hộ, 60 ha KCN), đối tác Keppel. FACT: tồn kho 29.488 tỷ cuối Q2/2026 (trước đây 7–8 nghìn tỷ) (Doanh nhân Pháp luật 18/09).",
   "mo_hinh_kd": "Gom quỹ đất pháp lý sạch, phát triển và bán nhà ở. FACT: DT cốt lõi H1/2026 442 tỷ (−75%); người mua trả tiền trước 399 tỷ cuối Q2 (2.387 tỷ cuối 2023); LNST H1 1.099 tỷ chủ yếu từ khoản không thường xuyên: 896 tỷ doanh thu tài chính (874,7 tỷ lãi treo từ thương vụ Keppel 2023 được kết chuyển khi mất quyền kiểm soát Bình Trưng Mới) và 285 tỷ lãi mua rẻ An Lập. INTERPRETATION: LN 4 quý +122,6% trong NSI không phản ánh kinh doanh cốt lõi.",
@@ -96,6 +96,18 @@
    "vong": 7,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: ĐỒNG Ý MỘT PHẦN. Đồng ý giá đã phản ánh nhiều; không đồng ý rằng đã đến lúc vào. KDH ở trạng thái nghiên cứu, 0% vốn; chỉ vào khi có CONFIRMATION cốt lõi (tiền khách trả trước Q3 tăng so với Q2) và giá giữ 12,55."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 29/70 = quốc tế 4 · vĩ mô VN 3 · ngành 5 · doanh nghiệp 9 · giá sai 8; số 16/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: PHẢN ÁNH MỘT PHẦN. Tin xấu: Lãi vay mua nhà 11–15%; DT cốt lõi H1 −75%; tiền khách trả trước giảm mạnh; tồn kho 29.488 tỷ. Kỳ vọng ngầm: P/B 0,90 vs 1,81 — chiết khấu sâu nhất bảng. Phép thử: Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → CONFIRMATION. Kết luận: CẦN THÊM BẰNG CHỨNG."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 9,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -114,13 +126,6 @@
  },
  "kiem_chung": [
   {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 12.55,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 12,55 trong 60 phiên (−7% từ 13,5; dưới đáy 1 năm 13,25 không còn hỗ trợ trong dữ liệu) — phép thử \"giá đã đáy\"."
-  },
-  {
    "id": "K2",
    "loai": "funda",
    "chi_tieu": "ry",
@@ -130,46 +135,44 @@
    "noi_dung": "Doanh thu Q3/26 không giảm quá 50% so cùng kỳ — phép thử \"kinh doanh cốt lõi ngừng co\"."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 12,55; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: luận điểm sai nếu Q3 và Q4/26 tiền khách trả trước tiếp tục giảm.",
- "dinh_gia": "P/B 0,90 vs trung vị 12 quý 1,81 (thấp nhất 12 quý 1,10); P/E 9,48 dựa trên LN có khoản bất thường — không dùng (NSI, 14/10). Vùng quan sát.",
- "pitch": "Khang Điền đã giảm gần 60% và giao dịch dưới giá trị sổ sách, nên phần lớn tin xấu đã nằm trong giá. Nhưng lợi nhuận năm nay đến từ khoản kế toán một lần, còn tiền khách hàng đặt mua đang giảm mạnh, trong khi lãi vay mua nhà vẫn tăng. Danh mục theo dõi KDH và chỉ cân nhắc khi lượng bán hàng phục hồi trở lại.",
- "vo_hieu_gia": 12.55,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 15.17,
-   "nguon": "MA50 tại 14/10",
-   "du_kien_phien": 36,
-   "han_phien": 90,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.95%"
-  },
-  {
-   "id": "T2",
-   "gia": 20.89,
-   "nguon": "MA200 tại 14/10; P/B tại đó ≈ 1,39 dưới trung vị 1,81. Ước 503 phiên — ngoài kỳ hạn 12 tháng, chỉ để theo dõi",
-   "du_kien_phien": 250,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.95%"
-  }
- ],
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
- "dieu_kien_vao": [
-  {
-   "loai": "kiem_chung",
-   "id": "K2",
-   "can": "ĐÚNG"
-  },
-  {
-   "loai": "den",
-   "khong": [
-    "DO"
-   ]
-  }
- ],
+ "vo_hieu": "Vô hiệu theo sự kiện: lãi suất vay mua nhà tiếp tục tăng và KQ Q3 không có bán hàng mới (K2).",
+ "dinh_gia": "P/B 0,90 vs trung vị 12 quý 1,81 (thấp nhất 12 quý 1,10); P/E 9,48 dựa trên LN có khoản bất thường — không dùng (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 0,90 vs 1,81 — chiết khấu sâu nhất bảng.",
+ "pitch": "[CẦN THÊM BẰNG CHỨNG · 45 điểm] Khang Điền có mức chiết khấu sâu nhất danh sách (giá dưới giá trị sổ sách, quỹ đất sạch, không nợ trái phiếu), nhưng nguồn tin xấu — lãi suất vay mua nhà — vẫn đang chạy và doanh thu cốt lõi H1 giảm 75%. Chờ lãi suất chững lại.",
+ "dieu_kien_vao": [],
  "pitch_diem": {
-  "dinh_gia_sai": 5,
-  "ly_do": "Giá dưới giá trị sổ sách phản ánh nhiều tin xấu, nhưng kinh doanh cốt lõi còn co; chưa có chất xúc tác.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 3,
+   "nganh": 5,
+   "doanh_nghiep": 9,
+   "gia_sai": 8
+  },
+  "so": {
+   "dinh_gia": 10,
+   "kqkd": 2,
+   "suc_khoe_tc": 4
+  },
+  "luan_diem_70": 29,
+  "so_30": 16,
+  "tong": 45,
+  "dinh_gia_sai": 8,
+  "gia_sai": {
+   "a_ban_chat": 3,
+   "b_trang_thai": 1,
+   "c_ky_vong_ngam": 4,
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN",
+   "tin_xau": "Lãi vay mua nhà 11–15%; DT cốt lõi H1 −75%; tiền khách trả trước giảm mạnh; tồn kho 29.488 tỷ.",
+   "co_that_su_xau": "Xấu cho thời điểm có lợi nhuận, chưa chắc xấu cho giá trị tài sản (quỹ đất sạch, không nợ trái phiếu); tồn kho tăng gần 4 lần cần đọc kỹ.",
+   "trang_thai": "Nguồn (lãi suất) còn chạy.",
+   "ky_vong_ngam": "P/B 0,90 vs 1,81 — chiết khấu sâu nhất bảng.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân bán theo ngành BĐS.",
+   "counter": "Kỳ vọng ngầm chưa đủ xấu vì lãi suất còn tăng. Response: đứng tới khi lãi suất vay mua nhà chững lại.",
+   "phep_thu": "Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  "ket_luan": "CẦN THÊM BẰNG CHỨNG",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  }
 }

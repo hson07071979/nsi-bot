@@ -1,14 +1,14 @@
 {
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "HPG",
- "trang_thai": "trong_port",
+ "trang_thai": "nghien_cuu",
  "chieu": "tang",
- "ngay_vao": "2026-10-14",
+ "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. INTERPRETATION: tăng trưởng đang dựa vào công nghiệp–xây dựng (xây dựng 9T +12,22%) và đầu tư; đây là cầu thép nội địa. Lãi suất tăng là lực cản nhưng chưa làm gãy cầu xây dựng.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: đứng giữa động lực mạnh nhất Q4 (đầu tư công còn ~380.000 tỷ, xây dựng +12,2%); HRC trong nước thay thế nhập khẩu đúng lúc nhập siêu là vấn đề vĩ mô số 1; nghịch: thép TQ dư thừa.",
   "nganh": "FACT (RongViet, dẫn bởi Doanh nhân Pháp luật): giá bán thép Q3 dự kiến −7% so với Q2 do cầu Trung Quốc yếu; quặng và than cốc giảm 8–10%. FACT (VCBS): thép xây dựng tăng giá lũy kế 1,5–2,5%, HRC giảm 3 kỳ liên tiếp. INTERPRETATION: chu kỳ giá thép đang hạ nhiệt, nhưng sản lượng nội địa vẫn tăng.",
   "doanh_nghiep": "FACT: HRC Q2 1,9 triệu tấn, khoảng 70% thị phần trong nước; Q3 ước 2,15 triệu tấn (+70% cùng kỳ), Dung Quất 2 chạy ~90% công suất (RongViet). INTERPRETATION: đầu ngành tuyệt đối, có lợi thế quy mô và chi phí.",
   "mo_hinh_kd": "Luyện gang–thép tích hợp (quặng → phôi → HRC/thép xây dựng/ống/tôn). FACT (NSI): LNST Q1/26 8.994 tỷ, Q2/26 6.371 tỷ (+49,7% cùng kỳ); LN 4 quý +72,8%, DT 4 quý +34,3%; ROE 17,4%. Đòn bẩy tăng do đầu tư Dung Quất 2 — cần số nợ vay Q3 để đánh giá chi phí lãi khi lãi suất tăng.",
@@ -116,6 +116,18 @@
    "vong": 11,
    "ben": "trong_tai",
    "noi_dung": "Đổi quy tắc, ghi công khai (không dời cột gôn ngầm): R38/R40 cho thấy vào lúc giá ≤ −25% so với đỉnh 250 phiên mới có lợi thế, và dừng kỹ thuật sát làm mất lợi thế (−7% cắt: +10,6% vs +14,0%/năm). Vì vậy mã này CHỜ GIÁ CỔNG 19,69 mới mua đợt 1; K1 19,6 cũ thành vùng quan sát — nếu thủng trước khi mua, sổ ghi K1 SAI. Luận điểm cơ bản vẫn chấm bằng K2/K3. Mức ngừng mua mới 18,4 ≈ giá cổng − 7%. Xếp hạng 70/30 vẫn tính, nhưng chỉ được xếp lượt khi đạt cổng."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 12,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 45/70 = quốc tế 4 · vĩ mô VN 13 · ngành 9 · doanh nghiệp 12 · giá sai 7; số 22/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: PHẢN ÁNH MỘT PHẦN. Tin xấu: Giá thép giảm vì Trung Quốc xuất khẩu dư thừa; LN quý đi xuống từ đỉnh Q1. Kỳ vọng ngầm: P/E 7,44 vs 15,0 → LN −50%. Đáy chu kỳ thép 2022 LN giảm ~3/4 so với 2021 (kiến thức nền, cần đối chiếu) → kỳ vọng ngầm chỉ ngang kịch bản xấu thực tế. Phép thử: KQ Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → CONFIRMATION. Kết luận: CHỜ PHÉP THỬ Q3."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 13,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -133,13 +145,6 @@
   }
  },
  "kiem_chung": [
-  {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 19.6,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 19,6 trong 60 phiên (biên dưới vùng hỗ trợ 19,6–20,1 của Daily: đáy 20 phiên, đáy cũ, 6 lần chạm). — Từ 15/10: K1 đổi vai thành VÙNG QUAN SÁT (vẫn chấm ĐÚNG/SAI trong sổ dự đoán), không còn là điều kiện vô hiệu."
-  },
   {
    "id": "K2",
    "loai": "funda",
@@ -159,34 +164,44 @@
    "noi_dung": "LNST Q3/26 ≥ 5.097 tỷ, tức không giảm quá 20% so với Q2 (6.371 tỷ) — chặn kịch bản LN quý trượt dài. Điều kiện cho đợt 2 (anh Sơn chốt 15/10)."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 18,4 (giá cổng R38 19,69 − khoảng 7%); bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
- "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần.",
- "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Danh mục chỉ mua đợt 1 khi giá về vùng cổng 19,7 (thấp hơn đỉnh 250 phiên 25%), và ngừng mua thêm dưới 18,4.",
- "vo_hieu_gia": 18.4,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 23.46,
-   "nguon": "MA200 tại 14/10 (NSI, giá chỉnh)",
-   "du_kien_phien": 52,
-   "han_phien": 120,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.67%"
-  },
-  {
-   "id": "T2",
-   "gia": 26.89,
-   "nguon": "Đỉnh 26/02/2026 (giá chỉnh); P/E tại đó ≈ 9,6 vẫn dưới trung vị 3 năm 15,0",
-   "du_kien_phien": 236,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.67%"
-  }
- ],
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "vo_hieu": "Vô hiệu theo sự kiện: đầu tư công cả năm hụt xa kế hoạch; biên gộp co hai quý liên tiếp vì giá HRC Trung Quốc; KQ Q3 ra mà giá thủng đáy với lực bán lớn. Mốc cơ bản: LNST Q3/26 ≥ +15% (K2).",
+ "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần. Kỳ vọng ngầm trong giá: P/E 7,44 vs 15,0 → LN −50%. Đáy chu kỳ thép 2022 LN giảm ~3/4 so với 2021 (kiến thức nền, cần đối chiếu) → kỳ vọng ngầm chỉ ngang kịch bản xấu thực tế.",
+ "pitch": "[CHỜ PHÉP THỬ Q3 · 67 điểm] Hòa Phát đứng đúng chỗ động lực mạnh nhất của quý 4 là đầu tư công, nhưng tin xấu chính là giá thép bị Trung Quốc xuất khẩu dư thừa đè xuống vẫn đang tiếp diễn. Giá đang trả cho kịch bản lợi nhuận giảm một nửa, chỉ ngang với những gì đáy chu kỳ thép từng gây ra. Chờ KQ Q3 làm phép thử: kết quả giảm đã biết ra mà giá giữ được thì tin xấu đã vào giá.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "dinh_gia_sai": 5,
-  "ly_do": "Thị trường định giá theo chiều LN quý (đang giảm từ đỉnh Q1) — điều này hợp lý, lý do port cho rằng giá sai (LN cùng kỳ +34%, Dung Quất 2) yếu hơn sau debate 15/10.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 13,
+   "nganh": 9,
+   "doanh_nghiep": 12,
+   "gia_sai": 7
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 7,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 45,
+  "so_30": 22,
+  "tong": 67,
+  "dinh_gia_sai": 7,
+  "gia_sai": {
+   "a_ban_chat": 3,
+   "b_trang_thai": 2,
+   "c_ky_vong_ngam": 2,
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN",
+   "tin_xau": "Giá thép giảm vì Trung Quốc xuất khẩu dư thừa; LN quý đi xuống từ đỉnh Q1.",
+   "co_that_su_xau": "Chu kỳ, nguồn còn chạy: TQ XK tháng 9 +36,3%, cầu nội địa TQ yếu.",
+   "trang_thai": "Q3 giảm ~16% so với Q2 đã được dự báo (RongViet).",
+   "ky_vong_ngam": "P/E 7,44 vs 15,0 → LN −50%. Đáy chu kỳ thép 2022 LN giảm ~3/4 so với 2021 (kiến thức nền, cần đối chiếu) → kỳ vọng ngầm chỉ ngang kịch bản xấu thực tế.",
+   "nguoi_ban_can_bien": "Nhà đầu tư bán theo LN quý; nội bộ đang mua (đăng ký 50 triệu cp).",
+   "counter": "Chu kỳ thép chưa đáy nên giá còn giảm. Response: đứng nếu LN Q3 thấp hơn dự báo; luận điểm đầu tư công chỉ cứu được khi giá thép ngừng giảm.",
+   "phep_thu": "KQ Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  "ket_luan": "CHỜ PHÉP THỬ Q3",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  }
 }

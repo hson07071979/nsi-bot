@@ -1,14 +1,14 @@
 {
- "ky_han": "6-12 tháng",
+ "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
  "cap_nhat": "2026-10-15",
  "bai_hoc": "",
  "ma": "IDC",
- "trang_thai": "trong_port",
+ "trang_thai": "nghien_cuu",
  "chieu": "tang",
- "ngay_vao": "2026-10-14",
+ "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "FACT: GDP Q3/2026 +9,95%, 9 tháng +9,01%; xuất khẩu hàng hóa và dịch vụ Q3 +23,27%; tích lũy tài sản Q3 +21,39% (Cục Thống kê, 03/10). FACT: tín dụng đến 30/9 +11,59% so với cuối 2025 (NHNN). FACT: lãi suất huy động bình quân phát sinh mới 6,38%, tăng 1,15 điểm % từ đầu năm (NHNN, 07/10). FACT: CPI bình quân 9 tháng +4,52%. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%, US10Y ~5,3%, DXY ~102,2 (07–08/10). FACT: khối ngoại bán ròng ~100 nghìn tỷ từ đầu năm, sở hữu ngoại giảm từ ~24% còn ~12%. FACT: IIP 9 tháng +12,3%, chế biến chế tạo +12,9%. INTERPRETATION: xuất khẩu và sản xuất đang kéo nhu cầu đất KCN.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: FDI đăng ký +76%, thực hiện cao nhất 5 năm, IIP +12,3% → nhu cầu đất KCN và điện; rủi ro 301 \"sản xuất dư thừa\" với dòng FDI đi theo chuỗi Trung Quốc.",
   "nganh": "FACT (VCBS): BĐS KCN được đánh giá tích cực Q3 nhờ FDI, đặc biệt KCN miền Bắc. INTERPRETATION: KCN là nhánh BĐS ít phụ thuộc tín dụng cá nhân và lãi vay mua nhà.",
   "doanh_nghiep": "Chủ đầu tư KCN. FACT (NSI): ROE 32,7% — ngang VHM (32,6%), cao nhất nhóm BĐS trong rổ NSI; LNST Q2/26 +104,9%, LN 4 quý +43,9%.",
   "mo_hinh_kd": "Cho thuê đất KCN ghi nhận theo đợt bàn giao (LN quý thất thường: 343, 298, 842, 449, 271, 610 tỷ từ Q1/25 đến Q2/26 — NSI) cùng các mảng có dòng tiền đều. Cơ cấu mảng cần đối chiếu BCTC.",
@@ -30,13 +30,15 @@
  "bull": [
   "ROE 32,7%, P/E 6,6 lần.",
   "Động lực xuất khẩu–FDI đang mạnh nhất nhiều năm.",
-  "Giá đã hồi 12% từ đáy 30,0 (11/09) và đứng trên MA50."
+  "Giá đã hồi 12% từ đáy 30,0 (11/09) và đứng trên MA50.",
+  "FACT (DSC 07/08): H1/26 DT điện ~1.851 tỷ (+7%, ~1/2 DT), KCN 1.485 tỷ (+37%); nợ vay/VCSH ~0,6; KCN đang triển khai Hựu Thạnh, Phú Mỹ II, Tân Phước 1; DSC MUA, mục tiêu 38.750."
  ],
  "bear": [
   "LN theo đợt bàn giao, Q3/25 là nền cao (842 tỷ) → Q3/26 dễ giảm so với cùng kỳ.",
   "Bị bán theo tâm lý BĐS; lãi suất tăng.",
   "Rủi ro thuế quan/xuất khẩu sang Mỹ — chưa có dữ liệu trong NSI.",
-  "Thiếu dữ liệu cổ đông và cơ cấu mảng."
+  "Thiếu dữ liệu cổ đông và cơ cấu mảng.",
+  "DSC ghi quỹ đất hai số lệch (>3.200 ha và 4.500 ha) — chưa có diện tích đất thương phẩm chưa cho thuê; chưa có tỷ trọng khách thuê Trung Quốc."
  ],
  "debate": [
   {
@@ -74,6 +76,18 @@
    "vong": 6,
    "ben": "trong_tai",
    "noi_dung": "Kết luận: giữ, tỷ trọng mục tiêu 12% (thấp hơn vì thiếu dữ liệu lãnh đạo). Đợt 1 = 1/3. Bổ sung dữ liệu cổ đông trước kỳ cập nhật quý."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 7,
+   "ben": "trong_tai",
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 51/70 = quốc tế 5 · vĩ mô VN 13 · ngành 11 · doanh nghiệp 10 · giá sai 12; số 23/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: ĐÃ PHẢN ÁNH PHẦN LỚN — còn thiếu số đất thương phẩm và tỷ trọng khách TQ. Tin xấu: Bị bán theo nhóm BĐS khi lãi suất tăng; LN Q3 khó vượt nền cao Q3/25 (842 tỷ). Kỳ vọng ngầm: P/E 6,59 vs 9,36 → LN −30%; DSC dự LNST 2026 +5% → kỳ vọng ngầm xấu hơn thực tế. Phép thử: KQ Q3 (dự kiến giảm so với nền cao): KQ ra giảm mà giá không tạo đáy mới → CONFIRMATION. Kết luận: CHỜ PHÉP THỬ Q3."
+  },
+  {
+   "ngay": "2026-10-15",
+   "vong": 8,
+   "ben": "anh_son",
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
   }
  ],
  "phan_bien_may": {
@@ -92,13 +106,6 @@
  },
  "kiem_chung": [
   {
-   "id": "K1",
-   "loai": "giu",
-   "moc": 31.7,
-   "han_phien": 60,
-   "noi_dung": "Giữ trên 31,7 trong 60 phiên (hỗ trợ Daily: 2 lần chạm, đáy cũ; dưới vùng 32,2–33,04)."
-  },
-  {
    "id": "K2",
    "loai": "funda",
    "chi_tieu": "roe",
@@ -108,34 +115,44 @@
    "noi_dung": "ROE tại Q3/26 ≥ 25% (đo bằng ROE vì LN quý của KCN thất thường, Q3/25 là nền cao)."
   }
  ],
- "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 31,7; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: ROE Q3/26 dưới 25%.",
- "dinh_gia": "P/E 6,59 lần vs trung vị 3 năm 9,36; P/B 2,12 vs 2,8 (NSI, 14/10). Vùng quan sát.",
- "pitch": "IDICO là cách đứng vào làn sóng xuất khẩu và FDI mà không phải gánh rủi ro thị trường nhà ở: ROE trên 30%, P/E khoảng 6,6 lần. Danh mục giữ khi giá còn trên 31,7 và hiệu quả sinh lời giữ trên 25%.",
- "vo_hieu_gia": 31.7,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 36.5,
-   "nguon": "MA200 tại 14/10",
-   "du_kien_phien": 21,
-   "han_phien": 60,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.73%"
-  },
-  {
-   "id": "T2",
-   "gia": 45.01,
-   "nguon": "Đỉnh 03/02/2026 (giá chỉnh); P/E tại đó ≈ 8,8 vẫn dưới trung vị 9,36. Thang thời gian ước 279 phiên > kỳ hạn → giới hạn 250",
-   "du_kien_phien": 250,
-   "han_phien": 250,
-   "mo_ta": "Độ lệch chuẩn ngày 60 phiên 1.73%"
-  }
- ],
- "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
+ "vo_hieu": "Vô hiệu theo sự kiện: Mỹ kết luận 301 \"sản xuất dư thừa\" ở mức cao và khách thuê chủ yếu là doanh nghiệp Trung Quốc; KQ Q3 ra mà giá thủng đáy với lực bán lớn. Mốc cơ bản: ROE Q3/26 ≥ 25% (K2).",
+ "dinh_gia": "P/E 6,59 lần vs trung vị 3 năm 9,36; P/B 2,12 vs 2,8 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 6,59 vs 9,36 → LN −30%; DSC dự LNST 2026 +5% → kỳ vọng ngầm xấu hơn thực tế.",
+ "pitch": "[CHỜ PHÉP THỬ Q3 · 74 điểm] IDICO bị bán chung với nhóm bất động sản khi lãi suất tăng, nhưng doanh nghiệp không sống bằng tín dụng mua nhà: khoảng một nửa doanh thu đến từ bán điện, mảng KCN tăng 37% nhờ FDI, nợ vay chỉ khoảng 0,6 lần vốn chủ. Ở P/E khoảng 6,6 lần, giá trả cho kịch bản lợi nhuận giảm khoảng 30%. Chờ KQ Q3 làm phép thử và bổ sung số đất thương phẩm còn lại trước khi giải ngân.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "dinh_gia_sai": 5,
-  "ly_do": "Bị bán theo nhóm BĐS dù động lực là FDI–xuất khẩu; thiếu dữ liệu lãnh đạo/cơ cấu mảng để chứng minh.",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 13,
+   "nganh": 11,
+   "doanh_nghiep": 10,
+   "gia_sai": 12
+  },
+  "so": {
+   "dinh_gia": 8,
+   "kqkd": 8,
+   "suc_khoe_tc": 7
+  },
+  "luan_diem_70": 51,
+  "so_30": 23,
+  "tong": 74,
+  "dinh_gia_sai": 12,
+  "gia_sai": {
+   "a_ban_chat": 5,
+   "b_trang_thai": 3,
+   "c_ky_vong_ngam": 4,
+   "ket_luan": "ĐÃ PHẢN ÁNH PHẦN LỚN — còn thiếu số đất thương phẩm và tỷ trọng khách TQ",
+   "tin_xau": "Bị bán theo nhóm BĐS khi lãi suất tăng; LN Q3 khó vượt nền cao Q3/25 (842 tỷ).",
+   "co_that_su_xau": "Phần BĐS là nhầm nhóm. FACT (DSC 07/08): H1/26 DT điện ~1.851 tỷ (~1/2 DT), KCN 1.485 tỷ (+37%); nợ vay/VCSH ~0,6.",
+   "trang_thai": "Nền Q3 cao đã biết, có ngày; 301 \"sản xuất dư thừa\" chưa có kích thước.",
+   "ky_vong_ngam": "P/E 6,59 vs 9,36 → LN −30%; DSC dự LNST 2026 +5% → kỳ vọng ngầm xấu hơn thực tế.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân bán theo rổ BĐS.",
+   "counter": "FDI chậm nếu Mỹ kết luận 301 \"dư thừa\". Response: đúng nếu khách thuê chủ yếu là doanh nghiệp Trung Quốc — chưa có số.",
+   "phep_thu": "KQ Q3 (dự kiến giảm so với nền cao): KQ ra giảm mà giá không tạo đáy mới → CONFIRMATION."
+  },
+  "ket_luan": "CHỜ PHÉP THỬ Q3",
   "cham_boi": "claude",
+  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  }
 }
