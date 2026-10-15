@@ -222,7 +222,8 @@ def D_han_che(d, rows, ev, H=250):
         if not idx:
             continue
         with np.errstate(all='ignore'):
-            nam[y] = dict(pe_trung_vi=round(float(np.nanmedian(pe[idx])), 1),
+            _m = float(np.nanmedian(pe[idx]))
+            nam[y] = dict(pe_trung_vi=None if np.isnan(_m) else round(_m, 1),
                           gtgd_tb_ngay_ty=round(float(np.nansum(TV[idx]) / len(idx) / 1e9)),
                           so_ma_gtgd_10ty=int(np.nanmean(np.sum(TV[idx] >= 10e9, axis=1))))
     return dict(

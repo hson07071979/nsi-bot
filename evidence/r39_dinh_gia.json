@@ -256,12 +256,12 @@
   },
   "theo_nam": {
    "2017": {
-    "pe_trung_vi": NaN,
+    "pe_trung_vi": null,
     "gtgd_tb_ngay_ty": 5978,
     "so_ma_gtgd_10ty": 91
    },
    "2018": {
-    "pe_trung_vi": NaN,
+    "pe_trung_vi": null,
     "gtgd_tb_ngay_ty": 6505,
     "so_ma_gtgd_10ty": 86
    },
