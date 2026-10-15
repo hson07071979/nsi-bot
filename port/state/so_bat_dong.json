@@ -48,5 +48,45 @@
   "ly_do_may": "cấu trúc MA: giá -3.9% so với MA50, -7.2% so với MA200",
   "gia0": 56.3,
   "vni0": 1704.87
+ },
+ {
+  "ma": "CTR",
+  "may": "daily",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -7.5% so với MA50, -10.5% so với MA200",
+  "gia0": 68.3,
+  "vni0": 1704.87
+ },
+ {
+  "ma": "POW",
+  "may": "bot",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cổng rủi ro cơ bản chặn: CFO < 0",
+  "gia0": 12.45,
+  "vni0": 1704.87
+ },
+ {
+  "ma": "POW",
+  "may": "tin",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "4 chủ đề nhắc mã, 8 chủ đề cùng ngành trong 10 ngày; điểm chiều -0.6",
+  "gia0": 12.45,
+  "vni0": 1704.87
+ },
+ {
+  "ma": "POW",
+  "may": "daily",
+  "ngay": "2026-10-14",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -5.9% so với MA50, -9.8% so với MA200",
+  "gia0": 12.45,
+  "vni0": 1704.87
  }
 ]
