@@ -67,3 +67,9 @@ Code: `port/giai_ngan.py`. Bằng chứng: `research/r38_giai_ngan.py`, `researc
 - **Mục tiêu**: T1/T2 vẫn từ mốc kỹ thuật/định giá, kèm **xác suất chạm trong 60/120 phiên** (bước ngẫu nhiên không trôi, σ 60 phiên — R39 hiệu chỉnh tốt). Không dùng "P/E tại đỉnh LN cũ" để xếp hạng (R39: tương quan với lợi suất thực tế −0,12).
 - **Điểm 70/30**: pitch 70 (định giá so với chính nó 20, trạng thái thị trường 20, độ chặt lập luận 15, `pitch_diem.dinh_gia_sai` 15) + kết quả 30 (LN 4 quý 10, ROE 10, K2 10). Điểm được ghi vào sổ dự đoán để sau này kiểm có dự báo được không.
 - **Sổ lệnh** `port/so_lenh.json` (nhánh port-data) là nguồn duy nhất cho vị thế thật: `{"lenh":[{"ngay","ma","loai":"mua|ban","ty_le":% NAV,"gia","dot"}]}`.
+
+### Lớp danh mục (R40, anh Sơn chốt 15/10/2026)
+Mô phỏng danh mục theo lịch 14/02/2020→15/10/2026 (`research/r40_rui_ro.py`, `evidence/r40_rui_ro.json`): cắt lỗ từng mã KHÔNG chặn được sụt giảm danh mục (quy tắc −15% vẫn sụt −54% năm 2022, chỉ +7,2%/năm). Thêm hai lớp:
+- **Chỉ mở mã mới khi VN-Index ≤ −10% so với đỉnh 250 phiên.**
+- **Tối đa 2 mã mới mỗi 20 phiên**, xếp lượt theo điểm 70/30; tối đa 8 mã × 12,5% NAV.
+Kết quả: +171,7% (16,2%/năm), sụt giảm danh mục lớn nhất −18,7% (VN-Index +81,2%, −40,3%); riêng 2023–2026 +14,8%/năm, −14,3%; Monte Carlo trung vị 15,9%/năm, p5 11,8%, sụt p95 21,5%. Đã thử ~20 phương án trên cùng dữ liệu nên có rủi ro quá khớp — vùng tham số lân cận (ngưỡng −8…−15%, 6–10 mã, nhịp 1–2) đều cho 10–20%/năm, sụt 9–24%.

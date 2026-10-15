@@ -29,7 +29,14 @@ CHAY = 0.10
 HET_HAN = 120
 HOI_MA20_HAN = 60
 NGUNG_MUA, BAN = 0.07, 0.15
-TRAN_MA, NHIET_TOI_DA = 20.0, 10.0
+TRAN_MA, NHIET_TOI_DA = 12.5, 10.0
+# Lớp DANH MỤC (R40, anh Sơn chốt 15/10/2026): mô phỏng danh mục theo lịch 2020→2026 cho thấy cắt lỗ từng mã KHÔNG
+# chặn được sụt giảm danh mục (−54% năm 2022: cắt mã này lại mua ngay mã 'rẻ' khác đang rơi). Hai lớp sau mới chặn được:
+MO_MOI_VNI = -0.10      # chỉ MỞ MÃ MỚI khi VN-Index thấp hơn đỉnh 250 phiên ≥ 10% (lúc bình thường 'rẻ' là bẫy giá trị)
+NHIP_MO, NHIP_PHIEN = 2, 20   # tối đa 2 mã mới mỗi 20 phiên — rải tiền theo thời gian khi thị trường sập
+K_TOI_DA = 8            # tối đa 8 mã, mỗi mã 12,5% NAV
+# R40: +171,7% (16,2%/năm) 14/02/2020→15/10/2026, sụt giảm danh mục lớn nhất −18,7%; VN-Index +81,2%, −40,3%.
+# Monte Carlo (bỏ ngẫu nhiên 30% cơ hội, 300 lần): trung vị 15,9%/năm, p5 11,8%/năm, sụt giảm p95 21,5%.
 LIM = {'HOSE': 0.075, 'HNX': 0.105, 'UPCOM': 0.155}
 
 
@@ -157,6 +164,8 @@ def ke_hoach(t: dict, vt_muc_tieu: float | None, tt: dict, dates: list[str], c: 
         ss = (san_sang or {}).get('ket_luan')
         if vni_duoi:
             out.update(hanh_dong=f'Hoãn: VN-Index dưới mốc dừng {dung_vni:,.1f}.', muc='hoan')
+        elif (tt.get('dd') is not None) and tt['dd'] / 100 > MO_MOI_VNI:
+            out.update(hanh_dong=f'Không mở mã mới: VN-Index chỉ {tt["dd"]}% so với đỉnh 250 phiên (cần ≤ −10%) — lúc bình thường "rẻ" dễ là bẫy giá trị (R39/R40).', muc='cho')
         elif ss == 'ĐỦ ĐỂ XUỐNG TIỀN':
             out.update(hanh_dong=f'Đợt 1: mua {tl[0]*100:.0f}% tỷ trọng mục tiêu = {muc*tl[0]:.1f}% NAV '
                                  f'(thị trường {tt.get("ten")}, kế hoạch {len(tl)} đợt).', muc='mua', ty_le_mua=round(muc * tl[0], 2))
@@ -218,6 +227,41 @@ def ke_hoach(t: dict, vt_muc_tieu: float | None, tt: dict, dates: list[str], c: 
                               f'Chờ nền: {NEN_PHIEN} phiên gần nhất chưa đủ đi ngang (biên {nb.get("bien")}%, tạo đáy mới: {"có" if nb.get("day_moi") else "không"})')
                    + f'. Đợt kế {w_ke:.1f}% NAV. Hết hạn sau {max(HET_HAN-(tu_dot_1 or 0),0)} phiên.', muc='cho')
     return out
+
+
+def mo_gan_day(so_lenh: dict, dates: list[str]) -> dict:
+    """Số mã đang nắm và số mã MỚI mở trong NHIP_PHIEN phiên gần nhất (theo ngày mua đầu tiên của từng mã)."""
+    dau, von = {}, {}
+    for l in sorted((so_lenh or {}).get('lenh') or [], key=lambda x: x.get('ngay', '')):
+        m = str(l.get('ma', '')).upper()
+        if l.get('loai', 'mua') == 'mua':
+            dau.setdefault(m, l.get('ngay'))
+    dang = [m for m in dau if (vi_the(so_lenh, m)['von'] or 0) > 1e-9]
+    gan = [m for m in dang if (_phien_tu(dates, dau[m]) or 0) < NHIP_PHIEN]
+    con = None
+    if gan:
+        cu_nhat = min(dau[m] for m in gan)
+        con = NHIP_PHIEN - (_phien_tu(dates, cu_nhat) or 0)
+    return dict(dang_nam=len(dang), mo_gan=len(gan), ma_mo_gan=gan, phien_toi_luot=con)
+
+
+def xep_luot(the: list[dict], mg: dict) -> dict:
+    """Trong các mã CHƯA có vị thế mà kế hoạch nói 'mua đợt 1', chỉ cho mở theo điểm 70/30 cao nhất,
+    tối đa (NHIP_MO − số mã mới mở 20 phiên qua) và không vượt K_TOI_DA mã. Các mã còn lại: chờ lượt."""
+    slot = max(0, min(NHIP_MO - mg['mo_gan'], K_TOI_DA - mg['dang_nam']))
+    ung = [x for x in the if x.get('giai_ngan', {}).get('muc') == 'mua' and not x['giai_ngan'].get('so_lan_mua')]
+    ung.sort(key=lambda x: -((x.get('diem_70_30') or {}).get('tong') or 0))
+    for k, x in enumerate(ung):
+        g = x['giai_ngan']
+        g['thu_tu'] = k + 1
+        if k >= slot:
+            ly = (f'đã đủ {K_TOI_DA} mã' if mg['dang_nam'] >= K_TOI_DA else
+                  f'đã mở {mg["mo_gan"]} mã mới trong {NHIP_PHIEN} phiên' + (f', lượt kế sau {mg["phien_toi_luot"]} phiên' if mg.get('phien_toi_luot') else '')
+                  if mg['mo_gan'] >= NHIP_MO else f'xếp thứ {k+1} theo điểm 70/30, mỗi {NHIP_PHIEN} phiên chỉ mở {NHIP_MO} mã')
+            g['hanh_dong'] = f'Chờ lượt ({ly}). Khi tới lượt: ' + g['hanh_dong']
+            g['muc'] = 'cho_luot'
+            g.pop('ty_le_mua', None)
+    return dict(slot=slot, uu_tien=[x['luan']['ma'] for x in ung], **mg)
 
 
 def nhiet_danh_muc(kh: list[dict]) -> dict:

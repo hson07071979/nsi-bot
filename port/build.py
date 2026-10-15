@@ -464,6 +464,8 @@ def build(now: datetime | None = None) -> dict:
                         muc_tieu_cham=mtc, rr=H.rr(t, p_now), san_sang=ss, giai_ngan=kh,
                         diem_70_30=G.diem_70_30(t, loc_row, tt, ss, kc)))
 
+    ngay_vni = [r.get('date') for r in (D.get('regime') or []) if r.get('date')]
+    luot = G.xep_luot(the, G.mo_gan_day(so_lenh, ngay_vni))
     cham_bat_dong(so, gia)
     H.ghi_du_doan(so_dd, the, D, gia, asof)
     H.cham_du_doan(so_dd, gia)
@@ -488,7 +490,7 @@ def build(now: datetime | None = None) -> dict:
         loc=bang_loc(D), ten_may=TEN_MAY,
         du_doan=so_dd[-400:], do_chinh_xac=H.do_chinh_xac(so_dd), timing=H.tong_ket_timing(the),
         hieu_qua=H.hieu_qua(so_lenh, gia, asof), trang_thai_tt=tt,
-        nhiet=G.nhiet_danh_muc([x['giai_ngan'] for x in the]),
+        nhiet=G.nhiet_danh_muc([x['giai_ngan'] for x in the]), luot=luot,
         nguon=dict(site_asof=asof, tin_so_ban=len(reps), daily_ngay=(daily or {}).get('ngay')),
     )
     wj(OUT / 'bundle.json', bundle)

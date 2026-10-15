@@ -271,6 +271,29 @@ def test_diem_70_30_va_nhiet():
     assert d['pitch'] == 20 + 20 + 15 + 12 and d['ket_qua'] == 30 and d['tong'] == 97
     d = G.diem_70_30({}, {'pe': 20, 'pe_tv': 10}, {'ten': 'bình thường'}, {'dat': 0, 'tong': 9}, [])
     assert d['pitch'] == 4 and d['ket_qua'] == 5
-    n = G.nhiet_danh_muc([{'ma': 'A', 'da_giai_ngan': 10, 'lai_lo_pct': 0, 'ty_trong_muc_tieu': 18},
+    n = G.nhiet_danh_muc([{'ma': 'A', 'da_giai_ngan': 10, 'lai_lo_pct': 0, 'ty_trong_muc_tieu': 12.5},
                           {'ma': 'B', 'da_giai_ngan': 5, 'lai_lo_pct': -20, 'ty_trong_muc_tieu': 25}])
     assert n['hien_tai'] == 1.5 and n['vi_pham_tran_ma'] == ['B']
+
+
+def test_lop_danh_muc_cong_vni_va_nhip():
+    c = [10.0] * len(DATES)
+    ok = {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN'}
+    # thị trường bình thường (−5%): không mở mã mới
+    k = G.ke_hoach(_t(), 12.5, dict(TT, dd=-5.0), DATES, c, {}, ok, [], None)
+    assert k['muc'] == 'cho' and 'Không mở mã mới' in k['hanh_dong']
+    # căng thẳng (−11,6%): được mở
+    assert G.ke_hoach(_t(), 12.5, dict(TT, dd=-11.6), DATES, c, {}, ok, [], None)['muc'] == 'mua'
+    # nhịp: 1 mã mới mở 5 phiên trước → còn 1 lượt; ứng viên xếp theo điểm 70/30
+    sl = {'lenh': [{'ngay': DATES[-6], 'ma': 'Z', 'ty_le': 4, 'gia': 10}]}
+    mg = G.mo_gan_day(sl, DATES)
+    assert mg['dang_nam'] == 1 and mg['mo_gan'] == 1 and mg['phien_toi_luot'] == 15
+    the = [dict(luan={'ma': m}, giai_ngan=dict(muc='mua', hanh_dong='Đợt 1', ty_le_mua=4.2, so_lan_mua=0), diem_70_30={'tong': d})
+           for m, d in (('A', 60), ('B', 70), ('C', 65))]
+    lu = G.xep_luot(the, mg)
+    assert lu['slot'] == 1 and lu['uu_tien'] == ['B', 'C', 'A']
+    assert [x['giai_ngan']['muc'] for x in the] == ['cho_luot', 'mua', 'cho_luot']
+    # đủ 8 mã → không mở thêm
+    sl8 = {'lenh': [{'ngay': DATES[0], 'ma': f'M{i}', 'ty_le': 4, 'gia': 10} for i in range(8)]}
+    assert G.xep_luot([dict(luan={'ma': 'X'}, giai_ngan=dict(muc='mua', hanh_dong='Đợt 1', so_lan_mua=0), diem_70_30={'tong': 90})],
+                      G.mo_gan_day(sl8, DATES))['slot'] == 0

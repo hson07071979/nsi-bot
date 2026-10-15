@@ -64,6 +64,15 @@ def su_kien(d, kieu='port', cooldown=120, H=250):
     return out
 
 
+def _stop_vol(C, i0, j, k):
+    w = C[max(0, i0 - 60):i0 + 1, j].astype(np.float64)
+    w = w[~np.isnan(w)]
+    if len(w) < 30:
+        return 0.15
+    r = np.diff(np.log(w))
+    return float(np.clip(k * r.std() * np.sqrt(20), 0.08, 0.20))
+
+
 # ---------------------------------------------------------------- mô phỏng một sự kiện
 def mo_phong(d, e, cl, H=250, ma20=None):
     """cl: dict chiến lược. Trả về giá trị cuối, đường vốn, % giải ngân, giá vốn/giá đợt 1."""
@@ -122,10 +131,34 @@ def mo_phong(d, e, cl, H=250, ma20=None):
             cho = []
         cash *= (1 + CASH_D)
         ref = (sum(von_da_mua) / sh) if (cl.get('stop_von') and sh > 0) else p1
-        if stop and ref is not None and not trang['dung'] and c[t] < ref * (1 - stop):
-            cash += sh * (o[t + 1] if t + 1 <= T else c[t])
+        px_ra = (o[t + 1] if t + 1 <= T else c[t])
+        if sh > 0:
+            trang['dinh'] = max(trang.get('dinh', 0.0), c[t])
+        # cắt lỗ theo biến động: khoảng cách = k·σ60·√20, kẹp trong [8%, 20%]
+        stop_t = stop
+        if cl.get('stop_vol') and ref is not None:
+            stop_t = trang.setdefault('stop_vol_d', _stop_vol(C, i0, j, cl['stop_vol']))
+        # bán một nửa ở mức nhẹ hơn, phần còn lại ở mức stop
+        if cl.get('ban_nua') and ref is not None and sh > 0 and not trang.get('da_ban_nua') and c[t] < ref * (1 - cl['ban_nua']):
+            cash += sh / 2 * px_ra
+            von_da_mua[:] = [w / 2 for w in von_da_mua]
+            sh /= 2
+            trang['da_ban_nua'] = True
+            trang['xong'] = True
+        if stop_t and ref is not None and not trang['dung'] and sh > 0 and c[t] < ref * (1 - stop_t):
+            cash += sh * px_ra
             sh = 0.0
             trang['dung'] = True
+            trang['ngay_ra'] = t
+        # bảo vệ lợi nhuận: khi đã lãi ≥ kich, bán nếu rơi ≥ lui từ đỉnh
+        if cl.get('trail') and ref is not None and sh > 0 and not trang['dung']:
+            kich, lui = cl['trail']
+            if trang['dinh'] >= ref * (1 + kich) and c[t] < trang['dinh'] * (1 - lui):
+                cash += sh * px_ra
+                sh = 0.0
+                trang['dung'] = True
+                trang['chot'] = True
+                trang['ngay_ra'] = t
         eq[t] = cash + sh * c[t]
         # dừng mua thêm khi giá dưới giá vốn bình quân −x% (rà lại luận điểm, không bình quân giá xuống)
         if cl.get('dung_mua') and sh > 0 and not trang['xong'] and c[t] < (sum(von_da_mua) / sh) * (1 - cl['dung_mua']):
@@ -209,9 +242,9 @@ def mo_phong(d, e, cl, H=250, ma20=None):
     gia_von = (1 - cash) / sh if sh > 0 and not trang['dung'] else None
     giai_ngan = 1 - cash if not trang['dung'] else 0.0
     peak = np.maximum.accumulate(eq)
-    return dict(v=float(eq[-1]), maxdd=float((1 - eq / peak).max()), giai_ngan=float(giai_ngan),
+    return dict(v=float(eq[-1]), eq=eq, maxdd=float((1 - eq / peak).max()), giai_ngan=float(giai_ngan),
                 gia_von_rel=(float(gia_von / p1) if (gia_von and p1) else None),
-                dung=trang['dung'], chay=trang['chay'], T=T)
+                dung=trang['dung'], chay=trang['chay'], T=T, ngay_ra=trang.get('ngay_ra'), chot=trang.get('chot', False))
 
 
 # ---------------------------------------------------------------- chiến lược
