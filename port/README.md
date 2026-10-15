@@ -53,3 +53,17 @@ Port không chạy riêng. Nó là vòng thứ tư nối vào ba bộ máy đã 
   - NSI Daily: theo sổ dự báo đang mở; nếu không có dòng nào thì theo vị trí giá so với MA50 và MA200.
 - Mỗi máy nhìn một khung thời gian khác (Bot và Daily là ngắn hạn), nên khi phản biện phải nói rõ khung thời gian. Port thắng ở 60 phiên không có nghĩa là máy sai ở khung 5 phiên.
 - Mẫu dưới 10 lần thì chưa ra tỷ lệ, nghĩa là chưa kết luận được bên nào đáng tin hơn.
+
+## Giải ngân, rủi ro, mục tiêu, điểm 70/30 (R38/R39, anh Sơn chốt 15/10/2026)
+
+Code: `port/giai_ngan.py`. Bằng chứng: `research/r38_giai_ngan.py`, `research/r39_dinh_gia.py`, `evidence/r38_*.json`, `evidence/r39_*.json`
+(giá FireAnt 2017→nay ~700 mã HOSE/HNX, BCTC theo ngày công bố, 281 sự kiện "tài sản tốt, giá thấp" 2020–2025).
+
+- **Trạng thái thị trường** (VN-Index so với đỉnh 250 phiên): hoảng loạn ≤ −20% → 2 đợt 60/40; còn lại → 3 đợt 1/3.
+- **Đợt sau** chỉ khi đi ngang 20 phiên sau đợt trước (biên đóng cửa ≤ 8%, đầu–cuối ≤ 4%, nửa sau không tạo đáy mới); quá 120 phiên không có nền → mua nốt nếu luận điểm còn đúng.
+- **Chạy luôn** (+10% so với đợt 1 trước đợt 2): mua nửa phần còn lại ngay, nửa khi hồi về MA20 trong 60 phiên. Không bỏ lỡ (R38: bỏ lỡ mất ~8 điểm %/năm).
+- **Rủi ro**: < giá vốn −7% → ngừng mua thêm, rà luận điểm; < giá vốn −15% → bán hết; VN-Index dưới `danh_muc.dung_vni` → hoãn đợt mới; mỗi mã ≤ 20% NAV; nhiệt danh mục ≤ 10% NAV.
+  R38 với quy tắc này: lợi suất TB 12 tháng +14,0%, mã xấu nhất −26,5%, Monte Carlo 8 mã p5 −5,7%, xác suất danh mục lỗ > 10% sau 12 tháng 0,6%.
+- **Mục tiêu**: T1/T2 vẫn từ mốc kỹ thuật/định giá, kèm **xác suất chạm trong 60/120 phiên** (bước ngẫu nhiên không trôi, σ 60 phiên — R39 hiệu chỉnh tốt). Không dùng "P/E tại đỉnh LN cũ" để xếp hạng (R39: tương quan với lợi suất thực tế −0,12).
+- **Điểm 70/30**: pitch 70 (định giá so với chính nó 20, trạng thái thị trường 20, độ chặt lập luận 15, `pitch_diem.dinh_gia_sai` 15) + kết quả 30 (LN 4 quý 10, ROE 10, K2 10). Điểm được ghi vào sổ dự đoán để sau này kiểm có dự báo được không.
+- **Sổ lệnh** `port/so_lenh.json` (nhánh port-data) là nguồn duy nhất cho vị thế thật: `{"lenh":[{"ngay","ma","loai":"mua|ban","ty_le":% NAV,"gia","dot"}]}`.

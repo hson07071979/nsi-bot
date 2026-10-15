@@ -200,3 +200,77 @@ def test_hieu_qua_tu_so_lenh():
     assert r['vni_pct'] == 10.0 and r['vuot_vni'] == -10.0
     assert {v['ma']: v['lai_pct'] for v in r['vi_the']} == {'X': 20.0, 'Y': -20.0}
     assert H.hieu_qua({}, g, DAYS[-1]) is None
+
+
+# ---------------------------------------------------------------- R38/R39: giải ngân, rủi ro, xác suất chạm, 70/30
+import giai_ngan as G  # noqa: E402
+
+
+def _reg(vals):
+    return {'regime': [{'date': '2026-01-%02d' % (i % 28 + 1), 'vni': v} for i, v in enumerate(vals)]}
+
+
+def test_trang_thai_thi_truong():
+    assert G.trang_thai_tt(_reg([1000] * 10 + [790]))['ten'] == 'hoảng loạn'
+    assert G.trang_thai_tt(_reg([1000] * 10 + [790]))['ty_le'] == [0.6, 0.4]
+    assert G.trang_thai_tt(_reg([1000] * 10 + [880]))['ten'] == 'căng thẳng'
+    assert G.trang_thai_tt(_reg([1000] * 10 + [950]))['so_dot'] == 3
+
+
+def test_xac_suat_cham():
+    import math
+    c = [100 * math.exp(0.02 * ((-1) ** i)) for i in range(80)]   # σ ngày ≈ 4%
+    p = G.xac_suat_cham(c, c[-1] * 1.10, 60)
+    assert 0.5 < p < 0.95
+    assert G.xac_suat_cham(c, c[-1] * 0.9, 60) == 1.0
+    assert G.xac_suat_cham(c[:20], c[-1] * 1.1, 60) is None
+
+
+def test_nen_di_ngang():
+    c = [100.0] * 30 + [100 + (i % 3) for i in range(20)]
+    assert G.nen(c, 25)['co'] is True
+    assert G.nen(c, 10)['co'] is False                       # cửa sổ chưa nằm trọn sau đợt trước
+    roi = [100 - i * 0.3 for i in range(40)]                  # trôi xuống đều: biên nhỏ nhưng tạo đáy mới
+    assert G.nen(roi, 30)['co'] is False
+
+
+def _t(ma='X'):
+    return {'ma': ma, 'trang_thai': 'trong_port'}
+
+
+TT = {'ten': 'căng thẳng', 'vni': 1700, 'ty_le': [1 / 3] * 3}
+DATES = ['2026-09-%02d' % d for d in range(1, 29)] + ['2026-10-%02d' % d for d in range(1, 29)]
+
+
+def test_ke_hoach_dot1_va_hoan():
+    c = [10.0] * len(DATES)
+    k = G.ke_hoach(_t(), 18, TT, DATES, c, {}, {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN'}, [], 1668.5)
+    assert k['muc'] == 'mua' and k['ty_le_mua'] == 6.0
+    k = G.ke_hoach(_t(), 18, dict(TT, vni=1600), DATES, c, {}, {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN'}, [], 1668.5)
+    assert k['muc'] == 'hoan'
+    k = G.ke_hoach(_t(), 18, TT, DATES, c, {}, {'ket_luan': 'CHƯA ĐỦ'}, [], None)
+    assert k['muc'] == 'cho'
+
+
+def test_ke_hoach_ban_ngung_chay_nen():
+    sl = lambda g: {'lenh': [{'ngay': DATES[0], 'ma': 'X', 'ty_le': 6, 'gia': g}]}
+    flat = [10.0] * len(DATES)
+    assert G.ke_hoach(_t(), 18, TT, DATES, flat, sl(12.0), {}, [], None)['muc'] == 'ban'         # −16,7%
+    assert G.ke_hoach(_t(), 18, TT, DATES, flat, sl(10.9), {}, [], None)['muc'] == 'ngung'       # −8,3%
+    k = G.ke_hoach(_t(), 18, TT, DATES, flat, sl(9.0), {}, [], None)                              # +11%: chạy
+    assert k['muc'] == 'mua' and k['ty_le_mua'] == 6.0                                             # nửa của 12
+    k = G.ke_hoach(_t(), 18, TT, DATES, flat, sl(10.0), {}, [], None)                             # đi ngang đủ 20 phiên
+    assert k['muc'] == 'mua' and k['ty_le_mua'] == 6.0
+    assert G.ke_hoach(_t(), 18, TT, DATES, flat, sl(10.0), {}, [{'id': 'K2', 'loai': 'funda', 'ket_qua': 'SAI'}], None)['muc'] == 'ra_soat'
+
+
+def test_diem_70_30_va_nhiet():
+    loc = {'pe': 6, 'pe_tv': 12, 'pb': 1, 'pb_tv': 2, 'np4_yoy': 20, 'roe': 22}
+    d = G.diem_70_30({'pitch_diem': {'dinh_gia_sai': 12}}, loc, {'ten': 'hoảng loạn'}, {'dat': 9, 'tong': 9},
+                     [{'id': 'K2', 'trang_thai': 'dong', 'ket_qua': 'ĐÚNG'}])
+    assert d['pitch'] == 20 + 20 + 15 + 12 and d['ket_qua'] == 30 and d['tong'] == 97
+    d = G.diem_70_30({}, {'pe': 20, 'pe_tv': 10}, {'ten': 'bình thường'}, {'dat': 0, 'tong': 9}, [])
+    assert d['pitch'] == 4 and d['ket_qua'] == 5
+    n = G.nhiet_danh_muc([{'ma': 'A', 'da_giai_ngan': 10, 'lai_lo_pct': 0, 'ty_trong_muc_tieu': 18},
+                          {'ma': 'B', 'da_giai_ngan': 5, 'lai_lo_pct': -20, 'ty_trong_muc_tieu': 25}])
+    assert n['hien_tai'] == 1.5 and n['vi_pham_tran_ma'] == ['B']
