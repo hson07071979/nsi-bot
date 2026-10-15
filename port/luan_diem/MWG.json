@@ -167,7 +167,7 @@
    "noi_dung": "Doanh thu Q3/26 tăng ≥ 15% cùng kỳ — proxy cho chuỗi điện máy; cửa hàng hiện hữu điện máy tăng hai chữ số kiểm tay từ báo cáo tháng của MWG."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 68,88 (−6,3% từ 73,5), hoặc LNST Q3/26 tăng dưới 30%, hoặc cửa hàng hiện hữu điện máy Q3 tăng dưới 10%.",
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 68,88; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 30%, hoặc cửa hàng hiện hữu điện máy Q3 tăng dưới 10%.",
  "dinh_gia": "P/E 11,23 lần vs trung vị 3 năm 23,18; P/B 3,09 vs 3,36 (NSI, 14/10). Vùng quan sát.",
  "pitch": "Thế Giới Di Động đã gấp đôi lợi nhuận nhưng giá vẫn thấp hơn đỉnh đầu năm khoảng 20%, nên mức định giá chỉ còn khoảng một nửa trung bình 3 năm. Danh mục giữ mã này với điều kiện lợi nhuận quý 3 tiếp tục tăng trên 30% và giá giữ vùng 68,9–70,6. Mất vùng này thì luận điểm sai.",
  "vo_hieu_gia": 68.88,
@@ -190,5 +190,11 @@
   }
  ],
  "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
- "dieu_kien_vao": []
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "dinh_gia_sai": 10,
+  "ly_do": "Thị trường neo câu chuyện vào BHX (chỉ ~15% LN H1) và trần 95 cũ; động cơ thật là chuỗi điện máy (cửa hàng hiện hữu +30%, 8T) — có bằng chứng; chất xúc tác: báo cáo tháng và KQ Q3, chưa có ngày chắc.",
+  "cham_boi": "claude",
+  "ngay": "2026-10-15"
+ }
 }

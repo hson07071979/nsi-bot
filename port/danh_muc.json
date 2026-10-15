@@ -55,28 +55,23 @@
  "dot_giai_ngan": [
   {
    "dot": 1,
-   "khi": "Ngay (15–17/10)",
-   "lam": "Mua 1/3 tỷ trọng mục tiêu của HPG, MWG, IDC, VCB (~18% vốn)."
+   "khi": "Khi luận điểm ĐỦ ĐỂ XUỐNG TIỀN (hiện: HPG, MWG, IDC, VCB)",
+   "lam": "Mua 1/3 tỷ trọng mục tiêu (thị trường đang căng thẳng → kế hoạch 3 đợt); ~17,7% NAV."
   },
   {
    "dot": 2,
-   "khi": "Sau BCTC Q3 (khoảng 20/10–05/11)",
-   "lam": "Mã có K2 ĐÚNG và giá giữ K1 sau ngày công bố: thêm 1/3 (HPG cần thêm K3, MWG cần thêm K3). FPT vào 1/2 tỷ trọng sau KQ Q3 và sau ngày hiệu lực kỳ xét VNDiamond."
+   "khi": "Sau đợt 1 tối thiểu 20 phiên, khi đi ngang đủ chuẩn — hoặc ngay khi giá chạy +10%",
+   "lam": "Thêm 1/3 (chạy: nửa phần còn lại ngay, nửa khi hồi MA20). FPT/CTG/SSI/KDH vào đợt 1 khi điều kiện vào riêng đạt."
   },
   {
    "dot": 3,
-   "khi": "Đèn NSI rời ĐỎ (có FTD)",
-   "lam": "CTG vào 1/2; SSI vào nếu vượt 20,14."
+   "khi": "Nền 20 phiên tiếp theo, hoặc quá 120 phiên kể từ đợt 1 mà luận điểm còn đúng",
+   "lam": "Mua nốt tỷ trọng mục tiêu; giữ tiền đệm."
   },
   {
-   "dot": "4–5",
-   "khi": "Nhịp kiểm tra lại hỗ trợ sau FTD; BCTC Q4",
-   "lam": "Hoàn tất tỷ trọng mục tiêu; giữ 10% tiền."
-  },
-  {
-   "dot": "Dừng",
-   "khi": "VN-Index đóng cửa dưới 1.668,5",
-   "lam": "Hoãn đợt kế, rà lại từng luận điểm. Không dời mốc."
+   "dot": "Rủi ro",
+   "khi": "Giá vốn −7% / −15%; VN-Index < 1.668,5",
+   "lam": "Ngừng mua & rà luận điểm / bán hết / hoãn đợt mới."
   }
  ],
  "pitch": "Kinh tế Việt Nam đang tăng trưởng nhanh nhất nhiều năm, nhưng thị trường chứng khoán lại giảm vì lãi suất Mỹ tăng và khối ngoại rút vốn. Danh mục này không đoán đáy. Nó chọn những doanh nghiệp đầu ngành mà giá đã giảm sâu, định giá đã về vùng thấp nhất 3 năm, trong khi lợi nhuận vẫn tăng: Hòa Phát, Thế Giới Di Động, Vietcombank, VietinBank, FPT, IDICO, và SSI làm phần dự bị.\n\nVốn được giải ngân 3–5 lần. Lần đầu chỉ khoảng một phần sáu danh mục, vì thị trường chung chưa có tín hiệu tạo đáy. Các lần sau gắn với kết quả kinh doanh quý 3 và với tín hiệu xác nhận của thị trường. Mỗi mã có một mức giá mà nếu mất thì luận điểm được xem là sai. Nếu VN-Index đóng cửa dưới 1.668, danh mục tạm dừng giải ngân để rà lại.",
@@ -86,7 +81,8 @@
   "Mùa BCTC Q3: một mã không đạt K2 sẽ bị loại theo quy tắc, không chờ.",
   "Tập trung: 4/6 mã là vốn hóa lớn, cùng chịu bán của khối ngoại.",
   "Dữ liệu: giá NSI chưa chỉnh chia tách (port đã tự chỉnh); doanh thu FPT trong NSI lệch với số công bố.",
-  "Khung thời gian: Tin và Daily nhìn vài phiên; port nhìn 6–12 tháng. Port thắng 60 phiên không có nghĩa máy sai ở 5 phiên."
+  "Khung thời gian: Tin và Daily nhìn vài phiên; port nhìn 6–12 tháng. Port thắng 60 phiên không có nghĩa máy sai ở 5 phiên.",
+  "Kỷ luật bán ở giá vốn −15% làm lợi suất kỳ vọng thấp hơn giữ không dừng (R38: +14,0% vs +23,8%/năm) đổi lấy đuôi lỗ nhỏ (mã xấu nhất −26,5% thay vì −82%) — lựa chọn có chủ đích của anh Sơn."
  ],
  "debate_danh_muc": [
   {
@@ -123,6 +119,20 @@
    "vong": 7,
    "ben": "anh_son",
    "noi_dung": "15/10: tách ngân hàng VCB 8% + CTG 9%; HPG 20% → 15% kèm điều kiện quý; MWG thêm điều kiện chu kỳ điện máy; tiền đệm 10% → 15%."
+  },
+  {
+   "vong": 8,
+   "ben": "anh_son",
+   "noi_dung": "15/10: chốt quy tắc giải ngân theo trạng thái thị trường (R38) và nới vô hiệu thành bán ở giá vốn −15%, \"nới nhưng vẫn phải quản trị rủi ro\" → thêm ngừng mua −7%, trần 20% NAV/mã, nhiệt ≤ 10% NAV."
   }
- ]
+ ],
+ "dung_vni": 1668.5,
+ "quy_tac_giai_ngan": {
+  "nguon": "R38 (research/r38_giai_ngan.py) — anh Sơn chốt 15/10/2026",
+  "hoang_loan": "VN-Index ≤ −20% so với đỉnh 250 phiên: 2 đợt 60/40",
+  "con_lai": "3 đợt 1/3",
+  "dot_sau": "Chỉ khi đi ngang 20 phiên sau đợt trước: biên đóng cửa ≤ 8%, đầu–cuối ≤ 4%, nửa sau không tạo đáy mới. Quá 120 phiên không có nền → mua nốt nếu luận điểm còn đúng.",
+  "chay": "Đóng cửa ≥ giá đợt 1 +10% trước đợt 2: mua nửa phần còn lại ngay, nửa khi hồi về MA20 trong 60 phiên (quá hạn mua nốt). Không bỏ lỡ.",
+  "rui_ro": "Dưới giá vốn bình quân −7%: ngừng mua thêm, rà luận điểm. Dưới −15%: bán hết. VN-Index dưới 1.668,5: hoãn đợt mới. Mỗi mã ≤ 20% NAV; nhiệt danh mục ≤ 10% NAV."
+ }
 }

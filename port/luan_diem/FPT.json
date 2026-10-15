@@ -149,7 +149,7 @@
    "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 53,1 (−7%; vùng 55,8–55,91 của Daily là cảnh báo đầu tiên), hoặc LNST Q3/26 tăng dưới 10%.",
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 53,1; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 10%.",
  "dinh_gia": "P/E 10,57 lần vs trung vị 3 năm 20,64; P/B 2,66 vs 5,41 (NSI, 14/10). Vùng quan sát.",
  "pitch": "FPT đã giảm gần một nửa từ đỉnh tháng 1 vì lo ngại AI thay thế dịch vụ gia công, nhưng nửa đầu năm lợi nhuận trước thuế vẫn tăng 18% và hợp đồng mới ở nước ngoài tăng 32%. Danh mục chưa giải ngân ngay: chỉ vào sau khi có kết quả quý 3 và sau kỳ xét lại rổ VNDiamond. Nếu giá đóng cửa dưới 53,1 thì luận điểm sai.",
  "vo_hieu_gia": 53.1,
@@ -178,5 +178,11 @@
    "id": "K2",
    "can": "ĐÚNG"
   }
- ]
+ ],
+ "pitch_diem": {
+  "dinh_gia_sai": 10,
+  "ly_do": "Thị trường bán theo câu chuyện AI thay thế gia công; số liệu chưa xác nhận (ký mới nước ngoài +32%, AI +54%); chất xúc tác: KQ Q3 và ngày hiệu lực kỳ xét VNDiamond.",
+  "cham_boi": "claude",
+  "ngay": "2026-10-15"
+ }
 }

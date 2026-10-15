@@ -153,7 +153,7 @@
    "noi_dung": "LNST Q3/26 ≥ 5.097 tỷ, tức không giảm quá 20% so với Q2 (6.371 tỷ) — chặn kịch bản LN quý trượt dài. Điều kiện cho đợt 2 (anh Sơn chốt 15/10)."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 19,6 (−5,8% từ 20,8), hoặc LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 19,6; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 15% cùng kỳ, hoặc giảm quá 20% so với Q2.",
  "dinh_gia": "P/E 7,44 lần vs trung vị 3 năm 15,0; P/B 1,23 vs 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần.",
  "pitch": "Hòa Phát đang được định giá như thể lợi nhuận sắp gãy, trong khi Dung Quất 2 vừa đưa sản lượng thép cuộn lên mức mới và lợi nhuận quý 3 được dự báo vẫn tăng khoảng một phần ba. Nếu kết quả quý 3 ra đúng hướng và giá giữ được vùng 19,6–20,1, tin xấu về giá thép coi như đã vào giá. Nếu mất 19,6, luận điểm sai và danh mục rút mã này ra.",
  "vo_hieu_gia": 19.6,
@@ -176,5 +176,11 @@
   }
  ],
  "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
- "dieu_kien_vao": []
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "dinh_gia_sai": 5,
+  "ly_do": "Thị trường định giá theo chiều LN quý (đang giảm từ đỉnh Q1) — điều này hợp lý, lý do port cho rằng giá sai (LN cùng kỳ +34%, Dung Quất 2) yếu hơn sau debate 15/10.",
+  "cham_boi": "claude",
+  "ngay": "2026-10-15"
+ }
 }

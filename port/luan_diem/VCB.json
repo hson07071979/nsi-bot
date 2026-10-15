@@ -117,7 +117,7 @@
    "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
   }
  ],
- "vo_hieu": "Đóng cửa dưới 52,6 (−6,6% từ 56,3), hoặc LNST Q3/26 tăng dưới 10%.",
+ "vo_hieu": "Ngừng mua thêm và rà luận điểm khi đóng cửa dưới 52,6; bán hết khi đóng cửa dưới giá vốn bình quân −15% (kỷ luật anh Sơn chốt 15/10). Cơ bản: LNST Q3/26 tăng dưới 10%.",
  "vo_hieu_gia": 52.6,
  "dinh_gia": "P/B 1,89 vs trung vị 3 năm 2,62 (thấp nhất 12 quý 2,02); P/E 11,3 vs 14,91 (NSI, 14/10). Vùng quan sát.",
  "muc_tieu": [
@@ -140,5 +140,11 @@
  ],
  "co_so_timing": "Timing ước theo thang thời gian của bước ngẫu nhiên: số phiên ≈ (ln(mục tiêu/giá) ÷ độ lệch chuẩn lợi suất ngày 60 phiên)². Đây là HYPOTHESIS chưa hiệu chỉnh, được phép lệch; sổ dự đoán đo độ lệch thực tế để hiệu chỉnh dần.",
  "dieu_kien_vao": [],
- "pitch": "Vietcombank đang giao dịch dưới mức định giá thấp nhất 3 năm qua so với chính nó, trong khi giữ giá tốt nhất nhóm ngân hàng từ đầu năm. Danh mục dùng VCB cho vai phòng thủ khi thị trường chung chưa có tín hiệu tạo đáy; luận điểm sai nếu giá đóng cửa dưới 52,6."
+ "pitch": "Vietcombank đang giao dịch dưới mức định giá thấp nhất 3 năm qua so với chính nó, trong khi giữ giá tốt nhất nhóm ngân hàng từ đầu năm. Danh mục dùng VCB cho vai phòng thủ khi thị trường chung chưa có tín hiệu tạo đáy; luận điểm sai nếu giá đóng cửa dưới 52,6.",
+ "pitch_diem": {
+  "dinh_gia_sai": 5,
+  "ly_do": "Rẻ so với chính nó và phòng thủ tốt; lý do thị trường định giá sai chưa rõ ngoài dòng tiền ngoại rút.",
+  "cham_boi": "claude",
+  "ngay": "2026-10-15"
+ }
 }
