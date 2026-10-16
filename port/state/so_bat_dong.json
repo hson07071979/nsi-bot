@@ -88,5 +88,15 @@
   "ly_do_may": "cấu trúc MA: giá -5.9% so với MA50, -9.8% so với MA200",
   "gia0": 12.45,
   "vni0": 1704.87
+ },
+ {
+  "ma": "FPT",
+  "may": "daily",
+  "ngay": "2026-10-16",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -8.5% so với MA50, -17.1% so với MA200",
+  "gia0": 58.2,
+  "vni0": 1705.91
  }
 ]
