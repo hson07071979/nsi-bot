@@ -1515,5 +1515,57 @@
    "br50": 0.354,
    "vni": 1705.91
   }
+ },
+ {
+  "id": "FPT-tin-2026-10-19",
+  "ngay": "2026-10-19",
+  "ma": "FPT",
+  "nguon": "tin",
+  "chieu": -1,
+  "gia0": 57.1,
+  "vni0": 1689.84,
+  "dac_trung": {
+   "gia": 57.1,
+   "pe": 10.72,
+   "pb": 2.69,
+   "pe_rel": 0.5,
+   "pb_rel": 0.47,
+   "roe": 26.5,
+   "ny": 13.7,
+   "ry": -17.1,
+   "rs": 25.5,
+   "diem": 27.2,
+   "diem_cb": 15,
+   "nganh": "Công nghệ Thông tin",
+   "den": "DO",
+   "br50": 0.371,
+   "vni": 1689.84
+  }
+ },
+ {
+  "id": "HPG-daily-2026-10-19",
+  "ngay": "2026-10-19",
+  "ma": "HPG",
+  "nguon": "daily",
+  "chieu": -1,
+  "gia0": 20.55,
+  "vni0": 1689.84,
+  "dac_trung": {
+   "gia": 20.55,
+   "pe": 7.56,
+   "pb": 1.25,
+   "pe_rel": 0.49,
+   "pb_rel": 0.75,
+   "roe": 17.4,
+   "ny": 49.7,
+   "ry": 53.6,
+   "rs": 37.3,
+   "diem": 52.6,
+   "diem_cb": 40,
+   "nganh": "Tài nguyên Cơ bản",
+   "den": "DO",
+   "br50": 0.371,
+   "vni": 1689.84
+  }
  }
 ]

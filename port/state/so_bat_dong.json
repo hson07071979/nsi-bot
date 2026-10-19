@@ -98,5 +98,25 @@
   "ly_do_may": "cấu trúc MA: giá -8.5% so với MA50, -17.1% so với MA200",
   "gia0": 58.2,
   "vni0": 1705.91
+ },
+ {
+  "ma": "FPT",
+  "may": "tin",
+  "ngay": "2026-10-19",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "7 chủ đề nhắc mã, 0 chủ đề cùng ngành trong 10 ngày; điểm chiều -1.0",
+  "gia0": 57.1,
+  "vni0": 1689.84
+ },
+ {
+  "ma": "HPG",
+  "may": "daily",
+  "ngay": "2026-10-19",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -2.9% so với MA50, -11.2% so với MA200",
+  "gia0": 20.55,
+  "vni0": 1689.84
  }
 ]
