@@ -118,5 +118,15 @@
   "ly_do_may": "cấu trúc MA: giá -2.9% so với MA50, -11.2% so với MA200",
   "gia0": 20.55,
   "vni0": 1689.84
+ },
+ {
+  "ma": "VCB",
+  "may": "tin",
+  "ngay": "2026-10-19",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "10 chủ đề nhắc mã, 40 chủ đề cùng ngành trong 10 ngày; điểm chiều -0.6",
+  "gia0": 56.2,
+  "vni0": 1689.84
  }
 ]
