@@ -9,7 +9,7 @@ on:
     types: [completed]
   push:
     branches: [port-data]
-    paths: ['port/luan_diem/**', 'port/danh_muc.json', 'port/so_lenh.json']
+    paths: ['port/luan_diem/**', 'port/danh_muc.json', 'port/so_lenh.json', 'port/trong_so.json']
   schedule:
     - cron: '17 11 * * 1-5'      # 18h17 giờ VN, lưới dự phòng nếu daily không gọi
   workflow_dispatch:
@@ -24,7 +24,7 @@ concurrency:
 jobs:
   port:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Mã nguồn (main)
         uses: actions/checkout@v4
@@ -39,7 +39,24 @@ jobs:
         with:
           python-version: '3.11'
       - name: Cài thư viện
-        run: pip install requests
+        run: pip install requests numpy
+      # 22/10/2026: hai file dây chuyền hằng ngày đã có — BCTC từng dòng (Vietcap) và bảng giá gọn (FireAnt).
+      # Không có thì phần đọc BCTC / chạy lùi tự bỏ qua, các phần khác vẫn chạy.
+      - name: Lấy BCTC từng dòng (cache của dây chuyền hằng ngày)
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/funda_raw2.json
+            data/funda_age.json
+            data/ngay_cong_bo.json
+          key: bctc-port-${{ github.run_id }}
+          restore-keys: bctc-
+      - name: Lấy bảng giá gọn (cache của dây chuyền hằng ngày)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/port_gia.npz
+          key: port-gia-port-${{ github.run_id }}
+          restore-keys: port-gia-
       - name: Ghép dữ liệu vào mã
         run: |
           mkdir -p port/luan_diem port/state
@@ -47,17 +64,22 @@ jobs:
           cp -r _data/port/state/. port/state/ 2>/dev/null || true
           cp _data/port/danh_muc.json port/danh_muc.json 2>/dev/null || true
           cp _data/port/so_lenh.json port/so_lenh.json 2>/dev/null || true
+          cp _data/port/trong_so.json port/trong_so.json 2>/dev/null || true
           ls port/luan_diem
       - name: Dựng hồ sơ máy, chấm điểm, đẩy KV
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          NTFY_TOKEN: ${{ secrets.NTFY_TOKEN }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
         run: python port/build.py
       - name: Ghi trạng thái về port-data
         run: |
           mkdir -p _data/port/state
-          cp port/state/*.json _data/port/state/
+          cp -r port/state/. _data/port/state/
           cd _data
           git config user.name  "Bot Nguyễn Sơn Invest"
           git config user.email "bot@users.noreply.github.com"

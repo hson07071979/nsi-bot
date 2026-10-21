@@ -37,6 +37,7 @@ from statistics import median
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hoc as H  # noqa: E402  (mục tiêu + timing, sổ dự đoán, sẵn sàng, hiệu quả thực)
 import giai_ngan as G  # noqa: E402  (R38/R39: giải ngân theo trạng thái, rủi ro, xác suất chạm, điểm 70/30)
+import vong_moi as VM  # noqa: E402  (22/10/2026: sổ giả lập + NAV, đọc BCTC sâu, nhận định hằng ngày, nhắc review)
 
 ROOT = Path(__file__).resolve().parent
 LUAN = ROOT / 'luan_diem'
@@ -482,6 +483,8 @@ def build(now: datetime | None = None) -> dict:
             da_cham=sum(1 for x in the for k in x['kiem_chung'] if k.get('trang_thai') == 'dong'),
             dung=sum(1 for x in the for k in x['kiem_chung'] if k.get('ket_qua') == 'ĐÚNG')),
     )
+    moi = VM.chay(D, luan, rj(ROOT / 'danh_muc.json', {}), gia, daily, the, asof,
+                  gui_chuong=not os.environ.get('PORT_KHONG_CHUONG'), state=STATE, root=ROOT)
     wj(STATE / 'gia.json', gia)
     wj(STATE / 'so_bat_dong.json', so)
     wj(STATE / 'ngay_vao.json', vao)
@@ -495,6 +498,7 @@ def build(now: datetime | None = None) -> dict:
         hieu_qua=H.hieu_qua(so_lenh, gia, asof), trang_thai_tt=tt,
         nhiet=G.nhiet_danh_muc([x['giai_ngan'] for x in the]), luot=luot,
         nguon=dict(site_asof=asof, tin_so_ban=len(reps), daily_ngay=(daily or {}).get('ngay')),
+        **moi,
     )
     wj(OUT / 'bundle.json', bundle)
     return bundle
@@ -521,6 +525,17 @@ def main() -> int:
     n_ch = sum(len(x['ho_so']['chua_tra_loi']) for x in b['luan_diem'])
     print(f"asof {b['asof']} · {len(b['luan_diem'])} luận điểm · {n_ng} chỗ máy ngược chiều · {n_ch} chưa trả lời · "
           f"{len(b['loc'])} mã trong bảng lọc · {len(b['so_bat_dong'])} dòng sổ bất đồng")
+    tk = b['gia_lap']['tong_ket']
+    if tk.get('co_du_lieu'):
+        print(f"sổ giả lập: NAV {tk['nav']:,} · lãi {tk['lai_pct']}% · VN-Index {tk['vni_pct']}% · "
+              f"{tk['so_lenh']} lệnh · {len(tk['vi_the'])} mã đang cầm")
+    nd = b['nhan_dinh']
+    print(f"nhận định hôm nay: {len(nd['hom_nay'])} mã port · theo dõi {nd['so_ma_theo_doi']} mã · "
+          f"BCTC đọc sâu {len(b['bctc'])} mã · nguồn {b['nguon_moi']}")
+    if nd.get('hoc'):
+        print('vòng học:', nd['hoc']['ket_luan'], '·', nd['hoc']['so_mau'], 'mẫu chạy lùi')
+    for t in (b['nhac'].get('lan_cuoi') or []):
+        print('chuông:', t['tieu_de'])
     kv_put(b)
     return 0
 
