@@ -21,6 +21,14 @@ Port không chạy riêng. Nó là vòng thứ tư nối vào ba bộ máy đã 
         bảng tin cậy + bài học → đầu vào cho lần debate sau (Claude đọc trước khi viết luận điểm)
 ```
 
+## Bốn phần thêm ngày 22/10/2026
+
+- **Sổ giả lập mua bán + NAV** (`sim.py`): vốn 1 tỷ, phí 0,15%/0,25%, khớp giá đóng cửa phiên sau ngày quyết định. Mua theo quy tắc giải ngân trong `danh_muc.json` (3 đợt 1/3; hoảng loạn 60/40; đợt sau khi đi ngang 20 phiên; giá chạy +10% thì mua đuổi). Chạm mục tiêu 1 bán 1/3, mục tiêu 2 bán thêm 1/3; dưới giá vốn −15% bán hết; −10% hoặc thủng hỗ trợ Daily chỉ treo cờ. Sổ chỉ ghi tiếp (`state/so_gia_lap.json`).
+- **Mục tiêu giá**: code gom mốc có nguồn (kháng cự/đỉnh cũ của Daily, MA200, định giá về giữa/trung vị 12 quý) và đề xuất T1 ≥ +12%, T2 ≥ T1 +12%. Claude duyệt rồi ghi vào `muc_tieu` của luận điểm; sổ giả lập chỉ dùng số đã duyệt.
+- **Đọc BCTC sâu** (`bctc.py`): tách lãi trước thuế thành kinh doanh chính / tài chính / một lần / dự phòng từ `data/funda_raw2.json` (cache `bctc-` của dây chuyền hằng ngày), tìm khoản kéo lên/xuống so cùng kỳ, viết câu theo khuôn.
+- **Nhận định hằng ngày + vòng học** (`nhan_dinh.py`): mỗi chiều chấm điểm từng mã (tăng/đi ngang/giảm so với VN-Index trong 5/20/60 phiên), chấm đúng/sai khi đủ phiên. Mỗi lượt chạy lùi từ 2019 trên `data/port_gia.npz` (dây chuyền hằng ngày cắt từ fa.npz, cache `port-gia-`) để so trọng số đang dùng (`trong_so.json` ở port-data, chưa có thì bộ v1) với mô hình đề xuất. Không tự đổi trọng số.
+- **Nhắc review** (`nhac.py`): chuông ntfy/Telegram khi nguyensonfinance có BCTC quý mới của mã trong port/hàng chờ, khi đủ số cả port (đến kỳ review quý), và khi sổ giả lập treo cờ.
+
 ## Ai làm gì
 
 - **Claude, trong chat dự án NSI Daily Market.** Viết và cập nhật luận điểm theo khuôn `MAU_LUAN_DIEM.json`, rồi đẩy thẳng vào nhánh `port-data`. Trước khi viết, Claude đọc hồ sơ máy và bảng tin cậy. Khi có máy ngược chiều, Claude phải trả lời máy đó trước khi đưa mã vào danh mục.

@@ -145,6 +145,19 @@ jobs:
       - name: Nén dữ liệu giá
         run: python fa_prep.py
 
+      # Lọc port (22/10/2026): cắt bảng giá gọn (giá thô + giá điều chỉnh từ 2019, mã đủ thanh khoản)
+      # cho workflow "Lọc port" — sổ giả lập + nhận định hằng ngày. Chỉ đọc fa.npz đã có; hỏng thì bỏ qua.
+      - name: Xuất bảng giá cho Lọc port
+        continue-on-error: true
+        run: python port/xuat_gia.py
+
+      - name: Cất bảng giá cho Lọc port
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/port_gia.npz
+          key: port-gia-${{ github.run_id }}-${{ github.run_attempt }}
+
       # Dieu kien 9 khong duoc phu thuoc MOT nguon den muon (audit 24/09/2026):
       # lap cho trong dong tien phien cuoi bang nguon CUNG dinh nghia —
       # hnx.vn (HNX/UPCoM, nguon goc chinh thuc), Vietstock/CafeF (HOSE) — va doi

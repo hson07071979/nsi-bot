@@ -116,32 +116,32 @@ def san_sang(t: dict, ho_so: dict, thieu: list[str], p, kc_cham: list[dict] | No
     def add(ten, dat, ghi=''):
         ck.append(dict(ten=ten, dat=bool(dat), ghi_chu=ghi))
 
-    add('Chuỗi 7 khâu + bull/bear + định giá + vô hiệu đủ', not thieu, '; '.join(thieu))
+    add('Đủ các phần: vĩ mô → ngành → doanh nghiệp, lý do lạc quan/thận trọng, định giá, điều kiện bỏ', not thieu, '; '.join(thieu))
     ld = t.get('luan_diem') or []
     co_bc = [x for x in ld if any(str(b).upper().startswith(('FACT', 'OBSERVATION')) for b in (x.get('bang_chung') or []))]
     tro_trong = [x.get('id') for x in ld if x.get('nhan') in ('INTERPRETATION', 'CONFIRMATION') and x not in co_bc]
-    add('Luận điểm có luận cứ: mỗi INTERPRETATION có ≥1 FACT/OBSERVATION', ld and not tro_trong and co_bc,
-        ('thiếu bằng chứng: ' + ', '.join(map(str, tro_trong))) if tro_trong else f'{len(co_bc)}/{len(ld)} luận điểm có FACT')
+    add('Mỗi nhận định đều dựa trên ít nhất một số liệu hoặc sự kiện có thật', ld and not tro_trong and co_bc,
+        ('thiếu số liệu đi kèm: ' + ', '.join(map(str, tro_trong))) if tro_trong else f'{len(co_bc)}/{len(ld)} nhận định có số liệu')
     nb, ne = len(t.get('bull') or []), len(t.get('bear') or [])
-    add('Bull và bear cân (mỗi bên ≥ 3 ý)', nb >= 3 and ne >= 3, f'bull {nb} · bear {ne}')
+    add('Lý do lạc quan và lý do thận trọng cân nhau (mỗi bên ≥ 3 ý)', nb >= 3 and ne >= 3, f'lạc quan {nb} · thận trọng {ne}')
     db = t.get('debate') or []
     ben = {x.get('ben') for x in db}
-    add('Debate ≥ 5 vòng, có bull, bear và trọng tài', len(db) >= 5 and {'bull', 'bear', 'trong_tai'} <= ben,
+    add('Đã tranh luận ≥ 5 vòng, có phe lạc quan, phe thận trọng và người phân xử', len(db) >= 5 and {'bull', 'bear', 'trong_tai'} <= ben,
         f'{len(db)} vòng · phe: {", ".join(sorted(b for b in ben if b))}')
-    add('Máy ngược chiều đã được trả lời', not ho_so.get('chua_tra_loi'),
+    add('Máy nào nói ngược đều đã được trả lời', not ho_so.get('chua_tra_loi'),
         ('chưa trả lời: ' + ', '.join(ho_so['chua_tra_loi'])) if ho_so.get('chua_tra_loi') else
         (f"ngược: {', '.join(ho_so.get('nguoc') or [])} — đã trả lời" if ho_so.get('nguoc') else 'không máy nào ngược'))
     # Khung 70/30 sửa 15/10/2026 (anh Sơn): port đi dài, KHÔNG số hóa điểm mua/bán — bỏ mục tiêu T1/T2,
     # giá vô hiệu −7%, R:R. Thay bằng: khâu 5 "giá đã phản ánh hết tin xấu chưa" có phép thử, mốc cơ bản, điểm 70/30.
     pd = t.get('pitch_diem') or {}
     gs = pd.get('gia_sai') or {}
-    add('Khâu 5: gọi tên tin xấu, kỳ vọng ngầm trong giá và phép thử tin xấu tiếp theo',
+    add('Đã gọi tên tin xấu, giá hiện tại đang ngầm trả cho kịch bản nào, và phép thử sắp tới',
         all(str(gs.get(k) or '').strip() for k in ('tin_xau', 'ky_vong_ngam', 'phep_thu')),
         str(gs.get('ket_luan') or 'thiếu pitch_diem.gia_sai'))
     kc = t.get('kiem_chung') or []
-    add('Có mốc kiểm chứng cơ bản (code chấm)', any(k.get('loai') == 'funda' for k in kc), f'{len(kc)} mốc')
+    add('Có mốc BCTC để code tự chấm đúng/sai', any(k.get('loai') == 'funda' for k in kc), f'{len(kc)} mốc')
     l70, s30 = _num(pd.get('luan_diem_70')), _num(pd.get('so_30'))
-    add('Có điểm 70/30 và kết luận bằng lời', l70 is not None and s30 is not None and str(pd.get('ket_luan') or '').strip(),
+    add('Có điểm chấm 70/30 và kết luận bằng lời', l70 is not None and s30 is not None and str(pd.get('ket_luan') or '').strip(),
         f"{pd.get('tong')} điểm · {pd.get('ket_luan')}" if pd.get('ket_luan') else 'thiếu pitch_diem')
     r = rr(t, p)
     r1 = r[0]['rr'] if r else None
