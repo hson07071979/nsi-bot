@@ -89,6 +89,7 @@ RANKERS_R38=('volr','rs','mom','fund','tech','liq','score_volr','score_rs','scor
 OBSERVABLE_AT_ATC=('score','base','pct','score_base','score_sector','score_wave')+tuple(
     m for m in RANKERS_R38 if m not in ('rev_score','random'))
 _RANK_SEED=[0]
+_VW=[None]   # R38: trong so diem trong score_volr (None = 0,5/0,5 nhu ban dau)
 def rank_rows(rows, mode='score', held_sectors=()):
     if not rows: return rows
     if mode=='score':          # CURRENT PROD behaviour: CANSLIM score desc, then symbol
@@ -115,7 +116,7 @@ def rank_rows(rows, mode='score', held_sectors=()):
         elif mode=='fund':            key=lambda k:(-fu[k], -rows[k]['sc'])
         elif mode=='tech':            key=lambda k:(-te[k], -rows[k]['sc'])
         elif mode=='liq':             key=lambda k:-lq[k]
-        elif mode=='score_volr':      key=lambda k:-(sc[k]+vr[k])
+        elif mode=='score_volr':      key=(lambda k:-(sc[k]+vr[k])) if _VW[0] is None else (lambda k:-(_VW[0]*sc[k]+(1-_VW[0])*vr[k]))
         elif mode=='score_rs':        key=lambda k:-(sc[k]+rs[k])
         elif mode=='score_mom':       key=lambda k:-(sc[k]+mo[k])
         elif mode=='score_pct':       key=lambda k:-(sc[k]+pc[k])
@@ -506,7 +507,7 @@ def _run_core(cfg=None, log=True):
                     _need+=_A0['actual']
                 _inv=sum((AC[i,q.j] if not np.isnan(AC[i,q.j]) else q.epx)*q.sh for q in pos.values())
                 if _need > min(cash, nav*C['max_total']-_inv): _rmode='score_wave'
-            _RANK_SEED[0]=int(C.get('rank_seed',0) or 0)
+            _RANK_SEED[0]=int(C.get('rank_seed',0) or 0); _VW[0]=C.get('rank_w')
             rank_rows(rows, _rmode, {q.sector for q in pos.values()})
             day_log=[] if C.get('log_cands') and rows else None
             for rw in rows:
