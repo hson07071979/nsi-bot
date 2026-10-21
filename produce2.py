@@ -114,7 +114,17 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # MC lo 10% x 30: tv +868% -> +893%, DD p90 14,3% -> 12,8%, PF 3,07 -> 4,08.
           # Gia phai tra: mat PVT 27/02/2026 (+335 tr), GEE 11/04/2025 (+317 tr); mua mo cua T+1
           # +375% -> +172% (nhay voi gia khop). Mot dinh nghia: engine2 (stage 1/3), portfolio.py, live_scan.
-          max_unconf=1, unconf_count='both')
+          max_unconf=1, unconf_count='both',
+          # THU TU UU TIEN KHI NHIEU MA CUNG NO (anh Son duyet 22/10/2026, research R38): xep theo
+          # hang phan tram TRONG PHIEN cua diem CANSLIM + hang phan tram cua Vol/TB20 (0,5/0,5), hoa ->
+          # ma. Ca hai deu thay duoc truoc ATC (khong dung OrdImb). Du lieu 21/10, 100 lan lo 10% lenh:
+          # +1.045,5% -> +1.174,3%, DD 11,84% -> 10,72%, PF 4,33 -> 4,87; 2019-22 +271% -> +294%,
+          # 2023-26 +209% -> +224%; MC p10/p50 +632/+920% -> +670/+993%; DD p95 bootstrap 20,1% -> 18,2%;
+          # truot 0,2% +810% -> +882%; mo cua T+1 +168% -> +196%; thang 98,5% cach xep ngau nhien.
+          # Luu y: walk-forward chon tren 2019-22 ra Vol/TB20 don, o 2023-26 chi bang PROD cu.
+          # Mot dinh nghia: engine2.rank_rows; so ghi tien theo thu tu bo may (signals_today.uu_tien);
+          # live_scan + trang dung allocator.xep_uu_tien (cung cong thuc).
+          rank_mode='score_volr')
 PRESETS={
  'thucte'  : ('Có trượt giá 0,2% (thực tế)', dict(slip=0.002)),
  'toanTT'  : ('Toàn thị trường (không giới hạn thanh khoản)', dict(use_top_liquid=False)),
@@ -137,6 +147,9 @@ PRESETS={
  's1'             : ('Khoá lãi S1 (8%→+2%, 12%→+5%, không nấc 15%)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05]])),
  's1_15'          : ('Khoá lãi 8%→+2%, 12%→+5%, 15%→+8% (PROD 30/09 sáng)', dict(profit_lock=[[0.08, 0.02], [0.12, 0.05], [0.15, 0.08]])),
  'thucte_cocam'   : ('Có Đèn Cam hạ 1/3, trượt giá 0,2% (đối chiếu)', dict(use_orange_cut=True, slip=0.002)),
+ # R38 (22/10/2026): doi chieu moi toi thu tu uu tien cu va bien the nhieu volume hon.
+ 'uu_tien_diem'   : ('Ưu tiên theo điểm CANSLIM (PROD trước 22/10)', dict(rank_mode='score')),
+ 'uu_tien_w04'    : ('Ưu tiên 0,4×điểm + 0,6×Vol/TB20 (giữa vùng phẳng R38b)', dict(rank_mode='score_volr', rank_w=0.4)),
 }
 STRICT=dict(base_range=0.12, use_ftd=False, use_ordimb=False, t_valve=3, trail_ma=20, slip=0.002,
             use_be=False, size_map={'XANH':1.0,'VANG':0.5,'CAM':0.0,'DO':0.0},
@@ -249,7 +262,8 @@ if __name__=='__main__':
     out['signals_today']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
                                sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
                                base=x['base'],size_pct_engine=x['size_pct'],
-                               cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None)
+                               cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None,
+                               uu_tien=x.get('uu_tien'),n_ung_vien=x.get('n_ung_vien'),volr=x.get('volr'))
                           for x in r['signals'] if x['date']==str(cal[-1]) and x.get('mode','close')=='close']
     # 10 phien gan nhat: de so ghi tien XU LY BU dung thu tu neu lo mot dem dung trang
     _rec=[str(x) for x in cal[-30:]]
@@ -257,7 +271,8 @@ if __name__=='__main__':
     out['signals_recent']=[dict(sym=x['sym'],date=x['date'],price=round(x['raw_px']),score=x['score'],
                                 sector=x['sector'],light=x['light'],ordimb=x['ordimb'],rmul=x['rmul'],
                                 base=x['base'],size_pct_engine=x['size_pct'],
-                                cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None)
+                                cond9_ok=bool(x['ordimb'] is not None and x['ordimb']>=PROD['ordimb_min']), probe=PROD.get('stage1') is not None,
+                                uu_tien=x.get('uu_tien'),n_ung_vien=x.get('n_ung_vien'),volr=x.get('volr'))
                            for x in r['signals'] if x['date'] in _rec and x.get('mode','close')=='close']
     out['blocked']={k:int(v) for k,v in r['blocked'].items()}
     # SO HE THONG (bo may) o phien cuoi: NAV HIEN TAI + tien mat + vi the. Chuong

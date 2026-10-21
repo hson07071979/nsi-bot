@@ -670,6 +670,9 @@ function apCoMayChu(h, sv, t) {
   // luật tối đa 1 lệnh mua thử treo — máy chủ quyết, trình duyệt chỉ chép cờ (22/10/2026)
   h.khong_mua = (!cam && sv && sv.khong_mua) || null;
   h.khong_mua_vi = h.khong_mua ? (sv.khong_mua_vi || []) : [];
+  // thứ tự ưu tiên khi nhiều mã cùng nổ (điểm + Vol/TB20, máy chủ xếp — 22/10/2026)
+  h.uu_tien = (sv && sv.uu_tien) || null;
+  h.n_ung_vien = (sv && sv.n_ung_vien) || null;
   // mua đỏ chỉ khi giá real-time VẪN đủ mọi điều kiện đo được trong phiên (ngoài ĐK9);
   // giá tụt khỏi ngưỡng sau lần quét của máy chủ -> quay về Sắp đủ
   const conThieu = (h.miss || []).filter(k => !ODK9.test(k));
@@ -825,11 +828,12 @@ function pageLiveTrucTiep(root, L) {
     score: 0, miss: [], need_px: null, need_vol: null, ordimb: null, fa: false,
   }, h || {}));
   // bản ghi thẳng từ live.json (không có real-time): cờ đã nằm sẵn trong bản ghi
-  L.hits.forEach(h => { if (!h.realtime_mapped) apCoMayChu(h, h.mua_do || h.dang_cam || h.truot9 || h.khong_mua ? h : null, (D.lookup || {})[h.sym]); });
+  L.hits.forEach(h => { if (!h.realtime_mapped) apCoMayChu(h, h.mua_do || h.dang_cam || h.truot9 || h.khong_mua || h.uu_tien ? h : null, (D.lookup || {})[h.sym]); });
+  const theoUu = (a, b) => (a.uu_tien || 99) - (b.uu_tien || 99);
   const last = D.regime[D.regime.length - 1];
   const muaHet = L.hits.filter(h => h.level === 'MUA' || h.level === 'MUA_DO');
-  const mua = muaHet.filter(h => !h.khong_mua);
-  const khongMua = muaHet.filter(h => h.khong_mua);
+  const mua = muaHet.filter(h => !h.khong_mua).sort(theoUu);
+  const khongMua = muaHet.filter(h => h.khong_mua).sort(theoUu);
   const cam = L.hits.filter(h => h.level === 'DANG_CAM');
   const sap = L.hits.filter(h => h.level === 'SAP_DU');
   const dem = L.hits.filter(h => h.level === 'DE_MAT');
@@ -846,7 +850,7 @@ function pageLiveTrucTiep(root, L) {
       <th style="text-align:right" title="Cỡ lệnh mua ÷ cỡ lệnh bán — hệ đòi ≥ ${cpDTvi()}">Dòng tiền</th>
       <th style="text-align:right">Điểm</th><th>Còn thiếu</th></tr></thead><tbody>
       ${list.map(h => `<tr>
-        <td class="sym">${esc(h.sym)}${h.khong_mua ? '<div style="font-size:11px;font-weight:700" class="muted">KHÔNG MUA</div>' : h.level === 'MUA_DO' ? '<div style="font-size:11px;font-weight:700;color:var(--critical)">MUA DÒ ATC</div>' : ''}${h.dang_cam ? '<div style="font-size:11px;font-weight:700" class="muted">ĐANG CẦM</div>' : ''}</td>
+        <td class="sym">${esc(h.sym)}${h.uu_tien && h.n_ung_vien > 1 ? `<div style="font-size:11px;font-weight:700;color:var(--accent)" title="Nhiều mã cùng đạt: xếp theo điểm + Vol/TB20">ƯU TIÊN ${h.uu_tien}</div>` : ''}${h.khong_mua ? '<div style="font-size:11px;font-weight:700" class="muted">KHÔNG MUA</div>' : h.level === 'MUA_DO' ? '<div style="font-size:11px;font-weight:700;color:var(--critical)">MUA DÒ ATC</div>' : ''}${h.dang_cam ? '<div style="font-size:11px;font-weight:700" class="muted">ĐANG CẦM</div>' : ''}</td>
         <td class="muted" style="font-size:13px">${(h.name || '').slice(0, 34)}</td>
         <td style="text-align:right">${h.price}</td>
         <td style="text-align:right;font-weight:660" class="${h.pct >= 0 ? 'pos' : 'neg'}">${h.pct >= 0 ? '+' : ''}${h.pct}%</td>
@@ -857,7 +861,7 @@ function pageLiveTrucTiep(root, L) {
           h.ordimb == null ? '—' : h.ordimb.toFixed(2) + '×'}</td>
         <td style="text-align:right;color:var(--text-primary);font-weight:640">${h.score}</td>
         <td class="muted" style="font-size:12.5px">${h.fa ? '<b style="color:var(--warn)">chưa đạt cơ bản — không mua</b> · ' : ''}${
-          h.khong_mua ? `<b>Hệ thống không mua mã này.</b> Đang có lệnh dò chưa xác nhận${h.khong_mua_vi.length ? ' (' + h.khong_mua_vi.map(esc).join(', ') + ')' : ''} — mỗi lúc chỉ giữ ${cpV('max_unconf', 1)} lệnh dò chờ xác nhận, mã điểm cao hơn được vào trước.`
+          h.khong_mua ? `<b>Hệ thống không mua mã này.</b> Đang có lệnh dò chưa xác nhận${h.khong_mua_vi.length ? ' (' + h.khong_mua_vi.map(esc).join(', ') + ')' : ''} — mỗi lúc chỉ giữ ${cpV('max_unconf', 1)} lệnh dò chờ xác nhận, mã ưu tiên cao hơn (điểm + Vol/TB20) được vào trước.`
           : h.level === 'MUA_DO' ? `<b style="color:var(--critical)">Đủ ĐK1–8 → mua đủ lệnh lúc ATC · ${coMuaDoTxt(h.sym)}</b> · tối ~18–19h xác nhận ĐK9 (cỡ lệnh mua ≥ ${String(h.ordimb_min || 1.4).replace('.', ',')}× cỡ lệnh bán); không đạt thì bán 100% ATC T+${cpV('sell_from', 3)}${h.miss.length ? ' · lưu ý: ' + h.miss.join(' · ') : ''}`
           : h.dang_cam ? '<b>Hệ thống đang cầm mã này — không mua thêm.</b> Luật thoát xem ở Danh mục hệ thống.'
           : (h.miss.length ? h.miss.join(' · ') : '—')}</td>

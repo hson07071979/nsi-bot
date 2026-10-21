@@ -82,7 +82,7 @@ def _pr(vals, higher_better=True):
     return out
 
 RANKERS=('score','base','oi','score_base','score_oi','score_base_oi','multi','score_sector','pct','score_wave')
-# R38 (22/10/2026, nghien cuu — PROD van 'score'): tieu chi QUAN SAT DUOC truoc ATC (khong dung OrdImb:
+# R38 (22/10/2026; PROD = 'score_volr' tu 22/10, anh Son duyet): tieu chi QUAN SAT DUOC truoc ATC (khong dung OrdImb:
 # PROD mua do 2 giai doan nen DK9 chua co so luc chon ma). 'rev_score' / 'random' la doi chung.
 RANKERS_R38=('volr','rs','mom','fund','tech','liq','score_volr','score_rs','score_mom','score_pct',
              'score_base_volr','multi_obs','rev_score','random')
@@ -510,7 +510,7 @@ def _run_core(cfg=None, log=True):
             _RANK_SEED[0]=int(C.get('rank_seed',0) or 0); _VW[0]=C.get('rank_w')
             rank_rows(rows, _rmode, {q.sector for q in pos.values()})
             day_log=[] if C.get('log_cands') and rows else None
-            for rw in rows:
+            for _uu, rw in enumerate(rows, 1):
                 j=rw['j']; sym=rw['sym']; sc=rw['sc']; rmul=rw['rmul']; bm=rw['bm']; pts=rw['pts']
                 secn=rw['sector']
                 if day_log is not None: day_log.append(dict(sym=sym,sc=sc,base=rw['base'],oi=rw['oi'],
@@ -594,7 +594,8 @@ def _run_core(cfg=None, log=True):
                     px=round(float(PX[i,j])/1000,2),light=R['light'][i],sector=secn,pts=pts,
                     size_pct=round(sh*px/nav*100,2),theo_pct=round(A['theoretical']/nav*100,2),
                     binding=A['binding'],ordimb=(round(rw['oi'],3) if rw['oi']==rw['oi'] else None),rmul=float(rmul),
-                    base=round(float(rw['base']),4),raw_px=float(PX[i,j]),mode=mode))
+                    base=round(float(rw['base']),4),raw_px=float(PX[i,j]),mode=mode,
+                    uu_tien=_uu,n_ung_vien=len(rows),volr=round(float(rw['volr']),2)))
             if day_log is not None: cands_log.append(dict(date=str(cal[i]),i=i,light=R['light'][i],cands=day_log))
         # ---------- LOP 9: PYRAMID ----------
         for sym,p in list(pos.items()):

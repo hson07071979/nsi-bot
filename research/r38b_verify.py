@@ -5,7 +5,7 @@
       score_volr (đóng góp NAV) xem còn hơn PROD không;
   (3) bootstrap CÓ HOÀN LẠI ở mức deal (5.000 lần) cho lợi nhuận trung bình mỗi deal của hai bên;
   (4) walk-forward lồng: chọn w trên 2019-22, kiểm 2023-26.
-Kết quả: evidence/r38b_verify.json. KHÔNG đụng PROD."""
+Gốc so sánh = thứ tự CŨ (rank_mode='score'). Kết quả: evidence/r38b_verify.json."""
 import os, sys, json
 import numpy as np
 from multiprocessing import get_context
@@ -33,7 +33,8 @@ def cfg(**k):
 
 
 def job(w):
-    C = cfg(rank_mode='score_volr', rank_w=w) if w is not None else cfg()
+    # goc so sanh = thu tu CU (rank_mode='score'), ghi ro — PROD tu 22/10 da la score_volr
+    C = cfg(rank_mode='score_volr', rank_w=w) if w is not None else cfg(rank_mode='score')
     r = _E.run(C, log=False); m = _E.metrics(r)
     mc = np.array([_E.metrics(_E.run(dict(C, miss_prob=0.10, miss_seed=1000 + s), log=False))['total_return']
                    for s in range(NSEED)])
@@ -57,7 +58,7 @@ def main():
         print(f"w={s['w']:.1f} ret {s['ret']*100:+.0f}% DD {s['dd']*100:.2f}% PF {s['pf']} MC p10 {s['mc_p10']*100:+.0f}% "
               f"p50 {s['mc_p50']*100:+.0f}% | 19-22 {s['h1']*100:+.0f}% 23-26 {s['h2']*100:+.0f}%")
     wf = max(sw, key=lambda s: s['h1'])
-    dP, rP = deals(cfg()); dV, rV = deals(cfg(rank_mode='score_volr'))
+    dP, rP = deals(cfg(rank_mode='score')); dV, rV = deals(cfg(rank_mode='score_volr', rank_w=None))
     kP = {(x['sym'], x['entry']): x for x in dP}; kV = {(x['sym'], x['entry']): x for x in dV}
     only_P = sorted([kP[k] for k in kP.keys() - kV.keys()], key=lambda x: -x['pnl_vnd'])
     only_V = sorted([kV[k] for k in kV.keys() - kP.keys()], key=lambda x: -x['pnl_vnd'])
@@ -76,12 +77,10 @@ def main():
         return dict(n=len(a), mean=float(a.mean()), p05=float(np.quantile(b, .05)), p50=float(np.median(b)), p95=float(np.quantile(b, .95)))
     # co che: lenh do bi ban vi khong xac nhan DK9 (chiem cho 'treo' toi T+3, chan lenh moi)
     def fail9(r):
-        t = r['trades']; f = [x for x in t if 'cond9' in str(x.get('reason', '')).lower() or 'dk9' in str(x.get('reason', '')).lower()]
-        return dict(n_trades=len(t), n_fail9=len(f), pnl_fail9=float(sum(x['pnl_vnd'] for x in f)),
-                    reasons=sorted({str(x.get('reason', ''))[:40] for x in t})[:30])
+        s_ = r['signals']; ok = [x for x in s_ if x.get('ordimb') is not None and x['ordimb'] >= _P['ordimb_min']]
+        return dict(n_lenh=len(s_), n_dat_dk9=len(ok), ty_le=round(len(ok) / max(1, len(s_)), 3))
     mech = dict(prod=fail9(rP), volr=fail9(rV))
-    print('lenh do truot DK9  prod:', {k: v for k, v in mech['prod'].items() if k != 'reasons'},
-          ' volr:', {k: v for k, v in mech['volr'].items() if k != 'reasons'})
+    print('lenh vao / dat DK9  cu:', mech['prod'], ' moi:', mech['volr'])
     out = dict(prod=base, sweep=sw, co_che_dk9=mech, walk_forward_w=dict(w=wf['w'], h1=wf['h1'], h2=wf['h2'], prod_h2=base['h2']),
                deals_only_prod=sl(only_P), deals_only_volr=sl(only_V),
                sum_only_prod=float(sum(x['pnl_vnd'] for x in only_P)), sum_only_volr=float(sum(x['pnl_vnd'] for x in only_V)),

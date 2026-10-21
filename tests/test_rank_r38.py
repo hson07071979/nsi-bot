@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""R38: cac tieu chi xep hang nghien cuu khong duoc doi PROD (rank_mode='score').
+"""R38: PROD xep uu tien theo diem + Vol/TB20 (anh Son duyet 22/10/2026); allocator.xep_uu_tien
+(live_scan, so ghi tien, trang) phai ra DUNG thu tu engine2.rank_rows.
 Run: python -m unittest tests/test_rank_r38.py -v"""
 import os, sys, unittest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,10 +16,25 @@ def rows():
 
 
 class Rank(unittest.TestCase):
-    def test_prod_van_la_score(self):
+    def test_prod_la_score_volr(self):
         from produce2 import PROD
-        self.assertEqual(PROD.get('rank_mode', E.CFG.get('rank_mode')), 'score')
+        self.assertEqual(PROD.get('rank_mode'), 'score_volr')
         self.assertEqual([r['sym'] for r in E.rank_rows(rows(), 'score')], ['ORS', 'DIG', 'VSC'])
+        # 21/10: ORS hang diem 1,0 + hang vol 1,0; DIG 0,5 + 0,5; VSC 0 + 0
+        self.assertEqual([r['sym'] for r in E.rank_rows(rows(), 'score_volr')], ['ORS', 'DIG', 'VSC'])
+
+    def test_allocator_khop_engine(self):
+        import random, allocator as AL
+        from produce2 import PROD
+        g = random.Random(5)
+        for _ in range(300):
+            n = g.randint(2, 6)
+            rs = [dict(sym=f'M{k:02d}', sc=round(g.uniform(45, 90), 1), base=.1, oi=1.5, volr=round(g.uniform(2, 8), 2),
+                       rs=50., mom=0., pct=.07, fund=30., liq=1e10, sector='X', _day='d') for k in range(n)]
+            e = [r['sym'] for r in E.rank_rows([dict(r) for r in rs], PROD['rank_mode'])]
+            a = AL.xep_uu_tien([dict(sym=r['sym'], score=r['sc'], volr=r['volr']) for r in g.sample(rs, n)], PROD)
+            self.assertEqual([r['sym'] for r in a], e)
+            self.assertEqual([r['uu_tien'] for r in a], list(range(1, n + 1)))
 
     def test_tieu_chi_moi(self):
         self.assertEqual(E.rank_rows(rows(), 'volr')[0]['sym'], 'ORS')
