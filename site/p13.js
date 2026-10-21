@@ -131,7 +131,7 @@ async function napVPS() {
       if (rows[h.sym] && h.ordimb != null) { rows[h.sym].oi = h.ordimb; rows[h.sym].oi_at = sv.asof; }
     });
 
-    NSI.rt = rows;
+    NSI.rt = apSoChotPhien(rows);
     RTV.n = Object.keys(rows).length;
     RTV.at = new Date();
     NSI.rtAt = new Date(RTV.at.getTime() - RTV.at.getTimezoneOffset() * 60000).toISOString().slice(0, 19);
@@ -169,6 +169,8 @@ async function napChiSo() {
    ảnh chụp cũ hơn, nên khi nó THIẾU thì mã KHÔNG được lên mức MUA — chỉ SẮP ĐỦ.
    Thà báo thiếu còn hơn báo mua một phiên mà bộ máy chín lớp vốn không đụng vào. */
 function tinhLaiTinHieuVPS() {
+  // Sau giờ đóng cửa, máy chủ đã chốt phiên -> bảng tín hiệu theo đúng live.json (22/10/2026).
+  if (mayChuChotPhien()) { LIVE.data = LIVE.server; return; }
   const R = NSI.rt || {}, L = D.lookup || {}, hits = [];
   const oiMin = (LIVE.server && LIVE.server.ordimb_min) || cpDT();
   const f = phanPhien(), mo = phienMo();

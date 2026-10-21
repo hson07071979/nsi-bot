@@ -49,6 +49,8 @@ jobs:
         run: python tests/test_mua_bao_cao.py
       - name: Nút vượt cổng dòng tiền (đúng sàn + đúng phiên, file hỏng vẫn chặn)
         run: python tests/test_vuot.py
+      - name: Thứ tự ưu tiên điểm + Vol/TB20 (engine = allocator = live)
+        run: python tests/test_rank_r38.py
       - name: Lọc port — chấm mốc, sổ bất đồng, hồ sơ máy + cú pháp trang /port
         run: |
           pip install -q pytest
