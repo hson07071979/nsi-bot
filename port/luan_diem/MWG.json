@@ -1,20 +1,20 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-15",
+ "cap_nhat": "2026-10-22",
  "bai_hoc": "",
  "ma": "MWG",
  "trang_thai": "trong_port",
  "chieu": "tang",
  "ngay_vao": "2026-10-14",
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: tiêu dùng cuối cùng Q3 +8,96%, bán lẻ thực +7,8%, tín dụng tiêu dùng +21,75% yoy; nghịch: CPI 5,08% và lãi suất trả góp.",
-  "nganh": "FACT (MSVN, 11/10): nhóm bán lẻ CNTT–viễn thông có thể vượt dự báo Q3. FACT (VCBS): biên lợi nhuận điện máy, CNTT cải thiện; cửa hàng hiện hữu tăng hai chữ số. INTERPRETATION: ngành đang ở pha hồi phục biên lợi nhuận sau giai đoạn đóng cửa hàng.",
-  "doanh_nghiep": "Chuỗi bán lẻ điện thoại–điện máy lớn nhất và chuỗi bách hóa Bách Hóa Xanh. FACT (NSI): ROE 29,2%, LNST Q2/26 3.302 tỷ (+100,4% cùng kỳ), LN 4 quý +103,6%.",
-  "mo_hinh_kd": "Bán lẻ quay vòng hàng tồn kho nhanh; TGDĐ+ĐMX ~65% doanh thu, BHX ~30% (ĐHCĐ 18/04). Tiền dư gửi ngân hàng, nên lãi suất tăng làm thu nhập tài chính tăng bù chi phí vay (theo ban lãnh đạo).",
-  "lanh_dao": "FACT (ĐHCĐ 18/04/2026): kế hoạch DT 185.000 tỷ (+19%), LNST 9.200 tỷ (+30%); cổ tức tiền 2.000 đ/cp; BHX đặt mục tiêu IPO 2028. ESOP bị cắt từ 1% xuống 0,5% vì cổ phiếu không vượt VN-Index — ban lãnh đạo tự chịu kỷ luật theo giá.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: tiêu dùng cuối cùng Q3 +8,96%, bán lẻ thực +7,8%, tín dụng tiêu dùng +21,75% yoy; nghịch: CPI 5,08% và lãi suất trả góp.",
+  "nganh": "Nhóm bán lẻ công nghệ thông tin–viễn thông có thể vượt dự báo Q3. Biên lợi nhuận điện máy, công nghệ thông tin cải thiện; cửa hàng hiện hữu tăng hai chữ số. Ngành đang ở pha hồi phục biên lợi nhuận sau giai đoạn đóng cửa hàng.",
+  "doanh_nghiep": "Chuỗi bán lẻ điện thoại–điện máy lớn nhất và chuỗi bách hóa Bách Hóa Xanh. ROE 29,2%, lợi nhuận sau thuế Q2/26 3.302 tỷ (+100,4% cùng kỳ), lợi nhuận 4 quý +103,6%.",
+  "mo_hinh_kd": "Bán lẻ quay vòng hàng tồn kho nhanh; TGDĐ+ĐMX ~65% doanh thu, Bách Hóa Xanh ~30% (ĐHCĐ 18/04). Tiền dư gửi ngân hàng, nên lãi suất tăng làm thu nhập tài chính tăng bù chi phí vay (theo ban lãnh đạo).",
+  "lanh_dao": "Kế hoạch doanh thu 185.000 tỷ (+19%), lợi nhuận sau thuế 9.200 tỷ (+30%); cổ tức tiền 2.000 đ/cp; Bách Hóa Xanh đặt mục tiêu IPO 2028. ESOP bị cắt từ 1% xuống 0,5% vì cổ phiếu không vượt VN-Index — ban lãnh đạo tự chịu kỷ luật theo giá.",
   "chuoi_gia_tri": "Khâu phân phối cuối cùng của điện thoại, điện máy và hàng tiêu dùng nhanh; là kênh bán lớn của các hãng điện tử và nhà sản xuất FMCG.",
-  "dan_nguoc_vi_mo": "Kênh bán lẻ hiện đại chính thức hóa tiêu dùng, tăng thu thuế; BHX kéo một phần chợ truyền thống lên chuỗi, tạo việc làm."
+  "dan_nguoc_vi_mo": "Kênh bán lẻ hiện đại chính thức hóa tiêu dùng, tăng thu thuế; Bách Hóa Xanh kéo một phần chợ truyền thống lên chuỗi, tạo việc làm."
  },
  "luan_diem": [
   {
@@ -22,9 +22,9 @@
    "nhan": "INTERPRETATION",
    "noi_dung": "Lợi nhuận gấp đôi nhưng giá thấp hơn đỉnh 21,6%: P/E co từ ~23 về ~11. Thị trường đang định giá như thể tăng trưởng sẽ gãy.",
    "bang_chung": [
-    "FACT: P/E 11,23 vs trung vị 12 quý 23,18 (NSI)",
-    "FACT: LNST Q2/26 +100,4%; LN 4 quý +103,6% (NSI)",
-    "OBSERVATION: đỉnh 93,7 (02/02), đáy 63,3 (27/07), nay 73,5"
+    "FACT: P/E 11,23 so với trung vị 12 quý 23,18 (NSI)",
+    "FACT: Lợi nhuận sau thuế Q2/26 +100,4%; lợi nhuận 4 quý +103,6% (NSI)",
+    "OBSERVATION: Đỉnh 93,7 (02/02), đáy 63,3 (27/07), nay 73,5"
    ]
   },
   {
@@ -38,10 +38,10 @@
   {
    "id": "L3",
    "nhan": "INTERPRETATION",
-   "noi_dung": "Động cơ lợi nhuận là chuỗi điện máy + trả chậm, không phải BHX; luận điểm sống hay chết theo chu kỳ điện máy.",
+   "noi_dung": "Động cơ lợi nhuận là chuỗi điện máy + trả chậm, không phải Bách Hóa Xanh; luận điểm sống hay chết theo chu kỳ điện máy.",
    "bang_chung": [
-    "FACT: BHX 910/6.112 tỷ LNST H1 (~15%) (DNSE 04/08)",
-    "FACT: chuỗi điện máy DT 8T +29%, cửa hàng hiện hữu +30%, trả chậm 38% DT (TTTC-TT)"
+    "FACT: Bách Hóa Xanh 910/6.112 tỷ lợi nhuận sau thuế 6 tháng đầu năm (~15%) (DNSE 04/08)",
+    "FACT: Chuỗi điện máy doanh thu 8T +29%, cửa hàng hiện hữu +30%, trả chậm 38% doanh thu (TTTC-TT)"
    ]
   }
  ],
@@ -54,8 +54,8 @@
  "bear": [
   "CPI 4,5% và lãi suất tăng có thể làm chậm mua sắm điện máy trả góp.",
   "Tăng trưởng 100% có nền thấp; từ 2027 tăng trưởng sẽ chậm lại tự nhiên.",
-  "BHX cạnh tranh gay gắt, IPO 2028 còn xa.",
-  "Giá vẫn dưới MA200 (79,9).",
+  "Bách Hóa Xanh cạnh tranh gay gắt, IPO 2028 còn xa.",
+  "Giá vẫn dưới đường trung bình 200 phiên (79,9).",
   "Chu kỳ điện máy: cửa hàng hiện hữu +30% (8T/2026) là nền cao cho 2027; trả chậm 38% doanh thu khi lãi suất tăng."
  ],
  "debate": [
@@ -75,13 +75,13 @@
    "ngay": "2026-10-14",
    "vong": 3,
    "ben": "trong_tai",
-   "noi_dung": "Kiểm dữ liệu: không có gap chia tách trong 240 phiên. P/E dùng LN 4 quý. Lập luận bear hợp lý ở dài hạn, nhưng với kỳ hạn 6–12 tháng, kế hoạch 9.200 tỷ (+30%) đặt P/E dự phóng 2026 khoảng 11–12 lần — vẫn dưới trung vị."
+   "noi_dung": "Kiểm dữ liệu: không có gap chia tách trong 240 phiên. P/E dùng lợi nhuận 4 quý. Lập luận bear hợp lý ở dài hạn, nhưng với kỳ hạn 6–12 tháng, kế hoạch 9.200 tỷ (+30%) đặt P/E dự phóng 2026 khoảng 11–12 lần — vẫn dưới trung vị."
   },
   {
    "ngay": "2026-10-14",
    "vong": 4,
    "ben": "claude",
-   "noi_dung": "Đối chất máy: bot +1 (chờ điểm mua), Tin +1, Daily trung lập (đang test vùng 72,0–74,1 trùng MA50). Không máy nào ngược chiều."
+   "noi_dung": "Đối chất máy: bot +1 (chờ điểm mua), Tin +1, Daily trung lập (đang test vùng 72,0–74,1 trùng đường trung bình 50 phiên). Không máy nào ngược chiều."
   },
   {
    "ngay": "2026-10-14",
@@ -93,31 +93,31 @@
    "ngay": "2026-10-14",
    "vong": 6,
    "ben": "trong_tai",
-   "noi_dung": "Kết luận: giữ, tỷ trọng mục tiêu 18%. Đợt 1 = 1/3. Đợt 2 khi LN Q3 tăng ≥30% và giá giữ 68,88."
+   "noi_dung": "Kết luận: giữ, tỷ trọng mục tiêu 18%. Đợt 1 = 1/3. Đợt 2 khi lợi nhuận Q3 tăng ≥30% và giá giữ 68,88."
   },
   {
    "ngay": "2026-10-15",
    "vong": 7,
    "ben": "anh_son",
-   "noi_dung": "Không có câu chuyện mới: IPO BHX đã xảy ra, mở BHX ra miền Bắc tốn opex; BHX đã đạt đỉnh lợi nhuận ~100 triệu/cửa hàng/tháng. Thị trường coi BHX là catalyst chính, nhưng lúc thanh khoản cao, lãi suất bình thường (cuối 2025–đầu 2026) MWG vẫn không vượt nổi 95 → vùng này đã đủ hấp dẫn chưa?"
+   "noi_dung": "Không có câu chuyện mới: IPO Bách Hóa Xanh đã xảy ra, mở Bách Hóa Xanh ra miền Bắc tốn opex; Bách Hóa Xanh đã đạt đỉnh lợi nhuận ~100 triệu/cửa hàng/tháng. Thị trường coi Bách Hóa Xanh là catalyst chính, nhưng lúc thanh khoản cao, lãi suất bình thường (cuối 2025–đầu 2026) MWG vẫn không vượt nổi 95 → vùng này đã đủ hấp dẫn chưa?"
   },
   {
    "ngay": "2026-10-15",
    "vong": 8,
    "ben": "trong_tai",
-   "noi_dung": "THESIS CHECK. (1) IPO BHX: KHÔNG ĐÚNG — 04/08/2026 BHX chưa IPO, còn lỗ lũy kế ~7.000 tỷ, MWG đặt mục tiêu xóa lỗ trong 2–3 năm rồi mới IPO (DNSE). (2) Opex miền Bắc: ĐÚNG về hướng — Bắc + Trung ~50% cửa hàng mở mới; nhưng công ty báo >1.000 cửa hàng mới 8 tháng đều có lãi cấp cửa hàng sau logistics (TTTC-TT) — cần BCTC Q3 kiểm. (3) Đỉnh 100 tr/cửa hàng/tháng: số liệu KHÔNG ủng hộ — LN BHX Q1 ~400 tỷ, Q2 510 tỷ; ước số cửa hàng bình quân ~2.770 (Q1) và ~3.080 (Q2) → ~48 rồi ~55 tr/cửa hàng/tháng, đang tăng chứ chưa có dấu hiệu đỉnh (INTERPRETATION: số cửa hàng cuối quý là ước từ 632 mở mới 6T, 3.378 cuối 7, 3.612 cuối 8). (4) BHX là catalyst chính: KHÔNG ĐÚNG theo số — BHX chỉ ~15% LNST H1 (910/6.112 tỷ); động cơ thật là chuỗi điện máy (DT 8T +29%, cửa hàng hiện hữu +30%) và trả chậm (38% doanh thu)."
+   "noi_dung": "THESIS CHECK. (1) IPO Bách Hóa Xanh: KHÔNG ĐÚNG — 04/08/2026 Bách Hóa Xanh chưa IPO, còn lỗ lũy kế ~7.000 tỷ, MWG đặt mục tiêu xóa lỗ trong 2–3 năm rồi mới IPO (DNSE). (2) Opex miền Bắc: ĐÚNG về hướng — Bắc + Trung ~50% cửa hàng mở mới; nhưng công ty báo >1.000 cửa hàng mới 8 tháng đều có lãi cấp cửa hàng sau logistics (TTTC-TT) — cần báo cáo tài chính Q3 kiểm. (3) Đỉnh 100 tr/cửa hàng/tháng: số liệu KHÔNG ủng hộ — lợi nhuận Bách Hóa Xanh Q1 ~400 tỷ, Q2 510 tỷ; ước số cửa hàng bình quân ~2.770 (Q1) và ~3.080 (Q2) → ~48 rồi ~55 tr/cửa hàng/tháng, đang tăng chứ chưa có dấu hiệu đỉnh (số cửa hàng cuối quý là ước từ 632 mở mới 6T, 3.378 cuối 7, 3.612 cuối 8). (4) Bách Hóa Xanh là catalyst chính: KHÔNG ĐÚNG theo số — Bách Hóa Xanh chỉ ~15% lợi nhuận sau thuế 6 tháng đầu năm (910/6.112 tỷ); động cơ thật là chuỗi điện máy (doanh thu 8T +29%, cửa hàng hiện hữu +30%) và trả chậm (38% doanh thu)."
   },
   {
    "ngay": "2026-10-15",
    "vong": 9,
    "ben": "bear",
-   "noi_dung": "Vì vậy rủi ro thật của MWG không phải \"BHX hết đỉnh\" mà là chu kỳ điện máy: tăng 30% cửa hàng hiện hữu là nền rất cao cho 2027, và 38% doanh thu trả chậm khi lãi suất đang tăng là rủi ro tín dụng/cầu."
+   "noi_dung": "Vì vậy rủi ro thật của MWG không phải \"Bách Hóa Xanh hết đỉnh\" mà là chu kỳ điện máy: tăng 30% cửa hàng hiện hữu là nền rất cao cho 2027, và 38% doanh thu trả chậm khi lãi suất đang tăng là rủi ro tín dụng/cầu."
   },
   {
    "ngay": "2026-10-15",
    "vong": 10,
    "ben": "trong_tai",
-   "noi_dung": "Trần 95: OBSERVATION đúng — đỉnh 93,7 (02/02/2026). Port KHÔNG giả định phá trần: T2 đặt đúng 93,7. Tại 93,7, P/E dự phóng 2026 ≈ 15 (kế hoạch 9.200 tỷ); tại 73,5 ≈ 11,8. Kết luận: ĐỒNG Ý MỘT PHẦN — vùng giá hấp dẫn về định giá và R:R 4,4 đến trần cũ; nhưng câu chuyện phải đổi từ \"BHX\" sang \"chu kỳ điện máy + trả chậm\", và thêm điều kiện: Q3 cửa hàng hiện hữu điện máy còn tăng hai chữ số."
+   "noi_dung": "Trần 95: đúng — đỉnh 93,7 (02/02/2026). Port KHÔNG giả định phá trần: T2 đặt đúng 93,7. Tại 93,7, P/E dự phóng 2026 ≈ 15 (kế hoạch 9.200 tỷ); tại 73,5 ≈ 11,8. Kết luận: ĐỒNG Ý MỘT PHẦN — vùng giá hấp dẫn về định giá và R:R 4,4 đến trần cũ; nhưng câu chuyện phải đổi từ \"Bách Hóa Xanh\" sang \"chu kỳ điện máy + trả chậm\", và thêm điều kiện: Q3 cửa hàng hiện hữu điện máy còn tăng hai chữ số."
   },
   {
    "ngay": "2026-10-15",
@@ -129,19 +129,19 @@
    "ngay": "2026-10-15",
    "vong": 12,
    "ben": "trong_tai",
-   "noi_dung": "Đổi quy tắc, ghi công khai (không dời cột gôn ngầm): R38/R40 cho thấy vào lúc giá ≤ −25% so với đỉnh 250 phiên mới có lợi thế, và dừng kỹ thuật sát làm mất lợi thế (−7% cắt: +10,6% vs +14,0%/năm). Vì vậy mã này CHỜ GIÁ CỔNG 68,29 mới mua đợt 1; K1 68,88 cũ thành vùng quan sát — nếu thủng trước khi mua, sổ ghi K1 SAI. Luận điểm cơ bản vẫn chấm bằng K2/K3. Mức ngừng mua mới 63,6 ≈ giá cổng − 7%. Xếp hạng 70/30 vẫn tính, nhưng chỉ được xếp lượt khi đạt cổng."
+   "noi_dung": "Đổi quy tắc, ghi công khai (không dời cột gôn ngầm): quy tắc giải ngân/lớp rủi ro danh mục cho thấy vào lúc giá ≤ −25% so với đỉnh 250 phiên mới có lợi thế, và dừng kỹ thuật sát làm mất lợi thế (−7% cắt: +10,6% so với +14,0%/năm). Vì vậy mã này CHỜ GIÁ CỔNG 68,29 mới mua đợt 1; K1 68,88 cũ thành vùng quan sát — nếu thủng trước khi mua, sổ ghi K1 SAI. Luận điểm cơ bản vẫn chấm bằng K2/K3. Mức ngừng mua mới 63,6 ≈ giá cổng − 7%. Xếp hạng 70/30 vẫn tính, nhưng chỉ được xếp lượt khi đạt cổng."
   },
   {
    "ngay": "2026-10-15",
    "vong": 13,
    "ben": "trong_tai",
-   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 47/70 = quốc tế 5 · vĩ mô VN 11 · ngành 11 · doanh nghiệp 13 · giá sai 7; số 25/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng. Tin xấu: Chu kỳ điện máy đã đỉnh (nền cao 2027); lạm phát 5% ăn sức mua; trả chậm khi lãi suất tăng. Kỳ vọng ngầm: P/E 11,2 vs 23,2 không đọc được (trung vị bị đẩy lên bởi năm LN đáy); P/B 3,09 vs 3,36 (≈ 0,92) → chiết khấu nhẹ. Phép thử: KQ Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu. Kết luận: ĐỦ ĐỂ XUỐNG TIỀN."
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 47/70 = quốc tế 5 · vĩ mô VN 11 · ngành 11 · doanh nghiệp 13 · giá sai 7; số 25/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng. Tin xấu: Chu kỳ điện máy đã đỉnh (nền cao 2027); lạm phát 5% ăn sức mua; trả chậm khi lãi suất tăng. Kỳ vọng ngầm: P/E 11,2 so với 23,2 không đọc được (trung vị bị đẩy lên bởi năm lợi nhuận đáy); P/B 3,09 so với 3,36 (≈ 0,92) → chiết khấu nhẹ. Phép thử: kết quả Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu. Kết luận: ĐỦ ĐỂ XUỐNG TIỀN."
   },
   {
    "ngay": "2026-10-15",
    "vong": 14,
    "ben": "anh_son",
-   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
   }
  ],
  "phan_bien_may": {
@@ -155,7 +155,7 @@
   },
   "daily": {
    "ngay": "2026-10-14",
-   "noi_dung": "Daily trung lập (test vùng MA50 72,0–74,1). Port chấp nhận: đợt 1 chỉ 1/3."
+   "noi_dung": "Daily trung lập (test vùng đường trung bình 50 phiên 72,0–74,1). Port chấp nhận: đợt 1 chỉ 1/3."
   }
  },
  "kiem_chung": [
@@ -166,7 +166,7 @@
    "quy": "Q3/26",
    "so_sanh": ">=",
    "nguong": 30,
-   "noi_dung": "LNST Q3/26 tăng ≥ 30% so với cùng kỳ."
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 30% so với cùng kỳ."
   },
   {
    "id": "K3",
@@ -178,9 +178,9 @@
    "noi_dung": "Doanh thu Q3/26 tăng ≥ 15% cùng kỳ — proxy cho chuỗi điện máy; cửa hàng hiện hữu điện máy tăng hai chữ số kiểm tay từ báo cáo tháng của MWG."
   }
  ],
- "vo_hieu": "Vô hiệu theo sự kiện: NHNN siết tín dụng tiêu dùng hoặc lãi suất cho vay tiêu dùng tăng mạnh; doanh thu cửa hàng hiện hữu điện máy âm hai tháng liên tiếp. Mốc cơ bản: LNST Q3/26 ≥ +30% (K2). Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
- "dinh_gia": "P/E 11,23 lần vs trung vị 3 năm 23,18; P/B 3,09 vs 3,36 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 11,2 vs 23,2 không đọc được (trung vị bị đẩy lên bởi năm LN đáy); P/B 3,09 vs 3,36 (≈ 0,92) → chiết khấu nhẹ.",
- "pitch": "[ĐỦ ĐỂ XUỐNG TIỀN · 72 điểm] Thế Giới Di Động không phải ca \"tin xấu đã vào giá\" mà là luận điểm tăng trưởng: lợi nhuận đã gấp đôi, chuỗi điện máy đang hồi phục biên lợi nhuận, trong khi tiêu dùng nội địa tăng cùng GDP gần 10% và tín dụng tiêu dùng. Giá chỉ chiết khấu nhẹ so với lịch sử, nên luận điểm dựa vào tăng trưởng chứ không dựa vào giá rẻ. Luận điểm sai nếu doanh thu cửa hàng hiện hữu điện máy chuyển sang giảm.",
+ "vo_hieu": "Vô hiệu theo sự kiện: Ngân hàng Nhà nước siết tín dụng tiêu dùng hoặc lãi suất cho vay tiêu dùng tăng mạnh; doanh thu cửa hàng hiện hữu điện máy âm hai tháng liên tiếp. Mốc cơ bản: lợi nhuận sau thuế Q3/26 ≥ +30% (K2). Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/E 11,23 lần so với trung vị 3 năm 23,18; P/B 3,09 so với 3,36 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 11,2 so với 23,2 không đọc được (trung vị bị đẩy lên bởi năm lợi nhuận đáy); P/B 3,09 so với 3,36 (≈ 0,92) → chiết khấu nhẹ.",
+ "pitch": "Thế Giới Di Động là luận điểm tăng trưởng, không phải mua vì rẻ: lợi nhuận quý 2/2026 gấp đôi cùng kỳ nhờ chuỗi điện máy lấy lại biên lợi nhuận, trong khi tiêu dùng trong nước tăng theo kinh tế (GDP gần 10%) và tín dụng tiêu dùng. Giá chỉ thấp hơn mức thường thấy một chút, nên lợi nhuận phải tiếp tục tăng thì giá mới đi lên. Luận điểm sai nếu doanh thu của các cửa hàng điện máy hiện có chuyển sang giảm.",
  "dieu_kien_vao": [],
  "pitch_diem": {
   "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
@@ -206,16 +206,36 @@
    "c_ky_vong_ngam": 2,
    "ket_luan": "KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng",
    "tin_xau": "Chu kỳ điện máy đã đỉnh (nền cao 2027); lạm phát 5% ăn sức mua; trả chậm khi lãi suất tăng.",
-   "co_that_su_xau": "Nỗi sợ về tương lai, chưa có số xác nhận (LN Q2 +100%, cửa hàng hiện hữu +30%).",
+   "co_that_su_xau": "Nỗi sợ về tương lai, chưa có số xác nhận (lợi nhuận Q2 +100%, cửa hàng hiện hữu +30%).",
    "trang_thai": "Chưa xảy ra.",
-   "ky_vong_ngam": "P/E 11,2 vs 23,2 không đọc được (trung vị bị đẩy lên bởi năm LN đáy); P/B 3,09 vs 3,36 (≈ 0,92) → chiết khấu nhẹ.",
+   "ky_vong_ngam": "P/E 11,2 so với 23,2 không đọc được (trung vị bị đẩy lên bởi năm lợi nhuận đáy); P/B 3,09 so với 3,36 (≈ 0,92) → chiết khấu nhẹ.",
    "nguoi_ban_can_bien": "Không rõ nhóm bán bắt buộc.",
-   "counter": "LN gấp đôi nhờ nền thấp, P/E 11 có thể đã đúng. Response: đúng nếu bán lẻ thực chậm rõ; chưa có số nào cho thấy.",
-   "phep_thu": "KQ Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
+   "counter": "Lợi nhuận gấp đôi nhờ nền thấp, P/E 11 có thể đã đúng. Response: đúng nếu bán lẻ thực chậm rõ; chưa có số nào cho thấy.",
+   "phep_thu": "Kết quả Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
   },
   "ket_luan": "ĐỦ ĐỂ XUỐNG TIỀN",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
- }
+ },
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 91.73,
+   "nguon": "đỉnh 250 phiên (03/02/2026)",
+   "ngay_ghi": "2026-10-22",
+   "du_kien_phien": 120,
+   "han_phien": 250,
+   "mo_ta": "chạm thì sổ giả lập bán 1/3"
+  },
+  {
+   "id": "T2",
+   "gia": 117.58,
+   "nguon": "P/E về 17,1 — giữa P/E hiện tại 11,0 và mức thường thấy 3 năm 23,2",
+   "ngay_ghi": "2026-10-22",
+   "du_kien_phien": 250,
+   "han_phien": 500,
+   "mo_ta": "chạm thì sổ giả lập bán thêm 1/3"
+  }
+ ]
 }

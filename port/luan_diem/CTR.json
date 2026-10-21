@@ -1,17 +1,17 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
- "cap_nhat": "2026-10-15",
+ "cap_nhat": "2026-10-22",
  "bai_hoc": "",
  "trang_thai": "nghien_cuu",
  "chieu": "tang",
  "ma": "CTR",
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: đầu tư công và hạ tầng số; ít phơi nhiễm quốc tế.",
-  "nganh": "FACT (BSC 28/04): CTR giảm đầu tư trạm BTS mới còn 1.000 trạm năm 2026, sau đó ~500/năm vì ứng dụng 5G phát triển chậm. INTERPRETATION: câu chuyện TowerCo — lý do CTR từng có P/E trên 20 — đã chậm lại; tăng trưởng chuyển sang xây lắp ngoài tập đoàn.",
-  "doanh_nghiep": "Viettel Construction, công ty con của Viettel. FACT (NSI): ROE 30,2%, LN 4 quý +16,1%, LNST Q2/26 171,9 tỷ (+18,4%). FACT (doanhnhan.baophapluat): 7T/26 doanh thu >9.410 tỷ (+28%), LNTT >470 tỷ (+18%), đạt 61% kế hoạch LN năm.",
-  "mo_hinh_kd": "Vận hành khai thác 39% DT (+7%), xây lắp >3.532 tỷ (+50%), giải pháp kỹ thuật 17%, hạ tầng cho thuê 6% (12.000 trạm, gần như không đổi so cuối 2025). Ngoài tập đoàn 48% DT tháng 7.",
-  "lanh_dao": "Thuộc Viettel (quân đội); kế hoạch thường thận trọng (2026: LNST 622,4 tỷ, +3,8% — BSC). Chưa đủ dữ liệu về lịch sử vượt kế hoạch nhiều năm.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: đầu tư công và hạ tầng số; ít phơi nhiễm quốc tế.",
+  "nganh": "CTR giảm đầu tư trạm BTS mới còn 1.000 trạm năm 2026, sau đó ~500/năm vì ứng dụng 5G phát triển chậm. Câu chuyện TowerCo — lý do CTR từng có P/E trên 20 — đã chậm lại; tăng trưởng chuyển sang xây lắp ngoài tập đoàn.",
+  "doanh_nghiep": "Viettel Construction, công ty con của Viettel. ROE 30,2%, lợi nhuận 4 quý +16,1%, lợi nhuận sau thuế Q2/26 171,9 tỷ (+18,4%). 7T/26 doanh thu >9.410 tỷ (+28%), lợi nhuận trước thuế >470 tỷ (+18%), đạt 61% kế hoạch lợi nhuận năm.",
+  "mo_hinh_kd": "Vận hành khai thác 39% doanh thu (+7%), xây lắp >3.532 tỷ (+50%), giải pháp kỹ thuật 17%, hạ tầng cho thuê 6% (12.000 trạm, gần như không đổi so cuối 2025). Ngoài tập đoàn 48% doanh thu tháng 7.",
+  "lanh_dao": "Thuộc Viettel (quân đội); kế hoạch thường thận trọng (2026: lợi nhuận sau thuế 622,4 tỷ, +3,8% — BSC). Chưa đủ dữ liệu về lịch sử vượt kế hoạch nhiều năm.",
   "chuoi_gia_tri": "Hạ tầng viễn thông + xây lắp dân dụng/điện mặt trời; mảng nhà ở 10.000 căn đến 2030 và NOXH Viettel Home (không đóng góp 2026).",
   "dan_nguoc_vi_mo": "Đầu tư hạ tầng số và xây dựng dân dụng hưởng từ tích lũy tài sản Q3 +21%."
  },
@@ -19,23 +19,23 @@
   {
    "id": "L1",
    "nhan": "INTERPRETATION",
-   "noi_dung": "Thị trường định giá lại CTR từ 'cổ phiếu tăng trưởng TowerCo' (P/E >20) về P/E 13,5 khi kế hoạch trạm bị cắt, nhưng LN vẫn tăng 16–18% nhờ xây lắp ngoài tập đoàn và ROE giữ 30%.",
+   "noi_dung": "Thị trường định giá lại CTR từ 'cổ phiếu tăng trưởng TowerCo' (P/E >20) về P/E 13,5 khi kế hoạch trạm bị cắt, nhưng lợi nhuận vẫn tăng 16–18% nhờ xây lắp ngoài tập đoàn và ROE giữ 30%.",
    "bang_chung": [
-    "FACT: P/E 13,5 vs trung vị 3 năm 20,9; P/B 3,94 vs 5,68 (NSI 14/10)",
-    "FACT: 7T/26 LNTT +18%, đạt 61% kế hoạch (doanhnhan.baophapluat)",
-    "FACT: giá 68,1 vs đỉnh 94,74 (14/01), −28,1% (FireAnt)"
+    "FACT: P/E 13,5 so với trung vị 3 năm 20,9; P/B 3,94 so với 5,68 (NSI 14/10)",
+    "FACT: 7T/26 lợi nhuận trước thuế +18%, đạt 61% kế hoạch (doanhnhan.baophapluat)",
+    "FACT: Giá 68,1 so với đỉnh 94,74 (14/01), −28,1% (FireAnt)"
    ]
   }
  ],
  "bull": [
-  "ROE 30% ổn định 6 quý liên tiếp; LN 4 quý +16%.",
-  "7 tháng đã 61% kế hoạch LN — kế hoạch +3,8% quá thận trọng.",
+  "ROE 30% ổn định 6 quý liên tiếp; lợi nhuận 4 quý +16%.",
+  "7 tháng đã 61% kế hoạch lợi nhuận — kế hoạch +3,8% quá thận trọng.",
   "P/E 13,5 so với 20,9 lịch sử; BSC mục tiêu 93,8 (04/2026)."
  ],
  "bear": [
   "Động lực định giá cao cũ (TowerCo) đã bị cắt: 1.000 trạm 2026 rồi ~500/năm.",
-  "Tháng 7 chỉ +2% LNTT — tăng trưởng đang chậm lại rõ.",
-  "Xây lắp biên thấp hơn hạ tầng cho thuê → tăng trưởng doanh thu không chuyển hết thành LN.",
+  "Tháng 7 chỉ +2% lợi nhuận trước thuế — tăng trưởng đang chậm lại rõ.",
+  "Xây lắp biên thấp hơn hạ tầng cho thuê → tăng trưởng doanh thu không chuyển hết thành lợi nhuận.",
   "Giá ở sát đáy 250 phiên (66,4), dưới mọi MA."
  ],
  "debate": [
@@ -43,7 +43,7 @@
    "ngay": "2026-10-15",
    "vong": 1,
    "ben": "bull",
-   "noi_dung": "Một doanh nghiệp ROE 30%, LN tăng 16–18%, công ty mẹ là Viettel, giá giảm 28% và P/E co từ 21 về 13,5. Tin xấu (cắt TowerCo) ra từ tháng 4 — 6 tháng đã đủ để giá phản ánh."
+   "noi_dung": "Một doanh nghiệp ROE 30%, lợi nhuận tăng 16–18%, công ty mẹ là Viettel, giá giảm 28% và P/E co từ 21 về 13,5. Tin xấu (cắt TowerCo) ra từ tháng 4 — 6 tháng đã đủ để giá phản ánh."
   },
   {
    "ngay": "2026-10-15",
@@ -61,7 +61,7 @@
    "ngay": "2026-10-15",
    "vong": 4,
    "ben": "bear",
-   "noi_dung": "Stress: nếu Q3 tăng trưởng LN về 0–5% như tháng 7, P/E 13,5 không còn rẻ; giá có thể về P/E 11–12 (~56–60)."
+   "noi_dung": "Stress: nếu Q3 tăng trưởng lợi nhuận về 0–5% như tháng 7, P/E 13,5 không còn rẻ; giá có thể về P/E 11–12 (~56–60)."
   },
   {
    "ngay": "2026-10-15",
@@ -73,7 +73,7 @@
    "ngay": "2026-10-15",
    "vong": 6,
    "ben": "trong_tai",
-   "noi_dung": "Kết luận: vào danh sách nhưng xếp sau; K2 đo LNST Q3/26 ≥ +5% so cùng kỳ (thấp hơn 10% vì tháng 7 đã chậm). Không có hỗ trợ kỹ thuật được xác nhận dưới đáy 66,4 → mốc ngừng mua dùng chuẩn −7%: 63,6."
+   "noi_dung": "Kết luận: vào danh sách nhưng xếp sau; K2 đo lợi nhuận sau thuế Q3/26 ≥ +5% so cùng kỳ (thấp hơn 10% vì tháng 7 đã chậm). Không có hỗ trợ kỹ thuật được xác nhận dưới đáy 66,4 → mốc ngừng mua dùng chuẩn −7%: 63,6."
   },
   {
    "ngay": "2026-10-15",
@@ -85,13 +85,13 @@
    "ngay": "2026-10-15",
    "vong": 8,
    "ben": "trong_tai",
-   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 41/70 = quốc tế 5 · vĩ mô VN 11 · ngành 7 · doanh nghiệp 12 · giá sai 6; số 21/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: KHÔNG PHẢI GIÁ SAI — định giá lại có cơ sở. Tin xấu: Cắt kế hoạch trạm BTS (1.000 trạm 2026, sau đó ~500/năm). Kỳ vọng ngầm: P/E 13,5 vs 20,9 → LN −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý. Phép thử: KQ Q3 (K2 ≥ +5%; LNTT tháng 7 chỉ +2%). Kết luận: CẦN THÊM BẰNG CHỨNG."
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 41/70 = quốc tế 5 · vĩ mô VN 11 · ngành 7 · doanh nghiệp 12 · giá sai 6; số 21/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: KHÔNG PHẢI GIÁ SAI — định giá lại có cơ sở. Tin xấu: Cắt kế hoạch trạm BTS (1.000 trạm 2026, sau đó ~500/năm). Kỳ vọng ngầm: P/E 13,5 so với 20,9 → lợi nhuận −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý. Phép thử: kết quả Q3 (K2 ≥ +5%; lợi nhuận trước thuế tháng 7 chỉ +2%). Kết luận: CẦN THÊM BẰNG CHỨNG."
   },
   {
    "ngay": "2026-10-15",
    "vong": 9,
    "ben": "anh_son",
-   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
   }
  ],
  "phan_bien_may": {
@@ -116,12 +116,12 @@
    "quy": "Q3/26",
    "so_sanh": ">=",
    "nguong": 5,
-   "noi_dung": "LNST Q3/26 tăng ≥ 5% so với cùng kỳ (nền Q3/25 168,9 tỷ, NSI); tháng 7 chỉ +2%."
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 5% so với cùng kỳ (nền Q3/25 168,9 tỷ, NSI); tháng 7 chỉ +2%."
   }
  ],
- "vo_hieu": "Vô hiệu theo sự kiện: LNST Q3/26 tăng dưới 5% (K2); xây lắp ngoài tập đoàn chững lại.",
- "dinh_gia": "P/E 13,5 vs trung vị 3 năm 20,9; P/B 3,94 vs 5,68 (NSI 14/10). Một phần độ rẻ do mô hình tăng trưởng đã đổi. Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 13,5 vs 20,9 → LN −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý.",
- "pitch": "[CẦN THÊM BẰNG CHỨNG · 62 điểm] Viettel Construction vẫn có ROE 30% và hưởng đầu tư công, nhưng giá rơi chủ yếu vì động lực cho thuê hạ tầng trạm đã bị cắt — đó là định giá lại có cơ sở, không phải giá sai. Cần thấy xây lắp ngoài tập đoàn giữ đà và LN Q3 không chậm thêm.",
+ "vo_hieu": "Vô hiệu theo sự kiện: lợi nhuận sau thuế Q3/26 tăng dưới 5% (K2); xây lắp ngoài tập đoàn chững lại.",
+ "dinh_gia": "P/E 13,5 so với trung vị 3 năm 20,9; P/B 3,94 so với 5,68 (NSI 14/10). Một phần độ rẻ do mô hình tăng trưởng đã đổi. Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 13,5 so với 20,9 → lợi nhuận −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý.",
+ "pitch": "Viettel Construction vẫn có hiệu quả sinh lời cao (ROE 30%) và hưởng lợi từ đầu tư công. Nhưng giá giảm chủ yếu vì mảng cho thuê hạ tầng trạm phát sóng mất động lực tăng — giá giảm như vậy là có lý do, không phải thị trường định giá sai. Cần thấy mảng xây lắp cho khách ngoài Viettel giữ được đà tăng và lợi nhuận quý 3 không chậm thêm.",
  "dieu_kien_vao": [],
  "pitch_diem": {
   "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
@@ -149,15 +149,26 @@
    "tin_xau": "Cắt kế hoạch trạm BTS (1.000 trạm 2026, sau đó ~500/năm).",
    "co_that_su_xau": "Cấu trúc: động lực TowerCo, lý do của P/E trên 20, đã mất.",
    "trang_thai": "Đã có kích thước từ tháng 4.",
-   "ky_vong_ngam": "P/E 13,5 vs 20,9 → LN −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý.",
+   "ky_vong_ngam": "P/E 13,5 so với 20,9 → lợi nhuận −35%, nhưng trung vị thuộc giai đoạn TowerCo; tăng trưởng mới ~10–15% thì P/E 13–15 là hợp lý.",
    "nguoi_ban_can_bien": "—",
    "counter": "—",
-   "phep_thu": "KQ Q3 (K2 ≥ +5%; LNTT tháng 7 chỉ +2%)."
+   "phep_thu": "Kết quả Q3 (K2 ≥ +5%; lợi nhuận trước thuế tháng 7 chỉ +2%)."
   },
   "ket_luan": "CẦN THÊM BẰNG CHỨNG",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
  },
- "ngay_vao": null
+ "ngay_vao": null,
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 78.9,
+   "nguon": "đỉnh 60 phiên",
+   "ngay_ghi": "2026-10-22",
+   "du_kien_phien": 120,
+   "han_phien": 250,
+   "mo_ta": "chạm thì sổ giả lập bán 1/3"
+  }
+ ]
 }

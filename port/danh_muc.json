@@ -1,25 +1,25 @@
 {
  "ngay": "2026-10-15",
  "ky_han": "6-24 tháng, cập nhật theo quý (sau mỗi mùa BCTC)",
- "quan_diem": "Kinh tế thực nóng, tiền đắt lên, tăng trưởng lệch. GDP Q3 +9,95% nhờ đầu tư công, FDI và tín dụng; nhưng Fed quay lại tăng lãi suất, US10Y >5,2%, CPI tháng 9 +5,08% chạm trần, tín dụng tăng nhanh hơn huy động, nhập siêu 9 tháng 19,4 tỷ USD và Mỹ áp thuế 301 với hàng VN. VN-Index thấp hơn đỉnh 250 phiên ~11,6% (CĂNG THẲNG).\n\nKhung lọc (anh Sơn chốt 15/10): 70% là luận điểm đầu tư theo chuỗi quốc tế → vĩ mô VN → ngành → doanh nghiệp → vì sao giá sai; 30% là số liệu (P/E, P/B, LN, ROE, nợ). Khâu \"vì sao giá sai\" trả lời một câu: giá hiện tại đã phản ánh hết tin xấu chưa — đọc qua kỳ vọng ngầm trong giá, người bán cận biên, và phép thử tin xấu tiếp theo. Không số hóa điểm mua/bán: bỏ cổng giá R38, mục tiêu T1/T2, ngừng mua −7%, nhịp mở R40.",
+ "quan_diem": "Kinh tế thực nóng, tiền đắt lên, tăng trưởng lệch. GDP Q3 +9,95% nhờ đầu tư công, FDI và tín dụng; nhưng Fed quay lại tăng lãi suất, lợi suất trái phiếu Mỹ 10 năm >5,2%, CPI tháng 9 +5,08% chạm trần, tín dụng tăng nhanh hơn huy động, nhập siêu 9 tháng 19,4 tỷ USD và Mỹ áp thuế 301 với hàng VN. VN-Index thấp hơn đỉnh 250 phiên ~11,6% (CĂNG THẲNG).\n\nKhung lọc (anh Sơn chốt 15/10): 70% là luận điểm đầu tư theo chuỗi quốc tế → vĩ mô VN → ngành → doanh nghiệp → vì sao giá sai; 30% là số liệu (P/E, P/B, lợi nhuận, ROE, nợ). Khâu \"vì sao giá sai\" trả lời một câu: giá hiện tại đã phản ánh hết tin xấu chưa — đọc qua kỳ vọng ngầm trong giá, người bán cận biên, và phép thử tin xấu tiếp theo. Không số hóa điểm mua/bán: bỏ cổng giá quy tắc giải ngân, mục tiêu T1/T2, ngừng mua −7%, nhịp mở lớp rủi ro danh mục.",
  "vi_tri": [
   {
    "ma": "FPT",
    "ty_trong": 12.5,
    "vai_tro": "Công nghệ — tin xấu dòng tiền đã vào giá",
-   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 71 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN. Phép thử: Ngày hiệu lực kỳ xét VNDiamond + KQ Q3 (20/10–05/11): bị loại mà giá không tạo đáy mới với lực bán lớn → CONFIRMATION. Cần xác minh lịch kỳ xét."
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 71 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN. Phép thử: Ngày hiệu lực kỳ xét VNDiamond + kết quả Q3 (20/10–05/11): bị loại mà giá không tạo đáy mới với lực bán lớn → xác nhận. Cần xác minh lịch kỳ xét."
   },
   {
    "ma": "VCB",
    "ty_trong": 12.5,
    "vai_tro": "Ngân hàng — vốn ngoại rút, tài sản tốt nhất ngành",
-   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 69 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN (phần dòng tiền). Phép thử: Fed 27–28/10 và dòng ngoại sau đó: ngoại tiếp tục bán mà VCB không tạo đáy mới → CONFIRMATION."
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 69 điểm. Khâu 5: ĐÃ PHẢN ÁNH PHẦN LỚN (phần dòng tiền). Phép thử: Fed 27–28/10 và dòng ngoại sau đó: ngoại tiếp tục bán mà VCB không tạo đáy mới → xác nhận."
   },
   {
    "ma": "MWG",
    "ty_trong": 12.5,
    "vai_tro": "Tiêu dùng nội địa — luận điểm tăng trưởng",
-   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 72 điểm. Khâu 5: KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng. Phép thử: KQ Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
+   "ly_do": "ĐỦ ĐỂ XUỐNG TIỀN · 72 điểm. Khâu 5: KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng. Phép thử: kết quả Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
   }
  ],
  "dot_giai_ngan": [
@@ -46,12 +46,12 @@
  ],
  "pitch": "Kinh tế Việt Nam tăng trưởng gần 10%, nhưng tiền đang đắt lên vì lãi suất Mỹ, lạm phát trong nước và vốn ngoại rút, nên thị trường chứng khoán giảm. Danh mục không mua vì giá đã giảm nhiều. Nó hỏi một câu cho từng mã: tin xấu mà mọi người đang sợ có thật sự xấu cho doanh nghiệp không, và giá hiện tại đã trả tiền cho kịch bản xấu đó chưa.\n\nBa mã đủ điều kiện: FPT (bị bán vì nỗi sợ AI và dòng bán bắt buộc, trong khi hợp đồng mới vẫn tăng), Vietcombank (bị bán vì vốn ngoại rút, trong khi bộ đệm dự phòng dày nhất ngành) và Thế Giới Di Động (luận điểm tăng trưởng theo tiêu dùng). Mỗi mã tối đa 12,5% vốn, chia 3 lần. IDICO, VietinBank và Hòa Phát chờ mùa báo cáo quý 3 làm phép thử: tin xấu đã biết được công bố mà giá giữ được thì mới vào.",
  "rui_ro": [
-  "Fed tăng tiếp, US10Y và DXY cao hơn nữa → vốn ngoại rút thêm, áp lực tỷ giá; cả FPT và VCB đều nhạy với dòng ngoại.",
-  "NHNN đổi hướng sang tăng lãi suất điều hành hoặc siết room tín dụng → điểm gãy của cả bản đồ vĩ mô.",
+  "Fed tăng tiếp, lợi suất trái phiếu Mỹ 10 năm và chỉ số đô la Mỹ (DXY) cao hơn nữa → vốn ngoại rút thêm, áp lực tỷ giá; cả FPT và VCB đều nhạy với dòng ngoại.",
+  "Ngân hàng Nhà nước đổi hướng sang tăng lãi suất điều hành hoặc siết room tín dụng → điểm gãy của cả bản đồ vĩ mô.",
   "Mỹ kết luận 301 \"sản xuất dư thừa\" ở mức cao trên diện rộng → FDI và xuất khẩu điện tử bị kéo vào.",
   "Lạm phát vượt trần kéo dài → sức mua tiêu dùng (MWG) yếu đi.",
-  "Điểm số và kết luận khâu 5 là HYPOTHESIS của Claude, anh Sơn duyệt 15/10; phép thử Q3 là nơi kiểm chứng.",
-  "Dữ liệu: lịch kỳ xét VNDiamond và ngày kết luận 301 sở hữu trí tuệ (29/11) cần xác minh lại; số LN HPG 2021–2022 là kiến thức nền, cần đối chiếu BCTC."
+  "Điểm số và kết luận khâu 5 là giả thuyết của Claude, anh Sơn duyệt 15/10; phép thử Q3 là nơi kiểm chứng.",
+  "Dữ liệu: lịch kỳ xét VNDiamond và ngày kết luận 301 sở hữu trí tuệ (29/11) cần xác minh lại; số lợi nhuận HPG 2021–2022 là kiến thức nền, cần đối chiếu báo cáo tài chính."
  ],
  "debate_danh_muc": [
   {
@@ -72,12 +72,12 @@
   {
    "vong": 4,
    "ben": "bear",
-   "noi_dung": "Câu hỏi của anh Sơn áp ngược: nếu tin xấu ở BĐS và chứng khoán đã vào giá, sao lại loại? Trả lời: vì tin xấu ở đó CHƯA dừng (lãi suất còn tăng, margin chưa giải chấp). Giá phản ánh tin xấu đã biết, không phản ánh tin xấu chưa xảy ra."
+   "noi_dung": "Câu hỏi của anh Sơn áp ngược: nếu tin xấu ở bất động sản và chứng khoán đã vào giá, sao lại loại? Trả lời: vì tin xấu ở đó CHƯA dừng (lãi suất còn tăng, margin chưa giải chấp). Giá phản ánh tin xấu đã biết, không phản ánh tin xấu chưa xảy ra."
   },
   {
    "vong": 5,
    "ben": "bull",
-   "noi_dung": "Ngược lại, dầu khí đang có tin tốt nhất (LN năng lượng Q3 +66,9% theo MSVN) — chính vì vậy đã vào giá; BSR P/B 2,04 vs trung vị 1,26. Áp đúng quy tắc theo cả hai chiều."
+   "noi_dung": "Ngược lại, dầu khí đang có tin tốt nhất (lợi nhuận năng lượng Q3 +66,9% theo MSVN) — chính vì vậy đã vào giá; BSR P/B 2,04 so với trung vị 1,26. Áp đúng quy tắc theo cả hai chiều."
   },
   {
    "vong": 6,
@@ -92,12 +92,12 @@
   {
    "vong": 8,
    "ben": "anh_son",
-   "noi_dung": "15/10: chốt quy tắc giải ngân theo trạng thái thị trường (R38) và nới vô hiệu thành bán ở giá vốn −15%, \"nới nhưng vẫn phải quản trị rủi ro\" → thêm ngừng mua −7%, trần 20% NAV/mã, nhiệt ≤ 10% NAV."
+   "noi_dung": "15/10: chốt quy tắc giải ngân theo trạng thái thị trường (quy tắc giải ngân) và nới vô hiệu thành bán ở giá vốn −15%, \"nới nhưng vẫn phải quản trị rủi ro\" → thêm ngừng mua −7%, trần 20% NAV/mã, nhiệt ≤ 10% NAV."
   },
   {
    "vong": 9,
    "ben": "anh_son",
-   "noi_dung": "15/10: \"sụt giảm to quá\" → chốt lớp rủi ro danh mục R40: chỉ mở mã mới khi VN-Index ≤ −10% so với đỉnh 250 phiên, tối đa 2 mã mới/20 phiên, tối đa 8 mã × 12,5%."
+   "noi_dung": "15/10: \"sụt giảm to quá\" → chốt lớp rủi ro danh mục lớp rủi ro danh mục: chỉ mở mã mới khi VN-Index ≤ −10% so với đỉnh 250 phiên, tối đa 2 mã mới/20 phiên, tối đa 8 mã × 12,5%."
   },
   {
    "vong": 10,
@@ -107,7 +107,7 @@
   {
    "vong": 11,
    "ben": "anh_son",
-   "noi_dung": "15/10: đừng số hóa mọi thứ — port đi dài; 70% là câu chuyện luận điểm vĩ mô → vi mô (quốc tế trước, nhất là Mỹ và Trung Quốc), P/E, P/B thuộc 30%. Bỏ cổng giá R38, T1/T2, VNI ≤ −10%, nhịp 2 mã/20 phiên, ngừng mua −7%."
+   "noi_dung": "15/10: đừng số hóa mọi thứ — port đi dài; 70% là câu chuyện luận điểm vĩ mô → vi mô (quốc tế trước, nhất là Mỹ và Trung Quốc), P/E, P/B thuộc 30%. Bỏ cổng giá quy tắc giải ngân, T1/T2, VNI ≤ −10%, nhịp 2 mã/20 phiên, ngừng mua −7%."
   },
   {
    "vong": 12,
@@ -117,17 +117,22 @@
   {
    "vong": 13,
    "ben": "anh_son",
-   "noi_dung": "15/10: câu hỏi cốt lõi là giá đã phản ánh hết tin xấu chưa — mọi người xem là xấu nhưng có thật sự xấu không; nếu giá chiết khấu đủ thì tin xấu thêm không làm giá giảm nhiều nữa. Viết bằng khung tư duy IES."
+   "noi_dung": "15/10: câu hỏi cốt lõi là giá đã phản ánh hết tin xấu chưa — mọi người xem là xấu nhưng có thật sự xấu không; nếu giá chiết khấu đủ thì tin xấu thêm không làm giá giảm nhiều nữa. Viết bằng khung tư duy khung kỳ vọng ngầm."
   },
   {
    "vong": 14,
    "ben": "trong_tai",
-   "noi_dung": "15/10: viết lại khâu 5. VCB, IDC lên (tin xấu dòng tiền/nhầm nhóm); CTG, HPG xuống (nợ xấu ngành và thép TQ còn chạy); MWG không phải ca tin xấu. Đợt 1: FPT, VCB, MWG; IDC, CTG, HPG chờ phép thử Q3; TNG mở lại nếu qua phép thử 29/11."
+   "noi_dung": "15/10: viết lại khâu 5. VCB, IDC lên (tin xấu dòng tiền/nhầm nhóm); CTG, HPG xuống (nợ xấu ngành và thép Trung Quốc còn chạy); MWG không phải ca tin xấu. Đợt 1: FPT, VCB, MWG; IDC, CTG, HPG chờ phép thử Q3; TNG mở lại nếu qua phép thử 29/11."
   },
   {
    "vong": 15,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt, cho đẩy lên."
+  },
+  {
+   "vong": 16,
+   "ben": "anh_son",
+   "noi_dung": "22/10: thêm sổ giả lập mua bán + NAV theo quy tắc giải ngân; dùng lại mục tiêu T1/T2 (bán 1/3 mỗi mục tiêu); giữ bán hết ở −15% so với giá vốn, cờ xem lại từ −10% hoặc thủng hỗ trợ Daily; review 1 lần/quý khi có BCTC mới."
   }
  ],
  "quy_tac_giai_ngan": {
@@ -137,36 +142,39 @@
   "hoang_loan": "VN-Index ≤ −20% so với đỉnh 250 phiên: 2 đợt 60/40",
   "con_lai": "3 đợt 1/3 sau nền đi ngang",
   "ban": "Đóng cửa dưới giá vốn bình quân −15%: bán hết",
-  "da_bo": "Cổng giá R38, mục tiêu T1/T2 và xác suất chạm, VNI ≤ −10% mới mở mã, tối đa 2 mã/20 phiên, ngừng mua −7%, VN-Index < 1.668,5 hoãn đợt mới"
+  "da_bo": "Cổng giá R38, xác suất chạm mục tiêu, VNI ≤ −10% mới mở mã, tối đa 2 mã/20 phiên, ngừng mua −7%, VN-Index < 1.668,5 hoãn đợt mới (22/10/2026: dùng lại mục tiêu T1/T2 cho chốt lời từng phần)",
+  "muc_tieu": "Chạm mục tiêu 1 bán 1/3, chạm mục tiêu 2 bán thêm 1/3; sau mục tiêu 1 không mua thêm. Mục tiêu do code đề xuất từ mốc có nguồn (kháng cự/đỉnh cũ, định giá về mức thường thấy), Claude duyệt. Anh Sơn chốt 22/10/2026.",
+  "co": "Thấp hơn giá vốn từ 10% hoặc thủng hỗ trợ của Daily: treo cờ xem lại luận điểm, không bán.",
+  "review": "Review định kỳ 1 lần/quý: khi nguyensonfinance có BCTC quý mới của các mã thì chuông nhắc. Ngoài lịch chỉ review khi có cờ."
  },
  "hang_cho": [
   {
    "ma": "IDC",
-   "ly_do": "CHỜ PHÉP THỬ Q3 · 74 điểm. ĐÃ PHẢN ÁNH PHẦN LỚN — còn thiếu số đất thương phẩm và tỷ trọng khách TQ. Phép thử: KQ Q3 (dự kiến giảm so với nền cao): KQ ra giảm mà giá không tạo đáy mới → CONFIRMATION."
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 74 điểm. ĐÃ PHẢN ÁNH PHẦN LỚN — còn thiếu số đất thương phẩm và tỷ trọng khách Trung Quốc. Phép thử: kết quả Q3 (dự kiến giảm so với nền cao): kết quả ra giảm mà giá không tạo đáy mới → xác nhận."
   },
   {
    "ma": "CTG",
-   "ly_do": "CHỜ PHÉP THỬ Q3 · 69 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: BCTC Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → CONFIRMATION."
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 69 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: báo cáo tài chính Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → xác nhận."
   },
   {
    "ma": "HPG",
-   "ly_do": "CHỜ PHÉP THỬ Q3 · 67 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: KQ Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → CONFIRMATION."
+   "ly_do": "CHỜ PHÉP THỬ Q3 · 67 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: kết quả Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → xác nhận."
   },
   {
    "ma": "CTR",
-   "ly_do": "CẦN THÊM BẰNG CHỨNG · 62 điểm. KHÔNG PHẢI GIÁ SAI — định giá lại có cơ sở. Phép thử: KQ Q3 (K2 ≥ +5%; LNTT tháng 7 chỉ +2%)."
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 62 điểm. KHÔNG PHẢI GIÁ SAI — định giá lại có cơ sở. Phép thử: kết quả Q3 (K2 ≥ +5%; lợi nhuận trước thuế tháng 7 chỉ +2%)."
   },
   {
    "ma": "POW",
-   "ly_do": "CẦN THÊM BẰNG CHỨNG · 54 điểm. CHƯA CÓ CHIẾT KHẤU. Phép thử: LN cốt lõi Q3 so với cùng kỳ (nền 809 tỷ)."
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 54 điểm. CHƯA CÓ CHIẾT KHẤU. Phép thử: lợi nhuận cốt lõi Q3 so với cùng kỳ (nền 809 tỷ)."
   },
   {
    "ma": "KDH",
-   "ly_do": "CẦN THÊM BẰNG CHỨNG · 45 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → CONFIRMATION."
+   "ly_do": "CẦN THÊM BẰNG CHỨNG · 45 điểm. PHẢN ÁNH MỘT PHẦN. Phép thử: Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → xác nhận."
   },
   {
    "ma": "TNG",
-   "ly_do": "BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11. PHẢN ÁNH MỘT PHẦN. Phép thử: Kết luận 301 sở hữu trí tuệ, dự kiến 29/11 theo hồ sơ (cần xác minh): ra mà giá không thủng 15,68 với lực bán lớn → CONFIRMATION, mở lại luận điểm (mốc P1)."
+   "ly_do": "BÁC BỎ (kỳ này) — mở lại nếu qua phép thử 29/11. PHẢN ÁNH MỘT PHẦN. Phép thử: Kết luận 301 sở hữu trí tuệ, dự kiến 29/11 theo hồ sơ (cần xác minh): ra mà giá không thủng 15,68 với lực bán lớn → xác nhận, mở lại luận điểm (mốc P1)."
   },
   {
    "ma": "SSI",
@@ -174,7 +182,8 @@
   },
   {
    "ma": "MSN",
-   "ly_do": "Chưa viết luận điểm. LN 4 quý +150% cần bóc khoản bất thường trước khi chấm theo khung mới."
+   "ly_do": "Chưa viết luận điểm. Lợi nhuận 4 quý +150% cần bóc khoản bất thường trước khi chấm theo khung mới."
   }
- ]
+ ],
+ "ngay_cap_nhat": "2026-10-22"
 }

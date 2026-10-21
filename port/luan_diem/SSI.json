@@ -1,17 +1,17 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-15",
+ "cap_nhat": "2026-10-22",
  "bai_hoc": "",
  "ma": "SSI",
  "trang_thai": "loai",
  "chieu": "tang",
  "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: nghịch: vốn ngoại rút, thanh khoản thấp.",
-  "nganh": "FACT (MSVN): GTGD bình quân ~17.000 tỷ/phiên, bằng một nửa cùng kỳ; LN chứng khoán Q3 có nguy cơ không đạt. FACT (tin NSI 05/10): dư nợ margin lập kỷ lục. INTERPRETATION: tin xấu của ngành (thanh khoản, LN Q3) đã rõ; tin xấu chưa xảy ra là giải chấp margin.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: nghịch: vốn ngoại rút, thanh khoản thấp.",
+  "nganh": "GTGD bình quân ~17.000 tỷ/phiên, bằng một nửa cùng kỳ; lợi nhuận chứng khoán Q3 có nguy cơ không đạt. Dư nợ margin lập kỷ lục. Tin xấu của ngành (thanh khoản, lợi nhuận Q3) đã rõ; tin xấu chưa xảy ra là giải chấp margin.",
   "doanh_nghiep": "Công ty chứng khoán lớn, ROE 13,4% (NSI). Thị phần môi giới quý 3 có biến động (tin NSI 06/10).",
-  "mo_hinh_kd": "Môi giới + cho vay margin + tự doanh + ngân hàng đầu tư; LN nhạy với thanh khoản thị trường. FACT (NSI): LNST Q2/26 +42,8%.",
+  "mo_hinh_kd": "Môi giới + cho vay margin + tự doanh + ngân hàng đầu tư; lợi nhuận nhạy với thanh khoản thị trường. Lợi nhuận sau thuế Q2/26 +42,8%.",
   "lanh_dao": "Chủ tịch Nguyễn Duy Hưng. Chưa có dữ liệu NSI về kế hoạch 2026 — cần bổ sung.",
   "chuoi_gia_tri": "Kênh trung gian cho dòng vốn ngoại (lưu ký, môi giới tổ chức) — vị trí hưởng lợi trực tiếp khi vốn thụ động FTSE vào.",
   "dan_nguoc_vi_mo": "Thị trường vốn sâu hơn giảm phụ thuộc tín dụng ngân hàng."
@@ -22,8 +22,8 @@
    "nhan": "HYPOTHESIS",
    "noi_dung": "Thước đo độ nhạy của thị trường: khi đáy thị trường xuất hiện, nhóm chứng khoán hồi mạnh nhất. Chưa có xác nhận nào.",
    "bang_chung": [
-    "FACT: P/B 1,4 vs trung vị 2,06; P/E 10,78 vs 17,87 (NSI)",
-    "OBSERVATION: giá 18,9, dưới MA50 20,28 và MA200 22,29"
+    "FACT: P/B 1,4 so với trung vị 2,06; P/E 10,78 so với 17,87 (NSI)",
+    "OBSERVATION: Giá 18,9, dưới đường trung bình 50 phiên 20,28 và đường trung bình 200 phiên 22,29"
    ]
   }
  ],
@@ -33,7 +33,7 @@
   "Beta cao nhất khi thị trường đảo chiều."
  ],
  "bear": [
-  "LN Q3 sẽ giảm do thanh khoản bằng một nửa.",
+  "Lợi nhuận Q3 sẽ giảm do thanh khoản bằng một nửa.",
   "Margin kỷ lục: rủi ro giải chấp chưa xảy ra.",
   "Hỗ trợ kỹ thuật sâu (17,34) nằm xa hơn −7% → rủi ro rộng hơn chuẩn."
  ],
@@ -42,13 +42,13 @@
    "ngay": "2026-10-14",
    "vong": 1,
    "ben": "bull",
-   "noi_dung": "Chứng khoán là nơi tin xấu đã rõ nhất: thanh khoản giảm một nửa, ai cũng biết LN Q3 giảm."
+   "noi_dung": "Chứng khoán là nơi tin xấu đã rõ nhất: thanh khoản giảm một nửa, ai cũng biết lợi nhuận Q3 giảm."
   },
   {
    "ngay": "2026-10-14",
    "vong": 2,
    "ben": "bear",
-   "noi_dung": "\"Ai cũng biết LN giảm\" chưa đủ. Tin xấu thật sự là giải chấp margin — chưa xảy ra. Mua trước capitulation là đứng trước xe."
+   "noi_dung": "\"Ai cũng biết lợi nhuận giảm\" chưa đủ. Tin xấu thật sự là giải chấp margin — chưa xảy ra. Mua trước capitulation là đứng trước xe."
   },
   {
    "ngay": "2026-10-14",
@@ -66,19 +66,19 @@
    "ngay": "2026-10-14",
    "vong": 5,
    "ben": "trong_tai",
-   "noi_dung": "Kết luận: không giải ngân. Giữ trạng thái nghiên cứu, 8% tỷ trọng dự bị. Chỉ vào khi đóng cửa vượt 20,14 (biên trên kháng cự 19,65–20,14, trùng MA50) và đèn NSI rời ĐỎ."
+   "noi_dung": "Kết luận: không giải ngân. Giữ trạng thái nghiên cứu, 8% tỷ trọng dự bị. Chỉ vào khi đóng cửa vượt 20,14 (biên trên kháng cự 19,65–20,14, trùng đường trung bình 50 phiên) và đèn NSI rời ĐỎ."
   },
   {
    "ngay": "2026-10-15",
    "vong": 6,
    "ben": "trong_tai",
-   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 32/70 = quốc tế 3 · vĩ mô VN 7 · ngành 5 · doanh nghiệp 11 · giá sai 6; số 19/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: CHƯA PHẢN ÁNH. Tin xấu: Thanh khoản thấp, LN Q3 có nguy cơ giảm; dư nợ margin kỷ lục (tin NSI 05/10). Kỳ vọng ngầm: P/B 1,40 vs 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra. Phép thử: — Kết luận: BÁC BỎ (kỳ này)."
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 32/70 = quốc tế 3 · vĩ mô VN 7 · ngành 5 · doanh nghiệp 11 · giá sai 6; số 19/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: CHƯA PHẢN ÁNH. Tin xấu: Thanh khoản thấp, lợi nhuận Q3 có nguy cơ giảm; dư nợ margin kỷ lục (tin NSI 05/10). Kỳ vọng ngầm: P/B 1,40 so với 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra. Phép thử: — Kết luận: BÁC BỎ (kỳ này)."
   },
   {
    "ngay": "2026-10-15",
    "vong": 7,
    "ben": "anh_son",
-   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
   }
  ],
  "phan_bien_may": {
@@ -103,12 +103,12 @@
    "quy": "Q3/26",
    "so_sanh": ">=",
    "nguong": -40,
-   "noi_dung": "LNST Q3/26 không giảm quá 40% so với cùng kỳ (tin xấu không tệ hơn dự kiến)."
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 không giảm quá 40% so với cùng kỳ (tin xấu không tệ hơn dự kiến)."
   }
  ],
  "vo_hieu": "Không áp dụng (bác bỏ kỳ này).",
- "dinh_gia": "P/B 1,40 vs trung vị 3 năm 2,06; P/E 10,78 vs 17,87 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 1,40 vs 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra.",
- "pitch": "[BÁC BỎ (kỳ này) · 51 điểm] Bác bỏ kỳ này: tin xấu lớn nhất của ngành chứng khoán (giải chấp margin khi dư nợ kỷ lục) chưa xảy ra nên giá chưa thể phản ánh hết.",
+ "dinh_gia": "P/B 1,40 so với trung vị 3 năm 2,06; P/E 10,78 so với 17,87 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 1,40 so với 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra.",
+ "pitch": "Tạm loại kỳ này: rủi ro lớn nhất của ngành chứng khoán — nhà đầu tư bị bán giải chấp khi dư nợ cho vay ký quỹ đang ở mức kỷ lục — chưa xảy ra, nên giá chưa thể phản ánh hết.",
  "dieu_kien_vao": [],
  "pitch_diem": {
   "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
@@ -133,10 +133,10 @@
    "b_trang_thai": 0,
    "c_ky_vong_ngam": 3,
    "ket_luan": "CHƯA PHẢN ÁNH",
-   "tin_xau": "Thanh khoản thấp, LN Q3 có nguy cơ giảm; dư nợ margin kỷ lục (tin NSI 05/10).",
+   "tin_xau": "Thanh khoản thấp, lợi nhuận Q3 có nguy cơ giảm; dư nợ margin kỷ lục (tin NSI 05/10).",
    "co_that_su_xau": "Chu kỳ.",
    "trang_thai": "Tin xấu lớn nhất (giải chấp margin) chưa xảy ra.",
-   "ky_vong_ngam": "P/B 1,40 vs 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra.",
+   "ky_vong_ngam": "P/B 1,40 so với 2,06 (≈ 0,68) — chiết khấu cho tin chưa xảy ra.",
    "nguoi_ban_can_bien": "—",
    "counter": "—",
    "phep_thu": "—"

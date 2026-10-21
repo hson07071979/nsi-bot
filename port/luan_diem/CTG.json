@@ -1,53 +1,53 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-15",
+ "cap_nhat": "2026-10-22",
  "bai_hoc": "",
  "ma": "CTG",
  "trang_thai": "nghien_cuu",
  "chieu": "tang",
  "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. FACT: Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; US10Y >5,22% (cao nhất từ 2002); DXY ~102 (Vietstock 12/10, Dân trí 15/10). FACT: thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). FACT: Trung Quốc XK tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ TQ 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). FACT: GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% YTD vs huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, NHNN). INTERPRETATION: NHNN nới về lượng (QĐ 1743, trần LDR 95% từ 01/12), không nới về giá. Truyền dẫn riêng: kênh thực thi chính sách: tín dụng +16,7% yoy, QĐ 1743 nêu tên VietinBank, trần LDR 95% từ 01/12; nghịch: NHNN yêu cầu giảm lãi suất → NIM bị ép hai đầu.",
-  "nganh": "FACT (Thanh Tra, 02/09): đến 17/8 tín dụng +9,14%, huy động chỉ +7,29% → áp lực vốn; ACB niêm yết 7,8%, nhóm quốc doanh 6,8%. FACT (MSVN): LN ngân hàng Q3 dự báo +21%, có nguy cơ không đạt; VCB, CTG, VPB được đánh giá tích cực hơn. INTERPRETATION: ngành đang chịu ép NIM nhưng tăng trưởng tín dụng bù về quy mô.",
+  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: kênh thực thi chính sách: tín dụng +16,7% yoy, quyết định 1743 nêu tên VietinBank, trần tỷ lệ cho vay trên huy động 95% từ 01/12; nghịch: Ngân hàng Nhà nước yêu cầu giảm lãi suất → biên lãi ròng bị ép hai đầu.",
+  "nganh": "Đến 17/8 tín dụng +9,14%, huy động chỉ +7,29% → áp lực vốn; ACB niêm yết 7,8%, nhóm quốc doanh 6,8%. Lợi nhuận ngân hàng Q3 dự báo +21%, có nguy cơ không đạt; VCB, CTG, VPB được đánh giá tích cực hơn. Ngành đang chịu ép biên lãi ròng nhưng tăng trưởng tín dụng bù về quy mô.",
   "doanh_nghiep": "Ngân hàng quốc doanh lớn, ROE 21,8% (NSI) — cao nhất nhóm quốc doanh trong dữ liệu NSI (VCB 17,9%, BID 17,7%).",
-  "mo_hinh_kd": "Cho vay doanh nghiệp và bán lẻ, huy động giá rẻ từ tiền gửi tổ chức và Kho bạc. FACT (NSI): LNST Q2/26 11.740 tỷ (+21,4%), LN 4 quý +33,4%.",
+  "mo_hinh_kd": "Cho vay doanh nghiệp và bán lẻ, huy động giá rẻ từ tiền gửi tổ chức và Kho bạc. Lợi nhuận sau thuế Q2/26 11.740 tỷ (+21,4%), lợi nhuận 4 quý +33,4%.",
   "lanh_dao": "Nhà nước sở hữu chi phối; định hướng chính sách đi cùng mục tiêu tăng trưởng của Chính phủ. Chưa có dữ liệu NSI về kế hoạch tăng vốn — cần kiểm.",
-  "chuoi_gia_tri": "Kênh dẫn vốn cho sản xuất kinh doanh (77% dư nợ toàn hệ thống vào SXKD) và cho dự án lớn mà NHNN muốn ưu tiên.",
+  "chuoi_gia_tri": "Kênh dẫn vốn cho sản xuất kinh doanh (77% dư nợ toàn hệ thống vào SXKD) và cho dự án lớn mà Ngân hàng Nhà nước muốn ưu tiên.",
   "dan_nguoc_vi_mo": "Tín dụng là mạch máu của mục tiêu tăng trưởng 2 con số; ngân hàng quốc doanh là công cụ chính để truyền dẫn chính sách tiền tệ."
  },
  "luan_diem": [
   {
    "id": "L1",
    "nhan": "INTERPRETATION",
-   "noi_dung": "P/B 1,15 thấp hơn cả mức thấp nhất 12 quý trong dữ liệu NSI (1,25), trong khi ROE 21,8% và LN vẫn tăng >20%.",
+   "noi_dung": "P/B 1,15 thấp hơn cả mức thấp nhất 12 quý trong dữ liệu NSI (1,25), trong khi ROE 21,8% và lợi nhuận vẫn tăng >20%.",
    "bang_chung": [
     "FACT: P/B 1,15, P/E 5,68 (14/10); trung vị 12 quý P/B 1,42, P/E 9,19 (NSI)",
-    "FACT: LNST Q2/26 +21,4% (NSI)"
+    "FACT: Lợi nhuận sau thuế Q2/26 +21,4% (NSI)"
    ]
   },
   {
    "id": "L2",
    "nhan": "HYPOTHESIS",
-   "noi_dung": "Ngân hàng quốc doanh lớn hưởng lợi kép từ QĐ 1743: thêm dư địa cho vay mà không phải tranh lãi suất huy động.",
+   "noi_dung": "Ngân hàng quốc doanh lớn hưởng lợi kép từ quyết định 1743: thêm dư địa cho vay mà không phải tranh lãi suất huy động.",
    "bang_chung": [
-    "FACT: QĐ 1743 nêu VietinBank trong nhóm được lợi (Thanh Tra, 02/09)"
+    "FACT: Quyết định 1743 nêu VietinBank trong nhóm được lợi (Thanh Tra, 02/09)"
    ]
   }
  ],
  "bull": [
   "P/B dưới đáy 3 năm, ROE cao nhất nhóm quốc doanh.",
-  "QĐ 1743 giảm áp lực huy động cho nhóm quốc doanh.",
-  "MSVN xếp CTG vào nhóm tích cực trong mùa KQ Q3.",
-  "Tín dụng toàn hệ thống +11,6% đến 30/9 — quy mô tăng bù NIM."
+  "Quyết định 1743 giảm áp lực huy động cho nhóm quốc doanh.",
+  "MSVN xếp CTG vào nhóm tích cực trong mùa kết quả Q3.",
+  "Tín dụng toàn hệ thống +11,6% đến 30/9 — quy mô tăng bù biên lãi ròng."
  ],
  "bear": [
   "Lãi huy động đã tăng 1,15 điểm %, Fed còn tăng — chi phí vốn có thể tăng tiếp.",
-  "NHNN vừa yêu cầu giảm lãi cho vay → NIM bị ép hai đầu.",
+  "Ngân hàng Nhà nước vừa yêu cầu giảm lãi cho vay → biên lãi ròng bị ép hai đầu.",
   "Khối ngoại bán nhóm ngân hàng; NSI Tin âm ở cấp ngành.",
-  "Giá dưới MA50 (30,88) và MA200 (34,13) — xu hướng giảm chưa dừng.",
+  "Giá dưới đường trung bình 50 phiên (30,88) và đường trung bình 200 phiên (34,13) — xu hướng giảm chưa dừng.",
   "Lãi suất tăng làm lộ nợ xấu với độ trễ 2–3 quý.",
-  "FACT (Tạp chí KTTC 10/08): nợ xấu nhóm ngân hàng +21,4% từ đầu năm, bao phủ toàn ngành ~83%; CTG bao phủ ~134% — mỏng hơn VCB (~279%)."
+  "Nợ xấu nhóm ngân hàng +21,4% từ đầu năm, bao phủ toàn ngành ~83%; CTG bao phủ ~134% — mỏng hơn VCB (~279%)."
  ],
  "debate": [
   {
@@ -72,13 +72,13 @@
    "ngay": "2026-10-14",
    "vong": 4,
    "ben": "claude",
-   "noi_dung": "Đối chất máy: bot +1, nhưng Tin −1 (chủ đề ngành: lãi suất, khối ngoại) và Daily −1 (dưới MA50 −4,3%, dưới MA200 −12,4%). Hai máy ngắn hạn ngược chiều: port không phản bác cấu trúc giảm, chỉ khác khung thời gian."
+   "noi_dung": "Đối chất máy: bot +1, nhưng Tin −1 (chủ đề ngành: lãi suất, khối ngoại) và Daily −1 (dưới đường trung bình 50 phiên −4,3%, dưới đường trung bình 200 phiên −12,4%). Hai máy ngắn hạn ngược chiều: port không phản bác cấu trúc giảm, chỉ khác khung thời gian."
   },
   {
    "ngay": "2026-10-14",
    "vong": 5,
    "ben": "bear",
-   "noi_dung": "Stress test: thêm một lần Fed tăng + tỷ giá căng → NHNN có thể hút tiền, lãi liên ngân hàng tăng; ngân hàng bị bán tiếp, mốc 28,4 có thể thủng."
+   "noi_dung": "Stress test: thêm một lần Fed tăng + tỷ giá căng → Ngân hàng Nhà nước có thể hút tiền, lãi liên ngân hàng tăng; ngân hàng bị bán tiếp, mốc 28,4 có thể thủng."
   },
   {
    "ngay": "2026-10-14",
@@ -102,7 +102,7 @@
    "ngay": "2026-10-15",
    "vong": 9,
    "ben": "trong_tai",
-   "noi_dung": "So định giá với chính lịch sử 12 quý: P/B VCB 1,89 vs 2,62 (0,72 lần), CTG 1,15 vs 1,42 (0,81), MBB 1,22 vs 1,38 (0,88). P/E: VCB 0,76 lần, CTG 0,62, MBB 0,92. ROE: CTG 21,8%, MBB 20,7%, VCB 17,9%. LN 4 quý: CTG +33,4%, MBB +22,7%, VCB +20,2%; riêng Q2 VCB +64,7%. Máy: VCB Tin +1, Daily −1; MBB Bot +1, Tin +1, Daily −1; CTG Bot +1, Tin −1, Daily −1."
+   "noi_dung": "So định giá với chính lịch sử 12 quý: P/B VCB 1,89 so với 2,62 (0,72 lần), CTG 1,15 so với 1,42 (0,81), MBB 1,22 so với 1,38 (0,88). P/E: VCB 0,76 lần, CTG 0,62, MBB 0,92. ROE: CTG 21,8%, MBB 20,7%, VCB 17,9%. Lợi nhuận 4 quý: CTG +33,4%, MBB +22,7%, VCB +20,2%; riêng Q2 VCB +64,7%. Máy: VCB Tin +1, Daily −1; MBB Bot +1, Tin +1, Daily −1; CTG Bot +1, Tin −1, Daily −1."
   },
   {
    "ngay": "2026-10-15",
@@ -120,13 +120,13 @@
    "ngay": "2026-10-15",
    "vong": 12,
    "ben": "trong_tai",
-   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 44/70 = quốc tế 4 · vĩ mô VN 12 · ngành 9 · doanh nghiệp 12 · giá sai 7; số 25/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: PHẢN ÁNH MỘT PHẦN. Tin xấu: Lãi suất tăng ép NIM; nợ xấu tăng có độ trễ. Kỳ vọng ngầm: P/B 1,15 vs 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay BĐS) để biết kịch bản xấu thực tế → ngang. Phép thử: BCTC Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → CONFIRMATION. Kết luận: CHỜ PHÉP THỬ Q3."
+   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 44/70 = quốc tế 4 · vĩ mô VN 12 · ngành 9 · doanh nghiệp 12 · giá sai 7; số 25/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: PHẢN ÁNH MỘT PHẦN. Tin xấu: Lãi suất tăng ép biên lãi ròng; nợ xấu tăng có độ trễ. Kỳ vọng ngầm: P/B 1,15 so với 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay bất động sản) để biết kịch bản xấu thực tế → ngang. Phép thử: báo cáo tài chính Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → xác nhận. Kết luận: CHỜ PHÉP THỬ Q3."
   },
   {
    "ngay": "2026-10-15",
    "vong": 13,
    "ben": "anh_son",
-   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy IES; bỏ cổng giá R38, T1/T2, ngừng mua −7%, nhịp R40."
+   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
   }
  ],
  "phan_bien_may": {
@@ -136,11 +136,11 @@
   },
   "tin": {
    "ngay": "2026-10-14",
-   "noi_dung": "Tin −1 đến từ chủ đề cấp ngành (lãi suất huy động, khối ngoại bán) trong khung T+0..T+4. Port đồng ý áp lực ngắn hạn có thật; khác nhau ở khung thời gian (port 6–12 tháng, dựa trên P/B dưới đáy 3 năm và LN +21%). Hệ quả: CTG không vào đợt 1, chờ đèn rời ĐỎ."
+   "noi_dung": "Tin −1 đến từ chủ đề cấp ngành (lãi suất huy động, khối ngoại bán) trong khung T+0.T+4. Port đồng ý áp lực ngắn hạn có thật; khác nhau ở khung thời gian (port 6–12 tháng, dựa trên P/B dưới đáy 3 năm và lợi nhuận +21%). Hệ quả: CTG không vào đợt 1, chờ đèn rời ĐỎ."
   },
   "daily": {
    "ngay": "2026-10-14",
-   "noi_dung": "Daily −1 vì giá dưới MA50 và MA200 — đúng là xu hướng giảm. Port không phản bác cấu trúc, chỉ dùng hỗ trợ 28,4 của Daily (4 lần chạm, đáy cũ) làm điều kiện vô hiệu, và chờ xác nhận thị trường mới giải ngân."
+   "noi_dung": "Daily −1 vì giá dưới đường trung bình 50 phiên và đường trung bình 200 phiên — đúng là xu hướng giảm. Port không phản bác cấu trúc, chỉ dùng hỗ trợ 28,4 của Daily (4 lần chạm, đáy cũ) làm điều kiện vô hiệu, và chờ xác nhận thị trường mới giải ngân."
   }
  },
  "kiem_chung": [
@@ -151,12 +151,12 @@
    "quy": "Q3/26",
    "so_sanh": ">=",
    "nguong": 10,
-   "noi_dung": "LNST Q3/26 tăng ≥ 10% so với cùng kỳ."
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 10% so với cùng kỳ."
   }
  ],
- "vo_hieu": "Vô hiệu theo sự kiện: NHNN tăng lãi suất điều hành hoặc siết room tín dụng; nợ xấu tăng hai quý liên tiếp và giá thủng đáy với lực bán lớn. Mốc cơ bản: LNST Q3/26 ≥ +10% (K2).",
- "dinh_gia": "P/B 1,15 vs trung vị 12 quý 1,42 (thấp nhất 12 quý 1,25); P/E 5,68 vs 9,19 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 1,15 vs 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay BĐS) để biết kịch bản xấu thực tế → ngang.",
- "pitch": "[CHỜ PHÉP THỬ Q3 · 69 điểm] VietinBank được chính sách ưu tiên mở rộng tín dụng và đang giao dịch dưới đáy định giá 3 năm, nhưng tin xấu chính của ngành là nợ xấu vẫn đang tăng chứ chưa dừng. Giá đang trả cho kịch bản ROE về khoảng 17,7%; chưa đủ dữ liệu để nói kịch bản xấu thực tế nhẹ hơn mức đó. Chờ BCTC Q3 làm phép thử trước khi giải ngân.",
+ "vo_hieu": "Vô hiệu theo sự kiện: Ngân hàng Nhà nước tăng lãi suất điều hành hoặc siết room tín dụng; nợ xấu tăng hai quý liên tiếp và giá thủng đáy với lực bán lớn. Mốc cơ bản: lợi nhuận sau thuế Q3/26 ≥ +10% (K2).",
+ "dinh_gia": "P/B 1,15 so với trung vị 12 quý 1,42 (thấp nhất 12 quý 1,25); P/E 5,68 so với 9,19 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 1,15 so với 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay bất động sản) để biết kịch bản xấu thực tế → ngang.",
+ "pitch": "VietinBank đang được chính sách ưu tiên mở rộng cho vay và giá thấp hơn mức thấp nhất 3 năm tính theo giá trị sổ sách. Nhưng tin xấu chính của ngành ngân hàng là nợ xấu vẫn đang tăng chứ chưa dừng: quý 2/2026 ngân hàng trích lập dự phòng 5.300 tỷ, gần gấp đôi cùng kỳ (2.973 tỷ). Giá đang ngầm giả định hiệu quả sinh lời (ROE) về khoảng 17,7%; chưa đủ số liệu để nói thực tế sẽ tốt hơn. Chờ báo cáo quý 3: nợ xấu tăng tiếp mà giá không tạo đáy mới thì mới mua.",
  "dieu_kien_vao": [],
  "pitch_diem": {
   "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
@@ -181,17 +181,37 @@
    "b_trang_thai": 1,
    "c_ky_vong_ngam": 3,
    "ket_luan": "PHẢN ÁNH MỘT PHẦN",
-   "tin_xau": "Lãi suất tăng ép NIM; nợ xấu tăng có độ trễ.",
-   "co_that_su_xau": "Chu kỳ, đang diễn ra. FACT (SSI Research qua Tạp chí KTTC 10/08): nợ xấu nhóm ngân hàng +21,4% từ đầu năm, bao phủ toàn ngành ~95% → ~83%. CTG: nợ xấu 1,20%, bao phủ ~134%.",
+   "tin_xau": "Lãi suất tăng ép biên lãi ròng; nợ xấu tăng có độ trễ.",
+   "co_that_su_xau": "Chu kỳ, đang diễn ra. Nợ xấu nhóm ngân hàng +21,4% từ đầu năm, bao phủ toàn ngành ~95% → ~83%. CTG: nợ xấu 1,20%, bao phủ ~134%.",
    "trang_thai": "Nguồn tin xấu còn chạy. Bản trước chấm sai khi coi nợ xấu là rủi ro chưa xảy ra.",
-   "ky_vong_ngam": "P/B 1,15 vs 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay BĐS) để biết kịch bản xấu thực tế → ngang.",
+   "ky_vong_ngam": "P/B 1,15 so với 1,42 → ROE ngầm ≈ 17,7% (thực 21,8%). Chưa đủ dữ liệu (nhóm 2, cho vay bất động sản) để biết kịch bản xấu thực tế → ngang.",
    "nguoi_ban_can_bien": "Quỹ ngoại và nhà đầu tư bán theo nhóm ngân hàng.",
-   "counter": "Kỳ vọng ngầm chưa đủ xấu vì nợ xấu còn tăng. Response: counter đứng tới khi BCTC Q3 cho thấy nợ xấu và nhóm 2 của CTG chững lại.",
-   "phep_thu": "BCTC Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → CONFIRMATION."
+   "counter": "Kỳ vọng ngầm chưa đủ xấu vì nợ xấu còn tăng. Response: counter đứng tới khi báo cáo tài chính Q3 cho thấy nợ xấu và nhóm 2 của CTG chững lại.",
+   "phep_thu": "Báo cáo tài chính Q3: nợ xấu tăng tiếp mà giá không tạo đáy mới → xác nhận."
   },
   "ket_luan": "CHỜ PHÉP THỬ Q3",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"
- }
+ },
+ "muc_tieu": [
+  {
+   "id": "T1",
+   "gia": 34.21,
+   "nguon": "P/B về 1,29 — giữa P/B hiện tại 1,15 và mức thường thấy 3 năm 1,43",
+   "ngay_ghi": "2026-10-22",
+   "du_kien_phien": 120,
+   "han_phien": 250,
+   "mo_ta": "chạm thì sổ giả lập bán 1/3"
+  },
+  {
+   "id": "T2",
+   "gia": 42.84,
+   "nguon": "đỉnh 250 phiên",
+   "ngay_ghi": "2026-10-22",
+   "du_kien_phien": 250,
+   "han_phien": 500,
+   "mo_ta": "chạm thì sổ giả lập bán thêm 1/3"
+  }
+ ]
 }
