@@ -36,6 +36,7 @@ from statistics import median
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hoc as H  # noqa: E402  (mục tiêu + timing, sổ dự đoán, sẵn sàng, hiệu quả thực)
+import giai_ngan as G  # noqa: E402  (R38/R39: giải ngân theo trạng thái, rủi ro, xác suất chạm, điểm 70/30)
 
 ROOT = Path(__file__).resolve().parent
 LUAN = ROOT / 'luan_diem'
@@ -415,6 +416,11 @@ def build(now: datetime | None = None) -> dict:
              | {str(l.get('ma', '')).upper() for l in (so_lenh.get('lenh') or []) if l.get('ma')})
 
     fu = D.get('funda') or {}
+    tt = G.trang_thai_tt(D)
+    dm = rj(ROOT / 'danh_muc.json', {})
+    tt_muc = {str(v.get('ma')).upper(): _num(v.get('ty_trong')) for v in dm.get('vi_tri') or []}
+    dung_vni = _num(dm.get('dung_vni'))
+    lk_all = D.get('lookup') or {}
     den = (D.get('regime_live') or {}).get('light') or (D.get('regime') or [{}])[-1].get('light')
     the = []
     for sym, t in luan.items():
@@ -444,10 +450,25 @@ def build(now: datetime | None = None) -> dict:
         p_now = gia_tai(gia, sym, asof)
         thieu = kiem_tra_luan(t)
         tu = vao.get(sym) or t.get('ngay_vao') or t.get('ngay_mo') or asof
+        ss = H.san_sang(t, h, thieu, p_now, kc, den)
+        mtc = H.cham_muc_tieu(t, gia, tu)
+        fa = None
+        if dang_chay and not os.environ.get('SITE_HTML') and not os.environ.get('PORT_NO_FA'):
+            fa = G.lich_su_fa(sym, (now - timedelta(days=420)).strftime('%Y-%m-%d'), now.strftime('%Y-%m-%d'))
+        ngay_c, c_c = G.chuoi_gia(D, sym, (lk_all.get(sym) or {}).get('exch'), fa)
+        for m in mtc:
+            if m.get('trang_thai') == 'mo':
+                m['p60'] = G.xac_suat_cham(c_c, _num(m.get('gia')), 60)
+                m['p120'] = G.xac_suat_cham(c_c, _num(m.get('gia')), 120)
+        kh = G.ke_hoach(t, tt_muc.get(sym), tt, ngay_c, c_c, so_lenh, ss, kc, dung_vni)
+        kh['ma'] = sym
+        loc_row = funda_row(sym, fu.get(sym), lk_all.get(sym))
         the.append(dict(luan=t, ho_so=h, kiem_chung=kc, ket_qua=kq, thieu=thieu, gia=p_now,
-                        muc_tieu_cham=H.cham_muc_tieu(t, gia, tu), rr=H.rr(t, p_now),
-                        san_sang=H.san_sang(t, h, thieu, p_now, kc, den)))
+                        muc_tieu_cham=mtc, rr=H.rr(t, p_now), san_sang=ss, giai_ngan=kh,
+                        diem_70_30=G.diem_70_30(t, loc_row, tt, ss, kc)))
 
+    ngay_vni = [r.get('date') for r in (D.get('regime') or []) if r.get('date')]
+    luot = G.xep_luot(the, G.mo_gan_day(so_lenh, ngay_vni))
     cham_bat_dong(so, gia)
     H.ghi_du_doan(so_dd, the, D, gia, asof)
     H.cham_du_doan(so_dd, gia)
@@ -471,7 +492,8 @@ def build(now: datetime | None = None) -> dict:
         luan_diem=the, danh_muc=rj(ROOT / 'danh_muc.json', {}), so_bat_dong=so[-300:], tin_cay=tin_cay,
         loc=bang_loc(D), ten_may=TEN_MAY,
         du_doan=so_dd[-400:], do_chinh_xac=H.do_chinh_xac(so_dd), timing=H.tong_ket_timing(the),
-        hieu_qua=H.hieu_qua(so_lenh, gia, asof),
+        hieu_qua=H.hieu_qua(so_lenh, gia, asof), trang_thai_tt=tt,
+        nhiet=G.nhiet_danh_muc([x['giai_ngan'] for x in the]), luot=luot,
         nguon=dict(site_asof=asof, tin_so_ban=len(reps), daily_ngay=(daily or {}).get('ngay')),
     )
     wj(OUT / 'bundle.json', bundle)

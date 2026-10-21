@@ -1,5 +1,5 @@
 {
- "_huong_dan": "Chép file này thành port/luan_diem/<MÃ>.json. Trường bắt đầu bằng _ bị bỏ qua. Mỗi nhận định gắn nhãn FACT/OBSERVATION/INTERPRETATION/HYPOTHESIS/CONFIRMATION. Mục tiêu: mỗi mục tiêu phải có nguồn (mốc kỹ thuật/định giá), số phiên dự kiến chạm (timing, được phép lệch) và hạn chót; vo_hieu_gia là số để code chấm, không xa quá −7%. Mỗi INTERPRETATION phải có ít nhất một bằng chứng bắt đầu bằng 'FACT:' hoặc 'OBSERVATION:'.",
+ "_huong_dan": "Chép file này thành port/luan_diem/<MÃ>.json. Trường bắt đầu bằng _ bị bỏ qua. Mỗi nhận định gắn nhãn FACT/OBSERVATION/INTERPRETATION/HYPOTHESIS/CONFIRMATION. Mục tiêu: mỗi mục tiêu phải có nguồn (mốc kỹ thuật/định giá), số phiên dự kiến chạm (timing, được phép lệch) và hạn chót; vo_hieu_gia là số để code chấm, không xa quá −7%. Mỗi INTERPRETATION phải có ít nhất một bằng chứng bắt đầu bằng 'FACT:' hoặc 'OBSERVATION:'. vo_hieu_gia = mức NGỪNG MUA THÊM và rà luận điểm (≤ −7%); bán ở giá vốn bình quân −15% do code tính (port/giai_ngan.py).",
  "ma": "XXX",
  "trang_thai": "nghien_cuu | trong_port | loai | dong",
  "chieu": "tang | giam | trung_lap",
@@ -94,5 +94,9 @@
  ],
  "dinh_gia": "P/E, P/B so với lịch sử/ngành — vùng quan sát hay điều kiện cần.",
  "pitch": "3–5 câu cho khách hàng, viết theo điều kiện, không hô mua bán.",
+ "pitch_diem": {
+  "dinh_gia_sai": 0,
+  "ly_do": "Vì sao thị trường đang định giá sai (0–15): 15 = lý do có bằng chứng + chất xúc tác có ngày; 10 = có bằng chứng, chất xúc tác mơ hồ; 5 = hợp lý nhưng bằng chứng yếu; 0 = không có / chỉ là 'giảm nhiều'."
+ },
  "bai_hoc": ""
 }

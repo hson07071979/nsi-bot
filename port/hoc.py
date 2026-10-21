@@ -26,7 +26,7 @@ import math
 MOC = (20, 60, 120)          # ~1 tháng, ~3 tháng, ~6 tháng
 NGUON = ('port', 'bot', 'tin', 'daily')
 MAU_TOI_THIEU = 10           # dưới mức này không ra tỷ lệ
-CHUAN_LO = 7.0               # chuẩn vô hiệu của anh Sơn: không lỗ quá −7%
+CHUAN_LO = 7.0               # mức ngừng mua thêm + rà luận điểm (anh Sơn 15/10: bán ở giá vốn −15%, xem giai_ngan.py)
 
 
 # ---------------------------------------------------------------- tiện ích giá
@@ -219,6 +219,9 @@ def ghi_du_doan(so: list[dict], the: list[dict], D: dict, gia: dict, asof: str) 
             if cu and cu[-1]['chieu'] == c:
                 continue
             dt = dt or dac_trung(sym, D)
+            if ng == 'port' and x.get('diem_70_30'):
+                dt = dict(dt, diem_70_30=x['diem_70_30'].get('tong'), diem_pitch=x['diem_70_30'].get('pitch'),
+                          diem_ket_qua=x['diem_70_30'].get('ket_qua'))
             row = dict(id=f'{sym}-{ng}-{asof}', ngay=asof, ma=sym, nguon=ng, chieu=c,
                        gia0=gia_tai(gia, sym, asof), vni0=gia_tai(gia, 'VNINDEX', asof), dac_trung=dt)
             if ng == 'port':

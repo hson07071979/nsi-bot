@@ -1,0 +1,1513 @@
+{
+ "A0 · không cắt lỗ": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 88.7,
+  "loi_suat_nam": 10.0,
+  "sut_giam_max": 57.4,
+  "sut_tu": "2022-01-07",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -33.1,
+  "sharpe": 0.18,
+  "calmar": 0.17,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 42.0,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 51.1,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -44.5,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 49.4,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -10.5,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 31.4,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -9.7,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 54,
+  "ty_le_dung": 0.0,
+  "lo_ma_xau_nhat": -45.7,
+  "lo_ma_p10": -29.4,
+  "ty_le_cho_dung": 93.1
+ },
+ "A1 · bán −15% giá vốn + ngừng mua −7% (đang dùng)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 58.6,
+  "loi_suat_nam": 7.2,
+  "sut_giam_max": 54.1,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -25.5,
+  "sharpe": 0.1,
+  "calmar": 0.13,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 54.6,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 43.9,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -42.6,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 25.4,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -8.3,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 7.6,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 0.3,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 107,
+  "ty_le_dung": 68.2,
+  "lo_ma_xau_nhat": -29.8,
+  "lo_ma_p10": -17.3,
+  "ty_le_cho_dung": 89.4
+ },
+ "A2 · bán −10% giá vốn + ngừng mua −5%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 53.2,
+  "loi_suat_nam": 6.6,
+  "sut_giam_max": 43.5,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2023-03-20",
+  "thang_te_nhat": -24.1,
+  "sharpe": 0.08,
+  "calmar": 0.15,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 44.1,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 35.9,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -37.2,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 16.9,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 0.5,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.6,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 0.5,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 134,
+  "ty_le_dung": 74.6,
+  "lo_ma_xau_nhat": -21.8,
+  "lo_ma_p10": -12.8,
+  "ty_le_cho_dung": 86.6
+ },
+ "B1 · bán nửa −8%, còn lại −15%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 35.8,
+  "loi_suat_nam": 4.7,
+  "sut_giam_max": 47.2,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -21.7,
+  "sharpe": -0.02,
+  "calmar": 0.1,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 37.7,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 39.0,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -37.4,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 18.1,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -8.0,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -0.5,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 107,
+  "ty_le_dung": 68.2,
+  "lo_ma_xau_nhat": -25.8,
+  "lo_ma_p10": -13.3,
+  "ty_le_cho_dung": 89.4
+ },
+ "B2 · bán nửa −10%, còn lại −15%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 33.7,
+  "loi_suat_nam": 4.5,
+  "sut_giam_max": 49.6,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -23.4,
+  "sharpe": -0.04,
+  "calmar": 0.09,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 41.8,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 37.9,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -40.6,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 18.0,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -7.1,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.6,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -0.6,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 107,
+  "ty_le_dung": 68.2,
+  "lo_ma_xau_nhat": -25.8,
+  "lo_ma_p10": -15.0,
+  "ty_le_cho_dung": 89.4
+ },
+ "C1 · cắt theo biến động 2,0σ√20 (8–20%)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 99.6,
+  "loi_suat_nam": 10.9,
+  "sut_giam_max": 45.4,
+  "sut_tu": "2022-01-07",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -30.5,
+  "sharpe": 0.26,
+  "calmar": 0.24,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 66.3,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 65.6,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -37.2,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 17.7,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -9.8,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 11.7,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -2.7,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 90,
+  "ty_le_dung": 58.9,
+  "lo_ma_xau_nhat": -31.0,
+  "lo_ma_p10": -23.4,
+  "ty_le_cho_dung": 90.6
+ },
+ "D1 · −15% + bảo vệ lãi (lãi ≥20% → bán khi rơi 15% từ đỉnh)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 33.3,
+  "loi_suat_nam": 4.4,
+  "sut_giam_max": 35.3,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -17.6,
+  "sharpe": -0.04,
+  "calmar": 0.12,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 45.5,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 6.0,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -21.2,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 19.0,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -4.4,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 0.5,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -4.1,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 149,
+  "ty_le_dung": 90.6,
+  "lo_ma_xau_nhat": -24.1,
+  "lo_ma_p10": -15.9,
+  "ty_le_cho_dung": 87.4
+ },
+ "D2 · −15% + bảo vệ lãi (lãi ≥15% → rơi 12%)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 45.6,
+  "loi_suat_nam": 5.8,
+  "sut_giam_max": 22.9,
+  "sut_tu": "2022-08-31",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -17.6,
+  "sharpe": 0.04,
+  "calmar": 0.25,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 19.1,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": -3.0,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": 10.0,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 10.2,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -3.1,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 6.6,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 0.7,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 161,
+  "ty_le_dung": 91.9,
+  "lo_ma_xau_nhat": -24.1,
+  "lo_ma_p10": -14.9,
+  "ty_le_cho_dung": 83.2
+ },
+ "E1 · −15% + tỷ trọng theo rủi ro 1,5% NAV/mã": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 59.0,
+  "loi_suat_nam": 7.2,
+  "sut_giam_max": 48.4,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -21.3,
+  "sharpe": 0.12,
+  "calmar": 0.15,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 46.9,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 37.9,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -38.0,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 22.8,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -6.0,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 8.4,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 1.2,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 107,
+  "ty_le_dung": 68.2,
+  "lo_ma_xau_nhat": -29.8,
+  "lo_ma_p10": -17.3,
+  "ty_le_cho_dung": 89.4
+ },
+ "E2 · bán nửa −10% + tỷ trọng rủi ro 1,5% NAV/mã": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 37.5,
+  "loi_suat_nam": 4.9,
+  "sut_giam_max": 43.6,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -19.3,
+  "sharpe": -0.01,
+  "calmar": 0.11,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 36.2,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 32.7,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -35.3,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 16.3,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -4.9,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 6.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 0.4,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 107,
+  "ty_le_dung": 68.2,
+  "lo_ma_xau_nhat": -25.8,
+  "lo_ma_p10": -15.0,
+  "ty_le_cho_dung": 89.4
+ },
+ "F1 · −15% + chỉ mở mới khi VNI ≤ −10%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 184.8,
+  "loi_suat_nam": 17.0,
+  "sut_giam_max": 36.8,
+  "sut_tu": "2022-08-31",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -22.6,
+  "sharpe": 0.59,
+  "calmar": 0.46,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 47.7,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 32.1,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -17.0,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 27.9,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 4.7,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 27.8,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 2.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 64,
+  "ty_le_dung": 56.2,
+  "lo_ma_xau_nhat": -29.8,
+  "lo_ma_p10": -17.5,
+  "ty_le_cho_dung": 61.0
+ },
+ "F2 · không cắt + chỉ mở mới khi VNI ≤ −10%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 111.5,
+  "loi_suat_nam": 11.9,
+  "sut_giam_max": 42.2,
+  "sut_tu": "2022-06-01",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -22.5,
+  "sharpe": 0.31,
+  "calmar": 0.28,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 39.3,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 7.6,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -21.9,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 18.8,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 15.8,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 27.8,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 2.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 37,
+  "ty_le_dung": 0.0,
+  "lo_ma_xau_nhat": -58.8,
+  "lo_ma_p10": -19.8,
+  "ty_le_cho_dung": 63.1
+ },
+ "G1 · bán nửa −10% + bảo vệ lãi + chỉ khi VNI ≤ −10%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 72.4,
+  "loi_suat_nam": 8.5,
+  "sut_giam_max": 27.3,
+  "sut_tu": "2022-08-31",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -17.1,
+  "sharpe": 0.25,
+  "calmar": 0.31,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 25.6,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 0.3,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": 1.3,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 10.4,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 5.1,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 25.8,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -7.5,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 92,
+  "ty_le_dung": 92.4,
+  "lo_ma_xau_nhat": -21.4,
+  "lo_ma_p10": -12.6,
+  "ty_le_cho_dung": 57.8
+ },
+ "G2 · bán nửa −10% + bảo vệ lãi + rủi ro 1,5%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 27.0,
+  "loi_suat_nam": 3.7,
+  "sut_giam_max": 26.2,
+  "sut_tu": "2021-11-18",
+  "sut_den": "2022-11-15",
+  "thang_te_nhat": -13.4,
+  "sharpe": -0.11,
+  "calmar": 0.14,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 29.7,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 6.4,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -16.9,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 12.6,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -2.4,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 2.2,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": -1.5,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 149,
+  "ty_le_dung": 90.6,
+  "lo_ma_xau_nhat": -21.4,
+  "lo_ma_p10": -13.7,
+  "ty_le_cho_dung": 87.4
+ },
+ "H1 · F1 + tối đa 2 vị thế mới/20 phiên": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 171.7,
+  "loi_suat_nam": 16.2,
+  "sut_giam_max": 18.7,
+  "sut_tu": "2021-01-15",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -15.2,
+  "sharpe": 0.83,
+  "calmar": 0.87,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 68.3,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 29.3,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -15.5,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 20.0,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 9.8,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 10.6,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 1.4,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 43,
+  "ty_le_dung": 55.8,
+  "lo_ma_xau_nhat": -20.6,
+  "lo_ma_p10": -16.7,
+  "ty_le_cho_dung": 43.5
+ },
+ "H2 · F1 + chỉ mở khi VNI ≥ MA20 (thị trường ngừng rơi)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 143.2,
+  "loi_suat_nam": 14.3,
+  "sut_giam_max": 17.7,
+  "sut_tu": "2021-01-15",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -11.9,
+  "sharpe": 0.72,
+  "calmar": 0.81,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 57.1,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 31.4,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -11.7,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 11.7,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 9.5,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 3.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 33,
+  "ty_le_dung": 57.6,
+  "lo_ma_xau_nhat": -20.6,
+  "lo_ma_p10": -13.6,
+  "ty_le_cho_dung": 32.4
+ },
+ "H3 · F1 + dừng mở mới khi danh mục sụt >10% và VNI < MA50": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 74.3,
+  "loi_suat_nam": 8.7,
+  "sut_giam_max": 34.0,
+  "sut_tu": "2022-06-09",
+  "sut_den": "2023-03-20",
+  "thang_te_nhat": -18.6,
+  "sharpe": 0.22,
+  "calmar": 0.26,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 20.2,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 14.0,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -24.8,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 18.2,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 9.0,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 27.8,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 2.7,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 55,
+  "ty_le_dung": 58.2,
+  "lo_ma_xau_nhat": -22.8,
+  "lo_ma_p10": -17.5,
+  "ty_le_cho_dung": 54.2
+ },
+ "H4 · F1 + nhịp 2 + VNI ≥ MA20 + dừng khi sụt >10%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 144.0,
+  "loi_suat_nam": 14.3,
+  "sut_giam_max": 17.6,
+  "sut_tu": "2021-01-15",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -11.8,
+  "sharpe": 0.84,
+  "calmar": 0.81,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 58.8,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 31.3,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -2.8,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 4.8,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 5.4,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 3.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 20,
+  "ty_le_dung": 45.0,
+  "lo_ma_xau_nhat": -20.6,
+  "lo_ma_p10": -14.5,
+  "ty_le_cho_dung": 24.6
+ },
+ "H5 · H4 + bảo vệ lãi (≥15% → rơi 12%)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 52.7,
+  "loi_suat_nam": 6.6,
+  "sut_giam_max": 7.0,
+  "sut_tu": "2021-01-12",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -6.8,
+  "sharpe": 0.28,
+  "calmar": 0.94,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 27.5,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 1.9,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -2.8,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 6.3,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 4.4,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 3.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 20,
+  "ty_le_dung": 100.0,
+  "lo_ma_xau_nhat": -20.6,
+  "lo_ma_p10": -9.5,
+  "ty_le_cho_dung": 11.4
+ },
+ "H6 · H4 + tối đa 6 vị thế (giữ ≥25% tiền)": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 116.8,
+  "loi_suat_nam": 12.3,
+  "sut_giam_max": 15.0,
+  "sut_tu": "2021-01-15",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -9.5,
+  "sharpe": 0.72,
+  "calmar": 0.82,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 56.5,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 18.3,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -2.8,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 4.8,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": 5.4,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 3.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 19,
+  "ty_le_dung": 47.4,
+  "lo_ma_xau_nhat": -20.6,
+  "lo_ma_p10": -15.0,
+  "ty_le_cho_dung": 22.7
+ },
+ "H7 · không cắt + nhịp 2 + VNI ≥ MA20 + chỉ khi VNI ≤ −10%": {
+  "tu": "2020-02-14",
+  "den": "2026-10-15",
+  "so_nam": 6.66,
+  "tong_loi_suat": 178.9,
+  "loi_suat_nam": 16.6,
+  "sut_giam_max": 18.3,
+  "sut_tu": "2021-01-15",
+  "sut_den": "2021-02-01",
+  "thang_te_nhat": -12.1,
+  "sharpe": 0.86,
+  "calmar": 0.91,
+  "vni_tong": 81.2,
+  "vni_nam": 9.3,
+  "vni_sut_giam_max": 40.3,
+  "theo_nam": {
+   "2020": {
+    "danh_muc": 58.9,
+    "vni": 17.8
+   },
+   "2021": {
+    "danh_muc": 31.1,
+    "vni": 35.7
+   },
+   "2022": {
+    "danh_muc": -5.2,
+    "vni": -32.8
+   },
+   "2023": {
+    "danh_muc": 39.1,
+    "vni": 12.2
+   },
+   "2024": {
+    "danh_muc": -6.9,
+    "vni": 12.1
+   },
+   "2025": {
+    "danh_muc": 5.0,
+    "vni": 40.9
+   },
+   "2026": {
+    "danh_muc": 3.8,
+    "vni": -4.8
+   }
+  },
+  "so_vi_the": 16,
+  "ty_le_dung": 0.0,
+  "lo_ma_xau_nhat": -82.1,
+  "lo_ma_p10": -2.6,
+  "ty_le_cho_dung": 30.0
+ },
+ "_do_ben": {
+  "luoi": [
+   {
+    "nhip": 1,
+    "nguong": -0.08,
+    "K": 6,
+    "tong": 173.5,
+    "nam": 16.3,
+    "sut": 21.0,
+    "calmar": 0.78,
+    "so_vt": 30
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.08,
+    "K": 8,
+    "tong": 139.0,
+    "nam": 14.0,
+    "sut": 16.2,
+    "calmar": 0.86,
+    "so_vt": 30
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.08,
+    "K": 10,
+    "tong": 119.4,
+    "nam": 12.5,
+    "sut": 13.7,
+    "calmar": 0.91,
+    "so_vt": 30
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.1,
+    "K": 6,
+    "tong": 232.9,
+    "nam": 19.8,
+    "sut": 19.5,
+    "calmar": 1.02,
+    "so_vt": 24
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.1,
+    "K": 8,
+    "tong": 179.8,
+    "nam": 16.7,
+    "sut": 16.0,
+    "calmar": 1.05,
+    "so_vt": 24
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.1,
+    "K": 10,
+    "tong": 149.5,
+    "nam": 14.7,
+    "sut": 13.5,
+    "calmar": 1.09,
+    "so_vt": 24
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.15,
+    "K": 6,
+    "tong": 112.7,
+    "nam": 12.0,
+    "sut": 13.8,
+    "calmar": 0.87,
+    "so_vt": 19
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.15,
+    "K": 8,
+    "tong": 98.3,
+    "nam": 10.8,
+    "sut": 11.1,
+    "calmar": 0.97,
+    "so_vt": 19
+   },
+   {
+    "nhip": 1,
+    "nguong": -0.15,
+    "K": 10,
+    "tong": 86.0,
+    "nam": 9.8,
+    "sut": 9.1,
+    "calmar": 1.07,
+    "so_vt": 19
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.08,
+    "K": 6,
+    "tong": 152.8,
+    "nam": 14.9,
+    "sut": 29.9,
+    "calmar": 0.5,
+    "so_vt": 47
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.08,
+    "K": 8,
+    "tong": 148.4,
+    "nam": 14.6,
+    "sut": 23.9,
+    "calmar": 0.61,
+    "so_vt": 52
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.08,
+    "K": 10,
+    "tong": 164.3,
+    "nam": 15.7,
+    "sut": 19.3,
+    "calmar": 0.81,
+    "so_vt": 54
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.1,
+    "K": 6,
+    "tong": 165.8,
+    "nam": 15.8,
+    "sut": 23.9,
+    "calmar": 0.66,
+    "so_vt": 39
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.1,
+    "K": 8,
+    "tong": 171.7,
+    "nam": 16.2,
+    "sut": 18.7,
+    "calmar": 0.87,
+    "so_vt": 43
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.1,
+    "K": 10,
+    "tong": 184.1,
+    "nam": 17.0,
+    "sut": 17.5,
+    "calmar": 0.97,
+    "so_vt": 45
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.15,
+    "K": 6,
+    "tong": 160.9,
+    "nam": 15.5,
+    "sut": 20.3,
+    "calmar": 0.76,
+    "so_vt": 31
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.15,
+    "K": 8,
+    "tong": 149.4,
+    "nam": 14.7,
+    "sut": 15.1,
+    "calmar": 0.97,
+    "so_vt": 34
+   },
+   {
+    "nhip": 2,
+    "nguong": -0.15,
+    "K": 10,
+    "tong": 143.7,
+    "nam": 14.3,
+    "sut": 12.5,
+    "calmar": 1.14,
+    "so_vt": 36
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.08,
+    "K": 6,
+    "tong": 102.2,
+    "nam": 11.1,
+    "sut": 39.4,
+    "calmar": 0.28,
+    "so_vt": 54
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.08,
+    "K": 8,
+    "tong": 149.3,
+    "nam": 14.7,
+    "sut": 30.0,
+    "calmar": 0.49,
+    "so_vt": 62
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.08,
+    "K": 10,
+    "tong": 139.3,
+    "nam": 14.0,
+    "sut": 24.4,
+    "calmar": 0.57,
+    "so_vt": 68
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.1,
+    "K": 6,
+    "tong": 132.7,
+    "nam": 13.5,
+    "sut": 31.4,
+    "calmar": 0.43,
+    "so_vt": 46
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.1,
+    "K": 8,
+    "tong": 205.7,
+    "nam": 18.3,
+    "sut": 27.2,
+    "calmar": 0.67,
+    "so_vt": 52
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.1,
+    "K": 10,
+    "tong": 180.1,
+    "nam": 16.7,
+    "sut": 18.9,
+    "calmar": 0.89,
+    "so_vt": 58
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.15,
+    "K": 6,
+    "tong": 124.2,
+    "nam": 12.9,
+    "sut": 26.2,
+    "calmar": 0.49,
+    "so_vt": 40
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.15,
+    "K": 8,
+    "tong": 139.2,
+    "nam": 14.0,
+    "sut": 23.7,
+    "calmar": 0.59,
+    "so_vt": 45
+   },
+   {
+    "nhip": 3,
+    "nguong": -0.15,
+    "K": 10,
+    "tong": 133.1,
+    "nam": 13.5,
+    "sut": 19.1,
+    "calmar": 0.71,
+    "so_vt": 48
+   },
+   {
+    "nhip": null,
+    "nguong": -0.08,
+    "K": 6,
+    "tong": 159.0,
+    "nam": 15.4,
+    "sut": 41.8,
+    "calmar": 0.37,
+    "so_vt": 59
+   },
+   {
+    "nhip": null,
+    "nguong": -0.08,
+    "K": 8,
+    "tong": 166.1,
+    "nam": 15.8,
+    "sut": 37.8,
+    "calmar": 0.42,
+    "so_vt": 77
+   },
+   {
+    "nhip": null,
+    "nguong": -0.08,
+    "K": 10,
+    "tong": 158.9,
+    "nam": 15.3,
+    "sut": 37.8,
+    "calmar": 0.41,
+    "so_vt": 95
+   },
+   {
+    "nhip": null,
+    "nguong": -0.1,
+    "K": 6,
+    "tong": 145.6,
+    "nam": 14.4,
+    "sut": 45.4,
+    "calmar": 0.32,
+    "so_vt": 51
+   },
+   {
+    "nhip": null,
+    "nguong": -0.1,
+    "K": 8,
+    "tong": 184.8,
+    "nam": 17.0,
+    "sut": 36.8,
+    "calmar": 0.46,
+    "so_vt": 64
+   },
+   {
+    "nhip": null,
+    "nguong": -0.1,
+    "K": 10,
+    "tong": 193.1,
+    "nam": 17.5,
+    "sut": 35.0,
+    "calmar": 0.5,
+    "so_vt": 77
+   },
+   {
+    "nhip": null,
+    "nguong": -0.15,
+    "K": 6,
+    "tong": 193.1,
+    "nam": 17.5,
+    "sut": 33.2,
+    "calmar": 0.53,
+    "so_vt": 39
+   },
+   {
+    "nhip": null,
+    "nguong": -0.15,
+    "K": 8,
+    "tong": 189.2,
+    "nam": 17.3,
+    "sut": 34.9,
+    "calmar": 0.49,
+    "so_vt": 54
+   },
+   {
+    "nhip": null,
+    "nguong": -0.15,
+    "K": 10,
+    "tong": 190.7,
+    "nam": 17.4,
+    "sut": 32.8,
+    "calmar": 0.53,
+    "so_vt": 67
+   }
+  ],
+  "giai_doan": {
+   "A1_2020_2026": {
+    "tong_loi_suat": 58.6,
+    "loi_suat_nam": 7.2,
+    "sut_giam_max": 54.1,
+    "calmar": 0.13,
+    "vni_tong": 81.2,
+    "vni_sut_giam_max": 40.3
+   },
+   "A1_2023_2026": {
+    "tong_loi_suat": 38.6,
+    "loi_suat_nam": 9.0,
+    "sut_giam_max": 23.0,
+    "calmar": 0.39,
+    "vni_tong": 62.7,
+    "vni_sut_giam_max": 18.1
+   },
+   "H1_2020_2026": {
+    "tong_loi_suat": 171.7,
+    "loi_suat_nam": 16.2,
+    "sut_giam_max": 18.7,
+    "calmar": 0.87,
+    "vni_tong": 81.2,
+    "vni_sut_giam_max": 40.3
+   },
+   "H1_2023_2026": {
+    "tong_loi_suat": 68.3,
+    "loi_suat_nam": 14.8,
+    "sut_giam_max": 14.3,
+    "calmar": 1.04,
+    "vni_tong": 62.7,
+    "vni_sut_giam_max": 18.1
+   },
+   "A0_2020_2026": {
+    "tong_loi_suat": 88.7,
+    "loi_suat_nam": 10.0,
+    "sut_giam_max": 57.4,
+    "calmar": 0.17,
+    "vni_tong": 81.2,
+    "vni_sut_giam_max": 40.3
+   },
+   "A0_2023_2026": {
+    "tong_loi_suat": 42.9,
+    "loi_suat_nam": 10.0,
+    "sut_giam_max": 20.8,
+    "calmar": 0.48,
+    "vni_tong": 62.7,
+    "vni_sut_giam_max": 18.1
+   }
+  },
+  "monte_carlo": {
+   "A1 · −15% (đang dùng)": {
+    "nam_p5": 4.5,
+    "nam_p50": 8.3,
+    "nam_p95": 11.4,
+    "sut_p50": 47.4,
+    "sut_p95": 53.3,
+    "thua_vni_nam": 66.7
+   },
+   "H1 · −15% + chỉ khi VNI ≤ −10% + nhịp 2": {
+    "nam_p5": 11.8,
+    "nam_p50": 15.9,
+    "nam_p95": 19.2,
+    "sut_p50": 18.3,
+    "sut_p95": 21.5,
+    "thua_vni_nam": 0.7
+   },
+   "A0 · không cắt": {
+    "nam_p5": 0.1,
+    "nam_p50": 4.2,
+    "nam_p95": 9.5,
+    "sut_p50": 59.8,
+    "sut_p95": 67.1,
+    "thua_vni_nam": 93.7
+   }
+  }
+ }
+}
