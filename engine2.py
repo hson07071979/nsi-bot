@@ -82,6 +82,13 @@ def _pr(vals, higher_better=True):
     return out
 
 RANKERS=('score','base','oi','score_base','score_oi','score_base_oi','multi','score_sector','pct','score_wave')
+# R38 (22/10/2026, nghien cuu — PROD van 'score'): tieu chi QUAN SAT DUOC truoc ATC (khong dung OrdImb:
+# PROD mua do 2 giai doan nen DK9 chua co so luc chon ma). 'rev_score' / 'random' la doi chung.
+RANKERS_R38=('volr','rs','mom','fund','tech','liq','score_volr','score_rs','score_mom','score_pct',
+             'score_base_volr','multi_obs','rev_score','random')
+OBSERVABLE_AT_ATC=('score','base','pct','score_base','score_sector','score_wave')+tuple(
+    m for m in RANKERS_R38 if m not in ('rev_score','random'))
+_RANK_SEED=[0]
 def rank_rows(rows, mode='score', held_sectors=()):
     if not rows: return rows
     if mode=='score':          # CURRENT PROD behaviour: CANSLIM score desc, then symbol
@@ -98,6 +105,27 @@ def rank_rows(rows, mode='score', held_sectors=()):
     elif mode=='multi':         key=lambda k:-(sc[k]+bs[k]+oi[k]+vr[k]+rs[k])
     elif mode=='score_sector':  key=lambda k:(rows[k]['sector'] in held_sectors, -rows[k]['sc'])
     elif mode=='score_wave':    key=lambda k:(not rows[k].get('wv',False), -rows[k]['sc'])   # R30 K8: ma co song nganh (T-1) duoc tien truoc
+    elif mode in RANKERS_R38:
+        mo=_pr([r.get('mom',0.0) for r in rows]); fu=_pr([r.get('fund',0.0) for r in rows])
+        te=_pr([r['sc']-r.get('fund',0.0) for r in rows]); lq=_pr([r.get('liq',0.0) for r in rows])
+        pc=_pr([r['pct'] for r in rows])
+        if mode=='volr':              key=lambda k:-vr[k]
+        elif mode=='rs':              key=lambda k:-rs[k]
+        elif mode=='mom':             key=lambda k:-mo[k]
+        elif mode=='fund':            key=lambda k:(-fu[k], -rows[k]['sc'])
+        elif mode=='tech':            key=lambda k:(-te[k], -rows[k]['sc'])
+        elif mode=='liq':             key=lambda k:-lq[k]
+        elif mode=='score_volr':      key=lambda k:-(sc[k]+vr[k])
+        elif mode=='score_rs':        key=lambda k:-(sc[k]+rs[k])
+        elif mode=='score_mom':       key=lambda k:-(sc[k]+mo[k])
+        elif mode=='score_pct':       key=lambda k:-(sc[k]+pc[k])
+        elif mode=='score_base_volr': key=lambda k:-(sc[k]+bs[k]+vr[k])
+        elif mode=='multi_obs':       key=lambda k:-(sc[k]+bs[k]+vr[k]+rs[k])
+        elif mode=='rev_score':       key=lambda k:rows[k]['sc']
+        else:                         # random: hat giong theo (ngay, rank_seed) — lap lai duoc
+            import random as _r, zlib as _z
+            _g=_r.Random(_z.crc32(f"{rows[0].get('_day','')}|{_RANK_SEED[0]}".encode()))
+            _rv=[_g.random() for _ in rows]; key=lambda k:_rv[k]
     else: raise ValueError(mode)
     idx=sorted(range(len(rows)), key=lambda k:(key(k), rows[k]['sym']))
     rows[:]=[rows[k] for k in idx]
@@ -167,7 +195,9 @@ def screen(i, d, I, tls, sect, C, TOPN, base_rng, base_ok, trig, day, held=(),
                          volr=float(I['volr'][i,j]),rs=float(I['rs'][i,j]) if not np.isnan(I['rs'][i,j]) else 0.0,
                          mom=float(I['mom3'][i,j]) if not np.isnan(I['mom3'][i,j]) else 0.0,
                          pct=float(I['pct'][i,j]),sector=sect.get(sym,'Khác'),
-                         fund=float(sum(pts.get(k,0) for k in ('C1','C2','C3','A1','A2')))))
+                         fund=float(sum(pts.get(k,0) for k in ('C1','C2','C3','A1','A2'))),
+                         liq=float(I['tvma20'][i,j]) if not np.isnan(I['tvma20'][i,j]) else 0.0,
+                         _day=str(day)))
     return rows
 
 def _trig_thr(d, thr, C):
@@ -476,6 +506,7 @@ def _run_core(cfg=None, log=True):
                     _need+=_A0['actual']
                 _inv=sum((AC[i,q.j] if not np.isnan(AC[i,q.j]) else q.epx)*q.sh for q in pos.values())
                 if _need > min(cash, nav*C['max_total']-_inv): _rmode='score_wave'
+            _RANK_SEED[0]=int(C.get('rank_seed',0) or 0)
             rank_rows(rows, _rmode, {q.sector for q in pos.values()})
             day_log=[] if C.get('log_cands') and rows else None
             for rw in rows:
