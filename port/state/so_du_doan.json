@@ -1749,5 +1749,83 @@
    "br50": 0.491,
    "vni": 1760.63
   }
+ },
+ {
+  "id": "FPT-tin-2026-10-22",
+  "ngay": "2026-10-22",
+  "ma": "FPT",
+  "nguon": "tin",
+  "chieu": 1,
+  "gia0": 57.4,
+  "vni0": 1760.63,
+  "dac_trung": {
+   "gia": 57.4,
+   "pe": 10.72,
+   "pb": 2.69,
+   "pe_rel": 0.5,
+   "pb_rel": 0.47,
+   "roe": 26.5,
+   "ny": 13.7,
+   "ry": -17.1,
+   "rs": 25.5,
+   "diem": 33.2,
+   "diem_cb": 15,
+   "nganh": "Công nghệ Thông tin",
+   "den": "CAM",
+   "br50": 0.491,
+   "vni": 1760.63
+  }
+ },
+ {
+  "id": "POW-tin-2026-10-22",
+  "ngay": "2026-10-22",
+  "ma": "POW",
+  "nguon": "tin",
+  "chieu": 1,
+  "gia0": 12.55,
+  "vni0": 1760.63,
+  "dac_trung": {
+   "gia": 12.55,
+   "pe": 6.08,
+   "pb": 0.93,
+   "pe_rel": 0.27,
+   "pb_rel": 0.92,
+   "roe": 16.2,
+   "ny": 460.3,
+   "ry": 116.1,
+   "rs": 83.7,
+   "diem": 71.6,
+   "diem_cb": 45,
+   "nganh": "Điện, nước & xăng dầu khí đốt",
+   "den": "CAM",
+   "br50": 0.491,
+   "vni": 1760.63
+  }
+ },
+ {
+  "id": "VCB-tin-2026-10-22",
+  "ngay": "2026-10-22",
+  "ma": "VCB",
+  "nguon": "tin",
+  "chieu": 1,
+  "gia0": 56.3,
+  "vni0": 1760.63,
+  "dac_trung": {
+   "gia": 56.3,
+   "pe": 11.3,
+   "pb": 1.89,
+   "pe_rel": 0.75,
+   "pb_rel": 0.7,
+   "roe": 17.9,
+   "ny": 64.7,
+   "ry": 47.6,
+   "rs": 56.1,
+   "diem": 63.6,
+   "diem_cb": 45,
+   "nganh": "Ngân hàng",
+   "den": "CAM",
+   "br50": 0.491,
+   "vni": 1760.63
+  }
  }
 ]
