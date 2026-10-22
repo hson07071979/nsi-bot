@@ -63,7 +63,7 @@ svg text{fill:var(--mut);font-size:11px}
 <div class="tabs" id="tabs"></div><div id="app" class="card">Đang tải…</div></div>
 <script>
 const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const TABS=[['dm','Danh mục'],['gl','Sổ giả lập'],['so','Từng mã'],['bc','Đọc BCTC'],['nd','Nhận định hằng ngày'],['db','3 máy nói gì'],['loc','Lọc cơ bản'],['hoc','Ai đoán đúng']];
+const TABS=[['dm','Danh mục'],['gl','Sổ giả lập'],['so','Từng mã'],['bc','Đọc BCTC'],['nd','Nhận định hằng ngày'],['db','3 máy nói gì'],['lq','Lọc quý TOP110'],['loc','Lọc cơ bản'],['hoc','Ai đoán đúng']];
 const CH={1:['tăng','up'],'-1':['giảm','dn'],0:['trung lập','mut']}, CHP={tang:1,giam:-1,trung_lap:0};
 const CHN={tang:['tăng','up'],giam:['giảm','dn'],ngang:['đi ngang','mut']};
 const TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',loai:'Đã loại',dong:'Đã đóng'};
@@ -227,6 +227,27 @@ function db(){const x=cur();if(!x)return rong();const t=x.luan,h0=x.ho_so,pb=t.p
   h+='<h3>Các vòng tranh luận</h3>'+((t.debate||[]).length?(t.debate.map(r=>'<div class="card"><span class="pill">vòng '+esc(r.vong)+'</span><span class="pill">'+esc(BEN[r.ben]||r.ben)+'</span><span class="mut">'+esc(r.ngay)+'</span><div style="white-space:pre-wrap">'+esc(r.noi_dung)+'</div></div>').join('')):'<span class="mut">chưa có</span>');
   return h}
 
+/* ---------------- Lọc quý TOP110 (22/10/2026) ---------------- */
+function lq(){const Q=B.loc_quy;if(!Q)return '<p class="mut">Chưa có dữ liệu lọc quý — lượt "Lọc port" kế tiếp sẽ dựng.</p>';
+  const by={};(Q.bang||[]).forEach(r=>by[r.ma]=r);const co=new Set((B.luan_diem||[]).map(x=>x.luan.ma));
+  const L=Q.lui||{},K=(L.ket||{});
+  let h='<h2 style="margin-top:0">Lọc quý TOP110 <span class="mut">· mùa '+esc(Q.mua||'?')+' · '+n(Q.co_so_moi,0)+'/'+n(Q.tong,0)+' mã đã có số trên nguyensonfinance</span></h2>'
+  +'<p class="mut">Mỗi tối, mã nào trong TOP110 có BCTC quý mới (từ phần cào BCTC của trang) được chấm lại phần số của khung 70/30: định giá so với chính nó (20) + lợi nhuận 4 quý so cùng kỳ (10) + ROE (10) = tối đa 40. Mã bị cổng rủi ro của bot chặn không vào top. Top '+n(Q.top_k,0)+' là danh sách lọt lọc — <b>chưa phải mua</b>: phần 70% định tính Claude viết lúc anh review quý.</p>';
+  const a=K['60p']||{},b=K['250p']||{},ta=a.top_hon_ca_ro||{},tb=b.top_hon_ca_ro||{};
+  if(ta.tb!=null)h+='<div class="flag"><b>Cảnh báo từ chạy lùi 2019 → nay ('+n(L.so_mau,0)+' mẫu, '+n(L.so_ma,0)+' mã):</b> top '+n(Q.top_k,0)+' của điểm này '+(ta.tb<0?'<b class="dn">THUA</b>':'<b class="up">thắng</b>')+' cả rổ '+pct(ta.tb)+' sau 60 phiên (t '+n(ta.t,1)+', thắng '+n((ta.duong||0)*100,0)+'% số đợt) và '+pct(tb.tb)+' sau 250 phiên. Phần "rẻ so với chính nó" kéo ngược trong ngắn hạn. Thang điểm chưa đổi — đổi phải được anh duyệt.</div>';
+  const top=(Q.top||[]).map(s=>by[s]).filter(Boolean);
+  const C='<tr><th>#</th><th>Mã</th><th>Ngành</th><th class="r">Điểm /40</th><th class="r">Định giá</th><th class="r">So mức thường thấy</th><th class="r">LN 4 quý</th><th class="r">ROE</th><th>Quý</th><th>Công bố</th><th>Ghi chú</th></tr>';
+  const dong=r=>'<tr><td>'+(r.hang||'')+'</td><td><b>'+esc(r.ma)+'</b>'+(co.has(r.ma)?' <span class="pill">có luận điểm</span>':'')+'</td><td>'+esc(r.nganh)+'</td><td class="r"><b>'+n(r.diem,0)+'</b></td><td class="r">'+n(r.d_dinh_gia,0)+'+'+n(r.d_loi_nhuan,0)+'+'+n(r.d_roe,0)+'</td><td class="r">'+(r.dinh_gia_rel!=null?esc(r.theo)+' '+n(r.dinh_gia_rel,2)+'×':'—')+'</td><td class="r">'+pct(r.np4_yoy)+'</td><td class="r">'+n(r.roe)+'</td><td>'+esc(r.quy||'—')+'</td><td>'+esc(r.cong_bo||'')+'</td><td class="w">'+(r.chan?'<span class="pill dn">bị chặn: '+esc(r.chan)+'</span> ':'')+(r.lai_bat_thuong?'<span class="pill warn" title="'+esc(r.lai_bat_thuong_vi)+'">lãi bất thường — định giá có thể méo</span>':'')+esc(r.ghi_chu||'')+'</td></tr>';
+  h+='<h3>Lọt lọc quý</h3><div class="scroll"><table>'+C+top.map(dong).join('')+'</table></div>';
+  const dc=Q.do_chinh_xac||{};
+  h+='<h3>Sổ pitch bóng</h3><p class="mut">Mỗi mã TOP110 mỗi quý một dòng (ngày, giá, điểm) từ '+esc(Q.khoi_tao||'')+'; chấm hơn VN-Index sau 20/60/120/250 phiên. Hiện có '+n(Q.so_tong,0)+' dòng.</p><div class="scroll"><table><tr><th>Mốc</th><th class="r">Đã chấm</th><th class="r">Chờ</th><th class="r">Top TB</th><th class="r">Còn lại TB</th><th class="r">IC TB theo đợt</th><th class="r">Số đợt</th></tr>'
+   +['20p','60p','120p','250p'].map(k=>{const o=dc[k]||{};return '<tr><td>'+k.replace('p',' phiên')+'</td><td class="r">'+n(o.da_cham||0,0)+'</td><td class="r">'+n(o.cho||0,0)+'</td><td class="r">'+pct(o.top_tb)+'</td><td class="r">'+pct(o.con_lai_tb)+'</td><td class="r">'+n(o.ic_tb,3)+'</td><td class="r">'+n(o.so_dot||0,0)+'</td></tr>'}).join('')+'</table></div>';
+  if(L.ket){const ic=o=>o?n(o.tb,3)+' <span class="mut">(t '+n(o.t,1)+')</span>':'—';
+    h+='<h3>Chạy lùi từ '+esc(L.tu)+'</h3><p class="mut">'+esc(L.ghi_chu)+' IC = tương quan hạng giữa điểm và lợi suất hơn VN-Index trong từng đợt quý; dương là xếp đúng chiều.</p><div class="scroll"><table><tr><th>Mốc</th><th class="r">IC điểm</th><th class="r">IC rẻ so với chính nó</th><th class="r">IC LN 4 quý</th><th class="r">IC ROE</th><th class="r">Top '+n(Q.top_k,0)+' hơn cả rổ</th><th>Theo năm</th></tr>'
+     +Object.entries(L.ket).map(([k,v])=>'<tr><td>'+k.replace('p',' phiên')+'</td><td class="r">'+ic(v.ic.diem)+'</td><td class="r">'+ic(v.ic.dinh_gia)+'</td><td class="r">'+ic(v.ic.loi_nhuan)+'</td><td class="r">'+ic(v.ic.roe)+'</td><td class="r">'+pct((v.top_hon_ca_ro||{}).tb)+'</td><td class="w mut">'+Object.entries(v.top_hon_ca_ro_theo_nam||{}).map(([y,x])=>y+': '+(x>0?'+':'')+n(x,1)).join(' · ')+'</td></tr>').join('')+'</table></div>'}
+  h+='<details class="card"><summary>Cả TOP110 ('+(Q.bang||[]).length+' mã)</summary><div class="scroll" style="max-height:60vh"><table>'+C+(Q.bang||[]).map(dong).join('')+'</table></div></details>';
+  return h}
+
 /* ---------------- Lọc cơ bản ---------------- */
 const PRESET={ben:{ny_lien:3,roe:15,np4:15},re:{pe_rel:0.8,ny:0},cl:{roe:20},dao:{ny:30,ny_truoc_am:1}};
 let F={gtgd:5,roe:'',ny_lien:'',np4:'',ny:'',pe_rel:'',nganh:'',q:'',bo_chan:1,ny_truoc_am:0};
@@ -273,7 +294,7 @@ function hoc(){const T=B.tin_cay||{},pv=T.port_vs_may||{},D=B.do_chinh_xac;let h
   const so=(B.so_bat_dong||[]).slice().reverse();h+='<details class="card"><summary>Sổ các lần nói ngược ('+so.length+')</summary>'+(so.length?'<div class="scroll"><table><tr><th>Ngày</th><th>Mã</th><th>Máy</th><th>Port</th><th>Máy nói</th><th>Vì sao máy nói vậy</th><th class="r">Hơn VN-Index 20 phiên</th><th class="r">60 phiên</th></tr>'+so.map(r=>'<tr><td>'+esc(r.ngay)+'</td><td><b>'+esc(r.ma)+'</b></td><td>'+esc(B.ten_may[r.may]||r.may)+'</td><td>'+chip(r.chieu_port)+'</td><td>'+chip(r.chieu_may)+'</td><td class="w">'+esc(r.ly_do_may)+'</td><td class="r">'+pct(r.vuot_20p)+(r.port_dung_20p!=null?(r.port_dung_20p?' port đúng':' máy đúng'):'')+'</td><td class="r">'+pct(r.vuot_60p)+(r.port_dung_60p!=null?(r.port_dung_60p?' port đúng':' máy đúng'):'')+'</td></tr>').join('')+'</table></div>':'<span class="mut">chưa có lần nào</span>')+'</details>';
   return h}
 
-function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const f={dm,gl,so,bc,nd,db,loc,hoc}[tab]||dm;$('#app').innerHTML=f();if(tab==='loc')ganLoc();const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
+function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const f={dm,gl,so,bc,nd,db,lq,loc,hoc}[tab]||dm;$('#app').innerHTML=f();if(tab==='loc')ganLoc();const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
 fetch('/port/data').then(r=>r.json().then(j=>{if(!r.ok)throw new Error(j.loi||r.status);return j})).then(j=>{B=j;
   const nh=j.nhac||{};$('#meta').textContent='Dữ liệu đến phiên '+(j.asof||'?')+' · đèn thị trường '+(j.den||'?')+' · bản tin sáng '+((j.nguon||{}).tin_so_ban||0)+' bản · Daily '+((j.nguon||{}).daily_ngay||'?')+(nh.ky_review?' · kỳ review gần nhất '+nh.ky_review:'')+' · dựng lúc '+String(j.cap_nhat||'').replace('T',' ').slice(0,16);ve()})
  .catch(e=>{$('#app').innerHTML='<b>Chưa đọc được gói port.</b> '+esc(e.message)});
