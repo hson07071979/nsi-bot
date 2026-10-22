@@ -184,3 +184,21 @@ def test_nhac_khi_co_quy_moi_va_ky_review():
     assert 'B có BCTC Q3/26' in tt and 'Đến kỳ review port Q3/26' in tt and 'Cờ review A' in tt
     st = NH.kiem(D, luan, st, [{'ma': 'A', 'loai': 'lo_10', 'ngay': '2026-11-02', 'noi_dung': 'x'}], gui_that=False)
     assert st['lan_cuoi'] == []                                  # không báo lặp
+
+
+def test_r41_chieu_theo_hang_va_ic():
+    d = list(range(20))
+    ch = ND.chieu_theo_hang(d)
+    assert ch.count('tang') == 6 and ch.count('giam') == 6 and ch[-1] == 'tang' and ch[0] == 'giam'
+    assert ND.chieu_theo_hang([1.0, -1.0]) == ['tang', 'giam']          # ít mã → ngưỡng cũ
+    # điểm = đúng đặc trưng quyết định nhãn → IC = 1, nhóm cao hơn nhóm thấp
+    rows = []
+    for k in range(12):
+        for j in range(15):
+            f = {x: 0.0 for x in ND.DAC_TRUNG}
+            f['dinh_gia'] = j / 10
+            rows.append(dict(ma=f'M{j}', ngay=f'2025-01-{k + 1:02d}', f=f, y={5: j - 7.0, 20: j - 7.0, 60: j - 7.0}))
+    ts = dict(w={**{x: 0.0 for x in ND.DAC_TRUNG}, 'dinh_gia': 1.0}, b=0.0)
+    r = ND._cham_bo(rows, 20, ts, ND.thong_ke(rows))
+    assert r['ic'] > 0.99 and r['chenh'] > 0 and r['top_thang_pct'] == 100.0
+    assert set(ND.TRONG_SO_V2['w']) == set(ND.DAC_TRUNG)

@@ -153,7 +153,8 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     B, nguon['gia_nhan_dinh'] = _bang_nhan_dinh(D, pg)
     lk = D.get('lookup') or {}
     nganh = {s: (lk.get(s) or {}).get('sector', '') for s in set(lk) | set(luan)}
-    vu_tru = sorted({s for s, x in lk.items() if x.get('inuni')} | set(luan))
+    # R41: học + nhận định trên mọi mã đủ thanh khoản trong port_gia.npz (~170 mã), không chỉ ~110 mã TOP-N
+    vu_tru = sorted({s for s, x in lk.items() if x.get('inuni')} | set(luan) | set((pg or {}).get('sym') or []))
     vu_tru = [s for s in vu_tru if s in B.c]
     ts = rj(root / 'trong_so.json', None) or ND.TRONG_SO_V1
     hoc = None
