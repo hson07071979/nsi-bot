@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Ghép 4 phần mới của Lọc port vào lượt build (anh Sơn 22/10/2026):
+"""Ghép các phần mới của Lọc port (thêm lọc quý TOP110 — loc_quy.py, 22/10/2026) vào lượt build (anh Sơn 22/10/2026):
 sổ giả lập + NAV (sim.py), đọc BCTC sâu (bctc.py), nhận định hằng ngày + vòng học (nhan_dinh.py), nhắc review (nhac.py).
 
 Dữ liệu đều là thứ đã có, chỉ nối lại:
@@ -17,6 +17,7 @@ from datetime import date
 from pathlib import Path
 
 import bctc as BC
+import loc_quy as LQ
 import nhac as NH
 import nhan_dinh as ND
 import sim as SM
@@ -182,9 +183,11 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
                      do_chinh_xac=dict(tat_ca=ND.tong_ket_so(so_nd), port=ND.tong_ket_so(so_nd, port_syms)),
                      lich_su_port=[r for r in so_nd if r['ma'] in port_syms][-400:], hoc=hoc,
                      so_ma_theo_doi=len(vu_tru))
+    # ------------------------------------------------ 3b. lọc quý TOP110 (22/10/2026) — nối BCTC trang đã cào
+    loc_quy = LQ.chay(D, rows_f, B, asof, state, pg_co=bool(pg), raw_co=bool(raw), gui_chuong=gui_chuong, luan=luan)
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)
     nguon['gia_gia_lap'] = 'port_gia.npz + ảnh chụp port' if pg else 'nến 240 phiên + ảnh chụp port'
-    return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh,
+    return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy,
                 nhac=dict(quy=st['quy'], ky_review=st['ky_review'], lan_cuoi=st.get('lan_cuoi')), nguon_moi=nguon)

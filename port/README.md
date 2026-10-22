@@ -29,6 +29,14 @@ Port không chạy riêng. Nó là vòng thứ tư nối vào ba bộ máy đã 
 - **Nhận định hằng ngày + vòng học** (`nhan_dinh.py`): mỗi chiều chấm điểm từng mã (tăng/đi ngang/giảm so với VN-Index trong 5/20/60 phiên), chấm đúng/sai khi đủ phiên. Mỗi lượt chạy lùi từ 2019 trên `data/port_gia.npz` (dây chuyền hằng ngày cắt từ fa.npz, cache `port-gia-`) để so trọng số đang dùng (`trong_so.json` ở port-data, chưa có thì bộ v1) với mô hình đề xuất. Không tự đổi trọng số.
 - **Nhắc review** (`nhac.py`): chuông ntfy/Telegram khi nguyensonfinance có BCTC quý mới của mã trong port/hàng chờ, khi đủ số cả port (đến kỳ review quý), và khi sổ giả lập treo cờ.
 
+## Lọc quý TOP110 (22/10/2026, `loc_quy.py`)
+
+- **Tự lọc theo quý, nối vào BCTC của nguyensonfinance:** mỗi lượt "Lọc port", mã nào trong TOP110 (vũ trụ của bot) vừa có quý mới trong BCTC trang đã cào (`data/funda_raw2.json`, cache `bctc-`; thiếu thì 12 quý trên trang) được chấm lại **phần số của khung 70/30**: định giá so với chính nó 20 + LN 4 quý 10 + ROE 10 = tối đa 40. Mã bị cổng rủi ro của bot chặn không vào top.
+- **Top 10 = lọt lọc quý**, chuông ntfy khi có mã mới lọt/rời top. Lọt lọc không tự vào port: phần 70% định tính Claude viết lúc anh Sơn review quý.
+- **Sổ pitch bóng** (`state/so_loc_quy.json`): mỗi mã TOP110 mỗi quý một dòng, chấm hơn VN-Index sau 20/60/120/250 phiên — mẫu cho vòng học (~440 dòng/năm).
+- **Chạy lùi từ 2019** (`state/loc_quy_lui.json`): IC theo đợt quý của điểm và từng thành phần, top 10 so với cả rổ. Kết quả lần đầu (22/10/2026, 4.005 mẫu, 168 mã): top 10 **thua** cả rổ −6,2 điểm % sau 60 phiên (t −5,1), −2,2 sau 250 phiên; phần "rẻ so với chính nó" kéo ngược (IC 60 phiên −0,20). Thang điểm chưa đổi — chỉ đổi khi anh Sơn duyệt.
+- Trang `/port` → tab **Lọc quý TOP110**.
+
 ## Ai làm gì
 
 - **Claude, trong chat dự án NSI Daily Market.** Viết và cập nhật luận điểm theo khuôn `MAU_LUAN_DIEM.json`, rồi đẩy thẳng vào nhánh `port-data`. Trước khi viết, Claude đọc hồ sơ máy và bảng tin cậy. Khi có máy ngược chiều, Claude phải trả lời máy đó trước khi đưa mã vào danh mục.
