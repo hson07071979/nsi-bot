@@ -1,0 +1,924 @@
+{
+ "so_ma": 169,
+ "so_mau": 56656,
+ "tu": "2019-10-23",
+ "den": "2026-10-21",
+ "tung_dac_trung": {
+  "rs20": {
+   "5": {
+    "mau": 56410,
+    "ngay": 349,
+    "dung_pct": 47.7,
+    "alpha_tb": 0.13,
+    "ic": -0.006,
+    "ic_t": -0.6,
+    "chenh": 0.34,
+    "top_thang_pct": 47.9
+   },
+   "20": {
+    "mau": 55890,
+    "ngay": 346,
+    "dung_pct": 46.7,
+    "alpha_tb": 0.3,
+    "ic": 0.005,
+    "ic_t": 0.3,
+    "chenh": 0.8,
+    "top_thang_pct": 48.0
+   },
+   "60": {
+    "mau": 54538,
+    "ngay": 338,
+    "dung_pct": 45.9,
+    "alpha_tb": 0.54,
+    "ic": 0.01,
+    "ic_t": 0.3,
+    "chenh": 1.77,
+    "top_thang_pct": 49.2
+   }
+  },
+  "rs60": {
+   "5": {
+    "mau": 56453,
+    "ngay": 349,
+    "dung_pct": 48.5,
+    "alpha_tb": 0.17,
+    "ic": 0.009,
+    "ic_t": 0.8,
+    "chenh": 0.38,
+    "top_thang_pct": 49.0
+   },
+   "20": {
+    "mau": 55933,
+    "ngay": 346,
+    "dung_pct": 47.2,
+    "alpha_tb": 0.46,
+    "ic": 0.012,
+    "ic_t": 0.5,
+    "chenh": 1.06,
+    "top_thang_pct": 49.8
+   },
+   "60": {
+    "mau": 54577,
+    "ngay": 338,
+    "dung_pct": 46.3,
+    "alpha_tb": 0.84,
+    "ic": 0.019,
+    "ic_t": 0.5,
+    "chenh": 1.73,
+    "top_thang_pct": 49.9
+   }
+  },
+  "ma50": {
+   "5": {
+    "mau": 56453,
+    "ngay": 349,
+    "dung_pct": 48.0,
+    "alpha_tb": 0.15,
+    "ic": 0.0,
+    "ic_t": 0.0,
+    "chenh": 0.36,
+    "top_thang_pct": 48.1
+   },
+   "20": {
+    "mau": 55933,
+    "ngay": 346,
+    "dung_pct": 47.0,
+    "alpha_tb": 0.41,
+    "ic": 0.008,
+    "ic_t": 0.4,
+    "chenh": 0.99,
+    "top_thang_pct": 48.5
+   },
+   "60": {
+    "mau": 54577,
+    "ngay": 338,
+    "dung_pct": 46.3,
+    "alpha_tb": 0.78,
+    "ic": 0.016,
+    "ic_t": 0.5,
+    "chenh": 1.94,
+    "top_thang_pct": 49.6
+   }
+  },
+  "ma200": {
+   "5": {
+    "mau": 56036,
+    "ngay": 349,
+    "dung_pct": 48.4,
+    "alpha_tb": 0.14,
+    "ic": 0.011,
+    "ic_t": 0.9,
+    "chenh": 0.3,
+    "top_thang_pct": 48.9
+   },
+   "20": {
+    "mau": 55516,
+    "ngay": 346,
+    "dung_pct": 47.6,
+    "alpha_tb": 0.46,
+    "ic": 0.015,
+    "ic_t": 0.6,
+    "chenh": 0.91,
+    "top_thang_pct": 49.5
+   },
+   "60": {
+    "mau": 54160,
+    "ngay": 338,
+    "dung_pct": 46.4,
+    "alpha_tb": 0.7,
+    "ic": 0.013,
+    "ic_t": 0.3,
+    "chenh": 1.49,
+    "top_thang_pct": 50.2
+   }
+  },
+  "dinh250": {
+   "5": {
+    "mau": 56216,
+    "ngay": 349,
+    "dung_pct": 47.7,
+    "alpha_tb": 0.1,
+    "ic": 0.01,
+    "ic_t": 0.8,
+    "chenh": 0.23,
+    "top_thang_pct": 48.4
+   },
+   "20": {
+    "mau": 55696,
+    "ngay": 346,
+    "dung_pct": 46.9,
+    "alpha_tb": 0.23,
+    "ic": 0.014,
+    "ic_t": 0.5,
+    "chenh": 0.71,
+    "top_thang_pct": 50.6
+   },
+   "60": {
+    "mau": 54340,
+    "ngay": 338,
+    "dung_pct": 46.2,
+    "alpha_tb": 0.3,
+    "ic": 0.02,
+    "ic_t": 0.4,
+    "chenh": 1.15,
+    "top_thang_pct": 52.3
+   }
+  },
+  "bien_dong": {
+   "5": {
+    "mau": 56372,
+    "ngay": 349,
+    "dung_pct": 47.4,
+    "alpha_tb": 0.12,
+    "ic": -0.0,
+    "ic_t": -0.0,
+    "chenh": 0.3,
+    "top_thang_pct": 48.7
+   },
+   "20": {
+    "mau": 55852,
+    "ngay": 346,
+    "dung_pct": 45.7,
+    "alpha_tb": 0.33,
+    "ic": -0.01,
+    "ic_t": -0.4,
+    "chenh": 0.87,
+    "top_thang_pct": 48.2
+   },
+   "60": {
+    "mau": 54499,
+    "ngay": 338,
+    "dung_pct": 44.8,
+    "alpha_tb": 0.96,
+    "ic": -0.009,
+    "ic_t": -0.2,
+    "chenh": 2.34,
+    "top_thang_pct": 48.1
+   }
+  },
+  "ln_yoy": {
+   "5": {
+    "mau": 52696,
+    "ngay": 349,
+    "dung_pct": 47.6,
+    "alpha_tb": 0.03,
+    "ic": 0.005,
+    "ic_t": 0.8,
+    "chenh": 0.05,
+    "top_thang_pct": 47.0
+   },
+   "20": {
+    "mau": 52200,
+    "ngay": 346,
+    "dung_pct": 46.7,
+    "alpha_tb": 0.09,
+    "ic": 0.004,
+    "ic_t": 0.3,
+    "chenh": 0.08,
+    "top_thang_pct": 47.6
+   },
+   "60": {
+    "mau": 50907,
+    "ngay": 338,
+    "dung_pct": 45.9,
+    "alpha_tb": 0.11,
+    "ic": -0.0,
+    "ic_t": -0.0,
+    "chenh": -0.06,
+    "top_thang_pct": 48.6
+   }
+  },
+  "dt_yoy": {
+   "5": {
+    "mau": 56054,
+    "ngay": 349,
+    "dung_pct": 47.8,
+    "alpha_tb": 0.04,
+    "ic": 0.007,
+    "ic_t": 1.2,
+    "chenh": 0.09,
+    "top_thang_pct": 47.9
+   },
+   "20": {
+    "mau": 55537,
+    "ngay": 346,
+    "dung_pct": 47.0,
+    "alpha_tb": 0.03,
+    "ic": 0.009,
+    "ic_t": 0.8,
+    "chenh": 0.15,
+    "top_thang_pct": 48.1
+   },
+   "60": {
+    "mau": 54184,
+    "ngay": 338,
+    "dung_pct": 46.3,
+    "alpha_tb": -0.03,
+    "ic": 0.005,
+    "ic_t": 0.2,
+    "chenh": 0.54,
+    "top_thang_pct": 48.9
+   }
+  },
+  "dinh_gia": {
+   "5": {
+    "mau": 48614,
+    "ngay": 349,
+    "dung_pct": 49.2,
+    "alpha_tb": 0.31,
+    "ic": 0.053,
+    "ic_t": 6.5,
+    "chenh": 0.8,
+    "top_thang_pct": 50.5
+   },
+   "20": {
+    "mau": 48108,
+    "ngay": 346,
+    "dung_pct": 48.9,
+    "alpha_tb": 1.0,
+    "ic": 0.079,
+    "ic_t": 4.7,
+    "chenh": 2.61,
+    "top_thang_pct": 53.1
+   },
+   "60": {
+    "mau": 46771,
+    "ngay": 338,
+    "dung_pct": 47.4,
+    "alpha_tb": 1.2,
+    "ic": 0.054,
+    "ic_t": 1.8,
+    "chenh": 2.84,
+    "top_thang_pct": 51.0
+   }
+  },
+  "thi_truong": {
+   "5": {
+    "mau": 56453,
+    "ngay": 349,
+    "dung_pct": 46.6,
+    "alpha_tb": -0.01,
+    "ic": -0.002,
+    "ic_t": -0.4,
+    "chenh": -0.02,
+    "top_thang_pct": 46.6
+   },
+   "20": {
+    "mau": 55933,
+    "ngay": 346,
+    "dung_pct": 45.6,
+    "alpha_tb": -0.06,
+    "ic": -0.005,
+    "ic_t": -0.5,
+    "chenh": -0.08,
+    "top_thang_pct": 47.0
+   },
+   "60": {
+    "mau": 54577,
+    "ngay": 338,
+    "dung_pct": 44.8,
+    "alpha_tb": -0.12,
+    "ic": -0.006,
+    "ic_t": -0.4,
+    "chenh": -0.18,
+    "top_thang_pct": 47.8
+   }
+  },
+  "rs120": {
+   "5": {
+    "mau": 56155,
+    "ngay": 349,
+    "dung_pct": 48.4,
+    "alpha_tb": 0.12,
+    "ic": 0.011,
+    "ic_t": 0.9,
+    "chenh": 0.28,
+    "top_thang_pct": 48.8
+   },
+   "20": {
+    "mau": 55635,
+    "ngay": 346,
+    "dung_pct": 47.5,
+    "alpha_tb": 0.43,
+    "ic": 0.017,
+    "ic_t": 0.7,
+    "chenh": 0.83,
+    "top_thang_pct": 49.7
+   },
+   "60": {
+    "mau": 54279,
+    "ngay": 338,
+    "dung_pct": 46.7,
+    "alpha_tb": 0.78,
+    "ic": 0.021,
+    "ic_t": 0.5,
+    "chenh": 1.39,
+    "top_thang_pct": 50.4
+   }
+  },
+  "cfo_ln": {
+   "5": {
+    "mau": 53579,
+    "ngay": 349,
+    "dung_pct": 47.3,
+    "alpha_tb": 0.06,
+    "ic": 0.01,
+    "ic_t": 1.9,
+    "chenh": 0.13,
+    "top_thang_pct": 48.2
+   },
+   "20": {
+    "mau": 53065,
+    "ngay": 346,
+    "dung_pct": 46.8,
+    "alpha_tb": 0.28,
+    "ic": 0.027,
+    "ic_t": 2.4,
+    "chenh": 0.58,
+    "top_thang_pct": 49.9
+   },
+   "60": {
+    "mau": 51724,
+    "ngay": 338,
+    "dung_pct": 46.8,
+    "alpha_tb": 0.73,
+    "ic": 0.046,
+    "ic_t": 2.1,
+    "chenh": 1.32,
+    "top_thang_pct": 51.8
+   }
+  }
+ },
+ "hoc_v1": {
+  "so_mau": 56656,
+  "theo_nam": [
+   {
+    "nam": "2021",
+    "mau_luyen": 9016,
+    "dang_dung": {
+     "5": {
+      "mau": 7807,
+      "ngay": 50,
+      "dung_pct": 45.4,
+      "alpha_tb": 0.38,
+      "ic": 0.034,
+      "ic_t": 1.3,
+      "chenh": 0.79,
+      "top_thang_pct": 53.7
+     },
+     "20": {
+      "mau": 7805,
+      "ngay": 50,
+      "dung_pct": 43.7,
+      "alpha_tb": 1.14,
+      "ic": 0.045,
+      "ic_t": 1.1,
+      "chenh": 2.94,
+      "top_thang_pct": 55.8
+     },
+     "60": {
+      "mau": 7805,
+      "ngay": 50,
+      "dung_pct": 43.4,
+      "alpha_tb": 1.83,
+      "ic": 0.039,
+      "ic_t": 0.5,
+      "chenh": 3.85,
+      "top_thang_pct": 59.9
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 7807,
+      "ngay": 50,
+      "dung_pct": 45.4,
+      "alpha_tb": 0.44,
+      "ic": 0.05,
+      "ic_t": 3.5,
+      "chenh": 1.16,
+      "top_thang_pct": 54.8
+     },
+     "20": {
+      "mau": 7805,
+      "ngay": 50,
+      "dung_pct": 45.6,
+      "alpha_tb": 1.15,
+      "ic": 0.083,
+      "ic_t": 3.0,
+      "chenh": 2.31,
+      "top_thang_pct": 57.6
+     },
+     "60": {
+      "mau": 7805,
+      "ngay": 50,
+      "dung_pct": 44.7,
+      "alpha_tb": 2.08,
+      "ic": 0.069,
+      "ic_t": 1.1,
+      "chenh": 5.53,
+      "top_thang_pct": 66.1
+     }
+    }
+   },
+   {
+    "nam": "2022",
+    "mau_luyen": 16816,
+    "dang_dung": {
+     "5": {
+      "mau": 8155,
+      "ngay": 50,
+      "dung_pct": 43.0,
+      "alpha_tb": 0.02,
+      "ic": -0.025,
+      "ic_t": -0.6,
+      "chenh": 0.0,
+      "top_thang_pct": 46.3
+     },
+     "20": {
+      "mau": 8153,
+      "ngay": 50,
+      "dung_pct": 41.6,
+      "alpha_tb": -0.59,
+      "ic": -0.062,
+      "ic_t": -0.7,
+      "chenh": -1.38,
+      "top_thang_pct": 44.8
+     },
+     "60": {
+      "mau": 8154,
+      "ngay": 50,
+      "dung_pct": 41.3,
+      "alpha_tb": -1.31,
+      "ic": -0.068,
+      "ic_t": -0.7,
+      "chenh": -3.63,
+      "top_thang_pct": 39.6
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 8155,
+      "ngay": 50,
+      "dung_pct": 43.3,
+      "alpha_tb": 0.03,
+      "ic": -0.005,
+      "ic_t": -0.2,
+      "chenh": -0.07,
+      "top_thang_pct": 47.1
+     },
+     "20": {
+      "mau": 8153,
+      "ngay": 50,
+      "dung_pct": 42.9,
+      "alpha_tb": 0.34,
+      "ic": 0.011,
+      "ic_t": 0.2,
+      "chenh": 0.52,
+      "top_thang_pct": 47.5
+     },
+     "60": {
+      "mau": 8154,
+      "ngay": 50,
+      "dung_pct": 38.9,
+      "alpha_tb": -2.1,
+      "ic": -0.12,
+      "ic_t": -1.5,
+      "chenh": -4.61,
+      "top_thang_pct": 38.7
+     }
+    }
+   },
+   {
+    "nam": "2023",
+    "mau_luyen": 24965,
+    "dang_dung": {
+     "5": {
+      "mau": 8073,
+      "ngay": 49,
+      "dung_pct": 48.1,
+      "alpha_tb": -0.19,
+      "ic": -0.043,
+      "ic_t": -1.9,
+      "chenh": -0.38,
+      "top_thang_pct": 48.2
+     },
+     "20": {
+      "mau": 8073,
+      "ngay": 49,
+      "dung_pct": 47.6,
+      "alpha_tb": -0.7,
+      "ic": -0.047,
+      "ic_t": -1.1,
+      "chenh": -1.67,
+      "top_thang_pct": 51.2
+     },
+     "60": {
+      "mau": 8071,
+      "ngay": 49,
+      "dung_pct": 47.1,
+      "alpha_tb": -1.26,
+      "ic": -0.04,
+      "ic_t": -0.5,
+      "chenh": -3.16,
+      "top_thang_pct": 57.8
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 8073,
+      "ngay": 49,
+      "dung_pct": 48.7,
+      "alpha_tb": -0.06,
+      "ic": -0.014,
+      "ic_t": -0.6,
+      "chenh": -0.19,
+      "top_thang_pct": 49.0
+     },
+     "20": {
+      "mau": 8073,
+      "ngay": 49,
+      "dung_pct": 47.4,
+      "alpha_tb": -0.52,
+      "ic": -0.038,
+      "ic_t": -0.8,
+      "chenh": -1.26,
+      "top_thang_pct": 51.6
+     },
+     "60": {
+      "mau": 8071,
+      "ngay": 49,
+      "dung_pct": 41.5,
+      "alpha_tb": -3.82,
+      "ic": -0.206,
+      "ic_t": -2.0,
+      "chenh": -9.3,
+      "top_thang_pct": 45.5
+     }
+    }
+   },
+   {
+    "nam": "2024",
+    "mau_luyen": 33037,
+    "dang_dung": {
+     "5": {
+      "mau": 8278,
+      "ngay": 50,
+      "dung_pct": 52.3,
+      "alpha_tb": -0.02,
+      "ic": -0.016,
+      "ic_t": -0.9,
+      "chenh": 0.09,
+      "top_thang_pct": 45.7
+     },
+     "20": {
+      "mau": 8273,
+      "ngay": 50,
+      "dung_pct": 51.2,
+      "alpha_tb": 0.29,
+      "ic": 0.006,
+      "ic_t": 0.2,
+      "chenh": 0.91,
+      "top_thang_pct": 47.9
+     },
+     "60": {
+      "mau": 8275,
+      "ngay": 50,
+      "dung_pct": 50.1,
+      "alpha_tb": 0.8,
+      "ic": 0.017,
+      "ic_t": 0.3,
+      "chenh": 2.45,
+      "top_thang_pct": 45.2
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 8278,
+      "ngay": 50,
+      "dung_pct": 53.6,
+      "alpha_tb": 0.25,
+      "ic": 0.059,
+      "ic_t": 3.5,
+      "chenh": 0.57,
+      "top_thang_pct": 48.8
+     },
+     "20": {
+      "mau": 8273,
+      "ngay": 50,
+      "dung_pct": 51.6,
+      "alpha_tb": 0.64,
+      "ic": 0.06,
+      "ic_t": 1.9,
+      "chenh": 1.39,
+      "top_thang_pct": 48.6
+     },
+     "60": {
+      "mau": 8275,
+      "ngay": 50,
+      "dung_pct": 49.1,
+      "alpha_tb": 0.14,
+      "ic": -0.018,
+      "ic_t": -0.3,
+      "chenh": 0.77,
+      "top_thang_pct": 45.8
+     }
+    }
+   },
+   {
+    "nam": "2025",
+    "mau_luyen": 41313,
+    "dang_dung": {
+     "5": {
+      "mau": 8398,
+      "ngay": 50,
+      "dung_pct": 48.5,
+      "alpha_tb": 0.24,
+      "ic": 0.006,
+      "ic_t": 0.3,
+      "chenh": 0.55,
+      "top_thang_pct": 44.8
+     },
+     "20": {
+      "mau": 8397,
+      "ngay": 50,
+      "dung_pct": 45.4,
+      "alpha_tb": 0.58,
+      "ic": -0.003,
+      "ic_t": -0.1,
+      "chenh": 1.44,
+      "top_thang_pct": 42.2
+     },
+     "60": {
+      "mau": 8397,
+      "ngay": 50,
+      "dung_pct": 44.3,
+      "alpha_tb": 1.17,
+      "ic": 0.005,
+      "ic_t": 0.1,
+      "chenh": 2.86,
+      "top_thang_pct": 39.3
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 8398,
+      "ngay": 50,
+      "dung_pct": 47.9,
+      "alpha_tb": 0.01,
+      "ic": 0.002,
+      "ic_t": 0.1,
+      "chenh": -0.0,
+      "top_thang_pct": 41.9
+     },
+     "20": {
+      "mau": 8397,
+      "ngay": 50,
+      "dung_pct": 45.8,
+      "alpha_tb": 0.15,
+      "ic": 0.002,
+      "ic_t": 0.0,
+      "chenh": 0.26,
+      "top_thang_pct": 40.2
+     },
+     "60": {
+      "mau": 8397,
+      "ngay": 50,
+      "dung_pct": 42.8,
+      "alpha_tb": -0.57,
+      "ic": -0.043,
+      "ic_t": -0.8,
+      "chenh": -0.48,
+      "top_thang_pct": 35.9
+     }
+    }
+   },
+   {
+    "nam": "2026",
+    "mau_luyen": 49709,
+    "dang_dung": {
+     "5": {
+      "mau": 6575,
+      "ngay": 39,
+      "dung_pct": 47.3,
+      "alpha_tb": -0.03,
+      "ic": -0.032,
+      "ic_t": -1.0,
+      "chenh": -0.15,
+      "top_thang_pct": 44.4
+     },
+     "20": {
+      "mau": 6070,
+      "ngay": 36,
+      "dung_pct": 47.0,
+      "alpha_tb": -0.18,
+      "ic": -0.041,
+      "ic_t": -0.6,
+      "chenh": -0.81,
+      "top_thang_pct": 42.3
+     },
+     "60": {
+      "mau": 4719,
+      "ngay": 28,
+      "dung_pct": 45.6,
+      "alpha_tb": -1.0,
+      "ic": -0.081,
+      "ic_t": -0.7,
+      "chenh": -3.21,
+      "top_thang_pct": 33.4
+     }
+    },
+    "mo_hinh": {
+     "5": {
+      "mau": 6575,
+      "ngay": 39,
+      "dung_pct": 48.7,
+      "alpha_tb": 0.27,
+      "ic": 0.043,
+      "ic_t": 2.6,
+      "chenh": 0.65,
+      "top_thang_pct": 48.2
+     },
+     "20": {
+      "mau": 6070,
+      "ngay": 36,
+      "dung_pct": 48.1,
+      "alpha_tb": 0.66,
+      "ic": 0.054,
+      "ic_t": 1.9,
+      "chenh": 1.29,
+      "top_thang_pct": 47.3
+     },
+     "60": {
+      "mau": 4719,
+      "ngay": 28,
+      "dung_pct": 48.6,
+      "alpha_tb": 1.96,
+      "ic": 0.095,
+      "ic_t": 1.8,
+      "chenh": 4.99,
+      "top_thang_pct": 44.3
+     }
+    }
+   }
+  ],
+  "tong_dang_dung": {
+   "5": {
+    "mau": 47286,
+    "dung_pct": 47.5,
+    "alpha_tb": 0.07,
+    "ic": -0.013,
+    "chenh": 0.15,
+    "top_thang_pct": 47.2,
+    "nam_hon": null,
+    "so_nam": 6
+   },
+   "20": {
+    "mau": 46771,
+    "dung_pct": 46.1,
+    "alpha_tb": 0.09,
+    "ic": -0.017,
+    "chenh": 0.24,
+    "top_thang_pct": 47.4,
+    "nam_hon": null,
+    "so_nam": 6
+   },
+   "60": {
+    "mau": 45421,
+    "dung_pct": 45.3,
+    "alpha_tb": 0.04,
+    "ic": -0.021,
+    "chenh": -0.14,
+    "top_thang_pct": 45.9,
+    "nam_hon": null,
+    "so_nam": 6
+   }
+  },
+  "tong_mo_hinh": {
+   "5": {
+    "mau": 47286,
+    "dung_pct": 47.9,
+    "alpha_tb": 0.16,
+    "ic": 0.023,
+    "chenh": 0.35,
+    "top_thang_pct": 48.3,
+    "nam_hon": 5,
+    "so_nam": 6
+   },
+   "20": {
+    "mau": 46771,
+    "dung_pct": 46.9,
+    "alpha_tb": 0.4,
+    "ic": 0.029,
+    "chenh": 0.75,
+    "top_thang_pct": 48.8,
+    "nam_hon": 6,
+    "so_nam": 6
+   },
+   "60": {
+    "mau": 45421,
+    "dung_pct": 43.9,
+    "alpha_tb": -0.38,
+    "ic": -0.037,
+    "chenh": -0.52,
+    "top_thang_pct": 46.1,
+    "nam_hon": 2,
+    "so_nam": 6
+   }
+  },
+  "de_xuat": {
+   "ten": "mô hình ridge 2026-10-22 trên 55933 mẫu (kỳ hạn 20 phiên)",
+   "w": {
+    "rs20": -0.0015,
+    "rs60": 0.008,
+    "ma50": -0.0025,
+    "ma200": -0.0091,
+    "dinh250": -0.0038,
+    "bien_dong": -0.0031,
+    "ln_yoy": 0.0009,
+    "dt_yoy": 0.0024,
+    "dinh_gia": 0.02,
+    "thi_truong": 0.0029,
+    "rs120": 0.0015,
+    "cfo_ln": 0.0068
+   },
+   "b": -0.0
+  },
+  "ket_luan": "Mô hình nhỉnh hơn ở 6/6 năm nhưng chưa đủ chắc (IC không ổn định qua các năm) — giữ nguyên, lượt sau chấm lại.",
+  "thuoc_do": "IC xếp hạng + chênh nhóm 20% cao/thấp (R41)"
+ },
+ "hoc_de_xuat": {
+  "tong_dang_dung": {
+   "5": {
+    "mau": 47286,
+    "dung_pct": 48.5,
+    "alpha_tb": 0.23,
+    "ic": 0.043,
+    "chenh": 0.5,
+    "top_thang_pct": 49.0,
+    "nam_hon": null,
+    "so_nam": 6
+   },
+   "20": {
+    "mau": 46771,
+    "dung_pct": 48.0,
+    "alpha_tb": 0.82,
+    "ic": 0.074,
+    "chenh": 1.81,
+    "top_thang_pct": 50.5,
+    "nam_hon": null,
+    "so_nam": 6
+   },
+   "60": {
+    "mau": 45421,
+    "dung_pct": 47.2,
+    "alpha_tb": 1.16,
+    "ic": 0.066,
+    "chenh": 2.15,
+    "top_thang_pct": 48.5,
+    "nam_hon": null,
+    "so_nam": 6
+   }
+  },
+  "ket_luan": "Mô hình chưa hơn bộ đang dùng trên những năm chưa thấy — giữ nguyên."
+ }
+}
