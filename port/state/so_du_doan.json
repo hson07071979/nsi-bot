@@ -1827,5 +1827,57 @@
    "br50": 0.491,
    "vni": 1760.63
   }
+ },
+ {
+  "id": "CTG-daily-2026-10-22",
+  "ngay": "2026-10-22",
+  "ma": "CTG",
+  "nguon": "daily",
+  "chieu": 0,
+  "gia0": 30.55,
+  "vni0": 1760.63,
+  "dac_trung": {
+   "gia": 30.55,
+   "pe": 5.71,
+   "pb": 1.15,
+   "pe_rel": 0.62,
+   "pb_rel": 0.8,
+   "roe": 21.8,
+   "ny": 21.4,
+   "ry": 26.1,
+   "rs": 50.1,
+   "diem": 53.8,
+   "diem_cb": 40,
+   "nganh": "Ngân hàng",
+   "den": "CAM",
+   "br50": 0.491,
+   "vni": 1760.63
+  }
+ },
+ {
+  "id": "FPT-tin-2026-10-22",
+  "ngay": "2026-10-22",
+  "ma": "FPT",
+  "nguon": "tin",
+  "chieu": 0,
+  "gia0": 57.4,
+  "vni0": 1760.63,
+  "dac_trung": {
+   "gia": 57.4,
+   "pe": 10.72,
+   "pb": 2.69,
+   "pe_rel": 0.5,
+   "pb_rel": 0.47,
+   "roe": 26.5,
+   "ny": 13.7,
+   "ry": -17.1,
+   "rs": 25.5,
+   "diem": 33.2,
+   "diem_cb": 15,
+   "nganh": "Công nghệ Thông tin",
+   "den": "CAM",
+   "br50": 0.491,
+   "vni": 1760.63
+  }
  }
 ]
