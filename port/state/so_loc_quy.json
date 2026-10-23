@@ -1350,5 +1350,31 @@
   "top": false,
   "chan": "CFO < 0",
   "su_kien": "khởi tạo"
+ },
+ {
+  "ma": "TNG",
+  "quy": "Q2/26",
+  "ngay": "2026-10-23",
+  "gia0": 19000.0,
+  "diem": 34,
+  "rel": 0.662,
+  "np4": 26.3,
+  "roe": 22.1,
+  "top": false,
+  "chan": null,
+  "su_kien": "BCTC mới"
+ },
+ {
+  "ma": "VAB",
+  "quy": "Q2/26",
+  "ngay": "2026-10-23",
+  "gia0": 9090.0,
+  "diem": 14,
+  "rel": 1.148,
+  "np4": 42.5,
+  "roe": 13.7,
+  "top": false,
+  "chan": null,
+  "su_kien": "BCTC mới"
  }
 ]
