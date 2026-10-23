@@ -46,6 +46,11 @@ jobs:
     outputs:
       bo_qua: ${{ steps.g.outputs.bo_qua }}
     steps:
+      # Chi lay produce2.py de so cau hinh PROD trong code voi cau hinh trang dang dung (24/10/2026).
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: produce2.py
+          sparse-checkout-cone-mode: false
       - name: Trang đã dựng cho phiên mới nhất chưa?
         id: g
         env:
@@ -79,7 +84,7 @@ jobs:
                   print(f'  hoi {sym} khong duoc: {e}')
 
           # 2. Trang dang dang phien nao, va ban do co day du khong
-          asof, cover = '', None
+          asof, cover, t = '', None, {}
           try:
               t = get('https://raw.githubusercontent.com/'
                       f'{os.environ["CHU"]}/{os.environ["REPO"]}/main/thresholds.json')
@@ -101,7 +106,31 @@ jobs:
           except Exception as e:
               print(f'  chua doc duoc portfolio.json: {e}')
           print(f'so ghi tien da chot phien  : {so_xong}')
-          bo_qua = bool(phien) and asof == phien and du_day and so_xong
+          # 3. Cau hinh PROD trong code co khop cau hinh trang dang dung khong (24/10/2026).
+          #    Doi luat (vd max_unconf) giua tuan / cuoi tuan ma khong co phien moi thi truoc day
+          #    phai bam Run workflow tay. Nay lech cau hinh => CHAY, luot tu dong ke tiep tu dung lai.
+          #    Doc PROD bang ast (khong can numpy/engine2); khoa nao khong doc duoc thi bo qua khoa do.
+          cau_hinh_khop = False
+          try:
+              import ast
+              prod = {}
+              for node in ast.parse(open('produce2.py', encoding='utf-8').read()).body:
+                  if isinstance(node, ast.Assign) and isinstance(node.value, ast.Call) \
+                     and any(getattr(x, 'id', '') == 'PROD' for x in node.targets):
+                      for kw in node.value.keywords:
+                          try:
+                              prod[kw.arg] = ast.literal_eval(kw.value)
+                          except Exception:
+                              pass
+                      break
+              cfg = t.get('cfg') or {}
+              chuan = lambda v: json.loads(json.dumps(v))
+              lech = {k: (cfg[k], prod[k]) for k in prod if k in cfg and chuan(cfg[k]) != chuan(prod[k])}
+              cau_hinh_khop = bool(prod) and bool(cfg) and not lech
+              print(f'cau hinh PROD ({len(prod)} khoa) lech trang: {lech or "khong"}')
+          except Exception as e:
+              print(f'  khong so duoc cau hinh: {e}')
+          bo_qua = bool(phien) and asof == phien and du_day and so_xong and cau_hinh_khop
 
           print(f'phien moi nhat (FireAnt)  : {phien or "KHONG HOI DUOC"}')
           print(f'trang dang dung phien     : {asof or "?"}')
