@@ -107,14 +107,15 @@ PROD=dict(base_range=0.24,   # 0.22 -> 0.24 ngay 25/09/2026 (R11, anh Son duyet)
           # BAN SOM NHAT T+3 (anh Son 26/09: tai khoan cua anh chua ban duoc ATC T+2). Ap cho
           # MOI lenh ban (ke ca hard stop, lenh do truot DK9). +906,2%, DD 11,97%, PF 2,78.
           sell_from=3, hs_from=3,
-          # TOI DA 1 LENH DO TREO (anh Son duyet 03/10/2026, research R31): dang co >= 1 lenh do
-          # CHUA xac nhan DK9 (mua trong phien nay) hoac DA truot DK9 nhung chua toi T+3 de ban thi
-          # KHONG mo lenh do moi. Khong doi co lenh do. Du lieu 02/10: +982,4% -> +1.057,9%,
-          # DD 12,70% -> 11,85%, PF 3,08 -> 4,28, 297 -> 213 deal, 2026 +14,9% -> +35,7%.
-          # MC lo 10% x 30: tv +868% -> +893%, DD p90 14,3% -> 12,8%, PF 3,07 -> 4,08.
-          # Gia phai tra: mat PVT 27/02/2026 (+335 tr), GEE 11/04/2025 (+317 tr); mua mo cua T+1
-          # +375% -> +172% (nhay voi gia khop). Mot dinh nghia: engine2 (stage 1/3), portfolio.py, live_scan.
-          max_unconf=1, unconf_count='both',
+          # TOI DA 2 LENH DO TREO (anh Son duyet 23/10/2026, research R31 'A max2'; truoc do max 1 tu
+          # 03/10): dang co >= 2 lenh do CHUA xac nhan DK9 (mua trong phien nay) hoac DA truot DK9 nhung
+          # chua toi T+3 de ban thi KHONG mo lenh do moi. Khong doi co lenh do. Du lieu 02/10 (truoc R38):
+          # max1 +1.057,9% / DD 11,85% / PF 4,28 / 213 deal / 2026 +35,7%  ->  max2 +1.072% / DD 12,25% /
+          # PF 3,44 / 274 deal / 2026 +27,4%. MC lo 10% x 30: tv +893% -> +960% (p10 +674%), DD p90
+          # 12,8% -> 13,4%, PF 4,08 -> 3,51. Mua mo cua T+1: +172% -> +405% (bot nhay voi gia khop ATC).
+          # Truot gia 0,2%: +835%. Max2 mat 26 deal (-254 tr, chu yeu lenh lo), them PLX 07/01/2026
+          # (+1.089 tr), POW 03/03/2026 (-213 tr). Mot dinh nghia: engine2 (stage 1/3), portfolio.py, live_scan.
+          max_unconf=2, unconf_count='both',
           # THU TU UU TIEN KHI NHIEU MA CUNG NO (anh Son duyet 22/10/2026, research R38): xep theo
           # hang phan tram TRONG PHIEN cua diem CANSLIM + hang phan tram cua Vol/TB20 (0,5/0,5), hoa ->
           # ma. Ca hai deu thay duoc truoc ATC (khong dung OrdImb). Du lieu 21/10, 100 lan lo 10% lenh:

@@ -880,7 +880,7 @@ function pageLiveTrucTiep(root, L) {
           : h.uu_tien_du_kien ? `<span style="font-weight:700">#${h.uu_tien_du_kien}</span><span class="muted">/${h.n_du_kien}</span><div class="muted" style="font-size:11px">dự kiến</div>`
           : '<span class="muted">—</span>'}</td>
         <td class="muted" style="font-size:12.5px">${h.ordimb != null ? `<span class="${h.ordimb >= (h.ordimb_min || 1.2) ? 'pos' : 'neg'}" title="Cỡ lệnh mua ÷ cỡ lệnh bán — hệ đòi ≥ ${cpDTvi()}">Mua ÷ bán ${h.ordimb.toFixed(2)}×</span> · ` : ''}${h.fa ? '<b style="color:var(--warn)">chưa đạt cơ bản — không mua</b> · ' : ''}${
-          h.khong_mua ? `<b>Hệ thống không mua mã này.</b> Đang có lệnh dò chưa xác nhận${h.khong_mua_vi.length ? ' (' + h.khong_mua_vi.map(esc).join(', ') + ')' : ''} — mỗi lúc chỉ giữ ${cpV('max_unconf', 1)} lệnh dò chờ xác nhận, mã ưu tiên cao hơn (điểm + Vol/TB20) được vào trước.`
+          h.khong_mua ? `<b>Hệ thống không mua mã này.</b> Đang có lệnh dò chưa xác nhận${h.khong_mua_vi.length ? ' (' + h.khong_mua_vi.map(esc).join(', ') + ')' : ''} — mỗi lúc giữ tối đa ${cpV('max_unconf', 2)} lệnh dò chờ xác nhận, mã ưu tiên cao hơn (điểm + Vol/TB20) được vào trước.`
           : h.level === 'MUA_DO' ? `<b style="color:var(--critical)">Đủ ĐK1–8 → mua đủ lệnh lúc ATC · ${coMuaDoTxt(h.sym)}</b> · tối ~18–19h xác nhận ĐK9 (cỡ lệnh mua ≥ ${String(h.ordimb_min || 1.4).replace('.', ',')}× cỡ lệnh bán); không đạt thì bán 100% ATC T+${cpV('sell_from', 3)}${h.miss.length ? ' · lưu ý: ' + h.miss.join(' · ') : ''}`
           : h.dang_cam ? '<b>Hệ thống đang cầm mã này — không mua thêm.</b> Luật thoát xem ở Danh mục hệ thống.'
           : (h.miss.length ? h.miss.join(' · ') : '—')}</td>
