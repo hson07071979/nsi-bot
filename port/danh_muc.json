@@ -140,12 +140,14 @@
   "chay": "Đóng cửa ≥ giá đợt 1 +10% trước đợt 2: mua nửa phần còn lại ngay, nửa khi hồi về MA20 trong 60 phiên (quá hạn mua nốt). Không bỏ lỡ.",
   "nguon": "Anh Sơn chốt 15/10/2026 (giữ từ R38, bỏ lớp số hóa điểm mua)",
   "hoang_loan": "VN-Index ≤ −20% so với đỉnh 250 phiên: 2 đợt 60/40",
-  "con_lai": "3 đợt 1/3 sau nền đi ngang",
+  "con_lai": "3 đợt 40/30/30 sau nền đi ngang (24/10/2026; trước đó 1/3 mỗi đợt)",
   "ban": "Đóng cửa dưới giá vốn bình quân −15%: bán hết",
-  "da_bo": "Cổng giá R38, xác suất chạm mục tiêu, VNI ≤ −10% mới mở mã, tối đa 2 mã/20 phiên, ngừng mua −7%, VN-Index < 1.668,5 hoãn đợt mới (22/10/2026: dùng lại mục tiêu T1/T2 cho chốt lời từng phần)",
-  "muc_tieu": "Chạm mục tiêu 1 bán 1/3, chạm mục tiêu 2 bán thêm 1/3; sau mục tiêu 1 không mua thêm. Mục tiêu do code đề xuất từ mốc có nguồn (kháng cự/đỉnh cũ, định giá về mức thường thấy), Claude duyệt. Anh Sơn chốt 22/10/2026.",
+  "da_bo": "Cổng giá R38, xác suất chạm mục tiêu, VNI ≤ −10% mới mở mã, tối đa 2 mã/20 phiên, ngừng mua −7%, VN-Index < 1.668,5 hoãn đợt mới (22/10/2026: dùng lại mục tiêu T1/T2 cho chốt lời từng phần); 24/10/2026: bỏ mục tiêu T1/T2 (đảo lại quyết định 22/10)",
+  "muc_tieu": "ĐÃ BỎ 24/10/2026 — không chốt lời theo T1/T2; bán khi dưới giá vốn −15% hoặc luận điểm gãy.",
   "co": "Thấp hơn giá vốn từ 10% hoặc thủng hỗ trợ của Daily: treo cờ xem lại luận điểm, không bán.",
-  "review": "Review định kỳ 1 lần/quý: khi nguyensonfinance có BCTC quý mới của các mã thì chuông nhắc. Ngoài lịch chỉ review khi có cờ."
+  "review": "Review định kỳ 1 lần/quý: khi nguyensonfinance có BCTC quý mới của các mã thì chuông nhắc. Ngoài lịch chỉ review khi có cờ.",
+  "ty_trong": "Theo kết luận pitch (anh Sơn duyệt 24/10/2026): ĐỦ ĐỂ XUỐNG TIỀN ≥ 70 điểm → 12% NAV; 60–69 → 8% NAV; CHỜ PHÉP THỬ → chỉ đợt 1, tối đa 4% NAV, qua phép thử thì nâng lên mức ĐỦ; CẦN THÊM BẰNG CHỨNG / BÁC BỎ → 0. Trần: mỗi mã 15% NAV (tính cả phần giá tăng), mỗi ngành 30%, tổng giải ngân 90% (chừa 10% tiền mặt cho lúc hoảng loạn).",
+  "pool": "Pool tuần (24/10/2026): watchlist NSI + 20–30 mã riêng TOP110, đều qua lọc nền thấp (cách đỉnh 1 năm ≥ 15%, dao động 30 phiên ≤ 20%) và điểm kịch bản bật lại; CFO/nợ xấu/trả lãi vay trừ điểm, không chặn. Pool là đầu vào để pitch 70/30, không phải danh mục."
  },
  "hang_cho": [
   {
@@ -185,5 +187,5 @@
    "ly_do": "Chưa viết luận điểm. Lợi nhuận 4 quý +150% cần bóc khoản bất thường trước khi chấm theo khung mới."
   }
  ],
- "ngay_cap_nhat": "2026-10-22"
+ "ngay_cap_nhat": "2026-10-24"
 }
