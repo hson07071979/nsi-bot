@@ -35,13 +35,13 @@
   },
   {
    "dot": "Đợt 2–3 từng mã",
-   "khi": "Theo quy tắc anh Sơn chốt: hoảng loạn (VNI ≤ −20% so với đỉnh 250 phiên) 2 đợt 60/40; còn lại 3 đợt sau nền đi ngang",
-   "lam": "Mỗi đợt 1/3 tỷ trọng; luận điểm phải còn đúng."
+   "khi": "Theo quy tắc anh Sơn chốt: hoảng loạn (VNI ≤ −20% so với đỉnh 250 phiên) 2 đợt 60/40; còn lại 3 đợt 40/30/30 sau nền đi ngang",
+   "lam": "Đợt 2 = 30%, đợt 3 = 30% tỷ trọng mục tiêu (12% / 8% NAV theo kết luận pitch); luận điểm phải còn đúng."
   },
   {
    "dot": "Rủi ro",
    "khi": "Đóng cửa dưới giá vốn bình quân −15%; điểm gãy vĩ mô hoặc sự kiện vô hiệu xảy ra",
-   "lam": "Bán hết / rà lại luận điểm. Mỗi mã ≤ 12,5% NAV; 3 mã → nhiệt tối đa ≈ 5,6% NAV."
+   "lam": "Bán hết / rà lại luận điểm. Trần: mỗi mã 15% NAV, mỗi ngành 30%, tổng giải ngân 90%."
   }
  ],
  "pitch": "Kinh tế Việt Nam tăng trưởng gần 10%, nhưng tiền đang đắt lên vì lãi suất Mỹ, lạm phát trong nước và vốn ngoại rút, nên thị trường chứng khoán giảm. Danh mục không mua vì giá đã giảm nhiều. Nó hỏi một câu cho từng mã: tin xấu mà mọi người đang sợ có thật sự xấu cho doanh nghiệp không, và giá hiện tại đã trả tiền cho kịch bản xấu đó chưa.\n\nBa mã đủ điều kiện: FPT (bị bán vì nỗi sợ AI và dòng bán bắt buộc, trong khi hợp đồng mới vẫn tăng), Vietcombank (bị bán vì vốn ngoại rút, trong khi bộ đệm dự phòng dày nhất ngành) và Thế Giới Di Động (luận điểm tăng trưởng theo tiêu dùng). Mỗi mã tối đa 12,5% vốn, chia 3 lần. IDICO, VietinBank và Hòa Phát chờ mùa báo cáo quý 3 làm phép thử: tin xấu đã biết được công bố mà giá giữ được thì mới vào.",
