@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
 """Sổ giả lập của Lọc port — mua bán và NAV như sổ ghi tiến của nguyensonfinance (anh Sơn 22/10/2026).
 
-Luật (anh Sơn chốt 15/10 + 22/10/2026):
+Luật (anh Sơn chốt 15/10, 22/10, 24/10/2026):
   Vốn 1 tỷ. Phí mua 0,15%, phí bán 0,25% (đã gồm thuế). Tiền mặt không có lãi. So với VN-Index cùng kỳ.
-  MUA  — chỉ mã nằm trong danh_muc.vi_tri và luận điểm đang `trong_port`.
-         Tỷ trọng mục tiêu = ty_trong % × NAV lúc vào đợt 1, chia đợt:
-           · bình thường 3 đợt 1/3; thị trường hoảng loạn (VN-Index ≤ −20% so với đỉnh 250 phiên) 2 đợt 60/40.
+  MUA  — mã nằm trong danh_muc.vi_tri có luận điểm `trong_port`, hoặc mã ở hàng chờ có kết luận CHỜ PHÉP THỬ.
+         Tỷ trọng mục tiêu theo kết luận pitch (24/10/2026):
+           · ĐỦ ĐỂ XUỐNG TIỀN, điểm 70/30 ≥ 70 → 12% NAV; 60–69 → 8% NAV
+           · CHỜ PHÉP THỬ → chỉ đợt 1, tối đa 4% NAV (qua phép thử thì nâng lên mức ĐỦ, mua tiếp các đợt sau)
+           · CẦN THÊM BẰNG CHỨNG / BÁC BỎ → 0 (nằm trong pool chờ)
+         Chia đợt: bình thường 3 đợt 40/30/30; thị trường hoảng loạn (VN-Index ≤ −20% so với đỉnh 250 phiên) 2 đợt 60/40.
            · đợt sau: đi ngang 20 phiên kể từ đợt trước (biên đóng cửa ≤ 8%, đầu–cuối ≤ 4%, nửa sau không tạo đáy mới);
              quá 120 phiên không có nền → mua nốt.
            · giá chạy: đóng cửa ≥ giá đợt 1 + 10% trước đợt 2 → mua nửa phần còn lại ngay,
              nửa kia khi giá hồi về MA20 trong 60 phiên (quá hạn mua nốt).
+         Trần: mỗi mã ≤ 15% NAV (tính cả phần giá tăng), mỗi ngành ≤ 30% NAV, tổng đã giải ngân ≤ 90% NAV
+         (chừa 10% tiền mặt cho lúc hoảng loạn). Chạm trần thì đợt đó chỉ mua phần còn chỗ.
          Lệnh khớp ở giá đóng cửa của phiên ĐẦU TIÊN SAU ngày ra quyết định (không mua bằng giá đã biết lúc quyết).
-  BÁN  — chạm mục tiêu T1 (đóng cửa ≥ T1): bán 1/3; chạm T2: bán thêm 1/3; sau T1 không mua thêm đợt nào.
-         Đóng cửa < giá vốn bình quân −15%: bán hết.
-         Luận điểm chuyển `loai`/`dong` hoặc mã ra khỏi danh_muc: bán hết ở phiên kế tiếp.
+  BÁN  — Đóng cửa < giá vốn bình quân −15%: bán hết.
+         Luận điểm chuyển `loai`/`dong`, hoặc mã ra khỏi danh mục và hàng chờ: bán hết ở phiên kế tiếp.
+         ĐÃ BỎ mục tiêu T1/T2 (24/10/2026) — port không số hoá điểm bán chốt lời.
   CỜ   — đóng cửa ≤ giá vốn −10%, hoặc thủng hỗ trợ của Daily: treo cờ "xem lại luận điểm", KHÔNG bán.
 
 Sổ chỉ ghi tiếp, không sửa lịch sử: các phiên đã xử lý nằm trong port/state/so_gia_lap.json; lượt chạy sau
@@ -29,9 +34,29 @@ VON = 1_000_000_000
 PHI_MUA = 0.0015
 PHI_BAN = 0.0025
 LO = 100                       # lô chẵn
-LUAT = dict(dot_thuong=[1 / 3, 1 / 3, 1 / 3], dot_hoang_loan=[0.6, 0.4], hoang_loan=-0.20, dinh_phien=250,
+LUAT = dict(dot_thuong=[0.4, 0.3, 0.3], dot_hoang_loan=[0.6, 0.4], hoang_loan=-0.20, dinh_phien=250,
             nen_phien=20, nen_bien=0.08, nen_dau_cuoi=0.04, nen_qua_han=120, chay=0.10, chay_cho_ma20=60,
-            ban_t1=1 / 3, ban_t2=1 / 3, cat=-0.15, co_lo=-0.10)
+            cat=-0.15, co_lo=-0.10,
+            ty_trong=dict(du_70=12.0, du_60=8.0, cho_phep_thu=4.0), tran_ma=0.15, tran_nganh=0.30, tran_tong=0.90)
+DU = 'ĐỦ ĐỂ XUỐNG TIỀN'
+CHO = 'CHỜ PHÉP THỬ'
+
+
+def ket_luan(t: dict) -> tuple[str, float | None]:
+    """(kết luận sau debate, điểm 70/30) của luận điểm."""
+    pd = (t or {}).get('pitch_diem') or {}
+    return str(pd.get('ket_luan') or '').strip().upper(), _num(pd.get('tong'))
+
+
+def ty_trong_muc_tieu(t: dict) -> float:
+    """% NAV mục tiêu theo kết luận pitch (anh Sơn duyệt 24/10/2026)."""
+    kl, d = ket_luan(t)
+    tt = LUAT['ty_trong']
+    if kl.startswith(DU):
+        return tt['du_70'] if (d or 0) >= 70 else tt['du_60'] if (d or 0) >= 60 else 0.0
+    if kl.startswith(CHO):
+        return tt['cho_phep_thu']
+    return 0.0
 LUAT_HASH = hashlib.sha1(json.dumps(LUAT, sort_keys=True).encode()).hexdigest()[:10]
 
 
@@ -236,13 +261,31 @@ def _nen(closes: list[float]) -> bool:
             and min(c[h:]) >= min(c[:h]))
 
 
+def _con_cho(so: dict, P: dict, d: str, sym: str, nav: float, nganh: dict[str, str]) -> float:
+    """Số tiền còn được mua cho `sym` trước khi chạm trần mã 15% / ngành 30% / tổng 90% NAV."""
+    gt = {s_: p['cp'] * (_gia_luc(P, s_, d) or 0) * 1000 for s_, p in so['vi_the'].items()}
+    ng = nganh.get(sym) or ''
+    cung_nganh = sum(v for s_, v in gt.items() if ng and nganh.get(s_) == ng)
+    return max(0.0, min(nav * LUAT['tran_ma'] - gt.get(sym, 0.0),
+                        nav * LUAT['tran_nganh'] - cung_nganh if ng else float('inf'),
+                        nav * LUAT['tran_tong'] - sum(gt.values())))
+
+
 def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[str, dict],
-         ho_tro: dict[str, float] | None = None) -> dict:
+         ho_tro: dict[str, float] | None = None, nganh: dict[str, str] | None = None) -> dict:
     """Xử lý các phiên mới (sau so['da_xu_ly']). `ngay_phien` = các phiên có giá VN-Index."""
     if so.get('luat_hash') != LUAT_HASH:
         so = so_moi()
     ho_tro = ho_tro or {}
     vi_tri = {str(v.get('ma', '')).upper(): v for v in (danh_muc or {}).get('vi_tri') or []}
+    nganh = nganh or {}
+    # mã được giải ngân: trong danh mục (luận điểm trong_port) + hàng chờ có kết luận CHỜ PHÉP THỬ
+    duoc_mua = {s_: v for s_, v in vi_tri.items() if (luan.get(s_) or {}).get('trang_thai') == 'trong_port'}
+    for h in (danh_muc or {}).get('hang_cho') or []:
+        s_ = str(h.get('ma', '')).upper()
+        t_ = luan.get(s_) or {}
+        if s_ not in duoc_mua and t_.get('trang_thai') not in ('loai', 'dong') and ket_luan(t_)[0].startswith(CHO):
+            duoc_mua[s_] = h
     ngay_qd = (danh_muc or {}).get('ngay') or ''
     moi = [d for d in ngay_phien if not so['da_xu_ly'] or d > so['da_xu_ly']]
     for d in moi:
@@ -254,56 +297,51 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
             if not px:
                 continue
             t = luan.get(sym) or {}
-            if t.get('trang_thai') in ('loai', 'dong') or sym not in vi_tri:
+            if t.get('trang_thai') in ('loai', 'dong') or sym not in duoc_mua:
                 _ban(so, sym, d, px, 1.0, 'luận điểm bị loại/đóng hoặc mã ra khỏi danh mục')
                 continue
             gv = p['von'] / (p['cp'] * 1000) if p['cp'] else None
             if gv and px <= gv * (1 + LUAT['cat']):
                 _ban(so, sym, d, px, 1.0, f'đóng cửa {px} thấp hơn giá vốn {gv:.2f} quá 15%')
                 continue
-            t1, t2 = muc_tieu_duyet(t)
-            if t1 and not p.get('da_t1') and px >= t1:
-                p['cp_goc_t1'] = p['cp']            # 1/3 của T1 và T2 đều tính trên số cổ phiếu lúc chạm T1
-                p['da_t1'] = True
-                _ban(so, sym, d, px, LUAT['ban_t1'], f'chạm mục tiêu T1 {t1}')
-                continue
-            if t2 and p.get('da_t1') and not p.get('da_t2') and px >= t2:
-                p['da_t2'] = True
-                ti = min(1.0, LUAT['ban_t2'] * p.get('cp_goc_t1', p['cp']) / p['cp'])
-                _ban(so, sym, d, px, ti, f'chạm mục tiêu T2 {t2}')
-                continue
             if gv and px <= gv * (1 + LUAT['co_lo']):
                 _co(so, sym, d, 'lo_10', f'đóng cửa {px} thấp hơn giá vốn {gv:.2f} từ 10% — xem lại luận điểm')
             if ho_tro.get(sym) and px < ho_tro[sym]:
                 _co(so, sym, d, 'thung_ho_tro', f'đóng cửa {px} thủng hỗ trợ Daily {ho_tro[sym]} — xem lại luận điểm')
         # 2) mua đợt 1 cho mã mới vào danh mục, đợt sau cho mã đang cầm
-        for sym, v in vi_tri.items():
+        for sym, v in duoc_mua.items():
             t = luan.get(sym) or {}
-            if t.get('trang_thai') != 'trong_port':
-                continue
             px = _gia_luc(P, sym, d)
             if not px or (P.get(sym) or {}).get(d) is None:
                 continue
             ngay_vao = max(str(t.get('ngay_vao') or ''), ngay_qd)
             if ngay_vao and d <= ngay_vao:          # khớp ở phiên SAU ngày quyết định (ngày vào / ngày chốt danh mục)
                 continue
-            tt = _num(v.get('ty_trong')) or 0
+            tt = ty_trong_muc_tieu(t)
+            cho = ket_luan(t)[0].startswith(CHO)
             if sym not in so['vi_the']:
-                if any(x['ma'] == sym for x in so.get('da_dong') or []):
+                if tt <= 0 or any(x['ma'] == sym for x in so.get('da_dong') or []):
                     continue                        # đã đóng thì không tự mở lại; mở lại phải ghi luận điểm mới
                 hl = _hoang_loan(P, d)
-                dot = LUAT['dot_hoang_loan'] if hl else LUAT['dot_thuong']
+                dot = [1.0] if cho else (LUAT['dot_hoang_loan'] if hl else LUAT['dot_thuong'])
                 so['vi_the'][sym] = dict(cp=0, von=0.0, so_dot=0, ngay_mo=d, muc_tieu_tien=nav_dau * tt / 100,
-                                         ke_hoach=dot, hoang_loan=hl, da_mua_tien=0.0)
+                                         ty_trong_muc_tieu=tt, ke_hoach=dot, hoang_loan=hl, da_mua_tien=0.0,
+                                         cho_phep_thu=cho)
                 p = so['vi_the'][sym]
-                tien = p['muc_tieu_tien'] * dot[0]
-                if _mua(so, sym, d, px, tien, 'đợt 1 trong 2 (thị trường hoảng loạn: 60/40)' if hl else 'đợt 1 trong 3', 'Đợt 1'):
+                tien = min(p['muc_tieu_tien'] * dot[0], _con_cho(so, P, d, sym, nav_dau, nganh))
+                ly = ('chờ phép thử: chỉ đợt 1, tối đa 4% NAV' if cho else
+                      'đợt 1 trong 2 (thị trường hoảng loạn: 60/40)' if hl else 'đợt 1 trong 3 (40%)')
+                if tien > 0 and _mua(so, sym, d, px, tien, ly, 'Đợt 1'):
                     p['da_mua_tien'] += tien
                 else:
                     del so['vi_the'][sym]
                 continue
             p = so['vi_the'][sym]
-            if p.get('da_t1') or p['so_dot'] >= len(p['ke_hoach']):
+            if p.get('cho_phep_thu') and not cho and tt > p.get('ty_trong_muc_tieu', 0):
+                # qua phép thử → nâng lên mức ĐỦ ĐỂ XUỐNG TIỀN, mua tiếp các đợt sau theo 40/30/30
+                p.update(cho_phep_thu=False, ty_trong_muc_tieu=tt, muc_tieu_tien=nav_dau * tt / 100,
+                         ke_hoach=LUAT['dot_thuong'])
+            if p['so_dot'] >= len(p['ke_hoach']):
                 continue
             con = p['muc_tieu_tien'] - p['da_mua_tien']
             if con <= 0:
@@ -323,10 +361,16 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
                 ly, tien = 'giá chạy +10% so với đợt 1 → mua nửa phần còn lại', con / 2
                 p['cho_ma20'] = True
             elif _nen(closes):
-                ly, tien = 'đi ngang 20 phiên sau đợt trước', min(mot, con)
+                cuoi = p['so_dot'] >= len(p['ke_hoach']) - 1     # đợt cuối mua nốt phần còn lại
+                ly, tien = 'đi ngang 20 phiên sau đợt trước', con if cuoi else min(mot, con)
             elif so_phien >= LUAT['nen_qua_han']:
                 ly, tien = 'quá 120 phiên chưa có nền → mua nốt', con
-            if ly and _mua(so, sym, d, px, tien, ly, f"Đợt {p['so_dot'] + 1}"):
+            if ly:
+                tran = _con_cho(so, P, d, sym, nav_dau, nganh)
+                if tran < tien:
+                    ly += ' (chạm trần mã/ngành/tổng — chỉ mua phần còn chỗ)'
+                    tien = tran
+            if ly and tien > 0 and _mua(so, sym, d, px, tien, ly, f"Đợt {p['so_dot'] + 1}"):
                 p['da_mua_tien'] += tien
                 if p.get('cho_ma20') and ly.startswith(('giá hồi', 'quá 60')):
                     p['cho_ma20'] = False
@@ -357,8 +401,8 @@ def tong_ket(so: dict, P: dict) -> dict:
         vt.append(dict(ma=sym, cp=p['cp'], gia_von=round(p['von'] / (p['cp'] * 1000), 2) if p['cp'] else None,
                        gia=px, gia_tri=round(gt), ty_trong=round(gt / n1['nav'] * 100, 1) if n1['nav'] else None,
                        lai_pct=round((gt / p['von'] - 1) * 100, 2) if p['von'] else None, so_dot=p['so_dot'],
-                       ke_hoach=len(p['ke_hoach']), da_t1=bool(p.get('da_t1')), da_t2=bool(p.get('da_t2')),
-                       ngay_mo=p['ngay_mo']))
+                       ke_hoach=len(p['ke_hoach']), ngay_mo=p['ngay_mo'],
+                       ty_trong_muc_tieu=p.get('ty_trong_muc_tieu'), cho_phep_thu=bool(p.get('cho_phep_thu'))))
     return dict(co_du_lieu=True, tu=n0['ngay'], den=n1['ngay'], nav=n1['nav'], lai_pct=round(lai * 100, 2),
                 vni_pct=round(vni * 100, 2) if vni is not None else None,
                 vuot_vni=round((lai - vni) * 100, 2) if vni is not None else None,

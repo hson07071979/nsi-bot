@@ -36,6 +36,7 @@ from statistics import median
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import hoc as H  # noqa: E402  (mục tiêu + timing, sổ dự đoán, sẵn sàng, hiệu quả thực)
+import sim as SM  # noqa: E402  (24/10/2026: tỷ trọng mục tiêu theo kết luận pitch)
 import giai_ngan as G  # noqa: E402  (R38/R39: giải ngân theo trạng thái, rủi ro, xác suất chạm, điểm 70/30)
 import vong_moi as VM  # noqa: E402  (22/10/2026: sổ giả lập + NAV, đọc BCTC sâu, nhận định hằng ngày, nhắc review)
 
@@ -419,7 +420,9 @@ def build(now: datetime | None = None) -> dict:
     fu = D.get('funda') or {}
     tt = G.trang_thai_tt(D)
     dm = rj(ROOT / 'danh_muc.json', {})
-    tt_muc = {str(v.get('ma')).upper(): _num(v.get('ty_trong')) for v in dm.get('vi_tri') or []}
+    # 24/10/2026: tỷ trọng mục tiêu theo kết luận pitch (12/8/4/0% NAV — sim.ty_trong_muc_tieu), không theo số gõ tay
+    tt_muc = {str(v.get('ma')).upper(): SM.ty_trong_muc_tieu(luan.get(str(v.get('ma')).upper()) or {})
+              for v in (dm.get('vi_tri') or []) + (dm.get('hang_cho') or [])}
     dung_vni = _num(dm.get('dung_vni'))
     lk_all = D.get('lookup') or {}
     den = (D.get('regime_live') or {}).get('light') or (D.get('regime') or [{}])[-1].get('light')

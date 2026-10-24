@@ -29,7 +29,7 @@ DM = {'ngay': '2026-10-15', 'vi_tri': [{'ma': 'X', 'ty_trong': 12}]}
 
 
 def _luan(**k):
-    t = {'ma': 'X', 'trang_thai': 'trong_port'}
+    t = {'ma': 'X', 'trang_thai': 'trong_port', 'pitch_diem': {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN', 'tong': 72}}
     t.update(k)
     return {'X': t}
 
@@ -40,19 +40,65 @@ def test_mua_dot1_phien_sau_ngay_quyet_dinh_co_phi_lo_chan():
     so = SM.chay(SM.so_moi(), P, ds, DM, _luan())
     mua = [l for l in so['lenh'] if l['loai'] == 'MUA']
     assert len(mua) == 1 and mua[0]['ngay'] == ds[1]          # 15/10 là ngày quyết định → khớp 16/10
-    assert mua[0]['cp'] % 100 == 0 and mua[0]['cp'] * 10 * 1000 <= 1e9 * 0.12 / 3 + 1
+    assert mua[0]['cp'] % 100 == 0 and mua[0]['cp'] * 10 * 1000 <= 1e9 * 0.12 * 0.4 + 1
     assert abs(mua[0]['phi'] - mua[0]['tien'] * SM.PHI_MUA) < 1
     assert so['nav'][0]['nav'] == 1_000_000_000                # trước khi mua
 
 
-def test_cham_t1_ban_mot_phan_ba_va_khong_mua_them():
+def test_bo_t1_t2_gia_tang_manh_van_giu():
+    # 24/10/2026: bỏ mục tiêu T1/T2 — có ghi muc_tieu cũng không bán chốt lời
     ds, P = _P([10.0] * 3 + [10.5, 12.5] + [12.5] * 30)
     so = SM.chay(SM.so_moi(), P, ds, DM, _luan(muc_tieu=[{'id': 'T1', 'gia': 12.0}, {'id': 'T2', 'gia': 14.0}]))
-    ban = [l for l in so['lenh'] if l['loai'] == 'BÁN']
-    assert len(ban) == 1 and 'T1' in ban[0]['ly_do'] and ban[0]['ngay'] == ds[4]
-    p = so['vi_the']['X']
-    assert p['da_t1'] and p['so_dot'] == 1                      # sau T1 không có đợt 2 dù giá đi ngang 30 phiên
-    assert abs(ban[0]['cp'] - (p['cp'] + ban[0]['cp']) / 3) <= 100
+    assert not [l for l in so['lenh'] if l['loai'] == 'BÁN'] and 'X' in so['vi_the']
+
+
+def test_ty_trong_theo_ket_luan_pitch():
+    f = SM.ty_trong_muc_tieu
+    assert f({'pitch_diem': {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN', 'tong': 72}}) == 12
+    assert f({'pitch_diem': {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN', 'tong': 69}}) == 8
+    assert f({'pitch_diem': {'ket_luan': 'CHỜ PHÉP THỬ Q3', 'tong': 74}}) == 4
+    assert f({'pitch_diem': {'ket_luan': 'CẦN THÊM BẰNG CHỨNG', 'tong': 80}}) == 0
+    assert f({'pitch_diem': {'ket_luan': 'BÁC BỎ (kỳ này)'}}) == 0 and f({}) == 0
+
+
+def test_dot1_40_phan_tram_cua_12_phan_tram_nav():
+    ds, P = _P([10.0, 10.0, 10.0])
+    so = SM.chay(SM.so_moi(), P, ds, DM, _luan())
+    m = so['lenh'][0]
+    assert m['tien'] <= 1e9 * 0.12 * 0.4 and m['tien'] >= 1e9 * 0.12 * 0.4 - 10 * 1000 * 100   # lô chẵn
+
+
+def test_cho_phep_thu_chi_dot1_4_phan_tram_roi_nang_khi_qua():
+    ds, P = _P([10.0, 10.0] + [10.05, 9.98] * 11)
+    dm = {'ngay': '2026-10-15', 'vi_tri': [], 'hang_cho': [{'ma': 'X'}]}
+    cho = _luan(trang_thai='nghien_cuu', pitch_diem={'ket_luan': 'CHỜ PHÉP THỬ Q3', 'tong': 74})
+    so = SM.chay(SM.so_moi(), P, ds, dm, cho)
+    assert [l['dot'] for l in so['lenh']] == ['Đợt 1'] and so['lenh'][0]['tien'] <= 1e9 * 0.04
+    # qua phép thử → anh Sơn đưa vào danh mục với kết luận ĐỦ → mua tiếp đợt sau theo 12%
+    ds2, P2 = _P([10.0, 10.0] + [10.05, 9.98] * 22)
+    so = SM.chay(SM.so_moi(), P2, ds2[:3], dm, cho)
+    du = _luan(pitch_diem={'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN', 'tong': 74})
+    so = SM.chay(so, P2, ds2, {'ngay': '2026-10-15', 'vi_tri': [{'ma': 'X'}]}, du)
+    assert len([l for l in so['lenh'] if l['loai'] == 'MUA']) >= 2 and so['vi_the']['X']['ty_trong_muc_tieu'] == 12
+
+
+def test_tran_nganh_30_va_tong_90():
+    ds = _ngay(3)
+    syms = [f'M{k}' for k in range(10)]
+    P = {s: dict(zip(ds, [10.0] * 3)) for s in syms}
+    P['VNINDEX'] = dict(zip(ds, [1000.0] * 3))
+    luan = {s: {'ma': s, 'trang_thai': 'trong_port', 'pitch_diem': {'ket_luan': 'ĐỦ ĐỂ XUỐNG TIỀN', 'tong': 72}}
+            for s in syms}
+    dm = {'ngay': '2026-10-15', 'vi_tri': [{'ma': s} for s in syms]}
+    old = dict(SM.LUAT)
+    try:
+        SM.LUAT['dot_thuong'] = [1.0]          # mua đủ 12% ngay để thử trần
+        so = SM.chay(SM.so_moi(), P, ds, dm, luan, nganh={s: 'Ngân hàng' for s in syms[:5]})
+    finally:
+        SM.LUAT.clear(); SM.LUAT.update(old)
+    gt = {s: p['cp'] * 10 * 1000 for s, p in so['vi_the'].items()}
+    assert sum(v for s, v in gt.items() if s in syms[:5]) <= 1e9 * 0.30 + 1
+    assert sum(gt.values()) <= 1e9 * 0.90 + 1
 
 
 def test_cat_15_phan_tram_ban_het_va_co_10_phan_tram():

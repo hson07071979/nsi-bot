@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Ghép các phần mới của Lọc port (thêm lọc quý TOP110 — loc_quy.py, 22/10/2026) vào lượt build (anh Sơn 22/10/2026):
+"""Ghép các phần mới của Lọc port (pool tuần — pool.py, 24/10/2026; lọc quý TOP110 — loc_quy.py, 22/10/2026) vào lượt build (anh Sơn 22/10/2026):
 sổ giả lập + NAV (sim.py), đọc BCTC sâu (bctc.py), nhận định hằng ngày + vòng học (nhan_dinh.py), nhắc review (nhac.py).
 
 Dữ liệu đều là thứ đã có, chỉ nối lại:
@@ -20,6 +20,7 @@ import bctc as BC
 import loc_quy as LQ
 import nhac as NH
 import nhan_dinh as ND
+import pool as PO
 import sim as SM
 
 ROOT = Path(__file__).resolve().parent
@@ -138,15 +139,12 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
             ho_tro[s] = v[0][0]
     so = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
     ngay = [d for d in sorted(P.get('VNINDEX') or {}) if d >= (danh_muc or {}).get('ngay', asof) and d <= asof]
-    so = SM.chay(so, P, ngay, danh_muc, luan, ho_tro)
+    lk_ng = {s_: (x or {}).get('sector', '') for s_, x in (D.get('lookup') or {}).items()}
+    so = SM.chay(so, P, ngay, danh_muc, luan, ho_tro, nganh=lk_ng)
     wj(state / 'so_gia_lap.json', so)
     gia_lap = dict(tong_ket=SM.tong_ket(so, P), nav=so['nav'], lenh=so['lenh'][-200:], co=so['co'][-50:],
                    luat=SM.LUAT, ghi_chu=so.get('ghi_chu'))
-    de_xuat = {s: SM.de_xuat_muc_tieu(s, D, daily, P) for s, t in luan.items()
-               if t.get('trang_thai') in ('trong_port', 'nghien_cuu')}
-    for s, x in de_xuat.items():
-        t1, t2 = SM.muc_tieu_duyet(luan[s])
-        x['da_duyet'] = dict(t1=t1, t2=t2)
+    de_xuat = {}                      # 24/10/2026: bỏ mục tiêu T1/T2 — không đề xuất nữa
     # ------------------------------------------------ 2. đọc BCTC sâu
     rows_f, raw, nguon['bctc'] = _funda_rows(D)
     bc = BC.phan_tich_nhieu(raw, sorted(luan)) if raw else {}
@@ -184,10 +182,13 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
                      lich_su_port=[r for r in so_nd if r['ma'] in port_syms][-400:], hoc=hoc,
                      so_ma_theo_doi=len(vu_tru))
     # ------------------------------------------------ 3b. lọc quý TOP110 (22/10/2026) — nối BCTC trang đã cào
-    loc_quy = LQ.chay(D, rows_f, B, asof, state, pg_co=bool(pg), raw_co=bool(raw), gui_chuong=gui_chuong, luan=luan)
+    # Lọc quý giữ làm sổ đo + chạy lùi; chuông chuyển sang pool tuần (24/10/2026) để khỏi hai danh sách cùng báo
+    loc_quy = LQ.chay(D, rows_f, B, asof, state, pg_co=bool(pg), raw_co=bool(raw), gui_chuong=False, luan=luan)
+    # ------------------------------------------------ 3c. pool tuần (24/10/2026) — watchlist NSI + 20–30 mã riêng
+    pool = PO.chay(D, rows_f, B if pg else None, asof, state, luan=luan, gui_chuong=gui_chuong)
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)
     nguon['gia_gia_lap'] = 'port_gia.npz + ảnh chụp port' if pg else 'nến 240 phiên + ảnh chụp port'
-    return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy,
+    return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy, pool=pool,
                 nhac=dict(quy=st['quy'], ky_review=st['ky_review'], lan_cuoi=st.get('lan_cuoi')), nguon_moi=nguon)

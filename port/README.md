@@ -23,7 +23,7 @@ Port không chạy riêng. Nó là vòng thứ tư nối vào ba bộ máy đã 
 
 ## Bốn phần thêm ngày 22/10/2026
 
-- **Sổ giả lập mua bán + NAV** (`sim.py`): vốn 1 tỷ, phí 0,15%/0,25%, khớp giá đóng cửa phiên sau ngày quyết định. Mua theo quy tắc giải ngân trong `danh_muc.json` (3 đợt 1/3; hoảng loạn 60/40; đợt sau khi đi ngang 20 phiên; giá chạy +10% thì mua đuổi). Chạm mục tiêu 1 bán 1/3, mục tiêu 2 bán thêm 1/3; dưới giá vốn −15% bán hết; −10% hoặc thủng hỗ trợ Daily chỉ treo cờ. Sổ chỉ ghi tiếp (`state/so_gia_lap.json`).
+- **Sổ giả lập mua bán + NAV** (`sim.py`): vốn 1 tỷ, phí 0,15%/0,25%, khớp giá đóng cửa phiên sau ngày quyết định. Mua theo quy tắc giải ngân trong `danh_muc.json` (3 đợt 1/3; hoảng loạn 60/40; đợt sau khi đi ngang 20 phiên; giá chạy +10% thì mua đuổi). (T1/T2 đã bỏ 24/10/2026) dưới giá vốn −15% bán hết; −10% hoặc thủng hỗ trợ Daily chỉ treo cờ. Sổ chỉ ghi tiếp (`state/so_gia_lap.json`).
 - **Mục tiêu giá**: code gom mốc có nguồn (kháng cự/đỉnh cũ của Daily, MA200, định giá về giữa/trung vị 12 quý) và đề xuất T1 ≥ +12%, T2 ≥ T1 +12%. Claude duyệt rồi ghi vào `muc_tieu` của luận điểm; sổ giả lập chỉ dùng số đã duyệt.
 - **Đọc BCTC sâu** (`bctc.py`): tách lãi trước thuế thành kinh doanh chính / tài chính / một lần / dự phòng từ `data/funda_raw2.json` (cache `bctc-` của dây chuyền hằng ngày), tìm khoản kéo lên/xuống so cùng kỳ, viết câu theo khuôn.
 - **Nhận định hằng ngày + vòng học** (`nhan_dinh.py`): mỗi chiều chấm điểm từng mã (tăng/đi ngang/giảm so với VN-Index trong 5/20/60 phiên), chấm đúng/sai khi đủ phiên. Mỗi lượt chạy lùi từ 2019 trên `data/port_gia.npz` (dây chuyền hằng ngày cắt từ fa.npz, cache `port-gia-`) để so trọng số đang dùng (`trong_so.json` ở port-data, chưa có thì bộ v1) với mô hình đề xuất. Không tự đổi trọng số.
@@ -36,6 +36,26 @@ Port không chạy riêng. Nó là vòng thứ tư nối vào ba bộ máy đã 
 - **Sổ pitch bóng** (`state/so_loc_quy.json`): mỗi mã TOP110 mỗi quý một dòng, chấm hơn VN-Index sau 20/60/120/250 phiên — mẫu cho vòng học (~440 dòng/năm).
 - **Chạy lùi từ 2019** (`state/loc_quy_lui.json`): IC theo đợt quý của điểm và từng thành phần, top 10 so với cả rổ. Kết quả lần đầu (22/10/2026, 4.005 mẫu, 168 mã): top 10 **thua** cả rổ −6,2 điểm % sau 60 phiên (t −5,1), −2,2 sau 250 phiên; phần "rẻ so với chính nó" kéo ngược (IC 60 phiên −0,20). Thang điểm chưa đổi — chỉ đổi khi anh Sơn duyệt.
 - Trang `/port` → tab **Lọc quý TOP110**.
+
+## Pool tuần + tỷ trọng theo kết luận pitch (anh Sơn chốt 24/10/2026, `pool.py`, `sim.py`)
+
+Bộ máy port giữ nguyên (luận điểm 5 khâu, khung 70/30, khâu 5, debate với máy, review quý). Chỉ đổi **cách lọc** và **pool**.
+
+- **Pool = watchlist NSI + 20–30 mã riêng (TOP110)**, chốt lại mỗi tuần. Pool là đầu vào để pitch, không phải danh mục.
+  Mã watchlist NSI cũng phải qua bộ lọc mới.
+- **Loại cứng — nền giá cao:** giá cách đỉnh 250 phiên chưa tới −15%, hoặc biên độ đóng cửa 30 phiên > 20%.
+- **Điểm 0–100 (kịch bản bật lại):** vùng giá thấp 25 · nền hẹp 15 · siết vol (KL TB20 ÷ TB120) 15 · biên độ co 5 ·
+  ngành ở đáy chu kỳ 10 · rẻ so với chính nó 15 · lợi nhuận sắp hồi 10 · ROE 5. Rơi sâu và P/E thấp **được** dùng làm lý do mua.
+  Không xét dòng tiền mua bán (mã ít người để ý, volume co lại còn được ưu tiên).
+- **Trừ điểm, không còn chặn cứng:** CFO 12 tháng âm −10 (không áp cho ngân hàng/CK/bảo hiểm) · trả lãi vay < 1,5 lần −8 ·
+  nợ xấu > 3% −8 · nợ vay/vốn chủ > 4 −5 · lãi bất thường −3.
+- **Sổ pool bóng** (`state/so_pool.json`): mỗi tuần mọi mã TOP110 một dòng, chấm hơn VN-Index sau 20/60/120/250 phiên.
+  Thang điểm là giả thuyết — lưu ý chạy lùi lọc quý 22/10 cho "rẻ so với chính nó" IC 60 phiên −0,20; sổ này đo lại cho bộ lọc mới.
+- Chuông ntfy khi pool tuần có mã vào/ra. Lọc quý TOP110 vẫn chạy để đo, không gửi chuông nữa.
+- **Sổ giả lập:** bỏ mục tiêu T1/T2. Tỷ trọng theo kết luận pitch: ĐỦ ĐỂ XUỐNG TIỀN ≥ 70 điểm → 12% NAV, 60–69 → 8%;
+  CHỜ PHÉP THỬ → chỉ đợt 1, tối đa 4% (mã ở hàng chờ); còn lại 0. Đợt: 40/30/30 (hoảng loạn 60/40).
+  Trần: mã 15% NAV, ngành 30%, tổng giải ngân 90%. Cắt −15% dưới giá vốn giữ nguyên. Đổi luật nên sổ chạy lại từ 15/10.
+- Trang `/port` → tab **Pool tuần** (dán lại `worker_port_page.js` vào Worker nsi-quantri).
 
 ## Ai làm gì
 
