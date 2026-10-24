@@ -22,6 +22,7 @@ import nhac as NH
 import nhan_dinh as ND
 import pool as PO
 import sim as SM
+import tu_hoc as TH
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
@@ -67,7 +68,8 @@ def _port_gia():
         return None
     import numpy as np
     z = np.load(f, allow_pickle=True)
-    return dict(cal=[str(x) for x in z['cal']], sym=[str(x) for x in z['sym']], close=z['close'], adj=z['adj'])
+    return dict(cal=[str(x) for x in z['cal']], sym=[str(x) for x in z['sym']], close=z['close'], adj=z['adj'],
+                vol=z['vol'] if 'vol' in z.files else None)
 
 
 def _funda_rows(D: dict):
@@ -110,11 +112,22 @@ def _bang_nhan_dinh(D: dict, pg):
             col = pg['adj'][:, j]
             gia[s] = {d: float(col[pos[d]]) for d in lich if col[pos[d]] == col[pos[d]]}
         return ND.Bang(lich, [vni[d] for d in lich], gia), 'port_gia.npz (giá điều chỉnh từ 2019)'
+
     lich = sorted(vni)[-300:]
     gia = {}
     for s, c in (D.get('candles') or {}).items():
         gia[s] = {b[0]: float(b[4]) for b in (c or {}).get('bars') or [] if len(b) >= 5 and b[4]}
     return ND.Bang(lich, [vni[d] for d in lich], gia), 'nến 240 phiên của trang web (không đủ để chạy lùi)'
+
+
+def _khoi_luong(B, pg) -> dict | None:
+    """Khối lượng từ port_gia.npz căn theo lịch của B (None nếu file cũ chưa có cột khối lượng)."""
+    if not pg or pg.get('vol') is None or not B.lich:
+        return None
+    import numpy as np
+    pos = {d: i for i, d in enumerate(pg['cal'])}
+    ii = np.array([pos[d] for d in B.lich])
+    return {s: pg['vol'][ii, j].astype(float) for j, s in enumerate(pg['sym']) if s in B.c}
 
 
 def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict | None, the: list[dict],
@@ -155,7 +168,8 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     # R41: học + nhận định trên mọi mã đủ thanh khoản trong port_gia.npz (~170 mã), không chỉ ~110 mã TOP-N
     vu_tru = sorted({s for s, x in lk.items() if x.get('inuni')} | set(luan) | set((pg or {}).get('sym') or []))
     vu_tru = [s for s in vu_tru if s in B.c]
-    ts = rj(root / 'trong_so.json', None) or ND.TRONG_SO_V1
+    # trọng số: bộ máy tự đổi gần nhất (state) > bộ ghi tay port/trong_so.json > v1
+    ts = TH.doc(state, 'trong_so_tu_hoc') or rj(root / 'trong_so.json', None) or ND.TRONG_SO_V1
     hoc = None
     if pg and raw:
         mau = ND.chay_lui(B, vu_tru, rows_f, nganh)
@@ -163,6 +177,20 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
         tk = hoc['thong_ke']
         wj(state / 'thong_ke_dac_trung.json', tk)
         hoc.pop('thong_ke', None)
+        if hoc.get('dat_chuan') and hoc.get('de_xuat'):
+            moi = dict(ten=hoc['de_xuat']['ten'], w=hoc['de_xuat']['w'], b=hoc['de_xuat']['b'])
+            doi = ' · '.join(f"{ND.TEN.get(k, k)} {ts['w'].get(k, 0):+.2f}→{v:+.2f}" for k, v in moi['w'].items()
+                             if abs(v - ts['w'].get(k, 0)) >= 0.05)
+            d = TH.ap_dung(state, 'trong_so_tu_hoc', moi, dict(ten=ts.get('ten'), w=ts.get('w'), b=ts.get('b', 0.0)),
+                           asof, 'Port: máy tự đổi trọng số nhận định', hoc['ket_luan'] + ('\n' + doi if doi else ''),
+                           bang_chung=dict(t=hoc.get('t')), gui_chuong=gui_chuong)
+            if d:
+                ts = dict(moi, ngay_ap=asof)
+                hoc['da_doi'] = asof
+            else:
+                hoc['cho_doi_ngay'] = TH.con_cho(state, 'trong_so_tu_hoc', asof)
+                hoc['ket_luan'] += f" (lần đổi trước chưa đủ {TH.GIAN_CACH_NGAY} ngày — chờ thêm {hoc['cho_doi_ngay']} ngày)"
+        hoc['lich_su_doi'] = TH.lich_su(state, 'trong_so_tu_hoc')
     else:
         tk = rj(state / 'thong_ke_dac_trung.json', {}) or {}
     may = {x['luan']['ma']: {k: v['chieu'] for k, v in x['ho_so']['may'].items()} for x in the}
@@ -185,7 +213,8 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     # Lọc quý giữ làm sổ đo + chạy lùi; chuông chuyển sang pool tuần (24/10/2026) để khỏi hai danh sách cùng báo
     loc_quy = LQ.chay(D, rows_f, B, asof, state, pg_co=bool(pg), raw_co=bool(raw), gui_chuong=False, luan=luan)
     # ------------------------------------------------ 3c. pool tuần (24/10/2026) — watchlist NSI + 20–30 mã riêng
-    pool = PO.chay(D, rows_f, B if pg else None, asof, state, luan=luan, gui_chuong=gui_chuong)
+    pool = PO.chay(D, rows_f if raw else {}, B if pg else None, asof, state, luan=luan, gui_chuong=gui_chuong,
+                   V=_khoi_luong(B, pg) if pg else None)
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)

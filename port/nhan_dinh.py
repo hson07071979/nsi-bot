@@ -11,7 +11,8 @@ Vòng học:
   2. Mỗi lượt chạy, code chạy lùi cùng cách tính trên lịch sử giá + BCTC (chỉ dùng BCTC đã công bố tính tới ngày đó)
      để có vài nghìn mẫu, rồi luyện một mô hình hồi quy logistic theo kiểu đi tiến (luyện trên các năm trước, thử trên
      năm sau). Kết quả: bảng so trọng số đang dùng với trọng số đề xuất, trên các năm mô hình CHƯA THẤY.
-  3. Code KHÔNG tự đổi trọng số. Anh Sơn xem bảng, đồng ý thì Claude ghi trọng số đề xuất vào port/trong_so.json.
+  3. (24/10/2026) Qua bài thi thì máy TỰ ĐỔI trọng số và báo chuông (tu_hoc.py, bộ mới ở state/trong_so_tu_hoc.json,
+     bộ cũ giữ trong state/lich_su_trong_so_tu_hoc.json). Hai lần đổi cách nhau ít nhất 28 ngày.
 Đặc trưng của 3 máy (bot/Tin/Daily) chưa có lịch sử nên chỉ ghi kèm từ nay; khi đủ mẫu mới đưa vào mô hình.
 
 Nâng cấp R41 (anh Sơn duyệt 22/10/2026), sau khi kiểm trên 169 mã thanh khoản 2019→10/2026 (research/r41_vong_hoc.py):
@@ -22,7 +23,7 @@ Nâng cấp R41 (anh Sơn duyệt 22/10/2026), sau khi kiểm trên 169 mã than
     còn lại → đi ngang (ít hơn 10 mã thì dùng ngưỡng cũ). Bộ trọng số nào cũng so được với nhau, không phụ thuộc thang.
   · Mô hình đề xuất = hồi quy ridge trên đặc trưng chuẩn hóa, nhắm HẠNG mức hơn VN-Index (không phải lên/xuống),
     luyện riêng từng kỳ hạn, đi tiến theo năm. Chỉ đề xuất khi hơn bộ đang dùng ở ≥ 2/3 số năm chưa thấy VÀ IC
-    tổng có t ≥ 2. Code vẫn KHÔNG tự đổi trọng số.
+    tổng có t ≥ 2. (Từ 24/10/2026 qua bài thi thì tự đổi — xem mục 3.)
   · Thêm 2 đặc trưng: mạnh hơn VN-Index 120 phiên, tiền từ kinh doanh ÷ lãi 4 quý.
 """
 from __future__ import annotations
@@ -313,7 +314,8 @@ def _luyen(tr, n, tk):
 
 def hoc(rows: list[dict], ts_dang_dung: dict, n_chinh: int = 20) -> dict:
     """Đi tiến theo năm: luyện trên các năm trước (bỏ phần nhãn chồng sang năm thử), chấm trên năm sau.
-    So bộ trọng số đang dùng với mô hình ridge trên những năm mô hình CHƯA THẤY. Không tự đổi trọng số."""
+    So bộ trọng số đang dùng với mô hình ridge trên những năm mô hình CHƯA THẤY.
+    Qua bài thi thì `dat_chuan=True`; việc tự đổi + báo chuông do tu_hoc.py làm (anh Sơn chốt 24/10/2026)."""
     nam = sorted({r['ngay'][:4] for r in rows})
     tk_all = thong_ke(rows)
     bang = []
@@ -372,13 +374,14 @@ def hoc(rows: list[dict], ts_dang_dung: dict, n_chinh: int = 20) -> dict:
     t_ok = len(ics) >= 3 and np.mean(ics) / (np.std(ics) or 1.0) * np.sqrt(len(ics)) >= 2.0
     if hon and t_ok:
         kl = (f'Mô hình xếp hạng tốt hơn bộ đang dùng ở {a["nam_hon"]}/{a["so_nam"]} năm chưa thấy (kỳ hạn '
-              f'{n_chinh} phiên: IC {a["ic"]:+.3f} so với {c.get("ic") or 0:+.3f}) — đề xuất anh Sơn duyệt.')
+              f'{n_chinh} phiên: IC {a["ic"]:+.3f} so với {c.get("ic") or 0:+.3f}) — qua bài thi, máy tự đổi sang bộ mới.')
     elif hon:
         kl = (f'Mô hình nhỉnh hơn ở {a["nam_hon"]}/{a["so_nam"]} năm nhưng chưa đủ chắc (IC không ổn định qua các năm) '
               f'— giữ nguyên, lượt sau chấm lại.')
     else:
         kl = 'Mô hình chưa hơn bộ đang dùng trên những năm chưa thấy — giữ nguyên.'
     return dict(so_mau=len(rows), theo_nam=bang, tong_dang_dung=t0, tong_mo_hinh=t1, de_xuat=de_xuat,
+                dat_chuan=bool(hon and t_ok), t=round(float(np.mean(ics) / (np.std(ics) or 1.0) * np.sqrt(len(ics))), 2) if ics else None,
                 thong_ke=tk_all, ket_luan=kl, thuoc_do='IC xếp hạng + chênh nhóm 20% cao/thấp (R41)')
 
 

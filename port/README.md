@@ -109,3 +109,18 @@ Mô phỏng danh mục theo lịch 14/02/2020→15/10/2026 (`research/r40_rui_ro
 - **Chỉ mở mã mới khi VN-Index ≤ −10% so với đỉnh 250 phiên.**
 - **Tối đa 2 mã mới mỗi 20 phiên**, xếp lượt theo điểm 70/30; tối đa 8 mã × 12,5% NAV.
 Kết quả: +171,7% (16,2%/năm), sụt giảm danh mục lớn nhất −18,7% (VN-Index +81,2%, −40,3%); riêng 2023–2026 +14,8%/năm, −14,3%; Monte Carlo trung vị 15,9%/năm, p5 11,8%, sụt p95 21,5%. Đã thử ~20 phương án trên cùng dữ liệu nên có rủi ro quá khớp — vùng tham số lân cận (ngưỡng −8…−15%, 6–10 mã, nhịp 1–2) đều cho 10–20%/năm, sụt 9–24%.
+
+## Vòng học tự đổi (24/10/2026)
+
+Anh Sơn chốt: **qua bài thi thì máy tự đổi, báo chuông**, và **thang điểm pool tuần vào vòng học**.
+
+- **Nhận định hằng ngày** (`nhan_dinh.hoc`): mỗi tối chạy lùi ~60 nghìn mẫu, luyện ridge đi tiến theo năm. Qua bài thi
+  (thắng ≥ 2/3 số năm chưa thấy, IC cao hơn và dương, t ≥ 2) → `tu_hoc.ap_dung` ghi `state/trong_so_tu_hoc.json`,
+  giữ bộ cũ ở `state/lich_su_trong_so_tu_hoc.json`, gửi chuông. Thứ tự dùng: bộ tự đổi > `port/trong_so.json` > v1.
+- **Pool tuần** (`pool_hoc.py`): đầu mỗi tuần chạy lùi bộ lọc từ 2020 (5 phiên/mẫu, chỉ mẫu qua luật nền thấp, BCTC đã
+  công bố tới từng ngày), học mỗi phần điểm đáng bao nhiêu (ridge nhắm hạng mức hơn VN-Index 60 phiên, hệ số âm → 0,
+  tổng 100). Cùng bài thi → ghi `state/thang_pool.json`. Phần thiếu dữ liệu lịch sử (siết vol khi `port_gia.npz` cũ
+  chưa có khối lượng) giữ nguyên. Luật loại nền cao và phần trừ điểm không học.
+- `port/xuat_gia.py` xuất thêm khối lượng đã điều chỉnh chia tách (`vol`) vào `port_gia.npz`.
+- Hai lần tự đổi cách nhau ≥ 28 ngày (`tu_hoc.GIAN_CACH_NGAY`). Quay lại bộ cũ: xóa file state tương ứng trên port-data
+  hoặc nhắn Claude ghi lại bộ trong lịch sử.
