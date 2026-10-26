@@ -1,177 +1,176 @@
 {
- "so_mau": 18044,
+ "so_mau": 18152,
  "so_nam": 5,
- "nam_hon": 2,
- "ic_moi": -0.0728,
- "ic_cu": -0.0529,
- "t": -4.69,
+ "nam_hon": 1,
+ "ic_moi": -0.0683,
+ "ic_cu": -0.0289,
+ "t": -4.51,
  "dat_chuan": false,
- "ket_luan": "Thang học được chưa hơn thang đang dùng trên những năm chưa thấy (IC -0.073 so với -0.053, hơn 2/5 năm) — giữ thang đang dùng.",
+ "ket_luan": "Thang học được chưa hơn thang đang dùng trên những năm chưa thấy (IC -0.068 so với -0.029, hơn 1/5 năm) — giữ thang đang dùng.",
  "theo_nam": [
   {
    "nam": "2022",
-   "mau_luyen": 3134,
+   "mau_luyen": 3156,
    "dang_dung": {
-    "ic": -0.0972,
-    "top_hon": -1.06,
+    "ic": -0.1161,
+    "top_hon": -2.57,
     "so_ngay": 50,
-    "mau": 2045
+    "mau": 2057
    },
    "mo_hinh": {
-    "ic": -0.0984,
-    "top_hon": -1.16,
+    "ic": -0.1002,
+    "top_hon": -1.04,
     "so_ngay": 50,
-    "mau": 2045
+    "mau": 2057
    },
    "thang_nam": {
     "thap": 0,
     "nen": 0,
-    "vol": 15,
-    "bien": 11,
-    "nganh": 32,
+    "vol": 0,
+    "bien": 12,
+    "nganh": 38,
     "dinh_gia": 0,
-    "ln_hoi": 43,
+    "ln_hoi": 50,
     "roe": 0
    }
   },
   {
    "nam": "2023",
-   "mau_luyen": 5151,
+   "mau_luyen": 5186,
    "dang_dung": {
-    "ic": 0.075,
-    "top_hon": 2.13,
+    "ic": 0.0898,
+    "top_hon": 1.99,
     "so_ngay": 49,
-    "mau": 3455
+    "mau": 3473
    },
    "mo_hinh": {
-    "ic": -0.0366,
-    "top_hon": -0.59,
+    "ic": -0.0306,
+    "top_hon": -0.51,
     "so_ngay": 49,
-    "mau": 3455
+    "mau": 3473
    },
    "thang_nam": {
     "thap": 0,
-    "nen": 25,
-    "vol": 15,
+    "nen": 31,
+    "vol": 0,
     "bien": 0,
-    "nganh": 11,
+    "nganh": 14,
     "dinh_gia": 0,
-    "ln_hoi": 49,
+    "ln_hoi": 55,
     "roe": 0
    }
   },
   {
    "nam": "2024",
-   "mau_luyen": 8453,
+   "mau_luyen": 8504,
    "dang_dung": {
-    "ic": -0.0987,
-    "top_hon": -2.6,
+    "ic": -0.0568,
+    "top_hon": -0.99,
     "so_ngay": 50,
-    "mau": 2702
+    "mau": 2729
    },
    "mo_hinh": {
-    "ic": -0.08,
-    "top_hon": -1.52,
+    "ic": -0.0807,
+    "top_hon": -1.56,
     "so_ngay": 50,
-    "mau": 2702
+    "mau": 2729
    },
    "thang_nam": {
-    "thap": 44,
+    "thap": 49,
     "nen": 0,
-    "vol": 15,
-    "bien": 16,
-    "nganh": 4,
+    "vol": 0,
+    "bien": 19,
+    "nganh": 6,
     "dinh_gia": 0,
-    "ln_hoi": 22,
+    "ln_hoi": 26,
     "roe": 0
    }
   },
   {
    "nam": "2025",
-   "mau_luyen": 10749,
+   "mau_luyen": 10817,
    "dang_dung": {
-    "ic": 0.0269,
-    "top_hon": -1.03,
+    "ic": 0.0416,
+    "top_hon": -0.57,
     "so_ngay": 46,
-    "mau": 2837
+    "mau": 2858
    },
    "mo_hinh": {
-    "ic": -0.0298,
-    "top_hon": -0.84,
+    "ic": -0.0256,
+    "top_hon": -0.34,
     "so_ngay": 46,
-    "mau": 2837
+    "mau": 2858
    },
    "thang_nam": {
-    "thap": 38,
+    "thap": 43,
     "nen": 0,
-    "vol": 15,
-    "bien": 18,
+    "vol": 0,
+    "bien": 22,
     "nganh": 0,
     "dinh_gia": 0,
-    "ln_hoi": 17,
-    "roe": 12
+    "ln_hoi": 22,
+    "roe": 13
    }
   },
   {
    "nam": "2026",
-   "mau_luyen": 13554,
+   "mau_luyen": 13655,
    "dang_dung": {
-    "ic": -0.1707,
-    "top_hon": -3.21,
+    "ic": -0.1028,
+    "top_hon": -1.93,
     "so_ngay": 28,
-    "mau": 2376
+    "mau": 2382
    },
    "mo_hinh": {
-    "ic": -0.1193,
-    "top_hon": -2.47,
+    "ic": -0.1045,
+    "top_hon": -2.15,
     "so_ngay": 28,
-    "mau": 2376
+    "mau": 2382
    },
    "thang_nam": {
-    "thap": 34,
+    "thap": 37,
     "nen": 0,
-    "vol": 15,
+    "vol": 6,
     "bien": 21,
     "nganh": 0,
     "dinh_gia": 0,
-    "ln_hoi": 30,
+    "ln_hoi": 36,
     "roe": 0
    }
   }
  ],
  "de_xuat": {
-  "ten": "thang học 2026-10-24 (18044 mẫu, 60 phiên)",
+  "ten": "thang học 2026-10-26 (18152 mẫu, 60 phiên)",
   "thang": {
    "thap": 0,
-   "nen": 15,
-   "vol": 15,
-   "bien": 31,
+   "nen": 17,
+   "vol": 10,
+   "bien": 29,
    "nganh": 0,
    "dinh_gia": 0,
-   "ln_hoi": 7,
-   "roe": 31
+   "ln_hoi": 11,
+   "roe": 33
   },
-  "giu_nguyen": [
-   "vol"
-  ],
+  "giu_nguyen": [],
   "phu": {
    "thap": 1.0,
    "nen": 1.0,
-   "vol": 0.0,
+   "vol": 1.0,
    "bien": 1.0,
    "nganh": 0.82,
-   "dinh_gia": 0.76,
+   "dinh_gia": 0.77,
    "ln_hoi": 0.92,
    "roe": 0.85
   },
   "he_so": {
    "thap": 0.0,
-   "nen": 0.0089,
-   "bien": 0.0186,
+   "nen": 0.0094,
+   "vol": 0.0054,
+   "bien": 0.0163,
    "nganh": 0.0,
    "dinh_gia": 0.0,
-   "ln_hoi": 0.0043,
-   "roe": 0.0184
+   "ln_hoi": 0.0061,
+   "roe": 0.0186
   }
  },
  "thang_dang_dung": {
@@ -187,78 +186,78 @@
  "ky": {
   "20p": {
    "dang_dung": {
-    "ic": -0.0247,
-    "top_hon": -0.24,
+    "ic": -0.0062,
+    "top_hon": -0.22,
     "so_ngay": 324,
-    "mau": 17633
+    "mau": 17741
    },
    "de_xuat": {
-    "ic": 0.0325,
-    "top_hon": -0.01,
+    "ic": 0.0315,
+    "top_hon": -0.04,
     "so_ngay": 324,
-    "mau": 17633
+    "mau": 17741
    }
   },
   "60p": {
    "dang_dung": {
-    "ic": -0.0371,
-    "top_hon": -0.8,
+    "ic": -0.0218,
+    "top_hon": -0.78,
     "so_ngay": 316,
-    "mau": 16878
+    "mau": 16985
    },
    "de_xuat": {
-    "ic": 0.0306,
-    "top_hon": -0.05,
+    "ic": 0.0286,
+    "top_hon": 0.13,
     "so_ngay": 316,
-    "mau": 16878
+    "mau": 16985
    }
   },
   "120p": {
    "dang_dung": {
-    "ic": -0.0006,
-    "top_hon": -0.25,
+    "ic": 0.0187,
+    "top_hon": 0.05,
     "so_ngay": 304,
-    "mau": 15542
+    "mau": 15643
    },
    "de_xuat": {
-    "ic": 0.0328,
-    "top_hon": -0.03,
+    "ic": 0.0358,
+    "top_hon": 0.23,
     "so_ngay": 304,
-    "mau": 15542
+    "mau": 15643
    }
   }
  },
  "ic_tung_phan": {
   "thap": {
-   "ic": -0.0492,
+   "ic": -0.0495,
    "so_ngay": 316
   },
   "nen": {
-   "ic": 0.0135,
+   "ic": 0.0136,
    "so_ngay": 316
   },
   "vol": {
-   "ic": null,
-   "so_ngay": 0
+   "ic": 0.0199,
+   "so_ngay": 316
   },
   "bien": {
-   "ic": 0.0163,
+   "ic": 0.0154,
    "so_ngay": 316
   },
   "nganh": {
-   "ic": -0.0207,
+   "ic": -0.0192,
    "so_ngay": 295
   },
   "dinh_gia": {
-   "ic": -0.065,
+   "ic": -0.0636,
    "so_ngay": 277
   },
   "ln_hoi": {
-   "ic": -0.0079,
+   "ic": -0.0065,
    "so_ngay": 316
   },
   "roe": {
-   "ic": 0.0145,
+   "ic": 0.0154,
    "so_ngay": 281
   }
  },
@@ -272,7 +271,7 @@
   "ln_hoi": "LN sắp hồi",
   "roe": "ROE"
  },
- "ngay": "2026-10-23",
- "co_khoi_luong": false,
+ "ngay": "2026-10-26",
+ "co_khoi_luong": true,
  "tu": "2020-01-01"
 }

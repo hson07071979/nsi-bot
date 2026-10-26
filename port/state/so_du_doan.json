@@ -1983,5 +1983,83 @@
    "br50": 0.492,
    "vni": 1774.15
   }
+ },
+ {
+  "id": "CTG-daily-2026-10-26",
+  "ngay": "2026-10-26",
+  "ma": "CTG",
+  "nguon": "daily",
+  "chieu": -1,
+  "gia0": 30.6,
+  "vni0": 1763.55,
+  "dac_trung": {
+   "gia": 30.6,
+   "pe": 5.71,
+   "pb": 1.15,
+   "pe_rel": 0.62,
+   "pb_rel": 0.8,
+   "roe": 21.8,
+   "ny": 21.4,
+   "ry": 26.1,
+   "rs": 46.9,
+   "diem": 53.7,
+   "diem_cb": 40,
+   "nganh": "Ngân hàng",
+   "den": "CAM",
+   "br50": 0.483,
+   "vni": 1763.55
+  }
+ },
+ {
+  "id": "FPT-daily-2026-10-26",
+  "ngay": "2026-10-26",
+  "ma": "FPT",
+  "nguon": "daily",
+  "chieu": 1,
+  "gia0": 56.0,
+  "vni0": 1763.55,
+  "dac_trung": {
+   "gia": 56.0,
+   "pe": 10.72,
+   "pb": 2.69,
+   "pe_rel": 0.5,
+   "pb_rel": 0.47,
+   "roe": 26.5,
+   "ny": 13.7,
+   "ry": -17.1,
+   "rs": 16.2,
+   "diem": 31.6,
+   "diem_cb": 15,
+   "nganh": "Công nghệ Thông tin",
+   "den": "CAM",
+   "br50": 0.483,
+   "vni": 1763.55
+  }
+ },
+ {
+  "id": "KDH-daily-2026-10-26",
+  "ngay": "2026-10-26",
+  "ma": "KDH",
+  "nguon": "daily",
+  "chieu": -1,
+  "gia0": 14.75,
+  "vni0": 1763.55,
+  "dac_trung": {
+   "gia": 14.75,
+   "pe": 9.48,
+   "pb": 0.9,
+   "pe_rel": 0.27,
+   "pb_rel": 0.5,
+   "roe": 9.5,
+   "ny": 277.6,
+   "ry": -84.7,
+   "rs": 5.3,
+   "diem": 41.9,
+   "diem_cb": 30,
+   "nganh": "Bất động sản",
+   "den": "CAM",
+   "br50": 0.483,
+   "vni": 1763.55
+  }
  }
 ]

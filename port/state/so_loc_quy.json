@@ -1376,5 +1376,18 @@
   "top": false,
   "chan": null,
   "su_kien": "BCTC mới"
+ },
+ {
+  "ma": "PAN",
+  "quy": "Q2/26",
+  "ngay": "2026-10-26",
+  "gia0": 18300.0,
+  "diem": 40,
+  "rel": 0.393,
+  "np4": 75.7,
+  "roe": 22.0,
+  "top": true,
+  "chan": null,
+  "su_kien": "BCTC mới"
  }
 ]
