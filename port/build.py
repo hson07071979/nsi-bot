@@ -507,18 +507,30 @@ def build(now: datetime | None = None) -> dict:
     return bundle
 
 
+TRANG = Path(__file__).resolve().parent / 'trang_port.html'
+
+
 def kv_put(bundle: dict) -> bool:
+    """Đẩy gói dữ liệu (port/bundle) VÀ chính trang /port (port/html) lên KV.
+    28/10/2026: trang nằm ở KV nên sửa trang chỉ cần sửa port/trang_port.html trong repo —
+    Worker nsi-quantri tự đọc bản mới ở lượt "Lọc port" kế tiếp, không phải dán lại Worker."""
     acc, ns, tok = (os.environ.get(k) for k in ('CF_ACCOUNT_ID', 'CF_KV_NAMESPACE_ID', 'CF_API_TOKEN'))
     if not (acc and ns and tok):
         print('KV: thiếu secret CF_* trong nsi-bot → bỏ qua đẩy KV (gói vẫn ở port/out/bundle.json)')
         return False
     import requests
-    url = f'https://api.cloudflare.com/client/v4/accounts/{acc}/storage/kv/namespaces/{ns}/values/port/bundle'
-    r = requests.put(url, headers={'Authorization': f'Bearer {tok}', 'Content-Type': 'application/json'},
-                     data=json.dumps(bundle, ensure_ascii=False).encode('utf-8'), timeout=60)
-    if not r.ok:
-        raise RuntimeError(f'KV ghi port/bundle lỗi {r.status_code}: {r.text[:200]}')
-    print('KV: đã đẩy port/bundle')
+    goc = f'https://api.cloudflare.com/client/v4/accounts/{acc}/storage/kv/namespaces/{ns}/values/'
+    for khoa, du_lieu, loai in (
+            ('port/bundle', json.dumps(bundle, ensure_ascii=False).encode('utf-8'), 'application/json'),
+            ('port/html', TRANG.read_bytes() if TRANG.exists() else None, 'text/html')):
+        if du_lieu is None:
+            print(f'KV: không có {TRANG.name} → bỏ qua {khoa}')
+            continue
+        r = requests.put(goc + khoa, headers={'Authorization': f'Bearer {tok}', 'Content-Type': loai},
+                         data=du_lieu, timeout=60)
+        if not r.ok:
+            raise RuntimeError(f'KV ghi {khoa} lỗi {r.status_code}: {r.text[:200]}')
+        print(f'KV: đã đẩy {khoa} ({len(du_lieu):,} byte)')
     return True
 
 
@@ -530,7 +542,7 @@ def main() -> int:
           f"{len(b['loc'])} mã trong bảng lọc · {len(b['so_bat_dong'])} dòng sổ bất đồng")
     tk = b['gia_lap']['tong_ket']
     if tk.get('co_du_lieu'):
-        print(f"sổ giả lập: NAV {tk['nav']:,} · lãi {tk['lai_pct']}% · VN-Index {tk['vni_pct']}% · "
+        print(f"sổ giả lập: NAV {tk['nav']:,} · lãi {tk['lai_pct']}% · đã giải ngân {tk.get('da_giai_ngan_pct')}% NAV · "
               f"{tk['so_lenh']} lệnh · {len(tk['vi_the'])} mã đang cầm")
     nd = b['nhan_dinh']
     print(f"nhận định hôm nay: {len(nd['hom_nay'])} mã port · theo dõi {nd['so_ma_theo_doi']} mã · "

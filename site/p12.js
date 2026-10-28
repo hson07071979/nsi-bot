@@ -205,6 +205,7 @@ function danhMuc() {
       // NAV của sổ ghi tiền nhưng hiện ra 4% vì bị chia cho NAV của bộ máy.
       navGoc: ((D.prod || {}).metrics || {}).final_nav || null,
       held: p.held ?? null, peak: p.peak ?? null, nguon: 'auto', bomay: true, book_id: 'HE_THONG', probe_fail: !!p.probe_fail,
+      hard: p.hard || null,     // vị thế mở / mua thêm bằng lệnh Hard (28/10/2026)
       // luật thoát (exit_rules): gain theo quy ước bộ máy = giá ÷ giá vốn đã gồm phí mua − 1
       gainR: px ? (px * 1000) / p.entry_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part, light: p.light || null,
       srv: p.action || null,
@@ -228,6 +229,7 @@ function danhMuc() {
       tien: p.sh ? p.sh * px * 1000 : null,
       navGoc: (F && F.nav) || null,      // NAV của sổ ghi tiến, không phải của bộ máy
       held: p.held, peak: (p.peak || 0) * 100, light: p.light, nguon: 'ghitien', book_id: 'SO_GHI_TIEN', probe_fail: !!p.probe_fail,
+      hard: p.hard || null,
       gainR: (px && p.cost_px) ? (px * 1000) / p.cost_px - 1 : null, b10: p.b10 || 0, b20: p.b20 || 0, part: !!p.part,
       srv: p.action || null,
       x0: p.x0 || null, xp: p.xp || null,     // sổ ghi tiến ghi sẵn phần trăm
@@ -272,6 +274,7 @@ function lichSuThat() {
     sym: c.sym, sector: c.sector || nganhCua(c.sym), entry: c.entry, exit: c.exit,
     entry_px: c.entry_px, exit_px: c.exit_px, pnl: c.pnl_pct, pnl_vnd: c.pnl_vnd,
     held: c.held, reason: c.reason, peak: c.peak, nguon: 'ghitien', phan: c.phan, pct_nav: c.pct_nav, sh: c.sh,
+    hard: c.hard || null,
   }));
   manualGop().trades.filter(t => t.sell_px).forEach(t => out.push({
     sym: t.sym, sector: nganhCua(t.sym), entry: t.buy_d, exit: t.sell_d,
@@ -439,7 +442,7 @@ function pageSoLenh(root) {
         <th title="Bán bao nhiêu phần vị thế / bao nhiêu % NAV; các lần đã bán một phần">Bán bao nhiêu</th>
         <th>Nguồn</th></tr></thead><tbody>
         ${dm.map(p => `<tr>
-          <td class="sym">${esc(p.sym)}${((D.lookup||{})[p.sym]||{}).tim
+          <td class="sym">${esc(p.sym)}${p.hard ? ' ' + nhanHard(p.hard) : ''}${((D.lookup||{})[p.sym]||{}).tim
             ? ` <span title="Đèn tím — ${((D.lookup||{})[p.sym]||{}).tim_vi||''}" style="color:var(--s7)">●</span>` : ''}</td>
           <td class="muted" style="font-size:13px">${(p.name || '').slice(0, 30)}</td>
           <td>${ddmm(p.entry)}</td>
@@ -475,7 +478,7 @@ function pageSoLenh(root) {
         <td style="text-align:right" class="muted">${c.held == null ? '—' : c.held + ' phiên'}</td>
         <td style="font-size:12.5px">${c.phan == null ? '—' : (c.phan < 1 ? '<b style="color:var(--serious)">1/3</b>' : '100%')}${
           c.sh ? `<div class="muted" style="font-size:11px">${num(c.sh)} cp${c.pct_nav != null ? ' ≈ ' + dec(c.pct_nav, 1) + '% NAV' : ''}</div>` : ''}</td>
-        <td class="muted" style="font-size:12.5px">${esc(c.reason)}</td>
+        <td class="muted" style="font-size:12.5px">${c.hard ? nhanHard(c.hard) + ' ' : ''}${esc(c.reason)}</td>
         <td>${nhanNguon(c.nguon)}</td></tr>`).join('')}
     </tbody></table></div>`;
 

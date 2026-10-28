@@ -478,8 +478,9 @@ function capNhatDanhMucHieuSuat() {
 async function napSo() {
   const [pf, mn] = await Promise.all([docJSON('portfolio.json'), docJSON('manual.json')]);
   if (pf) NSI.pf = pf;
-  if (mn) NSI.manual = mn;
+  if (mn && !NSI._manualTuApi) NSI.manual = mn;    // bản đọc qua API GitHub (lệnh Hard) mới hơn bản raw đệm 5 phút
   veLaiTrang('danhmuc');
+  if (typeof veHard === 'function') veHard();
   veLaiTrang('watchlist');
   // Trang Hiệu suất cũng có bảng "Danh mục hệ thống đang cầm" với cột Hiện tại và
   // Lãi/lỗ. Thiếu dòng này thì nó giữ nguyên giá của ảnh chụp tối qua trong khi

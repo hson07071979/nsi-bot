@@ -8,6 +8,7 @@ from fa_ind import indicators
 from regime2 import build_regime
 from prep import parse_funda
 from engine import funda_timeline, as_of, risk_gate, canslim_score, BANKS, BROKERS, INSUR
+import hard as _HD
 
 CFG = dict(
   nav0=1_000_000_000.0, fee_buy=0.0015, fee_sell=0.0025, slip=0.002,
@@ -58,12 +59,18 @@ CFG = dict(
   miss_prob=0.0, miss_seed=1, force_miss=None,   # missed-signal stress
   stage1=None,              # two-stage entry: fraction bought at signal close w/o Cond9
   log_cands=False,          # record every same-day candidate set (ranking research)
+  # LENH HARD (28/10/2026, hard.py): khoa cfg 'hard_orders' — KHONG khai bao o day de prod_config_hash
+  # (sha cua CFG + PROD) giu nguyen. Chi lan chay chinh cua produce2 truyen vao; preset / robustness /
+  # walk-forward khong co lenh tay.
 )
 
 EXTRA = {}   # R30: mang nghien cuu (wave_on [N,S] bool da lui 1 phien, liq [N]) — rong = PROD
 
 class Pos:
-    __slots__=('sym','j','ei','epx','sh','peak','b20','b10','part','pyr','sector','bo_low','stage','oi_ok','tgt','eraw','pyr_d','pyr_raw','pyr_adj','x0','xp')
+    __slots__=('sym','j','ei','epx','sh','peak','b20','b10','part','pyr','sector','bo_low','stage','oi_ok','tgt','eraw','pyr_d','pyr_raw','pyr_adj','x0','xp',
+               # LENH HARD (28/10/2026): 'mua' = vi the mo bang Hard Buy, 'them' = Hard Buy them vao vi the bot.
+               # adds = [(phien, so co)] cac lan mua THEM (nhoi, Hard) — de biet bao nhieu co da ve tai khoan (T+sell_from).
+               'hard','adds')
     def __init__(s,**kw):
         for k,v in kw.items(): setattr(s,k,v)
 
@@ -314,6 +321,111 @@ def _run_core(cfg=None, log=True):
         se = extra + sum(_v(q) for q in pos.values() if q.sector == sec)
         to = extra + sum(_v(q) for q in pos.values())
         return (round(float(me/nav),4), round(float(se/nav),4), round(float(to/nav),4)) if nav > 0 else None
+    # ---------- LENH HARD: gom theo phien (hard.py) ----------
+    # Lenh co ngay khong phai phien giao dich (vd ngay le) -> phien giao dich KE TIEP. Lenh cua
+    # phien chua co du lieu (ngay > phien cuoi) -> cho (pending), chua ap, van huy duoc tren trang.
+    _HB={}; _HLOG=[]; _HPEND=[]
+    _S_idx={str(x):k for k,x in enumerate(S)}
+    _N_end=(min(N,int(np.searchsorted(cal,C['end'],side='right'))) if C.get('end') else N)
+    for _o in (C.get('hard_orders') or []):
+        _ii=int(np.searchsorted(cal,_o['ngay']))
+        if _ii>=len(cal):
+            _HPEND.append(dict(_o, ly_do='phiên chưa có dữ liệu — chờ bản dựng sau phiên này')); continue
+        if _ii<int(np.searchsorted(cal,C['start'])) or _ii>=_N_end: continue
+        _HB.setdefault(_ii,[]).append(_o)
+    def _buoc(px, ex):
+        e=str(ex or 'HOSE').upper()
+        if e not in ('HOSE','HSX'): return 100.0
+        return 10.0 if px<10000 else (50.0 if px<50000 else 100.0)
+    def _bien(i, j):
+        """(tran, san, tham chieu) THO cua phien i — PriceBasic (co tinh quyen), lui ve dong cua phien truoc."""
+        ref=float(d['PriceBasic'][i,j]) if 'PriceBasic' in d else float('nan')
+        if not (ref==ref and ref>0): ref=float(PX[i-1,j]) if i>0 else float('nan')
+        if not (ref==ref and ref>0): return None
+        ex=str(d['exch'][j]) if 'exch' in d else 'HOSE'
+        b={'HNX':0.10,'UPCOM':0.15}.get(ex.upper(),0.07)
+        hi=ref*(1+b); lo=ref*(1-b)
+        hi=np.floor(round(hi/_buoc(hi,ex),6))*_buoc(hi,ex); lo=np.ceil(round(lo/_buoc(lo,ex),6))*_buoc(lo,ex)
+        return float(hi), float(lo), ref, ex
+    def _ghi(o, i, ok, ly_do, **kw):
+        _HLOG.append(dict(id=o['id'], loai=o['loai'], sym=o['sym'], ngay=o['ngay'], phien=str(cal[i]),
+                          gia=o['gia'], pct_nav=o.get('pct_nav'), phan=o.get('phan'), ok=bool(ok), ly_do=ly_do, **kw))
+    def _hard_phien(i, orders, pos, cash):
+        for o in orders:
+            j=_S_idx.get(o['sym'])
+            if j is None: _ghi(o,i,False,'không có dữ liệu mã này'); continue
+            ac=AC[i,j]; ar=d['AdjRatio'][i,j]
+            if np.isnan(ac) or not (ar==ar and ar>0): _ghi(o,i,False,'mã không giao dịch phiên này'); continue
+            raw=float(o['gia'])*1000.0
+            bd=_bien(i,j)
+            if bd is None: _ghi(o,i,False,'không có giá tham chiếu phiên này'); continue
+            tran,san,ref,ex=bd; tol=_buoc(raw,ex)+raw*0.001
+            if not (san-tol<=raw<=tran+tol):
+                _ghi(o,i,False,'giá %.2f ngoài biên độ phiên (sàn %.2f – trần %.2f)'%(raw/1000,san/1000,tran/1000)); continue
+            if o.get('tran') is not None and o.get('san') is not None and not (o['san']*1000-1e-6<=raw<=o['tran']*1000+1e-6):
+                _ghi(o,i,False,'giá ngoài biên độ trang đã kiểm lúc bấm'); continue
+            fill=raw/float(ar)                         # gia DIEU CHINH tuong ung gia tho anh dien
+            _dg=lambda q:(AC[i,q.j] if not np.isnan(AC[i,q.j]) else q.epx)*q.sh
+            p=pos.get(o['sym'])
+            if o['loai']=='ban':
+                if p is None:
+                    _ban_nay=any(t['sym']==o['sym'] and t['exit']==str(cal[i]) for t in trades[-50:])
+                    _ghi(o,i,False,'bot đã bán hết mã này trong phiên (luật thoát)' if _ban_nay else 'hệ thống không cầm mã này'); continue
+                held=i-p.ei; sf=int(C.get('sell_from',2) or 2)
+                if held<sf: _ghi(o,i,False,'hàng chưa về (mua phiên %s, bán được từ T+%d)'%(str(cal[p.ei]),sf)); continue
+                if getattr(p,'stage',0)==1: _ghi(o,i,False,'lệnh dò chưa xác nhận ĐK9'); continue
+                want=p.sh if o['phan']>=1 else int(p.sh*o['phan']//100*100)
+                if p.sh-want<100: want=p.sh
+                if want<100: _ghi(o,i,False,'không đủ 1 lô 100 cp để bán'); continue
+                chua_ve=sum(a for (ia,a) in (getattr(p,'adds',None) or []) if i-ia<sf)
+                if want>p.sh-chua_ve: _ghi(o,i,False,'%d cp mua thêm chưa về tài khoản'%chua_ve); continue
+                frac=1.0 if want>=p.sh else want/p.sh
+                got=want*fill*(1-C['fee_sell']-SS); cash+=got
+                trades.append(dict(sym=str(o['sym']),sector=p.sector,entry=str(cal[p.ei]),exit=str(cal[i]),
+                    entry_px=round(float(p.epx),2),exit_px=round(float(fill),2),held=int(held),
+                    entry_raw=round(float(getattr(p,'eraw',np.nan)),2),exit_raw=round(raw,2),
+                    x0=getattr(p,'x0',None),xp=getattr(p,'xp',None),
+                    pyr_date=getattr(p,'pyr_d',None),pyr_raw=getattr(p,'pyr_raw',None),pyr_adj=getattr(p,'pyr_adj',None),
+                    pnl_pct=round(float(fill*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
+                    pnl_vnd=round(float(got-want*p.epx)),reason=_HD.LY_DO_BAN,
+                    sh=int(want),frac=round(float(frac),4),light=R['light'][p.ei],peak=round(float(p.peak)*100,1),
+                    hard='ban',hard_id=o['id']))
+                _ghi(o,i,True,'đã bán',sh=int(want),frac=round(float(frac),4),gia_tri=round(float(want*fill)),
+                     con_lai=int(p.sh-want))
+                p.sh-=want
+                if frac<1: p.part=True
+                if p.sh<=0: del pos[o['sym']]
+                continue
+            # ---- mua ----
+            if p is not None and getattr(p,'stage',0) in (1,3):
+                _ghi(o,i,False,'mã đang là lệnh dò chờ xác nhận / chờ bán'); continue
+            mv=sum(_dg(q) for q in pos.values()); nav=cash+mv
+            if nav<=0: _ghi(o,i,False,'NAV không dương'); continue
+            secn=p.sector if p is not None else sect.get(str(o['sym']),'Khác')
+            if p is None and len(pos)>=int(C['max_pos_n']):
+                _ghi(o,i,False,'đủ số mã tối đa (%d)'%int(C['max_pos_n'])); continue
+            muon=nav*float(o['pct_nav'])/100.0
+            room,why=AL.addon_capacity(nav,cash,mv,sum(_dg(q) for q in pos.values() if q.sector==secn),
+                                       (_dg(p) if p is not None else 0.0),cfg=C)
+            tien=min(muon,room); binding=('muon' if muon<=room else why)
+            px=fill*(1+SB)*(1+C['fee_buy'])
+            sh=AL.lots(tien,px)
+            if sh<100:
+                _ghi(o,i,False,'không đủ 1 lô sau khi áp %s'%AL.REASON_VI.get(binding,binding)); continue
+            cash-=sh*px
+            if p is None:
+                pos[o['sym']]=Pos(sym=str(o['sym']),j=int(j),ei=i,epx=float(px),sh=int(sh),peak=0.0,b20=0,b10=0,
+                                  part=False,pyr=False,sector=secn,bo_low=float(AL_[i,j]),stage=0,oi_ok=True,
+                                  tgt=float(muon),eraw=raw,pyr_d=None,pyr_raw=None,pyr_adj=None,
+                                  x0=_expo(pos,str(o['sym']),secn,i,nav,sh*px),xp=None,hard='mua',adds=[])
+            else:
+                p.epx=(p.epx*p.sh+px*sh)/(p.sh+sh); p.sh+=int(sh); p.adds.append((i,int(sh)))
+                if getattr(p,'hard',None) is None: p.hard='them'
+                p.xp=_expo(pos,str(o['sym']),secn,i,nav)
+            _ghi(o,i,True,'đã mua' if p is None else 'đã mua thêm',sh=int(sh),gia_tri=round(float(sh*px)),
+                 pct_thuc=round(float(sh*px/nav*100),2),sector=secn,
+                 rang_buoc=(None if binding=='muon' else AL.REASON_VI.get(binding,binding)))
+        return cash
     TV=d['TotalValue']; MC=d['MarketCap']; V=d['Volume']
     base_rng=(I['base_hi']-I['base_lo'])/np.where(I['base_lo']>0,I['base_lo'],np.nan)
     if int(C.get('base_len',30))!=30:          # research knob: indicators are built with 30
@@ -364,6 +476,7 @@ def _run_core(cfg=None, log=True):
                 add=AL.lots(min(max(0.0,p.tgt-p.sh*p.epx),room),c2)
                 if add>=100:
                     p.epx=(p.epx*p.sh+c2*add)/(p.sh+add); cash-=add*c2; p.sh+=add
+                    p.adds.append((i, int(add)))
                 p.stage=2
             else:
                 # Cond9 failed -> sell the probe at the open. T+2 settlement does not
@@ -394,7 +507,8 @@ def _run_core(cfg=None, log=True):
                   pnl_pct=round(float(op*(1-C['fee_sell']-SS)/p.epx-1)*100,2),
                   pnl_vnd=round(float(got-p.sh*p.epx)),reason='Cond9 không xác nhận — bán lệnh thăm dò',
                   sh=int(p.sh),frac=1.0,
-                  light=R['light'][p.ei],peak=round(float(p.peak)*100,1)))
+                  light=R['light'][p.ei],peak=round(float(p.peak)*100,1),
+                  **({'hard':p.hard} if getattr(p,'hard',None) else {})))
             del pos[sym]
         # ---------- LOP 8: BO THOAT ----------
         for sym in list(pos):
@@ -463,12 +577,19 @@ def _run_core(cfg=None, log=True):
                   pnl_vnd=round(float(got-sh*p.epx)),reason=r,
                   # so co ban lan nay + phan cua vi the (1/3 = den Cam; 1.0 = ban het) — hien thi "ban bao nhieu"
                   sh=int(sh),frac=round(float(frac),4),
-                  light=R['light'][p.ei],peak=round(float(p.peak)*100,1)))
+                  light=R['light'][p.ei],peak=round(float(p.peak)*100,1),
+                  # vi the mo / them bang lenh Hard: ban theo luat bot nhung van mang nhan Hard (28/10/2026)
+                  **({'hard':p.hard} if getattr(p,'hard',None) else {})))
                 if C.get('cb_enable'):
                     cb_streak = cb_streak+1 if trades[-1]['pnl_pct']<=0 else 0
                 p.sh-=sh
                 if frac<1: p.part=True
                 if p.sh<=0: del pos[sym]
+        # ---------- LENH HARD (anh Son chu dong, 28/10/2026) ----------
+        # Sau cua ra cua bot (dung gia dong cua cung phien), truoc lenh mua theo tin hieu: lenh tay
+        # duoc dung tien truoc, va bot khong mua trung ma vua Hard Buy (screen bo ma dang cam).
+        if _HB.get(i):
+            cash = _hard_phien(i, _HB[i], pos, cash)
         # ---------- LOP 0-7: MO LENH ----------
         smul=R['size'][i] if C['use_market_gate'] else 1.0
         # ---------- NGAT MACH BAO VE VON ----------
@@ -588,7 +709,7 @@ def _run_core(cfg=None, log=True):
                              part=False,pyr=False,sector=secn,bo_low=float(AL_[i,j]),
                              stage=(1 if two else 0), oi_ok=rw['oi_ok'], tgt=float(tgt),
                              eraw=_raw, pyr_d=None, pyr_raw=None, pyr_adj=None,
-                             x0=_expo(pos, sym, secn, i, nav, sh*px), xp=None)
+                             x0=_expo(pos, sym, secn, i, nav, sh*px), xp=None, hard=None, adds=[])
                 if day_log is not None: day_log[-1].update(taken=True,why=None,size=round(sh*px/nav,4))
                 if log: sigs.append(dict(date=str(cal[i]),sym=sym,score=round(float(sc),1),
                     px=round(float(PX[i,j])/1000,2),light=R['light'][i],sector=secn,pts=pts,
@@ -619,10 +740,12 @@ def _run_core(cfg=None, log=True):
                 if add<100: continue
             elif add<100 or (px*p.sh+add*px)>nav*C['max_pos'] or add*c2>cash: continue
             p.epx=(p.epx*p.sh+c2*add)/(p.sh+add); cash-=add*c2; p.sh+=add; p.pyr=True
+            p.adds.append((i, int(add)))
             p.pyr_d=str(cal[i]); p.pyr_raw=round(float(PX[i,p.j]),2); p.pyr_adj=round(float(px),2)
             p.xp=_expo(pos, sym, p.sector, i, nav)
     return dict(eq=eq,trades=trades,signals=sigs,R=R,blocked=blocked,pos=pos,
-                nav=nav,cash=cash,cal=cal,d=d,I=I,cfg=C,cb_log=cb_log,cands=cands_log)
+                nav=nav,cash=cash,cal=cal,d=d,I=I,cfg=C,cb_log=cb_log,cands=cands_log,
+                hard=dict(fills=_HLOG, pending=_HPEND))
 
 def metrics(r):
     eq=np.array([x[1] for x in r['eq']]); tr=r['trades']

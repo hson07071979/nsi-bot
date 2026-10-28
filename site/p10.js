@@ -78,6 +78,9 @@ function soTayJSON(){
     // `loai` chi phối chính bộ máy — manual.py đọc khoá này, mã trong đây không
     // bao giờ vào watchlist và không bao giờ kêu chuông.
     loai: d.loai || [],
+    // Lệnh Hard (28/10/2026) KHÔNG nằm trong bản nháp — giữ nguyên danh sách đang có trên repo.
+    // dangSoTay() thay khoá này bằng bản đọc thẳng từ repo ngay trước khi ghi.
+    hard: ((NSI.manual || D.manual || {}).hard) || [],
   }, null, 1);
 }
 
@@ -103,11 +106,20 @@ async function dangSoTay(){
   try {
     const url = `https://api.github.com/repos/${repo}/contents/manual.json`;
     const H = { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' };
-    let sha = null;
-    const cur = await fetch(url, { headers: H, cache: 'no-store' });
-    if (cur.ok) sha = (await cur.json()).sha;
+    let sha = null, hardRepo = null;
+    const cur = await fetch(url + '?t=' + Date.now(), { headers: H, cache: 'no-store' });
+    if (cur.ok) {
+      const j = await cur.json(); sha = j.sha;
+      // giữ nguyên lệnh Hard đang có trên repo — bản nháp sổ tay không được ghi đè chúng
+      try {
+        const txt = new TextDecoder().decode(Uint8Array.from(atob(String(j.content || '').replace(/\s/g, '')), c => c.charCodeAt(0)));
+        hardRepo = (JSON.parse(txt) || {}).hard || [];
+      } catch (e) { throw new Error('manual.json trên repo đang hỏng — không ghi đè (lệnh Hard có thể mất)'); }
+    }
 
-    const noi = soTayJSON();
+    const _o = JSON.parse(soTayJSON());
+    if (hardRepo) _o.hard = hardRepo;
+    const noi = JSON.stringify(_o, null, 1);
     // btoa không nuốt được tiếng Việt — phải mã hoá UTF-8 trước
     const b64 = btoa(String.fromCharCode(...new TextEncoder().encode(noi)));
     const r = await fetch(url, {
@@ -138,6 +150,7 @@ function pageNotebook(root){
     
   </div>
   <div id="nbwarn"></div>
+  <div id="hardbox"></div>
 
   <h2>Mã tôi theo dõi <span class="muted" style="font-size:15px;font-weight:400">→ chảy vào Watchlist, mục Ghim thủ công</span></h2>
   <div class="card">
@@ -476,6 +489,7 @@ function pageNotebook(root){
 
   render();
   veAn();
+  if (typeof veHard === 'function') { veHard(); hardNapMoi(); }
 }
 
 /* ============================================================================

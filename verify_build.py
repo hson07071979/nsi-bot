@@ -69,7 +69,9 @@ if R:
     # bay loi da tung mac: danh sach deal bi sap xep theo lai/lo lam sut gia
     nb = [x for x in R.get('remove_winners', []) if x.get('n_bo') == 0]
     if nb:
-        lech = abs(nb[0]['m']['total_return'] - D['prod']['metrics']['total_return'])
+        # robustness chay luat bot KHONG co lenh Hard cua anh Son -> so voi chi so rieng cua bot (28/10/2026)
+        _mb = D['prod'].get('metrics_bot') or D['prod']['metrics']
+        lech = abs(nb[0]['m']['total_return'] - _mb['total_return'])
         check(lech < 0.05, f'duong von dung lai tu deal lech {lech:.1%} so backtest that '
                            '— nhieu kha nang thu tu deal bi sap xep sai')
 

@@ -44,7 +44,7 @@ data['vuot_dong_tien'] = vuot.dang_vuot(data.get('asof'))
 js = ''.join(open(f'site/{p}', encoding='utf-8').read() for p in [
     # exit_rules.js = ban JS cua exit_rules.py (TOP110 + S1, 26/09/2026) — test_exit_js.py doi chieu
     'part2.js', 'exit_rules.js', 'p3.js', 'p4.js', 'p5.js', 'part6.js',
-    'p8.js', 'p9.js', 'p10.js', 'p11.js', 'p12.js',
+    'p8.js', 'p9.js', 'p10.js', 'p22.js', 'p11.js', 'p12.js',
     # p13 = lop real-time VPS (ghi de napRealtime cua p11 -> phai SAU p11)
     # p14 = trang Kiem dinh (khai bao pageKiemDinh, duoc p3 tham chieu — ham
     #       khai bao duoc keo len dau pham vi nen dat sau van chay dung)

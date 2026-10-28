@@ -100,6 +100,10 @@ def main():
         # ke hoach ban phien toi cho ma trong So tay anh Son (03/10/2026) — chuong ntfy cua anh Son
         ke_hoach_so_tay=D.get('ke_hoach_so_tay') or [],
         signals_today=D.get('signals_today') or [],
+        # LENH HARD cua anh Son (28/10/2026): ket qua bo may da xu ly (seen/fills/pending).
+        # So ghi tien (portfolio.py) lam theo fills; trang khoa nut Hoan tac theo seen;
+        # buoc `kiem` cua daily.yml dung lai trang khi manual.json co lenh chua nam trong seen.
+        hard=D.get('hard') or dict(seen=[], fills=[], pending=[], loi_khuon=[], so_lenh=0),
         signals_recent=D.get('signals_recent') or [],
         light_by_date=D.get('light_by_date') or {},
         spec_u=D.get('spec_u'),

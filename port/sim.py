@@ -407,6 +407,8 @@ def tong_ket(so: dict, P: dict) -> dict:
                 vni_pct=round(vni * 100, 2) if vni is not None else None,
                 vuot_vni=round((lai - vni) * 100, 2) if vni is not None else None,
                 sut_giam_lon_nhat=round(dd * 100, 2), tien_mat_pct=round(so['tien'] / n1['nav'] * 100, 1),
+                # 28/10/2026 (anh Sơn): trang /port bỏ so với VN-Index, chỉ hiện đã giải ngân bao nhiêu % NAV
+                da_giai_ngan_pct=round(sum(v['gia_tri'] for v in vt) / n1['nav'] * 100, 1) if n1['nav'] else None,
                 so_lenh=len(so['lenh']), so_lenh_ban=len(ban),
                 ban_lai=sum(1 for l in ban if (l.get('lai') or 0) > 0), vi_the=sorted(vt, key=lambda x: -x['gia_tri']),
                 co_mo=[c for c in so['co'] if not c.get('xong')])

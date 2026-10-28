@@ -171,11 +171,34 @@ def pack(r,name):
         yearly=yearly(eq), lights=dict(Counter(e[2] for e in eq)),
         doors=[{'door':k,'n':v,'pct':round(v/len(tr)*100,1),'median':dmed[k]} for k,v in doors.most_common()],
         curve=[[e[0],round(float(e[1])/1e9,4),e[2]] for e in eq],
-        trades=[{k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','pyr_adj','held','pnl_pct','pnl_vnd','reason','light','peak','sh','frac')} for t in tr])
+        trades=[dict({k:t.get(k) for k in ('sym','sector','entry','exit','entry_px','exit_px','entry_raw','exit_raw','pyr_date','pyr_raw','pyr_adj','held','pnl_pct','pnl_vnd','reason','light','peak','sh','frac')},
+                     # nhan lenh Hard (28/10/2026) — chi co khoa khi lenh/vi the do anh Son bam tay
+                     **{k:t[k] for k in ('hard','hard_id') if t.get(k)}) for t in tr])
 
 if __name__=='__main__':
     out={}
-    r=E.run(PROD, log=True); out['prod']=pack(r,'Nguyễn Sơn Bot v3 — FireAnt')
+    # LENH HARD cua anh Son (manual.json -> hard, 28/10/2026): chi lan chay CHINH nay co lenh tay.
+    import hard as HD
+    _hard, _hard_loi = HD.doc()
+    for _e in _hard_loi: print('LENH HARD hong khuon:', _e, flush=True)
+    r=E.run(dict(PROD, hard_orders=_hard), log=True); out['prod']=pack(r,'Nguyễn Sơn Bot v3 — FireAnt')
+    _hk = r.get('hard') or {}
+    out['hard'] = dict(
+        # id da duoc ban dung xu ly (khop hoac tu choi) — trang khoa nut Hoan tac theo danh sach nay
+        seen=[x['id'] for x in _hk.get('fills') or []],
+        fills=_hk.get('fills') or [], pending=_hk.get('pending') or [], loi_khuon=_hard_loi,
+        so_lenh=len(_hard))
+    # Chi so cua RIENG luat bot (khong lenh tay) — lop kiem dinh (robustness) chay khong co lenh Hard,
+    # nen verify_build so voi khoi nay. Khong co lenh Hard nao khop thi y het metrics.
+    if any(_x.get('ok') for _x in out['hard']['fills']):
+        out['prod']['metrics_bot'] = E.metrics(E.run(PROD, log=False))
+    else:
+        out['prod']['metrics_bot'] = out['prod']['metrics']
+    for _x in out['hard']['fills']:
+        print('LENH HARD', _x['phien'], _x['loai'].upper(), _x['sym'], _x['gia'], '->', 'KHOP' if _x['ok'] else 'TU CHOI', _x['ly_do'],
+              ('%s cp' % _x.get('sh')) if _x.get('sh') else '', flush=True)
+    for _x in out['hard']['pending']:
+        print('LENH HARD CHO', _x['ngay'], _x['loai'].upper(), _x['sym'], '-', _x['ly_do'], flush=True)
     from dealstats import stats as _ds, deals as _dl
     out['prod']['deal_metrics']=_ds(r['trades'])
     out['prod']['deals']=_dl(r['trades'])
@@ -250,6 +273,8 @@ if __name__=='__main__':
         # lenh do truot DK9 (stage 3) — se ban ATC phien sell_from (T+3)
         'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
         'b10':int(p.b10),'b20':int(p.b20),'part':bool(p.part),'light':R['light'][p.ei],
+        # 'mua' = vi the mo bang Hard Buy, 'them' = Hard Buy them vao vi the bot (28/10/2026)
+        'hard':getattr(p,'hard',None),
         # ty trong (ma, nganh, tong)/NAV luc vao va luc nhoi — chi ghi nhan (26/09/2026)
         'x0':getattr(p,'x0',None),'xp':getattr(p,'xp',None),
         # trang thai cua ra theo exit_rules (S1: peak_gain, profit_floor, sellable, action...)
@@ -282,7 +307,10 @@ if __name__=='__main__':
                  'cash':round(float(r['cash'])),
                  # held + probe_fail: live_scan dem lenh do treo (luat max_unconf, 03/10/2026)
                  'positions':[{'sym':p.sym,'sector':p.sector,'shares':int(p.sh),
-                               'held':int(len(cal)-1-p.ei),
+                               'held':int(len(cal)-1-p.ei),'hard':getattr(p,'hard',None),
+                               'entry':str(cal[p.ei]),
+                               # cac lan MUA THEM [phien, so co] (nhoi / Hard) — trang tinh phan chua ve tai khoan
+                               'adds':[[str(cal[ia]),int(a)] for (ia,a) in (getattr(p,'adds',None) or [])],
                                'probe_fail':bool(getattr(p,'stage',0)==3 or (getattr(p,'stage',0)==1 and not getattr(p,'oi_ok',True))),
                                'value':round(float(r['d']['AdjClose'][-1,p.j] if r['d']['AdjClose'][-1,p.j]==r['d']['AdjClose'][-1,p.j] else p.epx)*int(p.sh))}
                               for p in r['pos'].values()]}

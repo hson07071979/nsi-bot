@@ -137,7 +137,7 @@ function lichSuLenh(){
       <td class="r ${cls(t.pnl_pct)}" style="font-weight:660">${pc(t.pnl_pct, 2)}</td>
       <td class="r ${t.tk==null?'':cls(t.tk)}">${pc(t.tk, 2)}</td>
       <td class="r">${t.peak ? '+' + String(t.peak).replace('.', ',') + '%' : '—'}</td>
-      <td class="muted" style="font-size:13px">${esc(t.reason)}${t.frac && t.frac < 1 ? ' (bán 1 phần)' : ''}</td>
+      <td class="muted" style="font-size:13px">${t.hard ? nhanHard(t.hard) + ' ' : ''}${esc(t.reason)}${t.frac && t.frac < 1 ? ' (bán 1 phần)' : ''}</td>
       <td><span class="pill ${t.light}">${LIGHTNAME[t.light] || t.light || ''}</span></td>
       <td><button class="mini" onclick="openChart('${esc(t.sym)}')">Nến</button></td></tr>`).join('')
       : '<tr><td colspan="13" class="muted">Không có lệnh nào khớp bộ lọc.</td></tr>';

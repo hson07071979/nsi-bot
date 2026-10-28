@@ -130,7 +130,21 @@ jobs:
               print(f'cau hinh PROD ({len(prod)} khoa) lech trang: {lech or "khong"}')
           except Exception as e:
               print(f'  khong so duoc cau hinh: {e}')
-          bo_qua = bool(phien) and asof == phien and du_day and so_xong and cau_hinh_khop
+          # 4. LENH HARD (28/10/2026): manual.json co lenh chua huy ma ban dang dang chua xu ly
+          #    (id khong nam trong thresholds.hard.seen, phien <= phien moi nhat) => CHAY.
+          #    Lenh bam sau khi trang da dung xong phien do (vd 23h) van vao so ngay luot dem nay.
+          hard_moi = []
+          try:
+              mn = get('https://raw.githubusercontent.com/'
+                       f'{os.environ["CHU"]}/{os.environ["REPO"]}/main/manual.json')
+              da = set(((t.get('hard') or {}).get('seen')) or [])
+              hard_moi = [o.get('id') for o in (mn.get('hard') or [])
+                          if isinstance(o, dict) and not o.get('huy') and o.get('id') not in da
+                          and str(o.get('ngay') or '9999')[:10] <= (phien or asof or '0000')]
+          except Exception as e:
+              print(f'  chua doc duoc manual.json: {e}')
+          print(f'lenh Hard chua vao so       : {hard_moi or "khong"}')
+          bo_qua = bool(phien) and asof == phien and du_day and so_xong and cau_hinh_khop and not hard_moi
 
           print(f'phien moi nhat (FireAnt)  : {phien or "KHONG HOI DUOC"}')
           print(f'trang dang dung phien     : {asof or "?"}')

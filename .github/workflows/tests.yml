@@ -51,9 +51,12 @@ jobs:
         run: python tests/test_vuot.py
       - name: Thứ tự ưu tiên điểm + Vol/TB20 (engine = allocator = live)
         run: python tests/test_rank_r38.py
+      - name: Lệnh Hard (khuôn lệnh; phần bộ máy tự bỏ qua khi không có data/fa.npz)
+        run: python tests/test_hard.py
       - name: Lọc port — chấm mốc, sổ bất đồng, hồ sơ máy + cú pháp trang /port
         run: |
           pip install -q pytest
           pip install -q numpy
           PORT_KHONG_CHUONG=1 python -m pytest -q tests/test_port.py tests/test_port_moi.py tests/test_loc_quy.py tests/test_pool.py tests/test_tu_hoc.py
           node -e "import('./port/worker_port_page.js').then(m=>{if(typeof m.handlePort!=='function')process.exit(1)})"
+          node tests/test_trang_port.mjs

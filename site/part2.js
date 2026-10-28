@@ -77,6 +77,10 @@ const vn  = x => (x==null||x==='')?'—':String(x).replace('.',',');
 const pct = (x,d=1)=> (x*100).toFixed(d).replace('.',',')+'%';
 const sg  = (x,d=1)=> (x>=0?'+':'')+(x*100).toFixed(d).replace('.',',')+'%';
 const num = (x,d=0)=> x.toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
+/* nhãn lệnh tay của anh Sơn (Hard Buy / Hard Sell, 28/10/2026) — dùng chung mọi bảng */
+const nhanHard = h => `<span class="tag C" style="margin-left:0;font-size:10.5px;padding:1px 6px" title="${
+  h === 'ban' ? 'Anh Sơn bán chủ động (Hard Sell), không chờ tín hiệu bot' :
+  h === 'them' ? 'Anh Sơn mua thêm chủ động (Hard Buy) vào vị thế của bot' : 'Anh Sơn mua chủ động (Hard Buy), bot quản lý điểm bán'}">Hard</span>`;
 const vnd = x => (Math.abs(x)>=1e9? (x/1e9).toFixed(2).replace('.',',')+' tỷ' : (x/1e6).toFixed(0)+' tr');
 const cls = x => x>=0?'pos':'neg';
 const el  = (t,c,h)=>{const e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;};
