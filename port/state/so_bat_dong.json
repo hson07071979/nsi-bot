@@ -128,5 +128,25 @@
   "ly_do_may": "10 chủ đề nhắc mã, 40 chủ đề cùng ngành trong 10 ngày; điểm chiều -0.6",
   "gia0": 56.2,
   "vni0": 1689.84
+ },
+ {
+  "ma": "MBB",
+  "may": "daily",
+  "ngay": "2026-10-27",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -1.1% so với MA50, -4.0% so với MA200",
+  "gia0": 19.65,
+  "vni0": 1761.87
+ },
+ {
+  "ma": "VNM",
+  "may": "daily",
+  "ngay": "2026-10-27",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -2.9% so với MA50, -3.3% so với MA200",
+  "gia0": 57.6,
+  "vni0": 1761.87
  }
 ]
