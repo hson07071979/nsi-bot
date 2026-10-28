@@ -1,0 +1,129 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Tách lợi nhuận bền (hết khấu hao) khỏi lợi nhuận chu kỳ (thủy văn) khi định giá cổ phiếu điện.",
+ "ma": "NT2",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: El Nino 2026–2027 (hơn 700 hồ thủy điện thiếu nước) → điện khí được huy động nhiều; giá khí gắn giá dầu (khoảng 10 USD/MMBTU, +6–8%) chuyển qua giá điện hợp đồng; khung giá điện khí 2026 trần 3.410,64 đồng/kWh (+11%).",
+  "nganh": "Ngành điện 2026: nhu cầu điện 9 tháng +9,3% (EVN 06/10), thủy điện tháng 7–8 giảm khoảng 13% do El Nino, điện khí và nhiệt điện được ưu tiên — POW, NT2 là nhóm hưởng lợi rõ nhất trong quý 3 (MBS 27/09). Giá thị trường điện cạnh tranh khoảng 1.200 đồng/kWh tháng 7–8. Trung vị nhóm điện – khí cách đỉnh khoảng 24%. Rủi ro ngành: La Nina quay lại làm thủy điện chiếm lại sản lượng; NT3, NT4 (LNG) cạnh tranh huy động từ 2026–2027.",
+  "doanh_nghiep": "Quý 3/2026 (BCTC 19/10): doanh thu 2.807 tỷ (+46%), LNST 419 tỷ (+95%), lõi +118%; sản lượng 1.161 triệu kWh (+48%), Qc +24%. 9 tháng: LNST 906 tỷ (+57%) — 211% kế hoạch năm 430 tỷ. Khấu hao giảm 78% (tài sản chính hết khấu hao). Tiền + đầu tư ngắn hạn 5.374 tỷ (khoảng 48% tổng tài sản). Chi phí bảo dưỡng 100.000 giờ (119 tỷ) ghi bổ sung khi soát xét.",
+  "mo_hinh_kd": "Một nhà máy điện khí chu trình hỗn hợp 750 MW (Nhơn Trạch, Đồng Nai), bán điện cho EVN theo hợp đồng Qc (khoảng 89–92% sản lượng) và thị trường cạnh tranh. Khí từ PV GAS (bổ sung Hải Thạch – Mộc Tinh 2026–2030).",
+  "lanh_dao": "PV Power 59,37%. Chủ tịch Uông Ngọc Hải, Giám đốc Ngô Đức Nhân. Cổ tức 2025 10% (chốt 30/10, trả 16/11); kế hoạch 2026 15%. Dự án Nhơn Trạch 5 (300–600 MW, khoảng 9.000 tỷ) đang nghiên cứu.",
+  "chuoi_gia_tri": "Hạ nguồn chuỗi khí: mua khí của GAS, bán điện cho EVN.",
+  "dan_nguoc_vi_mo": "Nhỏ trong hệ thống (khoảng 2% sản lượng); vai trò đảm bảo nguồn điện miền Nam mùa khô."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt a, c và qua lọc nền thấp; trượt b về kỹ thuật (PEG 0,01 lúc đỉnh → 0,03 nay — cả hai đều cực thấp vì nền lợi nhuận năm trước thấp) và trượt d (nền 30 phiên 18,5%).",
+   "bang_chung": [
+    "FACT: LN 4 quý +160%, nền 18,5%, cách đỉnh −17% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Tăng trưởng 2026 có hai phần: bền (hết khấu hao, tiết kiệm hơn 500 tỷ/năm — Yuanta) và chu kỳ (El Nino đẩy sản lượng +48%). Phần chu kỳ sẽ giảm khi mưa trở lại 2027; P/E 4,8 đã chiết khấu điều đó.",
+   "bang_chung": [
+    "FACT: Khấu hao 9 tháng giảm 401 tỷ (−78%) (Vietcap 19/10)",
+    "FACT: Yuanta dự phóng LNST 2027 −7% (27/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Quý 3 +95%; 9 tháng 211% kế hoạch.",
+  "Hết khấu hao: tiết kiệm hơn 500 tỷ/năm — bền.",
+  "P/E 4,8; tiền mặt khoảng 48% tài sản.",
+  "Cổ tức 10% (trả 16/11), kế hoạch 15%.",
+  "Bảy CTCK MUA, mục tiêu 27.000–29.000."
+ ],
+ "bear": [
+  "Sản lượng 2026 nhờ El Nino — không lặp lại khi mưa trở lại.",
+  "NT3, NT4 cạnh tranh huy động.",
+  "Giá khí tăng; khí nội địa chỉ đảm bảo tới 2028.",
+  "Chi phí bảo dưỡng định kỳ lặp lại.",
+  "Trượt d (nền rộng 18,5%)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Cổ phiếu điện rẻ nhất ngành với lợi nhuận tăng gấp đôi và tiền mặt dày."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Đỉnh sản lượng thủy văn; lợi nhuận 2027 sẽ đi ngang hoặc giảm."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Định giá đã chiết khấu chu kỳ; phần bền (khấu hao) đủ đỡ. Thiếu nền giá."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: chờ điểm vào — cơ bản đạt, chờ d."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (Q4/25 552,8 tỷ, NSI) — nền cao, kiểm tra độ bền."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: sản lượng quý 4 giảm hơn 20% cùng kỳ; Qc 2027 được phân bổ thấp hơn 2026 đáng kể; chi phí bảo dưỡng lớn bất thường.",
+ "dinh_gia": "P/E 4,81 so với trung vị 3 năm 15,89; P/B 1,21 so với 1,48 (NSI 28/10, BCTC Q2/26). Ngành Điện, nước & xăng dầu khí đốt (4 mã trong NSI): P/E trung vị 8,5, P/B 1,26, ROE 17,7%; mã này ROE 25,9%. Giá 24,05 cách đỉnh 1 năm -17%, cả ngành -24%. ACBS 28/10/2026: MUA 28.100 (LNST 2026 1.591 tỷ, P/E 4,4x). Yuanta 27/10: MUA 27.000. BETA 21/10: MUA 27.300. Vietcap 19/10: MUA 29.000. BSC 16/06: MUA 29.000. VDSC 17/06: MUA 28.500. Kỳ vọng ngầm trong giá 24.050 (P/E khoảng 4,8): thị trường giả định lợi nhuận 2026 là đỉnh và giảm mạnh sau đó.",
+ "pitch": "Nhơn Trạch 2 là nhà máy điện khí vừa hết khấu hao, lợi nhuận 9 tháng gấp đôi kế hoạch năm nhờ được huy động nhiều khi thủy điện thiếu nước. Cổ phiếu rẻ (P/E dưới 5), tiền mặt dày, cổ tức đều. Chúng tôi chờ giá tạo nền ổn định hơn để mua.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 8,
+   "nganh": 8,
+   "doanh_nghiep": 8,
+   "gia_sai": 8
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 9,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 37,
+  "so_30": 27,
+  "tong": 64,
+  "dinh_gia_sai": 8,
+  "gia_sai": {
+   "tin_xau": "Lo El Nino kết thúc, NT3/NT4 cạnh tranh, kế hoạch 2026 giảm 62%.",
+   "co_that_su_xau": "Một phần — sản lượng chu kỳ là thật; kế hoạch thấp chỉ là thận trọng.",
+   "trang_thai": "P/E 4,8 — đã phản ánh gần hết.",
+   "ky_vong_ngam": "Lợi nhuận giảm khoảng 40% năm 2027.",
+   "nguoi_ban_can_bien": "Nhà đầu tư chốt lời sau khi nhận cổ tức (chốt quyền 30/10).",
+   "counter": "Phản biện: nếu lợi nhuận 2027 chỉ giảm 7% (Yuanta), P/E thực chỉ khoảng 5.",
+   "phep_thu": "Sản lượng quý 4 và phân bổ Qc 2027.",
+   "ket_luan": "ĐÃ PHẢN ÁNH"
+  },
+  "ket_luan": "CHỜ ĐIỂM VÀO — đạt a, c; trượt d (nền rộng); b trượt kỹ thuật",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

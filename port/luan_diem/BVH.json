@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Với công ty bảo hiểm, tách lợi nhuận do lãi suất (hoàn nhập dự phòng) khỏi lợi nhuận do bán bảo hiểm.",
+ "ma": "BVH",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: lãi suất cao → lợi suất danh mục 297.000 tỷ (94% tài sản) tăng, đồng thời giảm dự phòng lãi cam kết tối thiểu với khách nhân thọ. Hai lực này đảo chiều cùng lúc khi lãi suất hạ (TCBS 18/08) — đúng hướng NHNN đang đi từ tháng 10.",
+  "nganh": "Ngành bảo hiểm đang ở pha \"phí đi ngang, lợi nhuận đến từ đầu tư\": doanh thu phí nhân thọ toàn ngành 6 tháng 2026 giảm khoảng 4,5% (khủng hoảng niềm tin bancassurance chưa hết), phi nhân thọ tăng nhờ xe và tài sản. Lợi nhuận ngành chủ yếu từ danh mục đầu tư (tiền gửi, trái phiếu Chính phủ khoảng 80%) — lãi suất tiền gửi kỳ hạn dài tăng nửa đầu năm giúp lợi suất danh mục lên; nhưng NHNN yêu cầu hạ lãi huy động từ tháng 10 sẽ làm lợi suất tái đầu tư giảm với độ trễ vài quý. Thiên tai (bão cuối năm) là rủi ro bồi thường mùa vụ của phi nhân thọ.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026 (đến 28/10). 6 tháng 2026: doanh thu hợp nhất 32.004 tỷ (+9,2%), LNTT 2.289 tỷ (+34,5%), LNST 1.863 tỷ (+33,9%). Quý 2 LNTT 1.283 tỷ (+50%) chủ yếu nhờ hoàn nhập 2.377 tỷ dự phòng lãi cam kết — khoản một lần. Phí bảo hiểm 6 tháng đi ngang (nhân thọ −3,3%, phi nhân thọ +16%); chi trả đáo hạn nhân thọ +20%; tỷ lệ chi phí lên 27,6%. Công ty con BVS quý 3 LNST −79%.",
+  "mo_hinh_kd": "Nhân thọ (Bảo Việt Nhân thọ, 77% phí) + phi nhân thọ (23%) + quản lý quỹ BVF (AUM khoảng 165.000 tỷ) + chứng khoán BVSC (59,9%). Lợi nhuận = lãi gộp bảo hiểm (biên 6,4% 6 tháng — cao nhất nhiều năm) + thu nhập đầu tư (lợi suất 6,0%).",
+  "lanh_dao": "Bộ Tài chính 65%, Sumitomo Life 22,1%, SCIC 3% — free float khoảng 10%. Chủ tịch Trần Thị Diệu Hằng. Kế hoạch 2026–2030: Nhà nước giảm dần về 51%; BVSC giảm sở hữu xuống dưới 50%; BVI cổ phần hóa. Cổ tức 2025 8,09% (khoảng 809 đồng).",
+  "chuoi_gia_tri": "Đầu ngành bảo hiểm Việt Nam; nhà đầu tư tổ chức lớn trên thị trường tiền gửi và trái phiếu Chính phủ.",
+  "dan_nguoc_vi_mo": "Với danh mục gần 300.000 tỷ chủ yếu tiền gửi và trái phiếu Chính phủ, BVH là bên cho vay lớn của hệ thống; việc chuyển 23.600 tỷ sang tiền gửi dài hạn lãi tới 8,6% (quý 2) cho thấy ngân hàng đang trả giá cao cho vốn dài."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b (PEG 0,50); trượt a (NSI không tách được lợi nhuận cốt lõi của công ty bảo hiểm), d (nền 30 phiên 15%), c không có ngành so sánh. Qua lọc nền thấp.",
+   "bang_chung": [
+    "FACT: LN 4 quý +36,4%, nền 14,9%, cách đỉnh −19% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Tăng trưởng 2026 phần lớn là hoàn nhập dự phòng lãi cam kết khi lãi suất tăng — khoản này đảo chiều khi lãi suất hạ. Phí bảo hiểm không tăng; vì vậy lợi nhuận 2027 khó giữ đà +35%.",
+   "bang_chung": [
+    "FACT: Hoàn nhập 2.377 tỷ quý 2; số dư dự phòng còn 14.168 tỷ (TCBS 18/08)"
+   ]
+  }
+ ],
+ "bull": [
+  "Đầu ngành, biên lãi gộp bảo hiểm cao nhất nhiều năm.",
+  "Lợi suất danh mục lên 6,0% — đã khóa tiền gửi dài hạn lãi cao.",
+  "Thoái vốn Nhà nước về 51% là chất xúc tác dài hạn.",
+  "Vietcap MUA 83.600, SBBS 87.000, eBroker 86.470.",
+  "Dư dự phòng lãi cam kết 14.168 tỷ — còn đệm lớn."
+ ],
+ "bear": [
+  "Lợi nhuận 2026 dựa vào hoàn nhập một lần.",
+  "Lãi suất hạ làm lợi suất tái đầu tư và dự phòng cùng xấu đi.",
+  "Phí nhân thọ giảm, chi trả đáo hạn +20%, chi phí tăng.",
+  "BVS quý 3 −79%; free float 10%, thanh khoản mỏng.",
+  "P/B khoảng 2 — đắt hơn sổ sách; trượt a, d; chưa có BCTC quý 3."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Danh mục đầu tư đã khóa lãi cao; thoái vốn Nhà nước có thể định giá lại cổ phiếu."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Tăng trưởng là kế toán của lãi suất, không phải kinh doanh bảo hiểm; lãi suất đã quay đầu."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Chờ BCTC quý 3 để biết phần hoàn nhập có tiếp tục không; thoái vốn chưa có lịch."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi — chưa có số quý 3 và tăng trưởng phụ thuộc lãi suất đang đảo chiều."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 759,3 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: LNST quý 3 thấp hơn cùng kỳ (759 tỷ); hoàn nhập dự phòng đảo chiều thành trích lập; thiên tai quý 4 đẩy bồi thường phi nhân thọ trên 55%.",
+ "dinh_gia": "P/E 14,31 so với trung vị 3 năm 18,11; P/B 1,81 so với 1,64 (NSI 28/10, BCTC Q2/26). Ngành Bảo hiểm (1 mã trong NSI): P/E trung vị 14,3, P/B 1,81, ROE 13,2%; mã này ROE 13,2%. Giá 69,80 cách đỉnh 1 năm -19%, cả ngành 0%. Vietcap 31/08/2026: MUA 83.600. eBroker 09/07: 86.470. SBBS 22/04: 87.000. HASECO 02/10: THEO DÕI 77.200. VISC 16/07: 64.000. TCBS 18/08: quan sát (dự phóng LNTT 2026 4.352 tỷ). Kỳ vọng ngầm trong giá 69.800 (P/E khoảng 14–15, P/B khoảng 1,8–2): thị trường đã trả cho lợi nhuận 2026 cao — cần lợi nhuận 2027 không giảm.",
+ "pitch": "Bảo Việt là doanh nghiệp bảo hiểm lớn nhất Việt Nam, lợi nhuận nửa đầu năm tăng 34%. Nhưng phần lớn mức tăng đến từ việc giảm dự phòng khi lãi suất cao — khi lãi suất hạ, lực này đảo chiều. Phí bảo hiểm chưa tăng. Chúng tôi chờ báo cáo quý 3.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 9,
+   "nganh": 7,
+   "doanh_nghiep": 6,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 3,
+   "kqkd": 6,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 31,
+  "so_30": 18,
+  "tong": 49,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "tin_xau": "Phí nhân thọ giảm, BVS lỗ tự doanh, lãi suất bắt đầu hạ.",
+   "co_that_su_xau": "Có — độ nhạy lãi suất là thật và đang đảo chiều.",
+   "trang_thai": "Giá −19% từ đỉnh nhưng vẫn +23% từ đầu năm — chưa phản ánh hết.",
+   "ky_vong_ngam": "P/B khoảng 2: thị trường kỳ vọng ROE 13% duy trì.",
+   "nguoi_ban_can_bien": "Công đoàn đăng ký bán 194.370 cổ phiếu (nhỏ); Nhà nước có thể bán khi thoái vốn.",
+   "counter": "Phản biện: nếu thoái vốn có lịch cụ thể và Sumitomo mua thêm, cổ phiếu được định giá lại bất kể lãi suất.",
+   "phep_thu": "BCTC quý 3/2026 (dự kiến cuối 10) và phần hoàn nhập dự phòng.",
+   "ket_luan": "CHƯA PHẢN ÁNH HẾT"
+  },
+  "ket_luan": "THEO DÕI — chưa có BCTC quý 3; tăng trưởng phụ thuộc hoàn nhập dự phòng",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}
