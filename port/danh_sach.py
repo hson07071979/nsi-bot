@@ -145,8 +145,21 @@ def _pe_tai(rows: list[dict], B, sym: str, d: str):
     return round(pe * float(a[i]) / float(a[iq]), 2), g
 
 
-def bon_dieu_kien(r: dict, rows: list[dict] | None, B) -> dict:
-    """r = một dòng bảng pool (pool.dung_bang). Mỗi điều kiện: dat True/False/None (thiếu dữ liệu) + câu dễ đọc."""
+def loi_4q(bc: dict | None):
+    """Lợi nhuận KINH DOANH CỐT LÕI 4 quý gần nhất so với 4 quý trước đó, từ bctc.phan_tich (khoản 'loi':
+    doanh nghiệp = lãi gộp − chi phí bán hàng, quản lý; ngân hàng = thu lãi + phí − chi phí hoạt động).
+    → (nay, truoc, % thay đổi | None). Thiếu 8 quý thì None."""
+    q = [x.get('loi') for x in (bc or {}).get('quy') or []]
+    if len(q) < 8 or any(v is None for v in q[-8:]):
+        return None
+    nay, truoc = sum(q[-4:]), sum(q[-8:-4])
+    pct = round((nay - truoc) / truoc * 100, 1) if truoc > 0 else None
+    return dict(nay=round(nay, 1), truoc=round(truoc, 1), pct=pct)
+
+
+def bon_dieu_kien(r: dict, rows: list[dict] | None, B, bc: dict | None = None) -> dict:
+    """r = một dòng bảng pool (pool.dung_bang). Mỗi điều kiện: dat True/False/None (thiếu dữ liệu) + câu dễ đọc.
+    bc = bctc.phan_tich của mã (nếu có) → điều kiện a xét thêm lợi nhuận kinh doanh cốt lõi 4 quý."""
     f, so = r.get('f') or {}, r.get('so') or {}
     lk = r.get('lk') or dict(cfo_ty=r.get('cfo_ty'), tim=r.get('tim'), tim_vi=r.get('tim_vi'))
     tc = any(k.lower() in (r.get('nganh') or '').lower() for k in NGANH_TAI_CHINH)
@@ -156,10 +169,15 @@ def bon_dieu_kien(r: dict, rows: list[dict] | None, B) -> dict:
     if np4 is None:
         out['a'] = dict(dat=None, cau='thiếu số lợi nhuận 4 quý')
     else:
-        ok = np4 > 0 and not tim and (tc or cfo is None or cfo > 0)
+        l4 = loi_4q(bc)
+        cot_loi_ok = l4 is None or (l4['pct'] is not None and l4['pct'] > 0) or (l4['truoc'] <= 0 < l4['nay'])
+        ok = np4 > 0 and not tim and cot_loi_ok and (tc or cfo is None or cfo > 0)
         if ok and not tc and cfo is None:
             ok = None                                   # chưa có số tiền từ kinh doanh → chưa xác nhận được
         cau = f'LN 4 quý {np4:+.1f}%'
+        if l4:
+            cau += (f' · lợi nhuận kinh doanh cốt lõi 4 quý {l4["pct"]:+.1f}%' if l4['pct'] is not None else
+                    f' · lợi nhuận kinh doanh cốt lõi 4 quý {l4["truoc"]:,.0f} → {l4["nay"]:,.0f} tỷ'.replace(',', '.'))
         if tim:
             cau += ' · lãi bất thường: ' + str(lk.get('tim_vi') or '')
         if not tc:
@@ -224,8 +242,11 @@ def _ket_luan(t: dict):
     return str(pd.get('ket_luan') or '').strip().upper(), _num(pd.get('tong'))
 
 
-def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_cam: set[str] | None = None) -> dict:
-    """bang = pool.dung_bang (đã chấm); luan = {mã: luận điểm}; dang_cam = mã sổ giả lập đang cầm."""
+def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_cam: set[str] | None = None,
+        bc: dict | None = None) -> dict:
+    """bang = pool.dung_bang (đã chấm); luan = {mã: luận điểm}; dang_cam = mã sổ giả lập đang cầm;
+    bc = {mã: bctc.phan_tich} (lợi nhuận cốt lõi cho điều kiện a)."""
+    bc = bc or {}
     dang_cam = set(dang_cam or ())
     by = {r['ma']: r for r in bang}
     dat = sorted((r for r in bang if r['dat']), key=lambda r: (r['f'].get('nen30') if r['f'].get('nen30') is not None else 9, r['ma']))
@@ -243,7 +264,7 @@ def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_ca
         kl, diem = _ket_luan(t)
         q_ma = (r or {}).get('quy') or ((r or {}).get('so') or {}).get('quy')
         thieu = du_khung(t, q_ma)
-        dk = bon_dieu_kien(r, (rows_f or {}).get(s), B) if r else None
+        dk = bon_dieu_kien(r, (rows_f or {}).get(s), B, bc.get(s)) if r else None
         dong = dict(ma=s, nganh=(r or {}).get('nganh'), ket_luan=kl, diem=diem, thieu=thieu,
                     qua_loc=bool(r and r['dat']), loai_loc=(r or {}).get('loai') or (['không có trong vũ trụ TOP110 / watchlist'] if not r else []),
                     nen30=((r or {}).get('f') or {}).get('nen30'), tu_dinh=((r or {}).get('f') or {}).get('tu_dinh'),
@@ -300,7 +321,7 @@ def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_ca
             continue
         ung_vien.append(dict(ma=r['ma'], nganh=r['nganh'], nen30=r['f'].get('nen30'), tu_dinh=r['f'].get('tu_dinh'),
                              diem_pool=r['diem'], thu_tu_chat=thu_tu[r['ma']],
-                             bon_dk=bon_dieu_kien(r, (rows_f or {}).get(r['ma']), B), vi_sao=r.get('vi_sao')))
+                             bon_dk=bon_dieu_kien(r, (rows_f or {}).get(r['ma']), B, bc.get(r['ma'])), vi_sao=r.get('vi_sao')))
         if len(ung_vien) >= 30:
             break
     return dict(giai_ngan=giai_ngan, can_them=can_them, giu_khong_mua=giu, loai=loai, ung_vien=ung_vien,

@@ -167,3 +167,16 @@ def test_sim_tran_10_ma():
 def test_luat_hash_khong_doi():
     # danh sách mới không được đổi luat_hash (đổi = sổ chạy lại quá khứ bằng danh sách hôm nay = nhìn trước)
     assert 'toi_da_ma' not in SM.LUAT and SM.TOI_DA_MA == 10
+
+
+def test_dieu_kien_a_xet_loi_nhuan_cot_loi():
+    # LN sau thuế 4 quý tăng nhờ khoản một lần, nhưng kinh doanh cốt lõi 4 quý giảm → không phải tăng trưởng thật
+    B = _B({'A': _gia_nen()})
+    giam = dict(quy=[dict(loi=100.0)] * 4 + [dict(loi=80.0)] * 4)
+    tang = dict(quy=[dict(loi=80.0)] * 4 + [dict(loi=100.0)] * 4)
+    assert DS.loi_4q(giam)['pct'] == -20.0 and DS.loi_4q(dict(quy=[dict(loi=1.0)] * 7)) is None
+    assert DS.bon_dieu_kien(_dong('A'), None, B, giam)['a']['dat'] is False
+    k = DS.bon_dieu_kien(_dong('A'), None, B, tang)['a']
+    assert k['dat'] is True and 'cốt lõi 4 quý +25.0%' in k['cau']
+    lo_sang_lai = dict(quy=[dict(loi=-10.0)] * 4 + [dict(loi=5.0)] * 4)
+    assert DS.bon_dieu_kien(_dong('A'), None, B, lo_sang_lai)['a']['dat'] is True

@@ -212,8 +212,10 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     # ------------------------------------------------ 3d. danh sách giải ngân (28/10/2026) — nền thấp + nền chặt,
     # 4 điều kiện, luận điểm đủ khung; tối đa 10 mã. Sổ giả lập mua theo danh sách này (chạy SAU pool).
     so_cu = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
+    _dat = sorted({r['ma'] for r in pool.get('bang') or [] if r.get('dat')} - set(bc))
+    bc_ds = dict(bc, **(BC.phan_tich_nhieu(raw, _dat) if raw else {}))      # lợi nhuận cốt lõi cho điều kiện a
     ds = DS.lap(pool.get('bang') or [], luan, rows_f if raw else {}, B if pg else None,
-                dang_cam=set((so_cu.get('vi_the') or {}).keys()))
+                dang_cam=set((so_cu.get('vi_the') or {}).keys()), bc=bc_ds)
     # ------------------------------------------------ 1. sổ giả lập (theo danh sách giải ngân)
     so = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
     ngay = [d for d in sorted(P.get('VNINDEX') or {}) if d >= (danh_muc or {}).get('ngay', asof) and d <= asof]
