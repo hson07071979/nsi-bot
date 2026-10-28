@@ -1,0 +1,39 @@
+{
+ "ma": "BSR",
+ "ten": "Công ty Cổ phần - Tổng Công ty Lọc Hoá dầu Việt Nam",
+ "nganh": "Dầu khí",
+ "nganh_slug": "dau-khi",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Lọc dầu (chênh lệch giá sản phẩm – dầu thô)",
+ "lam_gi": "Lọc hoá dầu Bình Sơn — nhà máy lọc dầu Dung Quất, cung khoảng một phần ba nhu cầu xăng dầu Việt Nam. Theo dữ liệu NSI (Q2/26): P/E 6,8, P/B 1,79, ROE 30,2%, doanh thu 4 quý +30,0%, nợ vay/vốn chủ 0,17, biên gộp 13,0%.",
+ "tien_tu_dau": "Bán xăng, dầu diesel, nhiên liệu bay, LPG, hạt nhựa; lợi nhuận nằm ở biên lọc (giá sản phẩm trừ giá dầu thô), cộng lãi/lỗ tồn kho khi giá dầu biến động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Dầu thô (mỏ Bạch Hổ và nhập khẩu), điện, hoá chất.",
+  "dau_ra": "Petrolimex, PV Oil và các đầu mối xăng dầu; nhà máy nhựa.",
+  "vi_tri": "Trung nguồn: biến dầu thô thành nhiên liệu.",
+  "khac_doi_thu": "Khác PLX (bán lẻ xăng): BSR ăn biên lọc; dầu thô tăng nhưng giá sản phẩm tăng mạnh hơn thì biên rộng ra (ví dụ anh Sơn nêu). Nợ thấp, ROE khoảng 30%."
+ },
+ "vi_mo_xuong": "Biên lọc khu vực châu Á (crack spread) và biến động giá dầu quyết định lợi nhuận: giá dầu tăng nhanh tạo lãi tồn kho, giảm nhanh tạo lỗ tồn kho; tỷ giá ảnh hưởng vì mua dầu bằng đô la.",
+ "vi_mo_nguoc": "Giảm nhập khẩu xăng dầu, ổn định an ninh năng lượng.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng (nhất là khi giá sản phẩm tăng nhanh hơn) → lãi tồn kho, biên lọc rộng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → dầu thô nhập đắt hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

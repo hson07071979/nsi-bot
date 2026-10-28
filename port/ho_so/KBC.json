@@ -1,0 +1,39 @@
+{
+ "ma": "KBC",
+ "ten": "Tổng Công ty Phát triển Đô thị Kinh Bắc - CTCP",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-khu-cong-nghiep",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Cho thuê đất khu công nghiệp + đô thị",
+ "lam_gi": "Kinh Bắc — chủ đầu tư khu công nghiệp lớn ở miền Bắc (Quang Châu, Nam Sơn Hạp Lĩnh, Tràng Duệ) và khu đô thị. Theo dữ liệu NSI (Q2/26): P/E 22,3, P/B 1,03, ROE 4,7%, lợi nhuận 4 quý -18,9%, doanh thu 4 quý -8,1%, nợ vay/vốn chủ 1,21, biên gộp 47,0%.",
+ "tien_tu_dau": "Cho thuê đất khu công nghiệp (thu tiền một lần, ghi nhận theo đợt), bán đất đô thị.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất, bồi thường, vốn vay.",
+  "dau_ra": "Doanh nghiệp FDI điện tử (chuỗi Samsung, LG, Foxconn…), doanh nghiệp trong nước.",
+  "vi_tri": "Khâu đầu chuỗi xuất khẩu chế tạo.",
+  "khac_doi_thu": "Tiền từ kinh doanh âm rất lớn (đang bồi thường, làm hạ tầng); lợi nhuận 4 quý giảm."
+ },
+ "vi_mo_xuong": "FDI và chính sách thương mại Mỹ – Trung quyết định cầu thuê đất; lãi suất ảnh hưởng chi phí bồi thường, hạ tầng.",
+ "vi_mo_nguoc": "Đón FDI, xuất khẩu, việc làm.",
+ "bien": [
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → cầu thuê đất tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

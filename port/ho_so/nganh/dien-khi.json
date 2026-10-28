@@ -1,0 +1,11 @@
+{
+ "slug": "dien-khi",
+ "cap_nhat": "2026-10-28",
+ "ten": "Điện, khí",
+ "chuoi": "Mỏ khí trong nước, LNG nhập khẩu → PV Gas thu gom, xử lý, vận chuyển → nhà máy điện khí (POW, NT2), đạm (DPM, DCM) → EVN mua điện, truyền tải, bán cho người dùng. Giá khí gắn giá dầu; sản lượng điện huy động phụ thuộc nhu cầu điện và thuỷ văn.",
+ "bien": [
+  "brent",
+  "lng_nhat",
+  "gdp_vn"
+ ]
+}

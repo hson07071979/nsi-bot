@@ -1,0 +1,45 @@
+{
+ "ma": "CTS",
+ "ten": "Công ty Cổ phần Chứng khoán Vietinbank",
+ "nganh": "Dịch vụ tài chính",
+ "nganh_slug": "chung-khoan",
+ "vi_tri": "tai_chinh",
+ "mo_hinh": "Môi giới + cho vay ký quỹ + tự doanh",
+ "lam_gi": "Chứng khoán VietinBank — công ty con VietinBank. Theo dữ liệu NSI (Q2/26): P/E 16,8, P/B 2,21, ROE 13,2%, lợi nhuận 4 quý -4,0%, doanh thu 4 quý +19,2%, nợ vay/vốn chủ 2,69, biên gộp 55,1%.",
+ "tien_tu_dau": "Phí môi giới (theo thanh khoản thị trường), lãi cho vay ký quỹ, lãi/lỗ tự doanh (đánh giá lại danh mục), ngân hàng đầu tư. Điểm riêng: khách hàng VietinBank.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vốn chủ, vay ngân hàng, phát hành trái phiếu để cho vay ký quỹ.",
+  "dau_ra": "Nhà đầu tư cá nhân, tổ chức trong và ngoài nước; doanh nghiệp phát hành.",
+  "vi_tri": "Trung gian tài chính trên thị trường vốn.",
+  "khac_doi_thu": "Phí môi giới cạnh tranh gần về 0; khác biệt nằm ở quy mô vốn cho vay ký quỹ, chất lượng tự doanh và nền khách hàng."
+ },
+ "vi_mo_xuong": "Thanh khoản thị trường và xu hướng VN-Index quyết định phí môi giới, tự doanh; lãi suất quyết định chi phí vốn cho vay ký quỹ; dòng vốn ngoại và nâng hạng thị trường là catalyst lớn.",
+ "vi_mo_nguoc": "Kênh huy động vốn trung dài hạn cho doanh nghiệp, giảm phụ thuộc tín dụng ngân hàng.",
+ "bien": [
+  {
+   "bien": "thanh_khoan_ck_vn",
+   "chieu": 1,
+   "kenh": "Thanh khoản tăng → phí môi giới, lãi ký quỹ tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí vốn cho vay ký quỹ tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "von_ngoai_vn",
+   "chieu": 1,
+   "kenh": "Vốn ngoại vào → thanh khoản và định giá nhóm chứng khoán tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

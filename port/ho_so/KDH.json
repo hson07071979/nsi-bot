@@ -1,0 +1,39 @@
+{
+ "ma": "KDH",
+ "ten": "Công ty Cổ phần Đầu tư và Kinh doanh nhà Khang Điền",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-nha-o",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phát triển và bán bất động sản nhà ở",
+ "lam_gi": "Nhà phát triển nhà ở tại TP.HCM (khu Đông, Bình Chánh), quỹ đất sạch pháp lý, phát triển thận trọng. Theo dữ liệu NSI (Q2/26): P/E 11,6, P/B 1,10, ROE 9,5%, lợi nhuận 4 quý +122,6%, doanh thu 4 quý -17,9%, nợ vay/vốn chủ 0,83, biên gộp 69,2%.",
+ "tien_tu_dau": "Bán nhà phố, căn hộ theo đợt mở bán; lợi nhuận 4 quý tăng trong khi doanh thu giảm, nên phần tăng không đến từ bán hàng cốt lõi.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất tích luỹ lâu năm ở TP.HCM, nhà thầu, vốn vay.",
+  "dau_ra": "Người mua nhà ở thực tại TP.HCM.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "Quỹ đất sạch, nợ vừa phải; doanh thu bàn giao đi lùi 2026."
+ },
+ "vi_mo_xuong": "Nguồn cung TP.HCM khan hiếm giúp giá bán; lãi suất và pháp lý quyết định tốc độ mở bán.",
+ "vi_mo_nguoc": "Cung nhà ở cho khu Đông TP.HCM.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng nới → dòng tiền vào bất động sản, người mua vay được",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

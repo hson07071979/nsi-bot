@@ -1,0 +1,39 @@
+{
+ "ma": "POW",
+ "ten": "Tổng Công ty Điện lực Dầu khí Việt Nam - CTCP",
+ "nganh": "Điện, nước & xăng dầu khí đốt",
+ "nganh_slug": "dien-khi",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Phát điện (bán điện cho EVN)",
+ "lam_gi": "PV Power — nhà máy điện khí (Cà Mau, Nhơn Trạch 1–4 gồm điện LNG Nhơn Trạch 3&4), than (Vũng Áng), thuỷ điện. Theo dữ liệu NSI (Q2/26): P/E 6,2, P/B 0,97, ROE 16,5%, lợi nhuận 4 quý +309,3%, doanh thu 4 quý +53,3%, nợ vay/vốn chủ 0,86, biên gộp 18,0%.",
+ "tien_tu_dau": "Bán điện cho EVN theo hợp đồng mua bán điện và thị trường điện cạnh tranh; sản lượng phụ thuộc mức huy động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Khí (PV Gas), LNG, than; vốn vay dự án.",
+  "dau_ra": "EVN (người mua duy nhất).",
+  "vi_tri": "Trung nguồn: sản xuất điện.",
+  "khac_doi_thu": "Khoản phải thu EVN lớn làm dòng tiền kinh doanh có lúc âm dù có lãi."
+ },
+ "vi_mo_xuong": "Nhu cầu điện tăng theo GDP; thuỷ văn (thuỷ điện nhiều thì điện khí bị huy động ít); giá nhiên liệu chuyển một phần vào giá điện.",
+ "vi_mo_nguoc": "Cung điện cho tăng trưởng công nghiệp.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → nhu cầu điện tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "lng_nhat",
+   "chieu": -1,
+   "kenh": "LNG đắt → chi phí điện LNG tăng, khó được huy động",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

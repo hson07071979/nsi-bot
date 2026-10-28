@@ -1,0 +1,45 @@
+{
+ "ma": "DBC",
+ "ten": "Công ty Cổ phần Tập đoàn Dabaco Việt Nam",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "chan-nuoi",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Thức ăn chăn nuôi + chăn nuôi heo",
+ "lam_gi": "Dabaco — thức ăn chăn nuôi, heo giống và heo thịt, gà, trứng, giết mổ chế biến, có thêm bất động sản ở Bắc Ninh; có vắc-xin dịch tả heo châu Phi. Theo dữ liệu NSI (Q2/26): P/E 6,5, P/B 0,88, ROE 14,0%, lợi nhuận 4 quý -26,3%, doanh thu 4 quý +8,8%, nợ vay/vốn chủ 0,87, biên gộp 14,8%.",
+ "tien_tu_dau": "Bán heo hơi (theo giá heo thị trường), thức ăn chăn nuôi, thực phẩm chế biến; bất động sản không đều.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Ngô, khô đậu tương nhập khẩu (phần lớn chi phí thức ăn).",
+  "dau_ra": "Thương lái, lò mổ, người chăn nuôi mua thức ăn.",
+  "vi_tri": "Tích hợp từ thức ăn tới thịt.",
+  "khac_doi_thu": "Lợi nhuận 4 quý giảm khoảng 26% khi giá heo hạ nhiệt từ đỉnh."
+ },
+ "vi_mo_xuong": "Giá heo hơi nội địa (chu kỳ cung – cầu, dịch bệnh) là biến lớn nhất; giá ngô, khô đậu quyết định giá vốn.",
+ "vi_mo_nguoc": "Cung thực phẩm thịt — chiếm tỷ trọng lớn trong CPI.",
+ "bien": [
+  {
+   "bien": "ngo",
+   "chieu": -1,
+   "kenh": "Ngô tăng → thức ăn chăn nuôi đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "kho_dau",
+   "chieu": -1,
+   "kenh": "Khô đậu tương tăng → thức ăn đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "cpi_vn",
+   "chieu": 1,
+   "kenh": "Giá thịt (một phần CPI) tăng → giá heo bán ra cao",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,45 @@
+{
+ "ma": "GEX",
+ "ten": "Công ty Cổ phần Tập đoàn Gelex",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "thiet-bi-dien",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Holding thiết bị điện, vật liệu, hạ tầng",
+ "lam_gi": "Tập đoàn Gelex — holding: thiết bị điện (GEE), vật liệu xây dựng (nắm Viglacera — VGC), khu công nghiệp, hạ tầng điện, nước. Theo dữ liệu NSI (Q2/26): P/E 25,2, P/B 1,75, ROE 7,5%, lợi nhuận 4 quý -12,2%, doanh thu 4 quý +26,6%, nợ vay/vốn chủ 1,02, biên gộp 20,3%.",
+ "tien_tu_dau": "Lợi nhuận hợp nhất từ GEE, Viglacera (vật liệu, khu công nghiệp) và mảng hạ tầng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vốn vay, trái phiếu; đồng, nhôm, khí đốt (cho vật liệu).",
+  "dau_ra": "EVN, nhà thầu, doanh nghiệp FDI thuê khu công nghiệp.",
+  "vi_tri": "Tích hợp nhiều chuỗi công nghiệp.",
+  "khac_doi_thu": "Nợ vay/vốn chủ khoảng 1, lợi nhuận 4 quý giảm khoảng 12%."
+ },
+ "vi_mo_xuong": "Đầu tư lưới điện, xây dựng, FDI vào khu công nghiệp và lãi suất (holding nhiều nợ).",
+ "vi_mo_nguoc": "Công nghiệp thiết bị điện, vật liệu, khu công nghiệp.",
+ "bien": [
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Đầu tư công tăng → khối lượng việc, đơn hàng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhà máy mới, hàng xuất nhập khẩu tăng",
+   "tre": "2–4 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

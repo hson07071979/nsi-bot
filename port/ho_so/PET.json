@@ -1,0 +1,39 @@
+{
+ "ma": "PET",
+ "ten": "Tổng Công ty Cổ phần Dịch vụ Tổng hợp Dầu khí",
+ "nganh": "Bán lẻ",
+ "nganh_slug": "ban-le",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Phân phối ICT, hàng tiêu dùng",
+ "lam_gi": "Petrosetco — phân phối điện thoại, máy tính (Samsung, Apple…), dịch vụ tổng hợp dầu khí, bất động sản. Theo dữ liệu NSI (Q2/26): P/E 19,6, P/B 2,42, ROE 12,7%, lợi nhuận 4 quý +85,1%, doanh thu 4 quý +37,9%, nợ vay/vốn chủ 2,41, biên gộp 5,2%.",
+ "tien_tu_dau": "Bán buôn cho chuỗi bán lẻ và đại lý; ăn chênh lệch nhỏ trên doanh số lớn.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Hàng nhập từ hãng (thanh toán bằng đô la).",
+  "dau_ra": "Chuỗi bán lẻ (MWG, FRT…), đại lý, doanh nghiệp.",
+  "vi_tri": "Trung nguồn: phân phối.",
+  "khac_doi_thu": "Biên gộp khoảng 5%, nợ vay/vốn chủ khoảng 2,4, tiền từ kinh doanh âm."
+ },
+ "vi_mo_xuong": "Tiêu dùng và chu kỳ thay thiết bị quyết định doanh số; tỷ giá quyết định giá nhập.",
+ "vi_mo_nguoc": "Kênh đưa hàng công nghệ tới người dùng.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → hàng, nguyên liệu nhập bằng đô la đắt hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

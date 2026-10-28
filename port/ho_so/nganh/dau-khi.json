@@ -1,0 +1,10 @@
+{
+ "slug": "dau-khi",
+ "cap_nhat": "2026-10-28",
+ "ten": "Dầu khí",
+ "chuoi": "Thượng nguồn: thăm dò, khai thác (PVN, dịch vụ khoan PVD, kỹ thuật PVS) → trung nguồn: lọc dầu (BSR), vận chuyển (PVT) → hạ nguồn: phân phối, bán lẻ xăng dầu (PLX, OIL). Giá dầu thế giới chạy qua cả chuỗi nhưng mỗi khâu ăn một thứ khác nhau: thượng nguồn ăn giá dầu, lọc dầu ăn biên lọc, bán lẻ ăn chênh lệch giá điều hành.",
+ "bien": [
+  "brent",
+  "usdvnd"
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "ma": "PVS",
+ "ten": "Tổng Công ty Cổ phần Dịch vụ Kỹ thuật Dầu khí Việt Nam",
+ "nganh": "Dầu khí",
+ "nganh_slug": "dau-khi",
+ "vi_tri": "thuong_nguon",
+ "mo_hinh": "Dịch vụ dầu khí",
+ "lam_gi": "PTSC — dịch vụ kỹ thuật dầu khí: cơ khí xây lắp giàn, tàu dịch vụ, kho nổi FSO/FPSO, điện gió ngoài khơi. Theo dữ liệu NSI (Q2/26): P/E 9,6, P/B 1,31, ROE 14,0%, lợi nhuận 4 quý +67,0%, doanh thu 4 quý +31,4%, nợ vay/vốn chủ 0,12, biên gộp 7,3%.",
+ "tien_tu_dau": "Hợp đồng dịch vụ theo dự án và giá thuê ngày giàn (PVD), hợp đồng EPC (PVS)",
+ "chuoi_gia_tri": {
+  "dau_vao": "Nhân lực kỹ thuật, tàu, giàn, thiết bị; vốn vay.",
+  "dau_ra": "PVN, các nhà thầu dầu khí trong và ngoài nước (Lô B – Ô Môn, mỏ mới).",
+  "vi_tri": "Thượng nguồn: phục vụ thăm dò, khai thác.",
+  "khac_doi_thu": "Phụ thuộc chu kỳ đầu tư của ngành dầu khí; dự án Lô B – Ô Môn là nguồn việc lớn giai đoạn 2025–2027 (kiến thức nền)."
+ },
+ "vi_mo_xuong": "Giá dầu cao kéo chi đầu tư thăm dò khai thác và giá thuê giàn; lãi suất ít ảnh hưởng vì nợ thấp.",
+ "vi_mo_nguoc": "Làm chủ kỹ thuật dịch vụ dầu khí, điện gió ngoài khơi.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng → chi đầu tư thượng nguồn, giá thuê giàn tăng",
+   "tre": "2–4 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

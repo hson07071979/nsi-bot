@@ -1,0 +1,39 @@
+{
+ "ma": "CTD",
+ "ten": "Công ty Cổ phần Xây dựng Coteccons",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "xay-dung",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Xây lắp theo hợp đồng",
+ "lam_gi": "Coteccons — tổng thầu xây dựng dân dụng (nhà cao tầng, khu nghỉ dưỡng) và nhà máy cho doanh nghiệp FDI. Theo dữ liệu NSI (Q2/26): P/E 8,9, P/B 0,73, ROE 8,3%, lợi nhuận 4 quý +72,7%, doanh thu 4 quý +38,0%, nợ vay/vốn chủ 0,62, biên gộp 4,2%.",
+ "tien_tu_dau": "Doanh thu ghi nhận theo khối lượng hoàn thành của hợp đồng xây lắp; biên phụ thuộc giá vật liệu và khả năng thu tiền chủ đầu tư.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Thép, xi măng, nhựa đường, nhân công, máy móc; vốn vay lưu động.",
+  "dau_ra": "Nhà nước (dự án đầu tư công), chủ đầu tư bất động sản, doanh nghiệp FDI.",
+  "vi_tri": "Trung nguồn: biến vốn đầu tư thành công trình.",
+  "khac_doi_thu": "Biên gộp rất mỏng (khoảng 4%), P/B dưới 1, tiền mặt nhiều; đơn hàng gắn chu kỳ bất động sản và FDI."
+ },
+ "vi_mo_xuong": "Giải ngân đầu tư công và tín dụng bất động sản quyết định đơn hàng; giá thép, xi măng quyết định biên; lãi suất quyết định chi phí vốn lưu động.",
+ "vi_mo_nguoc": "Hạ tầng là nền cho tăng trưởng dài hạn; ngành xây dựng tạo nhiều việc làm.",
+ "bien": [
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhà máy mới, hàng xuất nhập khẩu tăng",
+   "tre": "2–4 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng bất động sản nới → chủ đầu tư khởi công nhiều hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

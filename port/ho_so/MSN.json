@@ -1,0 +1,39 @@
+{
+ "ma": "MSN",
+ "ten": "Công ty Cổ phần Tập đoàn Masan",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Tập đoàn tiêu dùng – bán lẻ",
+ "lam_gi": "Masan Group — hệ sinh thái tiêu dùng – bán lẻ: chuỗi WinMart/WinMart+ (WinCommerce), hàng tiêu dùng Masan Consumer (MCH), thịt Masan MEATLife, trà – cà phê Phúc Long, khoáng sản Masan High-Tech Materials; nắm cổ phần lớn Techcombank. Theo dữ liệu NSI (Q2/26): P/E 15,2, P/B 2,55, ROE 19,4%, lợi nhuận 4 quý +150,3%, doanh thu 4 quý +18,6%, nợ vay/vốn chủ 1,30, biên gộp 30,7%.",
+ "tien_tu_dau": "Doanh thu chủ yếu từ bán lẻ (WinCommerce) và hàng tiêu dùng có thương hiệu (MCH, biên cao); lãi từ cổ phần Techcombank ghi nhận theo phương pháp vốn chủ.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Nguyên liệu nông sản, bao bì, mặt bằng bán lẻ, vốn vay và trái phiếu.",
+  "dau_ra": "Người tiêu dùng qua chuỗi WinMart và kênh tạp hoá truyền thống.",
+  "vi_tri": "Tích hợp từ sản xuất hàng tiêu dùng tới bán lẻ.",
+  "khac_doi_thu": "Nợ vay/vốn chủ khoảng 1,3 cao hơn nhóm tiêu dùng; lợi nhuận 4 quý tăng mạnh từ nền thấp khi WinCommerce có lãi."
+ },
+ "vi_mo_xuong": "Tiêu dùng nội địa và lạm phát quyết định doanh số; lãi suất quyết định chi phí vốn của tập đoàn nhiều nợ.",
+ "vi_mo_nguoc": "Hiện đại hoá bán lẻ tạp hoá, chính thức hoá tiêu dùng.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

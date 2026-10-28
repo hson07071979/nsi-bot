@@ -1,0 +1,45 @@
+{
+ "ma": "BAF",
+ "ten": "Công ty Cổ phần Nông nghiệp BAF Việt Nam",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "chan-nuoi",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Chăn nuôi heo quy mô lớn",
+ "lam_gi": "BAF Việt Nam — chăn nuôi heo quy mô công nghiệp, khép kín từ thức ăn, trang trại tới giết mổ và bán lẻ thịt (Meat Shop). Theo dữ liệu NSI (Q2/26): P/E 125,7, P/B 2,73, ROE 2,2%, lợi nhuận 4 quý -81,3%, doanh thu 4 quý +16,0%, nợ vay/vốn chủ 1,43, biên gộp 13,7%.",
+ "tien_tu_dau": "Bán heo hơi, heo giống, thịt chế biến.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Ngô, khô đậu (thức ăn), con giống.",
+  "dau_ra": "Thương lái, lò mổ, chuỗi bán lẻ.",
+  "vi_tri": "Tích hợp chăn nuôi.",
+  "khac_doi_thu": "Lợi nhuận 4 quý giảm khoảng 81%, P/E trên 100, nợ vay/vốn chủ khoảng 1,4 — đang mở rộng trang trại."
+ },
+ "vi_mo_xuong": "Giá heo hơi, giá thức ăn và lãi suất (nợ đầu tư trang trại) quyết định kết quả.",
+ "vi_mo_nguoc": "Cung thịt heo.",
+ "bien": [
+  {
+   "bien": "ngo",
+   "chieu": -1,
+   "kenh": "Ngô tăng → thức ăn chăn nuôi đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "kho_dau",
+   "chieu": -1,
+   "kenh": "Khô đậu tương tăng → thức ăn đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "FRT",
+ "ten": "Công ty Cổ phần Bán lẻ Kỹ thuật số FPT",
+ "nganh": "Bán lẻ",
+ "nganh_slug": "ban-le",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Bán lẻ ICT + chuỗi nhà thuốc",
+ "lam_gi": "FPT Retail — chuỗi FPT Shop (điện thoại, máy tính) và Long Châu (chuỗi nhà thuốc lớn nhất Việt Nam, có tiêm chủng). Theo dữ liệu NSI (Q2/26): P/E 22,9, P/B 5,43, ROE 27,5%, lợi nhuận 4 quý +111,1%, doanh thu 4 quý +30,9%, nợ vay/vốn chủ 2,19, biên gộp 19,7%.",
+ "tien_tu_dau": "Long Châu là động lực tăng trưởng và lợi nhuận chính; FPT Shop biên mỏng, theo chu kỳ thay máy.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Hàng ICT từ nhà phân phối, thuốc từ hãng dược; mặt bằng.",
+  "dau_ra": "Người tiêu dùng.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "ROE khoảng 27,5%, lợi nhuận 4 quý tăng gấp đôi; P/B khoảng 5,4, nợ vay/vốn chủ khoảng 2,2."
+ },
+ "vi_mo_xuong": "Tiêu dùng, thu nhập dân cư; lãi suất (vay lưu động lớn).",
+ "vi_mo_nguoc": "Chuẩn hoá bán lẻ dược phẩm.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

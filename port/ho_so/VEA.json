@@ -1,0 +1,39 @@
+{
+ "ma": "VEA",
+ "ten": "Tổng Công ty Máy động lực và Máy nông nghiệp Việt Nam - CTCP",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "o-to",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Lãi liên doanh ô tô, xe máy",
+ "lam_gi": "VEAM — Tổng công ty Máy động lực và Máy nông nghiệp; lợi nhuận chủ yếu từ phần vốn ở liên doanh Honda Việt Nam, Toyota Việt Nam, Ford Việt Nam. NSI chưa có số BCTC của mã này.",
+ "tien_tu_dau": "Lãi được chia từ liên doanh (phần lớn lợi nhuận), sản xuất máy nông nghiệp, động cơ.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Phần vốn góp ở liên doanh.",
+  "dau_ra": "Người mua xe máy, ô tô (qua liên doanh).",
+  "vi_tri": "Trung nguồn (sở hữu nhà sản xuất).",
+  "khac_doi_thu": "Lợi nhuận đi theo Honda Việt Nam (xe máy) và Toyota; NSI chưa có số BCTC của mã này."
+ },
+ "vi_mo_xuong": "Tiêu dùng, lãi vay mua xe, chính sách hạn chế xe máy xăng ở đô thị lớn.",
+ "vi_mo_nguoc": "Công nghiệp ô tô, xe máy trong nước.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số quý gần nhất)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": null,
+ "cham_boi": "claude"
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "PNJ",
+ "ten": "Công ty Cổ phần Vàng bạc Đá quý Phú Nhuận",
+ "nganh": "Hàng cá nhân & Gia dụng",
+ "nganh_slug": "trang-suc",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Sản xuất, bán lẻ trang sức",
+ "lam_gi": "PNJ — chuỗi bán lẻ trang sức vàng, bạc, đá quý lớn nhất Việt Nam (hơn 400 cửa hàng), tự sản xuất; bán vàng miếng, vàng nhẫn. Theo dữ liệu NSI (Q2/26): P/E 7,4, P/B 1,55, ROE 21,6%, lợi nhuận 4 quý +40,6%, doanh thu 4 quý +32,1%, nợ vay/vốn chủ 0,30, biên gộp 15,6%.",
+ "tien_tu_dau": "Bán lẻ trang sức (biên cao) và vàng miếng/nhẫn (biên mỏng).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vàng nguyên liệu (phụ thuộc nguồn cung vàng trong nước), đá quý.",
+  "dau_ra": "Người tiêu dùng, cưới hỏi, quà tặng.",
+  "vi_tri": "Hạ nguồn, tích hợp sản xuất.",
+  "khac_doi_thu": "ROE khoảng 22%, P/E khoảng 7,4 — giá cách đỉnh khoảng 80%, sâu nhất nhóm."
+ },
+ "vi_mo_xuong": "Giá vàng tăng quá nhanh làm khách giảm mua trang sức và thiếu nguyên liệu; tiêu dùng, cưới hỏi quyết định doanh số trang sức.",
+ "vi_mo_nguoc": "Chính thức hoá thị trường vàng.",
+ "bien": [
+  {
+   "bien": "vang",
+   "chieu": -1,
+   "kenh": "Vàng tăng quá nhanh → khách bớt mua trang sức, nguyên liệu khan",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "ACV",
+ "ten": "Tổng Công ty Cảng Hàng không Việt Nam - CTCP",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "ha-tang-giao-thong",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Khai thác cảng hàng không",
+ "lam_gi": "Tổng công ty Cảng hàng không Việt Nam — quản lý khai thác hơn 20 sân bay (Tân Sơn Nhất, Nội Bài, Đà Nẵng…), chủ đầu tư sân bay Long Thành; Nhà nước nắm phần lớn vốn. NSI chưa có số BCTC của mã này.",
+ "tien_tu_dau": "Phí phục vụ hành khách, phí cất hạ cánh, cho thuê mặt bằng sân bay; giá dịch vụ chuyến quốc tế thu theo đô la.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Hạ tầng sân bay, vốn vay ODA (một phần bằng yên Nhật), nhân lực.",
+  "dau_ra": "Hãng hàng không, hành khách, doanh nghiệp thuê mặt bằng.",
+  "vi_tri": "Hạ tầng độc quyền.",
+  "khac_doi_thu": "Độc quyền khai thác sân bay; NSI chưa có số BCTC của mã này."
+ },
+ "vi_mo_xuong": "Lượng khách quốc tế, nội địa theo tăng trưởng kinh tế và du lịch; tỷ giá (doanh thu quốc tế theo đô la, nợ yên Nhật là chiều ngược).",
+ "vi_mo_nguoc": "Sân bay Long Thành là dự án hạ tầng lớn nhất, nâng năng lực đón khách quốc tế.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế, du lịch tăng → lượng khách qua sân bay tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu phí quốc tế (đô la) quy ra đồng tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số quý gần nhất)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": null,
+ "cham_boi": "claude"
+}

@@ -1,0 +1,45 @@
+{
+ "ma": "VIC",
+ "ten": "Tập đoàn Vingroup - Công ty CP",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-nha-o",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Tập đoàn đa ngành (bất động sản, ô tô điện, dịch vụ)",
+ "lam_gi": "Tập đoàn tư nhân lớn nhất Việt Nam: bất động sản (Vinhomes), bán lẻ cho thuê (Vincom Retail), du lịch (Vinpearl), ô tô điện VinFast, giáo dục, y tế. Theo dữ liệu NSI (Q2/26): P/E 80,8, P/B 10,78, ROE 14,8%, lợi nhuận 4 quý +67,0%, doanh thu 4 quý +66,0%, nợ vay/vốn chủ 1,86, biên gộp 20,2%.",
+ "tien_tu_dau": "Lợi nhuận chủ yếu từ Vinhomes và chuyển nhượng dự án; VinFast tiêu tốn vốn lớn; dòng tiền tập đoàn xoay giữa các mảng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất, vốn vay, trái phiếu trong và ngoài nước, linh kiện ô tô.",
+  "dau_ra": "Người mua nhà, khách thuê mặt bằng, khách du lịch, người mua xe điện.",
+  "vi_tri": "Tích hợp nhiều chuỗi giá trị trong một hệ sinh thái.",
+  "khac_doi_thu": "P/E khoảng 80, P/B gần 11 — thuộc nhóm đắt nhất thị trường vì kỳ vọng VinFast và hệ sinh thái; giá sát đỉnh nên không qua lọc nền."
+ },
+ "vi_mo_xuong": "Lãi suất, tín dụng bất động sản và tỷ giá (nợ ngoại tệ, xuất khẩu xe) là biến chính; tâm lý thị trường với VinFast chi phối định giá.",
+ "vi_mo_nguoc": "Đầu tư lớn vào công nghiệp ô tô, đô thị, kéo việc làm và chuỗi cung ứng trong nước.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng nới → dòng tiền vào bất động sản, người mua vay được",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → nợ ngoại tệ và linh kiện nhập khẩu đắt hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

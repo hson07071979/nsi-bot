@@ -1,0 +1,39 @@
+{
+ "ma": "VSC",
+ "ten": "Công ty Cổ phần Container Việt Nam",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Khai thác cảng container",
+ "lam_gi": "Viconship — cảng container ở Hải Phòng (Đình Vũ, Nam Đình Vũ, Green Port), logistics. Theo dữ liệu NSI (Q2/26): P/E 16,0, P/B 0,99, ROE 6,4%, lợi nhuận 4 quý -18,3%, doanh thu 4 quý +15,7%, nợ vay/vốn chủ 0,90, biên gộp 39,8%.",
+ "tien_tu_dau": "Phí bốc xếp, lưu bãi theo sản lượng container (TEU) qua cảng; dịch vụ logistics đi kèm.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "Lợi nhuận 4 quý giảm khoảng 18% vì cạnh tranh giá cước cảng Hải Phòng và chi phí cảng mới."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Xuất nhập khẩu, sản xuất tăng → sản lượng container qua cảng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhà máy mới, hàng xuất nhập khẩu tăng",
+   "tre": "2–4 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

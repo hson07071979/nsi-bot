@@ -1,0 +1,39 @@
+{
+ "ma": "VRE",
+ "ten": "Công ty Cổ phần Vincom Retail",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-cho-thue",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Cho thuê mặt bằng bán lẻ",
+ "lam_gi": "Chủ sở hữu, vận hành chuỗi trung tâm thương mại Vincom lớn nhất Việt Nam. Theo dữ liệu NSI (Q2/26): P/E 8,2, P/B 1,20, ROE 15,0%, lợi nhuận 4 quý +64,7%, doanh thu 4 quý +8,9%, nợ vay/vốn chủ 0,13, biên gộp 54,2%.",
+ "tien_tu_dau": "Tiền thuê mặt bằng từ khách thuê bán lẻ, ăn uống, giải trí (dòng tiền đều); bán một phần shophouse.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Mặt bằng trong dự án Vingroup, chi phí vận hành.",
+  "dau_ra": "Nhãn hàng bán lẻ, rạp, ăn uống thuê mặt bằng.",
+  "vi_tri": "Hạ nguồn: chủ nhà cho thuê bán lẻ.",
+  "khac_doi_thu": "Nợ vay thấp (nợ vay/vốn chủ khoảng 0,13), P/E khoảng 8 thấp hơn mức thường thấy."
+ },
+ "vi_mo_xuong": "Tiêu dùng nội địa và lượng khách tới trung tâm quyết định tỷ lệ lấp đầy, giá thuê; thương mại điện tử là lực cạnh tranh dài hạn.",
+ "vi_mo_nguoc": "Mặt bằng bán lẻ hiện đại tạo việc làm dịch vụ, chính thức hoá bán lẻ.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng tăng → lấp đầy và giá thuê tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

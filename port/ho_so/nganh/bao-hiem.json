@@ -1,0 +1,10 @@
+{
+ "slug": "bao-hiem",
+ "cap_nhat": "2026-10-28",
+ "ten": "Bảo hiểm",
+ "chuoi": "Khách mua bảo hiểm (qua đại lý, ngân hàng) → công ty thu phí, lập dự phòng, đầu tư tiền nhàn rỗi vào tiền gửi, trái phiếu → chi trả bồi thường. Lãi = lãi nghiệp vụ + lãi đầu tư.",
+ "bien": [
+  "ls_huy_dong_vn",
+  "gdp_vn"
+ ]
+}

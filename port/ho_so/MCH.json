@@ -1,0 +1,39 @@
+{
+ "ma": "MCH",
+ "ten": "Công ty Cổ phần Hàng Tiêu Dùng MaSan",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất hàng tiêu dùng có thương hiệu",
+ "lam_gi": "Masan Consumer — nước chấm (Nam Ngư, Chin-su), mì (Omachi, Kokomi), cà phê (Vinacafé, Wake-up), đồ uống, chăm sóc cá nhân, gia dụng. Theo dữ liệu NSI (Q2/26): P/E 26,3, P/B 9,95, ROE 40,1%, lợi nhuận 4 quý -4,2%, doanh thu 4 quý +5,7%, nợ vay/vốn chủ 0,51, biên gộp 45,5%.",
+ "tien_tu_dau": "Bán hàng tiêu dùng nhanh qua hàng trăm nghìn điểm bán; biên gộp khoảng 45% nhờ thương hiệu.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bột mì, dầu cọ, đường, cá cơm, bao bì.",
+  "dau_ra": "Người tiêu dùng qua tạp hoá, siêu thị (gồm WinMart).",
+  "vi_tri": "Trung nguồn: sản xuất thương hiệu.",
+  "khac_doi_thu": "ROE khoảng 40% nhưng P/B gần 10 — giá đã trả cho chất lượng; lợi nhuận 4 quý đi ngang."
+ },
+ "vi_mo_xuong": "Tiêu dùng nội địa quyết định sản lượng; giá dầu cọ, đường, bột mì quyết định biên.",
+ "vi_mo_nguoc": "Chuẩn hoá hàng tiêu dùng nội địa, xuất khẩu một phần.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "dau_co",
+   "chieu": -1,
+   "kenh": "Dầu cọ tăng → giá vốn mì, nước chấm tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

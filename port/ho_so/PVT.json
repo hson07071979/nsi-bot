@@ -1,0 +1,39 @@
+{
+ "ma": "PVT",
+ "ten": "Tổng Công ty Cổ phần Vận tải Dầu khí",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Vận tải biển dầu khí",
+ "lam_gi": "PV Trans — vận tải dầu thô, xăng dầu, khí hoá lỏng, hàng rời bằng đội tàu lớn nhất Việt Nam; chở dầu thô cho lọc dầu Dung Quất, Nghi Sơn. Theo dữ liệu NSI (Q2/26): P/E 7,5, P/B 1,12, ROE 15,9%, lợi nhuận 4 quý +29,3%, doanh thu 4 quý +41,0%, nợ vay/vốn chủ 0,57, biên gộp 15,4%.",
+ "tien_tu_dau": "Cước vận chuyển theo hợp đồng chuyến và định hạn; một phần hợp đồng dài hạn với nhà máy lọc dầu.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "Có hợp đồng dài hạn với BSR, Nghi Sơn nên sản lượng ổn định; đang trẻ hoá đội tàu bằng vay nợ."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng, thị trường dầu căng → giá cước tàu dầu tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

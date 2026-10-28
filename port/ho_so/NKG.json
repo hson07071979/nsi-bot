@@ -1,0 +1,39 @@
+{
+ "ma": "NKG",
+ "ten": "Công ty Cổ phần Thép Nam Kim",
+ "nganh": "Tài nguyên Cơ bản",
+ "nganh_slug": "thep",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Cán mạ thép (chênh lệch giá HRC – tôn)",
+ "lam_gi": "Nam Kim — tôn mạ, ống thép; xuất khẩu chiếm tỷ trọng lớn. Theo dữ liệu NSI (Q2/26): P/E 32,4, P/B 0,71, ROE 2,2%, lợi nhuận 4 quý -30,7%, doanh thu 4 quý -18,4%, nợ vay/vốn chủ 1,12, biên gộp 5,4%.",
+ "tien_tu_dau": "Bán tôn mạ, ống thép trong nước và xuất khẩu; lợi nhuận là chênh lệch giá tôn với giá HRC mua vào, cộng lãi/lỗ tồn kho khi giá HRC biến động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "HRC mua của Hoà Phát, Formosa hoặc nhập khẩu; kẽm, nhôm.",
+  "dau_ra": "Đại lý vật liệu, công trình, nhà nhập khẩu (EU, Mỹ, ASEAN).",
+  "vi_tri": "Trung nguồn: cán nguội, mạ.",
+  "khac_doi_thu": "Lợi nhuận 4 quý giảm khoảng 31%, biên gộp khoảng 5% — rất mỏng; nhạy thuế chống bán phá giá ở thị trường xuất khẩu."
+ },
+ "vi_mo_xuong": "Giá HRC: tăng thì có lãi tồn kho, giảm thì lỗ tồn kho; xây dựng dân dụng quyết định cầu nội địa; thuế chống bán phá giá ở nước nhập quyết định xuất khẩu.",
+ "vi_mo_nguoc": "Xuất khẩu thép thành phẩm.",
+ "bien": [
+  {
+   "bien": "hrc_my",
+   "chieu": 1,
+   "kenh": "Giá HRC tăng → giá tôn tăng theo, có lãi tồn kho",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng bất động sản nới → xây nhà nhiều, cầu tôn tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

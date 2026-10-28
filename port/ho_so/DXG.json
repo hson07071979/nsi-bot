@@ -1,0 +1,45 @@
+{
+ "ma": "DXG",
+ "ten": "Công ty Cổ phần Bluemarq Group",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-nha-o",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phát triển và bán bất động sản môi giới + phát triển",
+ "lam_gi": "Đất Xanh (nay Bluemarq Group) — môi giới và phát triển nhà ở (Gem Sky World, Opus One). Theo dữ liệu NSI (Q2/26): P/E 77,2, P/B 1,07, ROE 1,4%, lợi nhuận 4 quý -40,2%, doanh thu 4 quý +9,6%, nợ vay/vốn chủ 0,24, biên gộp 49,4%.",
+ "tien_tu_dau": "Bán sản phẩm bất động sản theo đợt mở bán; ghi nhận lợi nhuận khi bàn giao nên thất thường theo quý ; phí môi giới theo giao dịch.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất, tiền sử dụng đất, nhà thầu, vốn vay.",
+  "dau_ra": "Người mua nhà, nhà đầu tư thứ cấp, chủ đầu tư thuê môi giới.",
+  "vi_tri": "Hạ nguồn: chủ đầu tư / phân phối sản phẩm bất động sản.",
+  "khac_doi_thu": "Doanh nghiệp tầm trung, lợi nhuận phụ thuộc vài dự án nên rủi ro tập trung cao hơn VHM."
+ },
+ "vi_mo_xuong": "Lãi suất cho vay mua nhà, hạn mức tín dụng bất động sản và tốc độ gỡ pháp lý quyết định thanh khoản; hạ tầng mới (cao tốc, sân bay) nâng giá trị quỹ đất vùng ven.",
+ "vi_mo_nguoc": "Cung nhà ở, việc làm xây dựng, thu ngân sách từ đất.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng nới → dòng tiền vào bất động sản, người mua vay được",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Hạ tầng vùng ven → giá trị quỹ đất tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

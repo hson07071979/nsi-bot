@@ -1,0 +1,39 @@
+{
+ "ma": "CII",
+ "ten": "Công ty Cổ phần Đầu tư Hạ tầng Kỹ thuật Thành phố Hồ Chí Minh",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "ha-tang-giao-thong",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Đầu tư hạ tầng BOT + bất động sản",
+ "lam_gi": "Hạ tầng Kỹ thuật TP.HCM — đầu tư dự án BOT giao thông (Xa lộ Hà Nội, cầu Rạch Chiếc, cầu Sài Gòn 2…), nước sạch, bất động sản Thủ Thiêm. Theo dữ liệu NSI (Q2/26): P/E 85,9, P/B 1,02, ROE 1,2%, lợi nhuận 4 quý +167,6%, doanh thu 4 quý +8,4%, nợ vay/vốn chủ 1,89, biên gộp 55,5%.",
+ "tien_tu_dau": "Thu phí BOT (đều), bán bất động sản và chuyển nhượng dự án (không đều).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vốn vay, trái phiếu (nợ vay/vốn chủ khoảng 1,9), nhà thầu.",
+  "dau_ra": "Người đi đường (phí), người mua bất động sản.",
+  "vi_tri": "Hạ tầng.",
+  "khac_doi_thu": "ROE khoảng 1%, P/E khoảng 86 — lợi nhuận mỏng so với quy mô nợ."
+ },
+ "vi_mo_xuong": "Lãi suất là biến lớn nhất (nợ cao); lưu lượng xe theo kinh tế TP.HCM; chính sách BOT.",
+ "vi_mo_nguoc": "Hạ tầng giao thông TP.HCM.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → lưu lượng xe, thu phí tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

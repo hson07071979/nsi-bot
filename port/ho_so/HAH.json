@@ -1,0 +1,39 @@
+{
+ "ma": "HAH",
+ "ten": "Công ty Cổ phần Vận tải và Xếp dỡ Hải An",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Vận tải biển container + cho thuê tàu",
+ "lam_gi": "Hải An — vận tải container ven biển và nội Á bằng đội tàu riêng, cho thuê tàu, khai thác cảng ở Hải Phòng. Theo dữ liệu NSI (Q2/26): P/E 6,5, P/B 1,79, ROE 27,1%, lợi nhuận 4 quý +19,5%, doanh thu 4 quý +13,9%, nợ vay/vốn chủ 0,40, biên gộp 39,0%.",
+ "tien_tu_dau": "Cước vận chuyển container theo chuyến và tiền cho hãng tàu lớn thuê định hạn.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "ROE khoảng 27%, P/E khoảng 6,5; lợi nhuận nhạy với giá cước, giá thuê tàu container thế giới."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Thương mại tăng → hàng cần chở tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → nhiên liệu tàu đắt (chỉ chuyển một phần vào cước)",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

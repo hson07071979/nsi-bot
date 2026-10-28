@@ -1,0 +1,39 @@
+{
+ "ma": "DCL",
+ "ten": "Công ty Cổ phần Dược phẩm Cửu Long",
+ "nganh": "Y tế",
+ "nganh_slug": "duoc",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất dược phẩm generic",
+ "lam_gi": "Dược phẩm Cửu Long — thuốc generic, vỏ nang (capsule), dụng cụ y tế; bán qua kênh bệnh viện (đấu thầu) và nhà thuốc. Theo dữ liệu NSI (Q2/26): P/B 1,87, ROE -0,2%, lợi nhuận 4 quý -105,2%, doanh thu 4 quý -10,0%, nợ vay/vốn chủ 0,50, biên gộp 13,9%.",
+ "tien_tu_dau": "Bán thuốc qua đấu thầu bệnh viện và nhà thuốc; vỏ nang bán cho nhà sản xuất khác.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Nguyên liệu dược nhập khẩu (Ấn Độ, Trung Quốc) bằng đô la.",
+  "dau_ra": "Bệnh viện, chuỗi nhà thuốc.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Lợi nhuận 4 quý về gần 0 (giảm khoảng 105%), doanh thu giảm khoảng 10%."
+ },
+ "vi_mo_xuong": "Tỷ giá (nguyên liệu nhập), chính sách đấu thầu thuốc, chi tiêu y tế.",
+ "vi_mo_nguoc": "Tự chủ thuốc generic.",
+ "bien": [
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → hàng, nguyên liệu nhập bằng đô la đắt hơn",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → nhu cầu tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

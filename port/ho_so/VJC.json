@@ -1,0 +1,45 @@
+{
+ "ma": "VJC",
+ "ten": "Công ty Cổ phần Hàng không Vietjet",
+ "nganh": "Du lịch và Giải trí",
+ "nganh_slug": "hang-khong-du-lich",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Hàng không giá rẻ",
+ "lam_gi": "Vietjet — hãng hàng không giá rẻ lớn nhất Việt Nam, bay nội địa và quốc tế (châu Á, Úc, Ấn Độ), có Vietjet Thái Lan; thuộc hệ sinh thái Sovico. Theo dữ liệu NSI (Q2/26): P/E 44,2, P/B 3,65, ROE 8,6%, lợi nhuận 4 quý +16,7%, doanh thu 4 quý +32,4%, nợ vay/vốn chủ 2,74, biên gộp 8,4%.",
+ "tien_tu_dau": "Bán vé, dịch vụ phụ trợ (hành lý, chọn chỗ, ăn uống); bán và thuê lại tàu bay (lợi nhuận một lần).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Nhiên liệu bay (phần lớn chi phí), thuê tàu bay bằng đô la.",
+  "dau_ra": "Hành khách du lịch, công tác.",
+  "vi_tri": "Hạ nguồn du lịch.",
+  "khac_doi_thu": "Biên gộp khoảng 8%, nợ vay/vốn chủ khoảng 2,7."
+ },
+ "vi_mo_xuong": "Giá dầu (nhiên liệu bay) và tỷ giá (chi phí đô la) là hai biến chi phí lớn nhất; nhu cầu đi lại theo tiêu dùng, du lịch.",
+ "vi_mo_nguoc": "Kết nối du lịch, kéo khách quốc tế.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → nhiên liệu bay đắt",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → hàng, nguyên liệu nhập bằng đô la đắt hơn",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

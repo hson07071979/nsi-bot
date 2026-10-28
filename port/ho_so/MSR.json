@@ -1,0 +1,39 @@
+{
+ "ma": "MSR",
+ "ten": "Công ty Cổ phần Masan High-Tech Materials",
+ "nganh": "Tài nguyên Cơ bản",
+ "nganh_slug": "vat-lieu-khac",
+ "vi_tri": "thuong_nguon",
+ "mo_hinh": "Khai thác, chế biến khoáng sản",
+ "lam_gi": "Masan High-Tech Materials — mỏ Núi Pháo (Thái Nguyên): vonfram, fluorit, bismut, tinh quặng đồng; thuộc Masan. NSI chưa có số BCTC của mã này.",
+ "tien_tu_dau": "Bán vonfram, fluorit, đồng theo giá thế giới (đô la).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Mỏ, năng lượng, hoá chất tuyển quặng.",
+  "dau_ra": "Nhà sản xuất hợp kim, hoá chất, công nghiệp thế giới.",
+  "vi_tri": "Thượng nguồn.",
+  "khac_doi_thu": "NSI chưa có số BCTC của mã này."
+ },
+ "vi_mo_xuong": "Giá vonfram (chịu chi phối của Trung Quốc), giá đồng và tỷ giá.",
+ "vi_mo_nguoc": "Khoáng sản chiến lược xuất khẩu.",
+ "bien": [
+  {
+   "bien": "dong",
+   "chieu": 1,
+   "kenh": "Đồng tăng → doanh thu tinh quặng đồng tăng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số quý gần nhất)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": null,
+ "cham_boi": "claude"
+}

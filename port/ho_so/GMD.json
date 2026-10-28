@@ -1,0 +1,39 @@
+{
+ "ma": "GMD",
+ "ten": "Công ty Cổ phần Tập đoàn Gemadept",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Khai thác cảng container",
+ "lam_gi": "Gemadept — khai thác cảng container (Nam Đình Vũ ở Hải Phòng, Gemalink ở Cái Mép liên doanh với CMA CGM), logistics, kho lạnh. Theo dữ liệu NSI (Q2/26): P/E 13,1, P/B 2,50, ROE 19,4%, lợi nhuận 4 quý +82,1%, doanh thu 4 quý +17,5%, nợ vay/vốn chủ 0,16, biên gộp 47,1%.",
+ "tien_tu_dau": "Phí bốc xếp, lưu bãi theo sản lượng container (TEU) qua cảng; dịch vụ logistics đi kèm.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "Nợ thấp (nợ vay/vốn chủ khoảng 0,16), lợi nhuận 4 quý tăng khoảng 82%; cảng nước sâu Cái Mép đón tàu mẹ đi thẳng Mỹ, EU."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Xuất nhập khẩu, sản xuất tăng → sản lượng container qua cảng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhà máy mới, hàng xuất nhập khẩu tăng",
+   "tre": "2–4 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

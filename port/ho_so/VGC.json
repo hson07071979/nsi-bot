@@ -1,0 +1,39 @@
+{
+ "ma": "VGC",
+ "ten": "Tổng Công ty Viglacera - Công ty Cổ phần",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "xay-dung",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Vật liệu xây dựng + khu công nghiệp",
+ "lam_gi": "Viglacera — vật liệu xây dựng (kính, gạch ốp lát, sứ vệ sinh, gạch ngói) và chủ đầu tư khu công nghiệp (Yên Phong, Thuận Thành…); thuộc Gelex. Theo dữ liệu NSI (Q2/26): P/E 12,7, P/B 2,16, ROE 16,2%, lợi nhuận 4 quý -5,0%, doanh thu 4 quý +18,4%, nợ vay/vốn chủ 0,43, biên gộp 30,7%.",
+ "tien_tu_dau": "Bán vật liệu xây dựng qua đại lý, dự án; cho thuê đất khu công nghiệp (thu một lần, ghi nhận theo đợt).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Khí đốt, cát, đất sét, điện; quỹ đất khu công nghiệp.",
+  "dau_ra": "Nhà nước (dự án đầu tư công), chủ đầu tư bất động sản, doanh nghiệp FDI.",
+  "vi_tri": "Trung nguồn: biến vốn đầu tư thành công trình.",
+  "khac_doi_thu": "Khu công nghiệp là nguồn lãi chính, vật liệu xây dựng biên mỏng hơn; nợ vay/vốn chủ khoảng 0,43."
+ },
+ "vi_mo_xuong": "Giải ngân đầu tư công và tín dụng bất động sản quyết định đơn hàng; giá thép, xi măng quyết định biên; lãi suất quyết định chi phí vốn lưu động.",
+ "vi_mo_nguoc": "Hạ tầng là nền cho tăng trưởng dài hạn; ngành xây dựng tạo nhiều việc làm.",
+ "bien": [
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhà máy mới, hàng xuất nhập khẩu tăng",
+   "tre": "2–4 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng bất động sản nới → cầu vật liệu hoàn thiện tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

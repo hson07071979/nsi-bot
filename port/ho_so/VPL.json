@@ -1,0 +1,39 @@
+{
+ "ma": "VPL",
+ "ten": "Công ty Cổ phần Vinpearl",
+ "nganh": "Du lịch và Giải trí",
+ "nganh_slug": "hang-khong-du-lich",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Khách sạn, nghỉ dưỡng, vui chơi",
+ "lam_gi": "Vinpearl — chuỗi khách sạn, khu nghỉ dưỡng, công viên VinWonders, Vinpearl Safari; thuộc Vingroup, niêm yết năm 2025. Theo dữ liệu NSI (Q2/26): P/E 46,7, P/B 3,07, ROE 7,7%, lợi nhuận 4 quý +1.198,6%, doanh thu 4 quý +20,9%, nợ vay/vốn chủ 0,46, biên gộp 37,4%.",
+ "tien_tu_dau": "Doanh thu phòng, vé vui chơi, ăn uống; bán một phần bất động sản nghỉ dưỡng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất nghỉ dưỡng, vốn vay, nhân lực.",
+  "dau_ra": "Khách du lịch trong nước và quốc tế.",
+  "vi_tri": "Hạ nguồn du lịch.",
+  "khac_doi_thu": "Lợi nhuận 4 quý tăng đột biến từ nền thấp; P/E khoảng 47."
+ },
+ "vi_mo_xuong": "Lượng khách du lịch quốc tế, tiêu dùng nội địa.",
+ "vi_mo_nguoc": "Du lịch đóng góp ngoại tệ, việc làm.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → du lịch nội địa tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

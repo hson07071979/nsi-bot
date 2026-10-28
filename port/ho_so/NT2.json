@@ -1,0 +1,39 @@
+{
+ "ma": "NT2",
+ "ten": "Công ty Cổ phần Điện lực Dầu khí Nhơn Trạch 2",
+ "nganh": "Điện, nước & xăng dầu khí đốt",
+ "nganh_slug": "dien-khi",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Phát điện (bán điện cho EVN)",
+ "lam_gi": "Điện lực Dầu khí Nhơn Trạch 2 — nhà máy điện khí chu trình hỗn hợp 750 MW. Theo dữ liệu NSI (Q2/26): P/E 4,8, P/B 1,21, ROE 25,9%, lợi nhuận 4 quý +160,3%, doanh thu 4 quý +34,9%, nợ vay/vốn chủ 0,33, biên gộp 16,4%.",
+ "tien_tu_dau": "Bán điện cho EVN theo hợp đồng mua bán điện và thị trường điện cạnh tranh; sản lượng phụ thuộc mức huy động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Khí (PV Gas), LNG, than; vốn vay dự án.",
+  "dau_ra": "EVN (người mua duy nhất).",
+  "vi_tri": "Trung nguồn: sản xuất điện.",
+  "khac_doi_thu": "Nhà máy đã khấu hao gần hết, nợ thấp, cổ tức cao."
+ },
+ "vi_mo_xuong": "Nhu cầu điện tăng theo GDP; thuỷ văn (thuỷ điện nhiều thì điện khí bị huy động ít); giá nhiên liệu chuyển một phần vào giá điện.",
+ "vi_mo_nguoc": "Cung điện cho tăng trưởng công nghiệp.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → nhu cầu điện tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → giá khí đầu vào tăng (thường chuyển được vào giá điện theo hợp đồng)",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

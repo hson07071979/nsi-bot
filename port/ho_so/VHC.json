@@ -1,0 +1,45 @@
+{
+ "ma": "VHC",
+ "ten": "Công ty Cổ phần Vĩnh Hoàn",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuy-san",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Nuôi, chế biến, xuất khẩu cá tra",
+ "lam_gi": "Vĩnh Hoàn — xuất khẩu cá tra lớn nhất Việt Nam, thị trường Mỹ là chính; có mảng collagen – gelatin, thực phẩm chế biến. Theo dữ liệu NSI (Q2/26): P/E 8,1, P/B 1,16, ROE 15,0%, lợi nhuận 4 quý -0,0%, doanh thu 4 quý +2,3%, nợ vay/vốn chủ 0,25, biên gộp 17,6%.",
+ "tien_tu_dau": "Bán phi lê cá tra đông lạnh theo giá xuất khẩu (đô la); lợi nhuận theo chênh lệch giá bán với giá cá nguyên liệu và thức ăn.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Con giống, thức ăn (ngô, khô đậu, cám), vùng nuôi Đồng bằng sông Cửu Long.",
+  "dau_ra": "Nhà nhập khẩu, chuỗi siêu thị, nhà hàng ở Mỹ, Trung Quốc, EU.",
+  "vi_tri": "Tích hợp từ nuôi tới xuất khẩu.",
+  "khac_doi_thu": "Nuôi trồng tự chủ phần lớn cá nguyên liệu; thị trường Mỹ chiếm tỷ trọng lớn nên nhạy với thuế chống bán phá giá, thuế đối ứng của Mỹ."
+ },
+ "vi_mo_xuong": "Tỷ giá (đồng yếu có lợi), nhu cầu Mỹ – Trung Quốc và chính sách thuế của Mỹ quyết định giá bán; giá ngô, khô đậu quyết định giá thức ăn.",
+ "vi_mo_nguoc": "Xuất khẩu nông sản, sinh kế vùng Đồng bằng sông Cửu Long.",
+ "bien": [
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ngo",
+   "chieu": -1,
+   "kenh": "Ngô tăng → thức ăn chăn nuôi đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "kho_dau",
+   "chieu": -1,
+   "kenh": "Khô đậu tương tăng → thức ăn đắt, biên co",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,46 @@
+{
+ "ma": "NVB",
+ "ten": "Ngân hàng NCB",
+ "nganh": "Ngân hàng",
+ "nganh_slug": "ngan-hang",
+ "vi_tri": "tai_chinh",
+ "mo_hinh": "Cho vay (chênh lệch lãi suất) + phí",
+ "lam_gi": "Ngân hàng đang tái cơ cấu sau giai đoạn thua lỗ, tăng vốn lớn để xử lý nợ cũ. Theo dữ liệu NSI quý 2/2026: biên lãi ròng khoảng 1,78%, chi phí vốn khoảng 5,37%, tiền gửi không kỳ hạn khoảng 8,8%, nợ xấu khoảng 6,43%, bao phủ nợ xấu khoảng 19%, ROE 2,2%, lợi nhuận 4 quý không có số%.",
+ "tien_tu_dau": "Thu nhập lãi thuần (cho vay trừ trả lãi tiền gửi) là nguồn chính; cộng phí dịch vụ, bảo hiểm qua ngân hàng, ngoại hối và thu hồi nợ đã xử lý (không đều). Điểm mạnh riêng: được bơm vốn mới, lợi nhuận 9 tháng 2026 cao nhất lịch sử theo ngân hàng công bố.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Tiền gửi dân cư, tổ chức (tiền gửi không kỳ hạn khoảng 8,8%), giấy tờ có giá, vốn chủ.",
+  "dau_ra": "Khách vay cá nhân, hộ kinh doanh, doanh nghiệp theo định vị riêng của ngân hàng.",
+  "vi_tri": "Trung gian tài chính; cổ đông mới tham gia tái cơ cấu.",
+  "khac_doi_thu": "Rủi ro riêng: nợ xấu khoảng 6,4%, bao phủ khoảng 19%, ROE khoảng 2% — giá đang trả trước cho tái cơ cấu. So với trung vị ngành (22 ngân hàng trong NSI: P/E khoảng 8,2, P/B khoảng 1,25, ROE khoảng 16%): P/E 88,02, P/B 1,50."
+ },
+ "vi_mo_xuong": "Như cả ngành: NHNN giao hạn mức tín dụng quyết định quy mô; lãi huy động lên thì biên lãi ròng co, xuống thì giãn; nợ xấu đến sau chu kỳ tín dụng tăng nhanh 2–3 quý. Ngân hàng có tiền gửi không kỳ hạn thấp nên chi phí vốn bám sát lãi suất thị trường — hưởng lợi rõ khi lãi huy động quay đầu giảm cuối tháng 10/2026. ",
+ "vi_mo_nguoc": "Cho vay của ngân hàng là mạch máu của tăng trưởng tín dụng; khi tín dụng tăng nhanh hơn huy động, các ngân hàng cùng đẩy lãi huy động lên, ngược lại tác động tới chi phí vốn của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi huy động tăng → chi phí vốn tăng, biên lãi ròng co (tiền gửi không kỳ hạn thấp nên nhạy hơn)",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng tăng → quy mô cho vay, thu nhập lãi tăng (nợ xấu đến sau 2–3 quý)",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tốt → nợ xấu thấp, cầu vay cao",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC và chỉ số ngân hàng Q2/2026)",
+  "kiến thức nền về mô hình và cổ đông — cần đối chiếu báo cáo thường niên",
+  "tin KQKD 9 tháng 2026 (CafeF, Mekong Asean, Dân trí 10/2026) cho TCB, VPB, SHB, VBB, NVB"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

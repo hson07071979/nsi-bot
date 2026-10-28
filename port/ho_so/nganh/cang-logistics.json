@@ -1,0 +1,11 @@
+{
+ "slug": "cang-logistics",
+ "cap_nhat": "2026-10-28",
+ "ten": "Cảng, logistics, vận tải biển",
+ "chuoi": "Nhà máy xuất nhập khẩu → kho, xe, chuyển phát → cảng container (GMD, VSC) → hãng tàu, tàu container ven biển (HAH) → cảng đích. Tàu dầu (PVT, PVP) chở dầu thô cho nhà máy lọc và sản phẩm đi phân phối. Sản lượng theo xuất nhập khẩu và FDI.",
+ "bien": [
+  "gdp_vn",
+  "fdi_vn",
+  "brent"
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "HAG",
+ "ten": "Công ty Cổ phần Hoàng Anh Gia Lai",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "chan-nuoi",
+ "vi_tri": "thuong_nguon",
+ "mo_hinh": "Trồng trái cây + chăn nuôi",
+ "lam_gi": "Hoàng Anh Gia Lai — trồng chuối, sầu riêng và trái cây xuất khẩu (chủ yếu Trung Quốc) ở Gia Lai, Lào, Campuchia; nuôi heo (heo ăn chuối); đã tái cơ cấu nợ. Theo dữ liệu NSI (Q2/26): P/E 5,1, P/B 1,14, ROE 24,2%, lợi nhuận 4 quý +149,0%, doanh thu 4 quý +10,5%, nợ vay/vốn chủ 0,50, biên gộp 37,4%.",
+ "tien_tu_dau": "Bán trái cây xuất khẩu và heo thịt.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất trồng ở Việt Nam, Lào, Campuchia; thức ăn chăn nuôi.",
+  "dau_ra": "Nhà nhập khẩu Trung Quốc, thương lái heo.",
+  "vi_tri": "Thượng nguồn nông nghiệp.",
+  "khac_doi_thu": "Lợi nhuận 4 quý tăng mạnh, P/E khoảng 5; rủi ro tập trung vào thị trường Trung Quốc."
+ },
+ "vi_mo_xuong": "Cầu trái cây Trung Quốc và chính sách nhập khẩu biên giới; giá heo; tỷ giá.",
+ "vi_mo_nguoc": "Xuất khẩu nông sản sang Trung Quốc.",
+ "bien": [
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdcny",
+   "chieu": -1,
+   "kenh": "Nhân dân tệ yếu → sức mua hàng nhập của Trung Quốc giảm",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

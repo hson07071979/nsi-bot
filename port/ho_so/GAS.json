@@ -1,0 +1,39 @@
+{
+ "ma": "GAS",
+ "ten": "Tổng Công ty Khí Việt Nam - Công ty Cổ phần",
+ "nganh": "Điện, nước & xăng dầu khí đốt",
+ "nganh_slug": "dien-khi",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Thu gom, vận chuyển, phân phối khí",
+ "lam_gi": "PV Gas — độc quyền hạ tầng khí Việt Nam: thu gom khí từ mỏ, đường ống, nhà máy xử lý, kho LNG Thị Vải, bán khí cho nhà máy điện, đạm, LPG. Theo dữ liệu NSI (Q2/26): P/E 16,4, P/B 2,95, ROE 18,9%, lợi nhuận 4 quý +5,3%, doanh thu 4 quý +51,6%, nợ vay/vốn chủ 0,04, biên gộp 12,6%.",
+ "tien_tu_dau": "Bán khí khô cho điện (giá gắn giá dầu), đạm; LPG; phí vận chuyển đường ống; LNG nhập khẩu.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Khí từ các mỏ trong nước (giá mua theo hợp đồng), LNG nhập khẩu.",
+  "dau_ra": "Nhà máy điện khí (POW, NT2…), nhà máy đạm (DPM, DCM), khách công nghiệp.",
+  "vi_tri": "Trung nguồn: nắm hạ tầng khí duy nhất.",
+  "khac_doi_thu": "Nợ gần như không có, tiền từ kinh doanh lớn; lợi nhuận đi ngang khi sản lượng mỏ cũ giảm."
+ },
+ "vi_mo_xuong": "Giá dầu (giá bán khí gắn dầu FO/Brent) và sản lượng huy động điện khí quyết định lợi nhuận; LNG mở thêm sản lượng nhưng biên mỏng hơn.",
+ "vi_mo_nguoc": "Hạ tầng năng lượng then chốt cho điện và phân bón.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng → giá bán khí tăng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "lng_nhat",
+   "chieu": -1,
+   "kenh": "LNG đắt → biên mảng LNG nhập khẩu mỏng, khó bán",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

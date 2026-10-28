@@ -1,0 +1,39 @@
+{
+ "ma": "NVL",
+ "ten": "Công ty Cổ phần Tập đoàn Đầu tư Địa ốc No Va",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-nha-o",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phát triển và bán bất động sản nhà ở",
+ "lam_gi": "Nhà phát triển bất động sản lớn ở phía Nam (Aqua City, NovaWorld Phan Thiết, Hồ Tràm…), đang tái cơ cấu nợ sau khủng hoảng trái phiếu 2022. Theo dữ liệu NSI (Q2/26): P/E 7,1, P/B 0,65, ROE 9,5%, lợi nhuận 4 quý +2.447,0%, doanh thu 4 quý -20,5%, nợ vay/vốn chủ 1,12, biên gộp 64,5%.",
+ "tien_tu_dau": "Bán bất động sản khi dự án được gỡ pháp lý; lợi nhuận 4 quý tăng đột biến từ nền lỗ trong khi doanh thu giảm — kinh doanh cốt lõi chưa hồi.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất lớn, nợ vay và trái phiếu đang giãn, nhà thầu.",
+  "dau_ra": "Người mua nhà, nhà đầu tư nghỉ dưỡng.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "Quy mô nợ và trái phiếu lớn, tiền từ kinh doanh âm; giá phụ thuộc tiến độ gỡ pháp lý."
+ },
+ "vi_mo_xuong": "Lãi suất, tín dụng và tốc độ gỡ pháp lý dự án quyết định khả năng bán hàng, trả nợ.",
+ "vi_mo_nguoc": "Tái cơ cấu thành công giải phóng hàng trăm nghìn tỷ tài sản treo cho nền kinh tế.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng nới → dòng tiền vào bất động sản, người mua vay được",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

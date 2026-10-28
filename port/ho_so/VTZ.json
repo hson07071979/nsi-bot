@@ -1,0 +1,33 @@
+{
+ "ma": "VTZ",
+ "ten": "Công ty Cổ phần Sản xuất và Thương mại Nhựa Việt Thành",
+ "nganh": "Hóa chất",
+ "nganh_slug": "phan-bon-hoa-chat",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất bao bì nhựa",
+ "lam_gi": "Nhựa Việt Thành — sản xuất bao bì, sản phẩm nhựa. Theo dữ liệu NSI (Q2/26): P/E 23,0, P/B 1,71, ROE 7,7%, lợi nhuận 4 quý -7,2%, doanh thu 4 quý +34,8%, nợ vay/vốn chủ 2,81, biên gộp 4,9%.",
+ "tien_tu_dau": "Bán bao bì nhựa cho thực phẩm, tiêu dùng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Hạt nhựa (giá theo dầu).",
+  "dau_ra": "Doanh nghiệp thực phẩm, hàng tiêu dùng.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Biên rất mỏng (khoảng 5%), nợ cao."
+ },
+ "vi_mo_xuong": "Giá hạt nhựa theo dầu quyết định biên.",
+ "vi_mo_nguoc": "Cung bao bì cho công nghiệp chế biến.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → hạt nhựa đắt, biên co",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

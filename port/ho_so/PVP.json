@@ -1,0 +1,39 @@
+{
+ "ma": "PVP",
+ "ten": "Công ty Cổ phần Vận tải Dầu khí Thái Bình Dương",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Vận tải biển dầu sản phẩm",
+ "lam_gi": "Vận tải Dầu khí Thái Bình Dương — tàu chở dầu sản phẩm, tàu container nội địa. Theo dữ liệu NSI (Q2/26): P/E 5,9, P/B 0,94, ROE 16,5%, lợi nhuận 4 quý +73,0%, doanh thu 4 quý +37,0%, nợ vay/vốn chủ 0,29, biên gộp 15,3%.",
+ "tien_tu_dau": "Cước vận chuyển dầu sản phẩm, container theo chuyến.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "Quy mô nhỏ, P/E khoảng 6, P/B dưới 1."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng, thị trường dầu căng → giá cước tàu dầu tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

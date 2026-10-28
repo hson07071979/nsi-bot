@@ -1,0 +1,39 @@
+{
+ "ma": "BVH",
+ "ten": "Tập đoàn Bảo Việt",
+ "nganh": "Bảo hiểm",
+ "nganh_slug": "bao-hiem",
+ "vi_tri": "tai_chinh",
+ "mo_hinh": "Bảo hiểm (phí bảo hiểm + đầu tư)",
+ "lam_gi": "Tập đoàn Bảo Việt — bảo hiểm nhân thọ và phi nhân thọ lớn nhất Việt Nam, kèm chứng khoán, quản lý quỹ. Theo dữ liệu NSI (Q2/26): P/E 14,3, P/B 1,81, ROE 13,2%, lợi nhuận 4 quý +36,4%, doanh thu 4 quý +0,3%, nợ vay/vốn chủ 0,13, biên gộp 0,9%.",
+ "tien_tu_dau": "Phí bảo hiểm (nhân thọ chiếm phần lớn) và lãi đầu tư danh mục khổng lồ (chủ yếu tiền gửi, trái phiếu).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Phí từ khách hàng, đại lý và ngân hàng phân phối.",
+  "dau_ra": "Cá nhân, doanh nghiệp mua bảo hiểm.",
+  "vi_tri": "Trung gian tài chính, nhà đầu tư tổ chức lớn.",
+  "khac_doi_thu": "Doanh thu 4 quý đi ngang sau giai đoạn thị trường bảo hiểm qua ngân hàng chững lại; Nhà nước và Sumitomo Life là cổ đông lớn (kiến thức nền)."
+ },
+ "vi_mo_xuong": "Lãi suất cao tăng thu nhập đầu tư danh mục tiền gửi, trái phiếu; thu nhập dân cư quyết định doanh số bảo hiểm.",
+ "vi_mo_nguoc": "Kênh tiết kiệm dài hạn của dân cư, nhà đầu tư trái phiếu chính phủ lớn.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": 1,
+   "kenh": "Lãi suất tăng → lãi đầu tư danh mục tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Thu nhập tăng → mua bảo hiểm nhiều hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

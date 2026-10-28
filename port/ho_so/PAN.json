@@ -1,0 +1,39 @@
+{
+ "ma": "PAN",
+ "ten": "Công ty Cổ phần Tập đoàn PAN",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Holding nông nghiệp – thực phẩm",
+ "lam_gi": "Tập đoàn PAN — holding nông nghiệp, thực phẩm: giống cây trồng (NSC), thuỷ sản xuất khẩu (ABT, Bentre Aquaproduct), hạt điều, nước mắm, bánh kẹo. Theo dữ liệu NSI (Q2/26): P/E 4,0, P/B 0,91, ROE 22,6%, lợi nhuận 4 quý +75,7%, doanh thu 4 quý -3,9%, nợ vay/vốn chủ 0,47, biên gộp 21,3%.",
+ "tien_tu_dau": "Doanh thu từ các công ty con: hạt giống lúa ngô, thuỷ sản, thực phẩm đóng gói.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Nông sản, thuỷ sản nguyên liệu.",
+  "dau_ra": "Nông dân (hạt giống), nhà nhập khẩu thuỷ sản, người tiêu dùng.",
+  "vi_tri": "Tích hợp nhiều khâu nông nghiệp – thực phẩm.",
+  "khac_doi_thu": "P/E khoảng 4, P/B dưới 1; dòng tiền kinh doanh lớn nhưng doanh thu đi ngang (cần đối chiếu cơ cấu công ty con)."
+ },
+ "vi_mo_xuong": "Giá lúa gạo quyết định cầu hạt giống; tỷ giá và thị trường xuất khẩu quyết định mảng thuỷ sản.",
+ "vi_mo_nguoc": "Chuỗi nông nghiệp – thực phẩm trong nước.",
+ "bien": [
+  {
+   "bien": "gao",
+   "chieu": 1,
+   "kenh": "Giá lúa gạo tăng → nông dân mua giống tốt hơn",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

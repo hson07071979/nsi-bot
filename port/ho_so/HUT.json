@@ -1,0 +1,39 @@
+{
+ "ma": "HUT",
+ "ten": "Công ty Cổ phần Tasco",
+ "nganh": "Ô tô và phụ tùng",
+ "nganh_slug": "o-to",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phân phối ô tô + thu phí giao thông",
+ "lam_gi": "Tasco — phân phối, bán lẻ ô tô (qua Savico: đại lý Toyota, Ford, Honda…), sàn ô tô cũ Carpla, thu phí không dừng VETC, BOT, bảo hiểm. Theo dữ liệu NSI (Q2/26): P/E 27,7, P/B 1,30, ROE 4,6%, lợi nhuận 4 quý +209,4%, doanh thu 4 quý +26,7%, nợ vay/vốn chủ 1,31, biên gộp 10,3%.",
+ "tien_tu_dau": "Bán xe và dịch vụ hậu mãi tại đại lý; phí VETC; thu phí BOT.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Xe từ hãng, vốn vay lưu động.",
+  "dau_ra": "Người mua xe cá nhân, doanh nghiệp; chủ phương tiện.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "Lợi nhuận 4 quý tăng gấp 3 từ nền thấp, ROE khoảng 4,6%, nợ vay/vốn chủ khoảng 1,3."
+ },
+ "vi_mo_xuong": "Tiêu dùng và lãi vay mua xe quyết định doanh số ô tô; chính sách lệ phí trước bạ là catalyst theo đợt.",
+ "vi_mo_nguoc": "Phân phối ô tô, hạ tầng thu phí số.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

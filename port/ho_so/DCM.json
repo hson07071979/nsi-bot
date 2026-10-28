@@ -1,0 +1,39 @@
+{
+ "ma": "DCM",
+ "ten": "Công ty Cổ phần - Tổng Công ty Phân bón Dầu Khí Cà Mau",
+ "nganh": "Hóa chất",
+ "nganh_slug": "phan-bon-hoa-chat",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất phân bón (chênh lệch giá urê – khí)",
+ "lam_gi": "Đạm Cà Mau — sản xuất urê hạt đục từ khí, NPK; xuất khẩu một phần. Theo dữ liệu NSI (Q2/26): P/E 6,2, P/B 1,42, ROE 23,6%, lợi nhuận 4 quý +55,0%, doanh thu 4 quý +17,7%, nợ vay/vốn chủ 0,31, biên gộp 28,0%.",
+ "tien_tu_dau": "Bán urê, NPK trong nước và xuất khẩu; lợi nhuận là chênh lệch giá urê với giá khí đầu vào (gắn giá dầu).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Khí thiên nhiên từ PV Gas (giá gắn dầu FO).",
+  "dau_ra": "Nông dân qua đại lý; xuất khẩu Campuchia, Hàn Quốc…",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Hai nhà máy urê từ khí lớn nhất cả nước, nợ vay thấp."
+ },
+ "vi_mo_xuong": "Giá urê thế giới (theo giá khí, chính sách xuất khẩu của Trung Quốc) và giá dầu (giá khí đầu vào) quyết định biên; mùa vụ nông nghiệp quyết định sản lượng.",
+ "vi_mo_nguoc": "Đầu vào cho nông nghiệp, giảm nhập khẩu phân bón.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → giá khí đầu vào tăng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "gao",
+   "chieu": 1,
+   "kenh": "Giá nông sản tăng → nông dân bón nhiều hơn, chịu giá phân cao hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

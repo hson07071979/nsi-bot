@@ -1,0 +1,39 @@
+{
+ "ma": "OIL",
+ "ten": "Tổng Công ty Dầu Việt Nam - Công ty Cổ phần",
+ "nganh": "Dầu khí",
+ "nganh_slug": "dau-khi",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phân phối xăng dầu",
+ "lam_gi": "PV Oil — phân phối, bán lẻ xăng dầu thứ hai sau Petrolimex. NSI chưa có số BCTC của mã này.",
+ "tien_tu_dau": "Chênh lệch giá nhập – bán lẻ; lãi/lỗ tồn kho.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Xăng dầu từ BSR, nhập khẩu.",
+  "dau_ra": "Người tiêu dùng, doanh nghiệp.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "Thị phần nhỏ hơn PLX, biên mỏng."
+ },
+ "vi_mo_xuong": "Như PLX.",
+ "vi_mo_nguoc": "Phân phối năng lượng thiết yếu.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng → lãi tồn kho",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → nhập đắt",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số quý gần nhất)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": null,
+ "cham_boi": "claude"
+}

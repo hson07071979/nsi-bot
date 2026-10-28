@@ -1,0 +1,39 @@
+{
+ "ma": "GEE",
+ "ten": "Công ty Cổ phần Điện lực Gelex",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "thiet-bi-dien",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất thiết bị điện, dây cáp",
+ "lam_gi": "Gelex Electric — dây cáp điện CADIVI, máy biến áp THIBIDI, công tơ điện EMIC, thiết bị Hanaka; cung cho lưới điện và xây dựng. Theo dữ liệu NSI (Q2/26): P/E 11,7, P/B 5,15, ROE 45,6%, lợi nhuận 4 quý +82,5%, doanh thu 4 quý +26,8%, nợ vay/vốn chủ 1,00, biên gộp 15,3%.",
+ "tien_tu_dau": "Bán dây cáp (giá theo giá đồng, nhôm), máy biến áp, thiết bị đo đếm cho EVN, nhà thầu, dân dụng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Đồng, nhôm (phần lớn giá vốn dây cáp), thép kỹ thuật điện.",
+  "dau_ra": "EVN và các tổng công ty điện, nhà thầu xây dựng, đại lý dân dụng.",
+  "vi_tri": "Trung nguồn: thiết bị cho lưới điện.",
+  "khac_doi_thu": "ROE khoảng 46%, lợi nhuận 4 quý tăng khoảng 83% nhờ chương trình đầu tư lưới điện (Quy hoạch điện VIII)."
+ },
+ "vi_mo_xuong": "Đầu tư lưới điện, xây dựng quyết định đơn hàng; giá đồng quyết định giá vốn và giá bán dây cáp (tăng nhanh thì biên co tạm thời).",
+ "vi_mo_nguoc": "Thiết bị điện nội địa cho mở rộng lưới điện.",
+ "bien": [
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Đầu tư công tăng → khối lượng việc, đơn hàng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "dong",
+   "chieu": -1,
+   "kenh": "Đồng tăng nhanh → giá vốn dây cáp tăng trước giá bán",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

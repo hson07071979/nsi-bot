@@ -1,0 +1,39 @@
+{
+ "ma": "HHP",
+ "ten": "Công ty Cổ phần HHP Global",
+ "nganh": "Tài nguyên Cơ bản",
+ "nganh_slug": "vat-lieu-khac",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất giấy, thương mại",
+ "lam_gi": "HHP Global — tiền thân Giấy Hoàng Hà Hải Phòng: sản xuất giấy bao bì công nghiệp, thương mại vật tư (cần đối chiếu cơ cấu doanh thu hiện tại). Theo dữ liệu NSI (Q2/26): P/E 30,0, P/B 1,50, ROE 5,1%, lợi nhuận 4 quý +40,6%, doanh thu 4 quý +18,0%, nợ vay/vốn chủ 1,94, biên gộp 7,3%.",
+ "tien_tu_dau": "Bán giấy bao bì và hàng thương mại; biên mỏng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Giấy phế liệu, bột giấy, điện, than.",
+  "dau_ra": "Nhà sản xuất bao bì carton.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Biên gộp khoảng 7%, nợ vay/vốn chủ khoảng 1,9."
+ },
+ "vi_mo_xuong": "Sản xuất, xuất khẩu hàng hoá kéo cầu bao bì; lãi suất (nợ cao).",
+ "vi_mo_nguoc": "Cung bao bì cho xuất khẩu.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tăng → nhu cầu tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

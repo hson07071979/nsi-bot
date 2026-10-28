@@ -1,0 +1,33 @@
+{
+ "ma": "CSV",
+ "ten": "Công ty Cổ phần Hóa chất Cơ bản miền Nam",
+ "nganh": "Hóa chất",
+ "nganh_slug": "phan-bon-hoa-chat",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất hoá chất cơ bản",
+ "lam_gi": "Hoá chất Cơ bản miền Nam — xút, axit, clo, hoá chất công nghiệp. Theo dữ liệu NSI (Q2/26): P/E 8,9, P/B 1,37, ROE 16,5%, lợi nhuận 4 quý +11,2%, doanh thu 4 quý +21,7%, nợ vay/vốn chủ 0,14, biên gộp 24,7%.",
+ "tien_tu_dau": "Bán hoá chất cho dệt nhuộm, giấy, xử lý nước, thực phẩm.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Muối, điện (điện phân), lưu huỳnh.",
+  "dau_ra": "Nhà máy công nghiệp.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Quy mô nhỏ, nợ rất thấp, cổ tức đều."
+ },
+ "vi_mo_xuong": "Sản xuất công nghiệp và FDI kéo cầu; giá điện là chi phí lớn.",
+ "vi_mo_nguoc": "Đầu vào cho công nghiệp nhẹ.",
+ "bien": [
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Công nghiệp tăng → cầu hoá chất tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

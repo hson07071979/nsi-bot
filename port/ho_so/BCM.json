@@ -1,0 +1,39 @@
+{
+ "ma": "BCM",
+ "ten": "Tập đoàn Đầu tư và Phát triển Công nghiệp Becamex - CTCP",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-khu-cong-nghiep",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Cho thuê đất khu công nghiệp + đô thị",
+ "lam_gi": "Becamex IDC — tập đoàn nhà nước của Bình Dương, chủ đầu tư khu công nghiệp VSIP (liên doanh), thành phố mới Bình Dương. Theo dữ liệu NSI (Q2/26): P/E 21,0, P/B 2,05, ROE 9,7%, lợi nhuận 4 quý -41,1%, doanh thu 4 quý -47,6%, nợ vay/vốn chủ 1,17, biên gộp 65,8%.",
+ "tien_tu_dau": "Cho thuê đất khu công nghiệp, bán đất đô thị, lãi từ liên doanh VSIP.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất lớn ở Bình Dương, vốn vay.",
+  "dau_ra": "Doanh nghiệp FDI, người mua đất đô thị.",
+  "vi_tri": "Khâu đầu chuỗi chế tạo.",
+  "khac_doi_thu": "Lợi nhuận 4 quý giảm mạnh, tiền từ kinh doanh âm."
+ },
+ "vi_mo_xuong": "FDI, lãi suất, tín dụng bất động sản.",
+ "vi_mo_nguoc": "Đô thị hoá Bình Dương gắn với khu công nghiệp.",
+ "bien": [
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → cầu thuê đất tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

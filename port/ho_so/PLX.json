@@ -1,0 +1,39 @@
+{
+ "ma": "PLX",
+ "ten": "Tập đoàn Xăng dầu Việt Nam",
+ "nganh": "Dầu khí",
+ "nganh_slug": "dau-khi",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phân phối, bán lẻ xăng dầu",
+ "lam_gi": "Petrolimex — đầu mối phân phối và bán lẻ xăng dầu lớn nhất Việt Nam (khoảng một nửa thị phần), kèm vận tải, gas, hoá dầu, ngân hàng (PGBank đã thoái). Theo dữ liệu NSI (Q2/26): P/E 14,3, P/B 1,79, ROE 12,5%, lợi nhuận 4 quý +52,6%, doanh thu 4 quý +43,1%, nợ vay/vốn chủ 0,37, biên gộp 5,1%.",
+ "tien_tu_dau": "Chênh lệch giữa giá nhập và giá bán lẻ theo cơ chế điều hành của Nhà nước; lãi/lỗ tồn kho khi giá dầu biến động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Xăng dầu từ BSR, Nghi Sơn và nhập khẩu.",
+  "dau_ra": "Người tiêu dùng, doanh nghiệp vận tải, hàng không.",
+  "vi_tri": "Hạ nguồn.",
+  "khac_doi_thu": "Lợi nhuận phụ thuộc cơ chế giá (chi phí định mức, quỹ bình ổn) hơn là quy mô."
+ },
+ "vi_mo_xuong": "Giá dầu tăng chậm có lãi tồn kho, giảm nhanh lỗ tồn kho; chính sách giá xăng điều hành là biến chính sách.",
+ "vi_mo_nguoc": "Phân phối năng lượng thiết yếu, công cụ bình ổn giá.",
+ "bien": [
+  {
+   "bien": "brent",
+   "chieu": 1,
+   "kenh": "Dầu tăng → lãi tồn kho",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → giá nhập đắt",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

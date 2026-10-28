@@ -1,0 +1,39 @@
+{
+ "ma": "SBT",
+ "ten": "Công ty Cổ phần Thành Thành Công - Biên Hòa",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất, thương mại đường",
+ "lam_gi": "TTC AgriS (Thành Thành Công – Biên Hoà) — sản xuất đường mía lớn nhất Việt Nam, thương mại đường, nông nghiệp công nghệ cao, có vùng nguyên liệu ở Việt Nam, Lào, Campuchia, Úc. Theo dữ liệu NSI (Q2/26): P/E 25,0, P/B 1,75, ROE 7,3%, lợi nhuận 4 quý +3,1%, doanh thu 4 quý -5,6%, nợ vay/vốn chủ 1,35, biên gộp 10,0%.",
+ "tien_tu_dau": "Bán đường và sản phẩm sau đường; thương mại đường nhập khẩu.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Mía từ vùng nguyên liệu, đường thô nhập khẩu.",
+  "dau_ra": "Nhà sản xuất thực phẩm, đồ uống, bán lẻ.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Nợ vay/vốn chủ khoảng 1,35, biên gộp khoảng 10%."
+ },
+ "vi_mo_xuong": "Giá đường thế giới và thuế chống bán phá giá đường Thái Lan quyết định giá bán nội địa.",
+ "vi_mo_nguoc": "Giữ vùng mía, giảm phụ thuộc đường nhập.",
+ "bien": [
+  {
+   "bien": "duong",
+   "chieu": 1,
+   "kenh": "Giá đường thế giới tăng → giá bán đường nội tăng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,45 @@
+{
+ "ma": "KDC",
+ "ten": "Công ty Cổ phần Tập đoàn KIDO",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Sản xuất dầu ăn, kem, thực phẩm",
+ "lam_gi": "KIDO — dầu ăn (Tường An, Meizan, Vocarimex), kem (Celano, Merino), thực phẩm đông lạnh; đã bán mảng bánh kẹo từ nhiều năm trước. Theo dữ liệu NSI (Q2/26): P/E 30,1, P/B 2,44, ROE 7,6%, lợi nhuận 4 quý +829,8%, doanh thu 4 quý +3,3%, nợ vay/vốn chủ 0,61, biên gộp 19,7%.",
+ "tien_tu_dau": "Bán dầu ăn (biên mỏng, theo giá dầu thực vật) và kem, thực phẩm (biên cao hơn).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Dầu thô thực vật nhập khẩu (cọ, đậu nành), sữa, đường.",
+  "dau_ra": "Người tiêu dùng, nhà hàng, bếp công nghiệp.",
+  "vi_tri": "Trung nguồn.",
+  "khac_doi_thu": "Lợi nhuận 4 quý tăng đột biến từ nền rất thấp, doanh thu đi ngang; P/E khoảng 30."
+ },
+ "vi_mo_xuong": "Giá dầu thực vật thế giới và tỷ giá quyết định giá vốn dầu ăn; tiêu dùng quyết định sản lượng.",
+ "vi_mo_nguoc": "Cung dầu ăn, thực phẩm thiết yếu.",
+ "bien": [
+  {
+   "bien": "dau_co",
+   "chieu": -1,
+   "kenh": "Dầu cọ tăng → giá vốn dầu ăn tăng",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → hàng, nguyên liệu nhập bằng đô la đắt hơn",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

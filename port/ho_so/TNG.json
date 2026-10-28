@@ -1,0 +1,39 @@
+{
+ "ma": "TNG",
+ "ten": "Công ty Cổ phần Đầu tư và Thương mại TNG",
+ "nganh": "Hàng cá nhân & Gia dụng",
+ "nganh_slug": "det-may",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "May mặc xuất khẩu (gia công, FOB)",
+ "lam_gi": "TNG — may mặc xuất khẩu (áo khoác, quần áo thời trang) cho các nhãn hàng Mỹ, EU; nhà máy ở Thái Nguyên. Theo dữ liệu NSI (Q2/26): P/E 4,9, P/B 1,08, ROE 22,1%, lợi nhuận 4 quý +26,3%, doanh thu 4 quý +16,6%, nợ vay/vốn chủ 2,06, biên gộp 13,8%.",
+ "tien_tu_dau": "Đơn hàng xuất khẩu theo mùa, thu bằng đô la; một phần gia công, một phần tự mua vải (FOB).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vải, phụ liệu (nhập khẩu nhiều từ Trung Quốc), nhân công.",
+  "dau_ra": "Nhãn hàng thời trang Mỹ, EU.",
+  "vi_tri": "Trung nguồn chuỗi dệt may.",
+  "khac_doi_thu": "P/E khoảng 4,9, ROE khoảng 22%, nợ vay/vốn chủ khoảng 2."
+ },
+ "vi_mo_xuong": "Tỷ giá (đồng yếu có lợi), nhu cầu tiêu dùng Mỹ – EU, thuế đối ứng và quy tắc xuất xứ; giá bông, vải là chi phí.",
+ "vi_mo_nguoc": "Xuất khẩu, việc làm lao động phổ thông.",
+ "bien": [
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "bong",
+   "chieu": -1,
+   "kenh": "Bông tăng → vải đắt, biên đơn FOB co",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

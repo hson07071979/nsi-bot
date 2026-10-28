@@ -1,0 +1,39 @@
+{
+ "ma": "EVF",
+ "ten": "Công ty Tài chính Tổng hợp Cổ phần Điện Lực",
+ "nganh": "Dịch vụ tài chính",
+ "nganh_slug": "chung-khoan",
+ "vi_tri": "tai_chinh",
+ "mo_hinh": "Công ty tài chính (cho vay)",
+ "lam_gi": "Tài chính Điện lực (EVNFinance) — công ty tài chính tổng hợp, cho vay doanh nghiệp (gồm ngành điện) và cá nhân. Theo dữ liệu NSI (Q2/26): P/E 9,7, P/B 0,91, ROE 9,6%, lợi nhuận 4 quý +21,9%, doanh thu 4 quý +36,8%, nợ vay/vốn chủ 0,00, biên gộp 84,2%.",
+ "tien_tu_dau": "Thu nhập lãi cho vay; phí; đầu tư.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vốn chủ, vay liên ngân hàng, giấy tờ có giá.",
+  "dau_ra": "Doanh nghiệp, cá nhân vay.",
+  "vi_tri": "Trung gian tài chính phi ngân hàng.",
+  "khac_doi_thu": "P/B dưới 1; chi phí vốn cao hơn ngân hàng vì không có tiền gửi dân cư."
+ },
+ "vi_mo_xuong": "Lãi suất liên ngân hàng và huy động quyết định chi phí vốn; tăng trưởng tín dụng quyết định quy mô.",
+ "vi_mo_nguoc": "Bổ sung kênh tín dụng cho doanh nghiệp.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí vốn tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng tăng → quy mô cho vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,45 @@
+{
+ "ma": "ANV",
+ "ten": "Công ty Cổ phần Nam Việt",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuy-san",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Nuôi, chế biến, xuất khẩu cá tra",
+ "lam_gi": "Nam Việt (Navico) — cá tra tích hợp từ con giống, thức ăn, nuôi tới chế biến xuất khẩu (Trung Quốc, châu Mỹ, châu Âu). Theo dữ liệu NSI (Q2/26): P/E 5,3, P/B 1,19, ROE 23,6%, lợi nhuận 4 quý +73,7%, doanh thu 4 quý +42,7%, nợ vay/vốn chủ 0,49, biên gộp 18,4%.",
+ "tien_tu_dau": "Bán phi lê cá tra đông lạnh theo giá xuất khẩu (đô la); lợi nhuận theo chênh lệch giá bán với giá cá nguyên liệu và thức ăn.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Con giống, thức ăn (ngô, khô đậu, cám), vùng nuôi Đồng bằng sông Cửu Long.",
+  "dau_ra": "Nhà nhập khẩu, chuỗi siêu thị, nhà hàng ở Mỹ, Trung Quốc, EU.",
+  "vi_tri": "Tích hợp từ nuôi tới xuất khẩu.",
+  "khac_doi_thu": "Tự sản xuất thức ăn nên chủ động giá vốn hơn; lợi nhuận 4 quý tăng khoảng 74% khi giá cá tra hồi."
+ },
+ "vi_mo_xuong": "Tỷ giá (đồng yếu có lợi), nhu cầu Mỹ – Trung Quốc và chính sách thuế của Mỹ quyết định giá bán; giá ngô, khô đậu quyết định giá thức ăn.",
+ "vi_mo_nguoc": "Xuất khẩu nông sản, sinh kế vùng Đồng bằng sông Cửu Long.",
+ "bien": [
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu xuất khẩu bằng đô la quy ra đồng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ngo",
+   "chieu": -1,
+   "kenh": "Ngô tăng → thức ăn chăn nuôi đắt, biên co",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "kho_dau",
+   "chieu": -1,
+   "kenh": "Khô đậu tương tăng → thức ăn đắt, biên co",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

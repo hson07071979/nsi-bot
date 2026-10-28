@@ -1,0 +1,33 @@
+{
+ "ma": "DRI",
+ "ten": "Công ty Cổ phần Đầu tư Cao su Đắk Lắk",
+ "nganh": "Hóa chất",
+ "nganh_slug": "cao-su",
+ "vi_tri": "thuong_nguon",
+ "mo_hinh": "Trồng, khai thác mủ cao su",
+ "lam_gi": "Cao su Đắk Lắk — trồng và chế biến cao su ở Tây Nguyên, Lào. NSI chưa có số BCTC của mã này.",
+ "tien_tu_dau": "Bán mủ cao su (giá theo thị trường thế giới).",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất trồng, công nhân cạo mủ.",
+  "dau_ra": "Nhà sản xuất săm lốp, găng tay trong và ngoài nước (Trung Quốc mua nhiều).",
+  "vi_tri": "Thượng nguồn.",
+  "khac_doi_thu": "Quy mô nhỏ, chi phí thấp."
+ },
+ "vi_mo_xuong": "Giá cao su thế giới theo giá dầu (cao su tổng hợp thay thế) và cầu ô tô Trung Quốc; thời tiết quyết định sản lượng.",
+ "vi_mo_nguoc": "Xuất khẩu nông sản, chuyển đổi đất cho công nghiệp.",
+ "bien": [
+  {
+   "bien": "cao_su",
+   "chieu": 1,
+   "kenh": "Giá cao su tăng → doanh thu mủ tăng",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số quý gần nhất)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": null,
+ "cham_boi": "claude"
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "HSG",
+ "ten": "Công ty Cổ phần Tập đoàn Hoa Sen",
+ "nganh": "Tài nguyên Cơ bản",
+ "nganh_slug": "thep",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Cán mạ thép (chênh lệch giá HRC – tôn)",
+ "lam_gi": "Hoa Sen — tôn mạ, ống thép, ống nhựa lớn nhất Việt Nam; hệ thống phân phối Hoa Sen Home; xuất khẩu nhiều. Theo dữ liệu NSI (Q2/26): P/E 13,4, P/B 0,74, ROE 5,7%, lợi nhuận 4 quý +41,0%, doanh thu 4 quý -6,7%, nợ vay/vốn chủ 0,61, biên gộp 12,7%.",
+ "tien_tu_dau": "Bán tôn mạ, ống thép trong nước và xuất khẩu; lợi nhuận là chênh lệch giá tôn với giá HRC mua vào, cộng lãi/lỗ tồn kho khi giá HRC biến động.",
+ "chuoi_gia_tri": {
+  "dau_vao": "HRC mua của Hoà Phát, Formosa hoặc nhập khẩu; kẽm, nhôm.",
+  "dau_ra": "Đại lý vật liệu, công trình, nhà nhập khẩu (EU, Mỹ, ASEAN).",
+  "vi_tri": "Trung nguồn: cán nguội, mạ.",
+  "khac_doi_thu": "Nợ thấp (nợ vay/vốn chủ khoảng 0,6), P/B dưới 1; doanh thu 4 quý giảm nhẹ."
+ },
+ "vi_mo_xuong": "Giá HRC: tăng thì có lãi tồn kho, giảm thì lỗ tồn kho; xây dựng dân dụng quyết định cầu nội địa; thuế chống bán phá giá ở nước nhập quyết định xuất khẩu.",
+ "vi_mo_nguoc": "Xuất khẩu thép thành phẩm.",
+ "bien": [
+  {
+   "bien": "hrc_my",
+   "chieu": 1,
+   "kenh": "Giá HRC tăng → giá tôn tăng theo, có lãi tồn kho",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng bất động sản nới → xây nhà nhiều, cầu tôn tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

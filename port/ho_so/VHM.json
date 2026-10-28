@@ -1,0 +1,45 @@
+{
+ "ma": "VHM",
+ "ten": "Công ty Cổ phần Vinhomes",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-nha-o",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Phát triển và bán bất động sản nhà ở",
+ "lam_gi": "Nhà phát triển bất động sản nhà ở lớn nhất Việt Nam (thuộc Vingroup): đại đô thị, căn hộ, nhà phố, khu công nghiệp, bán buôn dự án cho đối tác. Theo dữ liệu NSI (Q2/26): P/E 7,5, P/B 2,31, ROE 32,7%, lợi nhuận 4 quý +164,2%, doanh thu 4 quý +135,5%, nợ vay/vốn chủ 0,76, biên gộp 44,2%.",
+ "tien_tu_dau": "Bán căn hộ, nhà phố theo dự án (ghi nhận khi bàn giao, nên lợi nhuận theo đợt); bán buôn dự án; cho thuê, quản lý. Tiền về trước qua đặt cọc và thanh toán theo tiến độ.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất lớn (đền bù, tiền sử dụng đất), nhà thầu xây dựng, vốn vay và trái phiếu.",
+  "dau_ra": "Người mua nhà cá nhân, nhà đầu tư thứ cấp, đối tác mua buôn dự án.",
+  "vi_tri": "Hạ nguồn: chủ đầu tư bán sản phẩm cuối.",
+  "khac_doi_thu": "Quy mô quỹ đất và thương hiệu vượt xa nhóm còn lại; ROE khoảng 33% cao nhất ngành."
+ },
+ "vi_mo_xuong": "Lãi suất cho vay mua nhà và hạn mức tín dụng bất động sản quyết định sức mua; pháp lý dự án quyết định nguồn cung; hạ tầng (đầu tư công, cao tốc, metro) nâng giá trị quỹ đất.",
+ "vi_mo_nguoc": "Đại đô thị kéo theo hạ tầng, việc làm xây dựng, vật liệu và thu ngân sách từ tiền sử dụng đất.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → người mua nhà vay đắt, chi phí vốn dự án tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng nới → dòng tiền vào bất động sản, người mua vay được",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Hạ tầng mới → giá trị quỹ đất dọc tuyến tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

@@ -1,0 +1,39 @@
+{
+ "ma": "VCG",
+ "ten": "Tổng Công ty Cổ phần Xuất nhập khẩu và Xây dựng Việt Nam",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "xay-dung",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Xây lắp theo hợp đồng",
+ "lam_gi": "Vinaconex — tổng thầu hạ tầng (cao tốc, sân bay Long Thành, đường vành đai), xây dựng dân dụng và bất động sản (Cát Bà Amatina qua Vinaconex ITC). Theo dữ liệu NSI (Q2/26): P/E 2,8, P/B 0,98, ROE 35,3%, lợi nhuận 4 quý +425,9%, doanh thu 4 quý +13,6%, nợ vay/vốn chủ 0,46, biên gộp 11,8%.",
+ "tien_tu_dau": "Doanh thu ghi nhận theo khối lượng hoàn thành của hợp đồng xây lắp; biên phụ thuộc giá vật liệu và khả năng thu tiền chủ đầu tư.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Thép, xi măng, nhựa đường, nhân công, máy móc; vốn vay lưu động.",
+  "dau_ra": "Nhà nước (dự án đầu tư công), chủ đầu tư bất động sản, doanh nghiệp FDI.",
+  "vi_tri": "Trung nguồn: biến vốn đầu tư thành công trình.",
+  "khac_doi_thu": "P/E khoảng 2,8 do lợi nhuận 4 quý tăng đột biến từ thoái vốn/bất động sản — cần tách phần cốt lõi."
+ },
+ "vi_mo_xuong": "Giải ngân đầu tư công và tín dụng bất động sản quyết định đơn hàng; giá thép, xi măng quyết định biên; lãi suất quyết định chi phí vốn lưu động.",
+ "vi_mo_nguoc": "Hạ tầng là nền cho tăng trưởng dài hạn; ngành xây dựng tạo nhiều việc làm.",
+ "bien": [
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Đầu tư công tăng → khối lượng việc, đơn hàng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí trả lãi trên nợ vay tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

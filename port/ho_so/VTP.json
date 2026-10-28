@@ -1,0 +1,39 @@
+{
+ "ma": "VTP",
+ "ten": "Tổng Công ty Cổ phần Bưu chính Viettel",
+ "nganh": "Hàng & Dịch vụ Công nghiệp",
+ "nganh_slug": "cang-logistics",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Chuyển phát, logistics",
+ "lam_gi": "Viettel Post — chuyển phát nhanh, logistics thương mại điện tử, thuộc Tập đoàn Viettel. Theo dữ liệu NSI (Q2/26): P/E 24,0, P/B 4,67, ROE 18,5%, lợi nhuận 4 quý -13,2%, doanh thu 4 quý -1,7%, nợ vay/vốn chủ 0,88, biên gộp 5,5%.",
+ "tien_tu_dau": "Phí giao hàng theo kiện (phần lớn đơn thương mại điện tử), kho bãi, logistics doanh nghiệp.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Bến bãi, đội tàu hoặc xe, nhiên liệu, nhân công; vốn vay đầu tư tàu, cảng.",
+  "dau_ra": "Hãng tàu, doanh nghiệp xuất nhập khẩu, nhà máy lọc dầu, sàn thương mại điện tử.",
+  "vi_tri": "Hạ tầng và dịch vụ vận chuyển trong chuỗi xuất nhập khẩu.",
+  "khac_doi_thu": "Biên gộp mỏng (khoảng 5,5%), lợi nhuận 4 quý giảm khoảng 13% khi cạnh tranh giá giao hàng gay gắt; P/B khoảng 4,7."
+ },
+ "vi_mo_xuong": "Kim ngạch xuất nhập khẩu, dòng FDI vào nhà máy và giá cước vận tải thế giới quyết định sản lượng, giá dịch vụ; giá dầu là chi phí nhiên liệu.",
+ "vi_mo_nguoc": "Hạ tầng logistics quyết định chi phí xuất khẩu của cả nền kinh tế.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng nội địa tăng → doanh số tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Dầu tăng → chi phí xăng xe giao hàng tăng",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "NSI (BCTC, chỉ số Q2/26)",
+  "kiến thức nền về mô hình kinh doanh, cổ đông — cần đối chiếu báo cáo thường niên"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}
