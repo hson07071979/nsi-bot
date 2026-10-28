@@ -302,7 +302,8 @@ def chay(root: Path, state: Path, B, asof: str, vi_the: set[str] | None = None, 
     for s, t in tt.items():
         for b in t['bien']:
             b['do_nhay'] = (hoc['theo_ma'].get(s) or {}).get(b['bien'])
-    gia = {s: gia_nen(B, s) for s in (ma_port or [])} if B is not None else {}
+    gia = {s: gia_nen(B, s) for s in sorted(set(ma_port or []) | set(D['ho_so']))} if B is not None else {}
+    gia = {s: g for s, g in gia.items() if g}
     return dict(ho_so=D['ho_so'], nganh=D['nganh'], trang_thai=tt, bien=bien,
                 vi_mo_ngay=(vi_mo or {}).get('ngay'), vi_mo_loi=(vi_mo or {}).get('loi_nguon') or [],
                 co=co, hoc=dict(de_xuat=hoc['de_xuat'], cham=cham_so(so, B), so_dong=len(so)),

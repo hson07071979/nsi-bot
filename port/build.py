@@ -538,8 +538,13 @@ def kv_put(bundle: dict) -> bool:
             # 28/10/2026: trang Hồ sơ doanh nghiệp — Worker phục vụ /port/ho-so từ port/page/ho-so
             ('port/page/ho-so', doc_trang(TRANG_HO_SO), 'text/html'),
             ('port/page/ho-so/data', json.dumps(dict(asof=bundle.get('asof'), cap_nhat=bundle.get('cap_nhat'),
-                                                     ho_so=bundle.get('ho_so'), luan_diem=[dict(ma=x['luan'].get('ma'),
-                                                     trang_thai=x['luan'].get('trang_thai')) for x in bundle.get('luan_diem') or []]),
+                                                     ho_so=bundle.get('ho_so'),
+                                                     # 29/10/2026: luận điểm đầy đủ + danh sách giải ngân để trang hồ sơ
+                                                     # nói được vì sao từng mã chưa được chọn
+                                                     luan_diem=[dict(ma=x['luan'].get('ma'), trang_thai=x['luan'].get('trang_thai'),
+                                                                     luan=x['luan'], kiem_chung=x.get('kiem_chung'), thieu=x.get('thieu'))
+                                                                for x in bundle.get('luan_diem') or []],
+                                                     danh_sach={k: v for k, v in (bundle.get('danh_sach') or {}).items() if k != 'ung_vien'}),
                                                 ensure_ascii=False).encode('utf-8'), 'application/json')):
         if du_lieu is None:
             print(f'KV: chưa có trang cho {khoa} → bỏ qua')

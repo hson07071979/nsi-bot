@@ -40,6 +40,48 @@ function veGia(g,mua){if(!g||!g.gia||g.gia.length<2)return '<p class="mut">Chưa
   return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Giá 1 năm và vùng nền">'+gl+band+'<path d="'+path+'" fill="none" stroke="var(--ink)" stroke-width="1.8"/>'+dinh+m
    +'<text x="'+P+'" y="'+(H-8)+'">'+esc(g.ngay[0])+'</text><text x="'+(W-P-64)+'" y="'+(H-8)+'">'+esc(g.ngay[g.ngay.length-1])+'</text></svg>'
    +'<div class="mut nho">Giá điều chỉnh 250 phiên · dải xanh = nền 30 phiên ('+n(g.nen_duoi,2)+'–'+n(g.nen_tren,2)+', rộng '+n((g.nen_tren/g.nen_duoi-1)*100,1)+'%) · cách đỉnh '+pct((a[a.length-1]/g.dinh-1)*100)+'</div>'}
+/* ===== LUẬN ĐIỂM ĐẦY ĐỦ (29/10/2026) — cùng khuôn mọi mã TOP110, dùng ở thẻ port và trang hồ sơ ===== */
+const LD_TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',theo_doi:'Theo dõi (TOP110)',loai:'Đã loại',dong:'Đã đóng'};
+const LD_KHAU=[['vi_mo','Vĩ mô'],['nganh','Ngành'],['doanh_nghiep','Doanh nghiệp'],['mo_hinh_kd','Kiếm tiền bằng gì'],['lanh_dao','Ban lãnh đạo'],['chuoi_gia_tri','Vị trí trong chuỗi giá trị'],['dan_nguoc_vi_mo','Tác động ngược lại nền kinh tế']];
+const LD_KH={quoc_te:['Quốc tế',10],vi_mo_vn:['Vĩ mô Việt Nam',15],nganh:['Ngành',15],doanh_nghiep:['Doanh nghiệp',15],gia_sai:['Vì sao giá sai',15]},LD_SO={dinh_gia:['Định giá',10],kqkd:['Kết quả kinh doanh',10],suc_khoe_tc:['Sức khỏe tài chính',10]};
+const LD_GS=[['tin_xau','Tin xấu là gì'],['co_that_su_xau','Có thật sự xấu không'],['trang_thai','Tin xấu đang ở đâu'],['ky_vong_ngam','Giá đang ngầm giả định gì'],['nguoi_ban_can_bien','Ai đang bán'],['counter','Phản biện cùng trục'],['phep_thu','Phép thử tiếp theo']];
+const LD_TC=[['catalyst','Catalyst'],['chi_truoc','Phải chi trước những gì'],['hoa_von','Điểm hòa vốn'],['dieu_kien_can','Điều kiện cần'],['dieu_kien_du','Điều kiện đủ'],['khi_nao_tien_ve','Khi nào tiền về'],['phan_bien','Phản biện']];
+const LD_BEN={bull:'Phe lạc quan',bear:'Phe thận trọng',trong_tai:'Người phân xử',anh_son:'Anh Sơn',claude:'Claude'};
+const LD_DK={a:'a. Lợi nhuận tăng là thật',b:'b. Tăng trưởng không chậm lại (PEG)',c:'c. Giảm vì thị trường/ngành',d:'d. Đã cân bằng'};
+const LD_NHOM={giai_ngan:['Giải ngân','up'],can_them:['Cần thêm bằng chứng','warn'],giu_khong_mua:['Giữ, ngừng mua','mut'],loai:['Chưa vào danh sách','dn']};
+const ldBo=s=>String(s==null?'':s).replace(/^(FACT|OBSERVATION|INTERPRETATION|HYPOTHESIS|CONFIRMATION)\s*:\s*/i,'');
+function ldList(a){a=(a||[]).filter(Boolean);return a.length?'<ul>'+a.map(x=>'<li>'+esc(ldBo(typeof x==='string'?x:(x.noi_dung||'')))+(x&&x.bang_chung&&x.bang_chung.length?'<div class="mut nho">Dựa trên: '+x.bang_chung.map(b=>esc(ldBo(b))).join(' · ')+'</div>':'')+'</li>').join('')+'</ul>':'<span class="mut">—</span>'}
+/* tìm mã trong danh sách giải ngân → {nhom, vi_sao, bon_dk, duoc_mua, thieu, qua_loc, loai_loc} */
+function ldTrongDS(ds,ma){for(const k of ['giai_ngan','can_them','giu_khong_mua','loai']){const x=((ds||{})[k]||[]).find(z=>z.ma===ma);if(x)return Object.assign({nhom:k},x)}return null}
+/* hộp kết luận: điểm, danh sách nào, vì sao chưa được chọn / còn thiếu gì, 4 điều kiện */
+function ldKetLuan(t,d){const p=(t&&t.pitch_diem)||{};let h='<div class="ld-kl"><div class="f"><b class="ld-diem">'+(p.tong!=null?n(p.tong,0)+'/100':'chưa chấm')+'</b><span>'+esc(p.ket_luan||'chưa có kết luận')+'</span>'
+   +'<span class="badge nho">'+esc(LD_TT[t.trang_thai]||t.trang_thai||'')+'</span>';
+  if(d){const g=LD_NHOM[d.nhom]||['?','mut'];h+='<span class="badge nho '+g[1]+'">'+g[0]+'</span>'+(d.duoc_mua===true?'<span class="badge nho up">được mua</span>':d.duoc_mua===false?'<span class="badge nho dn">chưa mua</span>':'')}
+  h+='</div>';
+  const ly=[];if(t.trang_thai==='loai')ly.push('Claude đã loại sau debate'+(t.bai_hoc?': '+t.bai_hoc:''));
+  if(d&&d.vi_sao)ly.push(d.vi_sao);if(d&&(d.thieu||[]).length&&!(d.vi_sao||'').includes('thiếu'))ly.push('luận điểm còn thiếu: '+d.thieu.join(', '));
+  if(!d&&t.trang_thai!=='loai')ly.push('chưa có trong bảng lọc lượt này');
+  if(ly.length)h+='<div class="ld-vs"><b>'+(d&&d.nhom==='giai_ngan'&&d.duoc_mua?'Vì sao được chọn':'Vì sao chưa được chọn / còn thiếu gì')+'</b><ul>'+ly.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>';
+  const k=d&&d.bon_dk;if(k)h+='<div class="dk4">'+'abcd'.split('').map(c=>{const v=k[c]||{};return '<div><b class="'+(v.dat===true?'up':v.dat===false?'dn':'mut')+'">'+(v.dat===true?'✓ ':v.dat===false?'✗ ':'? ')+esc(LD_DK[c])+'</b><span class="mut">'+esc(v.cau||'chưa đo')+'</span></div>'}).join('')+'</div>';
+  else if(t.trang_thai!=='loai')h+='<p class="mut nho">4 điều kiện chỉ đo cho mã có trong bảng lọc TOP110 / watchlist.</p>';
+  return h+'</div>'}
+function ldChuoi(t){const c=(t&&t.chuoi)||{};return '<div class="chain">'+LD_KHAU.map(k=>'<div><b>'+k[1]+'</b>'+(c[k[0]]?esc(ldBo(c[k[0]])):'<span class="warn">chưa viết</span>')+'</div>').join('')+'</div>'}
+function ldY(t){return ldList(t.luan_diem)+'<div class="grid2"><div class="mini"><b>Định giá</b>'+para(t.dinh_gia)+'</div><div class="mini"><b>Khi nào bỏ luận điểm</b>'+para(t.vo_hieu)+'</div></div>'
+   +'<div class="grid2"><div class="mini"><b class="up">Lý lẽ lạc quan</b>'+ldList(t.bull)+'</div><div class="mini"><b class="dn">Lý lẽ thận trọng</b>'+ldList(t.bear)+'</div></div>'}
+function ldCatalyst(t){const c=t.the_catalyst;if(!c)return '';return '<div class="mini"><b>Thẻ catalyst</b></div><div class="chain">'+LD_TC.map(k=>c[k[0]]?'<div><b>'+k[1]+'</b>'+esc(c[k[0]])+'</div>':'').join('')+'</div>'
+   +((c.moc_quy||[]).length?'<ul>'+c.moc_quy.map(m=>'<li><b>'+esc(m.quy)+'</b> — '+esc(m.moc)+'</li>').join('')+'</ul>':'')}
+function ldDiem(t){const p=t.pitch_diem||{};if(p.tong==null)return '<p class="mut">Chưa chấm điểm.</p>';const k=p.khau||{},q=p.so||{},g=p.gia_sai||{};
+  let h='<div class="grid2"><div class="mini"><b>Lập luận '+n(p.luan_diem_70,0)+'/70</b><ul>'+Object.keys(LD_KH).map(c=>'<li>'+LD_KH[c][0]+': '+n(k[c],0)+'/'+LD_KH[c][1]+'</li>').join('')+'</ul></div><div class="mini"><b>Số liệu '+n(p.so_30,0)+'/30</b><ul>'+Object.keys(LD_SO).map(c=>'<li>'+LD_SO[c][0]+': '+n(q[c],0)+'/'+LD_SO[c][1]+'</li>').join('')+'</ul>'+(p.ghi_chu?'<p class="mut nho">'+esc(p.ghi_chu)+'</p>':'')+'</div></div>';
+  if(g.ket_luan||g.tin_xau)h+='<div class="mini"><b>Giá đã phản ánh hết tin xấu chưa? '+esc(g.ket_luan||'')+'</b></div><div class="chain">'+LD_GS.map(c=>g[c[0]]?'<div><b>'+c[1]+'</b>'+esc(g[c[0]])+'</div>':'').join('')+'</div>';
+  return h}
+function ldMoc(kc){kc=kc||[];if(!kc.length)return '<span class="warn">chưa có mốc</span>';return '<div class="scroll"><table><tr><th>Mốc</th><th>Nội dung</th><th>Trạng thái</th></tr>'+kc.map(k=>'<tr><td>'+esc(k.id)+'</td><td class="w">'+esc(k.noi_dung)+'</td><td>'+(k.ket_qua?'<b class="'+(k.ket_qua==='ĐÚNG'?'up':'dn')+'">'+esc(k.ket_qua)+'</b>'+(k.gia_tri!=null?' ('+n(k.gia_tri)+')':''):(k.trang_thai==='dong'?'đã chấm':'đang chờ'+(k.ghi_chu?' · '+esc(k.ghi_chu):'')))+'</td></tr>').join('')+'</table></div>'}
+function ldDebate(t){const d=t.debate||[];if(!d.length)return '';return '<details><summary>Debate ('+d.length+' lượt)</summary><div class="chain">'+d.map(x=>'<div><b>'+esc(LD_BEN[x.ben]||x.ben)+' · '+esc(x.ngay||'')+'</b>'+esc(x.noi_dung)+'</div>').join('')+'</div></details>'}
+/* cả luận điểm trong một thẻ, đánh số tiếp từ `so` */
+function veLuanDu(t,d,kc,so){if(!t)return sec(so,'Luận điểm đầu tư','<p class="mut">Chưa có luận điểm.</p>');
+  return sec(so,'Từ vĩ mô xuống doanh nghiệp',ldChuoi(t))
+   +sec(so+1,'Luận điểm: các ý chính, định giá, lạc quan – thận trọng',ldY(t)+ldCatalyst(t)+ldDebate(t))
+   +sec(so+2,'Điểm 70/30 · giá đã phản ánh hết tin xấu chưa',ldDiem(t))
+   +sec(so+3,'Mốc để code tự chấm',ldMoc(kc||t.kiem_chung)+(t.bai_hoc?'<div class="mini"><b>Bài học</b>'+para(t.bai_hoc)+'</div>':''))}
 /* giao diện chung theo màu của web NSI (tối mặc định, sáng khi máy để chế độ sáng) */
 (function(){const css=`
 :root{--bg:#111110;--card:#1a1a19;--card2:#232322;--ink:#ffffff;--ink2:#c3c2b7;--mut:#8b8a80;--line:#33322f;--acc:#3987e5;--up:#199e70;--dn:#e66767;--warn:#c98500;--chip:#232322}
@@ -62,4 +104,8 @@ body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Hel
 .gn{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:8px 0}.gn div{background:var(--card2);border-radius:10px;padding:8px 10px}.gn b{display:block;font-size:18px}
 .dk4{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}.dk4 div{border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}.dk4 div b{display:block}
 .pitch{background:var(--card2);border-left:3px solid var(--acc);border-radius:8px;padding:10px 12px;color:var(--ink)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:4px 18px}.grid2 ul{margin:4px 0;padding-left:18px}.grid2 li,.sec li{margin:3px 0;color:var(--ink2)}
+.chain{display:grid;gap:8px;margin:6px 0}.chain>div{border-left:3px solid var(--acc);padding:2px 0 2px 10px;color:var(--ink2);font-size:14px}.chain>div>b{display:block;font-size:12.5px;color:var(--mut)}
+.ld-kl{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:8px 0}.ld-diem{font-size:20px}.ld-vs{margin:8px 0}.ld-vs b{font-size:12.5px;color:var(--mut)}.ld-vs ul{margin:4px 0;padding-left:18px}
+.warn{color:var(--warn)}.badge.warn{color:var(--warn);border-color:var(--warn)}
 `;document.head.insertAdjacentHTML('beforeend','<style>'+css+'</style>')})();

@@ -12,39 +12,48 @@ details summary{cursor:pointer;font-weight:600;margin:6px 0}ul{margin:4px 0;padd
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.kpi div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.kpi b{display:block;font-size:20px}
 svg text{fill:var(--mut);font-size:11px}
 </style></head><body><div class="wrap">
-<div><h1>Hồ sơ doanh nghiệp</h1><div class="mut">Doanh nghiệp làm ăn gì, tiền từ đâu, đứng ở đâu trong chuỗi giá trị, vĩ mô hôm nay ủng hộ hay chống · chỉ trang quản trị · <a href="/port">Lọc port</a></div><div id="meta" class="mut"></div></div>
+<div><h1>Hồ sơ doanh nghiệp</h1><div class="mut">Mọi mã TOP110: làm ăn gì, luận điểm đầu tư, vì sao được chọn hoặc chưa được chọn, vĩ mô hôm nay ủng hộ hay chống · chỉ trang quản trị · <a href="/port">Lọc port</a></div><div id="meta" class="mut"></div></div>
 <div id="app" class="card">Đang tải…</div></div>
 <script>
 const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const n=(v,d=1)=>v==null||v===''?'—':(typeof v==='number'?v.toLocaleString('vi-VN',{maximumFractionDigits:d}):esc(v));
 const pct=v=>v==null?'—':'<span class="'+(v>0?'up':v<0?'dn':'')+'">'+(v>0?'+':'')+n(v,Math.abs(v)<1?2:1)+'%</span>';
 /*CHUNG_JS*/
-let B=null,chon=null,F={q:'',nganh:'',vi_tri:'',bien:'',tt:'',mo_hinh:''};
+let B=null,chon=null,F={q:'',nganh:'',vi_tri:'',bien:'',tt:'',mo_hinh:'',ds:''};
 try{F=Object.assign(F,JSON.parse(localStorage.getItem('hs-loc')||'{}'))}catch(e){}
 function uniq(a){return [...new Set(a.filter(Boolean))].sort((x,y)=>String(x).localeCompare(String(y),'vi'))}
 function sel(id,ten,opts,v,nhan){return '<select id="'+id+'"><option value="">'+ten+'</option>'+opts.map(o=>'<option value="'+esc(o)+'"'+(o===v?' selected':'')+'>'+esc(nhan?nhan(o):o)+'</option>').join('')+'</select>'}
 function loc(){const H=B.ho_so||{},hs=H.ho_so||{},T=H.trang_thai||{},bien=H.bien||{};const q=F.q.trim().toUpperCase();
   return Object.values(hs).filter(h=>(!q||h.ma.includes(q)||String(h.ten||'').toUpperCase().includes(q))&&(!F.nganh||h.nganh===F.nganh)&&(!F.vi_tri||h.vi_tri===F.vi_tri)
-    &&(!F.mo_hinh||h.mo_hinh===F.mo_hinh)&&(!F.bien||(h.bien||[]).some(b=>b.bien===F.bien))&&(!F.tt||(T[h.ma]||{}).tong===F.tt)).sort((a,b)=>a.ma.localeCompare(b.ma))}
-function ve(){const H=B.ho_so||{},hs=Object.values(H.ho_so||{}),T=H.trang_thai||{},bien=H.bien||{},port=new Set((B.luan_diem||[]).filter(x=>x.trang_thai!=='loai'&&x.trang_thai!=='dong').map(x=>x.ma));
+    &&(!F.mo_hinh||h.mo_hinh===F.mo_hinh)&&(!F.bien||(h.bien||[]).some(b=>b.bien===F.bien))&&(!F.tt||(T[h.ma]||{}).tong===F.tt)&&(!F.ds||nhomMa(h.ma)===F.ds)).sort((a,b)=>a.ma.localeCompare(b.ma))}
+function luanMa(ma){return (B.luan_diem||[]).find(x=>x.ma===ma)}
+function nhomMa(ma){const l=luanMa(ma);if(!l||!l.luan)return 'chua_co';if(l.trang_thai==='loai')return 'da_loai';const d=ldTrongDS(B.danh_sach,ma);return d?d.nhom:'chua_co'}
+const NHOM_LOC={giai_ngan:'Giải ngân',can_them:'Cần thêm bằng chứng',giu_khong_mua:'Giữ, ngừng mua',loai:'Chưa vào danh sách',da_loai:'Đã loại sau debate',chua_co:'Chưa có luận điểm'};
+function ve(){const H=B.ho_so||{},hs=Object.values(H.ho_so||{}),T=H.trang_thai||{},bien=H.bien||{},port=new Set((B.luan_diem||[]).filter(x=>x.trang_thai==='trong_port').map(x=>x.ma));
   if(!hs.length){$('#app').innerHTML='<p>Chưa có hồ sơ nào. Claude viết hồ sơ theo đợt (đợt 1: các mã port, sau đó từng ngành) vào nhánh port-data.</p>';return}
   const L=loc();if(!chon||!L.find(h=>h.ma===chon))chon=(L[0]||{}).ma;
   const dem={THUẬN:0,'NGHỊCH':0,'TRUNG TÍNH':0};hs.forEach(h=>{const t=(T[h.ma]||{}).tong;if(t in dem)dem[t]++});
-  let o='<div class="kpi"><div>Có hồ sơ<b>'+hs.length+' mã</b><span class="mut">TOP110 + mã port · viết lại mỗi quý sau mùa BCTC</span></div><div>Vĩ mô thuận<b class="up">'+dem['THUẬN']+'</b></div><div>Vĩ mô nghịch<b class="dn">'+dem['NGHỊCH']+'</b></div><div>Trung tính<b>'+dem['TRUNG TÍNH']+'</b></div></div>';
+  const coLuan=hs.filter(h=>(luanMa(h.ma)||{}).luan).length,dn=(B.danh_sach||{}),gn=(dn.giai_ngan||[]).length+(dn.can_them||[]).filter(x=>x.duoc_mua).length;
+  let o='<div class="kpi"><div>Có hồ sơ<b>'+hs.length+' mã</b><span class="mut">TOP110 + mã port · viết lại mỗi quý sau mùa BCTC</span></div><div>Có luận điểm đầy đủ<b>'+coLuan+' mã</b><span class="mut">'+gn+' mã đang được giải ngân</span></div><div>Vĩ mô thuận<b class="up">'+dem['THUẬN']+'</b></div><div>Vĩ mô nghịch<b class="dn">'+dem['NGHỊCH']+'</b></div><div>Trung tính<b>'+dem['TRUNG TÍNH']+'</b></div></div>';
   let trai='<input id="q" placeholder="Lọc mã / tên…" value="'+esc(F.q)+'">'
    +sel('nganh','Mọi ngành',uniq(hs.map(h=>h.nganh)),F.nganh)
    +sel('vi_tri','Mọi vị trí trong chuỗi',uniq(hs.map(h=>h.vi_tri)),F.vi_tri,v=>VT[v]||v)
    +sel('bien','Mọi biến vĩ mô nhạy',uniq(hs.flatMap(h=>(h.bien||[]).map(b=>b.bien))),F.bien,v=>(bien[v]||{}).ten||v)
    +sel('tt','Thuận / nghịch hôm nay',['THUẬN','NGHỊCH','TRUNG TÍNH'],F.tt)
    +sel('mo_hinh','Mọi mô hình doanh thu',uniq(hs.map(h=>h.mo_hinh)),F.mo_hinh)
+   +sel('ds','Mọi trạng thái giải ngân',Object.keys(NHOM_LOC),F.ds,v=>NHOM_LOC[v])
    +'<div class="nhom">'+L.length+' mã</div>'
-   +L.map(h=>'<div class="dong-ma'+(h.ma===chon?' on':'')+'" data-ma="'+esc(h.ma)+'"><span><b>'+esc(h.ma)+'</b>'+(port.has(h.ma)?' <span class="badge nho">port</span>':'')+'</span>'+ttBadge(T[h.ma],1)+'</div>').join('');
-  const h=(H.ho_so||{})[chon],t=T[chon],ng=h?(H.nganh||{})[h.nganh_slug]:null;
-  let the=h?'<div class="tieu"><p class="dau">'+esc(h.ma)+'</p><span class="mut">'+esc(h.ten||'')+' · '+esc(h.nganh||'')+'</span>'+ttBadge(t)+(port.has(h.ma)?' <a href="/port">xem trong port →</a>':'')+'</div>'
-    +sec(1,'Làm ăn gì · chuỗi giá trị',veLamGi(h,ng))+sec(2,'Vĩ mô hôm nay ủng hộ hay chống',veViMo(t))+sec(3,'Vĩ mô → vi mô → vĩ mô',veChuoi(h,null)):'<p class="mut">Không có mã nào khớp bộ lọc.</p>';
+   +L.map(h=>{const l=luanMa(h.ma),p=((l&&l.luan)||{}).pitch_diem||{};return '<div class="dong-ma'+(h.ma===chon?' on':'')+'" data-ma="'+esc(h.ma)+'"><span><b>'+esc(h.ma)+'</b>'+(port.has(h.ma)?' <span class="badge nho up">port</span>':'')+(p.tong!=null?' <span class="mut">'+n(p.tong,0)+'đ</span>':'')+'<br><span class="mut">'+esc(NHOM_LOC[nhomMa(h.ma)])+'</span></span>'+ttBadge(T[h.ma],1)+'</div>'}).join('');
+  let tt=null;const h=(H.ho_so||{})[chon],ng=h?(H.nganh||{})[h.nganh_slug]:null;
+  const lm=luanMa(chon),t=lm&&lm.luan,d=t?ldTrongDS(B.danh_sach,chon):null;
+  let the=h?'<div class="tieu"><p class="dau">'+esc(h.ma)+'</p><span class="mut">'+esc(h.ten||'')+' · '+esc(h.nganh||'')+'</span>'+ttBadge(tt=T[chon])+(port.has(h.ma)?' <a href="/port">xem trong port →</a>':'')+'</div>'
+    +(t?ldKetLuan(t,d)+(t.pitch?'<div class="mini"><b>Nói ngắn cho khách</b><div class="pitch">'+esc(t.pitch)+'</div></div>':''):'<p class="warn">Chưa có luận điểm đầy đủ cho mã này — Claude đang viết theo từng ngành.</p>')
+    +sec(1,'Làm ăn gì · chuỗi giá trị',veLamGi(h,ng))+sec(2,'Giá 1 năm và vùng nền',veGia(((H.gia)||{})[chon],[]))
+    +sec(3,'Vĩ mô hôm nay ủng hộ hay chống',veViMo(T[chon]))
+    +(t?veLuanDu(t,d,lm.kiem_chung,4):sec(4,'Vĩ mô → vi mô → vĩ mô',veChuoi(h,null))):'<p class="mut">Không có mã nào khớp bộ lọc.</p>';
   $('#app').innerHTML=o+'<div class="hai"><div class="card trai">'+trai+'</div><div class="card">'+the+'</div></div>';
   const q=$('#q');q.oninput=()=>{F.q=q.value;luu();const p=q.selectionStart;ve();const j=$('#q');j.focus();j.setSelectionRange(p,p)};
-  ['nganh','vi_tri','bien','tt','mo_hinh'].forEach(k=>{$('#'+k).onchange=e=>{F[k]=e.target.value;luu();ve()}});
+  ['nganh','vi_tri','bien','tt','mo_hinh','ds'].forEach(k=>{$('#'+k).onchange=e=>{F[k]=e.target.value;luu();ve()}});
   document.querySelectorAll('.dong-ma').forEach(d=>d.onclick=()=>{chon=d.dataset.ma;ve()})}
 function luu(){try{localStorage.setItem('hs-loc',JSON.stringify(F))}catch(e){}}
 fetch('/port/ho-so/data').then(r=>r.json().then(j=>{if(!r.ok)throw new Error(j.loi||r.status);return j})).then(j=>{B=j;

@@ -35,7 +35,7 @@ const TABS=[['dmuc','Danh mục'],['may','Bộ máy tự học']];
 const SUB={may:[['tq','Danh sách & 4 điều kiện'],['gl','Sổ giả lập'],['so','Luận điểm đầy đủ'],['bc','Đọc BCTC'],['db','3 máy nói gì'],['hshoc','Hồ sơ: vĩ mô tự học'],['nd','Nhận định hằng ngày'],['hoc2','Ai đoán đúng'],['pool','Pool tuần'],['lq','Lọc quý TOP110'],['locf','Lọc cơ bản']]};
 const CH={1:['tăng','up'],'-1':['giảm','dn'],0:['trung lập','mut']}, CHP={tang:1,giam:-1,trung_lap:0};
 const CHN={tang:['tăng','up'],giam:['giảm','dn'],ngang:['đi ngang','mut']};
-const TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',loai:'Đã loại',dong:'Đã đóng'};
+const TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',theo_doi:'Theo dõi (TOP110)',loai:'Đã loại',dong:'Đã đóng'};
 const BEN={bull:'phe lạc quan',bear:'phe thận trọng',trong_tai:'người phân xử',anh_son:'anh Sơn',claude:'Claude'};
 const KHAU=[['vi_mo','Vĩ mô'],['nganh','Ngành'],['doanh_nghiep','Doanh nghiệp'],['mo_hinh_kd','Kiếm tiền bằng gì'],['lanh_dao','Ban lãnh đạo'],['chuoi_gia_tri','Vị trí trong chuỗi giá trị'],['dan_nguoc_vi_mo','Tác động ngược lại nền kinh tế']];
 let B=null, tab='dmuc', chon=null, chon2=null, loc2='', sortK='np4_yoy', sortD=-1, sub={may:'tq'};
@@ -120,20 +120,17 @@ function theMa(x){if(!x)return '';const H=B.ho_so||{},h=(H.ho_so||{})[x.ma],tt=(
   o+=sec(3,'Tin & catalyst',s3);
   // 4
   o+=sec(4,'Vĩ mô hôm nay ủng hộ hay chống',veViMo(tt));
-  // 5
-  o+=sec(5,'Vĩ mô → vi mô → vĩ mô',veChuoi(h,t));
-  // 6
+  // 5–8: luận điểm đầy đủ (chuỗi vĩ mô → doanh nghiệp, các ý chính, điểm 70/30, mốc tự chấm)
+  o+=veLuanDu(t.ma?t:null,null,L.kiem_chung,5);
+  // 9
   const dk=x.bon_dk||{};
   let s6='<div class="gn"><div>Mục tiêu<b>'+(x.nhom==='giu_khong_mua'?'giữ, không mua thêm':n(mt||0,0)+'% NAV')+'</b></div><div>Đang giải ngân<b>'+n(v?v.ty_trong:0)+'% NAV</b>'+(v?'<span class="mut">giá vốn '+n(v.gia_von,2)+' · '+pct(v.lai_pct)+'</span>':'')+'</div><div>Được mua tiếp?<b class="'+(x.duoc_mua?'up':'dn')+'">'+(x.duoc_mua?'có':'chưa')+'</b></div></div>';
   if(x.vi_sao)s6+='<p class="mut">'+esc(x.vi_sao)+'</p>';
-  s6+='<div class="mini"><b>Vì sao chọn — giá đã phản ánh hết tin xấu chưa: '+esc(gs.ket_luan||'—')+'</b><div class="chain">'
-    +[['tin_xau','Tin xấu'],['ky_vong_ngam','Giá đang ngầm giả định'],['nguoi_ban_can_bien','Ai đang bán'],['phep_thu','Phép thử tiếp theo']].map(k=>gs[k[0]]?'<div><b>'+k[1]+'</b>'+esc(gs[k[0]])+'</div>':'').join('')
-    +(t.dinh_gia?'<div><b>Định giá</b>'+esc(t.dinh_gia)+'</div>':'')+'</div></div>';
+  s6+='<div class="mini"><b>Vì sao chọn — giá đã phản ánh hết tin xấu chưa: '+esc(gs.ket_luan||'—')+'</b>'+para(gs.ky_vong_ngam)+'</div>';
   s6+='<div class="mini"><b>Vì sao đạt — 4 điều kiện</b><div class="dk4">'+'abcd'.split('').map(k=>{const d=dk[k]||{};return '<div><b class="'+(d.dat===true?'up':d.dat===false?'dn':'mut')+'">'+(d.dat===true?'✓ ':d.dat===false?'✗ ':'? ')+esc(DK_TEN[k])+'</b><span class="mut">'+esc(d.cau||'chưa đo')+'</span></div>'}).join('')+'</div></div>';
-  if(t.vo_hieu)s6+='<div class="mini"><b>Khi nào bỏ</b>'+para(t.vo_hieu)+'</div>';
-  o+=sec(6,'Giải ngân bao nhiêu · vì sao chọn · vì sao đạt',s6);
-  // 7
-  o+=sec(7,'Nói với khách',t.pitch?'<div class="pitch">'+esc(t.pitch)+'</div><p class="mut nho">Không trích tin nhóm Zalo kín. Kiểm tra quy định nội dung của công ty trước khi gửi.</p>':'<p class="mut">Chưa có.</p>');
+  o+=sec(9,'Giải ngân bao nhiêu · vì sao chọn · vì sao đạt',s6);
+  // 10
+  o+=sec(10,'Nói với khách',t.pitch?'<div class="pitch">'+esc(t.pitch)+'</div><p class="mut nho">Không trích tin nhóm Zalo kín. Kiểm tra quy định nội dung của công ty trước khi gửi.</p>':'<p class="mut">Chưa có.</p>');
   return o}
 /* Bộ máy tự học: hồ sơ — đề xuất sửa độ nhạy + chấm thuận/nghịch */
 function hshoc(){const H=B.ho_so||{},hc=H.hoc||{},c=hc.cham||{};let h='<h2 style="margin-top:0">Hồ sơ doanh nghiệp: vĩ mô tự học</h2><p class="mut">Mỗi sáng 7h05 cào vĩ mô ('+esc(H.vi_mo_ngay||'chưa có')+'); mỗi lượt chấm thuận/nghịch cho từng mã và ghi sổ ('+n(hc.so_dong||0,0)+' dòng). Sau 20 và 60 phiên chấm bằng giá thật. Trang <a href="/port/ho-so">Hồ sơ doanh nghiệp</a> có đủ ~115 mã.</p>';
