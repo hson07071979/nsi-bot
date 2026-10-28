@@ -1,0 +1,55 @@
+name: Cào vĩ mô (7h sáng)
+# 28/10/2026: mỗi sáng 7h05 giờ VN cào ~32 biến vĩ mô (FRED không cần key, Yahoo, Stooq, Vietcombank) vào sổ
+# điểm-thời-gian ở nhánh port-data: port/state/vi_mo/. Hồ sơ doanh nghiệp dùng sổ này để chấm thuận/nghịch hằng ngày,
+# vòng học dùng lịch sử để đo độ nhạy từng mã. Lượt "Lọc port" tự chép port/state sang, nên không cần nối thêm gì.
+on:
+  schedule:
+    - cron: '5 0 * * *'          # 07h05 giờ VN, mọi ngày (hàng hoá thế giới giao dịch cả khi VN nghỉ)
+    - cron: '35 1 * * *'         # 08h35 lưới dự phòng nếu lượt 7h05 bị GitHub hoãn
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: loc-port
+  cancel-in-progress: false
+
+jobs:
+  vimo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Mã nguồn (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Dữ liệu (nhánh port-data)
+        uses: actions/checkout@v4
+        with:
+          ref: port-data
+          path: _data
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Đã cào hôm nay chưa (lượt dự phòng 8h35 bỏ qua nếu 7h05 đã chạy)
+        id: kiem
+        run: |
+          H=$(TZ=Asia/Ho_Chi_Minh date +%F)
+          if [ "${{ github.event_name }}" = "schedule" ] && grep -q "\"ngay\": \"$H\"" _data/port/state/vi_mo/moi_nhat.json 2>/dev/null; then
+            echo "Hôm nay đã cào rồi"; echo "chay=0" >> $GITHUB_OUTPUT
+          else echo "chay=1" >> $GITHUB_OUTPUT; fi
+      - name: Cào
+        if: steps.kiem.outputs.chay == '1'
+        run: python vimo/cao.py _data/port/state/vi_mo
+      - name: Ghi về port-data
+        if: steps.kiem.outputs.chay == '1'
+        run: |
+          cd _data
+          git config user.name  "Bot Nguyễn Sơn Invest"
+          git config user.email "bot@users.noreply.github.com"
+          git add port/state/vi_mo
+          if git diff --cached --quiet; then echo "Không đổi"; exit 0; fi
+          git commit -m "vĩ mô: sổ sáng $(TZ=Asia/Ho_Chi_Minh date '+%d/%m/%Y %H:%M')"
+          for i in 1 2 3; do git pull --rebase -q origin port-data && git push origin HEAD:port-data && break; sleep 5; done
