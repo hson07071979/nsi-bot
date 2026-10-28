@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Rẻ và tốt chưa đủ — port cần tăng trưởng; một tháng phục hồi chưa phải xu hướng.",
+ "ma": "VHC",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: thuế Mỹ (đối ứng 20%, Section 301 12,5% từ 24/07/2026; chống bán phá giá VHC 0 USD/kg) → đơn hàng Mỹ (khoảng 1/3 doanh thu); tỷ giá USD → lợi nhuận xuất khẩu; giá cá giống, thức ăn (84% chi phí nuôi).",
+  "nganh": "Nhóm thực phẩm – đồ uống phân hóa mạnh theo đầu vào và thị trường: (1) Chăn nuôi heo — giá heo hơi rơi từ 78.000–82.000 đồng/kg đầu năm xuống 44.000–49.000 (28/10), dưới giá hòa vốn khoảng 55.000; dịch tả heo châu Phi lan ở ĐBSCL (Cà Mau 23 ổ dịch); thịt heo nhập khẩu 124.100 tấn 8 tháng giá khoảng 45.000 đồng/kg; ngô, đậu tương ở đáy 7 tuần là điểm đỡ duy nhất. (2) Thủy sản xuất khẩu — xuất khẩu 9 tháng 9,1 tỷ USD (+11,5%, VASEP); Mỹ duy trì thuế đối ứng 20% và thêm Section 301 12,5% từ 24/07/2026, nhưng kết quả chống bán phá giá POR21 (12/08) giữ nhiều doanh nghiệp ở mức thấp; châu Âu thay cá thịt trắng bằng cá tra. (3) Hàng tiêu dùng nhanh — sức mua nội địa phục hồi, tăng trưởng hai chữ số ở doanh nghiệp đầu ngành; thuế tiêu thụ đặc biệt với đồ uống có đường trên 5% từ 1/1/2027. Trung vị nhóm cách đỉnh khoảng 22%.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026 (đến 29/10). Doanh thu sơ bộ quý 3 khoảng 3.300 tỷ (+1%): Mỹ −16% (nền cao do nhập trước thuế 08/2025), châu Âu +21%, Trung Quốc +17%; collagen – gelatin −33%. Tháng 9 hồi: 1.038 tỷ (+13%), Mỹ +22%. 9 tháng doanh thu khoảng 9.700 tỷ (+6%). 6 tháng LNST 735 tỷ (khoảng 46% kế hoạch 1.600 tỷ). Tiền từ kinh doanh 12 tháng 1.672 tỷ (NSI).",
+  "mo_hinh_kd": "Cá tra khép kín (vùng nuôi, thức ăn Feed One, chế biến 1.000 tấn cá/ngày) + collagen – gelatin (biên 30–34%) + Sa Giang; chiếm khoảng 22% giá trị cá tra châu Âu.",
+  "lanh_dao": "Bà Trương Thị Lệ Khanh 45,35% (sau hủy 15 triệu cổ phiếu quỹ, chi khoảng 930 tỷ); con gái 2,54%; Mitsubishi khoảng 6,4%, Dragon Capital khoảng 6,8%. Cổ tức 2026 kế hoạch 30% (3.000 đồng) — cao nhất 8 năm.",
+  "chuoi_gia_tri": "Thượng nguồn – chế biến – xuất khẩu; khách hàng nhà phân phối Mỹ, châu Âu, Trung Quốc.",
+  "dan_nguoc_vi_mo": "Xuất khẩu cá tra là nguồn ngoại tệ và việc làm ĐBSCL; VHC dẫn đầu ngành nên chịu tác động trực tiếp từ đàm phán thuế Việt – Mỹ."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt a, c, d và qua lọc nền thấp; trượt b vì tăng trưởng 4 quý gần 0 (+0,4%) nên PEG vọt lên 17.",
+   "bang_chung": [
+    "FACT: LN 4 quý +0,4%, lõi +8,5%, nền 9,8% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Doanh nghiệp tốt, rẻ (P/E 8), dòng tiền dày, cổ tức cao — nhưng chưa tăng trưởng: Mỹ còn chịu thuế chồng, collagen giảm, quý 3 đi ngang. Tháng 9 là tín hiệu đầu tiên; cần quý 4 xác nhận.",
+   "bang_chung": [
+    "FACT: Doanh thu quý 3 +1%, tháng 9 +13% (VDSC 17/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/E khoảng 8; cổ tức 3.000 đồng (khoảng 5,8%).",
+  "Thuế chống bán phá giá 0 USD/kg — lợi thế lớn tại Mỹ.",
+  "Châu Âu tăng mạnh; tháng 9 Mỹ hồi +22%.",
+  "Dòng tiền 1.672 tỷ; mua lại 15 triệu cổ phiếu.",
+  "VDSC MUA 76.400, Mirae 69.900, SBBS 68.500."
+ ],
+ "bear": [
+  "Quý 3 doanh thu +1%; tăng trưởng gần 0 (trượt b).",
+  "Thuế Mỹ chồng lớp (20% + 12,5%).",
+  "Collagen – gelatin −33%; Trung Quốc tháng 9 −82%.",
+  "Giá cá giống, bột cá tăng.",
+  "Đầu tư cổ phiếu bất động sản phải trích lập."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Lợi thế thuế chống bán phá giá chỉ có giá trị khi Mỹ phục hồi — và tháng 9 cho thấy điều đó."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Một tháng không phải xu hướng; thuế chồng lớp vẫn đè cầu Mỹ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Đủ a, c, d; thiếu tăng trưởng. Chờ BCTC quý 3 và tháng 10–11."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi sát — gần đủ điều kiện, thiếu b."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 433,0 tỷ, NSI) — doanh thu quý chỉ +1%."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: doanh thu Mỹ tháng 10–11 quay lại giảm; LNST quý 3 thấp hơn 380 tỷ; Mỹ tăng thêm thuế với thủy sản.",
+ "dinh_gia": "P/E 8,07 so với trung vị 3 năm 10,00; P/B 1,16 so với 1,44 (NSI 28/10, BCTC Q2/26). Ngành Thực phẩm và đồ uống (13 mã trong NSI): P/E trung vị 12,2, P/B 2,44, ROE 22,3%; mã này ROE 15,0%. Giá 51,60 cách đỉnh 1 năm -25%, cả ngành -22%. VDSC 15/10/2026: MUA 76.400. Mirae Asset 10/08: MUA 69.900. SBBS 05/08: MUA 68.500. CSI 25/05: MUA 83.000. Funan 21/05: MUA 82.100. DSC 26/08: THEO DÕI 59.841. Kỳ vọng ngầm trong giá 51.600 (P/E khoảng 8): thị trường giả định lợi nhuận đi ngang dài hạn.",
+ "pitch": "Vĩnh Hoàn là doanh nghiệp cá tra hàng đầu, được hưởng thuế chống bán phá giá 0% ở Mỹ, cổ tức tiền cao và giá cổ phiếu rẻ. Điểm còn thiếu là tăng trưởng: quý 3 doanh thu gần như đi ngang. Tháng 9 đã hồi — chúng tôi theo dõi sát để vào khi xu hướng được xác nhận.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 8,
+   "vi_mo_vn": 6,
+   "nganh": 7,
+   "doanh_nghiep": 8,
+   "gia_sai": 7
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 3,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 36,
+  "so_30": 17,
+  "tong": 53,
+  "dinh_gia_sai": 7,
+  "gia_sai": {
+   "tin_xau": "Thuế Mỹ, quý 3 đi ngang, collagen giảm.",
+   "co_that_su_xau": "Một phần — thuế là thật nhưng nền so sánh cao giải thích phần lớn mức giảm Mỹ.",
+   "trang_thai": "Giá −25% từ đỉnh, P/E 8 — đã phản ánh phần lớn.",
+   "ky_vong_ngam": "P/E 8: tăng trưởng bằng 0.",
+   "nguoi_ban_can_bien": "Quỹ ngoại giảm tỷ trọng nhóm xuất khẩu sang Mỹ.",
+   "counter": "Phản biện: nếu thuế Section 301 được đàm phán giảm, cầu Mỹ có thể bật mạnh năm 2027.",
+   "phep_thu": "BCTC quý 3 và doanh thu tháng 10.",
+   "ket_luan": "ĐÃ PHẢN ÁNH PHẦN LỚN"
+  },
+  "ket_luan": "THEO DÕI SÁT — đạt a, c, d; trượt b (tăng trưởng gần 0)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

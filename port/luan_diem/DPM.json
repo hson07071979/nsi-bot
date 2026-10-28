@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lợi nhuận tăng mà tiền từ kinh doanh âm: kiểm tra tồn kho và phải thu trước khi tin tăng trưởng.",
+ "ma": "DPM",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá dầu → giá khí đầu vào (Brent quý 3 91,5 USD, +34%) → giá vốn urê; giá urê thế giới (Trung Quốc, Ấn Độ, Hormuz — khoảng 34% thương mại urê qua eo này) → giá bán. VAT 5% với phân bón (từ 07/2025) cho khấu trừ thuế đầu vào.",
+  "nganh": "Nhóm \"hóa chất\" của NSI gồm bốn ngành khác nhau, đều đang qua đỉnh quý 2: (1) Phân bón urê — giá urê Phú Mỹ quý 3 bình quân 12.129 đồng/kg (−26% so quý 2), urê Trung Đông 399 USD/tấn (−42%), trong khi giá khí (70–75% giá vốn, gắn giá dầu) vẫn cao; Trung Quốc mở thêm hạn ngạch xuất khẩu 1,5–2 triệu tấn (29/09) (FinLens 05/10). Đỡ giá: Đạm Cà Mau tăng giá bán 1.000 đồng/kg từ 01/10, Ấn Độ đấu thầu 1,7 triệu tấn, vụ Đông Xuân, và dự thảo đưa thuế xuất khẩu urê từ 5% về 0% (đã gửi Bộ Tư pháp, chưa có ngày hiệu lực). (2) Cao su — RSS3 lên đỉnh 260 JPY/kg (06/10) rồi về 255; EUDR hiệu lực 30/12/2026 có lợi cho vườn có chứng chỉ. (3) Hóa chất cơ bản — cú sốc cung axit sulfuric (giá +249–289%) do thiếu lưu huỳnh. (4) Nhựa — biên gộp mỏng, hạt nhựa đầu vào biến động theo dầu. Trung vị nhóm cách đỉnh khoảng 29%.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026. 6 tháng (soát xét 26/08): doanh thu 12.609 tỷ (+34%), LNTT 1.631 tỷ (+116%) — 192% kế hoạch LNTT năm 850 tỷ. VDSC ước quý 3: doanh thu khoảng 4.347 tỷ, LNST khoảng 288 tỷ (+22% cùng kỳ nhưng −68% so quý 2), biên gộp từ 24% xuống khoảng 17%. 9 tháng: urê sản xuất 688 nghìn tấn (105% kế hoạch), NPK 160 nghìn tấn. Tiền từ kinh doanh 4 quý âm 1.334 tỷ (NSI). Thanh Tra Chính phủ (QĐ 955 ngày 21/10) thanh tra giai đoạn 2023–09/2026.",
+  "mo_hinh_kd": "Nhà máy Đạm Phú Mỹ (khoảng 900 nghìn tấn urê/năm), NPK, hóa chất; phân bón thương mại khoảng 32% sản lượng tiêu thụ. Xuất khẩu urê là kênh tăng (quý 2 khoảng 38% tiêu thụ urê).",
+  "lanh_dao": "Thuộc PVN (chi phối). Chủ tịch Nguyễn Xuân Hòa, TGĐ Phan Công Thành. Cổ tức 2025 15% (đã trả 07/2026); kế hoạch 2026 12%. Chi phí nghiên cứu 130,5 tỷ quý 2 (gấp 159 lần). Dự phòng bảo lãnh VNPOLY khoảng 35 tỷ/quý tới 2028.",
+  "chuoi_gia_tri": "Mua khí của GAS, bán phân bón cho nông nghiệp trong nước và xuất khẩu (Ấn Độ, Đông Nam Á).",
+  "dan_nguoc_vi_mo": "Giá phân bón là chi phí đầu vào của nông nghiệp — Nhà nước theo dõi sát (Thanh tra Chính phủ vào Đạm Phú Mỹ 21/10); chuyển đổi đất cao su sang khu công nghiệp là nguồn cung đất công nghiệp chính của Đông Nam Bộ."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b, c, d và qua lọc nền thấp; trượt a vì tiền từ kinh doanh 12 tháng âm 1.334 tỷ (tồn kho, phải thu tăng) dù lợi nhuận 4 quý +172%.",
+   "bang_chung": [
+    "FACT: LN 4 quý +172%, CFO 12 tháng −1.334 tỷ, nền 9% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Đỉnh lợi nhuận là quý 2 (906 tỷ); quý 3 về khoảng 290 tỷ khi giá urê giảm còn giá khí cao. P/E 8 tính trên 4 quý gồm quý đỉnh — nhìn tới, lợi nhuận 4 quý sẽ giảm dần. Thanh tra Chính phủ thêm rủi ro không định lượng được.",
+   "bang_chung": [
+    "FACT: VDSC ước LNST quý 3 khoảng 288 tỷ (24hMoney 14/10)",
+    "FACT: QĐ 955/QĐ-TTCP 21/10 (CafeF 22/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/E khoảng 8; 6 tháng đạt 192% kế hoạch lợi nhuận.",
+  "Thuế xuất khẩu urê 0% (dự thảo) và đấu thầu Ấn Độ.",
+  "Sản lượng 9 tháng vượt kế hoạch; xuất khẩu tăng.",
+  "Cổ tức tiền đều 12–15%."
+ ],
+ "bear": [
+  "Quý 3 ước −68% so quý 2; biên gộp về 17%.",
+  "Tiền từ kinh doanh âm (trượt a).",
+  "Thanh tra Chính phủ 2023–2026.",
+  "Trung Quốc mở hạn ngạch xuất khẩu urê.",
+  "Dự phòng VNPOLY 35 tỷ/quý tới 2028."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Giá urê đã tạo đáy tháng 9; quý 4 có Đông Xuân và giá bán tăng lại."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Lợi nhuận đã qua đỉnh; dòng tiền âm và thanh tra là hai dấu hỏi."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Chờ BCTC quý 3 và dòng tiền; chưa đủ điều kiện a."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: cần thêm — BCTC quý 3, dòng tiền, kết luận thanh tra."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 236,4 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: LNST quý 3 thấp hơn cùng kỳ (236 tỷ); thanh tra kết luận sai phạm có xử lý tài chính; tiền từ kinh doanh tiếp tục âm.",
+ "dinh_gia": "P/E 8,44 so với trung vị 3 năm 20,55; P/B 1,32 so với 1,29 (NSI 28/10, BCTC Q2/26). Ngành Hóa chất (13 mã trong NSI): P/E trung vị 8,9, P/B 1,32, ROE 13,8%; mã này ROE 15,6%. Giá 21,30 cách đỉnh 1 năm -33%, cả ngành -29%. VDSC 27/06/2026: MUA 26.600. BSC 02/04: MUA 35.000 (trước đỉnh). Vietcap 08/2025: 23.900 (cũ). Kỳ vọng ngầm trong giá 21.300: P/E 8 trên lợi nhuận đỉnh — thị trường đã dự đoán lợi nhuận giảm từ quý 3.",
+ "pitch": "Đạm Phú Mỹ vừa có nửa năm lãi kỷ lục nhờ giá urê cao, nhưng quý 3 lợi nhuận ước giảm mạnh khi giá urê hạ mà giá khí vẫn đắt. Công ty đang bị Thanh tra Chính phủ kiểm tra. Cổ phiếu rẻ nhưng chúng tôi chờ báo cáo quý 3 và kết quả thanh tra.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 8,
+   "vi_mo_vn": 6,
+   "nganh": 8,
+   "doanh_nghiep": 6,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 6,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 34,
+  "so_30": 21,
+  "tong": 55,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Urê hạ nhiệt, quý 3 giảm, thanh tra.",
+   "co_that_su_xau": "Một phần — giảm lợi nhuận là thật; thanh tra chưa có kết luận.",
+   "trang_thai": "Giá −33% từ đỉnh tháng 3 — đã phản ánh phần lớn.",
+   "ky_vong_ngam": "P/E 8 trên đỉnh ≈ P/E 12–14 trên lợi nhuận bình thường.",
+   "nguoi_ban_can_bien": "Nhà đầu tư lo thanh tra; quỹ giảm tỷ trọng ngành.",
+   "counter": "Phản biện: nếu thuế xuất khẩu 0% có hiệu lực sớm và urê hồi về 450 USD, quý 4 có thể bất ngờ.",
+   "phep_thu": "BCTC quý 3 (cuối 10) và kết luận thanh tra (khoảng 30 ngày làm việc).",
+   "ket_luan": "ĐÃ PHẢN ÁNH PHẦN LỚN"
+  },
+  "ket_luan": "CẦN THÊM — trượt a (dòng tiền âm); chờ BCTC quý 3 và kết luận thanh tra",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lợi nhuận tăng nhờ bán tồn kho năm trước và lãi tỷ giá không phải tăng trưởng lặp lại.",
+ "ma": "DRI",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá cao su TSR20/SVR10 (khoảng 2,54 USD/kg cuối 10) → doanh thu; tỷ giá Kíp Lào → lãi/lỗ đánh giá lại (quý 3 lỗ); thuế 10% khi chuyển lợi nhuận từ Lào về.",
+  "nganh": "Nhóm \"hóa chất\" của NSI gồm bốn ngành khác nhau, đều đang qua đỉnh quý 2: (1) Phân bón urê — giá urê Phú Mỹ quý 3 bình quân 12.129 đồng/kg (−26% so quý 2), urê Trung Đông 399 USD/tấn (−42%), trong khi giá khí (70–75% giá vốn, gắn giá dầu) vẫn cao; Trung Quốc mở thêm hạn ngạch xuất khẩu 1,5–2 triệu tấn (29/09) (FinLens 05/10). Đỡ giá: Đạm Cà Mau tăng giá bán 1.000 đồng/kg từ 01/10, Ấn Độ đấu thầu 1,7 triệu tấn, vụ Đông Xuân, và dự thảo đưa thuế xuất khẩu urê từ 5% về 0% (đã gửi Bộ Tư pháp, chưa có ngày hiệu lực). (2) Cao su — RSS3 lên đỉnh 260 JPY/kg (06/10) rồi về 255; EUDR hiệu lực 30/12/2026 có lợi cho vườn có chứng chỉ. (3) Hóa chất cơ bản — cú sốc cung axit sulfuric (giá +249–289%) do thiếu lưu huỳnh. (4) Nhựa — biên gộp mỏng, hạt nhựa đầu vào biến động theo dầu. Trung vị nhóm cách đỉnh khoảng 29%.",
+  "doanh_nghiep": "Quý 3/2026 (BCTC 26/10): LNST hợp nhất 25,9 tỷ (−33,5%), doanh thu bán hàng −26%; công ty mẹ chỉ 0,15 tỷ do lỗ tỷ giá Kíp. 9 tháng: doanh thu 651 tỷ (+29%, 79% kế hoạch), LNTT 208 tỷ (+47%, 139% kế hoạch); khai thác 8.617 tấn (62% kế hoạch, mưa nhiều). 6 tháng tăng mạnh một phần nhờ bán tồn kho 2025 và lãi tỷ giá (VDSC: khó lặp lại). NSI chưa có dữ liệu BCTC cho mã UPCoM này.",
+  "mo_hinh_kd": "Khoảng 8.800 ha cao su tại Lào (Champasak, Salavan) qua Daklaoruco (100%); có chứng chỉ FSC, đã bán hàng đạt EUDR (giá cao hơn khoảng 130 USD/tấn). Biên gộp khoảng 41% — cao nhất ngành. Mở sầu riêng.",
+  "lanh_dao": "Dakruco 45% (UBND Đắk Lắk khoảng 99% Dakruco). Chủ tịch Nguyễn Minh (từ 06/2026, kiêm TGĐ Dakruco), TGĐ Nguyễn Độ. Cổ tức 2025 10% (trả 20/10); kế hoạch 2026 10% (tỷ suất khoảng 7%). Chuyển lên HOSE phấn đấu quý 4/2026.",
+  "chuoi_gia_tri": "Thượng nguồn cao su; xuất khẩu khoảng 65% sản lượng.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ; đóng góp vào xuất khẩu nông sản, tác động ngược không đáng kể."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (cách đỉnh chỉ 14%, biên độ 30 phiên 22,5%) và d; NSI không chấm được a, b.",
+   "bang_chung": [
+    "FACT: Cách đỉnh −14%, nền 22,5% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Quý 3 là quý đầu tiên lợi nhuận giảm cùng kỳ; động lực 6 tháng (tồn kho, tỷ giá) không lặp lại. Câu chuyện thật là chuyển HOSE và EUDR — catalyst rõ nhưng giá đã chạy trước.",
+   "bang_chung": [
+    "FACT: LNST quý 3 −33,5% (giải trình 26/10)",
+    "FACT: Phấn đấu niêm yết HOSE quý 4/2026 (báo cáo 29.2026, 20/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Biên gộp cao nhất ngành; P/E khoảng 5.",
+  "Cổ tức tiền khoảng 7%/năm.",
+  "Chuyển HOSE quý 4; EUDR từ 30/12/2026.",
+  "Mirae Asset MUA 20.100."
+ ],
+ "bear": [
+  "Quý 3 −33,5%; động lực 6 tháng không lặp lại.",
+  "Lỗ tỷ giá Kíp; thuế chuyển lợi nhuận 10%.",
+  "Sản lượng 9 tháng chỉ 62% kế hoạch.",
+  "UPCoM; cổ đông Nhà nước từng bán nhiều đợt.",
+  "Trượt lọc nền thấp; NSI thiếu dữ liệu."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Rẻ, cổ tức cao, sắp lên HOSE."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Lợi nhuận đã quay đầu và rủi ro Lào (tỷ giá, an ninh) khó định lượng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua lọc nền thấp; chờ niêm yết và quý 4."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi — chờ HOSE và nền giá."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (BCTC DRI) — quý 3 đã −33,5%."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: quý 4 tiếp tục giảm cùng kỳ; hồ sơ HOSE bị trả; giá cao su dưới 2,2 USD/kg.",
+ "dinh_gia": "P/E — so với trung vị 3 năm —; P/B — so với — (NSI 28/10, BCTC None). Ngành Hóa chất (13 mã trong NSI): P/E trung vị 8,9, P/B 1,32, ROE 13,8%; mã này ROE —%. Giá 14,50 cách đỉnh 1 năm -14%, cả ngành -29%. Mirae Asset 05/10/2026: MUA 20.100 (LNST 2026F 248 tỷ, P/E 4,8x). Kỳ vọng ngầm trong giá 14.500 (P/E khoảng 5–6 trên lợi nhuận 9 tháng quy năm): thị trường chiết khấu rủi ro Lào và UPCoM.",
+ "pitch": "Cao su Đắk Lắk có vườn cây ở Lào với biên lợi nhuận cao nhất ngành, cổ tức tiền khoảng 7% và sắp chuyển lên sàn HOSE. Nhưng lợi nhuận quý 3 đã giảm một phần ba và giá cổ phiếu còn biến động mạnh. Chúng tôi theo dõi.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 6,
+   "vi_mo_vn": 4,
+   "nganh": 7,
+   "doanh_nghiep": 6,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 8,
+   "kqkd": 4,
+   "suc_khoe_tc": 7
+  },
+  "luan_diem_70": 29,
+  "so_30": 19,
+  "tong": 48,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Quý 3 giảm, lỗ tỷ giá, sản lượng thấp.",
+   "co_that_su_xau": "Một phần — tỷ giá là trên giấy; sản lượng thấp do mưa.",
+   "trang_thai": "Giá −14% từ đỉnh — chưa phản ánh hết.",
+   "ky_vong_ngam": "P/E khoảng 5: chiết khấu Lào và UPCoM.",
+   "nguoi_ban_can_bien": "Dakruco nếu tiếp tục thoái vốn.",
+   "counter": "Phản biện: niêm yết HOSE có thể định giá lại lên P/E 7–8 như các mã cao su khác.",
+   "phep_thu": "Quyết định niêm yết HOSE và LNST quý 4.",
+   "ket_luan": "CHƯA PHẢN ÁNH HẾT"
+  },
+  "ket_luan": "THEO DÕI — trượt lọc nền thấp; quý 3 giảm; chờ HOSE",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}
