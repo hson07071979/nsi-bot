@@ -1,0 +1,41 @@
+{
+ "ma": "DIG",
+ "trang_thai": "loai",
+ "chieu": "trung_lap",
+ "ky_han": "—",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": null,
+ "cap_nhat": "2026-10-28",
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. ",
+  "nganh": "Bất động sản nhà ở, khu đô thị (Vũng Tàu, Đồng Nai, Hậu Giang…); doanh thu theo đợt bàn giao.",
+  "doanh_nghiep": "DIC Corp, vốn hóa khoảng 8.200 tỷ, ROE 8%, P/B 0,9.",
+  "mo_hinh_kd": "—",
+  "lanh_dao": "—",
+  "chuoi_gia_tri": "—",
+  "dan_nguoc_vi_mo": "—"
+ },
+ "luan_diem": [],
+ "bull": [],
+ "bear": [],
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Soi theo yêu cầu anh Sơn 28/10 (cần một mã bất động sản). Code đo: a đạt về số (LN 4 quý +461%, cốt lõi 4 quý 75 → 803 tỷ, tiền từ kinh doanh 4.797 tỷ), c đạt (cách đỉnh −51%, ngành −41%), d TRƯỢT (nền 30 phiên 13,1%). Đọc BCTC sâu thì a không đứng: toàn bộ lợi nhuận cốt lõi 4 quý nằm ở hai quý bàn giao Q3–Q4/25 (272 và 564 tỷ); hai quý gần nhất cốt lõi âm (−20 và −14 tỷ), lãi Q2/26 140 tỷ đến từ 161 tỷ thu nhập tài chính bất thường (108% lợi nhuận trước thuế). Dòng tiền dương chủ yếu là 4.721 tỷ tiền đặt cọc nhận trước cho chuyển nhượng dự án (Dân Việt), không phải tiền bán hàng. Kế hoạch 2026 lãi trước thuế 600 tỷ, giảm 28%. Tăng trưởng không bền, chưa cân bằng → LOẠI kỳ này. Mã bất động sản của port vẫn là IDC (khu công nghiệp)."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [],
+ "vo_hieu": "—",
+ "dinh_gia": "—",
+ "pitch": "—",
+ "dieu_kien_vao": [],
+ "bai_hoc": "Doanh nghiệp bất động sản ghi nhận theo đợt bàn giao: nhìn lợi nhuận cốt lõi từng quý và kế hoạch năm, không nhìn tăng trưởng 4 quý; tiền đặt cọc nhận trước làm dòng tiền kinh doanh đẹp giả.",
+ "pitch_diem": {
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28"
+ }
+}
