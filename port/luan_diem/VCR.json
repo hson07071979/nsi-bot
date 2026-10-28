@@ -1,0 +1,127 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Cổ phiếu có free float cực nhỏ không phản ánh cơ bản; loại khỏi danh mục bất kể câu chuyện.",
+ "ma": "VCR",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: VCR chỉ có một tài sản — Cát Bà Amatina (khoảng 170 ha, Hải Phòng) — nên phụ thuộc hoàn toàn vào thị trường bất động sản nghỉ dưỡng miền Bắc và tín dụng VPBank (hạn mức 6.000 tỷ đến 2033). Lãi suất giảm giúp chi phí vay; thị trường nghỉ dưỡng Cát Bà chậm phục hồi là lực cản.",
+  "nganh": "Bất động sản nhà ở đang hồi theo hai đường lệch nhau: nhóm có pháp lý sạch và quỹ đất lớn (Vinhomes) bán được nhiều nhờ bán buôn và chính sách hỗ trợ lãi vay; nhóm tầm trung vẫn kẹt pháp lý và vốn. Tín dụng bất động sản bị NHNN giới hạn khoảng 15–16% năm 2026 (MBS 10/03), lãi vay mua nhà tăng theo lãi huy động đến giữa tháng 10 rồi bắt đầu hạ. Bảng giá đất mới làm chi phí giải phóng mặt bằng tăng. Hạ tầng lớn (metro Hà Nội khởi công 22/06/2026, cao tốc, sân bay Long Thành) là động lực giá đất vùng ven. Cả ngành (29 mã trong NSI) cách đỉnh 1 năm khoảng −41%.",
+  "doanh_nghiep": "9 tháng 2026 (BCTC quý 3, 22/10): doanh thu bằng 0; lỗ hơn 103 tỷ (quý 3 lỗ 33,5 tỷ). Kế hoạch năm: doanh thu 1.031 tỷ, LNST 101 tỷ — gần như chắc chắn không đạt. Lỗ lũy kế 720,5 tỷ (khoảng 34% vốn điều lệ). Chi phí tài chính khoảng 30 tỷ/quý (lãi chậm trả Vinaconex). Vay VPBank 1.975 tỷ (+48% so 30/6); đã trả Vinaconex khoảng 600 tỷ.",
+  "mo_hinh_kd": "Chủ đầu tư một dự án đô thị du lịch; giao gói \"chìa khóa trao tay\" 3.720 tỷ ô KS09 cho MIK Group (tạm ứng 600 tỷ, 30 tháng). Đổi tên thành ITC Development (04/2026).",
+  "lanh_dao": "Vinaconex thoái 51% (07/2025). Bốn công ty TNHH (Khu Đông – Phú Quốc, Imperia An Phú, Anpha, Silver Field — hệ sinh thái MIK) nắm khoảng 94%. Chủ tịch Trần Văn Chiến, TGĐ Vũ Nguyên Vũ. Thanh khoản rất thấp (khoảng 0,1 tỷ/phiên).",
+  "chuoi_gia_tri": "Hạ nguồn bất động sản nghỉ dưỡng; một dự án.",
+  "dan_nguoc_vi_mo": "Tác động ngược không đáng kể ngoài kinh tế du lịch Cát Bà."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Không có doanh thu, lỗ tăng, lỗ lũy kế 34% vốn — nhưng vốn hóa khoảng 10.900 tỷ (giá 52.000). Thị trường đang định giá một dự án chưa mở bán với free float khoảng 6%.",
+   "bang_chung": [
+    "FACT: Doanh thu 9 tháng 0, lỗ hơn 103 tỷ (ViệtNamMới 22/10)",
+    "FACT: 4 công ty nắm khoảng 94,2% (VNSignal 28/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Giá không phản ánh cơ bản mà phản ánh cung – cầu cổ phiếu cực mỏng; phiên 27/10 giảm 11% với giá trị chỉ 0,1 tỷ. Không phù hợp với bất kỳ danh mục nào cần thanh khoản.",
+   "bang_chung": [
+    "FACT: Phiên 27/10 −11,21% (Stockbiz)"
+   ]
+  }
+ ],
+ "bull": [
+  "Dự án quy mô lớn (170 ha) ở Cát Bà, có VPBank tài trợ 6.000 tỷ.",
+  "Đã trả phần lớn nợ Vinaconex; tổng thầu MIK bắt đầu thi công.",
+  "Chủ mới là hệ sinh thái MIK có kinh nghiệm bán hàng."
+ ],
+ "bear": [
+  "Doanh thu 0, lỗ tăng; lỗ lũy kế 720 tỷ.",
+  "Một tài sản duy nhất; mở bán đã hoãn nhiều lần.",
+  "Free float khoảng 6%, thanh khoản cực thấp.",
+  "Không có dữ liệu NSI đầy đủ để chấm điều kiện a, b; không CTCK theo dõi.",
+  "Trượt d và lọc nền thấp (nền rộng 29%)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Khi Amatina mở bán, doanh thu có thể vượt nghìn tỷ một năm."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Định giá 10.900 tỷ cho một dự án chưa bán, lỗ, thanh khoản như không có."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không đủ điều kiện đầu tư theo bất kỳ tiêu chí nào của port."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 dương — tức đã mở bán và ghi nhận Cát Bà Amatina."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): không áp dụng cho tới khi có doanh thu bán hàng thực và free float tăng.",
+ "dinh_gia": "P/E — so với trung vị 3 năm —; P/B — so với — (NSI 28/10, BCTC None). Ngành Bất động sản (29 mã trong NSI): P/E trung vị 17,3, P/B 1,05, ROE 8,0%; mã này ROE —%. Giá 52,00 cách đỉnh 1 năm -16%, cả ngành -41%. Không có CTCK nào định giá. Kỳ vọng ngầm trong giá: vốn hóa khoảng 10.900 tỷ — gấp khoảng 1,5 lần tổng tài sản trừ nợ; thị trường (rất mỏng) đang trả trước toàn bộ giá trị dự án.",
+ "pitch": "VCR là chủ một dự án du lịch lớn ở Cát Bà nhưng 9 tháng qua chưa có đồng doanh thu nào và đang lỗ. Gần như toàn bộ cổ phần nằm trong tay bốn công ty, giao dịch rất ít. Không phù hợp để đầu tư.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 2,
+   "vi_mo_vn": 6,
+   "nganh": 5,
+   "doanh_nghiep": 2,
+   "gia_sai": 2
+  },
+  "so": {
+   "dinh_gia": 1,
+   "kqkd": 0,
+   "suc_khoe_tc": 2
+  },
+  "luan_diem_70": 17,
+  "so_30": 3,
+  "tong": 20,
+  "dinh_gia_sai": 2,
+  "gia_sai": {
+   "tin_xau": "Không doanh thu, lỗ, lỗ lũy kế lớn, kế hoạch không đạt.",
+   "co_that_su_xau": "Có — chưa có hoạt động kinh doanh tạo doanh thu.",
+   "trang_thai": "Giá cách đỉnh 16% — chưa phản ánh.",
+   "ky_vong_ngam": "Vốn hóa 10.900 tỷ cho dự án chưa mở bán.",
+   "nguoi_ban_can_bien": "Free float nhỏ; vài lệnh đủ làm giá biến động hai chữ số.",
+   "counter": "Phản biện: mở bán thành công có thể làm doanh thu nhảy vọt.",
+   "phep_thu": "Thông báo mở bán Cát Bà Amatina.",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI — không doanh thu, lỗ, free float khoảng 6%",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

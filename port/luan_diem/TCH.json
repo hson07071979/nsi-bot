@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Với doanh nghiệp niên độ lệch (01/4–31/3), luôn quy đổi quý trước khi so sánh với ngành.",
+ "ma": "TCH",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: Hoàng Huy bán nhà thấp tầng ở Thủy Nguyên (Hải Phòng) — đối diện Vinhomes Royal Island — và phân phối xe tải (International, Dongfeng). Hai đầu đều theo chu kỳ trong nước: tín dụng mua nhà, đầu tư công, logistics và FDI về Hải Phòng. Lãi suất giảm thuận cho người mua; nguồn cung thấp tầng khu vực tăng mạnh (dự án mở mới 2026 +25%) là lực cản.",
+  "nganh": "Bất động sản nhà ở đang hồi theo hai đường lệch nhau: nhóm có pháp lý sạch và quỹ đất lớn (Vinhomes) bán được nhiều nhờ bán buôn và chính sách hỗ trợ lãi vay; nhóm tầm trung vẫn kẹt pháp lý và vốn. Tín dụng bất động sản bị NHNN giới hạn khoảng 15–16% năm 2026 (MBS 10/03), lãi vay mua nhà tăng theo lãi huy động đến giữa tháng 10 rồi bắt đầu hạ. Bảng giá đất mới làm chi phí giải phóng mặt bằng tăng. Hạ tầng lớn (metro Hà Nội khởi công 22/06/2026, cao tốc, sân bay Long Thành) là động lực giá đất vùng ven. Cả ngành (29 mã trong NSI) cách đỉnh 1 năm khoảng −41%.",
+  "doanh_nghiep": "Niên độ tài chính 01/4–31/3. Quý I niên độ 2026 (tháng 4–6): doanh thu 451 tỷ (+15,5%), lợi nhuận cổ đông mẹ 125 tỷ (+231%), biên gộp 31% — quý thứ tư liên tiếp cải thiện từ đáy; nhưng mới 6% kế hoạch 2.000 tỷ, và 54% lợi nhuận trước thuế là lãi tiền gửi (TCBS 11/08). Niên độ 2025 chỉ đạt 29% doanh thu, 15% lợi nhuận kế hoạch. Quý II niên độ (tháng 7–9) chưa công bố. Người mua trả trước 6.492 tỷ (06/2026), chỉ +368 tỷ trong quý (SHS).",
+  "mo_hinh_kd": "Phát triển bất động sản Hải Phòng qua chuỗi công ty con (HHS 58,3% → New City II, Green River, Commerce H2 Rose Residence, 150 Tô Hiệu mới giao đất 12/08) + phân phối xe tải (doanh thu niên độ 2025 khoảng 791 tỷ, +34%). Tiền và gửi ngắn hạn 4.582 tỷ, gần như không vay. Lợi ích thiểu số lớn (khoảng 2.839 tỷ) làm phần về cổ đông mẹ thấp hơn hợp nhất.",
+  "lanh_dao": "Chủ tịch Đỗ Hữu Hạ 30,17%; nhóm sáng lập và liên quan 16%; HH Finance 5,8%; khối ngoại 9,5%. Cổ tức cổ phiếu 10% (giao dịch 08/10). Từng bị xử phạt hành chính về thuế (04/2026).",
+  "chuoi_gia_tri": "Hạ nguồn bất động sản nhà ở Hải Phòng + phân phối thương mại xe tải.",
+  "dan_nguoc_vi_mo": "Nguồn cung nhà thấp tầng và căn hộ tại Hải Phòng."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Lợi nhuận đã qua đáy (4 quý liên tiếp cải thiện) và bảng cân đối thuộc nhóm sạch nhất ngành (tiền ròng khoảng 4.500 tỷ, không vay). Nhưng lợi nhuận 4 quý NSI vẫn −60% vì nền cao năm trước.",
+   "bang_chung": [
+    "FACT: LNST mẹ quý I niên độ 125 tỷ (+231%) (TCBS 11/08)",
+    "FACT: LN 4 quý −60,3%, CFO 12 tháng +923 tỷ (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Câu chuyện là tốc độ bàn giao New City II và Green River. Backlog 6.500 tỷ đủ lớn, nhưng tốc độ thu tiền đang chậm lại và kế hoạch luôn trễ — các CTCK dự phóng lợi nhuận niên độ 2026 lệch nhau từ 897 tỷ (TCBS) tới 1.625 tỷ.",
+   "bang_chung": [
+    "FACT: Người mua trả trước 6.492 tỷ, +368 tỷ trong quý; SHS hạ mục tiêu 11% xuống 17.700 (27/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Tiền ròng dương lớn, không vay — rủi ro tài chính thấp.",
+  "Backlog người mua trả trước 6.500 tỷ; lợi nhuận đã qua đáy.",
+  "P/B 1,05 — dưới trung vị 3 năm; giá chỉ giảm cùng ngành (c đạt).",
+  "Có dự án mới trung tâm Hải Phòng (150 Tô Hiệu)."
+ ],
+ "bear": [
+  "Lịch sử không đạt kế hoạch (niên độ 2025: 15% lợi nhuận).",
+  "Lợi nhuận cốt lõi mỏng; hơn nửa lợi nhuận là lãi tiền gửi.",
+  "Cạnh tranh trực diện với Vinhomes tại Thủy Nguyên.",
+  "Tốc độ thu tiền chậm lại; P/E 39 (4 quý).",
+  "Trượt a, b, d."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Bảng cân đối sạch, backlog lớn, lợi nhuận đã quay đầu — đáy chu kỳ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Kế hoạch năm nào cũng trễ; cạnh tranh Vinhomes; lợi nhuận lõi mỏng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "An toàn nhưng chưa đủ điều kiện. Cần quý II niên độ xác nhận bàn giao."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: cần thêm — BCTC quý II niên độ (cuối 10/đầu 11)."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 50,
+   "noi_dung": "LNST cổ đông mẹ quý 7–9/2026 tăng ít nhất 50% so cùng kỳ (Q3/25 40,2 tỷ, NSI) — thử bàn giao."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: quý II niên độ lợi nhuận giảm so quý I; người mua trả trước giảm mà không có doanh thu tương ứng.",
+ "dinh_gia": "P/E 38,79 so với trung vị 3 năm 19,66; P/B 1,05 so với 1,25 (NSI 28/10, BCTC Q2/26). Ngành Bất động sản (29 mã trong NSI): P/E trung vị 17,3, P/B 1,05, ROE 8,0%; mã này ROE 2,6%. Giá 12,10 cách đỉnh 1 năm -37%, cả ngành -41%. Giá mục tiêu: SHS 17.700 (tăng tỷ trọng, 27/10, hạ 11%), đồng thuận 19.850 (2 nhà phân tích); TCBS không công bố mục tiêu, định giá quanh P/B 1,0 (10/09). Kỳ vọng ngầm trong giá: P/B 1,05 — thị trường chưa trả cho backlog vì không tin tiến độ.",
+ "pitch": "Hoàng Huy có tiền mặt nhiều, không vay nợ, và lợi nhuận đã bắt đầu hồi từ đáy. Nhưng công ty nhiều năm liền không đạt kế hoạch và đang cạnh tranh trực tiếp với Vinhomes ở Hải Phòng. Chúng tôi chờ báo cáo quý tới xác nhận nhà đã được bàn giao.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 9,
+   "nganh": 7,
+   "doanh_nghiep": 7,
+   "gia_sai": 7
+  },
+  "so": {
+   "dinh_gia": 1,
+   "kqkd": 1,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 34,
+  "so_30": 11,
+  "tong": 45,
+  "dinh_gia_sai": 7,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận giảm mạnh năm trước, kế hoạch trễ, cạnh tranh.",
+   "co_that_su_xau": "Một phần — lệch pha bàn giao; bảng cân đối không có vấn đề.",
+   "trang_thai": "Giá −32% từ đầu năm; P/B khoảng 1.",
+   "ky_vong_ngam": "P/B 1,05: không trả cho backlog.",
+   "nguoi_ban_can_bien": "Không thấy bán cưỡng bức.",
+   "counter": "Phản biện: nếu bàn giao dồn nửa sau niên độ, lợi nhuận có thể gấp 3 năm trước.",
+   "phep_thu": "BCTC quý II niên độ 2026.",
+   "ket_luan": "PHẢN ÁNH PHẦN LỚN"
+  },
+  "ket_luan": "CẦN THÊM (BCTC quý II niên độ; điều kiện a, b, d chưa đạt)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Giá đứng yên khi cả ngành giảm không phải sức mạnh nếu thanh khoản thấp và cổ đông chi phối nắm một nửa.",
+ "ma": "VC3",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: Nam Mê Kông là chủ đầu tư nhỏ ở các tỉnh (Quảng Trị – Đồng Hới, Gia Lai, Bình Dương cũ) với nhà ở xã hội và đất nền — nhạy với tín dụng bất động sản địa phương và thanh khoản thị trường tỉnh. Lãi suất giảm là thuận; thanh khoản bất động sản tỉnh thấp là lực cản (công ty tự nêu trong tài liệu ĐHĐCĐ).",
+  "nganh": "Bất động sản nhà ở đang hồi theo hai đường lệch nhau: nhóm có pháp lý sạch và quỹ đất lớn (Vinhomes) bán được nhiều nhờ bán buôn và chính sách hỗ trợ lãi vay; nhóm tầm trung vẫn kẹt pháp lý và vốn. Tín dụng bất động sản bị NHNN giới hạn khoảng 15–16% năm 2026 (MBS 10/03), lãi vay mua nhà tăng theo lãi huy động đến giữa tháng 10 rồi bắt đầu hạ. Bảng giá đất mới làm chi phí giải phóng mặt bằng tăng. Hạ tầng lớn (metro Hà Nội khởi công 22/06/2026, cao tốc, sân bay Long Thành) là động lực giá đất vùng ven. Cả ngành (29 mã trong NSI) cách đỉnh 1 năm khoảng −41%.",
+  "doanh_nghiep": "6 tháng 2026 (BCTC kiểm toán 28/08): doanh thu 268,7 tỷ (−35%), LNST 50,35 tỷ (−36%), khoảng 43% kế hoạch 118 tỷ. Quý 2: lợi nhuận kinh doanh cốt lõi chỉ 22 tỷ (−76%); thu nhập khác 17,4 tỷ chiếm 56% LNST. Năm 2025 chỉ đạt 59% kế hoạch lợi nhuận. BCTC quý 3 dự kiến đầu tháng 11.",
+  "mo_hinh_kd": "Phát triển bất động sản (khoảng 96% doanh thu kế hoạch): Nam Mekong Heritage City (Đồng Hới), Nam Mekong Grand Plaza (phường Bình Dương, khoảng 3.700–4.000 tỷ, khởi công 22/04), KĐT Cát Khánh (Gia Lai, VC3 15%), 3 dự án Bảo Ninh – Hữu Nghị.",
+  "lanh_dao": "Chủ tịch Kiều Xuân Nam 50,42% (27/08) — kiểm soát tuyệt đối. TGĐ Đặng Minh Huệ. HĐQT thông qua thế chấp đất của công ty để bảo lãnh khoản vay VPBank cho Cát Khánh — công ty chỉ nắm 15% (07/04). Nằm trong danh sách kiểm tra thuế 2026 (QĐ 446). Cổ tức cổ phiếu 7,5%.",
+  "chuoi_gia_tri": "Hạ nguồn bất động sản nhà ở tỉnh lẻ (Quảng Trị, Gia Lai) và một dự án lớn ở vùng Bình Dương cũ.",
+  "dan_nguoc_vi_mo": "Tác động ngược không đáng kể — quy mô nhỏ, chỉ ảnh hưởng nguồn cung nhà ở xã hội địa phương."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Giá gần như không giảm (cách đỉnh −14%) khi ngành −41%; nền rất chặt 4,3% nhưng thanh khoản thấp và cổ đông chi phối 50%. P/E 53, P/B 2,25 — đắt nhất nhóm theo ROE 4,7%.",
+   "bang_chung": [
+    "FACT: P/E 52,7, P/B 2,25, ROE 4,7% (NSI)",
+    "FACT: P/E ngành 13,2 (Tâm An 26/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận đang giảm và chất lượng thấp (56% từ thu nhập khác); việc thế chấp tài sản cho công ty liên kết vay là rủi ro quản trị.",
+   "bang_chung": [
+    "FACT: LN cốt lõi 4 quý −46,7%; lợi nhuận khác 56% LNST (NSI)",
+    "FACT: NQ HĐQT 07/04/2026 thế chấp đất cho Cát Khánh (Doanh nhân 11/04)"
+   ]
+  }
+ ],
+ "bull": [
+  "Có dự án lớn ở vị trí tốt (Grand Plaza gần Metro số 1 kéo dài) đã khởi công.",
+  "Nền giá rất chặt.",
+  "Cổ tức cổ phiếu đều đặn."
+ ],
+ "bear": [
+  "Định giá đắt: P/E 53, P/B 2,25 với ROE 4,7%.",
+  "Lợi nhuận −36%, cốt lõi −76% quý 2; 2025 chỉ đạt 59% kế hoạch.",
+  "Thế chấp tài sản bảo lãnh cho công ty chỉ nắm 15%.",
+  "Kiểm tra thuế 2026; không có CTCK theo dõi.",
+  "Trượt a, b; trượt lọc nền thấp (giá còn gần đỉnh)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Dự án Grand Plaza có thể đổi quy mô doanh nghiệp."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Định giá đắt gấp 2–4 lần ngành cho một doanh nghiệp lợi nhuận đang giảm, quản trị có dấu hỏi."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Bear thắng rõ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 9,4 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): tiếp tục thế chấp tài sản cho bên liên quan; kết luận kiểm tra thuế bất lợi.",
+ "dinh_gia": "P/E 52,67 so với trung vị 3 năm 37,19; P/B 2,25 so với 2,49 (NSI 28/10, BCTC Q2/26). Ngành Bất động sản (29 mã trong NSI): P/E trung vị 17,3, P/B 1,05, ROE 8,0%; mã này ROE 4,7%. Giá 23,20 cách đỉnh 1 năm -14%, cả ngành -41%. Không có CTCK có giá mục tiêu trong 2026. Kỳ vọng ngầm trong giá: P/E 53 — thị trường đang trả trước cho Grand Plaza nhiều năm.",
+ "pitch": "Nam Mê Kông có vài dự án bất động sản ở tỉnh, nhưng lợi nhuận đang giảm, phần lớn đến từ thu nhập khác, và cổ phiếu được định giá đắt gấp nhiều lần ngành. Công ty còn dùng tài sản để bảo lãnh vay cho một công ty liên kết. Không phù hợp danh mục.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 3,
+   "vi_mo_vn": 7,
+   "nganh": 6,
+   "doanh_nghiep": 3,
+   "gia_sai": 3
+  },
+  "so": {
+   "dinh_gia": 1,
+   "kqkd": 1,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 22,
+  "so_30": 8,
+  "tong": 30,
+  "dinh_gia_sai": 3,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận giảm, thế chấp cho bên liên quan, kiểm tra thuế.",
+   "co_that_su_xau": "Có — lợi nhuận cốt lõi giảm và rủi ro quản trị là thật.",
+   "trang_thai": "Giá chưa phản ánh — gần đỉnh.",
+   "ky_vong_ngam": "P/E 53: kỳ vọng tăng trưởng rất cao.",
+   "nguoi_ban_can_bien": "Cổ phiếu cổ tức mới về (22/10) có thể tăng cung.",
+   "counter": "Phản biện: nếu Grand Plaza mở bán thành công, lợi nhuận có thể nhảy vọt.",
+   "phep_thu": "BCTC quý 3 (đầu tháng 11).",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI (kỳ này) — định giá đắt, lợi nhuận giảm, rủi ro quản trị",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}
