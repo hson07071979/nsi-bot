@@ -4,7 +4,7 @@ import { handlePort } from '../port/worker_port_page.js'
 const html = readFileSync(new URL('../port/trang_port.html', import.meta.url), 'utf8')
 const js = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n')
 new Function(js)   // ném lỗi nếu sai cú pháp
-if (!/function daGN\(/.test(js) || /VN-Index cùng kỳ/.test(js)) throw new Error('trang /port: thiếu % NAV đã giải ngân hoặc còn ô VN-Index cùng kỳ')
+if (!/function ds\(/.test(js) || !/function daGN\(/.test(js) || /VN-Index cùng kỳ/.test(js)) throw new Error('trang /port: thiếu % NAV đã giải ngân hoặc còn ô VN-Index cùng kỳ')
 const kv = { 'port/html': html, 'port/bundle': '{"asof":"x"}' }
 const env = { SLIDES: { get: async k => (k in kv ? kv[k] : null) } }
 let r = await handlePort(new Request('https://a/port'), env)

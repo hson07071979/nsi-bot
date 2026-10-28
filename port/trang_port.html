@@ -29,7 +29,7 @@ svg text{fill:var(--mut);font-size:11px}
 <div class="tabs" id="tabs"></div><div id="app" class="card">Đang tải…</div></div>
 <script>
 const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const TABS=[['dm','Danh mục'],['gl','Sổ giả lập'],['so','Từng mã'],['bc','Đọc BCTC'],['nd','Nhận định hằng ngày'],['db','3 máy nói gì'],['pool','Pool tuần'],['lq','Lọc quý TOP110'],['loc','Lọc cơ bản'],['hoc','Ai đoán đúng']];
+const TABS=[['dm','Danh mục'],['ds','Danh sách giải ngân'],['gl','Sổ giả lập'],['so','Từng mã'],['bc','Đọc BCTC'],['nd','Nhận định hằng ngày'],['db','3 máy nói gì'],['pool','Pool tuần'],['lq','Lọc quý TOP110'],['loc','Lọc cơ bản'],['hoc','Ai đoán đúng']];
 const CH={1:['tăng','up'],'-1':['giảm','dn'],0:['trung lập','mut']}, CHP={tang:1,giam:-1,trung_lap:0};
 const CHN={tang:['tăng','up'],giam:['giảm','dn'],ngang:['đi ngang','mut']};
 const TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',loai:'Đã loại',dong:'Đã đóng'};
@@ -204,6 +204,30 @@ function db(){const x=cur();if(!x)return rong();const t=x.luan,h0=x.ho_so,pb=t.p
   h+='<h3>Các vòng tranh luận</h3>'+((t.debate||[]).length?(t.debate.map(r=>'<div class="card"><span class="pill">vòng '+esc(r.vong)+'</span><span class="pill">'+esc(BEN[r.ben]||r.ben)+'</span><span class="mut">'+esc(r.ngay)+'</span><div style="white-space:pre-wrap">'+esc(r.noi_dung)+'</div></div>').join('')):'<span class="mut">chưa có</span>');
   return h}
 
+/* ---------------- Danh sách giải ngân (28/10/2026, danh_sach.py) ---------------- */
+const DK_TEN={a:'a. Lợi nhuận tăng là thật',b:'b. Tăng trưởng không chậm lại (PEG)',c:'c. Giảm vì thị trường/ngành',d:'d. Đã cân bằng'};
+function dkO(k){if(!k)return '<span class="mut">—</span>';return '<span title="'+esc('abcd'.split('').map(c=>DK_TEN[c]+': '+(k[c]||{}).cau).join('\n'))+'">'+'abcd'.split('').map(c=>{const v=(k[c]||{}).dat;return '<b class="'+(v===true?'up':v===false?'dn':'mut')+'">'+c+(v===true?'✓':v===false?'✗':'?')+'</b>'}).join(' ')+'</span>'}
+function dkChiTiet(k){if(!k)return '';return '<ul style="margin:4px 0">'+'abcd'.split('').map(c=>{const v=(k[c]||{});return '<li><b class="'+(v.dat===true?'up':v.dat===false?'dn':'mut')+'">'+(v.dat===true?'✓':v.dat===false?'✗':'?')+'</b> '+esc(DK_TEN[c])+' <span class="mut">— '+esc(v.cau||'')+'</span></li>'}).join('')+'</ul>'}
+function ds(){const D=B.danh_sach;if(!D)return '<p class="mut">Chưa có danh sách — lượt "Lọc port" kế tiếp sẽ dựng.</p>';const Lt=D.luat||{};
+  const gl=((B.gia_lap||{}).tong_ket||{}).vi_the||[],cam={};gl.forEach(v=>cam[v.ma]=v);
+  let h='<h2 style="margin-top:0">Danh sách giải ngân <span class="mut">· '+n(D.so_qua_loc,0)+' mã qua lọc nền thấp + nền chặt · BCTC mới nhất '+esc(D.quy_bctc_moi||'—')+'</span></h2>'
+  +'<p class="mut">Port giải ngân <b>ngay khi mã đang ở nền thấp, nền chặt</b> (khác bot mua khi phá nền). Tối đa <b>'+n(Lt.toi_da_ma,0)+' mã</b> có tiền, nền càng chặt càng được xếp trước. Bốn điều kiện cho mã bị hạ định giá: '
+  +'<b>a</b> lợi nhuận 4 quý tăng, không phải lãi bất thường, tiền từ kinh doanh dương (ngân hàng, chứng khoán, bảo hiểm không xét); '
+  +'<b>b</b> PEG hiện tại không cao hơn lúc giá ở đỉnh 1 năm; <b>c</b> cả ngành cũng cách đỉnh ít nhất '+n(-(Lt.nganh_giam_toi_thieu||0)*100,0)+'% và mã không rơi sâu hơn ngành quá '+n(-(Lt.lech_nganh_toi_da||0)*100,0)+' điểm %; '
+  +'<b>d</b> nền 30 phiên không quá '+n((Lt.nen_can_bang||0)*100,0)+'% và 10 phiên gần nhất không tạo đáy mới.</p>';
+  const C='<tr><th>Mã</th><th>Ngành</th><th class="r">Thứ tự độ chặt</th><th class="r">Nền 30 phiên</th><th class="r">Cách đỉnh 1 năm</th><th>4 điều kiện</th><th>Kết luận · điểm 70/30</th><th>Được giải ngân?</th><th>Đang cầm (sổ giả lập)</th></tr>';
+  const o=x=>{const v=cam[x.ma];return '<tr><td><b>'+esc(x.ma)+'</b></td><td>'+esc(x.nganh||'')+'</td><td class="r">'+n(x.thu_tu_chat,0)+'</td><td class="r">'+(x.nen30!=null?n(x.nen30*100,1)+'%':'—')+'</td><td class="r">'+pct(x.tu_dinh!=null?x.tu_dinh*100:null)+'</td><td>'+dkO(x.bon_dk)+'</td><td>'+esc(x.ket_luan||'—')+(x.diem!=null?' · <b>'+n(x.diem,0)+'</b>':'')+'</td><td>'+(x.duoc_mua===true?'<b class="up">có</b>':x.duoc_mua===false?'<b class="dn">chưa</b>':'<span class="mut">—</span>')+'</td><td>'+(v?n(v.ty_trong)+'% NAV · '+v.so_dot+'/'+v.ke_hoach+' đợt':'<span class="mut">không</span>')+'</td></tr>'+(x.vi_sao?'<tr><td></td><td colspan="8" class="w mut" style="border-top:0">'+esc(x.vi_sao)+'</td></tr>':'')};
+  const bang=(L,rong)=>L.length?'<div class="scroll"><table>'+C+L.map(o).join('')+'</table></div>':'<p class="mut">'+rong+'</p>';
+  h+='<h3>1. Giải ngân — luận điểm đủ khung, qua đủ 4 điều kiện ('+(D.giai_ngan||[]).length+')</h3><p class="mut">Tỷ trọng 12% NAV (điểm 70/30 từ 70) hoặc 8% (60–69), đợt 1 = 40% vào ngay phiên sau, 2 đợt sau theo nền.</p>'+bang(D.giai_ngan||[],'Chưa mã nào đủ khung và qua đủ 4 điều kiện.');
+  h+='<h3>2. Cần thêm bằng chứng ('+(D.can_them||[]).length+')</h3><p class="mut">Luận điểm còn thiếu phần, hoặc kết luận chờ phép thử, hoặc điều kiện chưa đo được: tối đa đợt 1, <b>4% NAV</b>. Điều kiện đo được mà trượt thì chưa giải ngân. Đủ khung + qua đủ 4 điều kiện thì tự lên danh sách 1 và mua tiếp theo 40/30/30.</p>'+bang(D.can_them||[],'Không có mã nào.');
+  h+='<h3>Giữ, ngừng mua thêm ('+(D.giu_khong_mua||[]).length+')</h3><p class="mut">Mã đang cầm mà trượt lọc hoặc rơi khỏi danh sách: không mua thêm, chỉ bán khi lỗ 15% so với giá vốn hoặc luận điểm bị loại. Nền chặt lại thì tự vào lại.</p>'+bang(D.giu_khong_mua||[],'Không có mã nào.');
+  const U=D.ung_vien||[];h+='<h3>Ứng viên chưa có luận điểm ('+U.length+' mã nền chặt nhất trong TOP110)</h3><p class="mut">Đầu vào cho kỳ viết luận điểm. Bốn điều kiện ở đây do code đo bằng số, chưa phải kết luận.</p>'
+   +(U.length?'<div class="scroll"><table><tr><th>Mã</th><th>Ngành</th><th class="r">Thứ tự độ chặt</th><th class="r">Nền 30 phiên</th><th class="r">Cách đỉnh 1 năm</th><th class="r">Điểm pool</th><th>4 điều kiện</th></tr>'+U.map(x=>'<tr><td><b>'+esc(x.ma)+'</b></td><td>'+esc(x.nganh||'')+'</td><td class="r">'+n(x.thu_tu_chat,0)+'</td><td class="r">'+(x.nen30!=null?n(x.nen30*100,1)+'%':'—')+'</td><td class="r">'+pct(x.tu_dinh!=null?x.tu_dinh*100:null)+'</td><td class="r">'+n(x.diem_pool,0)+'</td><td>'+dkO(x.bon_dk)+'</td></tr>').join('')+'</table></div>':'<p class="mut">Không có.</p>');
+  const L=(D.loai||[]);if(L.length)h+='<details class="card"><summary>Luận điểm không vào danh sách ('+L.length+')</summary>'+bang(L,'')+'</details>';
+  const T=[].concat(D.giai_ngan||[],D.can_them||[],D.giu_khong_mua||[]).filter(x=>x.bon_dk);
+  if(T.length)h+='<details class="card"><summary>Chi tiết 4 điều kiện từng mã</summary>'+T.map(x=>'<div><b>'+esc(x.ma)+'</b>'+dkChiTiet(x.bon_dk)+((x.thieu||[]).length?'<div class="mut">Luận điểm còn thiếu: '+x.thieu.map(esc).join(' · ')+'</div>':'')+'</div>').join('<hr>')+'</details>';
+  return h}
+
 /* ---------------- Lọc quý TOP110 (22/10/2026) ---------------- */
 function pool(){const P=B.pool;if(!P)return '<p class="mut">Chưa có pool — lượt "Lọc port" kế tiếp sẽ dựng.</p>';
   const by={};(P.bang||[]).forEach(r=>by[r.ma]=r);const co=new Set((B.luan_diem||[]).map(x=>x.luan.ma));const Lt=P.luat||{};
@@ -295,7 +319,7 @@ function hoc(){const T=B.tin_cay||{},pv=T.port_vs_may||{},D=B.do_chinh_xac;let h
   const so=(B.so_bat_dong||[]).slice().reverse();h+='<details class="card"><summary>Sổ các lần nói ngược ('+so.length+')</summary>'+(so.length?'<div class="scroll"><table><tr><th>Ngày</th><th>Mã</th><th>Máy</th><th>Port</th><th>Máy nói</th><th>Vì sao máy nói vậy</th><th class="r">Hơn VN-Index 20 phiên</th><th class="r">60 phiên</th></tr>'+so.map(r=>'<tr><td>'+esc(r.ngay)+'</td><td><b>'+esc(r.ma)+'</b></td><td>'+esc(B.ten_may[r.may]||r.may)+'</td><td>'+chip(r.chieu_port)+'</td><td>'+chip(r.chieu_may)+'</td><td class="w">'+esc(r.ly_do_may)+'</td><td class="r">'+pct(r.vuot_20p)+(r.port_dung_20p!=null?(r.port_dung_20p?' port đúng':' máy đúng'):'')+'</td><td class="r">'+pct(r.vuot_60p)+(r.port_dung_60p!=null?(r.port_dung_60p?' port đúng':' máy đúng'):'')+'</td></tr>').join('')+'</table></div>':'<span class="mut">chưa có lần nào</span>')+'</details>';
   return h}
 
-function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const f={dm,gl,so,bc,nd,db,pool,lq,loc,hoc}[tab]||dm;$('#app').innerHTML=f();if(tab==='loc')ganLoc();const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
+function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const f={dm,ds,gl,so,bc,nd,db,pool,lq,loc,hoc}[tab]||dm;$('#app').innerHTML=f();if(tab==='loc')ganLoc();const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
 fetch('/port/data').then(r=>r.json().then(j=>{if(!r.ok)throw new Error(j.loi||r.status);return j})).then(j=>{B=j;
   const nh=j.nhac||{};$('#meta').textContent='Dữ liệu đến phiên '+(j.asof||'?')+' · đèn thị trường '+(j.den||'?')+' · bản tin sáng '+((j.nguon||{}).tin_so_ban||0)+' bản · Daily '+((j.nguon||{}).daily_ngay||'?')+(nh.ky_review?' · kỳ review gần nhất '+nh.ky_review:'')+' · dựng lúc '+String(j.cap_nhat||'').replace('T',' ').slice(0,16);ve()})
  .catch(e=>{$('#app').innerHTML='<b>Chưa đọc được gói port.</b> '+esc(e.message)});

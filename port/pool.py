@@ -240,7 +240,10 @@ def dung_bang(D: dict, rows_f: dict, B, asof: str, them: set[str] | None = None,
                    f=r['f'], nguon_gia=r['nguon_gia'], nganh_tu_dinh=round(nt, 4) if nt is not None else None,
                    dinh_gia_rel=so.get('dinh_gia_rel'), theo=so.get('theo'), np4_yoy=so.get('np4_yoy'),
                    roe=so.get('roe'), quy=so.get('quy'),
-                   npat_yoy=_num((r['sc'] or {}).get('npat_yoy')), rev_yoy=_num((r['sc'] or {}).get('rev_yoy')), **k)
+                   npat_yoy=_num((r['sc'] or {}).get('npat_yoy')), rev_yoy=_num((r['sc'] or {}).get('rev_yoy')),
+                   # 28/10/2026: cho 4 điều kiện của danh sách giải ngân (danh_sach.py)
+                   cfo_ty=_num((r['lk'] or {}).get('cfo_ty')), tim=bool((r['lk'] or {}).get('tim')),
+                   tim_vi=(r['lk'] or {}).get('tim_vi'), **k)
         row['vi_sao'] = _ly_do(row)
         out.append(row)
     return out

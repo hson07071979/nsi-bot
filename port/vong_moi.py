@@ -21,6 +21,7 @@ import loc_quy as LQ
 import nhac as NH
 import nhan_dinh as ND
 import pool as PO
+import danh_sach as DS  # noqa: E402  (28/10/2026: danh sách giải ngân)
 import sim as SM
 import tu_hoc as TH
 
@@ -150,13 +151,6 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
         v = [x for x in (SM._vung(z) for z in row.get('ho_tro') or []) if x]
         if v:
             ho_tro[s] = v[0][0]
-    so = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
-    ngay = [d for d in sorted(P.get('VNINDEX') or {}) if d >= (danh_muc or {}).get('ngay', asof) and d <= asof]
-    lk_ng = {s_: (x or {}).get('sector', '') for s_, x in (D.get('lookup') or {}).items()}
-    so = SM.chay(so, P, ngay, danh_muc, luan, ho_tro, nganh=lk_ng)
-    wj(state / 'so_gia_lap.json', so)
-    gia_lap = dict(tong_ket=SM.tong_ket(so, P), nav=so['nav'], lenh=so['lenh'][-200:], co=so['co'][-50:],
-                   luat=SM.LUAT, ghi_chu=so.get('ghi_chu'))
     de_xuat = {}                      # 24/10/2026: bỏ mục tiêu T1/T2 — không đề xuất nữa
     # ------------------------------------------------ 2. đọc BCTC sâu
     rows_f, raw, nguon['bctc'] = _funda_rows(D)
@@ -215,9 +209,23 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     # ------------------------------------------------ 3c. pool tuần (24/10/2026) — watchlist NSI + 20–30 mã riêng
     pool = PO.chay(D, rows_f if raw else {}, B if pg else None, asof, state, luan=luan, gui_chuong=gui_chuong,
                    V=_khoi_luong(B, pg) if pg else None)
+    # ------------------------------------------------ 3d. danh sách giải ngân (28/10/2026) — nền thấp + nền chặt,
+    # 4 điều kiện, luận điểm đủ khung; tối đa 10 mã. Sổ giả lập mua theo danh sách này (chạy SAU pool).
+    so_cu = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
+    ds = DS.lap(pool.get('bang') or [], luan, rows_f if raw else {}, B if pg else None,
+                dang_cam=set((so_cu.get('vi_the') or {}).keys()))
+    # ------------------------------------------------ 1. sổ giả lập (theo danh sách giải ngân)
+    so = rj(state / 'so_gia_lap.json', None) or SM.so_moi()
+    ngay = [d for d in sorted(P.get('VNINDEX') or {}) if d >= (danh_muc or {}).get('ngay', asof) and d <= asof]
+    lk_ng = {s_: (x or {}).get('sector', '') for s_, x in (D.get('lookup') or {}).items()}
+    so = SM.chay(so, P, ngay, danh_muc, luan, ho_tro, nganh=lk_ng, duoc=DS.ma_duoc_mua(ds))
+    wj(state / 'so_gia_lap.json', so)
+    gia_lap = dict(tong_ket=SM.tong_ket(so, P), nav=so['nav'], lenh=so['lenh'][-200:], co=so['co'][-50:],
+                   luat=SM.LUAT, ghi_chu=so.get('ghi_chu'))
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)
     nguon['gia_gia_lap'] = 'port_gia.npz + ảnh chụp port' if pg else 'nến 240 phiên + ảnh chụp port'
     return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy, pool=pool,
+                danh_sach=ds,
                 nhac=dict(quy=st['quy'], ky_review=st['ky_review'], lan_cuoi=st.get('lan_cuoi')), nguon_moi=nguon)

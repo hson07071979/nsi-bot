@@ -38,6 +38,10 @@ LUAT = dict(dot_thuong=[0.4, 0.3, 0.3], dot_hoang_loan=[0.6, 0.4], hoang_loan=-0
             nen_phien=20, nen_bien=0.08, nen_dau_cuoi=0.04, nen_qua_han=120, chay=0.10, chay_cho_ma20=60,
             cat=-0.15, co_lo=-0.10,
             ty_trong=dict(du_70=12.0, du_60=8.0, cho_phep_thu=4.0), tran_ma=0.15, tran_nganh=0.30, tran_tong=0.90)
+# 28/10/2026 (anh Sơn): danh sách giải ngân do danh_sach.py lập (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ
+# khung); tối đa 10 mã có tiền; mã đang cầm rơi khỏi danh sách thì GIỮ, ngừng mua thêm. KHÔNG nằm trong LUAT để
+# luat_hash giữ nguyên: sổ ghi tiếp từ phiên đã xử lý, không chạy lại quá khứ bằng danh sách của hôm nay (nhìn trước).
+TOI_DA_MA = 10
 DU = 'ĐỦ ĐỂ XUỐNG TIỀN'
 CHO = 'CHỜ PHÉP THỬ'
 
@@ -272,20 +276,28 @@ def _con_cho(so: dict, P: dict, d: str, sym: str, nav: float, nganh: dict[str, s
 
 
 def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[str, dict],
-         ho_tro: dict[str, float] | None = None, nganh: dict[str, str] | None = None) -> dict:
-    """Xử lý các phiên mới (sau so['da_xu_ly']). `ngay_phien` = các phiên có giá VN-Index."""
+         ho_tro: dict[str, float] | None = None, nganh: dict[str, str] | None = None,
+         duoc: dict[str, str] | None = None) -> dict:
+    """Xử lý các phiên mới (sau so['da_xu_ly']). `ngay_phien` = các phiên có giá VN-Index.
+    duoc = {mã: 'du' | 'cho'} từ danh_sach.ma_duoc_mua (28/10/2026). None = cách cũ (danh_muc.vi_tri + hàng chờ)."""
     if so.get('luat_hash') != LUAT_HASH:
         so = so_moi()
     ho_tro = ho_tro or {}
     vi_tri = {str(v.get('ma', '')).upper(): v for v in (danh_muc or {}).get('vi_tri') or []}
     nganh = nganh or {}
-    # mã được giải ngân: trong danh mục (luận điểm trong_port) + hàng chờ có kết luận CHỜ PHÉP THỬ
-    duoc_mua = {s_: v for s_, v in vi_tri.items() if (luan.get(s_) or {}).get('trang_thai') == 'trong_port'}
-    for h in (danh_muc or {}).get('hang_cho') or []:
-        s_ = str(h.get('ma', '')).upper()
-        t_ = luan.get(s_) or {}
-        if s_ not in duoc_mua and t_.get('trang_thai') not in ('loai', 'dong') and ket_luan(t_)[0].startswith(CHO):
-            duoc_mua[s_] = h
+    if duoc is not None:
+        # danh sách giải ngân (danh_sach.py): 'du' = ĐỦ ĐỂ XUỐNG TIỀN đủ khung; 'cho' = CẦN THÊM BẰNG CHỨNG → luật
+        # CHỜ PHÉP THỬ (đợt 1, tối đa 4% NAV). Mã đang cầm không có ở đây thì GIỮ, không mua thêm.
+        duoc_mua = {s_: {'ma': s_, 'loai': k} for s_, k in duoc.items()
+                    if (luan.get(s_) or {}).get('trang_thai') not in ('loai', 'dong')}
+    else:
+        # mã được giải ngân: trong danh mục (luận điểm trong_port) + hàng chờ có kết luận CHỜ PHÉP THỬ
+        duoc_mua = {s_: v for s_, v in vi_tri.items() if (luan.get(s_) or {}).get('trang_thai') == 'trong_port'}
+        for h in (danh_muc or {}).get('hang_cho') or []:
+            s_ = str(h.get('ma', '')).upper()
+            t_ = luan.get(s_) or {}
+            if s_ not in duoc_mua and t_.get('trang_thai') not in ('loai', 'dong') and ket_luan(t_)[0].startswith(CHO):
+                duoc_mua[s_] = h
     ngay_qd = (danh_muc or {}).get('ngay') or ''
     moi = [d for d in ngay_phien if not so['da_xu_ly'] or d > so['da_xu_ly']]
     for d in moi:
@@ -297,7 +309,7 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
             if not px:
                 continue
             t = luan.get(sym) or {}
-            if t.get('trang_thai') in ('loai', 'dong') or sym not in duoc_mua:
+            if t.get('trang_thai') in ('loai', 'dong') or (sym not in duoc_mua and not (duoc is not None and sym in luan)):
                 _ban(so, sym, d, px, 1.0, 'luận điểm bị loại/đóng hoặc mã ra khỏi danh mục')
                 continue
             gv = p['von'] / (p['cp'] * 1000) if p['cp'] else None
@@ -317,8 +329,14 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
             ngay_vao = max(str(t.get('ngay_vao') or ''), ngay_qd)
             if ngay_vao and d <= ngay_vao:          # khớp ở phiên SAU ngày quyết định (ngày vào / ngày chốt danh mục)
                 continue
-            tt = ty_trong_muc_tieu(t)
-            cho = ket_luan(t)[0].startswith(CHO)
+            if duoc is not None:
+                cho = v.get('loai') == 'cho'
+                tt = LUAT['ty_trong']['cho_phep_thu'] if cho else ty_trong_muc_tieu(t)
+                if sym not in so['vi_the'] and len(so['vi_the']) >= TOI_DA_MA:
+                    continue                        # đã đủ 10 mã có tiền
+            else:
+                tt = ty_trong_muc_tieu(t)
+                cho = ket_luan(t)[0].startswith(CHO)
             if sym not in so['vi_the']:
                 if tt <= 0 or any(x['ma'] == sym for x in so.get('da_dong') or []):
                     continue                        # đã đóng thì không tự mở lại; mở lại phải ghi luận điểm mới
@@ -337,6 +355,8 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
                     del so['vi_the'][sym]
                 continue
             p = so['vi_the'][sym]
+            if duoc is not None and cho and not p.get('cho_phep_thu'):
+                continue                            # đang cầm theo kế hoạch đủ, nay chỉ còn CẦN THÊM BẰNG CHỨNG → giữ, không mua thêm
             if p.get('cho_phep_thu') and not cho and tt > p.get('ty_trong_muc_tieu', 0):
                 # qua phép thử → nâng lên mức ĐỦ ĐỂ XUỐNG TIỀN, mua tiếp các đợt sau theo 40/30/30
                 p.update(cho_phep_thu=False, ty_trong_muc_tieu=tt, muc_tieu_tien=nav_dau * tt / 100,
