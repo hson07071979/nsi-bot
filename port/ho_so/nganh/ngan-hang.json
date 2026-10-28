@@ -1,0 +1,12 @@
+{
+ "slug": "ngan-hang",
+ "cap_nhat": "2026-10-28",
+ "ten": "Ngân hàng",
+ "chuoi": "Người gửi tiền, Kho bạc, thị trường liên ngân hàng → ngân hàng (huy động, cho vay, thanh toán, ngoại hối, bảo hiểm qua ngân hàng) → doanh nghiệp, hộ gia đình vay. Ngân hàng ăn chênh lệch lãi suất cho vay – huy động (biên lãi ròng) và phí; rủi ro lớn nhất là nợ xấu đến sau chu kỳ tín dụng tăng nhanh. NHNN điều hành hạn mức tín dụng từng ngân hàng và định hướng lãi suất.",
+ "bien": [
+  "ls_huy_dong_vn",
+  "tin_dung_vn",
+  "gdp_vn",
+  "von_ngoai_vn"
+ ]
+}

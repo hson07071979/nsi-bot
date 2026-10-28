@@ -1,0 +1,12 @@
+{
+ "slug": "thuc-pham-sua",
+ "cap_nhat": "2026-10-28",
+ "ten": "Sữa và thực phẩm thiết yếu",
+ "chuoi": "Trang trại bò sữa (của doanh nghiệp và nông hộ) + bột sữa nhập khẩu (New Zealand, Mỹ, châu Âu) → nhà máy chế biến → kênh truyền thống (tạp hoá), kênh hiện đại (siêu thị, chuỗi), cửa hàng riêng → người tiêu dùng; một phần xuất khẩu. Biên lợi nhuận phụ thuộc giá bột sữa thế giới, tỷ giá và khả năng tăng giá bán; nhu cầu ổn định nhưng tăng chậm khi dân số già đi.",
+ "bien": [
+  "sua_bot",
+  "usdvnd",
+  "cpi_vn",
+  "tieu_dung_vn"
+ ]
+}

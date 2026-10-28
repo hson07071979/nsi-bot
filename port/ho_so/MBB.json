@@ -1,0 +1,52 @@
+{
+ "ma": "MBB",
+ "ten": "Ngân hàng TMCP Quân đội (MB)",
+ "nganh": "Ngân hàng",
+ "nganh_slug": "ngan-hang",
+ "vi_tri": "tai_chinh",
+ "mo_hinh": "Cho vay (chênh lệch lãi suất) + phí",
+ "lam_gi": "Ngân hàng tư nhân lớn, khách hàng nền là quân đội và Viettel, mạnh ngân hàng số; có công ty con chứng khoán (MBS), bảo hiểm, tài chính tiêu dùng; đang vận hành MBV (ngân hàng nhận chuyển giao bắt buộc).",
+ "tien_tu_dau": "Thu nhập lãi thuần là chủ yếu (biên lãi ròng khoảng 3,9%, cao nhất nhóm lớn); phí, bảo hiểm, chứng khoán. ROE 20,7%.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Tiền gửi không kỳ hạn khoảng 34,6% (top 2 ngành) từ tài khoản thanh toán số; huy động có kỳ hạn.",
+  "dau_ra": "Doanh nghiệp (gồm doanh nghiệp quân đội), hạ tầng, cá nhân qua app; dư nợ bất động sản giữ khoảng 15%.",
+  "vi_tri": "Trung gian tài chính tăng trưởng nhanh nhất nhóm lớn (tín dụng 6 tháng +13,2% so với hệ thống +8,5%).",
+  "khac_doi_thu": "So với VCB, CTG: biên lãi cao hơn nhiều nhờ tiền gửi không kỳ hạn, nhưng bao phủ nợ xấu chỉ khoảng 94% — bộ đệm mỏng hơn."
+ },
+ "vi_mo_xuong": "Như ngành ngân hàng; riêng MBB tăng tín dụng nhanh nên hưởng nhiều nhất khi kinh tế tốt và chịu đầu tiên khi hạn mức tín dụng siết; chi phí vốn đã tăng từ 3,17% lên 3,82% trong một năm nên lãi huy động quay đầu là thuận rõ.",
+ "vi_mo_nguoc": "Tín dụng tăng nhanh nuôi tăng trưởng; tài khoản số phổ cập thanh toán không tiền mặt.",
+ "bien": [
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi huy động tăng → chi phí vốn tăng (đã +0,65 điểm % trong một năm)",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tin_dung_vn",
+   "chieu": 1,
+   "kenh": "Tín dụng tăng → MBB tăng nhanh nhất nhóm",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế tốt → nợ xấu thấp",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "von_ngoai_vn",
+   "chieu": 1,
+   "kenh": "Vốn ngoại vào → định giá ngân hàng tăng",
+   "tre": "vài tuần"
+  }
+ ],
+ "nguon": [
+  "NSI (chỉ số ngân hàng Q2/2026)",
+  "Vietcap 08/2026",
+  "Elibook 09/08"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

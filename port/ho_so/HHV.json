@@ -1,0 +1,53 @@
+{
+ "ma": "HHV",
+ "ten": "Đầu tư Hạ tầng Giao thông Đèo Cả",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "ha-tang-giao-thong",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Thu phí BOT + xây lắp",
+ "lam_gi": "Đơn vị đào hầm đường bộ hàng đầu (hầm Đèo Cả, Cù Mông, Hải Vân, Phước Tượng–Phú Gia) và nhà đầu tư BOT; làm tổng thầu xây lắp cho các đoạn cao tốc, hầm trong chương trình đầu tư công.",
+ "tien_tu_dau": "Thu phí BOT khoảng 57% doanh thu (mỗi ngày gần 6 tỷ), biên gộp cao, tiền mặt về mỗi ngày; xây lắp hầm, đường (hợp đồng mới hơn 5.300 tỷ trong 9 tháng 2026). Năm 2024 được tăng phí trung bình 18% tại 3 trạm.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Vốn vay ngân hàng dài hạn (nợ vay/vốn chủ khoảng 1,37), vốn chủ phát hành thêm (vừa chào bán riêng lẻ 415 tỷ); thép, xi măng, nhựa đường, máy đào hầm.",
+  "dau_ra": "Người đi đường trả phí; Nhà nước (chủ đầu tư dự án công) trả tiền xây lắp.",
+  "vi_tri": "Vừa là nhà đầu tư dự án vừa là nhà thầu chính — nắm phần biên của cả hai khâu.",
+  "khac_doi_thu": "Khác CII, VCG, CTD: HHV có dòng tiền phí BOT đều đặn làm nền, nhưng đòn bẩy cao hơn và ROE thấp (5,7%) vì tài sản BOT lớn."
+ },
+ "vi_mo_xuong": "Đầu tư công là nguồn hợp đồng chính; lưu lượng xe tăng theo GDP và vận tải hàng hoá. Lãi suất là biến nhạy nhất vì nợ vay lớn: giảm 1 điểm % là tiết kiệm đáng kể chi phí lãi. Giá xăng dầu cao làm giảm nhẹ lưu lượng và tăng chi phí xây lắp.",
+ "vi_mo_nguoc": "Hầm, cao tốc rút ngắn thời gian vận tải, giảm chi phí logistics, mở đất cho khu công nghiệp dọc tuyến.",
+ "bien": [
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Đầu tư công tăng → hợp đồng xây lắp mới, dự án PPP mới",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí lãi trên khoản vay BOT lớn tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Kinh tế, vận tải tăng → lưu lượng xe qua trạm tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "brent",
+   "chieu": -1,
+   "kenh": "Xăng dầu đắt → chi phí xây lắp, vận tải tăng",
+   "tre": "1 quý"
+  }
+ ],
+ "nguon": [
+  "Báo Đầu tư 10/2026",
+  "Vietstock 10/2026",
+  "Diễn đàn Doanh nghiệp (tăng phí 2024)",
+  "NSI (chỉ số tài chính Q2/2026)"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

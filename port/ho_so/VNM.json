@@ -1,0 +1,59 @@
+{
+ "ma": "VNM",
+ "ten": "Sữa Việt Nam (Vinamilk)",
+ "nganh": "Thực phẩm và đồ uống",
+ "nganh_slug": "thuc-pham-sua",
+ "vi_tri": "tich_hop",
+ "mo_hinh": "Sản xuất hàng tiêu dùng có thương hiệu",
+ "lam_gi": "Doanh nghiệp sữa lớn nhất Việt Nam: sữa nước, sữa chua, sữa bột, sữa đặc, đồ uống; có trang trại bò sữa riêng, Mộc Châu Milk, Angkormilk (Campuchia), Driftwood (Mỹ). Sản phẩm có mặt ở 65–67 nước.",
+ "tien_tu_dau": "Bán sữa trong nước qua hơn 200.000 điểm bán truyền thống, siêu thị và cửa hàng riêng (phần lớn doanh thu); xuất khẩu và công ty con nước ngoài (6 tháng 2026: 8.400 tỷ, +39,1%). Gần như không vay; chia cổ tức tiền mặt tối thiểu 50% lợi nhuận.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Sữa tươi từ trang trại của Vinamilk và nông hộ ký hợp đồng; bột sữa, đường, bao bì nhập khẩu (tính bằng đô la).",
+  "dau_ra": "Người tiêu dùng qua tạp hoá, siêu thị, chuỗi; trường học (sữa học đường); nhà phân phối nước ngoài.",
+  "vi_tri": "Tích hợp từ trang trại tới phân phối: nắm nguồn sữa tươi và kênh bán lớn nhất ngành.",
+  "khac_doi_thu": "So với TH True Milk: Vinamilk rộng hơn về chủng loại và kênh, TH mạnh sữa tươi cao cấp; so với Nutifood: Vinamilk lớn hơn nhiều ở sữa nước. Biên gộp khoảng 43% thuộc nhóm cao nhất ngành thực phẩm."
+ },
+ "vi_mo_xuong": "Nhu cầu sữa ít nhạy chu kỳ nhưng tăng chậm vì tỷ lệ sinh giảm. Giá bột sữa thế giới và tỷ giá quyết định giá vốn: đô la mạnh, bột sữa đắt thì biên co lại. Lạm phát cao cho phép tăng giá bán nhưng làm người mua chuyển sang hàng rẻ. Thu nhập tăng kéo nhu cầu sữa cao cấp.",
+ "vi_mo_nguoc": "Vinamilk là đầu ra lớn nhất của chăn nuôi bò sữa trong nước, giảm nhập khẩu bột sữa và tạo thu nhập nông thôn; cổ tức lớn về ngân sách qua SCIC.",
+ "bien": [
+  {
+   "bien": "sua_bot",
+   "chieu": -1,
+   "kenh": "Bột sữa thế giới tăng → giá vốn tăng, biên gộp co (trễ theo tồn kho nguyên liệu)",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → nguyên liệu nhập khẩu đắt hơn",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Tiêu dùng tăng → sản lượng nội địa tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "cpi_vn",
+   "chieu": -1,
+   "kenh": "Lạm phát cao → người mua chuyển sang hàng rẻ, chi phí bán hàng tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "duong",
+   "chieu": -1,
+   "kenh": "Đường đắt → giá vốn sữa có đường, sữa đặc tăng",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "ĐHĐCĐ 2026 (CafeF 04/2026)",
+  "Kết quả 6 tháng 2026 (SGGP 07/10)",
+  "TCBS 20/10",
+  "NSI"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

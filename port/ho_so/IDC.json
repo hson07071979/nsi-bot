@@ -1,0 +1,46 @@
+{
+ "ma": "IDC",
+ "ten": "Tổng Công ty IDICO",
+ "nganh": "Bất động sản",
+ "nganh_slug": "bds-khu-cong-nghiep",
+ "vi_tri": "ha_tang",
+ "mo_hinh": "Cho thuê đất khu công nghiệp + bán điện",
+ "lam_gi": "Chủ đầu tư khu công nghiệp (miền Nam và miền Bắc), kèm nhà máy thuỷ điện, trạm thu phí và một số dự án dân cư.",
+ "tien_tu_dau": "Khoảng một nửa doanh thu từ bán điện (6 tháng 2026 khoảng 1.851 tỷ, +7%), khu công nghiệp 1.485 tỷ (+37%) ghi nhận theo đợt bàn giao đất — lợi nhuận quý thất thường. Tiền từ kinh doanh 12 tháng khoảng 2.507 tỷ.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Quỹ đất được giao, tiền bồi thường giải phóng mặt bằng, vốn vay (nợ vay/vốn chủ khoảng 0,6).",
+  "dau_ra": "Doanh nghiệp FDI (điện tử, cơ khí, dệt may…) và doanh nghiệp trong nước thuê đất, nhà xưởng; EVN mua điện.",
+  "vi_tri": "Khâu đầu của chuỗi xuất khẩu chế tạo: cung cấp mặt bằng sản xuất.",
+  "khac_doi_thu": "Khác KBC, BCM: IDC có dòng tiền điện đều đặn làm nền và nợ thấp; khác nhà ở như KDH: không phụ thuộc người vay mua nhà."
+ },
+ "vi_mo_xuong": "Dòng FDI (đăng ký mới 8 tháng +86%) quyết định cầu thuê đất; thuế 301 của Mỹ với chuỗi hàng đi qua Việt Nam là rủi ro lớn nhất. Lãi suất ảnh hưởng chi phí vốn làm hạ tầng và tâm lý nhóm bất động sản; thuỷ văn quyết định sản lượng thuỷ điện.",
+ "vi_mo_nguoc": "Đất khu công nghiệp đón FDI → xuất khẩu, việc làm, thu ngân sách địa phương.",
+ "bien": [
+  {
+   "bien": "fdi_vn",
+   "chieu": 1,
+   "kenh": "FDI tăng → nhu cầu thuê đất khu công nghiệp tăng",
+   "tre": "2–4 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → chi phí vốn, tâm lý nhóm bất động sản xấu đi",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdcny",
+   "chieu": 1,
+   "kenh": "Nhân dân tệ yếu (USD/CNY tăng) → nhà máy dời khỏi Trung Quốc mạnh hơn (giả thuyết, cần máy đo kiểm)",
+   "tre": "2–4 quý"
+  }
+ ],
+ "nguon": [
+  "DSC Research 2026",
+  "Tạp chí KTTC 09/2026",
+  "NSI (BCTC Q2/2026)"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

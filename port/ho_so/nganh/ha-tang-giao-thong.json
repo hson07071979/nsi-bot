@@ -1,0 +1,12 @@
+{
+ "slug": "ha-tang-giao-thong",
+ "cap_nhat": "2026-10-28",
+ "ten": "Hạ tầng giao thông (BOT/PPP, xây lắp)",
+ "chuoi": "Nhà nước giao dự án (đầu tư công hoặc PPP) → nhà đầu tư dự án bỏ vốn chủ + vay ngân hàng → tổng thầu, nhà thầu xây lắp (hầm, cầu, đường) → vật liệu (thép, xi măng, nhựa đường) → thông xe, thu phí 15–25 năm. Dòng tiền phí đều nhưng phải trả nợ vay xây dựng; giá trị phụ thuộc lưu lượng xe, quyền tăng phí và lãi suất.",
+ "bien": [
+  "dau_tu_cong_vn",
+  "ls_huy_dong_vn",
+  "gdp_vn",
+  "brent"
+ ]
+}

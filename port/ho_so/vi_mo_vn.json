@@ -1,0 +1,69 @@
+{
+ "cap_nhat": "2026-10-28",
+ "ghi_chu": "Biến vĩ mô Việt Nam chưa có nguồn cào hằng ngày ổn định — Claude cập nhật theo tin, mỗi biến có ngày và nguồn.",
+ "bien": {
+  "ls_huy_dong_vn": {
+   "ten": "Lãi suất huy động VN (12 tháng)",
+   "xu_huong": "giam",
+   "ngay": "2026-10-26",
+   "ly_do": "Sau cuộc họp NHNN ~19/10, ít nhất 24 ngân hàng hạ lãi 12 tháng (sâu nhất 0,9 điểm %); VPBank hạ tiếp 0,4 điểm % ngày 26/10. Trước đó đã lên ~8,3% (quốc doanh), 8,8–9,4% (tư nhân lớn).",
+   "nguon": "Thời báo Tài chính 21/10; CafeF 25/10; Elibook 13/10"
+  },
+  "ls_cho_vay_vn": {
+   "ten": "Lãi suất cho vay VN",
+   "xu_huong": "ngang",
+   "ngay": "2026-10-26",
+   "ly_do": "Ưu đãi lãi vay mới \"khoanh vùng\" khoảng 3–5% dư nợ; có ngân hàng công bố lãi vay bình quân tháng 10 vượt 11%.",
+   "nguon": "Thời báo Tài chính 21/10; Người Quan Sát 26/10"
+  },
+  "tin_dung_vn": {
+   "ten": "Tăng trưởng tín dụng VN",
+   "xu_huong": "tang",
+   "ngay": "2026-10-23",
+   "ly_do": "Tín dụng tăng nhanh hơn huy động; VDSC ước nhiều ngân hàng đã gần hết hạn mức năm → quý 4 phải giảm tốc giải ngân.",
+   "nguon": "Tạp chí KTTC 23/10; NHNN họp báo 07/10"
+  },
+  "dau_tu_cong_vn": {
+   "ten": "Giải ngân đầu tư công VN",
+   "xu_huong": "tang",
+   "ngay": "2026-10-15",
+   "ly_do": "Đến 30/9 đạt 62,9% kế hoạch, quý 4 còn khoảng 380.000 tỷ phải giải ngân — động lực mạnh nhất cuối năm.",
+   "nguon": "Bộ Tài chính; bản đồ vĩ mô Q4/2026"
+  },
+  "cpi_vn": {
+   "ten": "Lạm phát VN (CPI)",
+   "xu_huong": "tang",
+   "ngay": "2026-10-07",
+   "ly_do": "CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% so cùng kỳ — sát trần mục tiêu.",
+   "nguon": "NHNN họp báo 07/10; Cục Thống kê"
+  },
+  "tieu_dung_vn": {
+   "ten": "Bán lẻ hàng hoá VN",
+   "xu_huong": "tang",
+   "ngay": "2026-10-06",
+   "ly_do": "8 tháng bán lẻ hàng hoá +13,3%, trừ lạm phát khoảng +7,6% — tăng nhưng không bùng nổ.",
+   "nguon": "MBS Research (Cục Thống kê)"
+  },
+  "fdi_vn": {
+   "ten": "Vốn FDI vào VN",
+   "xu_huong": "tang",
+   "ngay": "2026-09-28",
+   "ly_do": "8 tháng vốn đăng ký mới +86%, giải ngân +13%.",
+   "nguon": "Tạp chí KTTC"
+  },
+  "gdp_vn": {
+   "ten": "Tăng trưởng GDP VN",
+   "xu_huong": "tang",
+   "ngay": "2026-10-06",
+   "ly_do": "GDP Q3 +9,9%, 9 tháng +9,01% — cao nhất nhiều năm.",
+   "nguon": "Cục Thống kê; World Bank 10/2026"
+  },
+  "von_ngoai_vn": {
+   "ten": "Dòng vốn ngoại vào chứng khoán VN",
+   "xu_huong": "giam",
+   "ngay": "2026-10-28",
+   "ly_do": "Khối ngoại bán ròng nhóm vốn hoá lớn khi lợi suất Mỹ cao và đô la mạnh; Fed còn khả năng tăng tháng 12.",
+   "nguon": "CNBC 27/10; báo chí thị trường"
+  }
+ }
+}

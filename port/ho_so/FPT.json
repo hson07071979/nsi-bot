@@ -1,0 +1,46 @@
+{
+ "ma": "FPT",
+ "ten": "Công ty Cổ phần FPT",
+ "nganh": "Công nghệ Thông tin",
+ "nganh_slug": "cong-nghe",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Dịch vụ phần mềm + viễn thông + giáo dục",
+ "lam_gi": "Tập đoàn công nghệ lớn nhất Việt Nam: dịch vụ phần mềm xuất khẩu (Nhật, Mỹ, châu Âu, châu Á), chuyển đổi số trong nước, viễn thông (FPT Telecom), giáo dục (Đại học FPT, phổ thông).",
+ "tien_tu_dau": "Dịch vụ công nghệ nước ngoài là động cơ tăng trưởng (doanh thu ngoại tệ, chi phí kỹ sư bằng đồng); viễn thông cho dòng tiền ổn định (FPT Telecom 9 tháng 2026 lãi trước thuế 3.674 tỷ, +14%); giáo dục thu học phí trước. Dịch vụ AI và phân tích dữ liệu 9 tháng +55%.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Kỹ sư phần mềm (chi phí chính là lương), hạ tầng mạng, trung tâm dữ liệu.",
+  "dau_ra": "Khách hàng doanh nghiệp nước ngoài (sản xuất, tài chính, ô tô), doanh nghiệp và cơ quan nhà nước trong nước, hộ gia đình (internet).",
+  "vi_tri": "Trung nguồn: cung cấp dịch vụ, phần mềm cho doanh nghiệp khác chuyển đổi số.",
+  "khac_doi_thu": "So với CMG, ELC: quy mô lớn gấp nhiều lần và có mảng xuất khẩu phần mềm mạnh nhất Việt Nam."
+ },
+ "vi_mo_xuong": "Chi tiêu công nghệ của doanh nghiệp Mỹ, Nhật quyết định đơn hàng xuất khẩu; đồng yếu so với đô la, yên thì lợi (doanh thu ngoại tệ, chi phí đồng). Vốn ngoại rút làm FPT — mã nước ngoài nắm nhiều — bị bán mạnh (khối ngoại xả FPT tháng 10).",
+ "vi_mo_nguoc": "Xuất khẩu dịch vụ phần mềm mang ngoại tệ về, đào tạo kỹ sư, đẩy chuyển đổi số trong nước.",
+ "bien": [
+  {
+   "bien": "spx",
+   "chieu": 1,
+   "kenh": "Chứng khoán Mỹ tốt → doanh nghiệp Mỹ mạnh tay chi công nghệ",
+   "tre": "2–4 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": 1,
+   "kenh": "Đồng yếu → doanh thu ngoại tệ quy đổi tăng, biên tốt hơn",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "von_ngoai_vn",
+   "chieu": 1,
+   "kenh": "Vốn ngoại vào → FPT hưởng đầu tiên",
+   "tre": "vài tuần"
+  }
+ ],
+ "nguon": [
+  "Znews 10/2026 (FPT 9 tháng)",
+  "Chuyển động thị trường 10/2026 (FPT Telecom)",
+  "NSI"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}

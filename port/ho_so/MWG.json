@@ -1,0 +1,59 @@
+{
+ "ma": "MWG",
+ "ten": "Đầu tư Thế Giới Di Động",
+ "nganh": "Bán lẻ",
+ "nganh_slug": "ban-le",
+ "vi_tri": "ha_nguon",
+ "mo_hinh": "Bán lẻ hàng hoá (biên gộp + phí trả góp)",
+ "lam_gi": "Chuỗi bán lẻ điện thoại, điện máy lớn nhất Việt Nam (Thế Giới Di Động, Điện Máy Xanh, TopZone; khoảng 3.340 cửa hàng) và chuỗi bách hoá Bách Hóa Xanh (3.904 cửa hàng cuối tháng 9/2026). Có thêm nhà thuốc An Khang, AVAKids và chuỗi điện máy Erablue ở Indonesia. Mua hàng của hãng và nhà phân phối, bán lẻ cho người tiêu dùng qua cửa hàng và ứng dụng.",
+ "tien_tu_dau": "Chuỗi điện máy–điện thoại khoảng 67% doanh thu 9 tháng 2026 (ăn biên gộp, phí trả góp chia lại từ công ty tài chính — trả chậm chiếm 38% doanh thu chuỗi). Bách Hóa Xanh khoảng 31% (thực phẩm tươi, hàng tiêu dùng nhanh). Thu nhập tài chính từ hơn 53.000 tỷ tiền gửi, trái phiếu: 2.614 tỷ trong 9 tháng.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Apple, Samsung, Oppo, Xiaomi và hãng điện máy (qua nhà phân phối như Digiworld); nhà sản xuất thực phẩm, nông sản cho Bách Hóa Xanh; công ty tài chính tiêu dùng (Home Credit, FE Credit…) cho trả góp.",
+  "dau_ra": "Người tiêu dùng cá nhân khắp cả nước; một phần qua ứng dụng (doanh thu SuperApp quý 3 khoảng 14% doanh thu chuỗi).",
+  "vi_tri": "Khâu cuối cùng của chuỗi, sát người mua nhất; quy mô lớn giúp mua giá tốt và được hãng ưu tiên hàng mới.",
+  "khac_doi_thu": "So với FPT Retail: MWG có thêm mảng bách hoá và lớn gấp nhiều lần ở điện máy; so với WinMart (Masan): Bách Hóa Xanh nhỏ hơn về doanh thu mỗi cửa hàng nhưng mở nhanh hơn và tập trung thực phẩm tươi."
+ },
+ "vi_mo_xuong": "GDP gần 10% và thu nhập tăng kéo tiêu dùng; lạm phát trên 4,5% thì ngược lại, ăn vào sức mua hàng không thiết yếu. Lãi suất ảnh hưởng MWG theo hai chiều: lãi vay tiêu dùng cao làm chậm mua trả góp, nhưng MWG có nhiều tiền gửi nên lãi suất cao lại tăng thu nhập tài chính. Đô la mạnh làm giá điện thoại, máy tính nhập khẩu tăng. Giá chip, RAM tăng năm 2026 kéo người mua máy sớm.",
+ "vi_mo_nguoc": "Chuỗi lớn kéo bán lẻ từ chợ và cửa hàng nhỏ sang kênh có hoá đơn, giúp tăng thu thuế; Bách Hóa Xanh tạo đầu ra ổn định cho nông dân và tạo hàng chục nghìn việc làm. Tăng trả góp góp phần tăng tín dụng tiêu dùng.",
+ "bien": [
+  {
+   "bien": "tieu_dung_vn",
+   "chieu": 1,
+   "kenh": "Bán lẻ tăng → doanh thu cửa hàng hiện hữu tăng, đòn bẩy chi phí cố định",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "cpi_vn",
+   "chieu": -1,
+   "kenh": "Lạm phát cao → người mua hoãn hàng điện máy không thiết yếu",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": -1,
+   "kenh": "Lãi suất tăng → trả góp đắt, cầu điện máy chậm (MWG có thêm lãi tiền gửi nhưng nhỏ hơn phần mất)",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "usdvnd",
+   "chieu": -1,
+   "kenh": "Đồng yếu → giá máy nhập khẩu tăng, ép biên hoặc ép cầu",
+   "tre": "1 quý"
+  },
+  {
+   "bien": "gdp_vn",
+   "chieu": 1,
+   "kenh": "Thu nhập tăng → nâng cấp thiết bị, mua sắm nhiều hơn",
+   "tre": "1–2 quý"
+  }
+ ],
+ "nguon": [
+  "BCTC Q3/2026 (VnExpress 10/2026)",
+  "MWG báo cáo 9 tháng (Thời báo Tài chính 14/10)",
+  "Bovagau 10/2026",
+  "NSI"
+ ],
+ "cap_nhat": "2026-10-28",
+ "quy": "Q2/26",
+ "cham_boi": "claude"
+}
