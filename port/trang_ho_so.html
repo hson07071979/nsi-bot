@@ -30,7 +30,7 @@ function ve(){const H=B.ho_so||{},hs=Object.values(H.ho_so||{}),T=H.trang_thai||
   if(!hs.length){$('#app').innerHTML='<p>Chưa có hồ sơ nào. Claude viết hồ sơ theo đợt (đợt 1: các mã port, sau đó từng ngành) vào nhánh port-data.</p>';return}
   const L=loc();if(!chon||!L.find(h=>h.ma===chon))chon=(L[0]||{}).ma;
   const dem={THUẬN:0,'NGHỊCH':0,'TRUNG TÍNH':0};hs.forEach(h=>{const t=(T[h.ma]||{}).tong;if(t in dem)dem[t]++});
-  let o='<div class="kpi"><div>Có hồ sơ<b>'+hs.length+' mã</b><span class="mut">mục tiêu ~115 (TOP110 + mã port)</span></div><div>Vĩ mô thuận<b class="up">'+dem['THUẬN']+'</b></div><div>Vĩ mô nghịch<b class="dn">'+dem['NGHỊCH']+'</b></div><div>Trung tính<b>'+dem['TRUNG TÍNH']+'</b></div></div>';
+  let o='<div class="kpi"><div>Có hồ sơ<b>'+hs.length+' mã</b><span class="mut">TOP110 + mã port · viết lại mỗi quý sau mùa BCTC</span></div><div>Vĩ mô thuận<b class="up">'+dem['THUẬN']+'</b></div><div>Vĩ mô nghịch<b class="dn">'+dem['NGHỊCH']+'</b></div><div>Trung tính<b>'+dem['TRUNG TÍNH']+'</b></div></div>';
   let trai='<input id="q" placeholder="Lọc mã / tên…" value="'+esc(F.q)+'">'
    +sel('nganh','Mọi ngành',uniq(hs.map(h=>h.nganh)),F.nganh)
    +sel('vi_tri','Mọi vị trí trong chuỗi',uniq(hs.map(h=>h.vi_tri)),F.vi_tri,v=>VT[v]||v)
