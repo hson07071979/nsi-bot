@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Ngân hàng tầm trung có CASA tốt và giá chỉ giảm cùng ngành thường là giá sai do ngành, không do doanh nghiệp.",
+ "ma": "TPB",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: TPBank có CASA khoảng 21% (quý 2) — cao hơn bình quân ngành 17% — và ngân hàng số mạnh, nên chi phí vốn ít nhạy hơn nhóm tầm trung khi lãi huy động biến động; lãi huy động giảm vẫn là thuận. Hạn mức tín dụng NHNN cấp chỉ 11,75% — Chủ tịch nêu \"room tín dụng ngày càng hẹp\" (ĐHĐCĐ 24/04); 9 tháng tín dụng đã +10,5%, gần chạm trần.",
+  "nganh": "Ngân hàng đang ở pha tín dụng tăng nhanh hơn huy động: tín dụng +11,59% từ đầu năm so với huy động +9,78% (NHNN, cuối tháng 9), nhiều ngân hàng gần hết hạn mức năm. NHNN nới về lượng (quyết định 1743, trần cho vay/huy động 95% từ 01/12) nhưng không nới về giá. Lãi huy động lên đỉnh khoảng 8,3% (quốc doanh) và 8,8–9,4% (tư nhân lớn) giữa tháng 10 rồi quay đầu giảm sau cuộc họp NHNN khoảng 19/10 — biên lãi ròng quý 4 trở đi được đỡ ở chi phí vốn. Rủi ro chung của ngành: nợ xấu đến sau chu kỳ tín dụng nóng 2–3 quý và tỷ trọng cho vay bất động sản cao. Trung vị 22 ngân hàng trong NSI: P/E khoảng 8,2, P/B khoảng 1,25, ROE khoảng 16%.",
+  "doanh_nghiep": "9 tháng 2026 (BCTC công bố 28/10): lợi nhuận trước thuế 7.464 tỷ (+23,4%), 72% kế hoạch 10.300 tỷ; quý 3 ước 2.800–2.980 tỷ (+47–57%). Thu nhập dịch vụ 9 tháng 3.559 tỷ (+21%). ROE 16,6%. Tổng tài sản gần 600.000 tỷ (+17,9% từ đầu năm). Nợ xấu hợp nhất theo TT31 1,52% (giảm 0,3 điểm % cùng kỳ); quý 2 bao phủ 66,5%. NIM quý 2 3,0% (−23 điểm cơ bản cùng kỳ).",
+  "mo_hinh_kd": "Ngân hàng bán lẻ số (LiveBank, ứng dụng TPBank), thu ngoài lãi khoảng 30% tổng thu nhập — nhóm cao nhất ngành. Đang giảm trái phiếu doanh nghiệp, tăng cho vay SME. Dự án mới: bảo hiểm phi nhân thọ TPBIns, ngân hàng con tại VIFC.",
+  "lanh_dao": "Chủ tịch Đỗ Minh Phú (DOJI); TGĐ Nguyễn Hưng. Nhóm tổ chức liên quan lãnh đạo nắm 50,16%: DOJI và liên quan 23,24%, SBI Ven Holdings (Nhật) và liên quan 20%, FPT và liên quan 6,92% (báo cáo quản trị 6 tháng, 09/09). Cổ tức 2025 20% (5% tiền + 15% cổ phiếu, chốt quyền tháng 10); ESOP 100 triệu cổ phiếu; vốn điều lệ lên tối đa 32.901 tỷ.",
+  "chuoi_gia_tri": "Ngân hàng bán lẻ – SME tầm trung trong hệ sinh thái DOJI (vàng bạc, bất động sản) – FPT – SBI.",
+  "dan_nguoc_vi_mo": "Tín dụng ngân hàng là mạch máu của tăng trưởng GDP 9–10%; khi cho vay chạy nhanh hơn huy động, các ngân hàng cùng đẩy lãi huy động lên và kéo chi phí vốn của cả nền kinh tế — vòng vừa rồi chính là như vậy."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "BCTC quý 3 vừa ra (28/10) xác nhận tăng tốc: lợi nhuận quý 3 +47–57%, 9 tháng +23%, nợ xấu giảm về 1,52%. Đây là phép thử mà điều kiện b đang chờ — dữ liệu NSI hiện mới tới quý 2.",
+   "bang_chung": [
+    "FACT: LNTT 9 tháng 7.464 tỷ, +23,4% (CafeF 28/10)",
+    "FACT: Nợ xấu TT31 1,52% (Viettimes 28/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Định giá thấp cho một ngân hàng ROE 16–17% có CASA trên 20%: P/E 5,4, P/B 0,89 — thấp hơn trung vị 3 năm của chính nó (P/E 7,5, P/B 1,16). Giá chỉ giảm cùng ngành (c đạt), không có vấn đề riêng.",
+   "bang_chung": [
+    "FACT: P/E 5,38 (tv 7,46), P/B 0,89 (tv 1,16) (NSI)",
+    "FACT: Cách đỉnh −17%, ngành −15% (NSI)"
+   ]
+  },
+  {
+   "id": "L3",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Khi NSI cập nhật quý 3, tăng trưởng LN 4 quý sẽ nhích lên và PEG cải thiện so lúc đỉnh — b có thể chuyển đạt. Còn lại d (nền 13,5%) cần thêm vài tuần.",
+   "bang_chung": [
+    "FACT: PEG lúc đỉnh 0,22 → 0,25 nay (NSI); quý 3/25 LNST 1.520,6 tỷ là nền thấp"
+   ]
+  }
+ ],
+ "bull": [
+  "Lợi nhuận quý 3 +47–57%, 9 tháng +23%; nợ xấu giảm về 1,52%.",
+  "P/E 5,4, P/B 0,89 — dưới trung vị 3 năm; CASA trên 20%, thu ngoài lãi khoảng 30%.",
+  "Cổ đông chiến lược mạnh (DOJI, SBI, FPT) nắm hơn 50%.",
+  "Giá chỉ giảm cùng ngành; qua lọc nền thấp."
+ ],
+ "bear": [
+  "NIM quý 2 3,0%, giảm cùng kỳ; MBS dự phóng NIM cả năm 2,9%.",
+  "Room tín dụng 11,75% gần chạm trần — tăng trưởng quý 4 bị giới hạn.",
+  "Bao phủ nợ xấu 66,5% (quý 2) — dưới nhóm lớn.",
+  "Pha loãng 15% cổ phiếu + ESOP; nhóm liên quan lãnh đạo nắm hơn 50% — giao dịch trong hệ sinh thái cần soi.",
+  "b và d chưa đạt."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "BCTC quý 3 vừa xác nhận tăng tốc; định giá dưới trung vị lịch sử; không có vấn đề riêng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "NIM vẫn đi xuống và room tín dụng gần hết; lợi nhuận quý 3 một phần nhờ nền thấp cùng kỳ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Cơ bản đã tốt hơn; còn chờ dữ liệu quý 3 vào NSI để chấm lại b và chờ nền giá chặt (d)."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: chờ phép thử — ứng viên sát nhất trong nhóm ngân hàng tầm trung."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 30,
+   "noi_dung": "LNST quý 3/26 tăng ít nhất 30% so cùng kỳ (Q3/25 1.520,6 tỷ, NSI) — BCTC 28/10 cho LNTT +47–57%."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: NIM quý 3 dưới 2,7%; nợ xấu quý 4 vượt 2%; lợi nhuận quý 4 giảm so cùng kỳ (quý 4/25 nền cao 2.565 tỷ).",
+ "dinh_gia": "P/E 5,38 so với trung vị 3 năm 7,46; P/B 0,89 so với 1,16 (NSI 28/10, BCTC Q2/26). Ngành Ngân hàng (22 mã trong NSI): P/E trung vị 8,2, P/B 1,25, ROE 16,0%; mã này ROE 16,5%. Giá 13,00 cách đỉnh 1 năm -17%, cả ngành -15%. Giá mục tiêu: MBS 16.600 (khả quan, 06/10), Vietcap 18.600 (mua, 17/06), Mirae Asset 18.600 (tăng tỷ trọng, 25/06) — cần điều chỉnh cho cổ tức cổ phiếu 15% chốt tháng 10. Kỳ vọng ngầm trong giá: P/E 5,4 tương đương thị trường giả định lợi nhuận đi ngang 2027 — trong khi 9 tháng đang tăng 23%.",
+ "pitch": "TPBank vừa công bố lợi nhuận quý 3 tăng gần 50%, nợ xấu giảm, và đang được định giá thấp hơn mức trung bình nhiều năm của chính nó. Ngân hàng có lượng tiền gửi không kỳ hạn tốt và cổ đông chiến lược mạnh. Chúng tôi chờ giá tích lũy chặt thêm vài tuần rồi xem xét giải ngân.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 10,
+   "nganh": 10,
+   "doanh_nghiep": 10,
+   "gia_sai": 9
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 7,
+   "suc_khoe_tc": 7
+  },
+  "luan_diem_70": 44,
+  "so_30": 21,
+  "tong": 65,
+  "dinh_gia_sai": 9,
+  "gia_sai": {
+   "tin_xau": "NIM giảm, room tín dụng hẹp, pha loãng.",
+   "co_that_su_xau": "Không nghiêm trọng — là áp lực chung ngành.",
+   "trang_thai": "Giá giảm cùng ngành từ đỉnh tháng 2; chưa phản ánh quý 3 vừa công bố.",
+   "ky_vong_ngam": "P/E 5,4: thị trường ngầm giả định lợi nhuận không tăng.",
+   "nguoi_ban_can_bien": "Không thấy người bán cưỡng bức; cổ đông chiến lược giữ.",
+   "counter": "Phản biện: nếu room tín dụng 2027 vẫn hẹp, tăng trưởng chậm lại về 10%.",
+   "phep_thu": "Phản ứng giá sau BCTC quý 3 (28/10) và NSI cập nhật số quý 3.",
+   "ket_luan": "CHƯA PHẢN ÁNH HẾT TIN TỐT — có giá sai"
+  },
+  "ket_luan": "CHỜ PHÉP THỬ (số quý 3 vào NSI; điều kiện b, d chưa đạt)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}

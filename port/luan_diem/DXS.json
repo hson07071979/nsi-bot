@@ -1,0 +1,127 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "P/B thấp ở công ty môi giới có nhiều đặt cọc là chiết khấu rủi ro, không phải rẻ.",
+ "ma": "DXS",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: DXS là công ty môi giới – phân phối bất động sản lớn nhất phía Nam; doanh thu đi theo số giao dịch, tức theo thanh khoản thị trường và lãi vay mua nhà. Lãi huy động giảm và tín dụng bất động sản được nới là thuận trực tiếp; rủi ro nằm ở các khoản đặt cọc cho chủ đầu tư khi thị trường chững.",
+  "nganh": "Bất động sản nhà ở đang hồi theo hai đường lệch nhau: nhóm có pháp lý sạch và quỹ đất lớn (Vinhomes) bán được nhiều nhờ bán buôn và chính sách hỗ trợ lãi vay; nhóm tầm trung vẫn kẹt pháp lý và vốn. Tín dụng bất động sản bị NHNN giới hạn khoảng 15–16% năm 2026 (MBS 10/03), lãi vay mua nhà tăng theo lãi huy động đến giữa tháng 10 rồi bắt đầu hạ. Bảng giá đất mới làm chi phí giải phóng mặt bằng tăng. Hạ tầng lớn (metro Hà Nội khởi công 22/06/2026, cao tốc, sân bay Long Thành) là động lực giá đất vùng ven. Cả ngành (29 mã trong NSI) cách đỉnh 1 năm khoảng −41%.",
+  "doanh_nghiep": "6 tháng 2026: doanh thu 2.042 tỷ (+38%), lợi nhuận cổ đông mẹ 152 tỷ (−40,5%), đạt 29% kế hoạch 527 tỷ. Quý 2 lỗ cổ đông mẹ 36,7 tỷ vì trích lập dự phòng. Phải thu ngắn hạn khác 7.470 tỷ — chủ yếu tiền đặt cọc cho chủ đầu tư để giữ quyền phân phối. Dòng tiền kinh doanh 12 tháng âm 428 tỷ (NSI).",
+  "mo_hinh_kd": "Ba mảng: môi giới – phân phối (thu phí theo giao dịch), đầu tư thứ cấp (đặt cọc mua sỉ rồi bán lẻ), và tự phát triển một số dự án nhỏ. Mô hình đặt cọc giúp tăng biên nhưng đẩy rủi ro tín dụng của chủ đầu tư về DXS.",
+  "lanh_dao": "Công ty mẹ Bluemarq (DXG) sở hữu 55,37%. Giám đốc tài chính bị miễn nhiệm 10/08/2026. Cơ cấu cổ đông tập trung vào công ty mẹ nên quyết định chiến lược phụ thuộc DXG.",
+  "chuoi_gia_tri": "Khâu phân phối giữa chủ đầu tư và người mua; hưởng lợi đầu tiên khi thị trường ấm, chịu đòn đầu tiên khi lạnh.",
+  "dan_nguoc_vi_mo": "Tác động ngược qua việc làm môi giới và tốc độ hấp thụ hàng của các chủ đầu tư nhỏ phụ thuộc kênh phân phối."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Doanh thu tăng 38% nhưng lợi nhuận giảm 40% và quý 2 lỗ vì dự phòng: tăng trưởng đang mua bằng rủi ro đặt cọc. 7.470 tỷ phải thu khác lớn gấp nhiều lần lợi nhuận năm.",
+   "bang_chung": [
+    "FACT: Phải thu ngắn hạn khác 7.470 tỷ; quý 2 lỗ 36,7 tỷ do trích lập (BCTC bán niên)",
+    "FACT: Tiền từ kinh doanh 12 tháng −428 tỷ (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "OBSERVATION",
+   "noi_dung": "P/B 0,54 — rẻ nhất nhóm theo sổ sách; giá cách đỉnh 56%, sâu hơn ngành 15 điểm. Thị trường đang chiết khấu khả năng thu hồi các khoản đặt cọc.",
+   "bang_chung": [
+    "FACT: P/B 0,54, cách đỉnh −56%, ngành −41% (NSI)",
+    "FACT: Vietcap hạ xuống phù hợp thị trường, mục tiêu 6.600 (11/09)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/B 0,54 — chiết khấu gần một nửa giá trị sổ sách.",
+  "Doanh thu +38%: thanh khoản thị trường đang về; lãi suất giảm hỗ trợ giao dịch quý 4.",
+  "Nếu các khoản đặt cọc thu hồi được, dự phòng có thể hoàn nhập."
+ ],
+ "bear": [
+  "7.470 tỷ đặt cọc cho chủ đầu tư — rủi ro tín dụng tập trung; đã phải trích lập quý 2.",
+  "Dòng tiền kinh doanh âm; lợi nhuận −40%, kế hoạch năm mới đạt 29%.",
+  "Giám đốc tài chính bị miễn nhiệm giữa năm; Vietcap hạ khuyến nghị.",
+  "Giảm sâu hơn ngành 15 điểm (c thực tế yếu dù chấm đạt); nền 18,8% (d trượt)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Rẻ theo sổ sách và là kênh phân phối hưởng lợi đầu tiên khi thị trường ấm."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Sổ sách chứa 7.470 tỷ đặt cọc chưa chắc thu hồi đủ; P/B thấp là có lý do."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Trượt a, b, d; chất lượng tài sản chưa rõ. Bear thắng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này. Mở lại khi phải thu đặt cọc giảm và dòng tiền kinh doanh dương 2 quý."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 dương và không thấp hơn cùng kỳ (Q3/25 77,6 tỷ, NSI) — thử xem dự phòng quý 2 có phải một lần."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): thêm quý trích lập lớn; phải thu khác tiếp tục tăng; công ty mẹ rút vốn hoặc chuyển giá.",
+ "dinh_gia": "P/E 15,11 so với trung vị 3 năm 15,11; P/B 0,54 so với 0,67 (NSI 28/10, BCTC Q2/26). Ngành Bất động sản (29 mã trong NSI): P/E trung vị 17,3, P/B 1,05, ROE 8,0%; mã này ROE 3,6%. Giá 4,88 cách đỉnh 1 năm -56%, cả ngành -41%. Giá mục tiêu: Vietcap 6.600 (phù hợp thị trường, 11/09). Kỳ vọng ngầm trong giá: P/B 0,54 tương đương thị trường giả định mất khoảng 30–40% giá trị các khoản đặt cọc.",
+ "pitch": "Đất Xanh Services là công ty môi giới bất động sản lớn, doanh thu đang tăng lại nhưng lợi nhuận giảm mạnh vì phải dự phòng các khoản đặt cọc lớn cho chủ đầu tư. Giá cổ phiếu rẻ so với sổ sách nhưng rủi ro nằm chính ở sổ sách. Chưa phải lúc mua.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 9,
+   "nganh": 7,
+   "doanh_nghiep": 3,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 1,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 29,
+  "so_30": 12,
+  "tong": 41,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Lỗ quý 2 vì dự phòng, CFO bị miễn nhiệm, CTCK hạ khuyến nghị, dòng tiền âm.",
+   "co_that_su_xau": "Có — rủi ro đặt cọc là cấu trúc của mô hình kinh doanh.",
+   "trang_thai": "Giá đã giảm 56%, đã phản ánh phần lớn tin xấu đã biết.",
+   "ky_vong_ngam": "P/B 0,54: chiết khấu sâu cho chất lượng tài sản.",
+   "nguoi_ban_can_bien": "Chưa thấy; cổ đông mẹ nắm 55% không bán.",
+   "counter": "Phản biện: nếu thị trường ấm lên, đặt cọc chuyển thành doanh thu và hoàn nhập dự phòng — tăng giá mạnh.",
+   "phep_thu": "BCTC quý 3/26: biến động phải thu khác và dự phòng.",
+   "ket_luan": "PHẢN ÁNH PHẦN LỚN — nhưng chưa có phép thử xác nhận"
+  },
+  "ket_luan": "LOẠI (kỳ này) — trượt a, b, d; rủi ro đặt cọc",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}
