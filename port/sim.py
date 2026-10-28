@@ -42,6 +42,9 @@ LUAT = dict(dot_thuong=[0.4, 0.3, 0.3], dot_hoang_loan=[0.6, 0.4], hoang_loan=-0
 # khung); tối đa 10 mã có tiền; mã đang cầm rơi khỏi danh sách thì GIỮ, ngừng mua thêm. KHÔNG nằm trong LUAT để
 # luat_hash giữ nguyên: sổ ghi tiếp từ phiên đã xử lý, không chạy lại quá khứ bằng danh sách của hôm nay (nhìn trước).
 TOI_DA_MA = 10
+# 28/10/2026 tối (anh Sơn): mã ĐỦ ĐỂ XUỐNG TIỀN trong danh sách giải ngân vào ĐỦ 100% tỷ trọng mục tiêu một lần (bỏ chia
+# 40/30/30); mã đang cầm thiếu tỷ trọng thì mua bù ở phiên kế tiếp. CHỜ PHÉP THỬ vẫn 4%. Cũng nằm ngoài LUAT (giữ luat_hash).
+VAO_MOT_LAN = True
 DU = 'ĐỦ ĐỂ XUỐNG TIỀN'
 CHO = 'CHỜ PHÉP THỬ'
 
@@ -341,13 +344,15 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
                 if tt <= 0 or any(x['ma'] == sym for x in so.get('da_dong') or []):
                     continue                        # đã đóng thì không tự mở lại; mở lại phải ghi luận điểm mới
                 hl = _hoang_loan(P, d)
-                dot = [1.0] if cho else (LUAT['dot_hoang_loan'] if hl else LUAT['dot_thuong'])
+                dot = [1.0] if cho or (duoc is not None and VAO_MOT_LAN) else \
+                    (LUAT['dot_hoang_loan'] if hl else LUAT['dot_thuong'])
                 so['vi_the'][sym] = dict(cp=0, von=0.0, so_dot=0, ngay_mo=d, muc_tieu_tien=nav_dau * tt / 100,
                                          ty_trong_muc_tieu=tt, ke_hoach=dot, hoang_loan=hl, da_mua_tien=0.0,
                                          cho_phep_thu=cho)
                 p = so['vi_the'][sym]
                 tien = min(p['muc_tieu_tien'] * dot[0], _con_cho(so, P, d, sym, nav_dau, nganh))
                 ly = ('chờ phép thử: chỉ đợt 1, tối đa 4% NAV' if cho else
+                      'vào đủ tỷ trọng mục tiêu một lần (anh Sơn 28/10/2026)' if dot == [1.0] else
                       'đợt 1 trong 2 (thị trường hoảng loạn: 60/40)' if hl else 'đợt 1 trong 3 (40%)')
                 if tien > 0 and _mua(so, sym, d, px, tien, ly, 'Đợt 1'):
                     p['da_mua_tien'] += tien
@@ -361,6 +366,18 @@ def chay(so: dict, P: dict, ngay_phien: list[str], danh_muc: dict, luan: dict[st
                 # qua phép thử → nâng lên mức ĐỦ ĐỂ XUỐNG TIỀN, mua tiếp các đợt sau theo 40/30/30
                 p.update(cho_phep_thu=False, ty_trong_muc_tieu=tt, muc_tieu_tien=nav_dau * tt / 100,
                          ke_hoach=LUAT['dot_thuong'])
+            if duoc is not None and VAO_MOT_LAN and not cho:
+                # mã ĐỦ: mua bù phần còn thiếu ngay (kể cả vị thế mở theo 40/30/30 trước 28/10, hoặc vừa qua phép thử)
+                con = p['muc_tieu_tien'] - p['da_mua_tien']
+                if con > 0:
+                    tien = min(con, _con_cho(so, P, d, sym, nav_dau, nganh))
+                    ly = 'mua bù đủ tỷ trọng mục tiêu (anh Sơn 28/10/2026: mã ĐỦ vào một lần)'
+                    if tien < con:
+                        ly += ' — chạm trần mã/ngành/tổng, chỉ mua phần còn chỗ'
+                    if tien > 0 and _mua(so, sym, d, px, tien, ly, 'Bổ sung'):
+                        p['da_mua_tien'] += tien
+                        p['so_dot'] = max(p['so_dot'], len(p['ke_hoach']))
+                continue
             if p['so_dot'] >= len(p['ke_hoach']):
                 continue
             con = p['muc_tieu_tien'] - p['da_mua_tien']

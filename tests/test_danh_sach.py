@@ -180,3 +180,20 @@ def test_dieu_kien_a_xet_loi_nhuan_cot_loi():
     assert k['dat'] is True and 'cốt lõi 4 quý +25.0%' in k['cau']
     lo_sang_lai = dict(quy=[dict(loi=-10.0)] * 4 + [dict(loi=5.0)] * 4)
     assert DS.bon_dieu_kien(_dong('A'), None, B, lo_sang_lai)['a']['dat'] is True
+
+
+def test_ma_du_vao_mot_lan_va_mua_bu():
+    ds, P = _P(['A', 'B'], n=5)
+    luan = {'A': _luan_day('A', tong=72), 'B': _luan_day('B', tong=72)}
+    dm = {'ngay': '2026-10-15', 'vi_tri': []}
+    so = SM.chay(SM.so_moi(), P, ds[:2], dm, luan, duoc={'A': 'du'})
+    a = [l for l in so['lenh'] if l['ma'] == 'A']
+    assert len(a) == 1 and 1e9 * 0.12 - 10 * 1000 * 200 <= a[0]['tien'] <= 1e9 * 0.12      # đủ 12% một lần
+    # vị thế cũ mở theo 40/30/30 (trước 28/10) → phiên kế tiếp mua bù đủ 12%
+    so = SM.chay(SM.so_moi(), P, ds[:2], {'ngay': '2026-10-15', 'vi_tri': [{'ma': 'B'}]}, luan)       # cách cũ
+    assert so['vi_the']['B']['da_mua_tien'] <= 1e9 * 0.12 * 0.4 + 1
+    so = SM.chay(so, P, ds, dm, luan, duoc={'B': 'du'})
+    b = [l for l in so['lenh'] if l['ma'] == 'B']
+    assert len(b) == 2 and b[1]['dot'] == 'Bổ sung' and abs(so['vi_the']['B']['da_mua_tien'] - 1e9 * 0.12) < 1
+    so = SM.chay(so, P, ds + [], dm, luan, duoc={'B': 'du'})
+    assert len([l for l in so['lenh'] if l['ma'] == 'B']) == 2                                       # không mua lần ba
