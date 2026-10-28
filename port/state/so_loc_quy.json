@@ -1389,5 +1389,18 @@
   "top": true,
   "chan": null,
   "su_kien": "BCTC mới"
+ },
+ {
+  "ma": "CSV",
+  "quy": "Q2/26",
+  "ngay": "2026-10-28",
+  "gia0": 23600.0,
+  "diem": 27,
+  "rel": 0.64,
+  "np4": 11.1,
+  "roe": 16.5,
+  "top": false,
+  "chan": "CFO < 0",
+  "su_kien": "BCTC mới"
  }
 ]
