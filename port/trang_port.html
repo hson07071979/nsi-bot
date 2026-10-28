@@ -4,7 +4,7 @@
 :root{--bg:#f6f5f2;--card:#fff;--ink:#1d1f23;--mut:#6b6f76;--line:#e4e2dc;--acc:#1f5f8b;--up:#167a3e;--dn:#b42318;--warn:#a15c07;--chip:#eef2f6;--vni:#9aa0a6}
 @media (prefers-color-scheme:dark){:root{--bg:#16181b;--card:#1f2226;--ink:#e8e6e3;--mut:#9aa0a6;--line:#33373c;--acc:#5aa2d6;--up:#4cc27a;--dn:#f0766b;--warn:#e0a54a;--chip:#2a2e33;--vni:#7d838a}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-.wrap{max-width:1100px;margin:0 auto;padding:16px}a{color:var(--acc)}h1{font-size:22px;margin:4px 0}h2{font-size:18px;margin:20px 0 8px}h3{font-size:15px;margin:14px 0 6px}
+.wrap{max-width:1280px;margin:0 auto;padding:16px}a{color:var(--acc)}h1{font-size:22px;margin:4px 0}h2{font-size:18px;margin:20px 0 8px}h3{font-size:15px;margin:14px 0 6px}
 .mut{color:var(--mut);font-size:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
 .pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:12px;font-weight:600;background:var(--chip);margin-right:4px}
 .up{color:var(--up)}.dn{color:var(--dn)}.warn{color:var(--warn)}
@@ -27,31 +27,32 @@ ul{margin:4px 0;padding-left:20px}details summary{cursor:pointer;font-weight:600
 svg text{fill:var(--mut);font-size:11px}
 </style></head><body><div class="wrap">
 <div><h1>Lọc port</h1><div class="mut">Danh mục đầu tư dài hạn cho khách · mỗi luận điểm được 3 bộ máy (Bot, Bản tin sáng, Daily Market) phản biện và cả bốn đều bị chấm bằng giá thật · chỉ trang quản trị ·
-<a href="/daily">Daily</a> · <a href="/tin">Bản tin sáng</a> · <a href="/port/ho-so">Hồ sơ doanh nghiệp</a></div><div id="meta" class="mut"></div></div>
+<a href="/daily">Daily</a> · <a href="/tin">Bản tin sáng</a> · <a href="/port/ho-so"><b>Hồ sơ doanh nghiệp</b></a></div><div id="meta" class="mut"></div></div>
 <div class="tabs" id="tabs"></div><div id="app" class="card">Đang tải…</div></div>
 <script>
 const $=s=>document.querySelector(s), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const TABS=[['tq','Tổng quan'],['gl','Sổ giả lập'],['ma','Từng mã'],['loc','Lọc & ứng viên'],['hoc','Vòng học']];
-const SUB={ma:[['so','Luận điểm'],['bc','Đọc BCTC'],['db','3 máy nói gì']],loc:[['pool','Pool tuần'],['lq','Lọc quý TOP110'],['locf','Lọc cơ bản']],hoc:[['nd','Nhận định hằng ngày'],['hoc2','Ai đoán đúng']]};
+const TABS=[['dmuc','Danh mục'],['may','Bộ máy tự học']];
+const SUB={may:[['tq','Danh sách & 4 điều kiện'],['gl','Sổ giả lập'],['so','Luận điểm đầy đủ'],['bc','Đọc BCTC'],['db','3 máy nói gì'],['hshoc','Hồ sơ: vĩ mô tự học'],['nd','Nhận định hằng ngày'],['hoc2','Ai đoán đúng'],['pool','Pool tuần'],['lq','Lọc quý TOP110'],['locf','Lọc cơ bản']]};
 const CH={1:['tăng','up'],'-1':['giảm','dn'],0:['trung lập','mut']}, CHP={tang:1,giam:-1,trung_lap:0};
 const CHN={tang:['tăng','up'],giam:['giảm','dn'],ngang:['đi ngang','mut']};
 const TT={nghien_cuu:'Đang nghiên cứu',trong_port:'Đang trong danh mục',loai:'Đã loại',dong:'Đã đóng'};
 const BEN={bull:'phe lạc quan',bear:'phe thận trọng',trong_tai:'người phân xử',anh_son:'anh Sơn',claude:'Claude'};
 const KHAU=[['vi_mo','Vĩ mô'],['nganh','Ngành'],['doanh_nghiep','Doanh nghiệp'],['mo_hinh_kd','Kiếm tiền bằng gì'],['lanh_dao','Ban lãnh đạo'],['chuoi_gia_tri','Vị trí trong chuỗi giá trị'],['dan_nguoc_vi_mo','Tác động ngược lại nền kinh tế']];
-let B=null, tab='tq', chon=null, sortK='np4_yoy', sortD=-1, sub={ma:'so',loc:'pool',hoc:'nd'};
-try{tab=localStorage.getItem('port-tab2')||'tq';sub=Object.assign(sub,JSON.parse(localStorage.getItem('port-sub')||'{}'))}catch(e){}
-if(!TABS.find(t=>t[0]===tab))tab='tq';
+let B=null, tab='dmuc', chon=null, chon2=null, loc2='', sortK='np4_yoy', sortD=-1, sub={may:'tq'};
+try{tab=localStorage.getItem('port-tab3')||'dmuc';sub=Object.assign(sub,JSON.parse(localStorage.getItem('port-sub3')||'{}'))}catch(e){}
+if(!TABS.find(t=>t[0]===tab))tab='dmuc';if(!SUB.may.find(t=>t[0]===sub.may))sub.may='tq';
 const chip=c=>{const x=CH[String(c)]||CH[0];return '<span class="pill '+x[1]+'">'+x[0]+'</span>'};
 const chipN=c=>{const x=CHN[c]||CHN.ngang;return '<span class="pill '+x[1]+'">'+x[0]+'</span>'};
 const n=(v,d=1)=>v==null||v===''?'—':(typeof v==='number'?v.toLocaleString('vi-VN',{maximumFractionDigits:d}):esc(v));
 const pct=v=>v==null?'—':'<span class="'+(v>0?'up':v<0?'dn':'')+'">'+(v>0?'+':'')+n(v,Math.abs(v)<1?2:1)+'%</span>';
 const ty=v=>v==null?'—':n(v,0)+' tỷ';
+/*CHUNG_JS*/
 const tr=v=>v==null?'—':n(v/1e6,1)+' tr';
 /* nhãn luận điểm cũ (FACT/OBSERVATION/…) không hiện ra nữa — chỉ để code kiểm */
 const bo=s=>String(s==null?'':s).replace(/^(FACT|OBSERVATION|INTERPRETATION|HYPOTHESIS|CONFIRMATION)\s*:\s*/i,'');
 function list(a){a=(a||[]).filter(Boolean);return a.length?'<ul>'+a.map(x=>'<li>'+esc(bo(typeof x==='string'?x:(x.noi_dung||JSON.stringify(x))))+(x&&x.bang_chung&&x.bang_chung.length?'<div class="mut">Dựa trên: '+x.bang_chung.map(b=>esc(bo(b))).join(' · ')+'</div>':'')+'</li>').join('')+'</ul>':'<span class="mut">—</span>'}
 function veTabs(){$('#tabs').innerHTML=TABS.map(t=>'<button class="'+(t[0]===tab?'on':'')+'" data-t="'+t[0]+'">'+t[1]+'</button>').join('');
-  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;try{localStorage.setItem('port-tab2',tab)}catch(e){};ve()})}
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;try{localStorage.setItem('port-tab3',tab)}catch(e){};ve()})}
 function veSub(){const L=SUB[tab];if(!L)return '';return '<div class="tabs sub">'+L.map(t=>'<button class="'+(t[0]===sub[tab]?'on':'')+'" data-s="'+t[0]+'">'+t[1]+'</button>').join('')+'</div>'}
 function chonMa(){const L=B.luan_diem||[];if(!L.length)return'';
   return '<div class="f" style="margin-bottom:8px"><label>Mã <select id="chon">'+L.map(x=>'<option '+(x.luan.ma===chon?'selected':'')+' value="'+esc(x.luan.ma)+'">'+esc(x.luan.ma)+' · '+esc(TT[x.luan.trang_thai]||x.luan.trang_thai)+'</option>').join('')+'</select></label>'
@@ -84,6 +85,64 @@ function d7030(x){const d=x.diem_70_30;if(!d)return '';const c=d.chi_tiet||{};
   return '<div class="grid"><div class="card"><h3>Lập luận '+n(d.pitch,0)+'/70</h3><ul><li>Rẻ so với chính nó: '+n(c.dinh_gia,0)+'/20 <span class="mut">(P/E, P/B ÷ mức thường thấy 3 năm = '+n(c.dinh_gia_rel,2)+')</span></li><li>Trạng thái thị trường: '+n(c.thi_truong,0)+'/20</li><li>Lập luận đủ chặt: '+n(c.lap_luan,0)+'/15</li><li>Vì sao thị trường định giá sai: '+n(c.dinh_gia_sai,0)+'/15'+(c.dinh_gia_sai_ly_do?' <span class="mut">— '+esc(c.dinh_gia_sai_ly_do)+'</span>':'')+'</li></ul></div>'
    +'<div class="card"><h3>Kết quả kinh doanh '+n(d.ket_qua,0)+'/30</h3><ul><li>Lợi nhuận 4 quý: '+n(c.loi_nhuan,0)+'/10</li><li>ROE: '+n(c.roe,0)+'/10</li><li>Mốc BCTC K2: '+n(c.k2,0)+'/10</li></ul><p class="mut">Kiểm lịch sử (R39): tăng trưởng lợi nhuận/doanh thu gần như không dự báo được giá vì ai cũng thấy; rẻ so với chính nó và trạng thái thị trường mới là phần có lợi thế.</p></div></div>'}
 
+/* ---------------- DANH MỤC — màn hình chính (28/10/2026 tối, anh Sơn duyệt bố cục) ---------------- */
+function mucTieuGN(x,v){if(!x)return null;if(x.duoc_mua===false||!x.duoc_mua)return v?null:0;
+  if(String(x.ket_luan||'').startsWith('ĐỦ'))return (x.diem||0)>=70?12:8;return 4}
+function dsMa(){const D=B.danh_sach||{},V={};(((B.gia_lap||{}).tong_ket||{}).vi_the||[]).forEach(v=>V[v.ma]=v);
+  const nh=[['giai_ngan','Giải ngân'],['can_them','Cần thêm bằng chứng'],['giu_khong_mua','Giữ, ngừng mua']],out=[];
+  nh.forEach(([k,ten])=>(D[k]||[]).forEach(x=>out.push(Object.assign({},x,{nhom:k,ten_nhom:ten,vt:V[x.ma]}))));return out}
+function dmuc(){const g=(B.gia_lap||{}).tong_ket||{},L=dsMa(),T=((B.ho_so||{}).trang_thai)||{};
+  if(!chon2||!L.find(x=>x.ma===chon2))chon2=(L[0]||{}).ma;
+  let h='';if(g.co_du_lieu)h+='<div class="kpi"><div>Đã giải ngân<b>'+n(daGN(g))+'% NAV</b><span class="mut">'+n((g.vi_the||[]).length,0)+' / '+n((((B.danh_sach||{}).luat)||{}).toi_da_ma||10,0)+' mã</span></div><div>Tiền mặt<b>'+n(g.tien_mat_pct)+'%</b></div><div>NAV sổ giả lập<b>'+n(g.nav/1e6,1)+' triệu</b><span class="mut">vốn đầu 1.000 triệu</span></div><div>Lãi/lỗ<b>'+pct(g.lai_pct)+'</b><span class="mut">từ '+esc(g.tu)+'</span></div></div>';
+  if(!L.length)return h+'<p class="mut">Chưa có mã nào trong danh sách giải ngân.</p>';
+  const q=loc2.trim().toUpperCase();let trai='<input id="loc2" placeholder="Lọc mã…" value="'+esc(loc2)+'">',nhom='';
+  L.filter(x=>!q||x.ma.includes(q)).forEach(x=>{if(x.ten_nhom!==nhom){nhom=x.ten_nhom;trai+='<div class="nhom">'+esc(nhom)+'</div>'}
+    const mt=mucTieuGN(x),dang=x.vt?x.vt.ty_trong:0;
+    trai+='<div class="dong-ma'+(x.ma===chon2?' on':'')+'" data-ma="'+esc(x.ma)+'"><span><b>'+esc(x.ma)+'</b> '+ttBadge(T[x.ma],1)+'</span><span class="mut">'+(x.nhom==='giu_khong_mua'?'giữ '+n(dang)+'%':n(dang)+' / '+n(mt||0,0)+'%')+'</span></div>'});
+  return h+'<div class="hai"><div class="card trai">'+trai+'</div><div class="card" id="the">'+theMa(L.find(x=>x.ma===chon2))+'</div></div>'}
+function ganDmuc(){const i=$('#loc2');if(i)i.oninput=()=>{loc2=i.value;const p=i.selectionStart;ve();const j=$('#loc2');if(j){j.focus();j.setSelectionRange(p,p)}};
+  document.querySelectorAll('.dong-ma').forEach(d=>d.onclick=()=>{chon2=d.dataset.ma;ve()})}
+function theMa(x){if(!x)return '';const H=B.ho_so||{},h=(H.ho_so||{})[x.ma],tt=(H.trang_thai||{})[x.ma],ng=h?(H.nganh||{})[h.nganh_slug]:null;
+  const L=(B.luan_diem||[]).find(z=>z.luan.ma===x.ma)||{},t=L.luan||{},pd=t.pitch_diem||{},gs=pd.gia_sai||{},v=x.vt,mt=mucTieuGN(x);
+  let o='<div class="tieu"><p class="dau">'+esc(x.ma)+'</p><span class="mut">'+esc((h&&h.ten)||'')+' · '+esc(x.nganh||'')+'</span>'+ttBadge(tt)+'</div>'
+   +'<div class="mut">'+esc(x.ket_luan||'')+(x.diem!=null?' · '+n(x.diem,0)+' điểm':'')+' · nhóm <b>'+esc(x.ten_nhom)+'</b></div>';
+  // 1
+  o+=sec(1,'Làm ăn gì · chuỗi giá trị',veLamGi(h,ng));
+  // 2
+  const mua=((B.gia_lap||{}).lenh||[]).filter(l=>l.ma===x.ma&&l.loai==='MUA');
+  o+=sec(2,'Làm ăn ra sao · giá và nền',veGia(((H.gia)||{})[x.ma],mua));
+  // 3
+  const c=t.the_catalyst,tin=((L.ho_so||{}).may||{}).tin||{},bc=(tin.bang_chung||[]).filter(b=>b.muc==='mã').slice(-6).reverse();
+  let s3='';if(c){s3+='<div class="mini"><b>Catalyst</b>'+para(c.catalyst)+'</div><div class="grid"><div class="mini"><b>Phải chi trước</b>'+para(c.chi_truoc)+'</div><div class="mini"><b>Khi nào tiền về</b>'+para(c.khi_nao_tien_ve)+'</div></div>'
+    +((c.moc_quy||[]).length?'<div class="mini"><b>Mốc theo quý</b><ul>'+c.moc_quy.map(m=>'<li><b>'+esc(m.quy)+'</b> — '+esc(m.moc)+'</li>').join('')+'</ul></div>':'')}
+  else s3+='<div class="mini"><b>Catalyst</b>'+list((t.bull||[]).slice(0,3))+'</div>';
+  s3+='<div class="mini"><b>Tin gần đây (Bản tin sáng NSI)</b>'+(bc.length?'<ul>'+bc.map(b=>'<li>'+chip(b.chieu)+' '+esc(b.tieu_de||'')+' <span class="mut nho">'+esc(b.ngay)+(b.noi_bo?' · nhóm kín, chỉ nội bộ':'')+'</span></li>').join('')+'</ul>':'<span class="mut">10 ngày qua không có tin nhắc trực tiếp mã này.</span>')+'</div>';
+  o+=sec(3,'Tin & catalyst',s3);
+  // 4
+  o+=sec(4,'Vĩ mô hôm nay ủng hộ hay chống',veViMo(tt));
+  // 5
+  o+=sec(5,'Vĩ mô → vi mô → vĩ mô',veChuoi(h,t));
+  // 6
+  const dk=x.bon_dk||{};
+  let s6='<div class="gn"><div>Mục tiêu<b>'+(x.nhom==='giu_khong_mua'?'giữ, không mua thêm':n(mt||0,0)+'% NAV')+'</b></div><div>Đang giải ngân<b>'+n(v?v.ty_trong:0)+'% NAV</b>'+(v?'<span class="mut">giá vốn '+n(v.gia_von,2)+' · '+pct(v.lai_pct)+'</span>':'')+'</div><div>Được mua tiếp?<b class="'+(x.duoc_mua?'up':'dn')+'">'+(x.duoc_mua?'có':'chưa')+'</b></div></div>';
+  if(x.vi_sao)s6+='<p class="mut">'+esc(x.vi_sao)+'</p>';
+  s6+='<div class="mini"><b>Vì sao chọn — giá đã phản ánh hết tin xấu chưa: '+esc(gs.ket_luan||'—')+'</b><div class="chain">'
+    +[['tin_xau','Tin xấu'],['ky_vong_ngam','Giá đang ngầm giả định'],['nguoi_ban_can_bien','Ai đang bán'],['phep_thu','Phép thử tiếp theo']].map(k=>gs[k[0]]?'<div><b>'+k[1]+'</b>'+esc(gs[k[0]])+'</div>':'').join('')
+    +(t.dinh_gia?'<div><b>Định giá</b>'+esc(t.dinh_gia)+'</div>':'')+'</div></div>';
+  s6+='<div class="mini"><b>Vì sao đạt — 4 điều kiện</b><div class="dk4">'+'abcd'.split('').map(k=>{const d=dk[k]||{};return '<div><b class="'+(d.dat===true?'up':d.dat===false?'dn':'mut')+'">'+(d.dat===true?'✓ ':d.dat===false?'✗ ':'? ')+esc(DK_TEN[k])+'</b><span class="mut">'+esc(d.cau||'chưa đo')+'</span></div>'}).join('')+'</div></div>';
+  if(t.vo_hieu)s6+='<div class="mini"><b>Khi nào bỏ</b>'+para(t.vo_hieu)+'</div>';
+  o+=sec(6,'Giải ngân bao nhiêu · vì sao chọn · vì sao đạt',s6);
+  // 7
+  o+=sec(7,'Nói với khách',t.pitch?'<div class="pitch">'+esc(t.pitch)+'</div><p class="mut nho">Không trích tin nhóm Zalo kín. Kiểm tra quy định nội dung của công ty trước khi gửi.</p>':'<p class="mut">Chưa có.</p>');
+  return o}
+/* Bộ máy tự học: hồ sơ — đề xuất sửa độ nhạy + chấm thuận/nghịch */
+function hshoc(){const H=B.ho_so||{},hc=H.hoc||{},c=hc.cham||{};let h='<h2 style="margin-top:0">Hồ sơ doanh nghiệp: vĩ mô tự học</h2><p class="mut">Mỗi sáng 7h05 cào vĩ mô ('+esc(H.vi_mo_ngay||'chưa có')+'); mỗi lượt chấm thuận/nghịch cho từng mã và ghi sổ ('+n(hc.so_dong||0,0)+' dòng). Sau 20 và 60 phiên chấm bằng giá thật. Trang <a href="/port/ho-so">Hồ sơ doanh nghiệp</a> có đủ ~115 mã.</p>';
+  h+='<div class="scroll"><table><tr><th>Sau</th><th class="r">THUẬN: số lần · hơn VNI TB</th><th class="r">NGHỊCH: số lần · hơn VNI TB</th><th class="r">Chênh</th></tr>'+['20p','60p'].map(k=>{const o=c[k]||{},a=o['THUẬN']||{},b=o['NGHỊCH']||{};return '<tr><td>'+k.replace('p',' phiên')+'</td><td class="r">'+n(a.n||0,0)+' · '+pct(a.tb)+'</td><td class="r">'+n(b.n||0,0)+' · '+pct(b.tb)+'</td><td class="r">'+pct(o.chenh)+'</td></tr>'}).join('')+'</table></div>';
+  const de=hc.de_xuat||[];h+='<h3>Đề xuất sửa hồ sơ ('+de.length+')</h3>'+(de.length?'<ul>'+de.map(d=>'<li>'+esc(d.noi_dung)+'</li>').join('')+'</ul>':'<p class="mut">Chưa có biến nào giá thật đi ngược hồ sơ với độ tin cậy đủ (|t| ≥ 2).</p>')+'<p class="mut">Máy không tự sửa hồ sơ; Claude xem đề xuất ở kỳ review quý và ghi lý do giữ hay sửa.</p>';
+  const co=H.co||[];if(co.length)h+='<h3>Cờ hôm nay</h3>'+co.map(x=>'<div class="flag">'+esc(x.noi_dung)+'</div>').join('');
+  if((H.vi_mo_loi||[]).length)h+='<details class="card"><summary>Nguồn vĩ mô lỗi ở lượt cào gần nhất</summary><ul>'+H.vi_mo_loi.map(e=>'<li class="mut">'+esc(e)+'</li>').join('')+'</ul></details>';
+  return h}
+
 /* ---------------- Tổng quan (28/10/2026: gộp Danh mục + Danh sách giải ngân) ---------------- */
 function luatGN(){const D=B.danh_sach||{},Lt=D.luat||{},P=(B.pool||{}).luat||{};
   return '<details class="card"><summary>Luật giải ngân đang chạy</summary><ul>'
@@ -99,7 +158,7 @@ function dkLegend(){const Lt=(B.danh_sach||{}).luat||{};
    +'<div><b>b · Tăng trưởng không chậm lại</b><span class="mut">PEG hiện tại (P/E ÷ tăng trưởng lợi nhuận) không cao hơn lúc giá ở đỉnh 1 năm: giá rẻ đi nhanh hơn lợi nhuận chậm lại.</span></div>'
    +'<div><b>c · Giảm vì thị trường, ngành</b><span class="mut">Cả ngành cũng cách đỉnh từ '+n(-(Lt.nganh_giam_toi_thieu||-0.1)*100,0)+'% và mã không rơi sâu hơn ngành quá '+n(-(Lt.lech_nganh_toi_da||-0.15)*100,0)+' điểm % — rơi riêng lẻ thì là chuyện của chính công ty.</span></div>'
    +'<div><b>d · Đã cân bằng</b><span class="mut">Nền 30 phiên không quá '+n((Lt.nen_can_bang||0.12)*100,0)+'% và 10 phiên gần nhất không tạo đáy mới — người bán đã cạn.</span></div></div>'}
-function tq(){const g=(B.gia_lap||{}).tong_ket||{},D=B.danh_sach||{};let h='<h2 style="margin-top:0">Tổng quan</h2>';
+function tq(){const g=(B.gia_lap||{}).tong_ket||{},D=B.danh_sach||{};let h='<h2 style="margin-top:0">Danh sách giải ngân & 4 điều kiện</h2>';
   if(g.co_du_lieu)h+='<div class="kpi"><div>Đã giải ngân<b>'+n(daGN(g))+'% NAV</b><span class="mut">'+n((g.vi_the||[]).length,0)+' / '+n(((D.luat||{}).toi_da_ma)||10,0)+' mã</span></div><div>Tiền mặt<b>'+n(g.tien_mat_pct)+'%</b></div><div>NAV sổ giả lập<b>'+n(g.nav/1e6,1)+' triệu</b><span class="mut">vốn đầu 1.000 triệu</span></div><div>Lãi/lỗ<b>'+pct(g.lai_pct)+'</b><span class="mut">từ '+esc(g.tu)+'</span></div></div>';
   h+=luatGN()+'<h3>Bốn điều kiện mua mã bị hạ định giá</h3>'+dkLegend()+ds();
   const L=(B.luan_diem||[]).filter(x=>x.luan.trang_thai==='loai'||x.luan.trang_thai==='dong');
@@ -323,8 +382,8 @@ function hoc(){const T=B.tin_cay||{},pv=T.port_vs_may||{},D=B.do_chinh_xac;let h
   const so=(B.so_bat_dong||[]).slice().reverse();h+='<details class="card"><summary>Sổ các lần nói ngược ('+so.length+')</summary>'+(so.length?'<div class="scroll"><table><tr><th>Ngày</th><th>Mã</th><th>Máy</th><th>Port</th><th>Máy nói</th><th>Vì sao máy nói vậy</th><th class="r">Hơn VN-Index 20 phiên</th><th class="r">60 phiên</th></tr>'+so.map(r=>'<tr><td>'+esc(r.ngay)+'</td><td><b>'+esc(r.ma)+'</b></td><td>'+esc(B.ten_may[r.may]||r.may)+'</td><td>'+chip(r.chieu_port)+'</td><td>'+chip(r.chieu_may)+'</td><td class="w">'+esc(r.ly_do_may)+'</td><td class="r">'+pct(r.vuot_20p)+(r.port_dung_20p!=null?(r.port_dung_20p?' port đúng':' máy đúng'):'')+'</td><td class="r">'+pct(r.vuot_60p)+(r.port_dung_60p!=null?(r.port_dung_60p?' port đúng':' máy đúng'):'')+'</td></tr>').join('')+'</table></div>':'<span class="mut">chưa có lần nào</span>')+'</details>';
   return h}
 
-function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const k=SUB[tab]?sub[tab]:tab,f={tq,gl,so,bc,db,pool,lq,locf:loc,nd,hoc2:hoc}[k]||tq;$('#app').innerHTML=veSub()+f();if(k==='locf')ganLoc();
-  document.querySelectorAll('#app .tabs.sub button').forEach(b=>b.onclick=()=>{sub[tab]=b.dataset.s;try{localStorage.setItem('port-sub',JSON.stringify(sub))}catch(e){};ve()});const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
+function ve(){const L=B.luan_diem||[];if(L.length&&(!chon||!L.find(x=>x.luan.ma===chon)))chon=(L.find(x=>x.luan.trang_thai==='trong_port')||L[0]).luan.ma;veTabs();const k=SUB[tab]?sub[tab]:tab,f={dmuc,tq,gl,so,bc,db,hshoc,pool,lq,locf:loc,nd,hoc2:hoc}[k]||dmuc;$('#app').innerHTML=veSub()+f();if(k==='locf')ganLoc();if(k==='dmuc')ganDmuc();
+  document.querySelectorAll('#app .tabs.sub button').forEach(b=>b.onclick=()=>{sub[tab]=b.dataset.s;try{localStorage.setItem('port-sub3',JSON.stringify(sub))}catch(e){};ve()});const s=$('#chon');if(s)s.onchange=()=>{chon=s.value;ve()}}
 fetch('/port/data').then(r=>r.json().then(j=>{if(!r.ok)throw new Error(j.loi||r.status);return j})).then(j=>{B=j;
   const nh=j.nhac||{};$('#meta').textContent='Dữ liệu đến phiên '+(j.asof||'?')+' · đèn thị trường '+(j.den||'?')+' · bản tin sáng '+((j.nguon||{}).tin_so_ban||0)+' bản · Daily '+((j.nguon||{}).daily_ngay||'?')+(nh.ky_review?' · kỳ review gần nhất '+nh.ky_review:'')+' · dựng lúc '+String(j.cap_nhat||'').replace('T',' ').slice(0,16);ve()})
  .catch(e=>{$('#app').innerHTML='<b>Chưa đọc được gói port.</b> '+esc(e.message)});

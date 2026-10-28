@@ -22,6 +22,7 @@ import nhac as NH
 import nhan_dinh as ND
 import pool as PO
 import danh_sach as DS  # noqa: E402  (28/10/2026: danh sách giải ngân)
+import ho_so as HS  # noqa: E402  (28/10/2026: hồ sơ doanh nghiệp + vĩ mô thuận/nghịch + vòng học độ nhạy)
 import sim as SM
 import tu_hoc as TH
 
@@ -224,10 +225,14 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     wj(state / 'so_gia_lap.json', so)
     gia_lap = dict(tong_ket=SM.tong_ket(so, P), nav=so['nav'], lenh=so['lenh'][-200:], co=so['co'][-50:],
                    luat=SM.LUAT, ghi_chu=so.get('ghi_chu'))
+    # ------------------------------------------------ 3e. hồ sơ doanh nghiệp, vĩ mô thuận/nghịch hôm nay, vòng học độ nhạy
+    ma_port = [x['ma'] for k in ('giai_ngan', 'can_them', 'giu_khong_mua') for x in ds.get(k) or []]
+    ho_so = HS.chay(root, state, B if pg else None, asof, vi_the=set((so.get('vi_the') or {}).keys()),
+                    gui=NH.gui if gui_chuong else None, ma_port=ma_port)
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)
     nguon['gia_gia_lap'] = 'port_gia.npz + ảnh chụp port' if pg else 'nến 240 phiên + ảnh chụp port'
     return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy, pool=pool,
-                danh_sach=ds,
+                danh_sach=ds, ho_so=ho_so,
                 nhac=dict(quy=st['quy'], ky_review=st['ky_review'], lan_cuoi=st.get('lan_cuoi')), nguon_moi=nguon)

@@ -9,7 +9,7 @@ on:
     types: [completed]
   push:
     branches: [port-data]
-    paths: ['port/luan_diem/**', 'port/danh_muc.json', 'port/so_lenh.json', 'port/trong_so.json']
+    paths: ['port/luan_diem/**', 'port/ho_so/**', 'port/danh_muc.json', 'port/so_lenh.json', 'port/trong_so.json']
   schedule:
     - cron: '17 11 * * 1-5'      # 18h17 giờ VN, lưới dự phòng nếu daily không gọi
   workflow_dispatch:
@@ -61,6 +61,7 @@ jobs:
         run: |
           mkdir -p port/luan_diem port/state
           cp -r _data/port/luan_diem/. port/luan_diem/ 2>/dev/null || true
+          mkdir -p port/ho_so && cp -r _data/port/ho_so/. port/ho_so/ 2>/dev/null || true
           cp -r _data/port/state/. port/state/ 2>/dev/null || true
           cp _data/port/danh_muc.json port/danh_muc.json 2>/dev/null || true
           cp _data/port/so_lenh.json port/so_lenh.json 2>/dev/null || true

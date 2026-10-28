@@ -3,7 +3,12 @@ import { readFileSync } from 'node:fs'
 import { handlePort } from '../port/worker_port_page.js'
 const html = readFileSync(new URL('../port/trang_port.html', import.meta.url), 'utf8')
 const js = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n')
-new Function(js)   // ném lỗi nếu sai cú pháp
+const chung = readFileSync(new URL('../port/chung_ho_so.js', import.meta.url), 'utf8')
+new Function(js.replace('/*CHUNG_JS*/', chung))   // ném lỗi nếu sai cú pháp (đã chèn phần dùng chung như build.py)
+const hs = readFileSync(new URL('../port/trang_ho_so.html', import.meta.url), 'utf8')
+new Function([...hs.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]).join('\n').replace('/*CHUNG_JS*/', chung))
+if (!js.includes('/*CHUNG_JS*/') || !hs.includes('/*CHUNG_JS*/')) throw new Error('thiếu chỗ chèn phần dùng chung')
+if (!/function dmuc\(/.test(js) || !/function theMa\(/.test(js)) throw new Error('thiếu màn hình Danh mục / thẻ mã')
 if (!/function ds\(/.test(js) || !/function daGN\(/.test(js) || /VN-Index cùng kỳ/.test(js)) throw new Error('trang /port: thiếu % NAV đã giải ngân hoặc còn ô VN-Index cùng kỳ')
 const kv = { 'port/html': html, 'port/bundle': '{"asof":"x"}' }
 const env = { SLIDES: { get: async k => (k in kv ? kv[k] : null) } }

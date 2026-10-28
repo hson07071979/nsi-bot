@@ -508,6 +508,18 @@ def build(now: datetime | None = None) -> dict:
 
 
 TRANG = Path(__file__).resolve().parent / 'trang_port.html'
+TRANG_HO_SO = Path(__file__).resolve().parent / 'trang_ho_so.html'
+CHUNG_JS = Path(__file__).resolve().parent / 'chung_ho_so.js'
+
+
+def doc_trang(p: Path) -> bytes | None:
+    """Trang HTML đã chèn phần dùng chung (chung_ho_so.js) vào chỗ /*CHUNG_JS*/."""
+    if not p.exists():
+        return None
+    s = p.read_text(encoding='utf-8')
+    if '/*CHUNG_JS*/' in s:
+        s = s.replace('/*CHUNG_JS*/', CHUNG_JS.read_text(encoding='utf-8'), 1)
+    return s.encode('utf-8')
 
 
 def kv_put(bundle: dict) -> bool:
@@ -522,9 +534,15 @@ def kv_put(bundle: dict) -> bool:
     goc = f'https://api.cloudflare.com/client/v4/accounts/{acc}/storage/kv/namespaces/{ns}/values/'
     for khoa, du_lieu, loai in (
             ('port/bundle', json.dumps(bundle, ensure_ascii=False).encode('utf-8'), 'application/json'),
-            ('port/html', TRANG.read_bytes() if TRANG.exists() else None, 'text/html')):
+            ('port/html', doc_trang(TRANG), 'text/html'),
+            # 28/10/2026: trang Hồ sơ doanh nghiệp — Worker phục vụ /port/ho-so từ port/page/ho-so
+            ('port/page/ho-so', doc_trang(TRANG_HO_SO), 'text/html'),
+            ('port/page/ho-so/data', json.dumps(dict(asof=bundle.get('asof'), cap_nhat=bundle.get('cap_nhat'),
+                                                     ho_so=bundle.get('ho_so'), luan_diem=[dict(ma=x['luan'].get('ma'),
+                                                     trang_thai=x['luan'].get('trang_thai')) for x in bundle.get('luan_diem') or []]),
+                                                ensure_ascii=False).encode('utf-8'), 'application/json')):
         if du_lieu is None:
-            print(f'KV: không có {TRANG.name} → bỏ qua {khoa}')
+            print(f'KV: chưa có trang cho {khoa} → bỏ qua')
             continue
         r = requests.put(goc + khoa, headers={'Authorization': f'Bearer {tok}', 'Content-Type': loai},
                          data=du_lieu, timeout=60)
