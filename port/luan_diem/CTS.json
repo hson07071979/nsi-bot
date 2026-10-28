@@ -1,0 +1,128 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Ở CTCK, khi chi phí lãi vay vượt lãi cho vay margin, mô hình đang lỗ ngầm bất kể có ngân hàng mẹ.",
+ "ma": "CTS",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn riêng: CTS (VBSE, VietinBank nắm khoảng 75,6%) vay ngắn hạn 7.679 tỷ = 2,69 lần vốn chủ — cao nhất ngành — nên chi phí vốn (khoảng 7,9%/năm) là biến số sống còn; lãi suất giảm cuối tháng 10 là thuận. Danh mục FVTPL bằng 97% vốn chủ khiến lợi nhuận nhạy với VN-Index (mỗi 5% biến động ≈ 138 tỷ, lớn hơn LNST 4 quý).",
+  "nganh": "Ngành chứng khoán đang ở pha \"doanh thu môi giới co, chi phí vốn tăng\": thanh khoản thị trường rơi từ khoảng 44.000 tỷ/phiên (quý 3/2025) xuống vùng 20.000–25.000 tỷ, doanh thu môi giới nhiều công ty giảm 50–65% cùng kỳ; trong khi lãi vay bình quân của CTCK tăng (MBS từ 5,1% lên 6,9%) làm chênh lệch cho vay margin thu hẹp. Lợi nhuận dịch chuyển sang tự doanh — biến động mạnh theo VN-Index (VIX quý 3 lỗ đánh giá lại hơn 1.300 tỷ). Hai lực đỡ: FTSE Russell nâng hạng Việt Nam hiệu lực 21/09/2026 (hoàn tất 9/2027) và NHNN yêu cầu giảm lãi huy động tối thiểu 0,5 điểm % (Công văn 9608 ngày 18/10, 9736 ngày 21/10). Nhưng một tháng sau nâng hạng khối ngoại vẫn bán ròng gần 1 tỷ USD, VN-Index mất khoảng 110 điểm (CafeF 19/10), và dư nợ margin toàn thị trường lập kỷ lục khoảng 457.500 tỷ (khoảng 5,1% vốn hóa) khi thanh khoản giảm hơn 60% — rủi ro giải chấp tăng. Trung vị giá nhóm cách đỉnh khoảng 33%; TCBS, VCBS khuyến nghị trung lập với ngành (09–10/2026).",
+  "doanh_nghiep": "Quý 3/2026 (BCTC 20/10): doanh thu 410 tỷ (−37%), LNST chỉ 5 tỷ (−98%) — thấp nhất từ quý 4/2022; tự doanh lỗ ròng 44 tỷ; chi phí lãi vay 157 tỷ vượt cả lãi margin 153 tỷ; môi giới −58%. 9 tháng: LNTT 107 tỷ, 23,6% kế hoạch 454 tỷ (đã hạ 36,5%). Tiền gửi khách hàng giảm từ 1.845 tỷ xuống 563 tỷ trong một năm.",
+  "mo_hinh_kd": "Cho vay margin (dư nợ 5.050 tỷ, sát trần 2 lần vốn chủ) + tự doanh trái phiếu và cổ phiếu (có EIB, GEE, GEL) + môi giới + IB. Đề án tăng vốn chờ VietinBank chấp thuận.",
+  "lanh_dao": "VietinBank khoảng 75,6%; thành viên HĐQT mới từ khối pháp chế VietinBank. Cổ tức cổ phiếu 28% (giao dịch 22/07); đề xuất cổ tức 2026 9%. Lấy ý kiến cổ đông bằng văn bản (ĐKCC 22/10) — nội dung chưa rõ.",
+  "chuoi_gia_tri": "CTCK thuộc ngân hàng quốc doanh.",
+  "dan_nguoc_vi_mo": "CTCK là kênh dẫn vốn của thị trường: dư nợ margin toàn thị trường ở mức kỷ lục khuếch đại cả nhịp tăng lẫn nhịp giảm của VN-Index; tự doanh quy mô lớn của vài CTCK tập trung vào nhóm cổ phiếu hệ sinh thái làm tăng rủi ro lan truyền."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Lợi nhuận quý 3 gần như bằng 0 và cấu trúc lỗ ngầm: chi phí lãi vay > lãi cho vay margin. Đây không phải chu kỳ mà là vấn đề mô hình: vay ngắn hạn đắt để cho vay và ôm tự doanh.",
+   "bang_chung": [
+    "FACT: LNST quý 3 4,98 tỷ (−98%); lãi vay 157 tỷ > lãi margin 152,9 tỷ (vietnamfinance 24/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "P/E 4 quý khoảng 53 và P/B 2,2 với ROE 4% — định giá vẫn trả cho kỳ vọng tăng vốn từ VietinBank, chưa được chấp thuận.",
+   "bang_chung": [
+    "FACT: Pursuit định giá cơ sở 16.300 (−25% so giá 21.700, 28/10)",
+    "FACT: P/E 16,8, P/B 2,21 (NSI, số tới quý 3)"
+   ]
+  }
+ ],
+ "bull": [
+  "Ngân hàng mẹ VietinBank; đề án tăng vốn có thể mở room margin.",
+  "Lãi cho vay margin 9 tháng +42%.",
+  "Lãi suất giảm giúp chi phí vốn — đòn bẩy cao nên hưởng lợi nhiều.",
+  "Giá chỉ giảm cùng ngành (c đạt)."
+ ],
+ "bear": [
+  "LNST quý 3 −98%; kế hoạch năm 23,6%.",
+  "Nợ vay 2,69 lần vốn chủ, toàn ngắn hạn; lãi vay > lãi margin.",
+  "Tự doanh 97% vốn chủ, có cổ phiếu lỗ sâu chưa niêm yết.",
+  "Mất khách: tiền gửi khách hàng −70% trong một năm.",
+  "Trượt a, b, d; định giá cao so ROE."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Có VietinBank chống lưng; khi tăng vốn và lãi suất giảm, lợi nhuận hồi nhanh."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Mô hình đang lỗ ngầm, định giá chưa giảm tương xứng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Bear thắng rõ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (Q4/25 25,1 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): VietinBank không chấp thuận tăng vốn; quý 4 tiếp tục lỗ ngầm.",
+ "dinh_gia": "P/E 16,83 so với trung vị 3 năm 23,07; P/B 2,21 so với 2,55 (NSI 28/10, BCTC Q2/26). Ngành Dịch vụ tài chính (17 mã trong NSI): P/E trung vị 14,1, P/B 1,38, ROE 9,5%; mã này ROE 13,2%. Giá 21,70 cách đỉnh 1 năm -31%, cả ngành -33%. Giá mục tiêu: TCBS \"quan sát thêm\" (18/08, không có mục tiêu), một CTCK được dẫn lại 35.900 (mua, 16/08 — StockOS phản biện); Pursuit định lượng 16.300 (28/10). Kỳ vọng ngầm trong giá: P/B 2,2 với ROE 4% — trả trước cho tăng vốn và hồi phục lợi nhuận.",
+ "pitch": "Chứng khoán VietinBank vừa báo lãi quý 3 chỉ 5 tỷ đồng, giảm 98%, vì tự doanh lỗ và chi phí vay vượt thu nhập cho vay. Nợ vay gấp gần 3 lần vốn chủ. Giá cổ phiếu vẫn cao so với khả năng sinh lời. Không phù hợp lúc này.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 8,
+   "nganh": 6,
+   "doanh_nghiep": 3,
+   "gia_sai": 4
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 3,
+   "suc_khoe_tc": 3
+  },
+  "luan_diem_70": 25,
+  "so_30": 11,
+  "tong": 36,
+  "dinh_gia_sai": 4,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận −98%, đòn bẩy cao, mất khách.",
+   "co_that_su_xau": "Có — mô hình kinh doanh đang lỗ ngầm.",
+   "trang_thai": "Giá −31% từ đỉnh nhưng P/B vẫn 2,2.",
+   "ky_vong_ngam": "P/B 2,2: trả trước cho tăng vốn.",
+   "nguoi_ban_can_bien": "Cổ đông nhận cổ phiếu thưởng 28% có thể bán; free float nhỏ.",
+   "counter": "Phản biện: tăng vốn từ VietinBank và lãi suất giảm có thể đảo chiều nhanh.",
+   "phep_thu": "Quyết định tăng vốn của VietinBank; BCTC quý 4.",
+   "ket_luan": "CHƯA PHẢN ÁNH HẾT"
+  },
+  "ket_luan": "LOẠI (kỳ này) — lợi nhuận quý 3 −98%, đòn bẩy cao, trượt a, b, d",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false
+}
