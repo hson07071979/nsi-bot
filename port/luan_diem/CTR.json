@@ -1,9 +1,9 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
- "cap_nhat": "2026-10-22",
- "bai_hoc": "",
- "trang_thai": "nghien_cuu",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "Mã rẻ đi vì mô hình tăng trưởng đổi (TowerCo cắt) không phải cơ hội giá trị, dù P/E thấp hơn lịch sử.",
+ "trang_thai": "loai",
  "chieu": "tang",
  "ma": "CTR",
  "chuoi": {
@@ -92,6 +92,12 @@
    "vong": 9,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 10,
+   "ben": "trong_tai",
+   "noi_dung": "Lọc lại 28/10: CTR qua lọc nền nhưng d trượt (tạo đáy mới) và Q3/26 xác nhận tăng trưởng chậm lại: lợi nhuận sau thuế 183 tỷ (+9%), phần kinh doanh cốt lõi chỉ +1%. K2 (≥ +5%) đạt nhưng khâu 5 đã kết luận \"không phải giá sai — định giá lại có cơ sở\" vì động lực TowerCo đã mất. Port chỉ mua mã bị hạ định giá vì lý do bên ngoài → LOẠI."
   }
  ],
  "phan_bien_may": {
@@ -154,7 +160,7 @@
    "counter": "—",
    "phep_thu": "Kết quả Q3 (K2 ≥ +5%; lợi nhuận trước thuế tháng 7 chỉ +2%)."
   },
-  "ket_luan": "CẦN THÊM BẰNG CHỨNG",
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"

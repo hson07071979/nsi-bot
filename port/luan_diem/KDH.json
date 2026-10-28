@@ -1,12 +1,12 @@
 {
  "ma": "KDH",
- "trang_thai": "nghien_cuu",
+ "trang_thai": "loai",
  "chieu": "tang",
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
  "ngay_vao": null,
- "cap_nhat": "2026-10-22",
- "bai_hoc": "",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "Lợi nhuận tăng nhờ khoản tài chính một lần không phải tăng trưởng thật; luôn bóc phần cốt lõi trước khi đọc P/E.",
  "chuoi": {
   "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: nghịch nhất bảng: vay mua nhà 11–15%, tín dụng bất động sản bị kiểm soát.",
   "nganh": "Bất động sản nhà ở chịu áp lực, giá đi ngang hoặc điều chỉnh nhẹ Q3/2026. Lợi nhuận bất động sản nhà ở Q3 dự báo +48,3% nhờ nền thấp Q3/2025. Tăng trưởng lợi nhuận ngành đến từ nền so sánh, không từ cầu mới.",
@@ -108,6 +108,12 @@
    "vong": 9,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 10,
+   "ben": "trong_tai",
+   "noi_dung": "Lọc lại 28/10: trượt 3/4 điều kiện. a: lợi nhuận Q2 tăng nhờ 946 tỷ thu nhập tài chính bất thường, phần kinh doanh cốt lõi Q2 âm 52 tỷ, tiền từ kinh doanh 12 tháng âm 922 tỷ. c: rơi sâu hơn ngành 15 điểm % (−56% so với −41%). d: nền 30 phiên 14%. MBS dự báo lợi nhuận Q3 đi lùi. → LOẠI."
   }
  ],
  "phan_bien_may": {
@@ -170,7 +176,7 @@
    "counter": "Kỳ vọng ngầm chưa đủ xấu vì lãi suất còn tăng. Response: đứng tới khi lãi suất vay mua nhà chững lại.",
    "phep_thu": "Tin bán hàng Q3 xấu ra mà giá không tạo đáy mới → xác nhận."
   },
-  "ket_luan": "CẦN THÊM BẰNG CHỨNG",
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"

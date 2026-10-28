@@ -1,0 +1,177 @@
+{
+ "ma": "HHV",
+ "trang_thai": "nghien_cuu",
+ "chieu": "tang",
+ "ky_han": "6-24 tháng, cập nhật theo quý",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": "2026-10-28",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "",
+ "dieu_kien_vao": [],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Bot chưa có tín hiệu; HHV có thanh khoản khoảng 29 tỷ/phiên, đủ cho bot nhưng chưa phá nền."
+  },
+  "tin": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Chưa có quan điểm riêng của NSI Tin cho HHV."
+  },
+  "daily": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Daily chưa có dòng dự báo mở cho HHV."
+  }
+ },
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Ứng viên lọc 28/10: nền 30 phiên 11,5% (sát ngưỡng 12%), cách đỉnh −31%, ngành −30%. 4 điều kiện đạt cả bốn: a LN 4 quý +26,3%, cốt lõi +26,3%, tiền từ kinh doanh 2.105 tỷ; b PEG 0,46 → 0,26; c rơi đúng bằng ngành; d không tạo đáy mới."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "ROE 5,7% và tỷ số thanh toán dưới 1: đây là công ty sống nhờ ngân hàng. Rẻ theo P/B không có nghĩa rẻ."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 3,
+   "ben": "bull",
+   "noi_dung": "Chính vì sống nhờ lãi suất nên khi lãi suất quay đầu, HHV là mã được lợi nhiều nhất trên mỗi đồng vốn hóa; và dòng tiền phí BOT là tiền thật mỗi ngày."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 4,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận CHỜ PHÉP THỬ Q3, 63 điểm → CẦN THÊM BẰNG CHỨNG, đợt thăm dò 4% NAV. Bắt buộc thẻ catalyst vì dự án mới phải chi trước; điều kiện vô hiệu gắn với pha loãng."
+  }
+ ],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": true,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. Truyền dẫn riêng: đầu tư công là động lực lớn nhất Q4 (còn khoảng 380.000 tỷ) và chương trình cao tốc quốc gia cần nhà thầu đào hầm, BOT; lưu lượng xe tăng theo GDP và vận tải hàng hóa. Lãi suất giảm là thuận mạnh nhất: HHV vay nhiều (nợ vay/vốn chủ khoảng 1,37). Nghịch: xăng dầu đắt, thu phí BOT luôn có rủi ro chính sách.",
+  "nganh": "Hạ tầng giao thông theo hình thức BOT/PPP: nhà đầu tư bỏ vốn làm đường, hầm rồi thu phí 15–25 năm. Ngành sống nhờ lưu lượng xe, quyền tăng phí theo hợp đồng, và lãi suất. Sau giai đoạn trạm BOT bị phản đối 2017–2019, Nhà nước chuyển sang PPP có vốn ngân sách tham gia, rủi ro chính sách thấp hơn. Các nhà thầu hạ tầng niêm yết (CII, VCG, CTD, PC1) cùng rơi khoảng 30% từ đỉnh.",
+  "doanh_nghiep": "Đèo Cả là đơn vị đào hầm đường bộ hàng đầu (hầm Đèo Cả, Cù Mông, Hải Vân, Phước Tượng–Phú Gia) và nhà đầu tư BOT. 9 tháng 2026: doanh thu 2.978 tỷ (+15%), lợi nhuận sau thuế hợp nhất khoảng 564 tỷ, ký mới hơn 5.300 tỷ hợp đồng xây lắp (Báo Đầu tư, Vietstock). Năm 2024 được tăng phí trung bình 18% tại 3 trạm Đèo Cả, An Dân, Cù Mông. ROE chỉ 5,7% vì tài sản BOT lớn, vốn chủ lớn.",
+  "mo_hinh_kd": "Hai dòng tiền. (1) Thu phí BOT (khoảng 57% doanh thu, mỗi ngày gần 6 tỷ): biên gộp cao, tiền mặt về mỗi ngày, nhưng phải trả lãi và gốc khoản vay xây dựng. (2) Xây lắp hầm, đường cho dự án của nhà nước và của tập đoàn: biên thấp hơn, vốn lưu động lớn. Tài chính: nợ vay/vốn chủ khoảng 1,37, tổng nợ/vốn chủ 2,15, tỷ số thanh toán hiện hành 0,68 (dưới 1), giá/dòng tiền 2,3 (NSI). Vừa chào bán riêng lẻ huy động 415 tỷ.",
+  "lanh_dao": "Thuộc hệ sinh thái Tập đoàn Đèo Cả (ông Hồ Minh Hoàng sáng lập — kiến thức nền). Thế mạnh: năng lực đào hầm đã chứng minh ở các công trình lớn. Điểm yếu: dùng nhiều đòn bẩy và phát hành thêm cổ phiếu để nuôi dự án mới; quan hệ giao dịch nội bộ với công ty trong tập đoàn cần đọc kỹ thuyết minh.",
+  "chuoi_gia_tri": "Nhà thầu chính và nhà đầu tư các đoạn hầm, cao tốc khó trên trục Bắc–Nam và các cửa khẩu phía Bắc; chủ đầu tư thuê lại thầu phụ, vật liệu (thép, xi măng) và là người thu phí cuối cùng.",
+  "dan_nguoc_vi_mo": "Hầm, cao tốc rút ngắn thời gian vận tải, giảm chi phí logistics và mở đất cho khu công nghiệp dọc tuyến; đổi lại người dùng trả phí, và ngân sách phải chia rủi ro doanh thu theo PPP."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Thị trường định giá HHV bằng một nửa giá trị sổ sách vì nợ vay cao và lãi suất cao; khi lãi suất quay đầu, gánh nặng lớn nhất của HHV nhẹ đi trước khi lợi nhuận kịp phản ánh.",
+   "bang_chung": [
+    "NSI: P/B 0,51 so với trung vị 3 năm 1,02",
+    "24 ngân hàng hạ lãi huy động đến 21/10"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Thu phí BOT tăng đều theo lưu lượng xe và lần tăng phí 2024, cộng 5.300 tỷ hợp đồng xây lắp mới, giữ lợi nhuận tăng 15–25%/năm.",
+   "bang_chung": [
+    "9 tháng 2026: doanh thu +15%, lợi nhuận khoảng 564 tỷ"
+   ]
+  }
+ ],
+ "bull": [
+  "P/B 0,51 — bằng một nửa mức thường thấy 3 năm (1,02), thấp nhất nhóm xây dựng hạ tầng.",
+  "Thu phí BOT là dòng tiền mặt mỗi ngày (gần 6 tỷ), tiền từ kinh doanh 12 tháng 2.105 tỷ — gấp hơn 3 lần lợi nhuận.",
+  "Lãi suất giảm là thuận trực tiếp với doanh nghiệp vay nhiều như HHV.",
+  "Hợp đồng xây lắp mới hơn 5.300 tỷ trong 9 tháng — đầu tư công đổ vào đúng năng lực đào hầm.",
+  "Lợi nhuận 4 quý +26%, cốt lõi +26%, tăng 10 quý liền theo dữ liệu NSI."
+ ],
+ "bear": [
+  "ROE chỉ 5,7%: dù rẻ theo P/B, mỗi đồng vốn sinh lời thấp — P/B thấp có một phần là đúng.",
+  "Tỷ số thanh toán hiện hành 0,68: nợ ngắn hạn lớn hơn tài sản ngắn hạn, phụ thuộc ngân hàng gia hạn.",
+  "Dự án cao tốc mới cần vốn chủ lớn → tiếp tục phát hành thêm cổ phiếu (vừa chào bán riêng lẻ 415 tỷ), pha loãng.",
+  "Rủi ro chính sách thu phí BOT (giãn tăng phí, phản ứng của người dân) luôn còn đó.",
+  "Giao dịch với các công ty trong cùng tập đoàn Đèo Cả — khó tách bạch dòng tiền."
+ ],
+ "the_catalyst": {
+  "catalyst": "Tham gia các dự án cao tốc, hầm mới theo hình thức PPP và làm tổng thầu xây lắp trong chương trình đầu tư công (hợp đồng mới hơn 5.300 tỷ trong 9 tháng 2026).",
+  "chi_truoc": "Phần vốn chủ của nhà đầu tư PPP phải bỏ ra trước khi có trạm thu phí, cùng vốn lưu động cho xây lắp (máy đào hầm, vật tư, ứng trước thầu phụ). Đây là lý do HHV vay nhiều và vừa chào bán riêng lẻ 415 tỷ. Con số vốn chủ cụ thể cho từng dự án mới cần lấy từ thuyết minh BCTC Q3 và tài liệu ĐHĐCĐ.",
+  "hoa_von": "Với BOT: hòa vốn khi doanh thu phí đủ trả lãi và gốc vay theo phương án tài chính (thường sau 8–12 năm vận hành — kiến thức chung về BOT, không phải số riêng của HHV). Với xây lắp: lãi ngay theo tiến độ nghiệm thu, nhưng tiền về chậm.",
+  "dieu_kien_can": "Lãi suất cho vay dự án không tăng lại; dự án mới có phần vốn ngân sách tham gia (PPP) để giảm vốn chủ phải bỏ ra.",
+  "dieu_kien_du": "Doanh thu phí các trạm hiện hữu tăng đều theo lưu lượng xe, và hợp đồng xây lắp mới được nghiệm thu, thu tiền đúng hạn để không phải phát hành thêm cổ phiếu lớn.",
+  "khi_nao_tien_ve": "Lần mở rộng trước (hầm Đèo Cả, Cù Mông) mất nhiều năm xây dựng rồi mới thu phí; sau khi thu phí, dòng tiền đều đặn và lần tăng phí 2024 (+18%) mang thêm doanh thu. Dự án mới sẽ tương tự: tiền xây lắp về theo năm, tiền phí chỉ về sau khi thông xe.",
+  "moc_quy": [
+   {
+    "quy": "Q3/26",
+    "moc": "BCTC Q3: nợ vay ngắn hạn, tỷ số thanh toán hiện hành không xấu thêm; doanh thu phí BOT tăng so với cùng kỳ."
+   },
+   {
+    "quy": "Q4/26",
+    "moc": "Lợi nhuận cả năm khoảng 670 tỷ như dự báo (Người Quan Sát 30/09); không có đợt phát hành mới lớn hơn 10% số cổ phiếu."
+   },
+   {
+    "quy": "Q2/27",
+    "moc": "Chi phí lãi vay quý giảm so với cùng kỳ khi lãi suất hạ."
+   }
+  ],
+  "phan_bien": "Cổ phiếu hạ tầng vay nhiều luôn rẻ theo P/B vì người mua cổ phiếu đứng sau ngân hàng; nếu dự án mới cần thêm vốn chủ, cổ đông nhỏ bị pha loãng và giá trị sổ sách mỗi cổ phiếu không tăng. P/B 0,5 có thể kéo dài nhiều năm nếu ROE không vượt chi phí vốn."
+ },
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 30,
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 30% so với cùng kỳ (Q3/25 129 tỷ, NSI; 9 tháng công bố khoảng 564 tỷ hợp nhất)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ry",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 10,
+   "noi_dung": "Doanh thu Q3/26 tăng ≥ 10% so với cùng kỳ (9 tháng +15%)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu theo sự kiện: phát hành thêm cổ phiếu lớn hơn 15% số lưu hành với giá thấp hơn giá trị sổ sách; giãn hoặc giảm phí tại các trạm chính; tỷ số thanh toán hiện hành xuống dưới 0,5 hoặc chậm trả nợ. Mốc cơ bản: K1, K2. Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/B 0,51 so với trung vị 3 năm 1,02; P/E 8,63 so với 12,39 (NSI 28/10). So ngành xây dựng và vật liệu (17 mã): P/E trung vị 9,7, P/B 1,02; CII P/B 1,02, VCG 0,98, CTD 0,73. Giá/dòng tiền 2,3 lần. Kỳ vọng ngầm: P/B 0,51 với ROE 5,7% → thị trường ngầm tính ROE về khoảng 3%, tức coi một nửa tài sản BOT là không tạo ra giá trị cho cổ đông.",
+ "pitch": "Đèo Cả là đơn vị đào hầm và thu phí đường bộ, mỗi ngày thu gần 6 tỷ đồng tiền phí. Cổ phiếu chỉ bằng một nửa giá trị sổ sách vì công ty vay nhiều đúng lúc lãi suất cao. Lãi suất vừa bắt đầu giảm, đầu tư công đang đổ vào cao tốc, và công ty đã ký thêm hơn 5.300 tỷ hợp đồng xây lắp. Rủi ro là phải phát hành thêm cổ phiếu để làm dự án mới. Chờ báo cáo quý 3 cho thấy nợ ngắn hạn không xấu thêm.",
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; lọc lại 28/10/2026 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 3,
+   "vi_mo_vn": 13,
+   "nganh": 10,
+   "doanh_nghiep": 9,
+   "gia_sai": 9
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 7,
+   "suc_khoe_tc": 3
+  },
+  "luan_diem_70": 44,
+  "so_30": 19,
+  "tong": 63,
+  "dinh_gia_sai": 9,
+  "gia_sai": {
+   "a_ban_chat": 3,
+   "b_trang_thai": 3,
+   "c_ky_vong_ngam": 3,
+   "ket_luan": "PHẢN ÁNH QUÁ MỨC MỘT PHẦN",
+   "tin_xau": "Lãi suất cao ăn vào lợi nhuận doanh nghiệp vay nhiều; cổ phiếu xây dựng hạ tầng bị bán đồng loạt (ngành −30%).",
+   "co_that_su_xau": "Thật với HHV (nợ vay/vốn chủ 1,37) nhưng đang đổi chiều: lãi huy động đã giảm từ 19/10; lợi nhuận 9 tháng vẫn tăng nhờ phí BOT.",
+   "trang_thai": "Tin xấu có kích thước (chi phí lãi vay trên báo cáo), và nguồn của nó (lãi suất) vừa quay đầu.",
+   "ky_vong_ngam": "P/B 0,51 với ROE 5,7% → ROE ngầm khoảng 3%; doanh thu phí tăng và lãi vay giảm khó kéo ROE xuống mức đó.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân bán theo nhóm xây dựng, đầu tư công; cổ đông mua từ đợt chào bán riêng lẻ có thể bán khi hết hạn chế chuyển nhượng.",
+   "counter": "P/B thấp là đúng vì ROE thấp và pha loãng liên tục. Trả lời: đúng nếu đợt phát hành tiếp theo lớn và dưới giá sổ sách — ghi thành điều kiện vô hiệu.",
+   "phep_thu": "BCTC Q3: lợi nhuận ≥ +30% (K1), doanh thu ≥ +10% (K2), nợ ngắn hạn không tăng nhanh hơn tài sản ngắn hạn."
+  },
+  "ket_luan": "CHỜ PHÉP THỬ Q3",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28",
+  "ghi_chu": "Sức khỏe tài chính yếu nhất danh sách (3/10) — đổi lại là chiết khấu sâu nhất."
+ }
+}

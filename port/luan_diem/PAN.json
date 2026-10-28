@@ -1,0 +1,41 @@
+{
+ "ma": "PAN",
+ "trang_thai": "loai",
+ "chieu": "trung_lap",
+ "ky_han": "—",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": null,
+ "cap_nhat": "2026-10-28",
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. ",
+  "nganh": "Thực phẩm, nông nghiệp (giống cây trồng, hạt điều, bánh kẹo, nước mắm).",
+  "doanh_nghiep": "Tập đoàn PAN, công ty mẹ của các mảng giống cây trồng, thực phẩm, nông sản.",
+  "mo_hinh_kd": "—",
+  "lanh_dao": "—",
+  "chuoi_gia_tri": "—",
+  "dan_nguoc_vi_mo": "—"
+ },
+ "luan_diem": [],
+ "bull": [],
+ "bear": [],
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Ứng viên 28/10 (nền 30 phiên 5,6%, cách đỉnh −31%). P/E 4 lần là ảo: lợi nhuận 4 quý chứa khoản lãi khoảng 500 tỷ bán Bibica (Q1/26 lãi 585 tỷ trong khi kinh doanh cốt lõi chỉ 253 tỷ); kế hoạch 2026 lãi 1.780 tỷ (+53%) cũng nhờ khoản này. Doanh thu đi lùi (Q2 −10%, thôi hợp nhất Bibica), và tập đoàn bổ sung ngành bất động sản (ĐHĐCĐ 04/2026) — lệch khỏi lõi thực phẩm. Không có tăng trưởng cốt lõi đủ mạnh để gọi là bị hạ định giá → LOẠI kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [],
+ "vo_hieu": "—",
+ "dinh_gia": "—",
+ "pitch": "—",
+ "dieu_kien_vao": [],
+ "bai_hoc": "Bán công ty con tạo lãi một lần làm P/E thấp giả; tập đoàn đa ngành chuyển sang bất động sản là tín hiệu phân tán vốn.",
+ "pitch_diem": {
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28"
+ }
+}

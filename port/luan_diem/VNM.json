@@ -1,0 +1,153 @@
+{
+ "ma": "VNM",
+ "trang_thai": "nghien_cuu",
+ "chieu": "tang",
+ "ky_han": "6-24 tháng, cập nhật theo quý",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": "2026-10-28",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "",
+ "dieu_kien_vao": [],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Bot không có tín hiệu: VNM biến động thấp, ít khi phá nền với dòng tiền lớn — khác khung thời gian với port (6–24 tháng, mua trong nền)."
+  },
+  "tin": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Chưa có quan điểm riêng của NSI Tin cho VNM trong 10 ngày gần nhất — port chờ hồ sơ máy cập nhật."
+  },
+  "daily": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Daily chưa có dòng dự báo mở cho VNM; port dùng nền 30 phiên 7% làm vùng tham chiếu."
+  }
+ },
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Ứng viên lọc 28/10: nền 30 phiên 7,0% (thứ 5 về độ chặt trong 67 mã qua lọc), cách đỉnh 1 năm −18%, ngành −22%. 4 điều kiện đạt cả bốn: a LN 4 quý +27,9%, cốt lõi +32,9%, tiền từ kinh doanh 8.370 tỷ; b lúc đỉnh 01/2026 LN đang giảm −9,4%, nay +27,9%; c rơi ít hơn ngành 4 điểm %; d không tạo đáy mới."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 2,
+   "ben": "bull",
+   "noi_dung": "Doanh nghiệp không nợ, ROE 34%, cổ tức tiền mặt ≥ 50% lợi nhuận, lợi nhuận đang tăng lại — mua ở nền chặt là cách ít rủi ro nhất để sở hữu tăng trưởng tiêu dùng."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 3,
+   "ben": "bear",
+   "noi_dung": "P/B ngang mức thường thấy, ngành bão hòa: không có \"giá sai\" lớn, chỉ có giá hợp lý. Và Q3 chưa ra."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 4,
+   "ben": "trong_tai",
+   "noi_dung": "Đồng ý một phần: mức chiết khấu chỉ nằm ở P/E (−18%), không ở P/B. Kết luận CHỜ PHÉP THỬ Q3, 68 điểm → CẦN THÊM BẰNG CHỨNG, đợt thăm dò 4% NAV; nâng lên ĐỦ khi BCTC 30/10 đạt K1, K2."
+  }
+ ],
+ "quy_bctc": "Q2/26",
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. Truyền dẫn riêng: tiêu dùng thiết yếu ít nhạy với chu kỳ; thu nhập tăng cùng GDP gần 10% giúp người tiêu dùng chuyển sang sữa cao cấp hơn. Lạm phát trên 4,5% là con dao hai lưỡi: đẩy giá bán lên nhưng làm người mua thận trọng. Bột sữa nguyên liệu nhập khẩu tính bằng đô la nên đô la mạnh làm tăng giá vốn; xuất khẩu (65 nước) bù một phần.",
+  "nganh": "Sữa Việt Nam là ngành trưởng thành: dân số trẻ đang già đi, tỷ lệ sinh giảm, nên tăng trưởng sản lượng thấp; tăng trưởng giá trị đến từ sản phẩm cao cấp (sữa tươi, ít đường, cao đạm) và kênh hiện đại. Cạnh tranh mạnh với TH True Milk, Nutifood, sữa ngoại. Ngành thực phẩm niêm yết 6 tháng 2026: lợi nhuận rổ 10 doanh nghiệp +33,6% trong khi doanh thu +7,4%, nhờ biên gộp tăng từ 28,2% lên 31,1% (TCBS 20/10).",
+  "doanh_nghiep": "Doanh nghiệp sữa lớn nhất Việt Nam, sản phẩm ở 65–67 nước. 6 tháng 2026 doanh thu 34.996 tỷ (+17,8%), lợi nhuận sau thuế 5.643 tỷ (+38,4%); doanh thu nước ngoài 8.400 tỷ (+39,1%); biên gộp Q2 43,5% (cùng kỳ 42%). Riêng Vinamilk đóng góp 44,6% lợi nhuận và 49% phần lợi nhuận tăng thêm của rổ 10 doanh nghiệp thực phẩm (TCBS). ROE 33,9%, cao hơn trung vị ngành 22%.",
+  "mo_hinh_kd": "Mua sữa tươi từ trang trại của mình và nông hộ, nhập bột sữa, chế biến và bán qua hơn 200.000 điểm bán truyền thống, siêu thị và chuỗi cửa hàng riêng; xuất khẩu và các công ty con ở Campuchia (Angkormilk, doanh thu 9 tháng +230%), Mỹ. Gần như không vay: nợ vay/vốn chủ khoảng 0,24, tiền từ kinh doanh 12 tháng 8.370 tỷ. Chi trả cổ tức tiền mặt tối thiểu 50% lợi nhuận (ĐHĐCĐ 2026).",
+  "lanh_dao": "Nhà nước (SCIC) là cổ đông lớn nhất, F&N (Thái Lan/Singapore) là cổ đông chiến lược lớn thứ hai (kiến thức nền, cần đối chiếu tỷ lệ mới nhất). Kế hoạch 2026 thận trọng: doanh thu 66.477 tỷ (+4,3%), lợi nhuận 9.828 tỷ (+4,4%) — 6 tháng đã đạt 57% kế hoạch lợi nhuận. Lãnh đạo nói giá cổ phiếu chưa phản ánh hết giá trị nhưng không bình luận giao dịch (Dân trí).",
+  "chuoi_gia_tri": "Đầu ra của hàng chục nghìn hộ nuôi bò sữa và trang trại; khâu chế biến và phân phối lớn nhất ngành; là kênh đưa nông sản chế biến Việt Nam ra nước ngoài.",
+  "dan_nguoc_vi_mo": "Ngành sữa lớn lên kéo chăn nuôi bò sữa trong nước (giảm nhập bột sữa), tạo thu nhập nông thôn, và đóng góp cổ tức lớn cho ngân sách qua SCIC."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận tăng trở lại sau 3 năm đi ngang (6 tháng +38%) nhờ biên gộp và xuất khẩu, nhưng giá vẫn thấp hơn đỉnh 18% và P/E 11,9 thấp hơn mức thường thấy 14,4.",
+   "bang_chung": [
+    "NSI: P/E 11,88 so với trung vị 3 năm 14,44; lợi nhuận 4 quý +27,9%",
+    "TCBS 20/10: biên gộp ngành 28,2% → 31,1%"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Q3/26 tiếp tục tăng hai chữ số (MBS dự 2.982 tỷ, +18%); nếu đúng, kế hoạch năm sẽ bị vượt xa và cổ tức tiền mặt tăng.",
+   "bang_chung": [
+    "MBS Research dự phóng Q3/26",
+    "Lịch công bố BCTC Q3: 30/10/2026"
+   ]
+  }
+ ],
+ "bull": [
+  "Lợi nhuận 6 tháng +38%, kinh doanh cốt lõi 4 quý +33%, tiền từ kinh doanh 8.370 tỷ — tăng trưởng thật, bằng tiền.",
+  "Gần như không nợ vay, ROE 34%: lãi suất cao không chạm tới doanh nghiệp.",
+  "Cổ tức tiền mặt tối thiểu 50% lợi nhuận — người nắm giữ được trả tiền trong lúc chờ.",
+  "Xuất khẩu +39% và Campuchia +230%: động lực mới ngoài thị trường nội đã bão hòa.",
+  "Kế hoạch năm chỉ +4,4% — 6 tháng đã 57%, dư địa vượt kế hoạch lớn."
+ ],
+ "bear": [
+  "Ngành sữa nội địa bão hòa: tỷ lệ sinh giảm, tăng trưởng sản lượng thấp; tăng trưởng 2026 một phần nhờ nền thấp 2025.",
+  "P/B 4,09 ngang trung vị 3 năm 4,12 — chỉ rẻ theo P/E, không rẻ theo giá trị sổ sách.",
+  "Bột sữa nhập khẩu tính bằng đô la: đô la mạnh và giá sữa thế giới tăng làm biên gộp co lại.",
+  "Chi phí bán hàng Q2 tăng 393 tỷ — giữ thị phần trước TH, Nutifood tốn tiền.",
+  "SCIC là cổ đông lớn: kỳ vọng thoái vốn có thể tạo nguồn cung cổ phiếu lớn khi thực hiện."
+ ],
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 10,
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 10% so với cùng kỳ (Q3/25 2.527 tỷ, NSI; MBS dự +18%)."
+  },
+  {
+   "id": "K2",
+   "loai": "funda",
+   "chi_tieu": "ry",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 8,
+   "noi_dung": "Doanh thu Q3/26 tăng ≥ 8% — tăng trưởng không chỉ nhờ biên gộp."
+  }
+ ],
+ "vo_hieu": "Vô hiệu theo sự kiện: biên gộp quay về dưới 40% hai quý liên tiếp (giá bột sữa hoặc đô la), hoặc doanh thu nội địa giảm so với cùng kỳ; SCIC thoái vốn theo cách bán ồ ạt ra thị trường. Mốc cơ bản: K1, K2. Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/E 11,88 lần so với trung vị 3 năm 14,44; P/B 4,09 so với 4,12 (NSI 28/10). So ngành thực phẩm (13 mã): P/E trung vị 12,25, MCH 26,3, SAB 12,3, MSN 15,2. PEG 4 quý khoảng 0,43. Tỷ suất cổ tức: với tối thiểu 50% lợi nhuận khoảng 10.000 tỷ, cổ tức từ 5.000 tỷ trở lên trên vốn hóa 121.600 tỷ, tức từ khoảng 4% trở lên. Kỳ vọng ngầm: P/E 11,9/14,4 → thị trường định giá như thể lợi nhuận giảm khoảng 18% về lại mức 2025.",
+ "pitch": "Vinamilk lãi trở lại tăng mạnh sau ba năm đi ngang: 6 tháng 2026 lợi nhuận tăng 38%, nhờ biên lợi nhuận tốt lên và xuất khẩu tăng gần 40%. Công ty gần như không vay nợ, trả cổ tức tiền mặt ít nhất một nửa lợi nhuận. Giá cổ phiếu thấp hơn đỉnh năm 18%, như thể lợi nhuận sẽ quay về mức cũ. Báo cáo quý 3 ra ngày 30/10 là phép thử: lợi nhuận tiếp tục tăng hai chữ số thì luận điểm được xác nhận.",
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; lọc lại 28/10/2026 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 9,
+   "nganh": 8,
+   "doanh_nghiep": 13,
+   "gia_sai": 8
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 8,
+   "suc_khoe_tc": 10
+  },
+  "luan_diem_70": 43,
+  "so_30": 25,
+  "tong": 68,
+  "dinh_gia_sai": 8,
+  "gia_sai": {
+   "a_ban_chat": 3,
+   "b_trang_thai": 2,
+   "c_ky_vong_ngam": 3,
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN",
+   "tin_xau": "Ngành sữa nội địa bão hòa, tăng trưởng thấp; vốn ngoại rút khỏi cổ phiếu tiêu dùng vốn hóa lớn.",
+   "co_that_su_xau": "Bão hòa là thật nhưng đã kéo dài nhiều năm và đã nằm trong giá; số mới (6 tháng +38%, xuất khẩu +39%) cho thấy doanh nghiệp tìm được động lực ngoài thị trường nội.",
+   "trang_thai": "Tin xấu cấu trúc, không có ngày; tin xấu dòng tiền ngoại còn chạy tới khi Fed đổi hướng.",
+   "ky_vong_ngam": "P/E 11,9 so với 14,4 → giá đang tính lợi nhuận giảm khoảng 18%, tức quay lại mức 2025 — trong khi kế hoạch 2026 đã gần chắc vượt.",
+   "nguoi_ban_can_bien": "Quỹ ngoại bán cổ phiếu tiêu dùng vốn hóa lớn khi đô la mạnh; nhà đầu tư trong nước chuộng cổ phiếu tăng trưởng nhanh hơn.",
+   "counter": "Tăng trưởng 2026 nhờ nền thấp 2025, sang 2027 về lại một chữ số nên P/E 12 là đúng. Trả lời: đúng nếu Q3–Q4 chậm về dưới 10%; khi đó luận điểm chỉ còn là cổ phiếu cổ tức.",
+   "phep_thu": "BCTC Q3 ngày 30/10: lợi nhuận ≥ +10% và biên gộp giữ trên 42% → xác nhận."
+  },
+  "ket_luan": "CHỜ PHÉP THỬ Q3 (BCTC 30/10)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28"
+ }
+}

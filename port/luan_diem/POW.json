@@ -1,9 +1,9 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-15",
- "cap_nhat": "2026-10-22",
- "bai_hoc": "",
- "trang_thai": "nghien_cuu",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "Lợi nhuận điện tăng mà tiền không về (phải thu) thì chưa phải lợi nhuận thật; kiểm dòng tiền trước khi tin P/E 5.",
+ "trang_thai": "loai",
  "chieu": "tang",
  "ma": "POW",
  "chuoi": {
@@ -98,6 +98,12 @@
    "vong": 10,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 11,
+   "ben": "trong_tai",
+   "noi_dung": "Lọc lại 28/10: a trượt — tiền từ kinh doanh 12 tháng âm 1.710 tỷ dù lãi 5.954 tỷ (phải thu tăng); PV Power ước lợi nhuận trước thuế 9 tháng 5.460 tỷ trong khi 6 tháng đã 5.000 tỷ → Q3 chỉ khoảng 460 tỷ, giảm mạnh so với cùng kỳ; kế hoạch năm thận trọng và không chia cổ tức để giữ vốn cho dự án khí LNG. d trượt (tạo đáy mới). → LOẠI."
   }
  ],
  "phan_bien_may": {
@@ -160,7 +166,7 @@
    "counter": "—",
    "phep_thu": "Lợi nhuận cốt lõi Q3 so với cùng kỳ (nền 809 tỷ)."
   },
-  "ket_luan": "CẦN THÊM BẰNG CHỨNG",
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
   "ngay": "2026-10-15"

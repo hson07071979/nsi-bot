@@ -1,16 +1,16 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-22",
+ "cap_nhat": "2026-10-28",
  "bai_hoc": "",
  "ma": "HPG",
  "trang_thai": "nghien_cuu",
  "chieu": "tang",
  "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: đứng giữa động lực mạnh nhất Q4 (đầu tư công còn ~380.000 tỷ, xây dựng +12,2%); HRC trong nước thay thế nhập khẩu đúng lúc nhập siêu là vấn đề vĩ mô số 1; nghịch: thép Trung Quốc dư thừa.",
-  "nganh": "Giá bán thép Q3 dự kiến −7% so với Q2 do cầu Trung Quốc yếu; quặng và than cốc giảm 8–10%. Thép xây dựng tăng giá lũy kế 1,5–2,5%, HRC giảm 3 kỳ liên tiếp. Chu kỳ giá thép đang hạ nhiệt, nhưng sản lượng nội địa vẫn tăng.",
-  "doanh_nghiep": "HRC Q2 1,9 triệu tấn, khoảng 70% thị phần trong nước; Q3 ước 2,15 triệu tấn (+70% cùng kỳ), Dung Quất 2 chạy ~90% công suất (RongViet). Đầu ngành tuyệt đối, có lợi thế quy mô và chi phí.",
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. Truyền dẫn riêng: đứng giữa động lực mạnh nhất Q4 là đầu tư công và xây dựng; HRC trong nước thay thế nhập khẩu đúng lúc nhập siêu là vấn đề vĩ mô lớn. Lãi huy động quay đầu giảm là thuận trực tiếp: nợ vay 98.530 tỷ cuối Q2, chi phí lãi vay quý cao kỷ lục 1.519 tỷ (Dân trí 16/10). Nghịch: thép Trung Quốc dư thừa; than cốc tăng lại khoảng 25% so đầu năm.",
+  "nganh": "Thép Việt Nam là hai ngành chạy hai tốc độ: thép dài và HRC chạy nhanh nhờ xây dựng và thuế chống bán phá giá HRC khổ rộng (nhập HRC Trung Quốc 8 tháng −63%), trong khi tôn mạ đứng yên (tiêu thụ 7 tháng −7,3%). Giá thép Q3 đi hình chữ V: Hòa Phát hạ giá HRC ba kỳ cho hàng giao tháng 7–9 rồi nâng lại cho hàng tháng 11 (14.410 đồng/kg) khi than cốc tăng (Elibook 13/10). MBS dự tiêu thụ thép nội địa 2026 +20%.",
+  "doanh_nghiep": "Đầu ngành tuyệt đối, luyện từ quặng nên chi phí thấp hơn các nhà cán mạ phải mua HRC. Q3/26 bán 3,8 triệu tấn thép (+54%), riêng HRC trên 2 triệu tấn (+64%); 9 tháng 10,3 triệu tấn (+39%), HRC 5,47 triệu tấn (+59%) (Hòa Phát công bố 12/10). Dung Quất 2 chạy khoảng 90% công suất. Thị phần HRC trong nước 40–55% tùy cách tính.",
   "mo_hinh_kd": "Luyện gang–thép tích hợp (quặng → phôi → HRC/thép xây dựng/ống/tôn). Lợi nhuận sau thuế Q1/26 8.994 tỷ, Q2/26 6.371 tỷ (+49,7% cùng kỳ); lợi nhuận 4 quý +72,8%, doanh thu 4 quý +34,3%; ROE 17,4%. Đòn bẩy tăng do đầu tư Dung Quất 2 — cần số nợ vay Q3 để đánh giá chi phí lãi khi lãi suất tăng.",
   "lanh_dao": "Con trai Chủ tịch đăng ký mua 50 triệu cổ phiếu HPG. Người nội bộ mua ở vùng giá thấp nhất 1 năm là một tín hiệu, không phải bằng chứng.",
   "chuoi_gia_tri": "Cung cấp HRC và thép xây dựng cho tôn mạ, ống thép, cơ khí, xây dựng dân dụng và hạ tầng. HRC nội địa thay thế một phần nhập khẩu từ Trung Quốc.",
@@ -38,17 +38,18 @@
   }
  ],
  "bull": [
-  "Đầu ngành, Dung Quất 2 đưa sản lượng HRC lên mức mới (+70% cùng kỳ).",
-  "P/E 7,4 lần — thấp nhất 3 năm trong dữ liệu NSI — trong khi lợi nhuận năm 2026 được dự phóng +68% (RongViet).",
-  "Cầu nội địa có hậu thuẫn: xây dựng +12%, tích lũy tài sản +21% (Q3).",
-  "Người nội bộ đăng ký mua ở vùng giá thấp nhất 1 năm."
+  "Sản lượng Q3 kỷ lục (3,8 triệu tấn, +54%) — đầu tư công và thay thế nhập khẩu HRC là thật, đo được.",
+  "P/E 8 lần so với trung vị 3 năm 15 lần trong khi lợi nhuận 4 quý +73%; PEG 0,09 so với 0,83 lúc giá ở đỉnh.",
+  "Lãi suất bắt đầu giảm: mỗi điểm % lãi vay trên gần 100.000 tỷ nợ là khoảng 1.000 tỷ chi phí/năm.",
+  "Con trai Chủ tịch đăng ký mua 50 triệu cổ phiếu (07/10–05/11) ở vùng giá thấp nhất 1 năm.",
+  "Dự báo lợi nhuận Q3 của ba công ty chứng khoán lệch nhau chỉ 9% (5.600–6.100 tỷ, +40–53%) — độ chắc của lợi nhuận cao."
  ],
  "bear": [
-  "Lợi nhuận quý đã qua đỉnh: Q3 dự báo −16% so với Q2; giá bán −7%.",
-  "Nợ vay tăng sau đầu tư Dung Quất 2, đúng lúc lãi suất tăng.",
-  "Thép phụ thuộc giá Trung Quốc; cầu Trung Quốc yếu có thể kéo giá thép xuống thêm.",
-  "Giá vẫn dưới đường trung bình 200 phiên (23,46); xu hướng trung hạn chưa đảo chiều.",
-  "Lợi nhuận theo quý đi xuống từ đỉnh Q1/26: 8.994 → 6.371 → ~5.400 tỷ (Q3 dự báo); tin tốt không còn đẩy được giá."
+  "Biên gộp Q3 dự kiến lùi khoảng 1,2 điểm % so với Q2 (VCBS ước 17,8%) vì giá bán giảm trước, than cốc tăng sau.",
+  "Lợi nhuận quý đi xuống từ đỉnh Q1/26 (8.994 tỷ có khoản chuyển nhượng dự án) → Q2 6.371 → Q3 dự báo 5.600–6.100 tỷ.",
+  "Tiền chảy ra ngoài lõi thép: góp gần 8.000 tỷ (bằng cổ phần Bất động sản Hòa Phát) vào Tập đoàn Tương lai Sông Hồng (01/10).",
+  "Thép phụ thuộc giá Trung Quốc; Trung Quốc xuất khẩu dư thừa vẫn tăng mạnh.",
+  "Vay ngắn hạn chiếm khoảng 73% nợ vay (71.433 tỷ) — nhạy với lãi suất nếu NHNN đổi hướng."
  ],
  "debate": [
   {
@@ -128,6 +129,24 @@
    "vong": 13,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 14,
+   "ben": "trong_tai",
+   "noi_dung": "Lọc lại 28/10: qua lọc, nền 30 phiên 7,5%, cách đỉnh −21%, ngành −17%. 4 điều kiện đạt cả bốn: a LN 4 quý +72,8%, cốt lõi 4 quý +50,6%, tiền từ kinh doanh 12 tháng 29.500 tỷ; b PEG 0,83 → 0,09; c lệch ngành −4 điểm %; d không tạo đáy mới."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 15,
+   "ben": "bear",
+   "noi_dung": "Hòa Phát đem gần 8.000 tỷ cổ phần bất động sản góp vào Sông Hồng: vốn đi ra ngoài lõi thép đúng lúc nợ vay cao nhất."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 16,
+   "ben": "trong_tai",
+   "noi_dung": "Khoản góp là cổ phần (không phải tiền mặt) và nằm ngoài lõi thép — ghi vào bear, theo dõi ở báo cáo Q3. Giữ CHỜ PHÉP THỬ Q3, 67 điểm → danh sách CẦN THÊM BẰNG CHỨNG (đợt thăm dò 4% NAV). Báo cáo Q3 chưa ra tại 28/10."
   }
  ],
  "phan_bien_may": {
@@ -165,11 +184,11 @@
   }
  ],
  "vo_hieu": "Vô hiệu theo sự kiện: đầu tư công cả năm hụt xa kế hoạch; biên gộp co hai quý liên tiếp vì giá HRC Trung Quốc; kết quả Q3 ra mà giá thủng đáy với lực bán lớn. Mốc cơ bản: lợi nhuận sau thuế Q3/26 ≥ +15% (K2).",
- "dinh_gia": "P/E 7,44 lần so với trung vị 3 năm 15,0; P/B 1,23 so với 1,63 (NSI, 14/10). Vùng quan sát, không phải điều kiện cần. Kỳ vọng ngầm trong giá: P/E 7,44 so với 15,0 → lợi nhuận −50%. Đáy chu kỳ thép 2022 lợi nhuận giảm ~3/4 so với 2021 (kiến thức nền, cần đối chiếu) → kỳ vọng ngầm chỉ ngang kịch bản xấu thực tế.",
- "pitch": "Hòa Phát hưởng lợi trực tiếp từ đầu tư công — động lực mạnh nhất của quý 4. Tin xấu chính là giá thép bị hàng Trung Quốc xuất khẩu giá rẻ đè xuống, và việc này vẫn đang tiếp diễn. Giá hiện ngầm giả định lợi nhuận giảm khoảng một nửa, ngang mức từng xảy ra ở đáy chu kỳ thép. Chờ kết quả quý 3: nếu lợi nhuận giảm đúng như đã dự báo mà giá vẫn giữ được, tức là tin xấu đã nằm trong giá.",
+ "dinh_gia": "P/E 8,04 lần so với trung vị 3 năm 15,0; P/B 1,32 so với 1,63 (NSI 28/10). So ngành thép trong NSI: P/E trung vị 9,7, HSG 13,4, NKG 32,4 — Hòa Phát rẻ nhất trong nhóm dù lãi tốt nhất. TCBS: P/E 9,1 và P/B 1,23 thấp hơn 73% và 93% thời gian 5 năm. Kỳ vọng ngầm: P/E 8 so với 15 → giá đang định như thể lợi nhuận giảm gần một nửa.",
+ "pitch": "Hòa Phát vừa bán lượng thép kỷ lục trong quý 3, tăng hơn một nửa so với cùng kỳ, nhờ đầu tư công và nhà máy Dung Quất 2 thay hàng nhập khẩu. Giá cổ phiếu vẫn ở vùng thấp nhất một năm, chỉ khoảng 8 năm lợi nhuận, như thể lợi nhuận sắp giảm một nửa. Lãi suất bắt đầu hạ sẽ giảm gánh nặng gần 100.000 tỷ nợ vay. Chờ báo cáo quý 3: lợi nhuận ra trong dải dự báo mà giá không tạo đáy mới thì tăng tỷ trọng.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; lọc lại 28/10/2026 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
   "khau": {
    "quoc_te": 4,
    "vi_mo_vn": 13,
@@ -193,16 +212,16 @@
    "ket_luan": "PHẢN ÁNH MỘT PHẦN",
    "tin_xau": "Giá thép giảm vì Trung Quốc xuất khẩu dư thừa; lợi nhuận quý đi xuống từ đỉnh Q1.",
    "co_that_su_xau": "Chu kỳ, nguồn còn chạy: Trung Quốc xuất khẩu tháng 9 +36,3%, cầu nội địa Trung Quốc yếu.",
-   "trang_thai": "Q3 giảm ~16% so với Q2 đã được dự báo (RongViet).",
+   "trang_thai": "Tin xấu đã có kích thước và có ngày: Q3 giảm so với Q2 đã được dự báo công khai, giá thấp nhất 52 tuần 20,05 (02/10) rồi hồi; nguồn tin xấu (thép Trung Quốc) vẫn chạy nhưng thuế chống bán phá giá đã che thị trường HRC nội.",
    "ky_vong_ngam": "P/E 7,44 so với 15,0 → lợi nhuận −50%. Đáy chu kỳ thép 2022 lợi nhuận giảm ~3/4 so với 2021 (kiến thức nền, cần đối chiếu) → kỳ vọng ngầm chỉ ngang kịch bản xấu thực tế.",
-   "nguoi_ban_can_bien": "Nhà đầu tư bán theo lợi nhuận quý; nội bộ đang mua (đăng ký 50 triệu cp).",
-   "counter": "Chu kỳ thép chưa đáy nên giá còn giảm. Response: đứng nếu lợi nhuận Q3 thấp hơn dự báo; luận điểm đầu tư công chỉ cứu được khi giá thép ngừng giảm.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân (từng hơn 300.000 cổ đông) bán theo lợi nhuận quý giảm và thanh khoản thấp; khối ngoại có lúc gom ròng HPG (Dân trí); người nhà lãnh đạo đăng ký mua.",
+   "counter": "Chu kỳ giá thép chưa đáy nên giá còn giảm. Trả lời: đứng nếu Q3 thấp hơn dải dự báo hoặc biên gộp dưới 16%; sản lượng HRC tăng 64% cho thấy cầu không phải vấn đề.",
    "phep_thu": "Kết quả Q3: ra đúng mức giảm đã biết mà giá không tạo đáy mới → xác nhận."
   },
   "ket_luan": "CHỜ PHÉP THỬ Q3",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
-  "ngay": "2026-10-15"
+  "ngay": "2026-10-28"
  },
  "muc_tieu": [
   {
@@ -223,5 +242,6 @@
    "han_phien": 500,
    "mo_ta": "chạm thì sổ giả lập bán thêm 1/3"
   }
- ]
+ ],
+ "quy_bctc": "Q2/26"
 }

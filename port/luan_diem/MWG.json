@@ -1,17 +1,17 @@
 {
  "ky_han": "6-24 tháng",
  "ngay_mo": "2026-10-14",
- "cap_nhat": "2026-10-22",
+ "cap_nhat": "2026-10-28",
  "bai_hoc": "",
  "ma": "MWG",
  "trang_thai": "trong_port",
  "chieu": "tang",
  "ngay_vao": "2026-10-14",
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: tiêu dùng cuối cùng Q3 +8,96%, bán lẻ thực +7,8%, tín dụng tiêu dùng +21,75% yoy; nghịch: CPI 5,08% và lãi suất trả góp.",
-  "nganh": "Nhóm bán lẻ công nghệ thông tin–viễn thông có thể vượt dự báo Q3. Biên lợi nhuận điện máy, công nghệ thông tin cải thiện; cửa hàng hiện hữu tăng hai chữ số. Ngành đang ở pha hồi phục biên lợi nhuận sau giai đoạn đóng cửa hàng.",
-  "doanh_nghiep": "Chuỗi bán lẻ điện thoại–điện máy lớn nhất và chuỗi bách hóa Bách Hóa Xanh. ROE 29,2%, lợi nhuận sau thuế Q2/26 3.302 tỷ (+100,4% cùng kỳ), lợi nhuận 4 quý +103,6%.",
-  "mo_hinh_kd": "Bán lẻ quay vòng hàng tồn kho nhanh; TGDĐ+ĐMX ~65% doanh thu, Bách Hóa Xanh ~30% (ĐHCĐ 18/04). Tiền dư gửi ngân hàng, nên lãi suất tăng làm thu nhập tài chính tăng bù chi phí vay (theo ban lãnh đạo).",
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. Truyền dẫn riêng: tiêu dùng nội địa tăng cùng GDP; bán lẻ hàng hóa 8 tháng +13,3%, trừ lạm phát còn khoảng +7,6% (MBS) — sức mua tăng nhưng không bùng nổ. Lãi huy động bắt đầu giảm là thuận cho mua trả góp (38% doanh thu điện máy). Nghịch: lạm phát trên 4,5% ăn vào sức mua; giá chip, RAM tăng làm giá điện thoại, máy tính tăng.",
+  "nganh": "Bán lẻ hiện đại đang lấy thị phần từ chợ và cửa hàng nhỏ. Nhóm điện máy–điện thoại ở pha hồi phục biên lợi nhuận sau giai đoạn đóng bớt cửa hàng 2023–2024: tăng trưởng 2026 đến từ cửa hàng hiện hữu, không phải mở mới. Bách hóa và thực phẩm tươi là thị trường lớn nhất của bán lẻ, chuỗi hiện đại mới chiếm phần nhỏ nên dư địa còn dài, nhưng biên lợi nhuận mỏng (khoảng 3% lợi nhuận ròng ở Bách Hóa Xanh). Đối thủ trực tiếp: FPT Retail, Digiworld (phân phối), WinMart (Masan).",
+  "doanh_nghiep": "Chuỗi điện thoại–điện máy lớn nhất Việt Nam và chuỗi bách hóa có nhiều điểm bán nhất (3.904 cửa hàng Bách Hóa Xanh cuối tháng 9). Q3/26 doanh thu 52.614 tỷ (+32%), biên lãi gộp 21,7% (cùng kỳ 18,8%), lợi nhuận sau thuế 3.521 tỷ (+97%), quý cao nhất lịch sử; 9 tháng 9.634 tỷ, vượt kế hoạch cả năm 9.200 tỷ (VnExpress). ROE 29%. Chuỗi điện máy: cửa hàng hiện hữu +30%, trả chậm +50% và chiếm 38% doanh thu; iPhone +50%, Android +29%, laptop +24% trong Q3 (Bovagau).",
+  "mo_hinh_kd": "Tiền đến từ ba chỗ. (1) Chuỗi Thế Giới Di Động + Điện Máy Xanh (khoảng 67% doanh thu 9 tháng): bán điện thoại, điện máy, ăn biên gộp và phí trả góp chia lại từ công ty tài chính. (2) Bách Hóa Xanh (31%): bán thực phẩm tươi và hàng tiêu dùng, biên gộp cao hơn nhưng chi phí cửa hàng và kho vận lớn. (3) Thu nhập tài chính: hơn 53.000 tỷ tiền gửi và trái phiếu nắm giữ, mang về 2.614 tỷ lãi trong 9 tháng (+77%) — lãi suất cao lại có lợi cho MWG. Vốn lưu động lớn: tồn kho 35.829 tỷ (+29% so đầu năm), dòng tiền kinh doanh 9 tháng chỉ 3.044 tỷ, giảm hơn một nửa — lợi nhuận đang nằm trong hàng tồn.",
   "lanh_dao": "Kế hoạch doanh thu 185.000 tỷ (+19%), lợi nhuận sau thuế 9.200 tỷ (+30%); cổ tức tiền 2.000 đ/cp; Bách Hóa Xanh đặt mục tiêu IPO 2028. ESOP bị cắt từ 1% xuống 0,5% vì cổ phiếu không vượt VN-Index — ban lãnh đạo tự chịu kỷ luật theo giá.",
   "chuoi_gia_tri": "Khâu phân phối cuối cùng của điện thoại, điện máy và hàng tiêu dùng nhanh; là kênh bán lớn của các hãng điện tử và nhà sản xuất FMCG.",
   "dan_nguoc_vi_mo": "Kênh bán lẻ hiện đại chính thức hóa tiêu dùng, tăng thu thuế; Bách Hóa Xanh kéo một phần chợ truyền thống lên chuỗi, tạo việc làm."
@@ -46,17 +46,18 @@
   }
  ],
  "bull": [
-  "Lợi nhuận đang tăng nhanh nhất trong nhóm vốn hóa lớn; ROE 29%.",
-  "P/E bằng một nửa trung vị 3 năm.",
-  "Tiêu dùng nội địa tăng cùng GDP 9–10%.",
-  "Cổ tức tiền 2.000 đ/cp, lớn nhất lịch sử — tín hiệu dòng tiền thật."
+  "Q3 xác nhận luận điểm tăng trưởng: lợi nhuận +97%, biên gộp lên 21,7%, 9 tháng đã vượt kế hoạch năm.",
+  "P/E 11 lần so với mức thường thấy 3 năm 23 lần, trong khi lợi nhuận 4 quý tăng hơn gấp đôi (PEG 0,11).",
+  "Cửa hàng Bách Hóa Xanh mở mới năm 2026 có lãi ở cấp cửa hàng sau khấu hao và kho vận (MWG công bố).",
+  "Hơn 53.000 tỷ tiền gửi, trái phiếu: lãi suất cao mang thêm thu nhập, không phải gánh nặng.",
+  "Lãi huy động bắt đầu giảm từ 19/10 — thuận cho mua trả góp, kênh chiếm 38% doanh thu điện máy."
  ],
  "bear": [
-  "CPI 4,5% và lãi suất tăng có thể làm chậm mua sắm điện máy trả góp.",
-  "Tăng trưởng 100% có nền thấp; từ 2027 tăng trưởng sẽ chậm lại tự nhiên.",
-  "Bách Hóa Xanh cạnh tranh gay gắt, IPO 2028 còn xa.",
-  "Giá vẫn dưới đường trung bình 200 phiên (79,9).",
-  "Chu kỳ điện máy: cửa hàng hiện hữu +30% (8T/2026) là nền cao cho 2027; trả chậm 38% doanh thu khi lãi suất tăng."
+  "Dòng tiền kinh doanh 9 tháng chỉ 3.044 tỷ (giảm hơn một nửa) và tồn kho tăng 7.953 tỷ: lợi nhuận chưa thành tiền.",
+  "Bách Hóa Xanh mở 713 cửa hàng trong một quý, doanh thu bình quân mỗi cửa hàng khoảng 1,5 tỷ/tháng, thấp hơn mức kỳ vọng 1,6 tỷ.",
+  "Cửa hàng hiện hữu điện máy +30% là nền rất cao cho 2027; một phần nhu cầu laptop, điện thoại là mua sớm vì giá chip tăng.",
+  "Lạm phát trên 4,5% và lãi cho vay tiêu dùng cao ăn vào sức mua điện máy trả góp.",
+  "Chi phí bán hàng Q3 tăng hơn 50% — nhanh hơn doanh thu; nếu doanh thu chậm lại, đòn bẩy chi phí quay ngược."
  ],
  "debate": [
   {
@@ -142,6 +143,30 @@
    "vong": 14,
    "ben": "anh_son",
    "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 15,
+   "ben": "trong_tai",
+   "noi_dung": "Lọc lại 28/10 (nền thấp + nền chặt): qua lọc, nền 30 phiên 8,7%, cách đỉnh 1 năm −17%, ngành −14%. 4 điều kiện: a LN 4 quý +103,6%, lợi nhuận kinh doanh cốt lõi 4 quý +110%, tiền từ kinh doanh 12 tháng 5.739 tỷ — đạt; b PEG 0,27 lúc đỉnh → 0,11 — đạt; c rơi theo ngành (lệch −2 điểm %) — đạt; d không tạo đáy mới — đạt."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 16,
+   "ben": "trong_tai",
+   "noi_dung": "Q3/26 ra 3.521 tỷ (+97%) → K2 (≥ +30%) và K3 (doanh thu ≥ +15%, thực tế +32%) đều đạt. Bổ sung thẻ catalyst vì Bách Hóa Xanh mở rộng phải chi trước; thêm K4 cho Q4/26."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 17,
+   "ben": "bear",
+   "noi_dung": "Dòng tiền kinh doanh 9 tháng giảm hơn một nửa, tồn kho +29%: nếu Q4 không bán ra được, lợi nhuận Q3 là lợi nhuận trên giấy. Bách Hóa Xanh mở 713 cửa hàng/quý mà doanh thu mỗi cửa hàng giảm."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 18,
+   "ben": "trong_tai",
+   "noi_dung": "Kết luận giữ ĐỦ ĐỂ XUỐNG TIỀN, 72 điểm (đủ khung, qua 4 điều kiện) → danh sách GIẢI NGÂN, tỷ trọng 12% NAV theo 40/30/30. Rủi ro dòng tiền ghi vào thẻ catalyst và K4 thay vì hạ điểm, vì tồn kho tăng trước mùa cuối năm là mùa vụ quen thuộc của MWG."
   }
  ],
  "phan_bien_may": {
@@ -176,14 +201,23 @@
    "so_sanh": ">=",
    "nguong": 15,
    "noi_dung": "Doanh thu Q3/26 tăng ≥ 15% cùng kỳ — proxy cho chuỗi điện máy; cửa hàng hiện hữu điện máy tăng hai chữ số kiểm tay từ báo cáo tháng của MWG."
+  },
+  {
+   "id": "K4",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 25,
+   "noi_dung": "Lợi nhuận sau thuế Q4/26 tăng ≥ 25% so với cùng kỳ (Q4/25 2.069 tỷ, NSI) — tăng trưởng không gãy sau quý kỷ lục."
   }
  ],
  "vo_hieu": "Vô hiệu theo sự kiện: Ngân hàng Nhà nước siết tín dụng tiêu dùng hoặc lãi suất cho vay tiêu dùng tăng mạnh; doanh thu cửa hàng hiện hữu điện máy âm hai tháng liên tiếp. Mốc cơ bản: lợi nhuận sau thuế Q3/26 ≥ +30% (K2). Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
- "dinh_gia": "P/E 11,23 lần so với trung vị 3 năm 23,18; P/B 3,09 so với 3,36 (NSI, 14/10). Vùng quan sát. Kỳ vọng ngầm trong giá: P/E 11,2 so với 23,2 không đọc được (trung vị bị đẩy lên bởi năm lợi nhuận đáy); P/B 3,09 so với 3,36 (≈ 0,92) → chiết khấu nhẹ.",
- "pitch": "Thế Giới Di Động là luận điểm tăng trưởng, không phải mua vì rẻ: lợi nhuận quý 2/2026 gấp đôi cùng kỳ nhờ chuỗi điện máy lấy lại biên lợi nhuận, trong khi tiêu dùng trong nước tăng theo kinh tế (GDP gần 10%) và tín dụng tiêu dùng. Giá chỉ thấp hơn mức thường thấy một chút, nên lợi nhuận phải tiếp tục tăng thì giá mới đi lên. Luận điểm sai nếu doanh thu của các cửa hàng điện máy hiện có chuyển sang giảm.",
+ "dinh_gia": "P/E 11,25 lần so với trung vị 3 năm 23,18; P/B 3,10 so với 3,36 (NSI 28/10). So ngành bán lẻ (4 mã trong NSI): P/E trung vị 15,4, FRT 22,9, DGW 11,2. PEG hiện tại 0,11 so với 0,27 lúc giá ở đỉnh 02/2026 — tăng trưởng không chậm lại mà giá rẻ đi. Trung vị P/E 3 năm bị đẩy lên bởi năm lợi nhuận đáy 2023–2024 nên chỉ dùng để quan sát.",
+ "pitch": "Thế Giới Di Động vừa báo quý 3 lãi cao nhất lịch sử, gần gấp đôi cùng kỳ, và 9 tháng đã vượt kế hoạch cả năm. Động cơ là chuỗi điện máy bán được nhiều hơn trên chính các cửa hàng cũ, cộng với Bách Hóa Xanh mở rộng mà cửa hàng mới vẫn có lãi. Giá cổ phiếu chỉ bằng khoảng 11 năm lợi nhuận, thấp hơn nhiều mức thường thấy. Điều cần theo dõi là tiền mặt: lợi nhuận tăng nhưng hàng tồn kho tăng nhanh hơn, nên báo cáo quý 4 phải cho thấy tiền thu về theo kịp.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; lọc lại 28/10/2026 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
   "khau": {
    "quoc_te": 5,
    "vi_mo_vn": 11,
@@ -207,16 +241,16 @@
    "ket_luan": "KHÔNG PHẢI CA TIN XẤU — luận điểm tăng trưởng",
    "tin_xau": "Chu kỳ điện máy đã đỉnh (nền cao 2027); lạm phát 5% ăn sức mua; trả chậm khi lãi suất tăng.",
    "co_that_su_xau": "Nỗi sợ về tương lai, chưa có số xác nhận (lợi nhuận Q2 +100%, cửa hàng hiện hữu +30%).",
-   "trang_thai": "Chưa xảy ra.",
+   "trang_thai": "Q3 đã ra và xác nhận chiều tăng trưởng (lợi nhuận +97%); tin xấu về chu kỳ điện máy chưa xảy ra, chỉ còn là nỗi lo cho năm 2027; tin xấu mới thật là dòng tiền và tồn kho, đã nằm trên báo cáo Q3.",
    "ky_vong_ngam": "P/E 11,2 so với 23,2 không đọc được (trung vị bị đẩy lên bởi năm lợi nhuận đáy); P/B 3,09 so với 3,36 (≈ 0,92) → chiết khấu nhẹ.",
-   "nguoi_ban_can_bien": "Không rõ nhóm bán bắt buộc.",
-   "counter": "Lợi nhuận gấp đôi nhờ nền thấp, P/E 11 có thể đã đúng. Response: đúng nếu bán lẻ thực chậm rõ; chưa có số nào cho thấy.",
-   "phep_thu": "Kết quả Q3 (K2 ≥ +30%) và CPI tháng 10 — phép thử luận điểm tăng trưởng, không phải phép thử tin xấu."
+   "nguoi_ban_can_bien": "Quỹ ngoại và nhà đầu tư bán theo nhóm khi đô la mạnh; không có nhóm bán bắt buộc (ký quỹ, thoái vốn) nào.",
+   "counter": "Lợi nhuận gấp đôi nhờ nền thấp, P/E 11 đã đúng với tăng trưởng 15–20% từ 2027. Trả lời: đúng nếu cửa hàng hiện hữu điện máy chuyển âm; Q3 vẫn tăng 25% ở chuỗi này nên counter chưa đứng.",
+   "phep_thu": "Báo cáo Q4/26: dòng tiền kinh doanh cả năm và doanh thu mỗi cửa hàng Bách Hóa Xanh — phép thử của catalyst, không phải phép thử tin xấu."
   },
   "ket_luan": "ĐỦ ĐỂ XUỐNG TIỀN",
   "cham_boi": "claude",
   "duyet": "anh Sơn duyệt 15/10/2026 21:07",
-  "ngay": "2026-10-15"
+  "ngay": "2026-10-28"
  },
  "muc_tieu": [
   {
@@ -237,5 +271,30 @@
    "han_phien": 500,
    "mo_ta": "chạm thì sổ giả lập bán thêm 1/3"
   }
- ]
+ ],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": true,
+ "the_catalyst": {
+  "catalyst": "Bách Hóa Xanh mở rộng nhanh ra miền Bắc và miền Trung (713 cửa hàng mới trong Q3, 3.904 cửa hàng cuối tháng 9) trên nền chuỗi điện máy đang lấy thị phần bằng cửa hàng hiện hữu.",
+  "chi_truoc": "Mỗi cửa hàng mới phải trả trước tiền thuê, sửa sang, thiết bị, hàng tồn đầu kỳ và chi phí kho vận vùng mới trước khi có doanh thu ổn định. Dấu vết trên báo cáo: chi phí bán hàng Q3 6.887 tỷ (+50%), tồn kho 35.829 tỷ (+7.953 tỷ so đầu năm), dòng tiền kinh doanh 9 tháng 3.044 tỷ (giảm hơn một nửa).",
+  "hoa_von": "MWG công bố cửa hàng mở mới năm 2026 đã có lãi hoạt động ở cấp cửa hàng sau khấu hao và kho vận, tức hòa vốn ngay trong năm mở. MWG chưa công bố ngưỡng doanh thu hòa vốn mỗi cửa hàng; ước tính ngoài (Bovagau) cho thấy doanh thu bình quân Q3 khoảng 1,5 tỷ/cửa hàng/tháng và biên lợi nhuận ròng chuỗi khoảng 3,3–3,5% — cần số chính thức ở báo cáo quý 4.",
+  "dieu_kien_can": "Doanh thu bình quân mỗi cửa hàng Bách Hóa Xanh không giảm tiếp khi mở thêm, và chi phí kho vận cho miền Bắc, miền Trung không làm biên lợi nhuận ròng của chuỗi rơi dưới khoảng 3%.",
+  "dieu_kien_du": "Lợi nhuận Bách Hóa Xanh tăng theo số cửa hàng (lãnh đạo nói cả năm khoảng 1.800 tỷ) đồng thời dòng tiền kinh doanh cả năm 2026 phục hồi khi tồn kho mùa cuối năm bán ra; chuỗi điện máy giữ cửa hàng hiện hữu tăng dương.",
+  "khi_nao_tien_ve": "Lần mở rộng trước, Bách Hóa Xanh lỗ kéo dài, phải đóng bớt và tái cấu trúc cửa hàng (2022–2023) và mất khoảng hai năm mới có lãi ở cấp chuỗi (2024). Lần này cửa hàng mới có lãi ở cấp cửa hàng ngay năm mở, nên tiền về nhanh hơn nhiều; phép thử là lợi nhuận và dòng tiền Q4/26 đến Q2/27.",
+  "moc_quy": [
+   {
+    "quy": "Q4/26",
+    "moc": "Doanh thu bình quân mỗi cửa hàng Bách Hóa Xanh từ 1,5 tỷ/tháng trở lên; dòng tiền kinh doanh cả năm lớn hơn rõ mức 9 tháng (3.044 tỷ)."
+   },
+   {
+    "quy": "Q1/27",
+    "moc": "Lợi nhuận Bách Hóa Xanh tăng so với cùng kỳ tương xứng số cửa hàng; cửa hàng hiện hữu điện máy còn tăng dương trên nền cao."
+   },
+   {
+    "quy": "Q2/27",
+    "moc": "Tồn kho so với doanh thu về lại mức đầu năm 2026."
+   }
+  ],
+  "phan_bien": "Mở 700 cửa hàng một quý là con dao hai lưỡi: cửa hàng mới nhỏ hơn, doanh thu mỗi cửa hàng giảm, và biên lợi nhuận ròng 3% của bách hóa biến mất rất nhanh nếu tiền thuê, lương hay kho vận tăng. Trong khi đó động cơ lợi nhuận thật vẫn là chuỗi điện máy, mà mức tăng 30% năm nay khó lặp lại năm 2027."
+ }
 }

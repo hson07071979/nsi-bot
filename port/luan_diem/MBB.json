@@ -1,0 +1,138 @@
+{
+ "ma": "MBB",
+ "trang_thai": "nghien_cuu",
+ "chieu": "tang",
+ "ky_han": "6-24 tháng, cập nhật theo quý",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": "2026-10-28",
+ "cap_nhat": "2026-10-28",
+ "bai_hoc": "",
+ "dieu_kien_vao": [],
+ "phan_bien_may": {
+  "bot": {
+   "ngay": "2026-10-28",
+   "noi_dung": "MBB từng tăng mạnh trong phiên quét 21/08 (+1,94%) nhưng không có tín hiệu mua của bot gần đây; khác khung thời gian."
+  },
+  "tin": {
+   "ngay": "2026-10-28",
+   "noi_dung": "NSI Tin âm ở cấp ngành ngân hàng (khối ngoại bán, lãi suất) — port đồng ý áp lực ngắn hạn, khác ở khung 6–24 tháng."
+  },
+  "daily": {
+   "ngay": "2026-10-28",
+   "noi_dung": "Daily chưa có dòng dự báo mở cho MBB."
+  }
+ },
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Ứng viên lọc 28/10: nền 30 phiên 8,7% (thứ 9 về độ chặt), cách đỉnh −15%, ngành −15%. 4 điều kiện đạt cả bốn: a LN 4 quý +22,7%, cốt lõi +38,3%; b PEG 0,72 → 0,26; c rơi đúng bằng ngành; d không tạo đáy mới."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Không có giá sai: P/E ngang lịch sử. Mua MBB là mua tăng trưởng ngân hàng, không phải mua giá trị bị bỏ quên."
+  },
+  {
+   "ngay": "2026-10-28",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Đồng ý. Kết luận CHỜ PHÉP THỬ Q3, 63 điểm → CẦN THÊM BẰNG CHỨNG (4% NAV). Lý do vẫn giữ trong danh sách: chu kỳ lãi suất vừa đổi chiều có lợi cho ngân hàng có biên cao và tăng trưởng nhanh, và P/E so với ngành thấp hơn 20%."
+  }
+ ],
+ "quy_bctc": "Q2/26",
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. Truyền dẫn riêng: ngân hàng tăng tín dụng nhanh nhất nhóm lớn nên hưởng nhiều nhất từ GDP gần 10% và đầu tư công, nhưng cũng chịu đầu tiên khi hạn mức tín dụng năm gần hết. Lãi huy động giảm từ cuối tháng 10 là thuận: chi phí vốn của MBB đã tăng từ 3,17% (Q3/25) lên 3,82% (Q2/26) theo dữ liệu NSI.",
+  "nganh": "Như CTG: lợi nhuận ngân hàng 9 tháng tăng hai chữ số ở nhóm lớn, phân hóa ở nhóm nhỏ; tín dụng nhanh hơn huy động; nợ xấu tăng có độ trễ. Ngân hàng tư nhân lớn có biên lãi ròng cao hơn quốc doanh nhưng chi phí vốn nhạy hơn với lãi suất thị trường.",
+  "doanh_nghiep": "Ngân hàng tư nhân lớn, nền khách hàng quân đội và Viettel, mạnh về ngân hàng số. Q2/26 lợi nhuận trước thuế 10.560 tỷ (+41%), thu nhập lãi thuần 16.894 tỷ (+37%); tín dụng 6 tháng +13,2% so với toàn hệ thống +8,5% (Vietcap). NSI Q2: biên lãi ròng 3,9%, tiền gửi không kỳ hạn 34,6%, nợ xấu 1,45%, bao phủ 94%, ROE 20,7%. Đang vận hành ngân hàng nhận chuyển giao bắt buộc MBV (OceanBank cũ).",
+  "mo_hinh_kd": "Huy động giá rẻ qua tài khoản thanh toán (34,6% tiền gửi không kỳ hạn, thuộc top 2 ngành), cho vay doanh nghiệp và cá nhân, bán bảo hiểm, chứng khoán, tài chính tiêu dùng qua công ty con. Tăng trưởng bằng quy mô (tín dụng nhanh) nên cần vốn: vốn chủ/tổng tài sản khoảng 9%.",
+  "lanh_dao": "Cổ đông lớn là Viettel và các doanh nghiệp quân đội (kiến thức nền, cần đối chiếu tỷ lệ). Ban lãnh đạo nói tự tin hoàn thành kế hoạch 2026 và giữ tỷ trọng dư nợ bất động sản khoảng 15% (Elibook 09/08). Lịch sử thực thi kế hoạch tốt nhiều năm (kiến thức nền).",
+  "chuoi_gia_tri": "Dẫn vốn cho doanh nghiệp quân đội, hạ tầng và khách hàng cá nhân qua app số; kênh thanh toán cho hệ sinh thái Viettel.",
+  "dan_nguoc_vi_mo": "Tín dụng tăng nhanh nuôi tăng trưởng GDP; ngược lại khi tín dụng tăng nhanh hơn huy động, MBB góp phần đẩy lãi suất huy động toàn thị trường lên."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "MBB rẻ so với ngành và so với tăng trưởng của chính nó (P/E 6,5 khi lợi nhuận Q2 +40%), nhưng không rẻ so với lịch sử của chính nó (P/E thường thấy 6,4).",
+   "bang_chung": [
+    "NSI 28/10: P/E 6,51 / trung vị 3 năm 6,43; P/B 1,35 / 1,38",
+    "Ngành ngân hàng P/E trung vị 8,2"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "HYPOTHESIS",
+   "noi_dung": "Chi phí vốn đã đỉnh khi NHNN chỉ đạo giảm lãi huy động; biên lãi ròng Q4 không co thêm.",
+   "bang_chung": [
+    "24 ngân hàng hạ lãi 12 tháng đến 21/10 (Thời báo Tài chính)"
+   ]
+  }
+ ],
+ "bull": [
+  "Lợi nhuận trước thuế Q2 +41%, cốt lõi 4 quý +38%: tăng nhanh nhất nhóm ngân hàng quốc doanh và tư nhân lớn.",
+  "Biên lãi ròng 3,9%, cao hơn hẳn VCB (2,75%) và CTG (2,69%).",
+  "P/E 6,5 so với ngành 8,2 khi ROE 20,7% — PEG khoảng 0,26.",
+  "Lãi huy động bắt đầu giảm: chi phí vốn tăng 0,65 điểm % trong một năm có thể quay đầu.",
+  "Tiền gửi không kỳ hạn 34,6% vẫn thuộc nhóm cao nhất ngành."
+ ],
+ "bear": [
+  "Không rẻ so với chính nó: P/E và P/B đều ngang trung vị 3 năm.",
+  "Tín dụng tăng nhanh thì nợ xấu đến sau: bao phủ nợ xấu chỉ 94%, mỏng hơn nhiều VCB (279%), CTG (134%).",
+  "Tỷ lệ cho vay/huy động cao và tiền gửi không kỳ hạn giảm từ 37,8% (Q4/25) còn 34,6% (Q2/26).",
+  "Hạn mức tín dụng năm gần hết — Q4 tăng quy mô chậm lại.",
+  "Phải gánh MBV (ngân hàng yếu nhận chuyển giao) — chi phí và rủi ro tài sản cũ."
+ ],
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 20,
+   "noi_dung": "Lợi nhuận sau thuế Q3/26 tăng ≥ 20% so với cùng kỳ (Q3/25 5.571 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu theo sự kiện: nợ xấu vượt 1,8% hoặc bao phủ dưới 80%; NHNN siết hạn mức tín dụng 2027 với nhóm tăng nhanh; chi phí vốn tiếp tục tăng dù thị trường đã hạ lãi. Mốc cơ bản: K1. Kỷ luật danh mục: bán hết khi đóng cửa dưới giá vốn bình quân −15%.",
+ "dinh_gia": "P/E 6,51 so với trung vị 3 năm 6,43; P/B 1,35 so với 1,38 (NSI 28/10). Ngành ngân hàng (22 mã): P/E 8,2, P/B 1,25; nhóm cùng tầm: TCB 8,7, VPB 7,4, HDB 7,1, CTG 6,2. Kỳ vọng ngầm: giá đang định MBB đúng mức thường thấy — không có chiết khấu so với chính nó; phần rẻ chỉ nằm ở tăng trưởng (PEG 0,26).",
+ "pitch": "MB là ngân hàng tăng lợi nhuận nhanh nhất nhóm lớn, quý 2 lãi trước thuế tăng 41%, và có biên lãi cao nhờ nhiều tiền gửi không kỳ hạn. Giá cổ phiếu giảm 15% từ đỉnh cùng cả ngành ngân hàng, đang bằng khoảng 6,5 năm lợi nhuận — mức thường thấy của chính MB nhưng thấp hơn ngành. Rủi ro là tăng cho vay nhanh thì nợ xấu đến sau, và quỹ dự phòng của MB mỏng. Chờ báo cáo quý 3: lợi nhuận còn tăng trên 20% và nợ xấu không vọt lên thì mới tăng tỷ trọng.",
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; lọc lại 28/10/2026 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 4,
+   "vi_mo_vn": 12,
+   "nganh": 9,
+   "doanh_nghiep": 12,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 6,
+   "kqkd": 9,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 42,
+  "so_30": 21,
+  "tong": 63,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "a_ban_chat": 2,
+   "b_trang_thai": 2,
+   "c_ky_vong_ngam": 1,
+   "ket_luan": "PHẢN ÁNH GẦN HẾT — giá không sai so với chính nó",
+   "tin_xau": "Lãi suất huy động tăng ép biên; nợ xấu có độ trễ sau giai đoạn tín dụng tăng nhanh; vốn ngoại bán ngân hàng.",
+   "co_that_su_xau": "Một phần thật: chi phí vốn tăng 0,65 điểm % trong một năm, bao phủ nợ xấu dưới 100%. Phần dòng tiền ngoại là yếu tố ngoài doanh nghiệp.",
+   "trang_thai": "Lãi huy động vừa quay đầu giảm (19–26/10) → một tin xấu đã đổi chiều; nợ xấu chưa có số Q3.",
+   "ky_vong_ngam": "P/E 6,5 đúng bằng mức thường thấy 6,4 → giá không tính một kịch bản xấu nào riêng cho MBB; chỉ rẻ khi đặt cạnh tăng trưởng.",
+   "nguoi_ban_can_bien": "Quỹ ngoại và nhà đầu tư bán theo rổ ngân hàng.",
+   "counter": "Ngân hàng tăng tín dụng nhanh nhất luôn được định giá thấp hơn vì rủi ro tài sản. Trả lời: đúng; vì vậy MBB chỉ được đợt thăm dò cho tới khi nợ xấu Q3 xác nhận.",
+   "phep_thu": "BCTC Q3: lợi nhuận ≥ +20% (K1) và nợ xấu không vượt 1,6% → xác nhận."
+  },
+  "ket_luan": "CHỜ PHÉP THỬ Q3",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28",
+  "ghi_chu": "Khâu 5 yếu nhất trong danh sách: lợi thế đến từ tăng trưởng và vị trí lãi suất, không đến từ giá sai."
+ }
+}

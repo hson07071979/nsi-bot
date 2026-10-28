@@ -1,0 +1,41 @@
+{
+ "ma": "VAB",
+ "trang_thai": "loai",
+ "chieu": "trung_lap",
+ "ky_han": "—",
+ "ngay_mo": "2026-10-28",
+ "ngay_vao": null,
+ "cap_nhat": "2026-10-28",
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. ",
+  "nganh": "Ngân hàng nhỏ, cạnh tranh huy động khốc liệt khi lãi suất cao.",
+  "doanh_nghiep": "VietABank, vốn hóa khoảng 8.100 tỷ, ROE 13,7%.",
+  "mo_hinh_kd": "—",
+  "lanh_dao": "—",
+  "chuoi_gia_tri": "—",
+  "dan_nguoc_vi_mo": "—"
+ },
+ "luan_diem": [],
+ "bull": [],
+ "bear": [],
+ "debate": [
+  {
+   "ngay": "2026-10-28",
+   "vong": 1,
+   "ben": "trong_tai",
+   "noi_dung": "Ứng viên 28/10 (nền chặt nhất: 3%). Code đo đạt 4/4 điều kiện, nhưng đọc BCTC sâu: Q3/26 phần kinh doanh cốt lõi (thu lãi + phí − chi phí) giảm 30%, thu nhập lãi thuần giảm 104 tỷ; lợi nhuận Q3 +10% chỉ nhờ hoàn nhập dự phòng (−17 tỷ so với 162 tỷ cùng kỳ). Q2 lợi nhuận −9,6%. Tăng trưởng 4 quý +42% đến từ một quý Q4/25 bất thường. P/B 0,76 cao hơn trung vị 3 năm của chính nó 0,65 — không rẻ so với chính nó. Tăng trưởng đang chậm lại → LOẠI kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [],
+ "vo_hieu": "—",
+ "dinh_gia": "—",
+ "pitch": "—",
+ "dieu_kien_vao": [],
+ "bai_hoc": "Điều kiện b đo bằng PEG trên LN sau thuế có thể bị một quý bất thường đánh lừa; đọc cốt lõi từng quý.",
+ "pitch_diem": {
+  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-28"
+ }
+}
