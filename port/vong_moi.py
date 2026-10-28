@@ -228,7 +228,8 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
     # ------------------------------------------------ 3e. hồ sơ doanh nghiệp, vĩ mô thuận/nghịch hôm nay, vòng học độ nhạy
     ma_port = [x['ma'] for k in ('giai_ngan', 'can_them', 'giu_khong_mua') for x in ds.get(k) or []]
     ho_so = HS.chay(root, state, B if pg else None, asof, vi_the=set((so.get('vi_the') or {}).keys()),
-                    gui=NH.gui if gui_chuong else None, ma_port=ma_port)
+                    gui=NH.gui if gui_chuong else None, ma_port=ma_port,
+                    kl=_khoi_luong(B, pg) if pg else None)
     # ------------------------------------------------ 4. nhắc review
     st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
     wj(state / 'nhac.json', st)

@@ -81,3 +81,20 @@ def test_chay_co_lat_nghich(tmp_path):
     assert r['co'] and 'HPG lật sang NGHỊCH' in gui[0]
     r = HS.chay(root, state, None, '2026-10-29', vi_the={'HPG'}, gui=lambda a, b: gui.append(b))
     assert not r['co'] and len(gui) == 1                                  # đã NGHỊCH từ hôm qua → không chuông lại
+
+
+def test_thanh_khoan_tu_tinh_tu_gia_va_khoi_luong():
+    import numpy as np
+    n = 400
+    lich = [f'd{i:04d}' for i in range(n)]
+    rng = np.random.default_rng(1)
+    vol = np.full(n, 1e6) * (1 + 0.1 * rng.standard_normal(n))
+    vol[-20:] *= 2.0                                   # 20 phiên cuối khối lượng gấp đôi → tăng rõ
+    B = type('B', (), dict(lich=lich, c={'AAA': np.full(n, 10000.0)}))()
+    r = HS.thanh_khoan(B, {'AAA': vol})
+    assert r['xu_huong'] == 'tang' and r['z'] > 2 and r['tu_dong']
+    assert HS.thanh_khoan(B, None) is None and HS.thanh_khoan(None, {'AAA': vol}) is None
+    bien = HS.bien_hom_nay(None, {})
+    bien['thanh_khoan_ck_vn'] = r
+    t = HS.trang_thai(dict(bien=[dict(bien='thanh_khoan_ck_vn', chieu=1)]), bien)
+    assert t['tong'] == 'THUẬN'

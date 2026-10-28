@@ -75,6 +75,36 @@ def bien_hom_nay(vi_mo: dict | None, vi_mo_vn: dict) -> dict:
     return out
 
 
+def thanh_khoan(B, kl: dict | None, n: int = CUA_SO) -> dict | None:
+    """Biến tự tính từ dữ liệu NSI: giá trị giao dịch ước tính toàn bộ mã (giá điều chỉnh × khối lượng), trung bình n phiên.
+    Xu hướng = z của thay đổi trung bình n phiên so với các cửa sổ n phiên không chồng nhau trong lịch sử (như sổ vĩ mô)."""
+    if B is None or not kl or not getattr(B, 'lich', None):
+        return None
+    tong = np.zeros(len(B.lich))
+    for s, v in kl.items():
+        c = np.asarray((B.c or {}).get(s), dtype=float)
+        if c.shape != tong.shape:
+            continue
+        x = c * np.asarray(v, dtype=float)
+        tong += np.where(np.isfinite(x), x, 0.0)
+    if len(tong) < 10 * n or not np.isfinite(tong).all():
+        return None
+    tb = np.convolve(tong, np.ones(n) / n, mode='valid')          # tb[i] = trung bình phiên i..i+n-1
+    if (tb <= 0).any():
+        return None
+    # thay đổi % của trung bình n phiên qua mỗi n phiên; cửa sổ không chồng nhau tính lùi từ phiên cuối
+    thay = [(tb[i] / tb[i - n] - 1) * 100 for i in range(len(tb) - 1, n - 1, -n)][:121]
+    c, lich = thay[0], thay[1:]
+    sd = float(np.std(lich)) if len(lich) >= 8 else 0.0
+    if sd <= 0:
+        return None
+    z = round(float(c) / sd, 2)
+    xh = 'tang' if z >= 0.5 else 'giam' if z <= -0.5 else 'ngang'
+    return dict(ten='Thanh khoản chứng khoán VN (TB 20 phiên)', xu_huong=xh, gia_tri=round(float(tb[-1]) / 1e9, 0),
+                dv='tỷ đồng/phiên (ước tính)', thay_doi=round(float(c), 2), do='pt', cua_so=n, kieu='ngày', z=z,
+                ngay_so=B.lich[-1], nguon='NSI: giá điều chỉnh × khối lượng các mã trong port_gia', tu_dong=True)
+
+
 def _dau(xh: str) -> int:
     return 1 if xh == 'tang' else -1 if xh == 'giam' else 0
 
@@ -241,12 +271,15 @@ def gia_nen(B, sym: str, n: int = 250) -> dict | None:
 
 
 def chay(root: Path, state: Path, B, asof: str, vi_the: set[str] | None = None, gui=None,
-         ma_port: list[str] | None = None) -> dict:
+         ma_port: list[str] | None = None, kl: dict | None = None) -> dict:
     """Một lượt: đọc hồ sơ + vĩ mô, chấm thuận/nghịch, ghi sổ, học độ nhạy, cờ + chuông mã đang cầm lật NGHỊCH."""
     D = doc(root)
     vdir = state / 'vi_mo'
     vi_mo = _rj(vdir / 'moi_nhat.json')
     bien = bien_hom_nay(vi_mo, D['vi_mo_vn'])
+    tk = thanh_khoan(B, kl)
+    if tk:
+        bien['thanh_khoan_ck_vn'] = tk
     tt = {s: trang_thai(h, bien) for s, h in D['ho_so'].items()}
     so = _rj(state / 'so_ho_so.json', []) or []
     truoc = {}
