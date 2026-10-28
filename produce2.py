@@ -369,6 +369,13 @@ if __name__=='__main__':
         print('ke hoach so tay loi', e, flush=True)
     print('KE HOACH BAN', len(_kh_he), 'ma he thong,', len(out['ke_hoach_so_tay']), 'ma so tay', flush=True)
     out['universe_n']=int(len(r['d']['sym'])); out['asof']=str(cal[-1])
+    # GIA CO SO CHO NUT HARD (28/10/2026): moi ma HOSE/HNX con giao dich o phien cuoi —
+    # [tham chieu cua phien cuoi (PriceBasic), dong cua phien cuoi, san]. Trang tinh tran/san tu
+    # chinh du lieu nay (tham chieu = PriceBasic neu lenh thuoc phien cuoi, = dong cua neu thuoc phien sau).
+    _dd = r['d']; _PB = _dd['PriceBasic'][-1]; _PC = _dd['PriceClose'][-1]
+    out['ma_gia'] = {str(_dd['sym'][k]): [round(float(_PB[k]) / 1000, 2) if _PB[k] == _PB[k] else None,
+                                          round(float(_PC[k]) / 1000, 2), str(_dd['exch'][k])]
+                     for k in range(len(_dd['sym'])) if _PC[k] == _PC[k] and _PC[k] > 0}
     # DO PHU CUA DONG TIEN MUA/BAN O PHIEN CUOI — canh bao im lang tung nuot ca ngay.
     # FireAnt tra BuyCount/SellCount TRE hon gia vai tieng. Neu cao truoc luc do thi
     # ca 694 ma deu thieu, dieu kien 7 truot het, va bo may KHONG MO DUOC LENH NAO

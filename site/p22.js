@@ -17,7 +17,7 @@
           trần ngành, tiền mặt, số mã tối đa. Mã đang cầm thì mua thêm, giá vốn bình quân.
      Bán: 25/50/100% vị thế, làm tròn xuống lô 100 cp, còn dưới 100 cp thì bán hết.
           Hàng chưa về (T+sell_from) thì khoá nút.
-     Giá: phải nằm trong biên độ trần/sàn của phiên (lấy thẳng từ bảng giá VPS).
+     Giá: phải nằm trong biên độ trần/sàn của phiên (tính từ dữ liệu của chính trang — hardBienDo).
      Phiên: từ 8h45 ngày thường là phiên hôm nay; trước 8h45 hoặc cuối tuần là phiên gần nhất
             (lệnh bấm sau giờ đóng cửa tính vào phiên hôm đó).
    ========================================================================== */
@@ -55,18 +55,28 @@ function hardSellFrom() {
   return +(c.sell_from || c.hs_from || 3);
 }
 
-/* Biên độ của phiên đang có trên bảng giá VPS: {tran, san, ref, gia} theo nghìn đồng. */
-async function hardBienDo(sym) {
-  const r = await fetch(VPS + encodeURIComponent(sym), { cache: 'no-store' });
-  if (!r.ok) throw new Error('bảng giá VPS trả ' + r.status);
-  const a = await r.json();
-  const x = (Array.isArray(a) ? a : []).find(o => String(o.sym).toUpperCase() === sym);
-  if (!x) throw new Error('bảng giá VPS không có mã ' + sym);
-  // bộ máy chỉ có dữ liệu giá HOSE + HNX (fireant.py) — mã UPCoM vào lệnh sẽ bị từ chối, chặn luôn ở đây
-  if (String(x.marketId || '').toUpperCase() === 'UPX') throw new Error(sym + ' niêm yết UPCoM — bộ máy chỉ có dữ liệu HOSE và HNX');
-  const tran = +x.c, san = +x.f, ref = +x.r, gia = +x.lastPrice;
-  if (!(tran > 0 && san > 0 && tran >= san)) throw new Error('bảng giá VPS chưa có trần/sàn của ' + sym);
-  return { tran, san, ref, gia: gia > 0 ? gia : ref };
+/* Trần / sàn của phiên lệnh — lấy từ CHÍNH dữ liệu của Nguyễn Sơn Invest, không gọi nguồn ngoài:
+     1. lớp real-time của trang (NSI.rt — đã có trần/sàn/tham chiếu của phiên đang chạy), nếu phiên
+        của lệnh là phiên real-time đang hiện;
+     2. không thì khối D.ma_gia của bản dựng (mọi mã HOSE/HNX): tham chiếu = PriceBasic nếu lệnh
+        thuộc phiên của bản dựng, = giá đóng cửa phiên đó nếu lệnh thuộc phiên sau; trần/sàn theo
+        biên độ sàn (HOSE 7%, HNX 10%) và bước giá của trang (buocGia).
+   Mã không có trong dữ liệu (UPCoM, đã huỷ niêm yết…) -> không đặt được. Trả {tran, san, ref} nghìn đồng. */
+function hardBienDo(sym, phien) {
+  phien = phien || hardPhien();
+  // mã phải có trong dữ liệu của bộ máy — không có thì bản dựng tối cũng từ chối
+  const g = (D.ma_gia || {})[sym];
+  if (!g) throw new Error(sym + ' không có trong dữ liệu Nguyễn Sơn Invest (chỉ có mã HOSE, HNX đang giao dịch)');
+  let r = null; try { r = NSI.rt ? NSI.rt[sym] : null; } catch (e) { r = null; }
+  const rtCuaPhien = (phien > String(D.asof || '')) ? rtPhienMoi() : !rtPhienMoi();
+  if (r && r.tran > 0 && r.san > 0 && r.ref > 0 && rtCuaPhien)
+    return { tran: r.tran / 1000, san: r.san / 1000, ref: r.ref / 1000, nguon: 'real-time của trang' };
+  const ref = (phien <= String(D.asof || '') && g[0] > 0 ? g[0] : g[1]) * 1000, ex = g[2];
+  const b = { HNX: 0.10, UPCOM: 0.15 }[String(ex || '').toUpperCase()] || 0.07;
+  const hi = ref * (1 + b), lo = ref * (1 - b);
+  const tran = Math.floor(+(hi / buocGia(hi, ex)).toFixed(6)) * buocGia(hi, ex);
+  const san = Math.ceil(+(lo / buocGia(lo, ex)).toFixed(6)) * buocGia(lo, ex);
+  return { tran: tran / 1000, san: san / 1000, ref: ref / 1000, nguon: 'bản dựng ' + ddmm(D.asof) };
 }
 
 /* Đọc manual.json đang ở repo (KHÔNG dùng bản nháp trong máy), sửa khoá hard, ghi lại. */
@@ -244,7 +254,7 @@ function veHard() {
 }
 
 async function _hardKiemGia(sym, gia) {
-  const b = await hardBienDo(sym);
+  const b = hardBienDo(sym, hardPhien());
   if (!(gia >= b.san - 1e-9 && gia <= b.tran + 1e-9))
     throw new Error(`giá ${dec(gia)} ngoài biên độ phiên của ${sym}: sàn ${dec(b.san)} – trần ${dec(b.tran)} (tham chiếu ${dec(b.ref)})`);
   return b;
@@ -258,7 +268,7 @@ async function hardMua() {
   if (!/^[A-Z0-9]{3,10}$/.test(sym)) throw new Error('mã không hợp lệ');
   if (!(pct > 0 && pct <= 100)) throw new Error('% NAV phải lớn hơn 0 và không quá 100');
   if (!(gia > 0)) throw new Error('chưa nhập giá');
-  hardBao('Đang kiểm giá với bảng giá…', true);
+  hardBao('Đang kiểm giá…', true);
   const b = await _hardKiemGia(sym, gia);
   const phien = hardPhien();
   const nav = +((D.book || {}).nav) || 0;
@@ -284,7 +294,7 @@ async function hardBan(sym) {
   if (!p) throw new Error('hệ thống không cầm ' + sym);
   const phien = hardPhien(), sf = hardSellFrom(), n = hardSoPhien(p.entry, phien);
   if (n == null || n < sf) throw new Error(`${sym} chưa về hàng (mua ${ddmm(p.entry)}, bán được từ T+${sf})`);
-  hardBao('Đang kiểm giá với bảng giá…', true);
+  hardBao('Đang kiểm giá…', true);
   const b = await _hardKiemGia(sym, gia);
   const sh = p.shares || 0;
   let ban = phan >= 1 ? sh : Math.floor(sh * phan / 100) * 100;
