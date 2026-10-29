@@ -43,6 +43,12 @@ jobs:
       - name: Cào
         if: steps.kiem.outputs.chay == '1'
         run: python vimo/cao.py _data/port/state/vi_mo
+      - name: Vĩ mô Việt Nam (Gemini rẻ nhất + Google Search)
+        if: steps.kiem.outputs.chay == '1'
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python vimo/vn_ai.py _data/port/state/vi_mo
       - name: Ghi về port-data
         if: steps.kiem.outputs.chay == '1'
         run: |

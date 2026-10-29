@@ -61,8 +61,9 @@ def doc(root: Path) -> dict:
     return dict(ho_so=hs, nganh=ng, vi_mo_vn=(_rj(d / 'vi_mo_vn.json', {}) or {}).get('bien') or {})
 
 
-def bien_hom_nay(vi_mo: dict | None, vi_mo_vn: dict) -> dict:
-    """Gộp sổ vĩ mô cào (moi_nhat.json → bien) và biến VN cập nhật tay → {khoá: dict(ten, xu_huong, ...)}."""
+def bien_hom_nay(vi_mo: dict | None, vi_mo_vn: dict, vn_ai: dict | None = None) -> dict:
+    """Gộp sổ vĩ mô cào (moi_nhat.json → bien), biến VN cập nhật tay và biến VN tự động (vimo/vn_ai.py → vn_ai.json).
+    Biến VN: bản tự động thắng khi ngày công bố của nó mới hơn hoặc bằng bản tay. → {khoá: dict(ten, xu_huong, ...)}."""
     out = {}
     for k, r in ((vi_mo or {}).get('bien') or {}).items():
         out[k] = dict(ten=r.get('ten'), xu_huong=r.get('xu_huong') if r.get('gia_tri') is not None else 'thiếu',
@@ -72,6 +73,12 @@ def bien_hom_nay(vi_mo: dict | None, vi_mo_vn: dict) -> dict:
     for k, r in (vi_mo_vn or {}).items():
         out[k] = dict(ten=r.get('ten'), xu_huong=r.get('xu_huong') or 'thiếu', gia_tri=r.get('gia_tri'), dv=r.get('dv'),
                       ngay_so=r.get('ngay'), nguon=r.get('nguon'), ly_do=r.get('ly_do'), tu_dong=False)
+    for k, r in ((vn_ai or {}).get('bien') or {}).items():
+        if r.get('gia_tri') is None or str(r.get('ngay') or '') < str((out.get(k) or {}).get('ngay_so') or ''):
+            continue
+        out[k] = dict(ten=r.get('ten'), xu_huong=r.get('xu_huong') or 'thiếu', gia_tri=r.get('gia_tri'), dv=r.get('dv'),
+                      ngay_so=r.get('ngay'), ky=r.get('ky'), nguon=r.get('nguon'), ly_do=r.get('ly_do'), tu_dong=True,
+                      cach='Gemini + Google Search')
     return out
 
 
@@ -276,7 +283,7 @@ def chay(root: Path, state: Path, B, asof: str, vi_the: set[str] | None = None, 
     D = doc(root)
     vdir = state / 'vi_mo'
     vi_mo = _rj(vdir / 'moi_nhat.json')
-    bien = bien_hom_nay(vi_mo, D['vi_mo_vn'])
+    bien = bien_hom_nay(vi_mo, D['vi_mo_vn'], _rj(vdir / 'vn_ai.json'))
     tk = thanh_khoan(B, kl)
     if tk:
         bien['thanh_khoan_ck_vn'] = tk
