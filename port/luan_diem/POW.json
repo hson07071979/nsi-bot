@@ -1,186 +1,137 @@
 {
  "ky_han": "6-24 tháng",
- "ngay_mo": "2026-10-15",
- "cap_nhat": "2026-10-28",
- "bai_hoc": "Lợi nhuận điện tăng mà tiền không về (phải thu) thì chưa phải lợi nhuận thật; kiểm dòng tiền trước khi tin P/E 5.",
- "trang_thai": "loai",
- "chieu": "tang",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Nhóm phát điện: lãi chỉ có giá trị khi EVN trả tiền.",
  "ma": "POW",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô Q4/2026 (Claude 15/10; chi tiết ở 'Loc_port_Q4-2026_ban_do_vi_mo.docx'): kinh tế thực nóng — tiền đắt lên — tăng trưởng lệch. Fed tăng 0,25 điểm % ngày 16/9 lên 3,75–4,00%; lợi suất trái phiếu Mỹ 10 năm >5,22% (cao nhất từ 2002); chỉ số đô la Mỹ (DXY) ~102 (Vietstock 12/10, Dân trí 15/10). Thuế 301 lao động cưỡng bức 12,5% với hàng VN từ 24/07; còn mở 301 'sản xuất dư thừa' và 'sở hữu trí tuệ' (TTWTO VCCI 27/07). Trung Quốc xuất khẩu tháng 9 +36,3% (ASEAN +52%); VN nhập siêu từ Trung Quốc 121,5 tỷ USD 9 tháng (Báo Đầu tư 04/10). GDP Q3 +9,95%; đầu tư công 62,9% kế hoạch đến 30/9 (Q4 còn ~380.000 tỷ); tín dụng +11,59% từ đầu năm so với huy động +9,78%; CPI tháng 9 +5,08%; nhập siêu 9 tháng 19,42 tỷ USD; FDI thực hiện 21,07 tỷ USD (Cục Thống kê, Bộ Tài chính, Ngân hàng Nhà nước). Ngân hàng Nhà nước nới về lượng (quyết định 1743, trần tỷ lệ cho vay trên huy động 95% từ 01/12), không nới về giá. Truyền dẫn riêng: cầu điện theo IIP +12%; nghịch: LNG và dầu đắt.",
-  "nganh": "Sản lượng điện Q1/26 của POW +18% (thitruongtaichinhtiente 15/04). Tăng trưởng công nghiệp 12,9% kéo nhu cầu điện; nhiệt điện khí/LNG là nguồn nền khi thủy điện mùa khô yếu.",
-  "doanh_nghiep": "Tổng công ty Điện lực Dầu khí, PVN sở hữu ~80%. ROE 16,2%, lợi nhuận 4 quý +299,7% — MÉO vì khoản bất thường Q2/26 (~2.475 tỷ: truy thu tỷ giá Vũng Áng 1 2019–2021 1.103 tỷ, quyết toán giá khí Cà Mau 991 tỷ, hoàn nhập O&M 381 tỷ — elibook 24/08).",
-  "mo_hinh_kd": "Phát điện khí (Cà Mau 1&2, Nhơn Trạch 1/2), than (Vũng Áng 1), LNG Nhơn Trạch 3&4 (1.624 MW, ~1,4 tỷ USD, Qc từ 01/2026). Lợi nhuận cốt lõi 6T/26 2.741–3.137 tỷ (+111% đến +130%) tùy cách bóc tách (elibook).",
-  "lanh_dao": "Doanh nghiệp nhà nước; Quyết định 40/2026/quyết định-TTg (05/08) về tỷ lệ sở hữu nhà nước — MAS đánh giá tác động nhẹ, chưa có căn cứ PVN phải nâng sở hữu. Chưa đủ dữ liệu đánh giá chất lượng thực thi.",
-  "chuoi_gia_tri": "Mua khí/LNG (giá LNG châu Á Q2 17,1 USD/MMBtu, +40%) → bán điện cho EVN qua Qc + thị trường điện. Vũng Áng 1 chỉ ~73% Qc, phần còn lại theo giá thị trường.",
-  "dan_nguoc_vi_mo": "Điện là đầu vào của tăng trưởng công nghiệp; NT3&4 là nguồn nền mới cho miền Nam."
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá khí, LNG (Brent khoảng 110 USD/thùng) → chi phí nhiên liệu nhưng giá bán điện được chuyển ngang; nhu cầu điện (IIP 9 tháng +12,3%, Cục Thống kê) → sản lượng huy động; thuế nhập khẩu LNG giảm 5% → 2%.",
+  "nganh": "Ngành dầu khí năm 2026 chạy theo địa chính trị: xung đột Mỹ – Israel – Iran từ cuối tháng 2 đẩy Brent lên 112–117 USD/thùng (tháng 3), rơi về 85 USD (tháng 4–5), rồi vượt 112–115 USD lại vào tháng 10 do căng thẳng eo biển Hormuz. Hệ quả khác nhau theo khâu: lọc dầu (BSR) lãi kỷ lục nhờ crack spread bình quân khoảng 31 USD/thùng (kỷ lục cũ 21 USD năm 2022); phân phối xăng dầu (PLX, OIL) chịu sốc tồn kho hai chiều — PLX lỗ quý 1 rồi hoàn nhập 6.000 tỷ quý 2; khí (GAS) hưởng giá FO cao; dịch vụ thượng nguồn (PVD, PVS) hưởng giá thuê giàn cao nhưng chi phí vốn tăng. Chính sách: Nghị định kinh doanh xăng dầu mới (đầu mối tự quyết giá, Quỹ bình ổn chấm dứt từ 1/1/2027) phải trình Chính phủ trước 10/11/2026 (Công văn 10747/VPCP-CN); PVN chuẩn bị bán 2–5% vốn tại GAS và BSR (định giá chậm nhất 12/2026); chuỗi Lô B – Ô Môn có mốc dòng khí đầu tiên không muộn hơn quý 3/2027 (Thông báo 487/TB-VPCP). Trung vị giá nhóm cách đỉnh tháng 3 khoảng 30%. Rủi ro chung: nếu Hormuz ổn định, giá dầu và crack spread cùng giảm — lợi nhuận 2027 của nhóm hưởng lợi giá dầu (BSR, GAS) có thể đi xuống mạnh.",
+  "doanh_nghiep": "9 tháng 2026: sản lượng điện 19,3 tỷ kWh (+44%, vượt 21% kế hoạch 9 tháng) nhờ Nhơn Trạch 3 và 4 (3,757 tỷ kWh); ước LNTT gần 5.500 tỷ, gấp 2,3 lần cùng kỳ (Vietstock 15/10). Quý 2 (NSI): LNST 3.375 tỷ, lõi 4.180 tỷ, nhưng tiền từ kinh doanh quý 2 âm 4.017 tỷ (phải thu EVN tăng).",
+  "mo_hinh_kd": "Phát điện khí (Cà Mau, Nhơn Trạch 1–4), than (Vũng Áng), thủy điện; bán điện cho EVN theo hợp đồng và thị trường.",
+  "lanh_dao": "Thuộc PVN; nắm 59,37% NT2 (nhận cổ tức tiền); điều hành theo kế hoạch Nhà nước.",
+  "chuoi_gia_tri": "Phát điện: mua khí từ GAS, LNG nhập khẩu → bán điện EVN; phụ thuộc cơ chế huy động và thu tiền EVN.",
+  "dan_nguoc_vi_mo": "Giá xăng dầu là đầu vào của CPI và chi phí vận tải; Chính phủ đang xem xét giảm thuế xăng về 0% (28/10) để kìm lạm phát — tức phần lợi của doanh nghiệp đầu mối bị giới hạn bởi mục tiêu vĩ mô. Nhóm PVN (GAS, BSR, PVD, PVS) nộp ngân sách lớn và gánh dự án hạ tầng năng lượng quốc gia."
  },
  "luan_diem": [
   {
    "id": "L1",
-   "nhan": "INTERPRETATION",
-   "noi_dung": "Thị trường từng định giá NT3&4 là gánh lỗ (dự báo phổ biến lỗ ~300 tỷ 2026); cơ chế Qc làm cụm này hòa vốn ngay 6 tháng đầu, lợi nhuận cốt lõi gấp đôi, nhưng giá vẫn dưới giá trị sổ sách.",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Qua lọc nền thấp; đạt b, c; trượt a (tiền từ kinh doanh 12 tháng âm 1.710 tỷ), d (tạo đáy mới).",
    "bang_chung": [
-    "FACT: Qc lũy kế 120% sản lượng thực phát NT3&4; lợi nhuận cốt lõi 6T 2.741–3.137 tỷ (elibook 24/08)",
-    "FACT: P/B 0,93 so với trung vị 3 năm 0,98 (NSI 14/10)",
-    "FACT: Giá 12,2 (15/10) so với đỉnh 16,55 (03/03), −26,3% (FireAnt)"
+    "FACT: LN 4 quý +300%, CFO −1.710 tỷ (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Bước nhảy lợi nhuận có thật nhờ Nhơn Trạch 3–4 đi vào vận hành; nhưng EVN chậm trả khiến lãi chưa về thành tiền — rủi ro quen thuộc của nhóm phát điện.",
+   "bang_chung": [
+    "FACT: Sản lượng 9 tháng +44% (Vietstock 15/10)"
    ]
   }
  ],
  "bull": [
-  "NT3&4 hòa vốn sớm nhờ Qc — rủi ro lớn nhất của câu chuyện đã giảm.",
-  "Lợi nhuận cốt lõi 6T +111% đến +130%; ACBS dự phóng lợi nhuận cốt lõi 2026 5.142 tỷ → P/E cốt lõi ≈ 5,6 tại 12,2.",
-  "Giá dưới giá trị sổ sách; công ty chứng khoán mục tiêu 16,9–18,4 (08/2026)."
+  "Lợi nhuận 9 tháng gấp 2,3 lần.",
+  "Nhơn Trạch 3–4 tăng công suất dài hạn.",
+  "P/E 5–6, P/B 0,97."
  ],
  "bear": [
-  "Giá đang ở đáy 60 phiên, dưới đường trung bình 20 phiên/50/200 — xu hướng giảm chưa dừng.",
-  "P/B 0,93 chỉ ngang trung vị 0,98: so với chính nó KHÔNG rẻ; 'rẻ' chỉ xuất hiện khi dùng P/E méo bởi khoản bất thường.",
-  "Q3 mùa mưa + đại tu Cà Mau 1 (8–10) và trung tu Vũng Áng 1 (8–9) → Q3/26 dễ yếu; giá LNG +40%.",
-  "Kế hoạch năm của chính POW (lợi nhuận trước thuế 1.328 tỷ) mâu thuẫn với số Q1 — dữ liệu kế hoạch không đáng tin để neo."
+  "Tiền từ kinh doanh âm — phải thu EVN tăng.",
+  "Giá khí, LNG cao.",
+  "Giá đang tạo đáy mới (trượt d).",
+  "Lợi nhuận quý 2 có thể chứa yếu tố một lần."
  ],
  "debate": [
   {
-   "ngay": "2026-10-15",
+   "ngay": "2026-10-29",
    "vong": 1,
    "ben": "bull",
-   "noi_dung": "Rủi ro 'NT3&4 lỗ' là lý do thị trường chiết khấu POW 2024–25. Qc đã giải quyết nó: hòa vốn ngay năm đầu. Tin xấu cũ đã hết, giá chưa phản ánh."
+   "noi_dung": "Chu kỳ công suất mới, định giá thấp."
   },
   {
-   "ngay": "2026-10-15",
+   "ngay": "2026-10-29",
    "vong": 2,
    "ben": "bear",
-   "noi_dung": "Giá lại đang giảm tiếp sau kết quả Q2 'đẹp'. Thị trường đã nhìn qua khoản bất thường và thấy lợi nhuận cốt lõi chưa đủ cao để định giá lại: ROE cốt lõi chỉ ~11–12%, trong khi lãi suất đang tăng."
+   "noi_dung": "Lãi trên giấy, tiền chưa về."
   },
   {
-   "ngay": "2026-10-15",
+   "ngay": "2026-10-29",
    "vong": 3,
    "ben": "trong_tai",
-   "noi_dung": "Kiểm số: NSI ghi lợi nhuận 4 quý +300%, P/E trung vị 22 — cả hai bị méo (nền lợi nhuận 2024–25 thấp, Q2/26 có ~2.475 tỷ bất thường). Chấm điểm phải dùng số cốt lõi: định giá so với chính nó lấy P/B (0,95 lần trung vị) → 7/20 điểm; ROE cốt lõi ≈ 11,7% (16,2% × lợi nhuận cốt lõi/lợi nhuận báo cáo) → 4/10."
+   "noi_dung": "Không đạt a."
   },
   {
-   "ngay": "2026-10-15",
+   "ngay": "2026-10-29",
    "vong": 4,
-   "ben": "bear",
-   "noi_dung": "Stress: Q3/26 mùa mưa + 2 nhà máy bảo dưỡng; nếu lợi nhuận Q3 giảm so cùng kỳ (nền Q3/25 809 tỷ), thị trường sẽ coi Q2 là 'đỉnh một lần'."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 5,
-   "ben": "bull",
-   "noi_dung": "Giá 12,2 = vốn hóa ~28,6 nghìn tỷ; lợi nhuận cốt lõi 4 quý gần nhất ≈ 4,1–4,5 nghìn tỷ → P/E cốt lõi ~6,5. Với nguồn điện nền mới 1.624 MW, mức này thấp nếu Qc giữ."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 6,
-   "ben": "trong_tai",
-   "noi_dung": "Kết luận: vào danh sách, xếp sau theo điểm 70/30 (định giá chỉ ngang lịch sử, điểm 'giá sai' 5/15). K2: lợi nhuận sau thuế Q3/26 không giảm so cùng kỳ. Ngừng mua dưới 11,6 (chuẩn −7%); đáy 20/10/2025 10,9 là vùng quan sát."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 7,
    "ben": "claude",
-   "noi_dung": "Đối chất máy: Daily/bot thấy POW dưới MA và tạo đáy mới — máy ngược chiều về ngắn hạn. Port không cãi máy ở 5 phiên; quy tắc chia 3 đợt + nền 20 phiên là câu trả lời cho dao rơi."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 8,
-   "ben": "trong_tai",
-   "noi_dung": "Xếp hạng 70/30 = 58, thấp nhất nhóm qua cổng quy tắc giải ngân (định giá chỉ ngang lịch sử). Không vào 8 mã; để ở hàng chờ — thay vào khi một mã trong danh mục bị loại."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 9,
-   "ben": "trong_tai",
-   "noi_dung": "Chấm lại theo khung 70/30 sửa 15/10 (luận điểm 38/70 = quốc tế 4 · vĩ mô VN 10 · ngành 9 · doanh nghiệp 9 · giá sai 6; số 16/30). Khâu 5 — giá đã phản ánh hết tin xấu chưa: CHƯA CÓ CHIẾT KHẤU. Tin xấu: Q3 yếu (mùa mưa, bảo dưỡng); lợi nhuận Q2 có ~2.475 tỷ bất thường; LNG đắt. Kỳ vọng ngầm: P/B 0,93 so với 0,98 → giá gần như không trả cho kịch bản xấu nào. Phép thử: lợi nhuận cốt lõi Q3 so với cùng kỳ (nền 809 tỷ). Kết luận: CẦN THÊM BẰNG CHỨNG."
-  },
-  {
-   "ngay": "2026-10-15",
-   "vong": 10,
-   "ben": "anh_son",
-   "noi_dung": "15/10 21:07: duyệt khung 70/30 mới (luận điểm vĩ mô → vi mô; P/E, P/B thuộc 30%) và khâu 5 viết theo khung tư duy khung kỳ vọng ngầm; bỏ cổng giá quy tắc giải ngân, T1/T2, ngừng mua −7%, nhịp lớp rủi ro danh mục."
-  },
-  {
-   "ngay": "2026-10-28",
-   "vong": 11,
-   "ben": "trong_tai",
-   "noi_dung": "Lọc lại 28/10: a trượt — tiền từ kinh doanh 12 tháng âm 1.710 tỷ dù lãi 5.954 tỷ (phải thu tăng); PV Power ước lợi nhuận trước thuế 9 tháng 5.460 tỷ trong khi 6 tháng đã 5.000 tỷ → Q3 chỉ khoảng 460 tỷ, giảm mạnh so với cùng kỳ; kế hoạch năm thận trọng và không chia cổ tức để giữ vốn cho dự án khí LNG. d trượt (tạo đáy mới). → LOẠI."
+   "noi_dung": "Kết luận: theo dõi — chờ dòng tiền."
   }
  ],
- "phan_bien_may": {
-  "bot": {
-   "ngay": "2026-10-15",
-   "noi_dung": "Nếu bot ngược chiều: chấp nhận ở khung ngắn; port chỉ mua 1/3 và đợt 2 cần nền 20 phiên."
-  },
-  "tin": {
-   "ngay": "2026-10-15",
-   "noi_dung": "Quyết định 40 nếu xuất hiện dạng tin_don 'thoái/nâng sở hữu' → giả thuyết, không phải xúc tác."
-  },
-  "daily": {
-   "ngay": "2026-10-15",
-   "noi_dung": "Daily: giá dưới đường trung bình 20 phiên/50/200 — ghi nhận là bằng chứng chống (bear #1)."
-  }
- },
+ "phan_bien_may": {},
  "kiem_chung": [
   {
-   "id": "K2",
+   "id": "K1",
    "loai": "funda",
    "chi_tieu": "ny",
    "quy": "Q3/26",
    "so_sanh": ">=",
    "nguong": 0,
-   "noi_dung": "Lợi nhuận sau thuế Q3/26 không giảm so với cùng kỳ (nền Q3/25 809 tỷ, NSI) dù mùa mưa và bảo dưỡng."
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 809,3 tỷ, NSI)."
   }
  ],
- "vo_hieu": "Vô hiệu theo sự kiện: lợi nhuận cốt lõi Q3/26 giảm so với cùng kỳ (K2); NT3&4 bị cắt Qc hoặc lỗ trở lại.",
- "dinh_gia": "P/B 0,93 so với trung vị 3 năm 0,98 (NSI 14/10) — ngang lịch sử. P/E báo cáo 6,1 méo vì khoản bất thường; P/E cốt lõi ước ~6,5 (tự tính từ lợi nhuận cốt lõi elibook). Vùng quan sát. Kỳ vọng ngầm trong giá: P/B 0,93 so với 0,98 → giá gần như không trả cho kịch bản xấu nào.",
- "pitch": "PV Power đã gỡ được nỗi lo nhà máy Nhơn Trạch 3 và 4 bị lỗ nhờ cơ chế cam kết sản lượng trong hợp đồng, và lợi nhuận quý 2/2026 tăng mạnh từ chính hoạt động bán điện. Nhưng giá chỉ ngang giá trị sổ sách và ngang mức thường thấy của chính nó, nên chưa có mức giảm giá để hỏi \"tin xấu đã nằm trong giá chưa\". Thêm một điểm cần xem: tiền thu về từ kinh doanh 4 quý gần nhất âm 1.710 tỷ dù công ty có lãi.",
+ "vo_hieu": "Vô hiệu (cho kịch bản mua): dòng tiền kinh doanh dương hai quý và giá ngừng tạo đáy mới.",
+ "dinh_gia": "P/E 6,24 so với trung vị 3 năm 22,07; P/B 0,97 so với 0,99 (NSI 28/10, BCTC Q2/26). Ngành Điện, nước & xăng dầu khí đốt (4 mã trong NSI): P/E trung vị 8,5, P/B 1,26, ROE 17,7%; mã này ROE 16,5%. Giá 12,55 cách đỉnh 1 năm -24%, cả ngành -24%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 12.550 (P/E khoảng 6): thị trường nghi lợi nhuận đỉnh và lo thu tiền EVN.",
+ "pitch": "PV Power lãi gấp đôi nhờ hai nhà máy điện khí mới, nhưng tiền điện EVN trả chậm nên lãi chưa về thành tiền. Chúng tôi theo dõi.",
  "dieu_kien_vao": [],
  "pitch_diem": {
-  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES (kỳ vọng ngầm trong giá, người bán cận biên, phép thử tin xấu tiếp theo)",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
   "khau": {
-   "quoc_te": 4,
-   "vi_mo_vn": 10,
-   "nganh": 9,
-   "doanh_nghiep": 9,
+   "quoc_te": 5,
+   "vi_mo_vn": 6,
+   "nganh": 6,
+   "doanh_nghiep": 6,
    "gia_sai": 6
   },
   "so": {
-   "dinh_gia": 4,
-   "kqkd": 8,
+   "dinh_gia": 9,
+   "kqkd": 6,
    "suc_khoe_tc": 4
   },
-  "luan_diem_70": 38,
-  "so_30": 16,
-  "tong": 54,
+  "luan_diem_70": 29,
+  "so_30": 19,
+  "tong": 48,
   "dinh_gia_sai": 6,
   "gia_sai": {
-   "a_ban_chat": 3,
-   "b_trang_thai": 3,
-   "c_ky_vong_ngam": 0,
-   "ket_luan": "CHƯA CÓ CHIẾT KHẤU",
-   "tin_xau": "Q3 yếu (mùa mưa, bảo dưỡng); lợi nhuận Q2 có ~2.475 tỷ bất thường; LNG đắt.",
-   "co_that_su_xau": "Chu kỳ theo mùa, đã biết; nỗi sợ NT3&4 lỗ đã được Qc giải quyết.",
-   "trang_thai": "Đã biết.",
-   "ky_vong_ngam": "P/B 0,93 so với 0,98 → giá gần như không trả cho kịch bản xấu nào.",
-   "nguoi_ban_can_bien": "—",
-   "counter": "—",
-   "phep_thu": "Lợi nhuận cốt lõi Q3 so với cùng kỳ (nền 809 tỷ)."
+   "tin_xau": "Dòng tiền âm, giá tạo đáy mới.",
+   "co_that_su_xau": "Một phần — lãi thật, tiền chậm.",
+   "trang_thai": "Giá −24% từ đỉnh.",
+   "ky_vong_ngam": "P/E 6: nghi lợi nhuận đỉnh.",
+   "nguoi_ban_can_bien": "Quỹ giảm nhóm điện khi phải thu tăng.",
+   "counter": "Phản biện: EVN tăng giá điện có thể giải quyết phải thu nhanh.",
+   "phep_thu": "BCTC quý 3: phải thu EVN, dòng tiền.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
   },
-  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
+  "ket_luan": "THEO DÕI — trượt a (dòng tiền âm), d (review Q3/26: đổi từ LOẠI)",
   "cham_boi": "claude",
-  "duyet": "anh Sơn duyệt 15/10/2026 21:07",
-  "ngay": "2026-10-15"
+  "ngay": "2026-10-29"
  },
- "ngay_vao": null,
- "muc_tieu": [
-  {
-   "id": "T1",
-   "gia": 16.85,
-   "nguon": "đỉnh 250 phiên",
-   "ngay_ghi": "2026-10-22",
-   "du_kien_phien": 120,
-   "han_phien": 250,
-   "mo_ta": "chạm thì sổ giả lập bán 1/3"
-  }
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": true,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
  ]
 }

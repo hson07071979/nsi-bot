@@ -1,41 +1,138 @@
 {
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Điểm số tăng trưởng dựa trên nền năm trước có thể đánh lừa — xem lõi từng quý.",
  "ma": "DIG",
  "trang_thai": "loai",
- "chieu": "trung_lap",
- "ky_han": "—",
- "ngay_mo": "2026-10-28",
+ "chieu": "tang",
  "ngay_vao": null,
- "cap_nhat": "2026-10-28",
  "chuoi": {
-  "vi_mo": "Bản đồ vĩ mô cập nhật 28/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed họp 27–28/10, thị trường kỳ vọng giữ 3,75–4,00% nhưng hợp đồng tương lai định giá trên 80% khả năng tăng tiếp vào tháng 12 (CNBC 27/10) — đô la vẫn đắt, vốn ngoại chưa có lý do quay lại. Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52% (NHNN họp báo 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức tín dụng năm (VDSC). Điểm mới quan trọng nhất: sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi suất huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10), VPBank hạ thêm 0,4 điểm % ngày 26/10; trước đó lãi huy động đã lên khoảng 8,3% ở nhóm quốc doanh và 8,8–9,4% ở nhóm tư nhân lớn (Elibook 13/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam và hàng Trung Quốc giá rẻ. ",
-  "nganh": "Bất động sản nhà ở, khu đô thị (Vũng Tàu, Đồng Nai, Hậu Giang…); doanh thu theo đợt bàn giao.",
-  "doanh_nghiep": "DIC Corp, vốn hóa khoảng 8.200 tỷ, ROE 8%, P/B 0,9.",
-  "mo_hinh_kd": "—",
-  "lanh_dao": "—",
-  "chuoi_gia_tri": "—",
-  "dan_nguoc_vi_mo": "—"
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: lãi suất cho vay mua nhà, tín dụng bất động sản (tín dụng 9 tháng +10,89%, Cục Thống kê) → tiến độ bán dự án; pháp lý dự án → thời điểm ghi nhận lợi nhuận.",
+  "nganh": "Bất động sản nhà ở đang hồi theo hai đường lệch nhau: nhóm có pháp lý sạch và quỹ đất lớn (Vinhomes) bán được nhiều nhờ bán buôn và chính sách hỗ trợ lãi vay; nhóm tầm trung vẫn kẹt pháp lý và vốn. Tín dụng bất động sản bị NHNN giới hạn khoảng 15–16% năm 2026 (MBS 10/03), lãi vay mua nhà tăng theo lãi huy động đến giữa tháng 10 rồi bắt đầu hạ. Bảng giá đất mới làm chi phí giải phóng mặt bằng tăng. Hạ tầng lớn (metro Hà Nội khởi công 22/06/2026, cao tốc, sân bay Long Thành) là động lực giá đất vùng ven. Cả ngành (29 mã trong NSI) cách đỉnh 1 năm khoảng −41%.",
+  "doanh_nghiep": "Chưa tìm thấy BCTC quý 3/2026 trong nguồn đã đọc. Kế hoạch 2026: doanh thu 3.000 tỷ (−37%), LNTT 600 tỷ (giảm); đến 30/9 mới hoàn thành khoảng 1/4 kế hoạch lợi nhuận (Vietstock, MoneyF 30/09–08/10). Quý 1–2/2026 (NSI) lõi âm (−19,6 và −13,9 tỷ); tiền từ kinh doanh quý 2 dương 3.033 tỷ chủ yếu từ tiền đặt cọc, người mua trả trước.",
+  "mo_hinh_kd": "Phát triển bất động sản (Đại Phước, Vũng Tàu, Hậu Giang…), vật liệu xây dựng; lợi nhuận ghi nhận theo đợt bàn giao.",
+  "lanh_dao": "Chủ tịch Nguyễn Hùng Cường; người nhà bị bán giải chấp cổ phiếu, sau đó Chủ tịch đăng ký mua 5 triệu cổ phiếu (12/10–10/11) nâng sở hữu lên khoảng 4%.",
+  "chuoi_gia_tri": "Hạ nguồn bất động sản: quỹ đất → pháp lý → bán, bàn giao; phụ thuộc tín dụng người mua và thủ tục.",
+  "dan_nguoc_vi_mo": "Bất động sản là nơi neo tín dụng và tài sản thế chấp lớn nhất; giá nhà, tiến độ dự án ảnh hưởng ngược lên nợ xấu ngân hàng, thu ngân sách từ đất và tiêu dùng của hộ gia đình."
  },
- "luan_diem": [],
- "bull": [],
- "bear": [],
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt a, b, c (nhờ lãi quý 3–4/2025 bán dự án) và qua lọc nền thấp; trượt d. Nhưng lõi âm hai quý 2026.",
+   "bang_chung": [
+    "FACT: Lõi Q1/26 −19,6 tỷ, Q2/26 −13,9 tỷ (NSI)",
+    "FACT: Kế hoạch LNTT 2026 600 tỷ, giảm (Tin nhanh chứng khoán 08/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Điểm số cao do nền 2025 bán dự án, không phải do kinh doanh 2026 tốt lên; giá thủng mệnh giá phản ánh lo ngại giải chấp và tiến độ Đại Phước. Giữ quyết định đã chốt ngày 28/10: loại.",
+   "bang_chung": [
+    "FACT: Giá 9.770, P/B 0,9 (NSI)"
+   ]
+  }
+ ],
+ "bull": [
+  "Giá dưới mệnh giá, P/B 0,9.",
+  "Chủ tịch đăng ký mua 5 triệu cổ phiếu.",
+  "Đại Phước có thể về đích cuối năm."
+ ],
+ "bear": [
+  "Lõi âm hai quý 2026.",
+  "Kế hoạch lợi nhuận 2026 giảm, mới đạt khoảng 1/4.",
+  "Người nhà lãnh đạo bị bán giải chấp.",
+  "Trượt d; biên độ giá lớn."
+ ],
  "debate": [
   {
-   "ngay": "2026-10-28",
+   "ngay": "2026-10-29",
    "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Đáy giá, lãnh đạo mua vào."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Không có lợi nhuận kinh doanh thật trong 2026."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
    "ben": "trong_tai",
-   "noi_dung": "Soi theo yêu cầu anh Sơn 28/10 (cần một mã bất động sản). Code đo: a đạt về số (LN 4 quý +461%, cốt lõi 4 quý 75 → 803 tỷ, tiền từ kinh doanh 4.797 tỷ), c đạt (cách đỉnh −51%, ngành −41%), d TRƯỢT (nền 30 phiên 13,1%). Đọc BCTC sâu thì a không đứng: toàn bộ lợi nhuận cốt lõi 4 quý nằm ở hai quý bàn giao Q3–Q4/25 (272 và 564 tỷ); hai quý gần nhất cốt lõi âm (−20 và −14 tỷ), lãi Q2/26 140 tỷ đến từ 161 tỷ thu nhập tài chính bất thường (108% lợi nhuận trước thuế). Dòng tiền dương chủ yếu là 4.721 tỷ tiền đặt cọc nhận trước cho chuyển nhượng dự án (Dân Việt), không phải tiền bán hàng. Kế hoạch 2026 lãi trước thuế 600 tỷ, giảm 28%. Tăng trưởng không bền, chưa cân bằng → LOẠI kỳ này. Mã bất động sản của port vẫn là IDC (khu công nghiệp)."
+   "noi_dung": "Điểm số NSI bị nền 2025 làm méo."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: giữ LOẠI."
   }
  ],
  "phan_bien_may": {},
- "kiem_chung": [],
- "vo_hieu": "—",
- "dinh_gia": "—",
- "pitch": "—",
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (Q4/25 421,8 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): lõi dương hai quý liên tiếp và Đại Phước ghi nhận doanh thu.",
+ "dinh_gia": "P/E 10,84 so với trung vị 3 năm 83,33; P/B 0,90 so với 1,48 (NSI 28/10, BCTC Q2/26). Ngành Bất động sản (29 mã trong NSI): P/E trung vị 17,3, P/B 1,05, ROE 8,0%; mã này ROE 8,0%. Giá 9,77 cách đỉnh 1 năm -51%, cả ngành -41%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 9.770 (P/B 0,9): thị trường nghi ngờ tiến độ ghi nhận và rủi ro giải chấp.",
+ "pitch": "DIC Corp có giá rất rẻ so với sổ sách, nhưng năm nay kinh doanh cốt lõi chưa có lãi và kế hoạch lợi nhuận giảm. Chúng tôi chưa chọn.",
  "dieu_kien_vao": [],
- "bai_hoc": "Doanh nghiệp bất động sản ghi nhận theo đợt bàn giao: nhìn lợi nhuận cốt lõi từng quý và kế hoạch năm, không nhìn tăng trưởng 4 quý; tiền đặt cọc nhận trước làm dòng tiền kinh doanh đẹp giả.",
  "pitch_diem": {
-  "ket_luan": "LOẠI (lọc lại 28/10/2026)",
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 2,
+   "vi_mo_vn": 5,
+   "nganh": 4,
+   "doanh_nghiep": 3,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 9,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 19,
+  "so_30": 27,
+  "tong": 46,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "tin_xau": "Thủng mệnh giá, bán giải chấp, lõi âm.",
+   "co_that_su_xau": "Có — kinh doanh 2026 yếu thật.",
+   "trang_thai": "Giá −51% từ đỉnh — phản ánh nhiều.",
+   "ky_vong_ngam": "P/B 0,9: nghi ngờ tiến độ dự án.",
+   "nguoi_ban_can_bien": "Tài khoản ký quỹ bị bán giải chấp.",
+   "counter": "Phản biện: nếu Đại Phước ghi nhận lớn quý 4, lợi nhuận đảo chiều nhanh.",
+   "phep_thu": "BCTC quý 3–4/2026: lõi và doanh thu Đại Phước.",
+   "ket_luan": "PHẢN ÁNH NHIỀU"
+  },
+  "ket_luan": "LOẠI — lõi âm hai quý 2026 (review Q3/26: giữ quyết định 28/10)",
   "cham_boi": "claude",
-  "ngay": "2026-10-28"
- }
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
 }
