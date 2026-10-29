@@ -1,6 +1,6 @@
 {
  "quy": {
-  "ACB": "Q2/26",
+  "ACB": "Q3/26",
   "ANV": "Q3/26",
   "BAF": "Q2/26",
   "BCM": "Q2/26",
@@ -16,7 +16,7 @@
   "DBC": "Q3/26",
   "DCL": "Q2/26",
   "DCM": "Q2/26",
-  "DGW": "Q2/26",
+  "DGW": "Q3/26",
   "DIG": "Q2/26",
   "DPM": "Q2/26",
   "DPR": "Q2/26",
@@ -27,15 +27,15 @@
   "FPT": "Q2/26",
   "FRT": "Q2/26",
   "GAS": "Q2/26",
-  "GEE": "Q2/26",
-  "GEX": "Q2/26",
+  "GEE": "Q3/26",
+  "GEX": "Q3/26",
   "GMD": "Q2/26",
   "GVR": "Q2/26",
   "HAG": "Q2/26",
   "HAH": "Q3/26",
   "HCM": "Q3/26",
   "HDB": "Q2/26",
-  "HDC": "Q2/26",
+  "HDC": "Q3/26",
   "HHP": "Q2/26",
   "HHV": "Q2/26",
   "HPG": "Q2/26",
@@ -51,7 +51,7 @@
   "MCH": "Q3/26",
   "MSB": "Q2/26",
   "MSN": "Q3/26",
-  "MWG": "Q2/26",
+  "MWG": "Q3/26",
   "NAB": "Q2/26",
   "NKG": "Q2/26",
   "NLG": "Q2/26",
@@ -68,7 +68,7 @@
   "POW": "Q2/26",
   "PVD": "Q2/26",
   "PVP": "Q3/26",
-  "PVS": "Q2/26",
+  "PVS": "Q3/26",
   "PVT": "Q2/26",
   "REE": "Q2/26",
   "SAB": "Q2/26",
@@ -106,7 +106,7 @@
   "VTZ": "Q2/26",
   "TNG": "Q3/26",
   "VAB": "Q3/26",
-  "PAN": "Q2/26",
+  "PAN": "Q3/26",
   "CSV": "Q3/26"
  },
  "top": [
@@ -116,12 +116,15 @@
   "PAN",
   "MWG",
   "FPT",
-  "DGW",
   "PNJ",
   "PC1",
-  "HPG"
+  "HPG",
+  "ANV"
  ],
  "mua": "Q3/26",
  "khoi_tao": "2026-10-22",
- "lan_cuoi": null
+ "lan_cuoi": {
+  "tieu_de": "Lọc quý Q3/26: 1 mã mới lọt top 10",
+  "noi_dung": "#10 ANV — 36/40 · P/E bằng 0.367× mức thường thấy · LN 4 quý 4.7% · ROE 20.8% · đã có luận điểm\nRời top: DGW\n34/110 mã TOP110 đã có số Q3/26. Mở /port → Lọc quý. Mã lọt lọc chưa vào port — cần pitch + debate lúc review."
+ }
 }

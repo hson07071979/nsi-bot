@@ -148,5 +148,15 @@
   "ly_do_may": "cấu trúc MA: giá -2.9% so với MA50, -3.3% so với MA200",
   "gia0": 57.6,
   "vni0": 1761.87
+ },
+ {
+  "ma": "HHV",
+  "may": "daily",
+  "ngay": "2026-10-29",
+  "chieu_port": 1,
+  "chieu_may": -1,
+  "ly_do_may": "cấu trúc MA: giá -0.2% so với MA50, -12.5% so với MA200",
+  "gia0": 9.46,
+  "vni0": 1755.61
  }
 ]
