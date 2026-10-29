@@ -1,11 +1,13 @@
 name: Cào vĩ mô (7h sáng)
-# 28/10/2026: mỗi sáng 7h05 giờ VN cào ~32 biến vĩ mô (FRED không cần key, Yahoo, Stooq, Vietcombank) vào sổ
+# 28/10/2026: mỗi sáng 7h23 giờ VN cào ~32 biến vĩ mô (FRED không cần key, Yahoo, Stooq, Vietcombank) vào sổ
 # điểm-thời-gian ở nhánh port-data: port/state/vi_mo/. Hồ sơ doanh nghiệp dùng sổ này để chấm thuận/nghịch hằng ngày,
 # vòng học dùng lịch sử để đo độ nhạy từng mã. Lượt "Lọc port" tự chép port/state sang, nên không cần nối thêm gì.
 on:
   schedule:
-    - cron: '5 0 * * *'          # 07h05 giờ VN, mọi ngày (hàng hoá thế giới giao dịch cả khi VN nghỉ)
-    - cron: '35 1 * * *'         # 08h35 lưới dự phòng nếu lượt 7h05 bị GitHub hoãn
+    # 29/10: sáng đầu tiên cả hai lượt 7h05 và 8h35 đều bị GitHub bỏ (giờ chẵn/đầu giờ hay bị nghẽn) → dời sang phút lẻ, thêm lượt thứ ba
+    - cron: '23 0 * * *'         # 07h23 giờ VN, mọi ngày (hàng hoá thế giới giao dịch cả khi VN nghỉ)
+    - cron: '47 1 * * *'         # 08h47 lưới dự phòng
+    - cron: '13 3 * * *'         # 10h13 lưới dự phòng thứ hai (bước kiểm tra bỏ qua nếu sáng đã cào)
   workflow_dispatch:
 
 permissions:
