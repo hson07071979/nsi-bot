@@ -15,7 +15,6 @@
  },
  "loai": {
   "ls_huy_dong_vn": "thiếu",
-  "ls_cho_vay_vn": "thiếu",
   "tin_dung_vn": "thiếu",
   "cpi_vn": "thiếu",
   "tieu_dung_vn": "thiếu",
@@ -26,6 +25,17 @@
   "von_ngoai_vn": "thiếu"
  },
  "bien": {
+  "ls_cho_vay_vn": {
+   "ten": "Lãi suất cho vay VN",
+   "dv": "%/năm",
+   "gia_tri": 10.9,
+   "ky": "10/2026",
+   "ngay": "2026-10-28",
+   "xu_huong": "giam",
+   "xu_huong_tu": "model",
+   "ly_do": "Lãi vay bình quân ở mức 10,9%/năm trong bối cảnh các ngân hàng tiếp tục giảm lãi suất. — tin: \"Lãi vay bình quân 10,9% và lợi suất Mỹ 4,99%: founder nên tính lại chi phí vốn - 24HMoney\"",
+   "nguon": "24HMoney 2026-10-28 (tin RSS)"
+  },
   "ls_lien_nh_vn": {
    "ten": "Lãi suất liên ngân hàng qua đêm VN",
    "dv": "%/năm",
@@ -34,19 +44,19 @@
    "ngay": "2026-10-27",
    "xu_huong": "tang",
    "xu_huong_tu": "model",
-   "ly_do": "Lãi suất qua đêm phiên 27/10 neo mức 3,85% — tin: \"Phiên 27/10: Ngân hàng Nhà nước bơm ròng 6.300 tỷ đồng, lãi suất qua đêm neo mức 3,85% - nguoiquansat.vn\"",
+   "ly_do": "Lãi suất qua đêm neo mức 3,85% trong phiên 27/10 khi Ngân hàng Nhà nước bơm ròng. — tin: \"Phiên 27/10: Ngân hàng Nhà nước bơm ròng 6.300 tỷ đồng, lãi suất qua đêm neo mức 3,85% - nguoiquansat.vn\"",
    "nguon": "nguoiquansat.vn 2026-10-27 (tin RSS)"
   },
   "dau_tu_cong_vn": {
    "ten": "Giải ngân đầu tư công VN",
    "dv": "% kế hoạch năm",
-   "gia_tri": 65.9,
+   "gia_tri": 66.0,
    "ky": "10/2026",
    "ngay": "2026-10-28",
    "xu_huong": "tang",
    "xu_huong_tu": "model",
-   "ly_do": "Giải ngân vốn đầu tư công đạt 65,9% kế hoạch — tin: \"Giải ngân vốn đầu tư công đạt 65,9% kế hoạch, một số bộ, cơ quan chậm tiến độ - Báo Lào Cai điện tử\"",
-   "nguon": "Báo Lào Cai điện tử 2026-10-28 (tin RSS)"
+   "ly_do": "Giải ngân vốn đầu tư công đạt gần 66% kế hoạch, vượt 673.000 tỷ đồng. — tin: \"Giải ngân vốn đầu tư công vượt 673.000 tỷ đồng, đạt gần 66% kế hoạch - Báo Thanh tra\"",
+   "nguon": "Báo Thanh tra 2026-10-28 (tin RSS)"
   },
   "pmi_vn": {
    "ten": "PMI sản xuất VN",
@@ -56,7 +66,7 @@
    "ngay": "2026-10-01",
    "xu_huong": "giam",
    "xu_huong_tu": "model",
-   "ly_do": "PMI giảm xuống 51,9 điểm — tin: \"PMI giảm xuống 51,9 điểm, ngành sản xuất Việt Nam vẫn duy trì tăng trưởng - VnEconomy\"",
+   "ly_do": "PMI giảm xuống 51,9 điểm trong tháng 9 nhưng ngành sản xuất vẫn duy trì tăng trưởng. — tin: \"PMI giảm xuống 51,9 điểm, ngành sản xuất Việt Nam vẫn duy trì tăng trưởng - VnEconomy\"",
    "nguon": "VnEconomy 2026-10-01 (tin RSS)"
   }
  }
