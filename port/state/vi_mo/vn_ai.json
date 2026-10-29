@@ -1,14 +1,16 @@
 {
  "ngay": "2026-10-29",
- "luc": "2026-10-29T10:37+07:00",
+ "luc": "2026-10-29T10:47+07:00",
  "model": null,
  "so_tim_kiem": 0,
  "nguon_web": [],
  "loi_model": {
-  "gemini-3.5-flash-lite": "HTTP 429",
-  "gemini-3.1-flash-lite": "HTTP 429",
-  "gemini-3.1-flash-lite-preview": "HTTP 429",
-  "gemini-2.5-flash-lite": "HTTP 404: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"This model models/gemini-2.5-flash-lite is no longer available to new users. Please update your code t"
+  "gemini-3.5-flash-lite": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
+  "gemini-3.1-flash-lite": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
+  "gemini-3.1-flash-lite-preview": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
+  "gemini-3.8-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
+  "gemini-3.7-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
+  "gemini-3.6-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"
  },
  "loai": {
   "ls_huy_dong_vn": "lượt hỏng",
