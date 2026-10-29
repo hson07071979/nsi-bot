@@ -1,0 +1,138 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Nhà thầu giá dưới sổ sách với backlog kỷ lục là cơ hội khi phải thu sạch — kiểm tra trích lập mỗi quý.",
+ "ma": "CTD",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: vốn FDI và đầu tư tư nhân (nhà máy, khu công nghiệp, nhà ở) → đơn hàng xây dựng; giá thép, xi măng → biên gộp; lãi suất → khả năng thanh toán của chủ đầu tư.",
+  "nganh": "Xây dựng – hạ tầng – thiết bị điện cuối 2026: GDP quý 3 khu vực công nghiệp và xây dựng +11,2% (đóng góp gần 50% tăng trưởng); đầu tư công quý 4 còn khoảng 380.000 tỷ phải giải ngân; nhu cầu điện tăng 9% kéo đầu tư lưới điện, nguồn điện (Quy hoạch điện VIII). Nhưng biên nhà thầu bị ép: giá thép, nhựa đường, đá, nhiên liệu tăng làm biên gộp nhà thầu hạ tầng giảm (VCG từ 12,6% quý 1 xuống 9,1% quý 2, Bnews 29/10); MBS dự báo nhiều nhà thầu lãi quý 3 giảm (VCG −94% do nền thoái vốn 2025, CTD −32%, PC1 −42%). Khu công nghiệp hưởng FDI (VGC biên cho thuê 75%). Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "Quý 1 niên độ 2026–2027 (07–09/2026, ước tính công bố tại ĐHĐCĐ 20/10): doanh thu 11.270 tỷ (27% kế hoạch), LNST 306 tỷ (29% kế hoạch) — cao hơn quý 3/2025 (295 tỷ, NSI) khoảng 4%. Kế hoạch niên độ 2027: doanh thu 42.000 tỷ, LNST 1.050 tỷ. Backlog kỷ lục khoảng 70.000 tỷ; hợp đồng ký mới quý đầu 14.519 tỷ. Quý 2/2026 (NSI) LNST 147 tỷ (−27%) với 56% LNTT từ thu tài chính và trích lập 158 tỷ.",
+  "mo_hinh_kd": "Tổng thầu xây dựng dân dụng – công nghiệp (nhà xưởng FDI, cao tầng, khách sạn), mở rộng hạ tầng; thu tài chính từ tiền gửi.",
+  "lanh_dao": "Chủ tịch Bolat Duisenov (Kustocem); có động thái mua cổ phiếu (CafeF 21/10).",
+  "chuoi_gia_tri": "Nhà thầu chính cho chủ đầu tư FDI và bất động sản (Vinhomes, các tập đoàn nước ngoài).",
+  "dan_nguoc_vi_mo": "Xây dựng và đầu tư công là đầu kéo tăng trưởng 2026 (mục tiêu GDP gần 10%); nhà thầu lớn và nhà sản xuất thiết bị điện là kênh chuyển vốn công thành việc làm và tiêu thụ vật liệu."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt a, b, c và qua lọc nền thấp; trượt d (nền 17,6%). P/B 0,73.",
+   "bang_chung": [
+    "FACT: LN 4 quý +72,8%, lõi +59%, nền 17,6%, P/B 0,73 (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Backlog kỷ lục bảo đảm doanh thu 2–3 năm; điểm yếu là biên mỏng và lợi nhuận một phần từ thu tài chính. Quý đầu niên độ đạt 29% kế hoạch — đúng nhịp.",
+   "bang_chung": [
+    "FACT: Backlog khoảng 70.000 tỷ (Tin nhanh chứng khoán 19/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Backlog kỷ lục khoảng 70.000 tỷ.",
+  "P/B 0,73 — dưới sổ sách.",
+  "Quý đầu niên độ đạt 29% kế hoạch lợi nhuận.",
+  "Đạt a, b, c; qua lọc nền thấp."
+ ],
+ "bear": [
+  "Biên xây dựng mỏng; giá vật liệu tăng.",
+  "Lợi nhuận phụ thuộc thu tài chính.",
+  "Trích lập phải thu khó đòi.",
+  "Trượt d (nền 17,6%)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Nhà thầu tốt nhất với backlog kỷ lục, giá dưới sổ sách."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Biên mỏng, rủi ro thanh toán từ chủ đầu tư bất động sản."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Đủ cơ bản, thiếu nền giá."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: chờ điểm vào."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 (quý 1 niên độ 2027) không thấp hơn cùng kỳ (Q3/25 294,8 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: trích lập lớn bất thường; backlog giảm; LNST quý đầu niên độ thực tế thấp hơn ước tính trên 20%.",
+ "dinh_gia": "P/E 8,91 so với trung vị 3 năm 20,76; P/B 0,73 so với 0,85 (NSI 28/10, BCTC Q2/26). Ngành Xây dựng và Vật liệu (17 mã trong NSI): P/E trung vị 9,7, P/B 1,02, ROE 7,6%; mã này ROE 8,3%. Giá 68,00 cách đỉnh 1 năm -27%, cả ngành -30%. Báo cáo phân tích trên Vietstock 09/10/2026: doanh thu quý 4/niên độ 2026 +27%. MBS dự báo quý 3 lợi nhuận −32% (thấp hơn ước tính công ty). Kỳ vọng ngầm trong giá 68.000 (P/B 0,73): thị trường nghi ngờ chất lượng tài sản phải thu.",
+ "pitch": "Coteccons có lượng hợp đồng chưa thực hiện kỷ lục khoảng 70.000 tỷ, quý đầu niên độ mới lãi khoảng 306 tỷ đúng tiến độ kế hoạch, cổ phiếu giao dịch dưới giá trị sổ sách. Đủ tiêu chí cơ bản; chúng tôi chờ giá tạo nền để mua.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 8,
+   "nganh": 7,
+   "doanh_nghiep": 7,
+   "gia_sai": 7
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 9,
+   "suc_khoe_tc": 7
+  },
+  "luan_diem_70": 34,
+  "so_30": 25,
+  "tong": 59,
+  "dinh_gia_sai": 7,
+  "gia_sai": {
+   "tin_xau": "Biên mỏng, trích lập, MBS dự báo giảm.",
+   "co_that_su_xau": "Không nhiều — ước tính công ty vẫn tăng nhẹ.",
+   "trang_thai": "Giá −27% từ đỉnh, P/B 0,73 — đã phản ánh.",
+   "ky_vong_ngam": "P/B 0,73: nghi ngờ phải thu.",
+   "nguoi_ban_can_bien": "Quỹ ngoại cắt tỷ trọng nhóm xây dựng.",
+   "counter": "Phản biện: nếu một chủ đầu tư lớn chậm trả, trích lập có thể ăn hết lợi nhuận một năm.",
+   "phep_thu": "BCTC quý 1 niên độ chính thức.",
+   "ket_luan": "ĐÃ PHẢN ÁNH"
+  },
+  "ket_luan": "CHỜ ĐIỂM VÀO — đạt a, b, c; trượt d",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

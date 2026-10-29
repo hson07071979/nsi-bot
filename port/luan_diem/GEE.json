@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lõi tăng mà tiền không về: chờ dòng tiền xác nhận.",
+ "ma": "GEE",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: đầu tư lưới điện, nhà máy, data center (sóng AI) → cầu dây cáp, thiết bị điện; giá đồng, nhôm → giá vốn; lãi suất → vốn lưu động.",
+  "nganh": "Xây dựng – hạ tầng – thiết bị điện cuối 2026: GDP quý 3 khu vực công nghiệp và xây dựng +11,2% (đóng góp gần 50% tăng trưởng); đầu tư công quý 4 còn khoảng 380.000 tỷ phải giải ngân; nhu cầu điện tăng 9% kéo đầu tư lưới điện, nguồn điện (Quy hoạch điện VIII). Nhưng biên nhà thầu bị ép: giá thép, nhựa đường, đá, nhiên liệu tăng làm biên gộp nhà thầu hạ tầng giảm (VCG từ 12,6% quý 1 xuống 9,1% quý 2, Bnews 29/10); MBS dự báo nhiều nhà thầu lãi quý 3 giảm (VCG −94% do nền thoái vốn 2025, CTD −32%, PC1 −42%). Khu công nghiệp hưởng FDI (VGC biên cho thuê 75%). Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "GELEX công bố 27/10: GEE đã vượt kế hoạch LNTT năm sau 9 tháng, lợi nhuận cốt lõi +32%. Quý 2 (NSI): LNST 710 tỷ (+34%), lõi 1.058 tỷ (+42%). Nhưng tiền từ kinh doanh 12 tháng âm 1.304 tỷ dù lãi 3.567 tỷ (phải thu, tồn kho tăng); quý 3/2025 có lãi một lần lớn (1.744 tỷ). Khối ngoại bán, giá giảm hơn một nửa từ đỉnh (10/2026).",
+  "mo_hinh_kd": "Cadivi (dây cáp), thiết bị điện (EMIC, đồng hồ, máy biến áp), hạ tầng (Viglacera — VGC), năng lượng.",
+  "lanh_dao": "GELEX (GEX) chi phối; Chủ tịch Nguyễn Văn Tuấn. Muốn đổi tên, bầu bổ sung HĐQT (10/2026).",
+  "chuoi_gia_tri": "Nhà cung cấp dây cáp, thiết bị điện cho EVN, nhà thầu, khu công nghiệp.",
+  "dan_nguoc_vi_mo": "Xây dựng và đầu tư công là đầu kéo tăng trưởng 2026 (mục tiêu GDP gần 10%); nhà thầu lớn và nhà sản xuất thiết bị điện là kênh chuyển vốn công thành việc làm và tiêu thụ vật liệu."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (biên độ 30 phiên 22%), a (tiền từ kinh doanh âm), c (−49% vs ngành −30%), d.",
+   "bang_chung": [
+    "FACT: CFO 12 tháng −1.304 tỷ, nền 21,7% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lõi tăng thật (+32–42%), nhưng lợi nhuận chưa về bằng tiền và giá đang bị bán mạnh; P/B 5 với ROE 45% phụ thuộc đòn bẩy tập đoàn.",
+   "bang_chung": [
+    "FACT: GEE vượt kế hoạch LNTT năm sau 9 tháng (F247 28/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Lõi +32% 9 tháng; vượt kế hoạch.",
+  "Cầu dây cáp, thiết bị điện tăng theo AI, lưới điện.",
+  "ROE 45%; P/E khoảng 9 trên lợi nhuận gần nhất."
+ ],
+ "bear": [
+  "Tiền từ kinh doanh âm 1.304 tỷ.",
+  "Khối ngoại bán, giá −49%.",
+  "P/B 5; đòn bẩy hệ sinh thái GELEX.",
+  "Trượt lọc nền thấp, a, c, d."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Doanh nghiệp thiết bị điện dẫn đầu giữa sóng đầu tư điện."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Lợi nhuận chưa về tiền, giá chưa cân bằng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua lọc."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 1.744,0 tỷ gồm lãi một lần, NSI) — khó đạt."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): dòng tiền kinh doanh dương hai quý và nền giá dưới 15%.",
+ "dinh_gia": "P/E 11,65 so với trung vị 3 năm 15,19; P/B 5,15 so với 4,47 (NSI 28/10, BCTC Q2/26). Ngành Hàng & Dịch vụ Công nghiệp (13 mã trong NSI): P/E trung vị 11,1, P/B 1,43, ROE 16,5%; mã này ROE 45,6%. Giá 69,20 cách đỉnh 1 năm -49%, cả ngành -30%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 69.200 (P/B 5,2): trả cho ROE cao duy trì.",
+ "pitch": "Điện lực Gelex sản xuất dây cáp và thiết bị điện, lợi nhuận cốt lõi tăng hơn 30% và đã vượt kế hoạch năm. Nhưng tiền thu về chưa theo kịp lợi nhuận và giá cổ phiếu đang biến động mạnh. Chúng tôi không chọn kỳ này.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 6,
+   "vi_mo_vn": 7,
+   "nganh": 8,
+   "doanh_nghiep": 6,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 6,
+   "suc_khoe_tc": 4
+  },
+  "luan_diem_70": 32,
+  "so_30": 17,
+  "tong": 49,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "tin_xau": "Dòng tiền âm, khối ngoại bán.",
+   "co_that_su_xau": "Một phần — vốn lưu động tăng vì tăng trưởng.",
+   "trang_thai": "Giá −49% từ đỉnh — đã phản ánh nhiều.",
+   "ky_vong_ngam": "P/B 5: ROE 45% duy trì.",
+   "nguoi_ban_can_bien": "Khối ngoại đang bán ròng liên tục.",
+   "counter": "Phản biện: thu tiền cuối năm có thể làm dòng tiền dương mạnh quý 4.",
+   "phep_thu": "BCTC quý 3: dòng tiền và phải thu.",
+   "ket_luan": "ĐÃ PHẢN ÁNH NHIỀU"
+  },
+  "ket_luan": "LOẠI (kỳ này) — trượt lọc nền thấp, a, c, d",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": false,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}
