@@ -1,7 +1,8 @@
 {
  "ngay": "2026-10-29",
- "luc": "2026-10-29T10:47+07:00",
- "model": null,
+ "luc": "2026-10-29T10:50+07:00",
+ "model": "gemini-3.5-flash-lite",
+ "cach": "rss",
  "so_tim_kiem": 0,
  "nguon_web": [],
  "loi_model": {
@@ -13,19 +14,50 @@
   "gemini-3.6-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"
  },
  "loai": {
-  "ls_huy_dong_vn": "lượt hỏng",
-  "ls_cho_vay_vn": "lượt hỏng",
-  "ls_lien_nh_vn": "lượt hỏng",
-  "tin_dung_vn": "lượt hỏng",
-  "dau_tu_cong_vn": "lượt hỏng",
-  "cpi_vn": "lượt hỏng",
-  "tieu_dung_vn": "lượt hỏng",
-  "xuat_khau_vn": "lượt hỏng",
-  "pmi_vn": "lượt hỏng",
-  "fdi_vn": "lượt hỏng",
-  "gdp_vn": "lượt hỏng",
-  "tpcp_10y_vn": "lượt hỏng",
-  "von_ngoai_vn": "lượt hỏng"
+  "ls_huy_dong_vn": "thiếu",
+  "ls_cho_vay_vn": "thiếu",
+  "tin_dung_vn": "thiếu",
+  "cpi_vn": "thiếu",
+  "tieu_dung_vn": "thiếu",
+  "xuat_khau_vn": "thiếu",
+  "fdi_vn": "thiếu",
+  "gdp_vn": "thiếu",
+  "tpcp_10y_vn": "thiếu",
+  "von_ngoai_vn": "thiếu"
  },
- "bien": {}
+ "bien": {
+  "ls_lien_nh_vn": {
+   "ten": "Lãi suất liên ngân hàng qua đêm VN",
+   "dv": "%/năm",
+   "gia_tri": 3.85,
+   "ky": "27/10/2026",
+   "ngay": "2026-10-27",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "Lãi suất qua đêm phiên 27/10 neo mức 3,85% — tin: \"Phiên 27/10: Ngân hàng Nhà nước bơm ròng 6.300 tỷ đồng, lãi suất qua đêm neo mức 3,85% - nguoiquansat.vn\"",
+   "nguon": "nguoiquansat.vn 2026-10-27 (tin RSS)"
+  },
+  "dau_tu_cong_vn": {
+   "ten": "Giải ngân đầu tư công VN",
+   "dv": "% kế hoạch năm",
+   "gia_tri": 65.9,
+   "ky": "10/2026",
+   "ngay": "2026-10-28",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "Giải ngân vốn đầu tư công đạt 65,9% kế hoạch — tin: \"Giải ngân vốn đầu tư công đạt 65,9% kế hoạch, một số bộ, cơ quan chậm tiến độ - Báo Lào Cai điện tử\"",
+   "nguon": "Báo Lào Cai điện tử 2026-10-28 (tin RSS)"
+  },
+  "pmi_vn": {
+   "ten": "PMI sản xuất VN",
+   "dv": "điểm",
+   "gia_tri": 51.9,
+   "ky": "09/2026",
+   "ngay": "2026-10-01",
+   "xu_huong": "giam",
+   "xu_huong_tu": "model",
+   "ly_do": "PMI giảm xuống 51,9 điểm — tin: \"PMI giảm xuống 51,9 điểm, ngành sản xuất Việt Nam vẫn duy trì tăng trưởng - VnEconomy\"",
+   "nguon": "VnEconomy 2026-10-01 (tin RSS)"
+  }
+ }
 }
