@@ -1,0 +1,138 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Cam kết mua lại không giới hạn là rủi ro đuôi — điểm số dữ liệu cũ không bắt được.",
+ "ma": "PNJ",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá vàng, sức mua trang sức; nhưng hiện tại yếu tố quyết định là vụ án buôn lậu kim cương và chính sách mua lại kim cương của PNJ.",
+  "nganh": "Bán lẻ – phân phối cuối 2026: sức mua nội địa phục hồi, các chuỗi niêm yết tăng doanh thu 6 tháng 28–33%, gấp hơn hai lần thị trường (TCBS 10/2026); MWG vượt mục tiêu lợi nhuận năm, DGW lãi quý 3 +65%, FRT được SSI dự báo +99%. Nhưng thị trường phạt nặng các mã đã tăng nhiều (DGW giảm sàn dù lãi tăng, 28/10) và ngành trang sức chịu cú sốc PNJ (vụ buôn lậu kim cương). Trung vị nhóm bán lẻ cách đỉnh khoảng 14%.",
+  "doanh_nghiep": "Khủng hoảng kim cương: 02/07/2026 Công an Thanh Hóa khởi tố nguyên Giám đốc P-Lab vì buôn lậu kim cương; khách ồ ạt bán lại, giá trị mua lại vượt 7.000 tỷ (27/07), kim cương chiếm 52% tồn kho. Quý 2 lỗ (VnEconomy 30/07: lỗ 283 tỷ do trích lập 865 tỷ; NSI ghi LNST quý 2 −739 tỷ sau soát xét). Quý 3 ước lỗ 258 tỷ, lãi gộp −62%. Kế hoạch 2026 điều chỉnh thành lỗ khoảng 6.271 tỷ do dự phòng 7.071 tỷ cho thu đổi kim cương (ĐHĐCĐ bất thường 21/10). Muốn phát hành riêng lẻ 550 triệu cổ phiếu.",
+  "mo_hinh_kd": "Bán lẻ trang sức vàng, bạc, kim cương lớn nhất Việt Nam (khoảng 400 cửa hàng); kinh doanh vàng miếng.",
+  "lanh_dao": "Chủ tịch Cao Thị Ngọc Dung (nhà sáng lập). Khối ngoại liên tục bán.",
+  "chuoi_gia_tri": "Chế tác – bán lẻ trang sức; chính sách thu đổi kim cương trọn đời là cam kết khiến rủi ro lan rộng.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ so nền kinh tế; tác động ngược lên vĩ mô không đáng kể ngoài việc làm và tiêu dùng nội địa."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (biên độ 30 phiên 116%), d (đang tạo đáy mới); giá −80% từ đỉnh, đáy 9–10 năm.",
+   "bang_chung": [
+    "FACT: Cách đỉnh −79,7%, nền 116% (NSI)",
+    "FACT: Kế hoạch 2026 lỗ khoảng 6.271 tỷ (VnEconomy 22/10)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Đây là khủng hoảng niềm tin và bảng cân đối, không phải chu kỳ: dự phòng 7.071 tỷ gần bằng vốn chủ, cần phát hành riêng lẻ lượng lớn — pha loãng nặng. Số NSI (a, b đạt) dùng dữ liệu cũ, không còn ý nghĩa.",
+   "bang_chung": [
+    "FACT: Phát hành riêng lẻ 550 triệu cổ phiếu (Vietstock 30/09)"
+   ]
+  }
+ ],
+ "bull": [
+  "Thương hiệu trang sức số 1; mạng lưới lớn.",
+  "Giá −80% có thể đã phản ánh phần lớn.",
+  "Doanh thu vàng vẫn duy trì."
+ ],
+ "bear": [
+  "Kế hoạch lỗ khoảng 6.271 tỷ năm 2026.",
+  "Pha loãng 550 triệu cổ phiếu.",
+  "Vụ án chưa kết thúc; niềm tin khách hàng tổn hại.",
+  "Biên độ giá 116%; đang tạo đáy mới."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Doanh nghiệp tốt gặp sự cố một lần; giá đã sụp."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Lỗ gần bằng vốn chủ; phát hành giá thấp sẽ pha loãng mạnh."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không định giá được cho tới khi xong phát hành và vụ án."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (Q4/25 1.218,1 tỷ, NSI) — gần như chắc chắn sai."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): hoàn tất phát hành riêng lẻ, dự phòng chốt số, vụ án kết luận và giá tạo nền dưới 20%.",
+ "dinh_gia": "P/E 7,42 so với trung vị 3 năm 14,52; P/B 1,55 so với 2,84 (NSI 28/10, BCTC Q2/26). Ngành Hàng cá nhân & Gia dụng (5 mã trong NSI): P/E trung vị 7,4, P/B 1,55, ROE 21,6%; mã này ROE 21,6%. Giá 17,15 cách đỉnh 1 năm -80%, cả ngành 0%. CTCK ngừng hoặc chưa cập nhật giá mục tiêu sau khủng hoảng (không tìm thấy báo cáo mới). Kỳ vọng ngầm trong giá 17.150: thị trường định giá theo rủi ro mất vốn chủ và pha loãng.",
+ "pitch": "PNJ đang trong khủng hoảng sau vụ buôn lậu kim cương: dự kiến lỗ hơn 6.000 tỷ năm nay và phải phát hành thêm rất nhiều cổ phiếu. Giá đã giảm khoảng 80% nhưng rủi ro vẫn chưa rõ. Chúng tôi không chọn.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 2,
+   "vi_mo_vn": 4,
+   "nganh": 4,
+   "doanh_nghiep": 2,
+   "gia_sai": 4
+  },
+  "so": {
+   "dinh_gia": 2,
+   "kqkd": 0,
+   "suc_khoe_tc": 1
+  },
+  "luan_diem_70": 16,
+  "so_30": 3,
+  "tong": 19,
+  "dinh_gia_sai": 4,
+  "gia_sai": {
+   "tin_xau": "Vụ án kim cương, lỗ kỷ lục, pha loãng.",
+   "co_that_su_xau": "Có — tổn thất thật lên bảng cân đối.",
+   "trang_thai": "Giá −80% — phản ánh nhiều nhưng chưa rõ đáy.",
+   "ky_vong_ngam": "Rủi ro mất vốn chủ và pha loãng.",
+   "nguoi_ban_can_bien": "Khối ngoại, quỹ buộc bán.",
+   "counter": "Phản biện: nếu phần lớn kim cương bán lại được giá tốt, dự phòng có thể hoàn nhập.",
+   "phep_thu": "Kết quả phát hành riêng lẻ và tiến độ vụ án.",
+   "ket_luan": "PHẢN ÁNH NHIỀU NHƯNG CHƯA RÕ ĐÁY"
+  },
+  "ket_luan": "LOẠI — khủng hoảng kim cương; trượt lọc nền thấp, d",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": true,
+  "b": true,
+  "c": null,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

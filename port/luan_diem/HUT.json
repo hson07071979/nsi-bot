@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Tái cấu trúc cần thời gian vào số — chờ hai quý.",
+ "ma": "HUT",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: thị trường ô tô (phân phối qua Savico/Tasco Auto) → doanh thu; lãi suất (nợ và trái phiếu chuyển đổi); BOT giao thông.",
+  "nganh": "Bán lẻ – phân phối cuối 2026: sức mua nội địa phục hồi, các chuỗi niêm yết tăng doanh thu 6 tháng 28–33%, gấp hơn hai lần thị trường (TCBS 10/2026); MWG vượt mục tiêu lợi nhuận năm, DGW lãi quý 3 +65%, FRT được SSI dự báo +99%. Nhưng thị trường phạt nặng các mã đã tăng nhiều (DGW giảm sàn dù lãi tăng, 28/10) và ngành trang sức chịu cú sốc PNJ (vụ buôn lậu kim cương). Trung vị nhóm bán lẻ cách đỉnh khoảng 14%.",
+  "doanh_nghiep": "Chưa tìm thấy BCTC quý 3/2026. Quý 2 (NSI): LNST 64 tỷ, lõi 62 tỷ; lợi nhuận khác chiếm 51% LNST 4 quý. Tiền từ kinh doanh 12 tháng âm 2.514 tỷ. Chào bán khoảng 3.560 tỷ trái phiếu chuyển đổi kỳ hạn 5 năm, lãi năm đầu 10%; muốn rút khỏi mảng BOT (khoảng 1/10 tài sản, Vietstock 27/10).",
+  "mo_hinh_kd": "Phân phối ô tô (Savico), bảo hiểm, dịch vụ xe (VETC thu phí), BOT, bất động sản.",
+  "lanh_dao": "Chủ tịch Vũ Đình Độ; định hướng đưa Tasco thành tập đoàn ô tô – dịch vụ, rút khỏi BOT.",
+  "chuoi_gia_tri": "Nhà phân phối ô tô lớn; hạ tầng thu phí không dừng.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ so nền kinh tế; tác động ngược lên vĩ mô không đáng kể ngoài việc làm và tiêu dùng nội địa."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b, d và qua lọc nền thấp; trượt a (lợi nhuận khác 51%, dòng tiền âm 2.514 tỷ).",
+   "bang_chung": [
+    "FACT: CFO −2.514 tỷ, lợi nhuận khác 51% LNST (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Tái cấu trúc mạnh (bỏ BOT, thêm trái phiếu chuyển đổi) — câu chuyện chưa vào số; pha loãng tiềm năng.",
+   "bang_chung": [
+    "FACT: Trái phiếu chuyển đổi 3.560 tỷ (tin tổng hợp 10/2026)"
+   ]
+  }
+ ],
+ "bull": [
+  "Tái cấu trúc về mảng ô tô, dịch vụ.",
+  "Đạt b, d; qua lọc nền thấp.",
+  "VETC có dòng tiền đều."
+ ],
+ "bear": [
+  "Dòng tiền âm 2.514 tỷ.",
+  "Lợi nhuận khác lớn (trượt a).",
+  "Trái phiếu chuyển đổi pha loãng.",
+  "ROE 4,6%."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Tasco đang thành tập đoàn ô tô – dịch vụ lớn."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Tăng trưởng bằng nợ, lợi nhuận chưa thật."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không đạt a."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 302,7 tỷ gồm khoản bất thường, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mua): lõi tăng hai quý và dòng tiền dương.",
+ "dinh_gia": "P/E 27,71 so với trung vị 3 năm 76,54; P/B 1,30 so với 1,64 (NSI 28/10, BCTC Q2/26). Ngành Ô tô và phụ tùng (2 mã trong NSI): P/E trung vị 15,5, P/B 1,88, ROE 45,1%; mã này ROE 4,6%. Giá 12,40 cách đỉnh 1 năm -32%, cả ngành 0%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 12.400 (P/E 28, P/B 1,3): trả cho tái cấu trúc.",
+ "pitch": "Tasco đang tái cấu trúc sang phân phối ô tô và dịch vụ, rút khỏi BOT, phát hành trái phiếu chuyển đổi. Lợi nhuận chưa ổn định và dòng tiền âm. Chúng tôi theo dõi.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 3,
+   "vi_mo_vn": 5,
+   "nganh": 5,
+   "doanh_nghiep": 4,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 9,
+   "kqkd": 6,
+   "suc_khoe_tc": 2
+  },
+  "luan_diem_70": 22,
+  "so_30": 17,
+  "tong": 39,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "tin_xau": "Dòng tiền âm, pha loãng.",
+   "co_that_su_xau": "Một phần — giai đoạn tái cấu trúc.",
+   "trang_thai": "Giá −32% từ đỉnh.",
+   "ky_vong_ngam": "P/E 28 trả cho tái cấu trúc.",
+   "nguoi_ban_can_bien": "Trái chủ chuyển đổi trong tương lai.",
+   "counter": "Phản biện: bán BOT có thể tạo tiền giảm nợ.",
+   "phep_thu": "BCTC quý 3 và giao dịch bán BOT.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
+  },
+  "ket_luan": "THEO DÕI — trượt a (lợi nhuận khác, dòng tiền âm)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": null,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

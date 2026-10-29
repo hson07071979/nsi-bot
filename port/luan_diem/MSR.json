@@ -1,0 +1,136 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lợi nhuận kỷ lục từ giá hàng hóa: mua khi giá cổ phiếu đã điều chỉnh, không mua ở đỉnh.",
+ "ma": "MSR",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: Trung Quốc siết xuất khẩu kim loại chiến lược → giá vonfram (APT) tăng gần gấp 6 lần; nhu cầu quốc phòng, bán dẫn Mỹ – châu Âu tìm nguồn ngoài Trung Quốc.",
+  "nganh": "Thép – tài nguyên: giá thép nội địa hạ nhiệt nhưng nhu cầu đầu tư công giữ sản lượng; tôn mạ (HSG, NKG) chịu thuế chống bán phá giá ở Mỹ, EU và cạnh tranh hàng Trung Quốc, biên mỏng; MBS cho rằng thép \"sáng cửa\" nhờ nhu cầu nội địa (10/2026). Kim loại chiến lược (vonfram) bùng nổ giá khi Trung Quốc siết xuất khẩu (APT gần gấp 6 lần cùng kỳ). Trung vị nhóm cách đỉnh khoảng 17%.",
+  "doanh_nghiep": "Quý 3/2026: doanh thu 14.557 tỷ (gấp 7,1 lần), LNST trước thiểu số 2.148 tỷ (+29% so quý 2; cùng kỳ 5 tỷ); giá APT bình quân 3.129 USD/mtu; sản lượng vonfram +55%; chi phí bán hàng, quản lý −35% (Vietstock 28/10). Cổ tức 2026 6.000 đồng/cp (khoảng 6.600 tỷ); từ 2027 tối thiểu 50% LNST. NSI không có dữ liệu BCTC cho mã UPCoM này.",
+  "mo_hinh_kd": "Mỏ đa kim Núi Pháo (vonfram, florit, bismut, đồng) + chế biến sâu (H.C. Starck).",
+  "lanh_dao": "Masan Group chi phối; Elmet Group (Mỹ) thành cổ đông chiến lược 01/10/2026.",
+  "chuoi_gia_tri": "Một trong vài nguồn vonfram lớn ngoài Trung Quốc; bán cho công nghiệp Mỹ, châu Âu, Nhật.",
+  "dan_nguoc_vi_mo": "Vị trí trong chuỗi cung ứng kim loại chiến lược của phương Tây; đóng góp xuất khẩu và ngân sách Thái Nguyên."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (giá ở đỉnh, biên độ 30 phiên 45%), d; không chấm được a, b.",
+   "bang_chung": [
+    "FACT: Cách đỉnh 0%, nền 44,9% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Siêu chu kỳ giá vonfram tạo lợi nhuận kỷ lục và cổ tức lớn; nhưng giá cổ phiếu đã ở đỉnh và biến động cực mạnh — mua ở đây là đặt cược giá vonfram giữ đỉnh.",
+   "bang_chung": [
+    "FACT: APT 3.129 USD/mtu, gần gấp 6 lần cùng kỳ (Vietstock 28/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Lợi nhuận kỷ lục; cổ tức 6.000 đồng.",
+  "Cổ đông chiến lược Mỹ (Elmet).",
+  "Vị thế chiến lược ngoài Trung Quốc."
+ ],
+ "bear": [
+  "Giá vonfram có thể đảo chiều nhanh.",
+  "Giá cổ phiếu ở đỉnh, biên độ 45%.",
+  "UPCoM; thiếu dữ liệu NSI."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Thay đổi cấu trúc chuỗi cung ứng kim loại, không chỉ là chu kỳ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Giá hàng hóa ở đỉnh luôn là chu kỳ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua lọc nền thấp."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (BCTC MSR)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): nền giá 30 phiên dưới 15% khi giá APT vẫn trên 2.000 USD.",
+ "dinh_gia": "P/E — so với trung vị 3 năm —; P/B — so với — (NSI 28/10, BCTC None). Ngành Tài nguyên Cơ bản (10 mã trong NSI): P/E trung vị 9,7, P/B 1,17, ROE 13,8%; mã này ROE —%. Giá 68,40 cách đỉnh 1 năm 0%, cả ngành -17%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 68.400 (lợi suất cổ tức khoảng 9% năm 2026): thị trường đã trả cho giá vonfram cao.",
+ "pitch": "Masan High-Tech Materials đang lãi kỷ lục nhờ giá vonfram tăng gấp nhiều lần và trả cổ tức lớn. Nhưng cổ phiếu đã ở đỉnh và biến động rất mạnh; chúng tôi không mua đuổi.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 8,
+   "vi_mo_vn": 4,
+   "nganh": 7,
+   "doanh_nghiep": 7,
+   "gia_sai": 4
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 9,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 30,
+  "so_30": 20,
+  "tong": 50,
+  "dinh_gia_sai": 4,
+  "gia_sai": {
+   "tin_xau": "Không có tin xấu — chỉ rủi ro chu kỳ.",
+   "co_that_su_xau": "Không — đang tốt nhất lịch sử.",
+   "trang_thai": "Giá ở đỉnh — chưa phản ánh rủi ro.",
+   "ky_vong_ngam": "Giá vonfram giữ đỉnh.",
+   "nguoi_ban_can_bien": "Nhà đầu tư chốt lời sau cổ tức.",
+   "counter": "Phản biện: Mỹ cấm vonfram Trung Quốc từ 2027 có thể giữ giá cao lâu.",
+   "phep_thu": "Giá APT bình quân quý 4/2026.",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI (kỳ này) — trượt lọc nền thấp (giá đỉnh, biên độ 45%)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": null,
+  "b": null,
+  "c": true,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

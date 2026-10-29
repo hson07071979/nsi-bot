@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lãi thanh lý tài sản làm P/E trông hợp lý — kiểm tra lõi và dòng tiền.",
+ "ma": "VPL",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: khách quốc tế (khách qua ACV quý 3 +12,7%), chi tiêu du lịch, lãi suất (đầu tư khu nghỉ dưỡng bằng vay).",
+  "nganh": "Du lịch – nghỉ dưỡng 2026: khách quốc tế 9 tháng qua hệ thống ACV 36 triệu lượt (+10,8%); hệ sinh thái Vingroup đẩy mạnh Vinpearl ra quốc tế. Lợi nhuận ngành biến động theo bán tài sản và mùa vụ.",
+  "doanh_nghiep": "6 tháng 2026: LNST khoảng 2.140 tỷ (gấp 8 lần) — có đóng góp đáng kể từ lãi thanh lý (Vietstock 13/10). Quý 2 (NSI): LNST 672 tỷ, lõi 508 tỷ. Tiền từ kinh doanh 12 tháng âm 3.350 tỷ (quý 2 âm 6.308 tỷ). ROE 7,7%, P/E 47. Chưa tìm thấy BCTC quý 3/2026.",
+  "mo_hinh_kd": "Khách sạn, nghỉ dưỡng, vui chơi (VinWonders), safari, golf; mở khu dưỡng lão 222 phòng cuối năm; định hướng quốc tế.",
+  "lanh_dao": "Vingroup chi phối; vốn hóa khoảng 182.000 tỷ.",
+  "chuoi_gia_tri": "Mảng du lịch của hệ sinh thái Vingroup, gắn với bất động sản Vinhomes.",
+  "dan_nguoc_vi_mo": "Một trong những doanh nghiệp du lịch lớn nhất, đóng góp vào thu ngoại tệ từ du lịch quốc tế."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b và qua lọc nền thấp; trượt a (dòng tiền âm 3.350 tỷ), d (nền 17%); P/E 47.",
+   "bang_chung": [
+    "FACT: CFO −3.350 tỷ, P/E 46,7 (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận tăng gấp nhiều lần chủ yếu từ thanh lý tài sản; kinh doanh nghỉ dưỡng có lãi nhưng định giá rất cao.",
+   "bang_chung": [
+    "FACT: 6 tháng LNST 2.140 tỷ có lãi thanh lý (Vietstock 13/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Khách du lịch tăng.",
+  "Hệ sinh thái Vingroup hỗ trợ.",
+  "Mở rộng quốc tế, dưỡng lão."
+ ],
+ "bear": [
+  "Lợi nhuận phụ thuộc thanh lý.",
+  "Dòng tiền âm lớn.",
+  "P/E 47 — đắt so ngành.",
+  "Trượt điều kiện a, d của máy chấm."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Thương hiệu nghỉ dưỡng hàng đầu."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Định giá đắt cho lợi nhuận không đều."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không đạt a."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 169,3 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mua): lõi tăng đều và dòng tiền dương hai quý.",
+ "dinh_gia": "P/E 46,70 so với trung vị 3 năm —; P/B 3,07 so với 3,70 (NSI 28/10, BCTC Q2/26). Ngành Du lịch và Giải trí (4 mã trong NSI): P/E trung vị 29,4, P/B 3,36, ROE 27,3%; mã này ROE 7,7%. Giá 88,90 cách đỉnh 1 năm -16%, cả ngành 0%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 88.900 (P/E 47, P/B 3,1): trả cho tăng trưởng và hệ sinh thái.",
+ "pitch": "Vinpearl là thương hiệu nghỉ dưỡng hàng đầu, nhưng lợi nhuận năm nay chủ yếu đến từ bán tài sản, dòng tiền âm và giá cổ phiếu rất đắt. Chúng tôi không chọn kỳ này.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 6,
+   "nganh": 6,
+   "doanh_nghiep": 5,
+   "gia_sai": 3
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 6,
+   "suc_khoe_tc": 6
+  },
+  "luan_diem_70": 25,
+  "so_30": 17,
+  "tong": 42,
+  "dinh_gia_sai": 3,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận một lần, dòng tiền âm.",
+   "co_that_su_xau": "Một phần — lõi có lãi nhưng không tăng nhanh.",
+   "trang_thai": "Giá −16% từ đỉnh — chưa phản ánh.",
+   "ky_vong_ngam": "P/E 47: tăng trưởng nhiều năm.",
+   "nguoi_ban_can_bien": "Nhà đầu tư họ Vin chốt lời.",
+   "counter": "Phản biện: hệ sinh thái Vingroup có thể bơm thêm tài sản sinh lời.",
+   "phep_thu": "BCTC quý 3 tách thanh lý.",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI (kỳ này) — trượt a (dòng tiền âm), d; P/E 47",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": null,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}
