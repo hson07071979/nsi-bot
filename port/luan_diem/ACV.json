@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Mã UPCoM thiếu dữ liệu NSI cần nguồn BCTC trực tiếp trước khi chấm.",
+ "ma": "ACV",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: du lịch quốc tế, thu nhập → khách hàng không; tỷ giá JPY (nợ vay ODA yên Nhật) → lãi/lỗ tỷ giá; đầu tư công.",
+  "nganh": "Vận tải – cảng – hàng không năm 2026: (1) Tàu dầu, tàu hóa chất hưởng giá cước tăng cao do gián đoạn eo Hormuz (Vietcap nâng dự báo PVT, 16/10); (2) Tàu container nội Á giữ giá thuê cao nhưng nhiên liệu đắt; HAH và Viconship đầu tư 5 tàu khoảng 8.930 tỷ (02/10); (3) Cảng biển phân hóa — cảng nước sâu Cái Mép, Lạch Huyện tăng sản lượng mạnh, cảng thượng nguồn Hải Phòng chịu cạnh tranh; MBS dự báo GMD, PHP, VSC lãi quý 3 tăng tới 86%; (4) Hàng không — khách qua cảng ACV quý 3 33,1 triệu lượt (+12,7%), 9 tháng 94,1 triệu (+8,6%), sân bay Long Thành sắp khai thác; nhưng hãng bay chịu giá nhiên liệu cao (Brent trên 100 USD) và tỷ giá. Thuế 301 của Mỹ (12,5% từ 24/07/2026) làm chậm hàng xuất khẩu đi Mỹ. Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "Ước 9 tháng (14–15/10): doanh thu công ty mẹ khoảng 20.300 tỷ (+6%), LNTT công ty mẹ ước gần 9.200 tỷ — vượt kế hoạch năm 7.011 tỷ khoảng 31%. Quý 3: 33,1 triệu khách (+12,7%), hàng hóa 480.000 tấn (+4,2%). NSI không có dữ liệu BCTC cho mã UPCoM này. Đầu tư 2026 40.573 tỷ, chủ yếu Long Thành; chi 6.300 tỷ cho nhà thầu (10/2026).",
+  "mo_hinh_kd": "Độc quyền khai thác 22 cảng hàng không: phí hành khách, cất hạ cánh, thuê mặt bằng; sắp khai thác Long Thành.",
+  "lanh_dao": "Nhà nước khoảng 95% — free float rất thấp; trên UPCoM.",
+  "chuoi_gia_tri": "Hạ tầng độc quyền; khách hàng là các hãng bay.",
+  "dan_nguoc_vi_mo": "Chi phí logistics khoảng 16–17% GDP là nút thắt cạnh tranh xuất khẩu; cảng nước sâu và sân bay Long Thành là hạ tầng chiến lược giúp giảm chi phí này và thu hút FDI."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy đạt c, d và qua lọc nền thấp; không chấm được a, b (thiếu BCTC trên NSI).",
+   "bang_chung": [
+    "FACT: Cách đỉnh −34%, nền 10% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận vượt kế hoạch nhờ khách tăng; rủi ro chính là chi phí khấu hao, lãi vay khi Long Thành vào vận hành và tỷ giá yên.",
+   "bang_chung": [
+    "FACT: LNTT 9 tháng ước vượt kế hoạch 31% (Thanh Niên 13/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Khách quý 3 +12,7%; lợi nhuận vượt kế hoạch.",
+  "Độc quyền hạ tầng; Long Thành sắp khai thác.",
+  "Đạt c, d; qua lọc nền thấp."
+ ],
+ "bear": [
+  "Khấu hao, lãi vay lớn khi Long Thành vận hành.",
+  "Free float khoảng 5%; UPCoM.",
+  "Không chấm được a, b bằng dữ liệu NSI.",
+  "Tỷ giá yên ảnh hưởng nợ vay."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Hạ tầng độc quyền đang tăng trưởng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Giai đoạn đầu Long Thành sẽ ép lợi nhuận."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Thiếu dữ liệu để chấm a, b."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: cần thêm — BCTC quý 3 hợp nhất."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (BCTC ACV)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: Long Thành chậm hoặc đội vốn lớn; khách quốc tế giảm.",
+ "dinh_gia": "P/E — so với trung vị 3 năm —; P/B — so với — (NSI 28/10, BCTC None). Ngành Hàng & Dịch vụ Công nghiệp (13 mã trong NSI): P/E trung vị 11,1, P/B 1,43, ROE 16,5%; mã này ROE —%. Giá 41,00 cách đỉnh 1 năm -34%, cả ngành -30%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 41.000: thị trường chiết khấu chi phí Long Thành.",
+ "pitch": "ACV độc quyền khai thác sân bay, lượng khách quý 3 tăng gần 13% và lợi nhuận đã vượt kế hoạch năm, sắp có sân bay Long Thành. Chúng tôi cần thêm số liệu báo cáo quý 3 đầy đủ trước khi chấm.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 6,
+   "vi_mo_vn": 7,
+   "nganh": 7,
+   "doanh_nghiep": 6,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 7,
+   "suc_khoe_tc": 7
+  },
+  "luan_diem_70": 32,
+  "so_30": 19,
+  "tong": 51,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Lo chi phí Long Thành, tỷ giá yên.",
+   "co_that_su_xau": "Một phần — chi phí là thật nhưng bù bằng doanh thu mới.",
+   "trang_thai": "Giá −34% từ đỉnh.",
+   "ky_vong_ngam": "Thị trường chiết khấu Long Thành.",
+   "nguoi_ban_can_bien": "Ít — free float thấp.",
+   "counter": "Phản biện: Long Thành có thể nâng doanh thu nhanh hơn chi phí.",
+   "phep_thu": "BCTC quý 3 hợp nhất.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
+  },
+  "ket_luan": "CẦN THÊM — thiếu dữ liệu chấm a, b; chờ BCTC quý 3",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": null,
+  "b": null,
+  "c": true,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

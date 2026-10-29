@@ -1,0 +1,136 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Công ty con nhỏ cùng ngành thường biến động mạnh hơn công ty mẹ.",
+ "ma": "PVP",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: cước tàu dầu, tàu hàng rời (Hormuz) → doanh thu; tỷ giá.",
+  "nganh": "Vận tải – cảng – hàng không năm 2026: (1) Tàu dầu, tàu hóa chất hưởng giá cước tăng cao do gián đoạn eo Hormuz (Vietcap nâng dự báo PVT, 16/10); (2) Tàu container nội Á giữ giá thuê cao nhưng nhiên liệu đắt; HAH và Viconship đầu tư 5 tàu khoảng 8.930 tỷ (02/10); (3) Cảng biển phân hóa — cảng nước sâu Cái Mép, Lạch Huyện tăng sản lượng mạnh, cảng thượng nguồn Hải Phòng chịu cạnh tranh; MBS dự báo GMD, PHP, VSC lãi quý 3 tăng tới 86%; (4) Hàng không — khách qua cảng ACV quý 3 33,1 triệu lượt (+12,7%), 9 tháng 94,1 triệu (+8,6%), sân bay Long Thành sắp khai thác; nhưng hãng bay chịu giá nhiên liệu cao (Brent trên 100 USD) và tỷ giá. Thuế 301 của Mỹ (12,5% từ 24/07/2026) làm chậm hàng xuất khẩu đi Mỹ. Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "Quý 3/2026 (NSI): LNST cổ đông mẹ 68 tỷ (−2% cùng kỳ), lõi 77 tỷ (+6%); quý 2 135 tỷ là đỉnh. LN 4 quý +73% nhờ quý 1–2. Tiền từ kinh doanh 4 quý 634 tỷ (197% lợi nhuận).",
+  "mo_hinh_kd": "Công ty con PVTrans: vận tải dầu, hàng rời đội tàu nhỏ.",
+  "lanh_dao": "PVTrans chi phối; thanh khoản cổ phiếu thấp.",
+  "chuoi_gia_tri": "Vận tải nội địa và khu vực cho hệ PVN.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ; tác động ngược lên vĩ mô không đáng kể."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (biên độ 30 phiên 38%) và d; đạt a, b, c.",
+   "bang_chung": [
+    "FACT: Nền 38,1% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Quý 3 đi ngang cùng kỳ — đà tăng của quý 1–2 đã hết; giá biến động quá mạnh.",
+   "bang_chung": [
+    "FACT: LNST quý 3 −2% (NSI)"
+   ]
+  }
+ ],
+ "bull": [
+  "P/E khoảng 6; P/B dưới giá trị sổ sách.",
+  "Dòng tiền gấp đôi lợi nhuận.",
+  "Đạt điều kiện a, b, c của máy."
+ ],
+ "bear": [
+  "Quý 3 đi ngang.",
+  "Biên độ giá 38% (trượt lọc).",
+  "Thanh khoản thấp; phụ thuộc công ty mẹ."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Rẻ, dòng tiền tốt."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Đà tăng đã hết, giá quá biến động."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua lọc."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại kỳ này."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 4/26 không thấp hơn cùng kỳ (Q4/25 43,9 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): nền 30 phiên dưới 15% và LNST quý 4 tăng.",
+ "dinh_gia": "P/E 5,88 so với trung vị 3 năm 7,91; P/B 0,94 so với 0,85 (NSI 28/10, BCTC Q2/26). Ngành Hàng & Dịch vụ Công nghiệp (13 mã trong NSI): P/E trung vị 11,1, P/B 1,43, ROE 16,5%; mã này ROE 16,5%. Giá 20,15 cách đỉnh 1 năm -19%, cả ngành -30%. Không có giá mục tiêu CTCK. Kỳ vọng ngầm trong giá 20.150 (P/B 0,94): không kỳ vọng tăng trưởng.",
+ "pitch": "PVP là công ty vận tải nhỏ của PVTrans, rẻ nhưng lợi nhuận quý gần nhất đã đi ngang và giá cổ phiếu biến động rất mạnh. Chúng tôi không chọn kỳ này.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 6,
+   "vi_mo_vn": 4,
+   "nganh": 6,
+   "doanh_nghiep": 5,
+   "gia_sai": 5
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 9,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 26,
+  "so_30": 25,
+  "tong": 51,
+  "dinh_gia_sai": 5,
+  "gia_sai": {
+   "tin_xau": "Quý 3 đi ngang.",
+   "co_that_su_xau": "Một phần — đà tăng hết.",
+   "trang_thai": "Giá −19% từ đỉnh, biến động mạnh.",
+   "ky_vong_ngam": "P/B dưới 1: không kỳ vọng tăng trưởng.",
+   "nguoi_ban_can_bien": "Nhà đầu tư lướt sóng.",
+   "counter": "Phản biện: cước tăng lại quý 4.",
+   "phep_thu": "LNST quý 4/2026 so cùng kỳ.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
+  },
+  "ket_luan": "LOẠI (kỳ này) — trượt lọc nền thấp (biên độ 38%)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q3/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

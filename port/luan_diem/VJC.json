@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Lãi tỷ giá che lỗ lõi — luôn đọc LNTT sau khi bỏ khoản một lần.",
+ "ma": "VJC",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá nhiên liệu bay (theo dầu, đang cao) → chi phí lớn nhất; tỷ giá USD → nợ thuê máy bay; du lịch → nhu cầu.",
+  "nganh": "Vận tải – cảng – hàng không năm 2026: (1) Tàu dầu, tàu hóa chất hưởng giá cước tăng cao do gián đoạn eo Hormuz (Vietcap nâng dự báo PVT, 16/10); (2) Tàu container nội Á giữ giá thuê cao nhưng nhiên liệu đắt; HAH và Viconship đầu tư 5 tàu khoảng 8.930 tỷ (02/10); (3) Cảng biển phân hóa — cảng nước sâu Cái Mép, Lạch Huyện tăng sản lượng mạnh, cảng thượng nguồn Hải Phòng chịu cạnh tranh; MBS dự báo GMD, PHP, VSC lãi quý 3 tăng tới 86%; (4) Hàng không — khách qua cảng ACV quý 3 33,1 triệu lượt (+12,7%), 9 tháng 94,1 triệu (+8,6%), sân bay Long Thành sắp khai thác; nhưng hãng bay chịu giá nhiên liệu cao (Brent trên 100 USD) và tỷ giá. Thuế 301 của Mỹ (12,5% từ 24/07/2026) làm chậm hàng xuất khẩu đi Mỹ. Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026 trong nguồn đã đọc. Quý 2 (NSI): LNST 334 tỷ (−49%), lõi 815 tỷ (−39%); bỏ lãi tỷ giá 742 tỷ thì LNTT quý 2 âm 308 tỷ; trích lập 578 tỷ. Quý 1 lãi 1.013 tỷ. Mở đường bay Hà Nội – Almaty – Praha (10/2026).",
+  "mo_hinh_kd": "Hàng không giá rẻ nội địa và quốc tế; bán – thuê lại tàu bay (sale and leaseback) đóng góp lợi nhuận.",
+  "lanh_dao": "Chủ tịch Nguyễn Thị Phương Thảo (Sovico, HDBank).",
+  "chuoi_gia_tri": "Khách hàng của ACV; cạnh tranh Vietnam Airlines, Sun PhuQuoc Airways.",
+  "dan_nguoc_vi_mo": "Chi phí logistics khoảng 16–17% GDP là nút thắt cạnh tranh xuất khẩu; cảng nước sâu và sân bay Long Thành là hạ tầng chiến lược giúp giảm chi phí này và thu hút FDI."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b, d và qua lọc nền thấp; trượt a (lõi 4 quý −19%); P/E 44.",
+   "bang_chung": [
+    "FACT: Lõi 4 quý −18,9%, P/E 44 (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Lợi nhuận quý 2 là ảo nhờ tỷ giá; kinh doanh lõi đang lỗ khi nhiên liệu đắt. P/E 44 không có biên an toàn.",
+   "bang_chung": [
+    "FACT: LNTT lõi quý 2 −308 tỷ (NSI)"
+   ]
+  }
+ ],
+ "bull": [
+  "Mở rộng mạng bay quốc tế.",
+  "Khách ngành tăng hai chữ số.",
+  "Dòng tiền 1.999 tỷ."
+ ],
+ "bear": [
+  "Lõi lỗ quý 2; nhiên liệu đắt.",
+  "Lợi nhuận phụ thuộc tỷ giá, bán – thuê lại.",
+  "P/E 44 — đắt nhất nhóm vận tải.",
+  "Trượt điều kiện a (lõi 4 quý −19%)."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Hãng bay tư nhân lớn nhất, mở rộng mạnh."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Định giá quá cao cho lõi đang lỗ."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không đạt a."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 319,3 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): lõi dương hai quý liên tiếp và P/E dưới 25.",
+ "dinh_gia": "P/E 44,16 so với trung vị 3 năm 44,32; P/B 3,65 so với 3,70 (NSI 28/10, BCTC Q2/26). Ngành Du lịch và Giải trí (4 mã trong NSI): P/E trung vị 29,4, P/B 3,36, ROE 27,3%; mã này ROE 8,6%. Giá 131,50 cách đỉnh 1 năm -22%, cả ngành 0%. Không tìm thấy giá mục tiêu CTCK mới. Kỳ vọng ngầm trong giá 131.500 (P/E 44): kỳ vọng lợi nhuận tăng gấp nhiều lần.",
+ "pitch": "Vietjet mở rộng mạng bay nhanh, nhưng giá nhiên liệu cao khiến kinh doanh chính quý gần nhất bị lỗ, lợi nhuận chủ yếu nhờ tỷ giá; cổ phiếu rất đắt. Chúng tôi không chọn.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 7,
+   "vi_mo_vn": 5,
+   "nganh": 6,
+   "doanh_nghiep": 4,
+   "gia_sai": 3
+  },
+  "so": {
+   "dinh_gia": 5,
+   "kqkd": 4,
+   "suc_khoe_tc": 3
+  },
+  "luan_diem_70": 25,
+  "so_30": 12,
+  "tong": 37,
+  "dinh_gia_sai": 3,
+  "gia_sai": {
+   "tin_xau": "Lõi lỗ, nhiên liệu đắt.",
+   "co_that_su_xau": "Có — lõi lỗ khi nhiên liệu đắt là thật.",
+   "trang_thai": "Giá −22% từ đỉnh, P/E 44 — chưa phản ánh.",
+   "ky_vong_ngam": "P/E 44: kỳ vọng lợi nhuận tăng gấp nhiều lần.",
+   "nguoi_ban_can_bien": "Quỹ giảm hàng không khi dầu tăng.",
+   "counter": "Phản biện: dầu giảm mạnh sẽ đảo chiều lợi nhuận nhanh.",
+   "phep_thu": "BCTC quý 3/2026: lõi còn lỗ không.",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI — trượt a; lõi lỗ, P/E 44",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": null,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}
