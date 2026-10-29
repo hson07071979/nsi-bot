@@ -51,10 +51,14 @@ def _q_key(q: str):
         return (0, 0)
 
 
-def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None = None, gui_that: bool = True) -> dict:
-    """st = trạng thái đã báo {'quy': {ma: q}, 'ky_review': q, 'co': [id]}. Trả về st mới + danh sách tin đã gửi."""
-    st = dict(quy=dict(st.get('quy') or {}), ky_review=st.get('ky_review'), co=list(st.get('co') or []))
-    fu = D.get('funda') or {}
+def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None = None, gui_that: bool = True,
+         quy_live: dict[str, str] | None = None, review: dict | None = None) -> dict:
+    """st = trạng thái đã báo {'quy': {ma: q}, 'ky_review': q, 'co': [id]}. Trả về st mới + danh sách tin đã gửi.
+    quy_live = {mã: quý mới nhất đọc thẳng BCTC Vietcap} (29/10/2026: có số là dùng, không chờ trang 45 ngày).
+    review = danh_sach.lap()['review_quy'] — báo MỘT lần mỗi quý danh sách mã máy thấy cần người review."""
+    st = dict(quy=dict(st.get('quy') or {}), ky_review=st.get('ky_review'), co=list(st.get('co') or []),
+              review_bao=dict(st.get('review_bao') or {}))
+    fu = {s: {'q': [q]} for s, q in (quy_live or {}).items() if q} or (D.get('funda') or {})
     theo_doi = sorted(s for s, t in luan.items() if t.get('trang_thai') in ('trong_port', 'nghien_cuu'))
     tin = []
     moi = []
@@ -66,6 +70,10 @@ def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None
         if cu and _q_key(q) > _q_key(cu):
             moi.append((s, q))
         st['quy'][s] = q if not cu or _q_key(q) > _q_key(cu) else cu
+    if len(moi) > 5:          # nhiều mã cùng sang quý (mùa BCTC) → gộp một tin, khỏi dội chuông
+        tin.append((f'{len(moi)} mã có BCTC mới',
+                    ', '.join(f'{s} {q}' for s, q in moi) + '. Máy tự xét từng luận điểm; mã cần anh xem sẽ có trong tin "Review quý".'))
+        moi = []
     for s, q in moi:
         tt = luan[s].get('trang_thai')
         tin.append((f'{s} có BCTC {q}',
@@ -79,6 +87,16 @@ def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None
                 tin.append((f'Đến kỳ review port {thap}',
                             f'Cả {len(theo_doi)} mã trong port và hàng chờ đã có BCTC {thap}. Đến kỳ review quý.'))
             st['ky_review'] = thap
+    rv = review or {}
+    can = [x['ma'] for x in rv.get('can_review') or []]
+    if rv.get('quy') and can:
+        moi_bao = sorted(set(can) - set(st['review_bao'].get(rv['quy']) or []))
+        if moi_bao:
+            tin.append((f"Review quý {rv['quy']}: {len(moi_bao)} mã",
+                        'Máy đã tự cập nhật số quý mới; các mã sau có thay đổi cần anh xem lại luận điểm: ' +
+                        '; '.join(f"{x['ma']} ({', '.join(x['ly_do'][:2])})" for x in rv['can_review'] if x['ma'] in moi_bao)
+                        + f". Tự gia hạn (không cần làm gì): {len(rv.get('tu_gia_han') or [])} mã."))
+            st['review_bao'][rv['quy']] = sorted(set(st['review_bao'].get(rv['quy']) or []) | set(moi_bao))
     for c in co_gia_lap or []:
         k = f"{c['ma']}-{c['loai']}-{c['ngay']}"
         if k in st['co']:

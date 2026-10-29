@@ -231,7 +231,8 @@ def chay(D: dict, luan: dict[str, dict], danh_muc: dict, gia: dict, daily: dict 
                     gui=NH.gui if gui_chuong else None, ma_port=ma_port,
                     kl=_khoi_luong(B, pg) if pg else None)
     # ------------------------------------------------ 4. nhắc review
-    st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong)
+    st = NH.kiem(D, luan, rj(state / 'nhac.json', {}), gia_lap['tong_ket'].get('co_mo') or [], gui_that=gui_chuong,
+                 quy_live={s_: (bc_ds.get(s_) or {}).get('moi_nhat') for s_ in luan}, review=ds.get('review_quy'))
     wj(state / 'nhac.json', st)
     nguon['gia_gia_lap'] = 'port_gia.npz + ảnh chụp port' if pg else 'nến 240 phiên + ảnh chụp port'
     return dict(gia_lap=gia_lap, muc_tieu_de_xuat=de_xuat, bctc=bc, nhan_dinh=nhan_dinh, loc_quy=loc_quy, pool=pool,

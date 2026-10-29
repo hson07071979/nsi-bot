@@ -62,7 +62,7 @@ def test_the_catalyst_bat_buoc_khi_chi_truoc():
 # ---------------------------------------------------------------- 4 điều kiện
 def test_bon_dieu_kien(monkeypatch):
     B = _B({'A': _gia_nen()})
-    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d: ((20.0, 25.0) if d < B_.lich[-1] else (12.0, 30.0)))
+    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d, live=False: ((20.0, 25.0) if d < B_.lich[-1] else (12.0, 30.0)))
     k = DS.bon_dieu_kien(_dong('A'), [], B)
     assert k['a']['dat'] and k['b']['dat'] and k['c']['dat'] and k['d']['dat'] and k['du']
     assert k['b']['peg_nay'] < k['b']['peg_dinh']
@@ -74,7 +74,7 @@ def test_bon_dieu_kien(monkeypatch):
     assert DS.bon_dieu_kien(_dong('A', nganh_td=-0.05), [], B)['c']['dat'] is False
     assert DS.bon_dieu_kien(_dong('A', tu_dinh=-0.45, nganh_td=-0.20), [], B)['c']['dat'] is False
     # b: PEG nay cao hơn lúc đỉnh → tăng trưởng chậm lại
-    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d: ((10.0, 25.0) if d < B_.lich[-1] else (15.0, 10.0)))
+    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d, live=False: ((10.0, 25.0) if d < B_.lich[-1] else (15.0, 10.0)))
     assert DS.bon_dieu_kien(_dong('A'), [], B)['b']['dat'] is False
 
 
@@ -89,7 +89,7 @@ def test_dieu_kien_d_day_moi():
 def _lap(monkeypatch, bang, luan, dang_cam=()):
     syms = {r['ma'] for r in bang}
     B = _B({s: _gia_nen() for s in syms})
-    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d: ((20.0, 25.0) if d < B_.lich[-1] else (12.0, 30.0)))
+    monkeypatch.setattr(DS, '_pe_tai', lambda rows, B_, s, d, live=False: ((20.0, 25.0) if d < B_.lich[-1] else (12.0, 30.0)))
     return DS.lap(bang, luan, {s: [] for s in syms}, B, dang_cam=set(dang_cam))
 
 

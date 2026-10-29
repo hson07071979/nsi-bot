@@ -222,7 +222,7 @@ def dung_bang(D: dict, rows_f: dict, B, asof: str, them: set[str] | None = None,
         sector = lk.get('sector') or (sc_all.get(s) or {}).get('sector') or ''
         c, v, nguon = _gia_tu_nguon(s, B, candles, V)
         f = dac_trung_gia(c, v)
-        so = LQ.diem_so(LQ.rows_den((rows_f or {}).get(s), hom_nay), sector) if rows_f else None
+        so = LQ.diem_so(LQ.rows_den((rows_f or {}).get(s), hom_nay, live=True), sector) if rows_f else None
         rows.append(dict(ma=s, ten=lk.get('name'), nganh=sector, gia=_num(lk.get('price')), f=f, nguon_gia=nguon,
                          trong_wl=s in wl, top110=s in top110, so=so, sc=sc_all.get(s), lk=lk))
     # ngành ở đáy chu kỳ: trung vị "cách đỉnh" của các mã cùng ngành trong vũ trụ (≥ 3 mã)

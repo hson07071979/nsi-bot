@@ -31,6 +31,7 @@ from datetime import date
 import numpy as np
 
 import loc_quy as LQ
+import quy_tu_dong as QT
 
 TOI_DA_MA = 10
 NEN_CAN_BANG = 0.12
@@ -128,10 +129,10 @@ def _cuoi_quy(y: int, q: int) -> str:
     return {1: f'{y}-03-31', 2: f'{y}-06-30', 3: f'{y}-09-30', 4: f'{y}-12-31'}[q]
 
 
-def _pe_tai(rows: list[dict], B, sym: str, d: str):
+def _pe_tai(rows: list[dict], B, sym: str, d: str, live: bool = False):
     """(P/E theo giá ngày d, tăng trưởng LN 4 quý %) dùng các quý đã công bố tới ngày d.
-    P/E của quý (giá cuối quý) đổi sang giá ngày d bằng tỷ lệ giá điều chỉnh."""
-    r = LQ.rows_den(rows, date.fromisoformat(d))
+    P/E của quý (giá cuối quý) đổi sang giá ngày d bằng tỷ lệ giá điều chỉnh. live=True cho ngày hôm nay (quý mới có là dùng)."""
+    r = LQ.rows_den(rows, date.fromisoformat(d), live=live)
     if not r:
         return None, None
     so = LQ.diem_so(r) or {}
@@ -197,7 +198,7 @@ def bon_dieu_kien(r: dict, rows: list[dict] | None, B, bc: dict | None = None) -
             i_dinh = len(B.lich) - n + int(np.nanargmax(w))
             d_dinh, d_nay = B.lich[i_dinh], B.lich[-1]
             pe0, g0 = _pe_tai(rows, B, sym, d_dinh)
-            pe1, g1 = _pe_tai(rows, B, sym, d_nay)
+            pe1, g1 = _pe_tai(rows, B, sym, d_nay, live=True)
             if g1 is None:
                 out['b'] = dict(dat=None, cau='thiếu tăng trưởng LN 4 quý hiện tại')
             elif g1 <= 0:
@@ -257,18 +258,32 @@ def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_ca
         if q and (quy_moi is None or q > quy_moi):
             quy_moi = q
     giai_ngan, can_them, giu, loai = [], [], [], []
+    quy_xet: dict[str, dict] = {}
     for s, t in sorted(luan.items()):
-        if t.get('trang_thai') in ('loai', 'dong'):
-            continue
         r = by.get(s)
+        if t.get('trang_thai') in ('loai', 'dong'):
+            # luận điểm đã LOẠI mà nay mã qua lọc nền thấp + có quý mới → đưa vào hàng review quý (không mất dấu)
+            if t.get('trang_thai') == 'loai' and r and r.get('dat'):
+                q_ma = r.get('quy') or (r.get('so') or {}).get('quy')
+                qx = QT.xet(t, bc.get(s), None, q_ma)
+                if qx['trang_thai'] != 'khop':
+                    quy_xet[s] = dict(qx, trang_thai='can_review',
+                                      ly_do=['luận điểm LOẠI nhưng nay qua lọc nền thấp/nền chặt'] + qx['ly_do'])
+            continue
         kl, diem = _ket_luan(t)
         q_ma = (r or {}).get('quy') or ((r or {}).get('so') or {}).get('quy')
-        thieu = du_khung(t, q_ma)
         dk = bon_dieu_kien(r, (rows_f or {}).get(s), B, bc.get(s)) if r else None
+        # 29/10/2026: quý mới về → máy tự xét; không có gì đổi thì tự gia hạn, không bắt viết lại
+        qx = QT.xet(t, bc.get(s), dk, q_ma)
+        quy_xet[s] = qx
+        thieu = du_khung(t, None if qx['trang_thai'] == 'tu_gia_han' else q_ma)
+        if qx['trang_thai'] == 'can_review':
+            thieu = [x for x in thieu if not x.startswith('chưa cập nhật BCTC')] + \
+                [f"chưa review BCTC {qx['quy_moi']}: " + '; '.join(qx['ly_do'])]
         dong = dict(ma=s, nganh=(r or {}).get('nganh'), ket_luan=kl, diem=diem, thieu=thieu,
                     qua_loc=bool(r and r['dat']), loai_loc=(r or {}).get('loai') or (['không có trong vũ trụ TOP110 / watchlist'] if not r else []),
                     nen30=((r or {}).get('f') or {}).get('nen30'), tu_dinh=((r or {}).get('f') or {}).get('tu_dinh'),
-                    thu_tu_chat=thu_tu.get(s), bon_dk=dk, dang_cam=s in dang_cam)
+                    thu_tu_chat=thu_tu.get(s), bon_dk=dk, dang_cam=s in dang_cam, quy_tu_dong=qx)
         if not dong['qua_loc']:
             (giu if s in dang_cam else loai).append(dict(dong, vi_sao='trượt lọc nền thấp/nền chặt: ' + '; '.join(dong['loai_loc'])))
         elif kl.startswith(DU) and (diem or 0) >= DIEM_TOI_THIEU and not thieu and dk and dk['du']:
@@ -325,6 +340,7 @@ def lap(bang: list[dict], luan: dict[str, dict], rows_f: dict | None, B, dang_ca
         if len(ung_vien) >= 30:
             break
     return dict(giai_ngan=giai_ngan, can_them=can_them, giu_khong_mua=giu, loai=loai, ung_vien=ung_vien,
+                review_quy=QT.hang_review(quy_xet),
                 so_qua_loc=len(dat), quy_bctc_moi=(f'Q{quy_moi[1]}/{str(quy_moi[0])[2:]}' if quy_moi else None),
                 luat=dict(toi_da_ma=TOI_DA_MA, nen_can_bang=NEN_CAN_BANG, nganh_giam_toi_thieu=NGANH_GIAM_TOI_THIEU,
                           lech_nganh_toi_da=LECH_NGANH_TOI_DA, diem_toi_thieu=DIEM_TOI_THIEU))

@@ -64,9 +64,18 @@ def _avail(r: dict) -> date:
         return date.min
 
 
-def rows_den(rows: list[dict] | None, d: date) -> list[dict]:
-    """Các quý ĐÃ CÔNG BỐ tới ngày d, xếp theo kỳ báo cáo."""
-    return sorted((r for r in rows or [] if _avail(r) <= d), key=lambda r: (r.get('y', 0), r.get('q', 0)))
+def _het_quy(r: dict) -> date:
+    y, q = int(r.get('y') or 1), int(r.get('q') or 1)
+    return date(y, 3 * q, 30 if q in (2, 3) else 31)
+
+
+def rows_den(rows: list[dict] | None, d: date, live: bool = False) -> list[dict]:
+    """Các quý ĐÃ CÔNG BỐ tới ngày d, xếp theo kỳ báo cáo.
+    live=True — CHỈ cho ngày hôm nay, không dùng khi chạy lùi (anh Sơn 29/10/2026: công ty nào đã có số quý mới thì
+    dùng luôn): lấy cả quý đã kết thúc mà đã có dòng trong dữ liệu Vietcap dù chưa tới mốc `avail` (sàn 45 ngày của bot
+    chỉ để chống nhìn trước khi chạy lùi). Vietcap chỉ có dòng quý khi doanh nghiệp đã công bố."""
+    return sorted((r for r in rows or [] if _avail(r) <= d or (live and _het_quy(r) < d)),
+                  key=lambda r: (r.get('y', 0), r.get('q', 0)))
 
 
 def _hang(v: np.ndarray) -> np.ndarray:
@@ -260,7 +269,7 @@ def chay(D: dict, rows_f: dict, B, asof: str, state: Path, pg_co: bool, raw_co: 
     bang, su_kien = [], []
     for s in top110:
         x = lk.get(s) or {}
-        d = diem_so(rows_den(rows_f.get(s), hom_nay), nganh.get(s, ''))
+        d = diem_so(rows_den(rows_f.get(s), hom_nay, live=True), nganh.get(s, ''))
         if not d:
             bang.append(dict(ma=s, ten=x.get('name'), nganh=nganh.get(s), diem=None, quy=None, chan=x.get('block') or None,
                              ghi_chu='chưa có BCTC trên trang'))
