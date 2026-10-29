@@ -124,5 +124,17 @@
  },
  "muc_tieu": [],
  "quy_bctc": "Q3/26",
- "catalyst_can_chi_truoc": false
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": true,
+  "b": true,
+  "c": false,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
 }

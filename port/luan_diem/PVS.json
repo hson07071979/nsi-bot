@@ -1,0 +1,141 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Backlog lớn là điều kiện cần; biên lợi nhuận lõi mới là điều kiện đủ với nhà thầu EPC.",
+ "ma": "PVS",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá dầu cao (Brent trên 110 USD tháng 10) → ngân sách đầu tư thượng nguồn trong nước (Lô B – Ô Môn, Lạc Đà Vàng) và Trung Đông (QatarEnergy) → đơn hàng cơ khí – lắp đặt (M&C); tỷ giá USD → lãi/lỗ đánh giá lại (quý 2 lãi 96 tỷ).",
+  "nganh": "Ngành dầu khí năm 2026 chạy theo địa chính trị: xung đột Mỹ – Israel – Iran từ cuối tháng 2 đẩy Brent lên 112–117 USD/thùng (tháng 3), rơi về 85 USD (tháng 4–5), rồi vượt 112–115 USD lại vào tháng 10 do căng thẳng eo biển Hormuz. Hệ quả khác nhau theo khâu: lọc dầu (BSR) lãi kỷ lục nhờ crack spread bình quân khoảng 31 USD/thùng (kỷ lục cũ 21 USD năm 2022); phân phối xăng dầu (PLX, OIL) chịu sốc tồn kho hai chiều — PLX lỗ quý 1 rồi hoàn nhập 6.000 tỷ quý 2; khí (GAS) hưởng giá FO cao; dịch vụ thượng nguồn (PVD, PVS) hưởng giá thuê giàn cao nhưng chi phí vốn tăng. Chính sách: Nghị định kinh doanh xăng dầu mới (đầu mối tự quyết giá, Quỹ bình ổn chấm dứt từ 1/1/2027) phải trình Chính phủ trước 10/11/2026 (Công văn 10747/VPCP-CN); PVN chuẩn bị bán 2–5% vốn tại GAS và BSR (định giá chậm nhất 12/2026); chuỗi Lô B – Ô Môn có mốc dòng khí đầu tiên không muộn hơn quý 3/2027 (Thông báo 487/TB-VPCP). Trung vị giá nhóm cách đỉnh tháng 3 khoảng 30%. Rủi ro chung: nếu Hormuz ổn định, giá dầu và crack spread cùng giảm — lợi nhuận 2027 của nhóm hưởng lợi giá dầu (BSR, GAS) có thể đi xuống mạnh.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026 (hạn 30/10). 6 tháng: doanh thu hợp nhất 17.290 tỷ (VDSC 19/10); quý 2 LNST công ty mẹ 531 tỷ (+49%) nhưng phần cốt lõi lỗ 85 tỷ — lợi nhuận đến từ thu nhập khác 460 tỷ (khoản bồi thường) và tỷ giá 96 tỷ; bỏ khoản một lần, LNTT quý 2 chỉ khoảng 199 tỷ thay vì 754 tỷ (NSI). MBS dự phóng quý 3 LNST 412 tỷ (+27%). Kế hoạch 2026: doanh thu 33.000 tỷ, LNTT 1.270 tỷ, LNST 990 tỷ, cổ tức tiền 7%. Tiền từ kinh doanh 12 tháng 1.175 tỷ (56% lợi nhuận).",
+  "mo_hinh_kd": "Dịch vụ kỹ thuật dầu khí: M&C (EPCI giàn khoan, điện gió ngoài khơi), FSO/FPSO, tàu dịch vụ, căn cứ cảng, khảo sát, vận hành bảo dưỡng (POS quý 3 lãi kỷ lục 56,5 tỷ, +143%). Doanh thu ghi theo tỷ lệ hoàn thành.",
+  "lanh_dao": "PVN chi phối (khoảng 51%). Backlog lớn nhất lịch sử: QatarEnergy trao gói EPIC-1 mỏ Maydan Mahzam hơn 3 tỷ USD (13/09, PTSC M&C), BIDV và VietinBank thu xếp vốn, triển khai quý 4/2026 – 2031; Lô B EPCI#1 hoàn thành trên 60% (04/2026).",
+  "chuoi_gia_tri": "Nhà thầu chính cho PVN, PVEP, Murphy, Idemitsu và các chủ mỏ Trung Đông; cạnh tranh với nhà thầu Hàn Quốc, Trung Quốc.",
+  "dan_nguoc_vi_mo": "Giá xăng dầu là đầu vào của CPI và chi phí vận tải; Chính phủ đang xem xét giảm thuế xăng về 0% (28/10) để kìm lạm phát — tức phần lợi của doanh nghiệp đầu mối bị giới hạn bởi mục tiêu vĩ mô. Nhóm PVN (GAS, BSR, PVD, PVS) nộp ngân sách lớn và gánh dự án hạ tầng năng lượng quốc gia."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b, c, d và qua lọc nền thấp; trượt a vì lợi nhuận khác chiếm 87% LNST quý 2 và lõi 4 quý chuyển từ lỗ 318 tỷ sang lãi 744 tỷ — không so được.",
+   "bang_chung": [
+    "FACT: LN 4 quý +67%, lợi nhuận khác 87% LNST, nền 8,9% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Câu chuyện đơn hàng là thật và lớn chưa từng có (Qatar gấp 2,7 lần ba gói Lô B), nhưng biên M&C mỏng và lợi nhuận gần đây phụ thuộc khoản bồi thường. Cần quý 3 cho thấy lõi có lãi trước khi coi là tăng trưởng.",
+   "bang_chung": [
+    "FACT: Gói EPIC-1 hơn 3 tỷ USD (CafeF 28/09; Vietstock 15/09)",
+    "FACT: Lõi quý 2 −85 tỷ (NSI)"
+   ]
+  }
+ ],
+ "bull": [
+  "Backlog kỷ lục: Qatar hơn 3 tỷ USD + Lô B.",
+  "VDSC MUA 45.000, HSC MUA 45.000, Vietcap MUA 49.000.",
+  "P/E khoảng 10; giá −30% từ đỉnh.",
+  "Công ty con POS lãi kỷ lục 10 năm.",
+  "Đạt b, c, d; qua lọc nền thấp."
+ ],
+ "bear": [
+  "Lõi quý 2 lỗ; lợi nhuận nhờ bồi thường (trượt a).",
+  "Biên M&C mỏng; rủi ro chi phí dự án nước ngoài lớn.",
+  "Tiền từ kinh doanh chỉ 56% lợi nhuận.",
+  "Lãi tỷ giá có thể đảo chiều.",
+  "Chưa có BCTC quý 3."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Đơn hàng 5 năm tới đã khóa, PVS là cổ phiếu dầu khí có câu chuyện rõ nhất."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Đơn hàng lớn không đồng nghĩa lợi nhuận lớn — EPC từng làm PVS trích lập nặng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Đúng hướng nhưng chất lượng lợi nhuận chưa đạt; BCTC quý 3 là phép thử."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: cần thêm — BCTC quý 3 và lõi dương."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 324,0 tỷ, NSI) — MBS dự phóng 412 tỷ."
+  }
+ ],
+ "vo_hieu": "Vô hiệu: lõi quý 3 tiếp tục lỗ; gói Qatar bị chậm hoặc phát sinh chi phí; dự phòng bảo hành EPC tăng mạnh.",
+ "dinh_gia": "P/E 9,62 so với trung vị 3 năm 14,32; P/B 1,31 so với 1,31 (NSI 28/10, BCTC Q2/26). Ngành Dầu khí (5 mã trong NSI): P/E trung vị 14,3, P/B 1,31, ROE 12,5%; mã này ROE 14,0%. Giá 32,00 cách đỉnh 1 năm -30%, cả ngành -30%. VDSC 19/10/2026: MUA 45.000 (tổng sinh lời +44% gồm cổ tức 700 đồng). HSC 01/10: MUA 45.000. Vietcap 15/09: MUA 49.000. MBS 25/09: dự phóng 2026 doanh thu 38.794 tỷ, LNST 2.517 tỷ. Kỳ vọng ngầm trong giá 32.000 (P/E khoảng 10): thị trường chưa trả cho gói Qatar.",
+ "pitch": "PTSC vừa giành hợp đồng lớn nhất lịch sử tại Qatar, hơn 3 tỷ USD, cộng với dự án Lô B trong nước — đơn hàng cho nhiều năm tới. Nhưng lợi nhuận quý gần nhất chủ yếu đến từ một khoản bồi thường, phần kinh doanh chính còn lỗ nhẹ. Chúng tôi chờ báo cáo quý 3.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 8,
+   "vi_mo_vn": 6,
+   "nganh": 8,
+   "doanh_nghiep": 7,
+   "gia_sai": 7
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 6,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 36,
+  "so_30": 22,
+  "tong": 58,
+  "dinh_gia_sai": 7,
+  "gia_sai": {
+   "tin_xau": "Lõi lỗ quý 2, lợi nhuận một lần, biên M&C mỏng.",
+   "co_that_su_xau": "Một phần — lõi yếu do giai đoạn đầu dự án; bồi thường là thật nhưng không lặp lại.",
+   "trang_thai": "Giá −30% từ đỉnh dù trúng thầu kỷ lục — đã phản ánh nhiều.",
+   "ky_vong_ngam": "P/E 10: thị trường chưa trả cho backlog.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân chốt lời sau tin Qatar.",
+   "counter": "Phản biện: nếu biên M&C dự án Qatar đạt 8–10%, lợi nhuận 2027–2028 có thể gấp đôi.",
+   "phep_thu": "BCTC quý 3 (hạn 30/10): lõi có dương không.",
+   "ket_luan": "ĐÃ PHẢN ÁNH NHIỀU"
+  },
+  "ket_luan": "CẦN THÊM — trượt a (lợi nhuận khác); chờ BCTC quý 3",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": true,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

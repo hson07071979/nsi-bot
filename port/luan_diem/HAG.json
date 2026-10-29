@@ -1,0 +1,138 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Xóa nợ làm P/E trông rẻ — luôn chấm trên lợi nhuận cốt lõi.",
+ "ma": "HAG",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá sầu riêng, chuối, cà phê xuất khẩu Trung Quốc → doanh thu; giá heo hơi (đang dưới hòa vốn) → mảng chăn nuôi; tỷ giá CNY.",
+  "nganh": "Nhóm thực phẩm – đồ uống phân hóa mạnh theo đầu vào và thị trường: (1) Chăn nuôi heo — giá heo hơi rơi từ 78.000–82.000 đồng/kg đầu năm xuống 44.000–49.000 (28/10), dưới giá hòa vốn khoảng 55.000; dịch tả heo châu Phi lan ở ĐBSCL (Cà Mau 23 ổ dịch); thịt heo nhập khẩu 124.100 tấn 8 tháng giá khoảng 45.000 đồng/kg; ngô, đậu tương ở đáy 7 tuần là điểm đỡ duy nhất. (2) Thủy sản xuất khẩu — xuất khẩu 9 tháng 9,1 tỷ USD (+11,5%, VASEP); Mỹ duy trì thuế đối ứng 20% và thêm Section 301 12,5% từ 24/07/2026, nhưng kết quả chống bán phá giá POR21 (12/08) giữ nhiều doanh nghiệp ở mức thấp; châu Âu thay cá thịt trắng bằng cá tra. (3) Hàng tiêu dùng nhanh — sức mua nội địa phục hồi, tăng trưởng hai chữ số ở doanh nghiệp đầu ngành; thuế tiêu thụ đặc biệt với đồ uống có đường trên 5% từ 1/1/2027. Trung vị nhóm cách đỉnh khoảng 22%.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026. 6 tháng: LNST khoảng 2.204–2.300 tỷ — 55% kế hoạch 4.202 tỷ (doanh thu kế hoạch 8.624 tỷ). Nhưng lợi nhuận khác chiếm 170% LNST và lõi 4 quý −5,8% (NSI) — lợi nhuận đến từ miễn giảm lãi/xóa nợ trái phiếu. Đã trả hết khoảng 36.000 tỷ nợ. Cà phê: gần 3.000 ha sắp thu hoạch, hợp đồng 1.000 tấn sang Trung Quốc giá 182.000 đồng/kg (10/2026). Tiền từ kinh doanh 12 tháng 2.438 tỷ.",
+  "mo_hinh_kd": "Nông nghiệp Đông Dương: chuối, sầu riêng, cà phê (mục tiêu 20.000 ha 2028), heo ăn chuối; xuất khẩu chủ yếu Trung Quốc.",
+  "lanh_dao": "Bầu Đức (Đoàn Nguyên Đức) — mua 21 triệu cổ phiếu qua 5 đợt năm 2026, vẫn tạm lỗ; lập Ủy ban ESG (22/10). Thaigroup là cổ đông chiến lược từ 2023.",
+  "chuoi_gia_tri": "Thượng nguồn nông sản; phụ thuộc kênh nhập khẩu Trung Quốc.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ so nền kinh tế; xuất khẩu nông sản góp ngoại tệ và việc làm Tây Nguyên, tác động ngược không đáng kể."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt b, c, d và qua lọc nền thấp; trượt a vì lợi nhuận khác chiếm 170% LNST, lõi 4 quý −5,8%.",
+   "bang_chung": [
+    "FACT: LN 4 quý +142%, lõi −5,8%, lợi nhuận khác 170% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "P/E 5 là ảo nếu bỏ phần xóa nợ: lợi nhuận kinh doanh cốt lõi đang đi ngang. Cà phê là câu chuyện 2027–2028, chưa vào số.",
+   "bang_chung": [
+    "FACT: Lõi quý 2 514 tỷ vs 736 tỷ cùng kỳ (NSI)"
+   ]
+  }
+ ],
+ "bull": [
+  "Hết nợ vay lớn; dòng tiền kinh doanh 2.438 tỷ.",
+  "Cà phê, sầu riêng mở rộng; hợp đồng xuất khẩu giá cao.",
+  "Chủ tịch mua liên tục.",
+  "Đạt b, c, d; qua lọc nền thấp."
+ ],
+ "bear": [
+  "Lợi nhuận chủ yếu từ xóa nợ (trượt a).",
+  "Lõi đi ngang; heo dưới hòa vốn.",
+  "Phụ thuộc thị trường Trung Quốc.",
+  "Lịch sử quản trị và công bố thông tin phức tạp."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Doanh nghiệp đã sạch nợ, chuyển sang giai đoạn tăng trưởng nông nghiệp."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Tăng trưởng lợi nhuận 2026 là kế toán; lõi chưa tăng."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua a."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi — chờ lõi tăng."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 416,0 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mua): lõi 2 quý liên tiếp tăng trên 20% nhờ cà phê, sầu riêng.",
+ "dinh_gia": "P/E 5,07 so với trung vị 3 năm 8,12; P/B 1,14 so với 1,61 (NSI 28/10, BCTC Q2/26). Ngành Thực phẩm và đồ uống (13 mã trong NSI): P/E trung vị 12,2, P/B 2,44, ROE 22,3%; mã này ROE 24,2%. Giá 14,40 cách đỉnh 1 năm -24%, cả ngành -22%. Không tìm thấy giá mục tiêu CTCK mới (09–10/2026). Kỳ vọng ngầm trong giá 14.400 (P/E khoảng 5 trên lợi nhuận gồm xóa nợ; khoảng 10–12 trên lõi): định giá hợp lý cho lõi, không rẻ.",
+ "pitch": "Hoàng Anh Gia Lai đã trả hết nợ và đang mở rộng cà phê, sầu riêng. Nhưng lợi nhuận năm nay phần lớn đến từ các khoản nợ được giảm, kinh doanh chính chưa tăng. Chúng tôi theo dõi.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 6,
+   "vi_mo_vn": 5,
+   "nganh": 6,
+   "doanh_nghiep": 5,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 7,
+   "kqkd": 6,
+   "suc_khoe_tc": 9
+  },
+  "luan_diem_70": 28,
+  "so_30": 22,
+  "tong": 50,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận bất thường, giá heo thấp.",
+   "co_that_su_xau": "Một phần — lõi đi ngang là thật.",
+   "trang_thai": "Giá −24% từ đỉnh.",
+   "ky_vong_ngam": "P/E 10–12 trên lõi.",
+   "nguoi_ban_can_bien": "Nhà đầu tư cá nhân theo tin.",
+   "counter": "Phản biện: cà phê thu hoạch 2027 có thể thêm 500–800 tỷ lợi nhuận.",
+   "phep_thu": "BCTC quý 3 tách lõi.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
+  },
+  "ket_luan": "THEO DÕI — trượt a (lợi nhuận khác 170%)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": true,
+  "c": true,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

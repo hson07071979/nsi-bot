@@ -1,0 +1,138 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Giá chào bán bằng một nửa thị giá là tín hiệu cung lớn sắp đến.",
+ "ma": "BAF",
+ "trang_thai": "loai",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: giá heo hơi (44.000–49.000 đồng/kg cuối 10, dưới hòa vốn) và giá ngô, đậu tương; lãi suất (đầu tư trang trại bằng vay).",
+  "nganh": "Nhóm thực phẩm – đồ uống phân hóa mạnh theo đầu vào và thị trường: (1) Chăn nuôi heo — giá heo hơi rơi từ 78.000–82.000 đồng/kg đầu năm xuống 44.000–49.000 (28/10), dưới giá hòa vốn khoảng 55.000; dịch tả heo châu Phi lan ở ĐBSCL (Cà Mau 23 ổ dịch); thịt heo nhập khẩu 124.100 tấn 8 tháng giá khoảng 45.000 đồng/kg; ngô, đậu tương ở đáy 7 tuần là điểm đỡ duy nhất. (2) Thủy sản xuất khẩu — xuất khẩu 9 tháng 9,1 tỷ USD (+11,5%, VASEP); Mỹ duy trì thuế đối ứng 20% và thêm Section 301 12,5% từ 24/07/2026, nhưng kết quả chống bán phá giá POR21 (12/08) giữ nhiều doanh nghiệp ở mức thấp; châu Âu thay cá thịt trắng bằng cá tra. (3) Hàng tiêu dùng nhanh — sức mua nội địa phục hồi, tăng trưởng hai chữ số ở doanh nghiệp đầu ngành; thuế tiêu thụ đặc biệt với đồ uống có đường trên 5% từ 1/1/2027. Trung vị nhóm cách đỉnh khoảng 22%.",
+  "doanh_nghiep": "Chưa có BCTC quý 3/2026; ước tính (elibook 12/10) LNST quý 3 chỉ khoảng 20–50 tỷ. 6 tháng: doanh thu 3.889 tỷ (+55%), lợi nhuận khoảng 310 tỷ (NSI quý 1 206 tỷ, quý 2 104 tỷ) — thấp xa kế hoạch LNST 793 tỷ. Quý 4/2025 lỗ 236 tỷ. Tiền từ kinh doanh 12 tháng âm 564 tỷ.",
+  "mo_hinh_kd": "Chăn nuôi heo quy mô lớn (trang trại công nghệ cao), thức ăn chăn nuôi; đã thu hẹp mảng nông sản.",
+  "lanh_dao": "Chủ tịch Trương Sỹ Bá (hệ sinh thái Tân Long). Chào bán 40,54 triệu cổ phiếu giá 15.000 (thấp hơn thị giá khoảng 51%), chốt 28/10, nộp tiền từ 5/11 + ESOP.",
+  "chuoi_gia_tri": "Thượng nguồn chăn nuôi; cạnh tranh Dabaco, CP, Masan MEATLife.",
+  "dan_nguoc_vi_mo": "Quy mô nhỏ so nền kinh tế; tác động ngược lên vĩ mô không đáng kể."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Trượt lọc nền thấp (giá cách đỉnh chỉ 3%), a, b (LN 4 quý −81%); P/E 126.",
+   "bang_chung": [
+    "FACT: P/E 125,7, LN 4 quý −81,5%, CFO −564 tỷ (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Giá cổ phiếu ngược hoàn toàn cơ bản; chào bán giá 15.000 tạo áp lực pha loãng.",
+   "bang_chung": [
+    "FACT: Chào bán 40,54 triệu cp giá 15.000 (VietnamBiz 04/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Doanh thu tăng 55%.",
+  "Quy mô đàn mở rộng nhanh.",
+  "Đón chu kỳ giá heo khi hồi."
+ ],
+ "bear": [
+  "P/E 126; lợi nhuận 4 quý −81%.",
+  "Dòng tiền kinh doanh âm 564 tỷ.",
+  "Chào bán giá bằng một nửa thị giá.",
+  "Giá heo dưới hòa vốn.",
+  "Trượt lọc nền thấp, a, b."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Doanh nghiệp chăn nuôi tăng trưởng quy mô nhanh nhất."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Định giá không có cơ sở lợi nhuận."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không qua bất kỳ điều kiện nào."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: loại."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q3/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST quý 3/26 không thấp hơn cùng kỳ (Q3/25 20,6 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mở lại): LNST hai quý liên tiếp trên 200 tỷ và dòng tiền kinh doanh dương.",
+ "dinh_gia": "P/E 125,73 so với trung vị 3 năm 26,66; P/B 2,73 so với 2,44 (NSI 28/10, BCTC Q2/26). Ngành Thực phẩm và đồ uống (13 mã trong NSI): P/E trung vị 12,2, P/B 2,44, ROE 22,3%; mã này ROE 2,2%. Giá 30,15 cách đỉnh 1 năm -3%, cả ngành -22%. Không có giá mục tiêu CTCK mới trong nguồn đã đọc. Tham chiếu giá chào bán 15.000. Kỳ vọng ngầm trong giá 30.150 (P/E 126): thị trường trả cho kế hoạch 793 tỷ mà 6 tháng mới đạt khoảng 39%.",
+ "pitch": "BAF chăn nuôi heo quy mô lớn, doanh thu tăng nhanh nhưng lợi nhuận đang giảm mạnh khi giá heo xuống dưới giá vốn, và sắp phát hành thêm cổ phiếu giá thấp. Giá cổ phiếu quá cao so với lợi nhuận. Chúng tôi không chọn.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 3,
+   "vi_mo_vn": 5,
+   "nganh": 6,
+   "doanh_nghiep": 3,
+   "gia_sai": 3
+  },
+  "so": {
+   "dinh_gia": 1,
+   "kqkd": 1,
+   "suc_khoe_tc": 2
+  },
+  "luan_diem_70": 20,
+  "so_30": 4,
+  "tong": 24,
+  "dinh_gia_sai": 3,
+  "gia_sai": {
+   "tin_xau": "Lợi nhuận sụt, pha loãng, giá heo thấp.",
+   "co_that_su_xau": "Có — lợi nhuận và dòng tiền đều xấu đi.",
+   "trang_thai": "Giá sát đỉnh — chưa phản ánh.",
+   "ky_vong_ngam": "P/E 126: trả cho kế hoạch 793 tỷ khó đạt.",
+   "nguoi_ban_can_bien": "Cổ đông nhận quyền mua giá 15.000.",
+   "counter": "Phản biện: giá heo phục hồi mạnh trước Tết có thể đẩy quý 1/2027.",
+   "phep_thu": "BCTC quý 3 và kết quả chào bán.",
+   "ket_luan": "CHƯA PHẢN ÁNH"
+  },
+  "ket_luan": "LOẠI — trượt lọc nền thấp, a, b; P/E 126",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": false,
+  "c": true,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

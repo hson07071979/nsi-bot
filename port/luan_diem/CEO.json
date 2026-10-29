@@ -123,6 +123,18 @@
   "ngay": "2026-10-29"
  },
  "muc_tieu": [],
- "quy_bctc": "Q3/26",
- "catalyst_can_chi_truoc": false
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": false,
+  "c": false,
+  "d": false
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
 }
