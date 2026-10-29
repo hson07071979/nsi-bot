@@ -16,6 +16,10 @@ import urllib.request
 
 
 def gui(tieu_de: str, noi_dung: str) -> bool:
+    # 29/10/2026 anh Sơn: KHÔNG muốn bất kỳ chuông nào liên quan tới port (lọc quý, pool, review, vĩ mô, tự học…).
+    # Mọi chuông port im lặng; mọi thứ vẫn hiện trên trang /port. Muốn bật lại: đặt PORT_CHUONG=1 trong port.yml.
+    if os.environ.get('PORT_CHUONG') != '1':
+        return False
     ok = False
     topic = os.environ.get('NTFY_TOPIC', '').strip()
     if topic:
