@@ -165,13 +165,13 @@ function veHard() {
   // và dòng thông báo, không thì đang nhập giá thì ô bị xoá trắng.
   const giu = {};
   box.querySelectorAll('input,select').forEach(e => {
-    const k = e.id || (e.dataset.hsp ? 'p:' + e.dataset.hsp : e.dataset.hsg ? 'g:' + e.dataset.hsg : '');
+    const k = e.id || (e.dataset.hsp ? 'p:' + e.dataset.hsp : e.dataset.hsg ? 'g:' + e.dataset.hsg : e.dataset.hsd ? 'd:' + e.dataset.hsd : '');
     if (k) giu[k] = e.value;
   });
   const _msg = (document.getElementById('hardmsg') || {}).innerHTML || '';
   const _f = document.activeElement && box.contains(document.activeElement)
     ? (document.activeElement.id || (document.activeElement.dataset.hsg ? 'g:' + document.activeElement.dataset.hsg : '')) : '';
-  const phien = hardPhien(), sf = hardSellFrom();
+  const phien = hardPhien(), sf = hardSellFrom(), _gh = hardNgayGioiHan();
   const B = D.book || {};
   const nav = +B.nav || ((D.prod || {}).metrics || {}).final_nav || 0;
   const op = (D.open_positions || []).slice().sort((a, b) => a.sym < b.sym ? -1 : 1);
@@ -196,6 +196,7 @@ function veHard() {
       <td style="text-align:right" class="${p.pnl >= 0 ? 'pos' : 'neg'}">${p.pnl >= 0 ? '+' : ''}${dec(p.pnl)}%</td>
       <td><select class="fin" data-hsp="${esc(p.sym)}" style="width:76px">${HARD_PHAN.map(([v, t]) => `<option value="${v}"${v === 1 ? ' selected' : ''}>${t}</option>`).join('')}</select></td>
       <td><input class="fin" type="number" step="0.01" data-hsg="${esc(p.sym)}" placeholder="giá" style="width:92px"></td>
+      <td><input class="fin" type="date" data-hsd="${esc(p.sym)}" min="${_gh.tu}" max="${_gh.den}" value="${phien}" style="width:150px"></td>
       <td>${khoa ? `<span class="muted" style="font-size:12px">${esc(khoa)}</span>` : `<button class="btn" data-hsb="${esc(p.sym)}">Hard Sell</button>${choBan.has(p.sym) ? '<div class="muted" style="font-size:11px">có lệnh bán đang chờ</div>' : ''}`}</td></tr>`;
   }).join('');
 
@@ -219,19 +220,20 @@ function veHard() {
   box.innerHTML = `
   <h2>Lệnh Hard <span class="muted" style="font-size:15px;font-weight:400">→ mua / bán thẳng trên danh mục hệ thống, không chờ tín hiệu</span></h2>
   <div class="card">
-    <p class="muted" style="margin-top:0">Phiên của lệnh bấm lúc này: <b>${ddmm(phien)}</b> · NAV sổ hệ thống ≈ <b>${nav ? vnd(nav) : '—'}</b> (bản dựng ${ddmm(D.asof)}).
+    <p class="muted" style="margin-top:0">Phiên mặc định: <b>${ddmm(phien)}</b> (đổi ở ô <b>Phiên</b> của từng lệnh — lùi tối đa ${HARD_LUI_PHIEN} phiên, trước tối đa ${HARD_TOI_NGAY} ngày) · NAV sổ hệ thống ≈ <b>${nav ? vnd(nav) : '—'}</b> (bản dựng ${ddmm(D.asof)}).
     Giá phải nằm trong trần/sàn của phiên. Phí 0,15% mua, 0,25% bán như lệnh thường.</p>
     <h3 style="margin:6px 0">Hard Buy</h3>
     <div class="frm">
       <input id="hbSym" list="symlist" placeholder="Mã" maxlength="8" class="fin" style="width:100px">
       <label class="flab">% NAV<input id="hbPct" type="number" step="0.5" min="0.5" max="100" placeholder="10" class="fin" style="width:84px"></label>
       <label class="flab">Giá<input id="hbGia" type="number" step="0.01" placeholder="26.55" class="fin" style="width:100px"></label>
+      <label class="flab">Phiên<input id="hbNgay" type="date" min="${_gh.tu}" max="${_gh.den}" value="${phien}" class="fin" style="width:150px"></label>
       <input id="hbNote" placeholder="Ghi chú (không bắt buộc)" class="fin" style="flex:1;min-width:160px">
       <button class="btn" id="hbBtn">Hard Buy</button>
     </div>
     <p class="muted" style="font-size:12.5px;margin:8px 0 0">Vẫn bị chặn bởi trần mỗi mã ${dec(100 * ((D.cfg_prod || {}).max_pos || 0.5), 0)}%, tổng vốn, ngành ${dec(100 * ((D.cfg_prod || {}).sector_cap || 0.3), 0)}%, tiền mặt, tối đa ${(D.cfg_prod || {}).max_pos_n || 12} mã. Mã đang cầm thì mua thêm (giá vốn bình quân). Sau khi mua, bot quản lý điểm bán như lệnh thường.</p>
     <h3 style="margin:16px 0 6px">Hard Sell</h3>
-    ${op.length ? `<div class="tblwrap"><table><thead><tr><th>Mã</th><th>Mua</th><th style="text-align:right">Số cp</th><th style="text-align:right">% NAV</th><th style="text-align:right">Giá</th><th style="text-align:right">Lãi/lỗ</th><th>Bán</th><th>Giá bán</th><th></th></tr></thead><tbody>${dongBan}</tbody></table></div>`
+    ${op.length ? `<div class="tblwrap"><table><thead><tr><th>Mã</th><th>Mua</th><th style="text-align:right">Số cp</th><th style="text-align:right">% NAV</th><th style="text-align:right">Giá</th><th style="text-align:right">Lãi/lỗ</th><th>Bán</th><th>Giá bán</th><th>Phiên</th><th></th></tr></thead><tbody>${dongBan}</tbody></table></div>`
       : '<p class="muted" style="margin:0">Danh mục hệ thống đang trống.</p>'}
     <div id="hardmsg"></div>
     <h3 style="margin:16px 0 6px">Lệnh đã bấm</h3>
@@ -246,15 +248,44 @@ function veHard() {
   // điền sẵn giá mới nhất cho ô giá bán, rồi trả lại những gì anh đã gõ
   box.querySelectorAll('[data-hsg]').forEach(i => { const g = lastPx(i.dataset.hsg); if (g) i.value = (+g).toFixed(2); });
   box.querySelectorAll('input,select').forEach(e => {
-    const k = e.id || (e.dataset.hsp ? 'p:' + e.dataset.hsp : e.dataset.hsg ? 'g:' + e.dataset.hsg : '');
+    const k = e.id || (e.dataset.hsp ? 'p:' + e.dataset.hsp : e.dataset.hsg ? 'g:' + e.dataset.hsg : e.dataset.hsd ? 'd:' + e.dataset.hsd : '');
     if (k && giu[k] != null && giu[k] !== '') e.value = giu[k];
   });
   const m = document.getElementById('hardmsg'); if (m && _msg) m.innerHTML = _msg;
   if (_f) { const e = document.getElementById(_f) || box.querySelector(`[data-hsg="${_f.slice(2)}"]`); if (e) e.focus(); }
 }
 
-async function _hardKiemGia(sym, gia) {
-  const b = hardBienDo(sym, hardPhien());
+/* 30/10/2026: anh Sơn chọn được PHIÊN của lệnh (ô ngày). Để trống = phiên tự gán như cũ.
+   Cho phép từ 10 phiên trước tới 7 ngày tới. Ngày nghỉ → bộ máy tự chuyển sang phiên giao dịch kế tiếp;
+   phiên chưa có dữ liệu → lệnh chờ (vẫn hoàn tác được tới khi bản dựng xử lý). */
+const HARD_LUI_PHIEN = 10, HARD_TOI_NGAY = 7;
+function hardNgayGioiHan() {
+  const ds = (D.prod && D.prod.curve) ? D.prod.curve.map(c => c[0]) : [];
+  const tu = ds.length > HARD_LUI_PHIEN ? ds[ds.length - HARD_LUI_PHIEN] : (ds[0] || hardPhien());
+  const v = new Date(hardPhien() + 'T00:00:00'); v.setDate(v.getDate() + HARD_TOI_NGAY);
+  const den = v.getFullYear() + '-' + String(v.getMonth() + 1).padStart(2, '0') + '-' + String(v.getDate()).padStart(2, '0');
+  return { tu, den };
+}
+function hardNgayChon(v) {
+  v = String(v || '').trim();
+  if (!v) return hardPhien();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) throw new Error('ngày không hợp lệ');
+  const g = hardNgayGioiHan();
+  if (v < g.tu) throw new Error(`chỉ đặt lùi tối đa ${HARD_LUI_PHIEN} phiên (từ ${ddmm(g.tu)})`);
+  if (v > g.den) throw new Error(`chỉ đặt trước tối đa ${HARD_TOI_NGAY} ngày (tới ${ddmm(g.den)})`);
+  const d = new Date(v + 'T00:00:00').getDay();
+  if (d === 0 || d === 6) throw new Error(ddmm(v) + ' là cuối tuần — chọn ngày giao dịch');
+  return v;
+}
+
+async function _hardKiemGia(sym, gia, phien) {
+  phien = phien || hardPhien();
+  // trang chỉ có tham chiếu của phiên bản dựng và phiên kế tiếp; phiên khác -> bản dựng tối kiểm bằng dữ liệu thật
+  if (phien !== hardPhien() && phien !== String(D.asof || '')) {
+    if (!(D.ma_gia || {})[sym]) throw new Error(sym + ' không có trong dữ liệu Nguyễn Sơn Invest (chỉ có mã HOSE, HNX đang giao dịch)');
+    return { tran: null, san: null, ref: null, nguon: 'bản dựng tối kiểm' };
+  }
+  const b = hardBienDo(sym, phien);
   if (!(gia >= b.san - 1e-9 && gia <= b.tran + 1e-9))
     throw new Error(`giá ${dec(gia)} ngoài biên độ phiên của ${sym}: sàn ${dec(b.san)} – trần ${dec(b.tran)} (tham chiếu ${dec(b.ref)})`);
   return b;
@@ -268,19 +299,19 @@ async function hardMua() {
   if (!/^[A-Z0-9]{3,10}$/.test(sym)) throw new Error('mã không hợp lệ');
   if (!(pct > 0 && pct <= 100)) throw new Error('% NAV phải lớn hơn 0 và không quá 100');
   if (!(gia > 0)) throw new Error('chưa nhập giá');
+  const phien = hardNgayChon((document.getElementById('hbNgay') || {}).value);
   hardBao('Đang kiểm giá…', true);
-  const b = await _hardKiemGia(sym, gia);
-  const phien = hardPhien();
+  const b = await _hardKiemGia(sym, gia, phien);
   const nav = +((D.book || {}).nav) || 0;
   const dang = (D.open_positions || []).find(p => p.sym === sym);
-  if (!confirm(`HARD BUY ${sym}\n\nPhiên ${ddmm(phien)} · giá ${dec(gia)} (sàn ${dec(b.san)} – trần ${dec(b.tran)})\n` +
+  if (!confirm(`HARD BUY ${sym}\n\nPhiên ${ddmm(phien)} · giá ${dec(gia)} ${b.tran == null ? '(trần/sàn phiên này do bản dựng tối kiểm)' : `(sàn ${dec(b.san)} – trần ${dec(b.tran)})`}\n` +
       `${dec(pct, 1)}% NAV${nav ? ' ≈ ' + vnd(nav * pct / 100) : ''}${dang ? '\nĐang cầm ' + sym + ' → mua thêm, tính lại giá vốn bình quân' : ''}\n\n` +
       `Bị chặn bởi trần mỗi mã / tổng vốn / ngành / tiền mặt / số mã tối đa nếu vượt.\nĐặt lệnh?`)) { hardBao('Đã huỷ, chưa ghi gì.', true); return; }
   const o = { id: _hardId(sym), loai: 'mua', sym, ngay: phien, gia: +gia.toFixed(2), pct_nav: +pct.toFixed(2),
               tran: b.tran, san: b.san, luc: _hardLuc(), ghi_chu: note, huy: null };
   hardBao('Đang ghi lệnh…', true);
   await hardGhi(h => (h.push(o), h), `Hard Buy ${sym}`);
-  ['hbSym', 'hbPct', 'hbGia', 'hbNote'].forEach(k => { const e = document.getElementById(k); if (e) e.value = ''; });
+  ['hbSym', 'hbPct', 'hbGia', 'hbNote', 'hbNgay'].forEach(k => { const e = document.getElementById(k); if (e) e.value = ''; });
   veHard();
   hardBao(`<b>Đã đặt HARD BUY ${esc(sym)}</b> — phiên ${ddmm(phien)}, giá ${dec(gia)}, ${dec(pct, 1)}% NAV. Điện thoại sẽ nhận tin trong ít phút; sổ hệ thống cập nhật ở bản dựng tối.`, true);
 }
@@ -292,10 +323,11 @@ async function hardBan(sym) {
   if (!(gia > 0)) throw new Error('chưa nhập giá bán');
   const p = (D.open_positions || []).find(x => x.sym === sym);
   if (!p) throw new Error('hệ thống không cầm ' + sym);
-  const phien = hardPhien(), sf = hardSellFrom(), n = hardSoPhien(p.entry, phien);
+  const dEl = document.querySelector(`[data-hsd="${sym}"]`);
+  const phien = hardNgayChon(dEl ? dEl.value : ''), sf = hardSellFrom(), n = hardSoPhien(p.entry, phien);
   if (n == null || n < sf) throw new Error(`${sym} chưa về hàng (mua ${ddmm(p.entry)}, bán được từ T+${sf})`);
   hardBao('Đang kiểm giá…', true);
-  const b = await _hardKiemGia(sym, gia);
+  const b = await _hardKiemGia(sym, gia, phien);
   const sh = p.shares || 0;
   let ban = phan >= 1 ? sh : Math.floor(sh * phan / 100) * 100;
   if (sh - ban < 100) ban = sh;
@@ -307,7 +339,7 @@ async function hardBan(sym) {
   if (ban > sh - chuaVe) throw new Error(`${num(chuaVe)} cp mua thêm của ${sym} chưa về tài khoản — chọn phần bán nhỏ hơn (tối đa ${num(sh - chuaVe)} cp) hoặc chờ hàng về`);
   if (((NSI.manual || {}).hard || []).some(o => o.sym === sym && o.loai === 'ban' && !o.huy && !((D.hard || {}).seen || []).includes(o.id)))
     if (!confirm(`Đã có một lệnh Hard Sell ${sym} đang chờ bản dựng. Vẫn đặt thêm lệnh nữa?`)) { hardBao('Đã huỷ, chưa ghi gì.', true); return; }
-  if (!confirm(`HARD SELL ${sym}\n\nPhiên ${ddmm(phien)} · giá ${dec(gia)} (sàn ${dec(b.san)} – trần ${dec(b.tran)})\n` +
+  if (!confirm(`HARD SELL ${sym}\n\nPhiên ${ddmm(phien)} · giá ${dec(gia)} ${b.tran == null ? '(trần/sàn phiên này do bản dựng tối kiểm)' : `(sàn ${dec(b.san)} – trần ${dec(b.tran)})`}\n` +
       `${Math.round(phan * 100)}% vị thế ≈ ${num(ban)}/${num(sh)} cp${ban === sh && phan < 1 ? ' (phần còn lại dưới 100 cp → bán hết)' : ''}\n\nĐặt lệnh?`)) { hardBao('Đã huỷ, chưa ghi gì.', true); return; }
   const o = { id: _hardId(sym), loai: 'ban', sym, ngay: phien, gia: +gia.toFixed(2), phan,
               tran: b.tran, san: b.san, luc: _hardLuc(), ghi_chu: '', huy: null };
