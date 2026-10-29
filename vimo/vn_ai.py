@@ -184,19 +184,19 @@ def hoi(key: str, prompt: str, post=None, tim: bool = True, models: list[str] | 
 # con số XUẤT HIỆN NGUYÊN VĂN trong tin mà model chỉ ra — ngày và nguồn lấy từ chính tin đó, không lấy lời model.
 RSS = 'https://news.google.com/rss/search'
 TU_KHOA = {
-    'ls_huy_dong_vn': 'lãi suất huy động 12 tháng ngân hàng', 'ls_cho_vay_vn': 'lãi suất cho vay bình quân NHNN',
-    'ls_lien_nh_vn': 'lãi suất liên ngân hàng qua đêm', 'tin_dung_vn': 'tăng trưởng tín dụng so với cuối năm',
-    'dau_tu_cong_vn': 'giải ngân vốn đầu tư công đạt kế hoạch', 'cpi_vn': 'CPI tháng so với cùng kỳ Cục Thống kê',
-    'tieu_dung_vn': 'tổng mức bán lẻ hàng hóa doanh thu dịch vụ tiêu dùng', 'xuat_khau_vn': 'kim ngạch xuất khẩu tăng so với cùng kỳ',
-    'pmi_vn': 'PMI ngành sản xuất Việt Nam S&P Global', 'fdi_vn': 'vốn FDI giải ngân tỷ USD', 'gdp_vn': 'tăng trưởng GDP quý',
-    'tpcp_10y_vn': 'lợi suất trái phiếu chính phủ kỳ hạn 10 năm', 'von_ngoai_vn': 'khối ngoại bán ròng mua ròng tháng',
+    'ls_huy_dong_vn': 'lãi suất tiết kiệm 12 tháng %/năm', 'ls_cho_vay_vn': 'lãi suất cho vay bình quân %/năm',
+    'ls_lien_nh_vn': 'lãi suất liên ngân hàng qua đêm', 'tin_dung_vn': 'tín dụng tăng % so với cuối năm 2025',
+    'dau_tu_cong_vn': 'giải ngân vốn đầu tư công đạt kế hoạch', 'cpi_vn': 'CPI tháng 9 OR tháng 10 tăng so với cùng kỳ năm trước',
+    'tieu_dung_vn': 'tổng mức bán lẻ hàng hóa và doanh thu dịch vụ tiêu dùng 9 tháng tăng', 'xuat_khau_vn': 'xuất khẩu 9 tháng OR 10 tháng tăng % tỷ USD',
+    'pmi_vn': 'PMI ngành sản xuất Việt Nam S&P Global', 'fdi_vn': 'vốn FDI thực hiện tỷ USD 9 tháng OR 10 tháng', 'gdp_vn': 'GDP quý III tăng %',
+    'tpcp_10y_vn': 'lợi suất trái phiếu chính phủ 10 năm %', 'von_ngoai_vn': 'khối ngoại bán ròng OR mua ròng tháng 10 tỷ đồng',
 }
 HE_THONG_RSS = ('Bạn là chuyên viên số liệu vĩ mô Việt Nam. Chỉ được dùng các tin đánh số trong đề bài, không dùng hiểu biết riêng. '
                 'Mỗi biến: chọn tin mới nhất nêu đúng con số theo định nghĩa, chép con số đó y như trong tin vào "so_trong_tin". '
                 'Không có tin phù hợp thì gia_tri null. Trả đúng một khối JSON.')
 
 
-def tin_rss(k: str, ngay: str, get=None, n: int = 8) -> list[dict]:
+def tin_rss(k: str, ngay: str, get=None, n: int = 15) -> list[dict]:
     """Tiêu đề tin 45 ngày gần nhất cho biến k → [dict(id, tieu_de, ngay, nguon)] mới nhất trước, chỉ tin trước `ngay`."""
     import xml.etree.ElementTree as ET
     from email.utils import parsedate_to_datetime
@@ -252,7 +252,10 @@ def tu_rss(out: dict | None, tin: dict) -> dict | None:
         if k not in BIEN or not isinstance(r, dict):
             continue
         v, t = _so(r.get('gia_tri')), theo_id.get(str(r.get('tin')))
-        if v is None or not t or not str(t['id']).startswith(k + '#') or not _co_trong(r.get('so_trong_tin'), v, t['tieu_de']):
+        if v is None:
+            continue
+        if not t or not str(t['id']).startswith(k + '#') or not _co_trong(r.get('so_trong_tin'), v, t['tieu_de']):
+            print(f'  [rss] bỏ {k}={v}: số không có nguyên văn trong tin {r.get("tin")}')
             continue
         bien[k] = dict(gia_tri=v, ky=r.get('ky'), ngay_cong_bo=t['ngay'], xu_huong=r.get('xu_huong'),
                        ly_do=(str(r.get('ly_do') or '') + f' — tin: "{t["tieu_de"][:160]}"').strip(' —'),
