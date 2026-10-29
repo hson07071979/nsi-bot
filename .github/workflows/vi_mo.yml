@@ -9,6 +9,10 @@ on:
     - cron: '47 1 * * *'         # 08h47 lưới dự phòng
     - cron: '13 3 * * *'         # 10h13 lưới dự phòng thứ hai (bước kiểm tra bỏ qua nếu sáng đã cào)
   workflow_dispatch:
+    inputs:
+      ep_vn:
+        description: 'Ép cào vĩ mô VN ngay (bỏ qua lịch): co / khong'
+        default: 'khong'
 
 permissions:
   contents: write
@@ -45,12 +49,12 @@ jobs:
       - name: Cào
         if: steps.kiem.outputs.chay == '1'
         run: python vimo/cao.py _data/port/state/vi_mo
-      - name: Vĩ mô Việt Nam (Gemini rẻ nhất + Google Search)
+      - name: Vĩ mô Việt Nam (Cục Thống kê + tin RSS, Gemini miễn phí; thứ Hai, ngày 1–10 hoặc cách lần trước ≥ 7 ngày)
         if: steps.kiem.outputs.chay == '1'
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python vimo/vn_ai.py _data/port/state/vi_mo
+        run: python vimo/vn_ai.py _data/port/state/vi_mo ${{ github.event.inputs.ep_vn == 'co' && '--ep' || '' }}
       - name: Ghi về port-data
         if: steps.kiem.outputs.chay == '1'
         run: |

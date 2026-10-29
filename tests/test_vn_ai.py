@@ -91,3 +91,20 @@ def test_rss_chi_nhan_so_co_trong_tin():
 class _Resp2:
     def __init__(self, c):
         self.content, self.status_code = c, 200
+
+
+def test_den_lich():
+    assert not V.den_lich('2026-10-29', '2026-10-28')          # thứ Năm, ngày 29, mới chạy hôm qua
+    assert V.den_lich('2026-11-02', '2026-10-29')              # thứ Hai
+    assert V.den_lich('2026-11-05', '2026-11-04')              # ngày 1–10
+    assert V.den_lich('2026-10-28', '2026-10-20') and V.den_lich('2026-10-28', None)
+
+
+def test_tu_nso_chi_nhan_so_trong_bai():
+    bai = dict(tieu_de='Báo cáo quý III', ngay='2026-10-06',
+               van_ban='CPI tháng Chín tăng 5,08% so với cùng kỳ; kim ngạch xuất khẩu hàng hóa đạt 434,30 tỷ USD, tăng 24,5%')
+    out = dict(bien=dict(cpi_vn=dict(gia_tri=5.08, so_trong_tin='5,08%', ky='09/2026'),
+                         xuat_khau_vn=dict(gia_tri=24.6, so_trong_tin='24,6%'),
+                         lam_bay=dict(gia_tri=1)))
+    tu = V.tu_nso(out, bai)
+    assert list(tu) == ['cpi_vn'] and tu['cpi_vn']['ngay_cong_bo'] == '2026-10-06' and 'Cục Thống kê' in tu['cpi_vn']['nguon']
