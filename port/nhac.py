@@ -88,10 +88,13 @@ def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None
                             f'Cả {len(theo_doi)} mã trong port và hàng chờ đã có BCTC {thap}. Đến kỳ review quý.'))
             st['ky_review'] = thap
     rv = review or {}
+    review_cu = {k: list(v) for k, v in st['review_bao'].items()}
+    i_review = None
     can = [x['ma'] for x in rv.get('can_review') or []]
     if rv.get('quy') and can:
         moi_bao = sorted(set(can) - set(st['review_bao'].get(rv['quy']) or []))
         if moi_bao:
+            i_review = len(tin)
             tin.append((f"Review quý {rv['quy']}: {len(moi_bao)} mã",
                         'Máy đã tự cập nhật số quý mới; các mã sau có thay đổi cần anh xem lại luận điểm: ' +
                         '; '.join(f"{x['ma']} ({', '.join(x['ly_do'][:2])})" for x in rv['can_review'] if x['ma'] in moi_bao)
@@ -105,9 +108,12 @@ def kiem(D: dict, luan: dict[str, dict], st: dict, co_gia_lap: list[dict] | None
         tin.append((f"Cờ review {c['ma']}", c['noi_dung']))
     st['co'] = st['co'][-200:]
     da_gui = []
-    for tieu_de, nd in tin:
-        if gui_that:
-            gui(tieu_de, nd)
-        da_gui.append(dict(tieu_de=tieu_de, noi_dung=nd))
+    for i, (tieu_de, nd) in enumerate(tin):
+        ok = gui(tieu_de, nd) if gui_that else True
+        if i == i_review and not ok:
+            # 29/10: chuông review quý không tới được kênh nào (vd thiếu secret NTFY_TOPIC) → không đánh dấu đã báo,
+            # lượt sau gửi lại; tránh mất chuông chỉ-một-lần-mỗi-quý.
+            st['review_bao'] = review_cu
+        da_gui.append(dict(tieu_de=tieu_de, noi_dung=nd, toi=ok))
     st['lan_cuoi'] = da_gui
     return st

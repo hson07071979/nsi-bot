@@ -67,3 +67,14 @@ def test_hang_review():
              C=dict(trang_thai='khop', quy_moi='Q2/26'))
     h = QT.hang_review(k)
     assert h['quy'] == 'Q3/26' and [x['ma'] for x in h['can_review']] == ['A'] and h['tu_gia_han'] == ['B']
+
+
+def test_chuong_review_khong_toi_thi_gui_lai(monkeypatch):
+    import nhac as NH
+    rv = dict(quy='Q3/26', can_review=[dict(ma='A', ly_do=['x'])], tu_gia_han=[])
+    monkeypatch.setattr(NH, 'gui', lambda *a: False)
+    st = NH.kiem({}, {}, {}, review=rv)
+    assert st['review_bao'] == {}
+    monkeypatch.setattr(NH, 'gui', lambda *a: True)
+    st = NH.kiem({}, {}, st, review=rv)
+    assert st['review_bao'] == {'Q3/26': ['A']}
