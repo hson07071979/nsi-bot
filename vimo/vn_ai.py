@@ -95,7 +95,10 @@ def _models(key: str) -> list[str]:
                 if 'generateContent' in m.get('supportedGenerationMethods', [])]
     except Exception:  # noqa: BLE001
         have = []
-    return chon_model(have)[:4] or ['gemini-2.5-flash-lite', 'gemini-2.5-flash']
+    ds = chon_model(have)
+    lite = [m for m in ds if '-lite' in m][:3]
+    flash = [m for m in ds if '-lite' not in m][:3]      # 29/10: lite đều 429 → còn flash thường làm dự phòng
+    return lite + flash or ['gemini-2.5-flash']
 
 
 def _json_long(text: str):
@@ -111,6 +114,15 @@ def _json_long(text: str):
             except json.JSONDecodeError:
                 return None
     return None
+
+
+def _thong_bao(r) -> str:
+    try:
+        e = r.json().get('error') or {}
+        q = [v.get('quotaId') for d in e.get('details') or [] for v in d.get('violations') or [] if v.get('quotaId')]
+        return (e.get('message') or '')[:160] + (f' [{", ".join(q[:3])}]' if q else '')
+    except Exception:  # noqa: BLE001
+        return (getattr(r, 'text', '') or '')[:160]
 
 
 def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
@@ -130,11 +142,13 @@ def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
                 time.sleep(5 * (lan + 1))
                 continue
             if r.status_code in (429, 500, 503):
-                meta['loi'][model] = f'HTTP {r.status_code}'
+                meta['loi'][model] = f'HTTP {r.status_code}: {_thong_bao(r)}'
+                if r.status_code == 429 and 'PerDay' in r.text:
+                    break                                  # hết hạn mức ngày của model này → sang model khác ngay
                 time.sleep(15 * (lan + 1))
                 continue
             if r.status_code != 200:
-                meta['loi'][model] = f'HTTP {r.status_code}: {r.text[:150]}'
+                meta['loi'][model] = f'HTTP {r.status_code}: {_thong_bao(r)}'
                 break
             j = r.json()
             try:
