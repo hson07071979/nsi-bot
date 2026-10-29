@@ -333,15 +333,17 @@ def gop(cu: dict, moi: dict | None, ngay: str) -> tuple[dict, dict]:
     mb = (moi or {}).get('bien') if isinstance(moi, dict) else None
     for k in BIEN:
         rec, ly = kiem(k, (mb or {}).get(k), ngay, cu.get(k)) if mb is not None else (None, 'lượt hỏng')
+        c = cu.get(k) or {}
+        if rec and c.get('gia_tri') is not None and str(c.get('ngay') or '') > rec['ngay']:
+            rec, ly = None, f'số mới lấy ({rec["ngay"]}) cũ hơn số đang có ({c.get("ngay")})'
         if rec:
-            c = cu.get(k) or {}
             if c.get('ky') == rec['ky'] and c.get('gia_tri') == rec['gia_tri']:
                 rec['xu_huong'], rec['xu_huong_tu'] = c.get('xu_huong', rec['xu_huong']), c.get('xu_huong_tu', rec['xu_huong_tu'])
             bien[k] = rec
         else:
             loai[k] = ly
             if cu.get(k):
-                bien[k] = dict(cu[k], loi=f'{ngay}: {ly} — giữ số cũ')
+                bien[k] = dict(cu[k], loi=f'{ngay}: {ly} — giữ số cũ') if not ly.startswith('số mới lấy') else dict(cu[k])
     return bien, loai
 
 

@@ -108,3 +108,10 @@ def test_tu_nso_chi_nhan_so_trong_bai():
                          lam_bay=dict(gia_tri=1)))
     tu = V.tu_nso(out, bai)
     assert list(tu) == ['cpi_vn'] and tu['cpi_vn']['ngay_cong_bo'] == '2026-10-06' and 'Cục Thống kê' in tu['cpi_vn']['nguon']
+
+
+def test_gop_khong_de_so_moi_hon_bang_so_cu_hon():
+    cu = dict(ls_lien_nh_vn=dict(ten='LNH', gia_tri=3.85, ky='27/10/2026', ngay='2026-10-27', xu_huong='tang', nguon='x'))
+    moi = dict(bien=dict(ls_lien_nh_vn=dict(gia_tri=3.5, ky='16/10/2026', ngay_cong_bo='2026-10-16', nguon='Báo X 16/10')))
+    bien, loai = V.gop(cu, moi, NGAY)
+    assert bien['ls_lien_nh_vn']['gia_tri'] == 3.85 and 'loi' not in bien['ls_lien_nh_vn']
