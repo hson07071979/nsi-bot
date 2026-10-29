@@ -105,7 +105,7 @@ function ganDmuc(){const i=$('#loc2');if(i)i.oninput=()=>{loc2=i.value;const p=i
 function theMa(x){if(!x)return '';const H=B.ho_so||{},h=(H.ho_so||{})[x.ma],tt=(H.trang_thai||{})[x.ma],ng=h?(H.nganh||{})[h.nganh_slug]:null;
   const L=(B.luan_diem||[]).find(z=>z.luan.ma===x.ma)||{},t=L.luan||{},pd=t.pitch_diem||{},gs=pd.gia_sai||{},v=x.vt,mt=mucTieuGN(x);
   let o='<div class="tieu"><p class="dau">'+esc(x.ma)+'</p><span class="mut">'+esc((h&&h.ten)||'')+' · '+esc(x.nganh||'')+'</span>'+ttBadge(tt)+'</div>'
-   +'<div class="mut">'+esc(x.ket_luan||'')+(x.diem!=null?' · '+n(x.diem,0)+' điểm':'')+' · nhóm <b>'+esc(x.ten_nhom)+'</b></div>';
+   +'<div class="mut">'+esc(x.ket_luan||'')+(x.diem!=null?' · '+n(x.diem,0)+' điểm':'')+' · nhóm <b>'+esc(x.ten_nhom)+'</b>'+qtd(x)+'</div>';
   // 1
   o+=sec(1,'Làm ăn gì · chuỗi giá trị',veLamGi(h,ng));
   // 2
@@ -272,11 +272,20 @@ function dkO(k){if(!k)return '<span class="mut">—</span>';return '<span title=
 function dkChiTiet(k){if(!k)return '';return '<ul style="margin:4px 0">'+'abcd'.split('').map(c=>{const v=(k[c]||{});return '<li><b class="'+(v.dat===true?'up':v.dat===false?'dn':'mut')+'">'+(v.dat===true?'✓':v.dat===false?'✗':'?')+'</b> '+esc(DK_TEN[c])+' <span class="mut">— '+esc(v.cau||'')+'</span></li>'}).join('')+'</ul>'}
 const DKH='<th class="dk" title="Lợi nhuận tăng là thật">a<br>LN thật</th><th class="dk" title="Tăng trưởng không chậm lại (PEG)">b<br>Không chậm lại</th><th class="dk" title="Giảm vì thị trường, ngành">c<br>Theo ngành</th><th class="dk" title="Đã cân bằng">d<br>Cân bằng</th>';
 function dkTd(k){return 'abcd'.split('').map(c=>{const v=(k&&k[c])||{};return '<td class="dk '+(v.dat===true?'up':v.dat===false?'dn':'mut')+'" title="'+esc(DK_TEN[c]+': '+(v.cau||'chưa đo'))+'">'+(v.dat===true?'✓':v.dat===false?'✗':'?')+'</td>'}).join('')}
+/* 29/10/2026: trạng thái luận điểm khi có quý mới (quy_tu_dong.py) — tự gia hạn / cần review / khớp */
+function qtd(x){const q=(x||{}).quy_tu_dong;if(!q||!q.trang_thai)return '';const L=(q.ly_do||[]).join('; ');
+  if(q.trang_thai==='can_review')return ' <span class="pill" style="background:#fdecea;color:var(--dn)" title="'+esc(L)+'">cần review '+esc(q.quy_moi||'')+'</span>';
+  if(q.trang_thai==='tu_gia_han')return ' <span class="pill" style="background:#e9f6ee;color:var(--up)" title="'+esc((q.so_moi||[]).join(' '))+'">tự gia hạn '+esc(q.quy_moi||'')+'</span>';
+  return ' <span class="pill" title="Luận điểm viết bằng số quý mới nhất">số '+esc(q.quy_ld||q.quy_moi||'')+'</span>'}
+function reviewQuy(D){const R=D.review_quy||{},C=R.can_review||[];if(!R.quy)return '';
+  return '<div class="card"><b>Review quý '+esc(R.quy)+'</b> · <span class="dn">'+n(C.length,0)+' cần review</span> · <span class="up">'+n((R.tu_gia_han||[]).length,0)+' tự gia hạn</span> · <span class="mut">'+n((R.khop||[]).length,0)+' đã viết bằng số quý mới nhất</span>'
+   +'<div class="mut" style="font-size:12.5px">Có BCTC quý mới thì máy tự xét từng luận điểm: không đổi gì → tự gia hạn (máy ghi số mới, không chặn giải ngân); mốc kiểm chứng sai, lợi nhuận giảm từ 20%, lõi chuyển âm hoặc điều kiện a–d đổi → cần review (chặn giải ngân mã đó tới khi Claude viết lại). Hồ sơ cốt lõi không phải viết lại.</div>'
+   +(C.length?'<ul>'+C.map(x=>'<li><b>'+esc(x.ma)+'</b>: '+(x.ly_do||[]).map(esc).join('; ')+'</li>').join('')+'</ul>':'<div class="ok">Không có mã nào cần review.</div>')+'</div>'}
 function ds(){const D=B.danh_sach;if(!D)return '<p class="mut">Chưa có danh sách — lượt "Lọc port" kế tiếp sẽ dựng.</p>';const Lt=D.luat||{};
   const gl=((B.gia_lap||{}).tong_ket||{}).vi_the||[],cam={};gl.forEach(v=>cam[v.ma]=v);
-  let h='<p class="mut">'+n(D.so_qua_loc,0)+' mã qua lọc nền thấp + nền chặt · BCTC mới nhất trong dữ liệu NSI: '+esc(D.quy_bctc_moi||'—')+'. Rê chuột lên ✓ ✗ để xem số đo.</p>';
+  let h=reviewQuy(D)+'<p class="mut">'+n(D.so_qua_loc,0)+' mã qua lọc nền thấp + nền chặt · BCTC mới nhất trong dữ liệu NSI: '+esc(D.quy_bctc_moi||'—')+'. Rê chuột lên ✓ ✗ để xem số đo.</p>';
   const C='<tr><th>Mã</th><th>Ngành</th><th class="r" title="Thứ tự độ chặt của nền trong các mã qua lọc">Hạng nền</th><th class="r">Nền 30 phiên</th><th class="r">Cách đỉnh 1 năm</th>'+DKH+'<th>Kết luận · điểm 70/30</th><th>Được giải ngân?</th><th>Đang cầm</th></tr>';
-  const o=x=>{const v=cam[x.ma];return '<tr><td><b>'+esc(x.ma)+'</b></td><td>'+esc(x.nganh||'')+'</td><td class="r">'+n(x.thu_tu_chat,0)+'</td><td class="r">'+(x.nen30!=null?n(x.nen30*100,1)+'%':'—')+'</td><td class="r">'+pct(x.tu_dinh!=null?x.tu_dinh*100:null)+'</td>'+dkTd(x.bon_dk)+'<td>'+esc(x.ket_luan||'—')+(x.diem!=null?' · <b>'+n(x.diem,0)+'</b>':'')+'</td><td>'+(x.duoc_mua===true?'<b class="up">có</b>':x.duoc_mua===false?'<b class="dn">chưa</b>':'<span class="mut">—</span>')+'</td><td>'+(v?n(v.ty_trong)+'% NAV · '+v.so_dot+'/'+v.ke_hoach+' đợt':'<span class="mut">không</span>')+'</td></tr>'+(x.vi_sao?'<tr><td></td><td colspan="11" class="w mut" style="border-top:0">'+esc(x.vi_sao)+'</td></tr>':'')};
+  const o=x=>{const v=cam[x.ma];return '<tr><td><b>'+esc(x.ma)+'</b></td><td>'+esc(x.nganh||'')+'</td><td class="r">'+n(x.thu_tu_chat,0)+'</td><td class="r">'+(x.nen30!=null?n(x.nen30*100,1)+'%':'—')+'</td><td class="r">'+pct(x.tu_dinh!=null?x.tu_dinh*100:null)+'</td>'+dkTd(x.bon_dk)+'<td>'+esc(x.ket_luan||'—')+(x.diem!=null?' · <b>'+n(x.diem,0)+'</b>':'')+qtd(x)+'</td><td>'+(x.duoc_mua===true?'<b class="up">có</b>':x.duoc_mua===false?'<b class="dn">chưa</b>':'<span class="mut">—</span>')+'</td><td>'+(v?n(v.ty_trong)+'% NAV · '+v.so_dot+'/'+v.ke_hoach+' đợt':'<span class="mut">không</span>')+'</td></tr>'+(x.vi_sao?'<tr><td></td><td colspan="11" class="w mut" style="border-top:0">'+esc(x.vi_sao)+'</td></tr>':'')};
   const bang=(L,rong)=>L.length?'<div class="scroll"><table>'+C+L.map(o).join('')+'</table></div>':'<p class="mut">'+rong+'</p>';
   h+='<h3>1. Giải ngân — đủ khung, qua đủ 4 điều kiện ('+(D.giai_ngan||[]).length+')</h3><p class="mut">Mua đủ một lần 12% NAV (từ 70 điểm) hoặc 8% (60–69).</p>'+bang(D.giai_ngan||[],'Chưa mã nào đủ khung và qua đủ 4 điều kiện.');
   h+='<h3>2. Cần thêm bằng chứng ('+(D.can_them||[]).length+')</h3><p class="mut">Chờ phép thử hoặc luận điểm còn thiếu: 4% NAV thăm dò. Trượt điều kiện đo được thì chưa giải ngân. Qua phép thử thì lên nhóm 1 và mua bù đủ tỷ trọng.</p>'+bang(D.can_them||[],'Không có mã nào.');
