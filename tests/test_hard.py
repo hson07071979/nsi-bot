@@ -124,4 +124,14 @@ nghi = (_dt.date.fromisoformat(cal[k]) + _dt.timedelta(days=1)).isoformat()
 r, F, _ = chay([dict(id='h1', loai='mua', sym=m, ngay=nghi, gia=gia(m, cal[k + 1]), pct_nav=3.0, luc='1')])
 kiem(F['h1']['phien'] == cal[k + 1], 'ngày nghỉ -> phiên giao dịch kế tiếp')
 
+# 30/10/2026 (ca ORS 29/10): Hard Sell cùng phiên với lệnh thoát của bot -> lệnh tay thắng, khớp giá anh điền
+tb = next(t for t in reversed(r0['trades']) if not t.get('hard') and t['held'] >= 3 and t.get('frac', 1) >= 1
+          and not str(t.get('reason', '')).startswith('Cond9'))
+gb = round(gia(tb['sym'], tb['exit'], 'PriceHigh') if 'PriceHigh' in d else gia(tb['sym'], tb['exit']), 2)
+r, F, _ = chay([dict(id='o1', loai='ban', sym=tb['sym'], ngay=tb['exit'], gia=gb, phan=1.0, luc='1')])
+kiem(F['o1']['ok'], 'Hard Sell cùng phiên bot thoát -> lệnh tay khớp (không bị bot ghi đè)')
+cung = [t for t in r['trades'] if t['sym'] == tb['sym'] and t['exit'] == tb['exit']]
+kiem(len(cung) == 1 and cung[0].get('hard') == 'ban' and abs(cung[0]['exit_raw'] - gb * 1000) < 1,
+     'phiên đó chỉ còn lệnh Hard Sell, đúng giá anh điền')
+
 print(f'test_hard: {len(OK)} kiểm tra đạt')

@@ -510,6 +510,13 @@ def _run_core(cfg=None, log=True):
                   light=R['light'][p.ei],peak=round(float(p.peak)*100,1),
                   **({'hard':p.hard} if getattr(p,'hard',None) else {})))
             del pos[sym]
+        # ---------- LENH HARD SELL TRUOC CUA RA CUA BOT (30/10/2026) ----------
+        # Anh Son: Hard Sell ORS 29/10 gia 15,15 bi lenh thoat ATC cua bot (14,75, cung phien) "ghi de" —
+        # bot ban truoc nen lenh tay bi tu choi. Nay: lenh Hard SELL cua phien chay TRUOC bo thoat; phan
+        # vi the con lai (neu chi ban 25/50%) van di qua bo thoat nhu thuong. Hard BUY giu cho cu (sau thoat).
+        _HS_i=[o for o in (_HB.get(i) or []) if o.get('loai')=='ban']
+        if _HS_i:
+            cash = _hard_phien(i, _HS_i, pos, cash)
         # ---------- LOP 8: BO THOAT ----------
         for sym in list(pos):
             p=pos[sym]; j=p.j; px=AC[i,j]
@@ -588,8 +595,9 @@ def _run_core(cfg=None, log=True):
         # ---------- LENH HARD (anh Son chu dong, 28/10/2026) ----------
         # Sau cua ra cua bot (dung gia dong cua cung phien), truoc lenh mua theo tin hieu: lenh tay
         # duoc dung tien truoc, va bot khong mua trung ma vua Hard Buy (screen bo ma dang cam).
-        if _HB.get(i):
-            cash = _hard_phien(i, _HB[i], pos, cash)
+        _HM_i=[o for o in (_HB.get(i) or []) if o.get('loai')!='ban']
+        if _HM_i:
+            cash = _hard_phien(i, _HM_i, pos, cash)
         # ---------- LOP 0-7: MO LENH ----------
         smul=R['size'][i] if C['use_market_gate'] else 1.0
         # ---------- NGAT MACH BAO VE VON ----------
