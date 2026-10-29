@@ -1,6 +1,6 @@
 {
  "ngay": "2026-10-29",
- "luc": "2026-10-29T10:50+07:00",
+ "luc": "2026-10-29T11:33+07:00",
  "so_bien": 31,
  "lay_duoc": 31,
  "bien": {
@@ -246,15 +246,15 @@
    "ten": "Thép cuộn cán nóng HRC (Mỹ)",
    "dv": "USD/tấn",
    "kieu": "ngay",
-   "gia_tri": 1392.0,
+   "gia_tri": 1344.0,
    "ngay_so": "2026-10-28",
    "nguon": "yahoo:HRC=F",
-   "thay_doi": 9.176,
+   "thay_doi": 5.412,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.81,
-   "xu_huong": "tang",
-   "thay_doi_5": 8.243
+   "z": 0.48,
+   "xu_huong": "ngang",
+   "thay_doi_5": 4.51
   },
   "quang_sat_ngay": {
    "ten": "Quặng sắt (SGX)",
@@ -274,29 +274,29 @@
    "ten": "Đường thô",
    "dv": "US cent/lb",
    "kieu": "ngay",
-   "gia_tri": 19.36,
+   "gia_tri": 19.34,
    "ngay_so": "2026-10-28",
    "nguon": "yahoo:SB=F",
-   "thay_doi": 9.813,
+   "thay_doi": 9.699,
    "do": "pct",
    "cua_so": 20,
-   "z": 1.41,
+   "z": 1.39,
    "xu_huong": "tang",
-   "thay_doi_5": -5.33
+   "thay_doi_5": -5.428
   },
   "bong": {
    "ten": "Bông",
    "dv": "US cent/lb",
    "kieu": "ngay",
-   "gia_tri": 78.34,
+   "gia_tri": 78.15,
    "ngay_so": "2026-10-28",
    "nguon": "yahoo:CT=F",
-   "thay_doi": 4.747,
+   "thay_doi": 4.493,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.56,
+   "z": 0.53,
    "xu_huong": "tang",
-   "thay_doi_5": -4.265
+   "thay_doi_5": -4.497
   },
   "ngo": {
    "ten": "Ngô (CBOT)",

@@ -1,26 +1,14 @@
 {
  "ngay": "2026-10-29",
- "luc": "2026-10-29T10:50+07:00",
+ "luc": "2026-10-29T11:33+07:00",
  "model": "gemini-3.5-flash-lite",
- "cach": "rss",
+ "cach": "cuc_thong_ke+rss",
  "so_tim_kiem": 0,
  "nguon_web": [],
- "loi_model": {
-  "gemini-3.5-flash-lite": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
-  "gemini-3.1-flash-lite": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
-  "gemini-3.1-flash-lite-preview": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
-  "gemini-3.8-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
-  "gemini-3.7-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/",
-  "gemini-3.6-flash": "HTTP 429: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/"
- },
+ "nso_url": "https://www.nso.gov.vn/tin-tuc-thong-ke/2026/10/bao-cao-tinh-hinh-kinh-te-xa-hoi-quy-iii-va-9-thang-nam-2026/",
+ "loi_model": {},
  "loai": {
   "ls_huy_dong_vn": "thiếu",
-  "tin_dung_vn": "thiếu",
-  "cpi_vn": "thiếu",
-  "tieu_dung_vn": "thiếu",
-  "xuat_khau_vn": "thiếu",
-  "fdi_vn": "thiếu",
-  "gdp_vn": "thiếu",
   "tpcp_10y_vn": "thiếu",
   "von_ngoai_vn": "thiếu"
  },
@@ -29,34 +17,78 @@
    "ten": "Lãi suất cho vay VN",
    "dv": "%/năm",
    "gia_tri": 10.9,
-   "ky": "10/2026",
-   "ngay": "2026-10-28",
-   "xu_huong": "giam",
-   "xu_huong_tu": "model",
-   "ly_do": "Lãi vay bình quân ở mức 10,9%/năm trong bối cảnh các ngân hàng tiếp tục giảm lãi suất. — tin: \"Lãi vay bình quân 10,9% và lợi suất Mỹ 4,99%: founder nên tính lại chi phí vốn - 24HMoney\"",
-   "nguon": "24HMoney 2026-10-28 (tin RSS)"
+   "ky": "09/2026",
+   "ngay": "2026-10-24",
+   "xu_huong": "ngang",
+   "xu_huong_tu": "code (so kỳ trước)",
+   "ly_do": "Lãi suất cho vay bình quân tháng 9/2026 lên tới 10,9%/năm. — tin: \"Lãi suất ngân hàng tháng 9/2026: Cho vay bình quân lên tới 10,9%/năm - Tạp chí điện tử Thương Trường\"",
+   "nguon": "Tạp chí điện tử Thương Trường 2026-10-24 (tin RSS)"
   },
   "ls_lien_nh_vn": {
    "ten": "Lãi suất liên ngân hàng qua đêm VN",
    "dv": "%/năm",
-   "gia_tri": 3.85,
-   "ky": "27/10/2026",
-   "ngay": "2026-10-27",
-   "xu_huong": "tang",
+   "gia_tri": 3.5,
+   "ky": "16/10/2026",
+   "ngay": "2026-10-16",
+   "xu_huong": "giam",
+   "xu_huong_tu": "code (so kỳ trước)",
+   "ly_do": "Lãi suất VND liên ngân hàng qua đêm giảm còn 3,5%/năm. — tin: \"Lãi suất ngân hàng ngày 16/10/2026: Lãi suất VND liên ngân hàng qua đêm giảm còn 3,5%/năm - Báo Hà Tĩnh\"",
+   "nguon": "Báo Hà Tĩnh 2026-10-16 (tin RSS)"
+  },
+  "tin_dung_vn": {
+   "ten": "Tăng trưởng tín dụng VN",
+   "dv": "% từ đầu năm",
+   "gia_tri": 10.89,
+   "ky": "28/09/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "giam",
    "xu_huong_tu": "model",
-   "ly_do": "Lãi suất qua đêm neo mức 3,85% trong phiên 27/10 khi Ngân hàng Nhà nước bơm ròng. — tin: \"Phiên 27/10: Ngân hàng Nhà nước bơm ròng 6.300 tỷ đồng, lãi suất qua đêm neo mức 3,85% - nguoiquansat.vn\"",
-   "nguon": "nguoiquansat.vn 2026-10-27 (tin RSS)"
+   "ly_do": "Tăng trưởng tín dụng tính đến 28/09/2026 đạt 10,89% so với cuối năm trước, thấp hơn mức 13,37% của cùng kỳ năm trước.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
   },
   "dau_tu_cong_vn": {
    "ten": "Giải ngân đầu tư công VN",
    "dv": "% kế hoạch năm",
-   "gia_tri": 66.0,
+   "gia_tri": 65.9,
    "ky": "10/2026",
    "ngay": "2026-10-28",
    "xu_huong": "tang",
    "xu_huong_tu": "model",
-   "ly_do": "Giải ngân vốn đầu tư công đạt gần 66% kế hoạch, vượt 673.000 tỷ đồng. — tin: \"Giải ngân vốn đầu tư công vượt 673.000 tỷ đồng, đạt gần 66% kế hoạch - Báo Thanh tra\"",
-   "nguon": "Báo Thanh tra 2026-10-28 (tin RSS)"
+   "ly_do": "Giải ngân vốn đầu tư công đạt 65,9% kế hoạch. — tin: \"Giải ngân vốn đầu tư công đạt 65,9% kế hoạch, một số bộ, cơ quan chậm tiến độ - Báo Lào Cai điện tử\"",
+   "nguon": "Báo Lào Cai điện tử 2026-10-28 (tin RSS)"
+  },
+  "cpi_vn": {
+   "ten": "Lạm phát VN (CPI)",
+   "dv": "% so cùng kỳ",
+   "gia_tri": 5.08,
+   "ky": "09/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "CPI tháng 09/2026 tăng 5,08% so với cùng kỳ năm trước.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
+  },
+  "tieu_dung_vn": {
+   "ten": "Bán lẻ hàng hoá VN",
+   "dv": "% so cùng kỳ",
+   "gia_tri": 13.4,
+   "ky": "9T/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "Tổng mức bán lẻ hàng hoá và doanh thu dịch vụ tiêu dùng 9 tháng đầu năm 2026 tăng 13,4% so với cùng kỳ.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
+  },
+  "xuat_khau_vn": {
+   "ten": "Xuất khẩu VN",
+   "dv": "% so cùng kỳ",
+   "gia_tri": 24.5,
+   "ky": "9T/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "Kim ngạch xuất khẩu hàng hoá 9 tháng năm 2026 tăng 24,5% so với cùng kỳ năm trước.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
   },
   "pmi_vn": {
    "ten": "PMI sản xuất VN",
@@ -66,8 +98,30 @@
    "ngay": "2026-10-01",
    "xu_huong": "giam",
    "xu_huong_tu": "model",
-   "ly_do": "PMI giảm xuống 51,9 điểm trong tháng 9 nhưng ngành sản xuất vẫn duy trì tăng trưởng. — tin: \"PMI giảm xuống 51,9 điểm, ngành sản xuất Việt Nam vẫn duy trì tăng trưởng - VnEconomy\"",
+   "ly_do": "PMI giảm xuống 51,9 điểm trong tháng 9. — tin: \"PMI giảm xuống 51,9 điểm, ngành sản xuất Việt Nam vẫn duy trì tăng trưởng - VnEconomy\"",
    "nguon": "VnEconomy 2026-10-01 (tin RSS)"
+  },
+  "fdi_vn": {
+   "ten": "Vốn FDI vào VN",
+   "dv": "tỷ USD giải ngân từ đầu năm",
+   "gia_tri": 21.07,
+   "ky": "9T/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "Vốn FDI thực hiện lũy kế 9 tháng năm 2026 đạt 21,07 tỷ USD, tăng 12,1% so với cùng kỳ.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
+  },
+  "gdp_vn": {
+   "ten": "Tăng trưởng GDP VN",
+   "dv": "% so cùng kỳ",
+   "gia_tri": 9.95,
+   "ky": "Q3/2026",
+   "ngay": "2026-10-06",
+   "xu_huong": "tang",
+   "xu_huong_tu": "model",
+   "ly_do": "GDP quý III/2026 tăng 9,95% so với cùng kỳ năm trước, cao hơn mức 8,15% của quý I và 8,81% của quý II.",
+   "nguon": "Cục Thống kê — Báo cáo tình hình kinh tế – xã hội quý III và 9 tháng năm 2026"
   }
  }
 }
