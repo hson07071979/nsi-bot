@@ -69,3 +69,25 @@ def test_ho_so_lay_ban_tu_dong_khi_moi_hon():
     b = HS.bien_hom_nay({}, tay, ai)
     assert b['cpi_vn']['xu_huong'] == 'giam' and b['cpi_vn']['tu_dong']
     assert b['gdp_vn']['xu_huong'] == 'tang' and not b['gdp_vn']['tu_dong']
+
+
+RSS_XML = b'''<?xml version="1.0"?><rss><channel>
+<item><title>CPI th\xc3\xa1ng 9 t\xc4\x83ng 3,85% so v\xe1\xbb\x9bi c\xc3\xb9ng k\xe1\xbb\xb3 - VnEconomy</title><pubDate>Mon, 06 Oct 2026 03:00:00 GMT</pubDate><source>VnEconomy</source></item>
+<item><title>Tin ng\xc3\xa0y mai</title><pubDate>Fri, 30 Oct 2026 03:00:00 GMT</pubDate><source>X</source></item>
+</channel></rss>'''
+
+
+def test_rss_chi_nhan_so_co_trong_tin():
+    tin = {'cpi_vn': V.tin_rss('cpi_vn', NGAY, get=lambda *a, **k: _Resp2(RSS_XML))}
+    assert len(tin['cpi_vn']) == 1 and tin['cpi_vn'][0]['ngay'] == '2026-10-06'
+    ok = V.tu_rss(dict(bien=dict(cpi_vn=dict(gia_tri=3.85, so_trong_tin='3,85%', tin='cpi_vn#0', ky='09/2026'))), tin)
+    assert ok['bien']['cpi_vn']['ngay_cong_bo'] == '2026-10-06' and 'VnEconomy' in ok['bien']['cpi_vn']['nguon']
+    bia = V.tu_rss(dict(bien=dict(cpi_vn=dict(gia_tri=4.1, so_trong_tin='4,1%', tin='cpi_vn#0'))), tin)
+    assert bia['bien'] == {}
+    rec, _ = V.kiem('cpi_vn', ok['bien']['cpi_vn'], NGAY, None)
+    assert rec['gia_tri'] == 3.85
+
+
+class _Resp2:
+    def __init__(self, c):
+        self.content, self.status_code = c, 200

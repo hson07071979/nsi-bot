@@ -125,15 +125,19 @@ def _thong_bao(r) -> str:
         return (getattr(r, 'text', '') or '')[:160]
 
 
-def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
-    """Gọi Gemini có Google Search. → (json, meta: model, so_tim_kiem, loi{model: lý do})."""
+def hoi(key: str, prompt: str, post=None, tim: bool = True, models: list[str] | None = None) -> tuple[dict | None, dict]:
+    """Gọi Gemini. tim=True: bật Google Search và BẮT BUỘC có groundingMetadata. tim=False: chỉ đọc văn bản trong prompt
+    (dùng cho đường dự phòng tin RSS). → (json, meta: model, so_tim_kiem, loi{model: lý do})."""
     post = post or requests.post
-    meta = dict(model=None, so_tim_kiem=0, nguon_web=[], loi={})
-    for model in _models(key):
-        body = dict(systemInstruction=dict(parts=[dict(text=HE_THONG)]),
-                    contents=[dict(role='user', parts=[dict(text=prompt)])],
-                    tools=[dict(google_search={})],
-                    generationConfig=dict(temperature=0.1, maxOutputTokens=8192))
+    meta = dict(model=None, so_tim_kiem=0, nguon_web=[], loi={}, cach='google_search' if tim else 'rss')
+    for model in models or _models(key):
+        gen = dict(temperature=0.1, maxOutputTokens=8192)
+        body = dict(systemInstruction=dict(parts=[dict(text=HE_THONG if tim else HE_THONG_RSS)]),
+                    contents=[dict(role='user', parts=[dict(text=prompt)])], generationConfig=gen)
+        if tim:
+            body['tools'] = [dict(google_search={})]
+        else:
+            gen['responseMimeType'] = 'application/json'
         for lan in range(3):
             try:
                 r = post(f'{API}/models/{model}:generateContent', params={'key': key}, json=body, timeout=240)
@@ -143,9 +147,9 @@ def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
                 continue
             if r.status_code in (429, 500, 503):
                 meta['loi'][model] = f'HTTP {r.status_code}: {_thong_bao(r)}'
-                if r.status_code == 429 and 'PerDay' in r.text:
-                    break                                  # hết hạn mức ngày của model này → sang model khác ngay
-                time.sleep(15 * (lan + 1))
+                if r.status_code == 429:
+                    break                                  # hết hạn mức → sang model khác ngay, không chờ
+                time.sleep(10 * (lan + 1))
                 continue
             if r.status_code != 200:
                 meta['loi'][model] = f'HTTP {r.status_code}: {_thong_bao(r)}'
@@ -157,12 +161,14 @@ def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
             except (KeyError, IndexError, TypeError):
                 meta['loi'][model] = 'trả rỗng'
                 break
-            gm = cand.get('groundingMetadata') or {}
-            q = gm.get('webSearchQueries') or []
-            web = [(c.get('web') or {}).get('title') for c in gm.get('groundingChunks') or []]
-            if not q and not web:
-                meta['loi'][model] = 'không tìm trên web (không có groundingMetadata) — bỏ để chống bịa'
-                break
+            q, web = [], []
+            if tim:
+                gm = cand.get('groundingMetadata') or {}
+                q = gm.get('webSearchQueries') or []
+                web = [(c.get('web') or {}).get('title') for c in gm.get('groundingChunks') or []]
+                if not q and not web:
+                    meta['loi'][model] = 'không tìm trên web (không có groundingMetadata) — bỏ để chống bịa'
+                    break
             out = _json_long(text)
             if not isinstance(out, dict):
                 meta['loi'][model] = 'JSON hỏng'
@@ -170,6 +176,88 @@ def hoi(key: str, prompt: str, post=None) -> tuple[dict | None, dict]:
             meta.update(model=model, so_tim_kiem=len(q), nguon_web=[w for w in web if w][:30])
             return out, meta
     return None, meta
+
+
+# ------------------------------------------------------------------ đường dự phòng: tin Google News RSS (không cần key)
+# 29/10: lượt thật đầu tiên, MỌI model có bật Google Search đều 429 (hạn mức tìm kiếm của key miễn phí). Dự phòng: tự lấy
+# tiêu đề tin 45 ngày gần nhất từ Google News RSS cho từng biến, đưa cho Gemini đọc (không tìm web, rẻ hơn), và chỉ nhận
+# con số XUẤT HIỆN NGUYÊN VĂN trong tin mà model chỉ ra — ngày và nguồn lấy từ chính tin đó, không lấy lời model.
+RSS = 'https://news.google.com/rss/search'
+TU_KHOA = {
+    'ls_huy_dong_vn': 'lãi suất huy động 12 tháng ngân hàng', 'ls_cho_vay_vn': 'lãi suất cho vay bình quân NHNN',
+    'ls_lien_nh_vn': 'lãi suất liên ngân hàng qua đêm', 'tin_dung_vn': 'tăng trưởng tín dụng so với cuối năm',
+    'dau_tu_cong_vn': 'giải ngân vốn đầu tư công đạt kế hoạch', 'cpi_vn': 'CPI tháng so với cùng kỳ Cục Thống kê',
+    'tieu_dung_vn': 'tổng mức bán lẻ hàng hóa doanh thu dịch vụ tiêu dùng', 'xuat_khau_vn': 'kim ngạch xuất khẩu tăng so với cùng kỳ',
+    'pmi_vn': 'PMI ngành sản xuất Việt Nam S&P Global', 'fdi_vn': 'vốn FDI giải ngân tỷ USD', 'gdp_vn': 'tăng trưởng GDP quý',
+    'tpcp_10y_vn': 'lợi suất trái phiếu chính phủ kỳ hạn 10 năm', 'von_ngoai_vn': 'khối ngoại bán ròng mua ròng tháng',
+}
+HE_THONG_RSS = ('Bạn là chuyên viên số liệu vĩ mô Việt Nam. Chỉ được dùng các tin đánh số trong đề bài, không dùng hiểu biết riêng. '
+                'Mỗi biến: chọn tin mới nhất nêu đúng con số theo định nghĩa, chép con số đó y như trong tin vào "so_trong_tin". '
+                'Không có tin phù hợp thì gia_tri null. Trả đúng một khối JSON.')
+
+
+def tin_rss(k: str, ngay: str, get=None, n: int = 8) -> list[dict]:
+    """Tiêu đề tin 45 ngày gần nhất cho biến k → [dict(id, tieu_de, ngay, nguon)] mới nhất trước, chỉ tin trước `ngay`."""
+    import xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    get = get or requests.get
+    try:
+        r = get(RSS, params=dict(q=f'{TU_KHOA[k]} when:45d', hl='vi', gl='VN', ceid='VN:vi'), timeout=25,
+                headers={'User-Agent': 'Mozilla/5.0 (nsi-vimo)'})
+        goc = ET.fromstring(r.content)
+    except Exception:  # noqa: BLE001
+        return []
+    out = []
+    for it in goc.iter('item'):
+        try:
+            d = parsedate_to_datetime(it.findtext('pubDate')).astimezone(VN).date().isoformat()
+        except (TypeError, ValueError):
+            continue
+        if d >= ngay:
+            continue
+        td = re.sub(r'\s+', ' ', it.findtext('title') or '').strip()
+        out.append(dict(tieu_de=td, ngay=d, nguon=(it.findtext('source') or '').strip()))
+    out.sort(key=lambda x: x['ngay'], reverse=True)
+    return [dict(x, id=f'{k}#{i}') for i, x in enumerate(out[:n])]
+
+
+def prompt_rss(ngay: str, tin: dict) -> str:
+    dong = []
+    for k, ds in tin.items():
+        b = BIEN[k]
+        dong.append(f'## {k}: {b["dinh_nghia"]}; đơn vị {b["dv"]}')
+        dong += [f'[{x["id"]}] {x["ngay"]} · {x["nguon"]}: {x["tieu_de"]}' for x in ds] or ['(không có tin)']
+    return (f'Hôm nay là {ngay}.\n' + '\n'.join(dong) +
+            '\n\nTrả JSON: {"bien": {"<khoá>": {"gia_tri": số thuần hoặc null, "so_trong_tin": "con số y như trong tin, vd 3,5%", '
+            '"tin": "<id tin, vd cpi_vn#0>", "ky": "kỳ số liệu, vd 09/2026", "xu_huong": "tang"|"giam"|"ngang", '
+            '"ly_do": "1 câu có số"}}}.')
+
+
+def _co_trong(so: str, v: float, td: str) -> bool:
+    """Con số model nói phải có nguyên văn trong tiêu đề tin (chấp nhận 3,5 / 3.5 / 3,50)."""
+    t = td.replace('.', ',')
+    cands = {str(so or '').replace('%', '').strip().replace('.', ','), f'{v:g}'.replace('.', ',')}
+    if v == int(v):
+        cands.add(str(int(v)))
+    return any(c and re.search(rf'(?<![\d,]){re.escape(c)}(?![\d])', t) for c in cands)
+
+
+def tu_rss(out: dict | None, tin: dict) -> dict | None:
+    """Chuyển trả lời của model (đường RSS) sang dạng chung; số không có trong tin → bỏ. Ngày, nguồn lấy từ tin."""
+    if not isinstance(out, dict) or not isinstance(out.get('bien'), dict):
+        return None
+    theo_id = {x['id']: x for ds in tin.values() for x in ds}
+    bien = {}
+    for k, r in out['bien'].items():
+        if k not in BIEN or not isinstance(r, dict):
+            continue
+        v, t = _so(r.get('gia_tri')), theo_id.get(str(r.get('tin')))
+        if v is None or not t or not str(t['id']).startswith(k + '#') or not _co_trong(r.get('so_trong_tin'), v, t['tieu_de']):
+            continue
+        bien[k] = dict(gia_tri=v, ky=r.get('ky'), ngay_cong_bo=t['ngay'], xu_huong=r.get('xu_huong'),
+                       ly_do=(str(r.get('ly_do') or '') + f' — tin: "{t["tieu_de"][:160]}"').strip(' —'),
+                       nguon=f'{t["nguon"] or "Google News"} {t["ngay"]} (tin RSS)')
+    return dict(bien=bien)
 
 
 def lap_prompt(ngay: str, cu: dict) -> str:
@@ -254,7 +342,7 @@ def gop(cu: dict, moi: dict | None, ngay: str) -> tuple[dict, dict]:
 def ghi(state: Path, ngay: str, bien: dict, loai: dict, meta: dict) -> None:
     state.mkdir(parents=True, exist_ok=True)
     (state / 'vn_ai.json').write_text(json.dumps(dict(
-        ngay=ngay, luc=datetime.now(VN).isoformat(timespec='minutes'), model=meta.get('model'), so_tim_kiem=meta.get('so_tim_kiem'),
+        ngay=ngay, luc=datetime.now(VN).isoformat(timespec='minutes'), model=meta.get('model'), cach=meta.get('cach'), so_tim_kiem=meta.get('so_tim_kiem'),
         nguon_web=meta.get('nguon_web'), loi_model=meta.get('loi'), loai=loai, bien=bien), ensure_ascii=False, indent=1), encoding='utf-8')
     (state / 'chuoi').mkdir(exist_ok=True)
     for k, r in bien.items():
@@ -285,9 +373,15 @@ def main(argv: list[str]) -> int:
     except (OSError, json.JSONDecodeError):
         cu = {}
     out, meta = hoi(key, lap_prompt(ngay, cu))
+    if out is None:                                # Google Search hỏng / hết hạn mức → đọc tin RSS
+        tin = {k: tin_rss(k, ngay) for k in BIEN}
+        print(f'  Google Search không dùng được → đọc tin RSS ({sum(map(len, tin.values()))} tin)')
+        out2, meta2 = hoi(key, prompt_rss(ngay, tin), tim=False)
+        meta2['loi'] = dict(meta['loi'], **{f'{m} (rss)': e for m, e in meta2['loi'].items()})
+        out, meta = tu_rss(out2, tin), meta2
     bien, loai = gop(cu, out, ngay)
     ghi(state, ngay, bien, loai, meta)
-    print(f'vĩ mô VN {ngay}: model {meta.get("model")}, {meta.get("so_tim_kiem")} lượt tìm, '
+    print(f'vĩ mô VN {ngay}: cách {meta.get("cach")}, model {meta.get("model")}, {meta.get("so_tim_kiem")} lượt tìm, '
           f'{len(BIEN) - len(loai)}/{len(BIEN)} biến mới')
     for k, r in bien.items():
         print(f'  {k:15s} {r["gia_tri"]:>8} {r["dv"]:<22s} kỳ {r["ky"]:<12s} {r["xu_huong"]:<5s} {r["nguon"][:60]}'
