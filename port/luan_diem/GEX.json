@@ -1,0 +1,137 @@
+{
+ "ky_han": "6-24 tháng",
+ "ngay_mo": "2026-10-29",
+ "cap_nhat": "2026-10-29",
+ "bai_hoc": "Holding: nhìn lãi phần công ty mẹ, không nhìn doanh thu hợp nhất.",
+ "ma": "GEX",
+ "trang_thai": "theo_doi",
+ "chieu": "tang",
+ "ngay_vao": null,
+ "chuoi": {
+  "vi_mo": "Bản đồ vĩ mô cập nhật 29/10/2026: kinh tế thực vẫn nóng nhưng chu kỳ lãi suất trong nước vừa đổi chiều. Quốc tế: Fed giữ lãi suất 3,75–4,00% ngày 28/10 với 2 phiếu chống (USA Today, CNBC 28/10); thị trường vẫn định giá khả năng tăng tiếp tháng 12 — đô la đắt, chỉ số DXY khoảng 102, lợi suất Mỹ 10 năm khoảng 5%, vốn ngoại chưa có lý do quay lại. Dầu Brent khoảng 110 USD/thùng (Yahoo 28/10). Trung Quốc GDP Q3 +4,5%, xuất khẩu tháng 9 +36,3% (hàng dư thừa tràn sang ASEAN). Việt Nam: GDP Q3 +9,9%, 9 tháng +9,01%; CPI bình quân 9 tháng +4,52%, tháng 9 +5,08% (NHNN 07/10); tín dụng tăng nhanh hơn huy động, nhiều ngân hàng gần hết hạn mức năm (VDSC). Sau cuộc họp của NHNN khoảng 19/10, ít nhất 24 ngân hàng hạ lãi huy động 12 tháng, sâu nhất 0,9 điểm % (Thời báo Tài chính 21/10). Đầu tư công Q4 còn khoảng 380.000 tỷ phải giải ngân. Rủi ro ngoài: thuế 301 của Mỹ với hàng Việt Nam, hàng Trung Quốc giá rẻ. Truyền dẫn: đầu tư lưới điện, khu công nghiệp, FDI (21,07 tỷ USD giải ngân 9 tháng, Cục Thống kê) → đơn hàng GEE, cho thuê đất VGC; lãi suất → chi phí nợ của holding (nợ vay/vốn chủ khoảng 1).",
+  "nganh": "Xây dựng – hạ tầng – thiết bị điện cuối 2026: GDP quý 3 khu vực công nghiệp và xây dựng +11,2% (đóng góp gần 50% tăng trưởng); đầu tư công quý 4 còn khoảng 380.000 tỷ phải giải ngân; nhu cầu điện tăng 9% kéo đầu tư lưới điện, nguồn điện (Quy hoạch điện VIII). Nhưng biên nhà thầu bị ép: giá thép, nhựa đường, đá, nhiên liệu tăng làm biên gộp nhà thầu hạ tầng giảm (VCG từ 12,6% quý 1 xuống 9,1% quý 2, Bnews 29/10); MBS dự báo nhiều nhà thầu lãi quý 3 giảm (VCG −94% do nền thoái vốn 2025, CTD −32%, PC1 −42%). Khu công nghiệp hưởng FDI (VGC biên cho thuê 75%). Trung vị nhóm cách đỉnh khoảng 30%.",
+  "doanh_nghiep": "Quý 3/2026 (BCTC 27–28/10): doanh thu hợp nhất 13.957 tỷ (+41,8%), LNTT 1.316 tỷ (+5%), LNST 882 tỷ; 9 tháng doanh thu 39.158 tỷ (+40,5%), LNTT 3.931 tỷ — vượt 8,8% kế hoạch năm. Nhưng lãi phần công ty mẹ quý 3 giảm khoảng 60% vì cùng kỳ có khoản lãi một lần và phần của cổ đông thiểu số (GEE, VGC) tăng; hoạt động cốt lõi tăng hơn gấp đôi (24HMoney 29/10). Quý 2 (NSI): LNST mẹ 540 tỷ (−18%), lõi 2.009 tỷ (+34%), chi phí lãi vay +310 tỷ.",
+  "mo_hinh_kd": "Holding: thiết bị điện (GEE — Cadivi, EMIC), vật liệu và khu công nghiệp (Viglacera — VGC), hạ tầng điện, nước; lợi nhuận hợp nhất từ các công ty con, chia lại một phần lớn cho cổ đông thiểu số.",
+  "lanh_dao": "Chủ tịch Nguyễn Văn Tuấn; GELEX chi phối GEE và VGC; dùng nhiều nợ vay, trái phiếu ở cấp holding.",
+  "chuoi_gia_tri": "Tích hợp chuỗi công nghiệp: dây cáp, thiết bị điện cho EVN và nhà thầu; vật liệu xây dựng; đất khu công nghiệp cho FDI.",
+  "dan_nguoc_vi_mo": "Xây dựng và đầu tư công là đầu kéo tăng trưởng 2026 (mục tiêu GDP gần 10%); nhà thầu lớn và nhà sản xuất thiết bị điện là kênh chuyển vốn công thành việc làm và tiêu thụ vật liệu."
+ },
+ "luan_diem": [
+  {
+   "id": "L1",
+   "nhan": "OBSERVATION",
+   "noi_dung": "Máy chấm đạt c, d và qua lọc nền thấp; trượt a, b (LN 4 quý phần mẹ −12%).",
+   "bang_chung": [
+    "FACT: LN 4 quý −12,2%, lõi 4 quý +21,5%, nền 11,9%, cách đỉnh −36% (NSI)"
+   ]
+  },
+  {
+   "id": "L2",
+   "nhan": "INTERPRETATION",
+   "noi_dung": "Kinh doanh hợp nhất tăng thật, nhưng phần về cổ đông GEX bị pha bởi thiểu số và lãi vay — mua GEX là mua đòn bẩy lên GEE, VGC với chi phí nợ cao hơn mua thẳng hai công ty con.",
+   "bang_chung": [
+    "FACT: Lãi mẹ quý 3 giảm 60%, lõi tăng hơn gấp đôi (24HMoney 29/10)"
+   ]
+  }
+ ],
+ "bull": [
+  "Doanh thu 9 tháng +40,5%; vượt kế hoạch LNTT năm.",
+  "Hoạt động cốt lõi tăng mạnh; giá −36% từ đỉnh.",
+  "Đạt c, d; qua lọc nền thấp."
+ ],
+ "bear": [
+  "Lãi phần công ty mẹ giảm; trượt điều kiện a, b.",
+  "Nợ vay/vốn chủ khoảng 1; chi phí lãi vay tăng mạnh.",
+  "P/E 25, ROE 7,5% — đắt hơn GEE, VGC cùng hệ sinh thái.",
+  "Tiền từ kinh doanh chỉ bằng 55% lợi nhuận."
+ ],
+ "debate": [
+  {
+   "ngay": "2026-10-29",
+   "vong": 1,
+   "ben": "bull",
+   "noi_dung": "Holding giảm giá sâu trong khi các công ty con vượt kế hoạch."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 2,
+   "ben": "bear",
+   "noi_dung": "Cổ đông GEX nhận phần nhỏ dần, phải gánh lãi vay holding."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 3,
+   "ben": "trong_tai",
+   "noi_dung": "Không đạt a, b."
+  },
+  {
+   "ngay": "2026-10-29",
+   "vong": 4,
+   "ben": "claude",
+   "noi_dung": "Kết luận: theo dõi; nếu muốn tiếp xúc chuỗi này, xét GEE, VGC trước."
+  }
+ ],
+ "phan_bien_may": {},
+ "kiem_chung": [
+  {
+   "id": "K1",
+   "loai": "funda",
+   "chi_tieu": "ny",
+   "quy": "Q4/26",
+   "so_sanh": ">=",
+   "nguong": 0,
+   "noi_dung": "LNST công ty mẹ quý 4/26 không thấp hơn cùng kỳ (Q4/25 −34,7 tỷ, NSI)."
+  }
+ ],
+ "vo_hieu": "Vô hiệu (cho kịch bản mua): lãi phần công ty mẹ tăng hai quý liên tiếp và nợ vay/vốn chủ giảm dưới 0,8.",
+ "dinh_gia": "P/E 25,21 so với trung vị 3 năm 23,84; P/B 1,75 so với 1,68 (NSI 28/10, BCTC Q2/26). Ngành Hàng & Dịch vụ Công nghiệp (13 mã trong NSI): P/E trung vị 11,1, P/B 1,43, ROE 16,5%; mã này ROE 7,5%. Giá 23,10 cách đỉnh 1 năm -36%, cả ngành -30%. Không tìm thấy giá mục tiêu CTCK mới trong nguồn đã đọc. Kỳ vọng ngầm trong giá 23.100 (P/E 25, P/B 1,75 so trung vị nhóm 11 và 1,4): thị trường vẫn trả cho tăng trưởng hợp nhất chứ không phải lãi phần mẹ.",
+ "pitch": "GELEX là tập đoàn mẹ của dây cáp Cadivi và Viglacera. Doanh thu tăng mạnh và đã vượt kế hoạch năm, nhưng phần lợi nhuận về cổ đông GELEX giảm vì lãi vay và phần chia cho công ty con. Chúng tôi theo dõi.",
+ "dieu_kien_vao": [],
+ "pitch_diem": {
+  "khung": "70/30 sửa 15/10/2026; khâu 5 theo khung tư duy IES; viết 29/10/2026 cho toàn bộ TOP110 (nền thấp + nền chặt, 4 điều kiện, luận điểm đủ khung)",
+  "khau": {
+   "quoc_te": 5,
+   "vi_mo_vn": 7,
+   "nganh": 6,
+   "doanh_nghiep": 5,
+   "gia_sai": 6
+  },
+  "so": {
+   "dinh_gia": 3,
+   "kqkd": 1,
+   "suc_khoe_tc": 5
+  },
+  "luan_diem_70": 29,
+  "so_30": 9,
+  "tong": 38,
+  "dinh_gia_sai": 6,
+  "gia_sai": {
+   "tin_xau": "Lãi phần công ty mẹ quý 3 giảm khoảng 60%.",
+   "co_that_su_xau": "Một phần — kinh doanh hợp nhất vẫn tăng.",
+   "trang_thai": "Giá −36% từ đỉnh — phản ánh một phần.",
+   "ky_vong_ngam": "P/E 25: trả cho tăng trưởng hợp nhất.",
+   "nguoi_ban_can_bien": "Nhà đầu tư nhìn lãi phần mẹ, khối ngoại.",
+   "counter": "Phản biện: holding thường bị chiết khấu so tổng giá trị công ty con.",
+   "phep_thu": "BCTC quý 4/2026: lãi phần mẹ và chi phí lãi vay.",
+   "ket_luan": "PHẢN ÁNH MỘT PHẦN"
+  },
+  "ket_luan": "THEO DÕI — đạt c, d; trượt a, b (lãi phần mẹ giảm)",
+  "cham_boi": "claude",
+  "ngay": "2026-10-29"
+ },
+ "muc_tieu": [],
+ "quy_bctc": "Q2/26",
+ "catalyst_can_chi_truoc": false,
+ "dk_luc_viet": {
+  "a": false,
+  "b": false,
+  "c": true,
+  "d": true
+ },
+ "co_dinh": [
+  "mo_hinh_kd",
+  "lanh_dao",
+  "chuoi_gia_tri",
+  "dan_nguoc_vi_mo"
+ ]
+}

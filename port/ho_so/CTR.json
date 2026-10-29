@@ -1,0 +1,39 @@
+{
+ "ma": "CTR",
+ "ten": "Tổng Công ty cổ phần Công trình Viettel",
+ "nganh": "Xây dựng và Vật liệu",
+ "nganh_slug": "xay-dung",
+ "vi_tri": "trung_nguon",
+ "mo_hinh": "Vận hành, xây lắp hạ tầng viễn thông + xây lắp dân dụng",
+ "lam_gi": "Viettel Construction — công ty con của Viettel: vận hành khai thác hạ tầng viễn thông, xây lắp (trạm BTS, công trình dân dụng, điện mặt trời), giải pháp kỹ thuật cho hộ gia đình, doanh nghiệp, và cho thuê hạ tầng (khoảng 12.000 trạm). 9 tháng 2026: doanh thu 12.343 tỷ, LNST 505 tỷ (+16%); quý 3 doanh thu 4.227 tỷ (+6,6%). Nắm hơn 4.200 tỷ tiền và tiền gửi; dòng tiền kinh doanh giảm 42% vì công nợ tăng (báo chí 27–28/10/2026).",
+ "tien_tu_dau": "Phí vận hành, bảo dưỡng mạng Viettel (ổn định); hợp đồng xây lắp trong và ngoài tập đoàn (theo tiến độ); phí cho thuê trạm (biên cao nhất, khoảng 5,8% doanh thu quý 3); lãi tiền gửi.",
+ "chuoi_gia_tri": {
+  "dau_vao": "Hợp đồng từ Viettel và chủ đầu tư bên ngoài; vật tư (thép, cáp, thiết bị điện), nhân công.",
+  "dau_ra": "Viettel (vận hành, trạm BTS), chủ đầu tư dân dụng, điện mặt trời, hộ gia đình (giải pháp kỹ thuật).",
+  "vi_tri": "Trung nguồn: biến vốn đầu tư hạ tầng số và xây dựng thành công trình, dịch vụ vận hành.",
+  "khac_doi_thu": "Có khách hàng nền là Viettel nên doanh thu vận hành ổn định; tiền mặt ròng lớn, gần như không phụ thuộc vay; câu chuyện cho thuê trạm (TowerCo) chậm lại khi đầu tư trạm mới giảm."
+ },
+ "vi_mo_xuong": "Đầu tư công và hạ tầng số quyết định khối lượng xây lắp; chi tiêu viễn thông của Viettel quyết định mảng vận hành và trạm; lãi suất huy động quyết định lãi tiền gửi (tiền mặt ròng lớn).",
+ "vi_mo_nguoc": "Hạ tầng viễn thông, chuyển đổi số là nền cho kinh tế số; ít tác động ngược lên vĩ mô ngoài việc làm xây lắp.",
+ "bien": [
+  {
+   "bien": "dau_tu_cong_vn",
+   "chieu": 1,
+   "kenh": "Đầu tư công, hạ tầng số tăng → khối lượng xây lắp tăng",
+   "tre": "1–2 quý"
+  },
+  {
+   "bien": "ls_huy_dong_vn",
+   "chieu": 1,
+   "kenh": "Lãi huy động tăng → lãi tiền gửi trên hơn 4.200 tỷ tiền mặt tăng",
+   "tre": "0–1 quý"
+  }
+ ],
+ "nguon": [
+  "Báo cáo KQKD quý 3/2026 (Kinh tế chứng khoán, DNSE, Vietstock 15–28/10/2026)",
+  "Luận điểm CTR (Claude 10/2026)"
+ ],
+ "cap_nhat": "2026-10-29",
+ "quy": "Q3/26",
+ "cham_boi": "claude"
+}
