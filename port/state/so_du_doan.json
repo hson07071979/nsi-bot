@@ -2499,5 +2499,31 @@
    "diem_pitch": 30,
    "diem_ket_qua": 25
   }
+ },
+ {
+  "id": "MWG-tin-2026-10-28",
+  "ngay": "2026-10-28",
+  "ma": "MWG",
+  "nguon": "tin",
+  "chieu": 1,
+  "gia0": 76.0,
+  "vni0": 1766.65,
+  "dac_trung": {
+   "gia": 76.0,
+   "pe": 11.03,
+   "pb": 3.03,
+   "pe_rel": 0.48,
+   "pb_rel": 0.88,
+   "roe": 29.2,
+   "ny": 100.4,
+   "ry": 29.6,
+   "rs": 50.7,
+   "diem": 74.3,
+   "diem_cb": 55,
+   "nganh": "Bán lẻ",
+   "den": "CAM",
+   "br50": 0.45,
+   "vni": 1766.65
+  }
  }
 ]
