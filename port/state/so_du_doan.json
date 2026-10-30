@@ -2551,5 +2551,57 @@
    "br50": 0.433,
    "vni": 1755.61
   }
+ },
+ {
+  "id": "CTG-daily-2026-10-29",
+  "ngay": "2026-10-29",
+  "ma": "CTG",
+  "nguon": "daily",
+  "chieu": -1,
+  "gia0": 30.7,
+  "vni0": 1755.61,
+  "dac_trung": {
+   "gia": 30.7,
+   "pe": 5.71,
+   "pb": 1.15,
+   "pe_rel": 0.62,
+   "pb_rel": 0.8,
+   "roe": 21.8,
+   "ny": 21.4,
+   "ry": 26.1,
+   "rs": 52.9,
+   "diem": 52.1,
+   "diem_cb": 40,
+   "nganh": "Ngân hàng",
+   "den": "CAM",
+   "br50": 0.433,
+   "vni": 1755.61
+  }
+ },
+ {
+  "id": "VCB-daily-2026-10-29",
+  "ngay": "2026-10-29",
+  "ma": "VCB",
+  "nguon": "daily",
+  "chieu": -1,
+  "gia0": 57.2,
+  "vni0": 1755.61,
+  "dac_trung": {
+   "gia": 57.2,
+   "pe": 11.3,
+   "pb": 1.89,
+   "pe_rel": 0.75,
+   "pb_rel": 0.7,
+   "roe": 17.9,
+   "ny": 64.7,
+   "ry": 47.6,
+   "rs": 60.9,
+   "diem": 56.7,
+   "diem_cb": 45,
+   "nganh": "Ngân hàng",
+   "den": "CAM",
+   "br50": 0.433,
+   "vni": 1755.61
+  }
  }
 ]
