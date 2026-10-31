@@ -1,6 +1,6 @@
 {
- "ngay": "2026-10-30",
- "luc": "2026-10-30T13:05+07:00",
+ "ngay": "2026-10-31",
+ "luc": "2026-10-31T12:58+07:00",
  "so_bien": 31,
  "lay_duoc": 31,
  "bien": {
@@ -8,42 +8,42 @@
    "ten": "Lợi suất trái phiếu Mỹ 10 năm",
    "dv": "%",
    "kieu": "ngay",
-   "gia_tri": 5.05,
-   "ngay_so": "2026-10-28",
+   "gia_tri": 4.98,
+   "ngay_so": "2026-10-29",
    "nguon": "fred:DGS10",
-   "thay_doi": -0.21,
+   "thay_doi": -0.31,
    "do": "diem",
    "cua_so": 20,
-   "z": -0.91,
+   "z": -1.36,
    "xu_huong": "giam",
-   "thay_doi_5": -0.08,
+   "thay_doi_5": 0.02,
    "doi_chieu": {
     "nguon": "yahoo:^TNX",
-    "ngay_so": "2026-10-29",
-    "gia_tri": 4.989,
-    "lech_pct": 1.22
+    "ngay_so": "2026-10-30",
+    "gia_tri": 4.929,
+    "lech_pct": 1.03
    }
   },
   "us2y": {
    "ten": "Lợi suất trái phiếu Mỹ 2 năm",
    "dv": "%",
    "kieu": "ngay",
-   "gia_tri": 4.67,
-   "ngay_so": "2026-10-28",
+   "gia_tri": 4.61,
+   "ngay_so": "2026-10-29",
    "nguon": "fred:DGS2",
-   "thay_doi": -0.22,
+   "thay_doi": -0.27,
    "do": "diem",
    "cua_so": 20,
-   "z": -0.9,
+   "z": -1.1,
    "xu_huong": "giam",
-   "thay_doi_5": -0.14
+   "thay_doi_5": -0.04
   },
   "fed": {
    "ten": "Lãi suất qua đêm Fed (hiệu dụng)",
    "dv": "%",
    "kieu": "ngay",
    "gia_tri": 3.88,
-   "ngay_so": "2026-10-28",
+   "ngay_so": "2026-10-29",
    "nguon": "fred:DFF",
    "thay_doi": 0.0,
    "do": "diem",
@@ -56,15 +56,15 @@
    "ten": "Chỉ số đô la Mỹ (DXY)",
    "dv": "điểm",
    "kieu": "ngay",
-   "gia_tri": 102.04,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 101.88,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:DX-Y.NYB",
-   "thay_doi": -0.059,
+   "thay_doi": -0.049,
    "do": "pct",
    "cua_so": 20,
    "z": -0.03,
    "xu_huong": "ngang",
-   "thay_doi_5": 0.423
+   "thay_doi_5": 0.069
   },
   "usd_rong": {
    "ten": "Đô la Mỹ so với rổ rộng (Fed)",
@@ -84,15 +84,15 @@
    "ten": "Tỷ giá USD/VND",
    "dv": "đồng",
    "kieu": "ngay",
-   "gia_tri": 25852.0,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 25799.0,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:VND=X",
-   "thay_doi": -0.412,
+   "thay_doi": -0.693,
    "do": "pct",
    "cua_so": 20,
-   "z": -0.35,
-   "xu_huong": "ngang",
-   "thay_doi_5": -0.015
+   "z": -0.6,
+   "xu_huong": "giam",
+   "thay_doi_5": -0.19
   },
   "usdcny": {
    "ten": "Tỷ giá USD/CNY",
@@ -109,236 +109,236 @@
    "thay_doi_5": -0.238,
    "doi_chieu": {
     "nguon": "yahoo:CNY=X",
-    "ngay_so": "2026-10-29",
-    "gia_tri": 6.666,
-    "lech_pct": 0.06
+    "ngay_so": "2026-10-30",
+    "gia_tri": 6.661,
+    "lech_pct": 0.14
    }
   },
   "vix": {
    "ten": "Chỉ số sợ hãi VIX",
    "dv": "điểm",
    "kieu": "ngay",
-   "gia_tri": 16.91,
-   "ngay_so": "2026-10-28",
+   "gia_tri": 17.2,
+   "ngay_so": "2026-10-29",
    "nguon": "fred:VIXCLS",
-   "thay_doi": 0.57,
+   "thay_doi": 0.81,
    "do": "diem",
    "cua_so": 20,
    "z": 0.1,
    "xu_huong": "ngang",
-   "thay_doi_5": 0.23,
+   "thay_doi_5": -1.83,
    "doi_chieu": {
     "nguon": "yahoo:^VIX",
-    "ngay_so": "2026-10-29",
-    "gia_tri": 17.2,
-    "lech_pct": -1.69
+    "ngay_so": "2026-10-30",
+    "gia_tri": 19.42,
+    "lech_pct": -11.43
    }
   },
   "spx": {
    "ten": "S&P 500",
    "dv": "điểm",
    "kieu": "ngay",
-   "gia_tri": 7743.98,
-   "ngay_so": "2026-10-28",
+   "gia_tri": 7720.39,
+   "ngay_so": "2026-10-29",
    "nguon": "fred:SP500",
-   "thay_doi": 1.208,
+   "thay_doi": 0.704,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.25,
+   "z": 0.15,
    "xu_huong": "ngang",
-   "thay_doi_5": -0.17,
+   "thay_doi_5": 0.743,
    "doi_chieu": {
     "nguon": "yahoo:^GSPC",
-    "ngay_so": "2026-10-29",
-    "gia_tri": 7720.3901,
-    "lech_pct": 0.31
+    "ngay_so": "2026-10-30",
+    "gia_tri": 7580.0698,
+    "lech_pct": 1.85
    }
   },
   "brent": {
    "ten": "Dầu Brent",
    "dv": "USD/thùng",
    "kieu": "ngay",
-   "gia_tri": 114.88,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 117.64,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:BZ=F",
-   "thay_doi": 12.286,
+   "thay_doi": 15.051,
    "do": "pct",
    "cua_so": 20,
-   "z": 1.24,
+   "z": 1.43,
    "xu_huong": "tang",
-   "thay_doi_5": 1.511,
+   "thay_doi_5": 0.788,
    "doi_chieu": {
     "nguon": "fred:DCOILBRENTEU",
     "ngay_so": "2026-10-27",
     "gia_tri": 123.1,
-    "lech_pct": -6.68
+    "lech_pct": -4.44
    }
   },
   "wti": {
    "ten": "Dầu WTI",
    "dv": "USD/thùng",
    "kieu": "ngay",
-   "gia_tri": 102.0,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 104.12,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:CL=F",
-   "thay_doi": 9.831,
+   "thay_doi": 14.279,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.96,
+   "z": 1.27,
    "xu_huong": "tang",
-   "thay_doi_5": 2.543,
+   "thay_doi_5": 0.823,
    "doi_chieu": {
     "nguon": "fred:DCOILWTICO",
     "ngay_so": "2026-10-27",
     "gia_tri": 103.37,
-    "lech_pct": -1.33
+    "lech_pct": 0.73
    }
   },
   "khi_hh": {
    "ten": "Khí tự nhiên Henry Hub",
    "dv": "USD/MMBtu",
    "kieu": "ngay",
-   "gia_tri": 2.952,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 2.898,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:NG=F",
-   "thay_doi": -0.506,
+   "thay_doi": -4.514,
    "do": "pct",
    "cua_so": 20,
-   "z": -0.03,
+   "z": -0.25,
    "xu_huong": "ngang",
-   "thay_doi_5": 5.579,
+   "thay_doi_5": 9.773,
    "doi_chieu": {
     "nguon": "fred:DHHNGSP",
     "ngay_so": "2026-10-27",
     "gia_tri": 2.76,
-    "lech_pct": 6.96
+    "lech_pct": 5.0
    }
   },
   "vang": {
    "ten": "Vàng thế giới",
    "dv": "USD/oz",
    "kieu": "ngay",
-   "gia_tri": 4031.3999,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 3898.8999,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:GC=F",
-   "thay_doi": -4.067,
+   "thay_doi": -6.328,
    "do": "pct",
    "cua_so": 20,
-   "z": -0.86,
+   "z": -1.35,
    "xu_huong": "giam",
-   "thay_doi_5": -0.714
+   "thay_doi_5": -2.72
   },
   "dong": {
    "ten": "Đồng (COMEX)",
    "dv": "USD/lb",
    "kieu": "ngay",
-   "gia_tri": 6.581,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 6.4585,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:HG=F",
-   "thay_doi": 1.527,
+   "thay_doi": -0.516,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.21,
+   "z": -0.07,
    "xu_huong": "ngang",
-   "thay_doi_5": 3.434
+   "thay_doi_5": -0.27
   },
   "hrc_my": {
    "ten": "Thép cuộn cán nóng HRC (Mỹ)",
    "dv": "USD/tấn",
    "kieu": "ngay",
-   "gia_tri": 1342.0,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 1347.0,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:HRC=F",
-   "thay_doi": 5.255,
+   "thay_doi": 5.647,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.48,
-   "xu_huong": "ngang",
-   "thay_doi_5": 4.355
+   "z": 0.52,
+   "xu_huong": "tang",
+   "thay_doi_5": 4.257
   },
   "quang_sat_ngay": {
    "ten": "Quặng sắt (SGX)",
    "dv": "USD/tấn",
    "kieu": "ngay",
    "gia_tri": 90.71,
-   "ngay_so": "2026-10-29",
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:TIO=F",
-   "thay_doi": -1.509,
+   "thay_doi": -0.701,
    "do": "pct",
    "cua_so": 20,
-   "z": -0.17,
+   "z": -0.08,
    "xu_huong": "ngang",
-   "thay_doi_5": -0.022
+   "thay_doi_5": -0.132
   },
   "duong": {
    "ten": "Đường thô",
    "dv": "US cent/lb",
    "kieu": "ngay",
-   "gia_tri": 19.47,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 19.36,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:SB=F",
-   "thay_doi": 2.798,
+   "thay_doi": -2.86,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.39,
+   "z": -0.43,
    "xu_huong": "ngang",
-   "thay_doi_5": -3.279
+   "thay_doi_5": -4.348
   },
   "bong": {
    "ten": "Bông",
    "dv": "US cent/lb",
    "kieu": "ngay",
-   "gia_tri": 78.5,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 77.83,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:CT=F",
-   "thay_doi": 6.038,
+   "thay_doi": 3.566,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.75,
-   "xu_huong": "tang",
-   "thay_doi_5": -2.835
+   "z": 0.43,
+   "xu_huong": "ngang",
+   "thay_doi_5": -2.955
   },
   "ngo": {
    "ten": "Ngô (CBOT)",
    "dv": "US cent/giạ",
    "kieu": "ngay",
-   "gia_tri": 451.25,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 447.75,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:ZC=F",
-   "thay_doi": -10.154,
+   "thay_doi": -10.045,
    "do": "pct",
    "cua_so": 20,
-   "z": -1.53,
+   "z": -1.58,
    "xu_huong": "giam",
-   "thay_doi_5": -2.009
+   "thay_doi_5": -1.809
   },
   "kho_dau": {
    "ten": "Khô đậu tương (CBOT)",
    "dv": "USD/short ton",
    "kieu": "ngay",
-   "gia_tri": 329.3,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 324.6,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:ZM=F",
-   "thay_doi": -6.475,
+   "thay_doi": -5.831,
    "do": "pct",
    "cua_so": 20,
-   "z": -0.86,
+   "z": -0.77,
    "xu_huong": "giam",
-   "thay_doi_5": -5.183
+   "thay_doi_5": -6.212
   },
   "sua_bot": {
    "ten": "Sữa bột gầy (CME)",
    "dv": "USD/lb",
    "kieu": "ngay",
-   "gia_tri": 200.0,
-   "ngay_so": "2026-10-29",
+   "gia_tri": 200.5,
+   "ngay_so": "2026-10-30",
    "nguon": "yahoo:GNF=F",
-   "thay_doi": 0.063,
+   "thay_doi": 0.288,
    "do": "pct",
    "cua_so": 20,
-   "z": 0.01,
+   "z": 0.05,
    "xu_huong": "ngang",
-   "thay_doi_5": 0.0
+   "thay_doi_5": 0.25
   },
   "quang_sat": {
    "ten": "Quặng sắt (IMF, tháng)",
@@ -482,17 +482,23 @@
   }
  },
  "lech_nguon": {
+  "vix": {
+   "nguon": "yahoo:^VIX",
+   "ngay_so": "2026-10-30",
+   "gia_tri": 19.42,
+   "lech_pct": -11.43
+  },
   "brent": {
    "nguon": "fred:DCOILBRENTEU",
    "ngay_so": "2026-10-27",
    "gia_tri": 123.1,
-   "lech_pct": -6.68
+   "lech_pct": -4.44
   },
   "khi_hh": {
    "nguon": "fred:DHHNGSP",
    "ngay_so": "2026-10-27",
    "gia_tri": 2.76,
-   "lech_pct": 6.96
+   "lech_pct": 5.0
   }
  },
  "loi_nguon": []
